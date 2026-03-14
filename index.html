@@ -1,109 +1,355 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Streaming App Library</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My IPTV Service Pro Installer Dashboard v4.0</title>
 <style>
-body {font-family: Arial; background:#0f172a; color:white; padding:40px;}
-h1 {color:#22c55e;}
-.section {margin-top:30px;}
-.app {margin:10px 0;}
-.btn {
-background:#22c55e;
-padding:8px 14px;
-border-radius:20px;
-color:black;
-text-decoration:none;
-font-weight:bold;
+:root{
+  --bg:#08111f;
+  --panel:#101827;
+  --panel2:#0f172a;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --green:#22c55e;
+  --blue:#3b82f6;
+  --gold:#f59e0b;
+  --orange:#f97316;
+  --border:#1f2937;
+  --shadow:0 12px 28px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:linear-gradient(180deg,var(--bg),var(--panel2));
+  color:var(--text);
+}
+.wrap{max-width:1450px;margin:auto;padding:20px}
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
+  overflow:hidden;
+}
+.header{padding:18px;border-bottom:1px solid var(--border)}
+.header h2,.header h3{margin:0}
+.sub{margin-top:6px;color:var(--muted);font-size:.92rem;line-height:1.45}
+.hero{padding:22px}
+h1{margin:0 0 8px;color:#86efac;font-size:2rem}
+.notice,.confidential,.contactbox,.pricingbox,.tip{
+  border-radius:14px;
+  padding:12px 14px;
+  margin-top:12px;
+  line-height:1.45;
+}
+.notice{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.28)}
+.confidential{background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.28);color:#fed7aa}
+.contactbox{background:rgba(147,51,234,.12);border:1px solid rgba(147,51,234,.28);color:#f3e8ff}
+.pricingbox{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.28);color:#dcfce7}
+.tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a}
+.grid2,.grid3{display:grid;gap:18px}
+.grid2{grid-template-columns:1fr 1fr}
+.grid3{grid-template-columns:1fr 1fr 1fr}
+@media (max-width:1200px){.grid2,.grid3{grid-template-columns:1fr}}
+.content{padding:14px 18px}
+.list{margin:0;padding-left:20px}
+.list li{margin:0 0 8px;line-height:1.45}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{border:1px solid var(--border);padding:8px;text-align:center}
+.table th{background:#1f2937}
+.appgrid{padding:10px 16px 14px}
+.approw{
+  display:grid;
+  grid-template-columns:54px 34px 1fr 120px 150px;
+  gap:12px;
+  align-items:center;
+  padding:10px 0;
+  border-bottom:1px solid #1f2937;
+}
+.approw:last-child{border-bottom:none}
+.order{
+  width:46px;height:46px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;font-weight:bold;
+  background:#1f2937;
+}
+.order.play{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.25);color:#bfdbfe}
+.order.apk{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.25);color:#bbf7d0}
+.order.expand{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.22);color:#fde68a}
+.cb{
+  width:22px;height:22px;border:2px solid #475569;border-radius:6px;display:inline-block;
+  background:#0b1220;
+}
+.appname{font-weight:bold}
+.small{font-size:.86rem;color:var(--muted);line-height:1.4}
+.codepill{
+  display:inline-block;padding:8px 10px;border-radius:999px;background:#0b1220;
+  border:1px solid #243044;color:#e2e8f0;font-weight:bold;text-align:center;font-size:.84rem;
+}
+.btn{
+  padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:bold;text-align:center;display:inline-block
+}
+.playbtn{background:var(--blue);color:white}
+.apkbtn{background:var(--green);color:#052e16}
+.expandbtn{background:var(--gold);color:#3b2400}
+.timerbox{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.metric{
+  background:#0f172a;border:1px solid #243044;border-radius:14px;padding:14px;text-align:center
+}
+.metric .label{color:var(--muted);font-size:.85rem}
+.metric .value{font-size:1.3rem;font-weight:bold;margin-top:6px}
+.footer{text-align:center;color:#cbd5e1;margin-top:16px;font-size:.9rem}
+.version{margin-top:6px;color:#94a3b8;font-size:.84rem}
+@media (max-width:860px){
+  .approw{grid-template-columns:54px 34px 1fr}
+  .codepill,.btn{grid-column:3}
 }
 </style>
 </head>
-
 <body>
+<div class="wrap">
 
-<h1>Streaming Device App Library</h1>
-<p>Select an app below to install.</p>
+<div class="card hero">
+  <h1>My IPTV Service Pro Installer Dashboard</h1>
+  <div class="sub">Internal build console for ONN Google TV and Android streaming devices.</div>
 
-<div class="section">
-<h2>Movies & TV</h2>
+  <div class="notice">
+    Recommended workflow: Play Store installs first, Core APK installs second, Optional Movie/TV and Sports APK apps next, then final testing, home screen arrangement, and IPTV activation if purchased.
+  </div>
 
-<div class="app">FlixVision
-<a class="btn" href="https://example.com/flixvision.apk">Download</a>
+  <div class="confidential">
+    <strong>Confidential Setup Page</strong><br>
+    This page is part of a private device setup system and is intended only for authorized users.
+    Please do not distribute this page, its links, or any of the resources listed here without permission.
+  </div>
+
+  <div class="grid2">
+    <div class="pricingbox">
+      <strong>Device Pricing</strong><br>
+      4K Stick — $35<br>
+      4K Streaming Device — $55<br>
+      4K Plus Device — $65<br><br>
+      <strong>IPTV Pricing</strong><br>
+      $15 Monthly<br>
+      $120 Yearly<br>
+      $200 Two Years
+    </div>
+
+    <div class="contactbox">
+      <strong>Customer Support & IPTV Activation</strong><br>
+      WhatsApp / Phone: <strong>631-220-5117</strong><br>
+      Email: <strong>4myIPTVservice@gmail.com</strong><br><br>
+      Customers who want IPTV activation or support should contact you directly.
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>Maintenance Recommendation:</strong> Keep your spreadsheet as the master list. Track App Name, Install Type, Install Order, Direct Link, Downloader Code, Home Screen Position, and Notes. Update the spreadsheet first, then update this dashboard.
+  </div>
 </div>
 
-<div class="app">Cinema HD
-<a class="btn" href="https://example.com/cinemahd.apk">Download</a>
+<div class="grid2">
+  <div class="card">
+    <div class="header">
+      <h2>Quick Device Setup Checklist</h2>
+      <div class="sub">Use this exact order on every device.</div>
+    </div>
+    <div class="content">
+      <ol class="list">
+        <li>Connect device to TV and Wi-Fi</li>
+        <li>Disable Play Protect scanning</li>
+        <li>Enable Developer Mode</li>
+        <li>Install Play Store apps</li>
+        <li>Install Core APK apps</li>
+        <li>Install Optional Movie/TV APK apps if needed</li>
+        <li>Install Optional Sports APK apps if needed</li>
+        <li>Arrange home screen order</li>
+        <li>Test app launches and playback</li>
+        <li>Load IPTV credentials only if service is purchased</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <h2>Multi-Device Build Tracker</h2>
+      <div class="sub">Use this when preparing multiple devices at once.</div>
+    </div>
+    <div class="content">
+      <table class="table">
+        <tr><th>Device #</th><th>Play Store</th><th>Core APK</th><th>Movie/TV</th><th>Sports</th><th>Order</th><th>Tested</th><th>Delivered</th></tr>
+        <tr><td>1</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+        <tr><td>2</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+        <tr><td>3</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+        <tr><td>4</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+        <tr><td>5</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr>
+      </table>
+    </div>
+  </div>
 </div>
 
-<div class="app">FilmPlus
-<a class="btn" href="https://example.com/filmplus.apk">Download</a>
+<div class="grid3">
+  <div class="card">
+    <div class="header">
+      <h2>Provisioning Metrics</h2>
+      <div class="sub">Visual placeholders for live build sessions.</div>
+    </div>
+    <div class="content timerbox">
+      <div class="metric"><div class="label">Devices in Batch</div><div class="value">5</div></div>
+      <div class="metric"><div class="label">Completed</div><div class="value">0</div></div>
+      <div class="metric"><div class="label">In Progress</div><div class="value">0</div></div>
+      <div class="metric"><div class="label">Session Goal</div><div class="value">All</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <h2>IPTV Activation Helper</h2>
+      <div class="sub">Use this script while activating a purchased service.</div>
+    </div>
+    <div class="content">
+      <ol class="list">
+        <li>Open IPTV Smarters Pro</li>
+        <li>Select login by Xtream or provider credentials</li>
+        <li>Enter Username</li>
+        <li>Enter Password</li>
+        <li>Enter Server URL</li>
+        <li>Save and refresh channels</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <h2>Home Screen Order Reference</h2>
+      <div class="sub">Keep this order consistent on every device.</div>
+    </div>
+    <div class="content">
+      <ol class="list">
+        <li>IPTV Smarters Pro</li>
+        <li>Pluto TV</li>
+        <li>Tubi TV</li>
+        <li>Xumo Play</li>
+        <li>NewsOn</li>
+        <li>Philo TV</li>
+        <li>MX Player</li>
+        <li>VLC Player</li>
+        <li>Downloader</li>
+      </ol>
+    </div>
+  </div>
 </div>
 
-<div class="app">BeeTV
-<a class="btn" href="https://example.com/beetv.apk">Download</a>
+<div class="grid2">
+  <div class="card">
+    <div class="header">
+      <h2>Standard Device Build — Play Store Installs</h2>
+      <div class="sub">Install these first directly from Google Play. Check each box when finished.</div>
+    </div>
+    <div class="appgrid">
+      <div class="approw"><div class="order play">1</div><div class="cb"></div><div><div class="appname">Downloader</div><div class="small">Required for APK installs.</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+      <div class="approw"><div class="order play">2</div><div class="cb"></div><div><div class="appname">MX Player</div><div class="small">Primary media player.</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+      <div class="approw"><div class="order play">3</div><div class="cb"></div><div><div class="appname">VLC Player</div><div class="small">Backup media player.</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+      <div class="approw"><div class="order play">4</div><div class="cb"></div><div><div class="appname">Pluto TV</div><div class="small">Free live TV and on-demand.</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+      <div class="approw"><div class="order play">5</div><div class="cb"></div><div><div class="appname">Tubi TV</div><div class="small">Free movies and TV shows.</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+      <div class="approw"><div class="order play">6</div><div class="cb"></div><div><div class="appname">Xumo Play</div><div class="small">Free channels and on-demand.</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+      <div class="approw"><div class="order play">7</div><div class="cb"></div><div><div class="appname">NewsOn</div><div class="small">Local news and weather.</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+      <div class="approw"><div class="order play">8</div><div class="cb"></div><div><div class="appname">Philo TV</div><div class="small">Optional service and free content options.</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+      <div class="approw"><div class="order play">9</div><div class="cb"></div><div><div class="appname">ProtonVPN</div><div class="small">Optional privacy tool.</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+      <div class="approw"><div class="order expand">10</div><div class="cb"></div><div><div class="appname">Expandable Play Store Slot 1</div><div class="small">Rename when you add another required Play Store app.</div></div><div class="codepill">—</div><a class="btn expandbtn" href="#">Add</a></div>
+      <div class="approw"><div class="order expand">11</div><div class="cb"></div><div><div class="appname">Expandable Play Store Slot 2</div><div class="small">Rename when you add another required Play Store app.</div></div><div class="codepill">—</div><a class="btn expandbtn" href="#">Add</a></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <h2>Standard Device Build — Core APK Downloads</h2>
+      <div class="sub">Install these second using Downloader or your hosted links.</div>
+    </div>
+    <div class="appgrid">
+      <div class="approw"><div class="order apk">12</div><div class="cb"></div><div><div class="appname">IPTV Smarters Pro</div><div class="small">Primary IPTV app for customer-provided credentials.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order apk">13</div><div class="cb"></div><div><div class="appname">AMPlayer</div><div class="small">Required compatibility player.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order apk">14</div><div class="cb"></div><div><div class="appname">Bear Player</div><div class="small">Required compatibility player.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order apk">15</div><div class="cb"></div><div><div class="appname">BPlayer</div><div class="small">Required compatibility player.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order apk">16</div><div class="cb"></div><div><div class="appname">Background Apps &amp; Process List</div><div class="small">Maintenance tool for closing background apps.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order apk">17</div><div class="cb"></div><div><div class="appname">Browser</div><div class="small">Web browser.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order expand">18</div><div class="cb"></div><div><div class="appname">Expandable Core APK Slot 1</div><div class="small">Rename when you add another required Core APK app.</div></div><div class="codepill">CODE: _____</div><a class="btn expandbtn" href="#">Add</a></div>
+      <div class="approw"><div class="order expand">19</div><div class="cb"></div><div><div class="appname">Expandable Core APK Slot 2</div><div class="small">Rename when you add another required Core APK app.</div></div><div class="codepill">CODE: _____</div><a class="btn expandbtn" href="#">Add</a></div>
+    </div>
+  </div>
 </div>
 
-<div class="app">OnStream
-<a class="btn" href="https://example.com/onstream.apk">Download</a>
+<div class="grid2">
+  <div class="card">
+    <div class="header">
+      <h2>Optional Movie &amp; TV APK Apps</h2>
+      <div class="sub">Actual app names plus two expansion rows.</div>
+    </div>
+    <div class="appgrid">
+      <div class="approw"><div class="order apk">A1</div><div class="cb"></div><div><div class="appname">FlixVision</div><div class="small">Optional internal movie and TV app.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order apk">A2</div><div class="cb"></div><div><div class="appname">Cinema HQ</div><div class="small">Optional internal movie and TV app.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order apk">A3</div><div class="cb"></div><div><div class="appname">FilmPlus</div><div class="small">Optional internal movie and TV app.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order apk">A4</div><div class="cb"></div><div><div class="appname">BeeTV</div><div class="small">Optional internal movie and TV app.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order apk">A5</div><div class="cb"></div><div><div class="appname">OnStream</div><div class="small">Optional internal movie and TV app.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order apk">A6</div><div class="cb"></div><div><div class="appname">Movie HD / GStream</div><div class="small">Optional internal movie and TV app.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order expand">A7</div><div class="cb"></div><div><div class="appname">Expandable Movie/TV Slot 1</div><div class="small">Rename this row when you add another movie or TV APK app.</div></div><div class="codepill">CODE: _____</div><a class="btn expandbtn" href="#">Add</a></div>
+      <div class="approw"><div class="order expand">A8</div><div class="cb"></div><div><div class="appname">Expandable Movie/TV Slot 2</div><div class="small">Rename this row when you add another movie or TV APK app.</div></div><div class="codepill">CODE: _____</div><a class="btn expandbtn" href="#">Add</a></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <h2>Optional Sports APK Apps</h2>
+      <div class="sub">Actual app names plus two expansion rows.</div>
+    </div>
+    <div class="appgrid">
+      <div class="approw"><div class="order apk">S1</div><div class="cb"></div><div><div class="appname">FalconCast</div><div class="small">Optional internal sports app.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order apk">S2</div><div class="cb"></div><div><div class="appname">PLAYFy TV</div><div class="small">Optional internal sports app.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order apk">S3</div><div class="cb"></div><div><div class="appname">SportsFire</div><div class="small">Optional internal sports app.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order apk">S4</div><div class="cb"></div><div><div class="appname">StreamFire</div><div class="small">Optional internal sports app.</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+      <div class="approw"><div class="order expand">S5</div><div class="cb"></div><div><div class="appname">Expandable Sports Slot 1</div><div class="small">Rename this row when you add another sports APK app.</div></div><div class="codepill">CODE: _____</div><a class="btn expandbtn" href="#">Add</a></div>
+      <div class="approw"><div class="order expand">S6</div><div class="cb"></div><div><div class="appname">Expandable Sports Slot 2</div><div class="small">Rename this row when you add another sports APK app.</div></div><div class="codepill">CODE: _____</div><a class="btn expandbtn" href="#">Add</a></div>
+    </div>
+  </div>
 </div>
 
-<div class="app">Movie HD
-<a class="btn" href="https://example.com/moviehd.apk">Download</a>
+<div class="card">
+  <div class="header">
+    <h2>Optional Customer Services</h2>
+    <div class="sub">Install only when needed for a specific customer or build.</div>
+  </div>
+  <div class="appgrid">
+    <div class="approw"><div class="order play">C1</div><div class="cb"></div><div><div class="appname">Netflix</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+    <div class="approw"><div class="order play">C2</div><div class="cb"></div><div><div class="appname">Prime Video</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+    <div class="approw"><div class="order play">C3</div><div class="cb"></div><div><div class="appname">Disney+</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+    <div class="approw"><div class="order play">C4</div><div class="cb"></div><div><div class="appname">Hulu</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+    <div class="approw"><div class="order play">C5</div><div class="cb"></div><div><div class="appname">Max</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+    <div class="approw"><div class="order play">C6</div><div class="cb"></div><div><div class="appname">Paramount+</div></div><div class="codepill">—</div><a class="btn playbtn" href="#">Play Store</a></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="header">
+    <h2>Quick Install Codes (Backup Method)</h2>
+    <div class="sub">Moved to the bottom as a backup-only reference.</div>
+  </div>
+  <div class="appgrid">
+    <div class="approw"><div class="order apk">Q1</div><div class="cb"></div><div><div class="appname">IPTV Smarters Pro</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+    <div class="approw"><div class="order apk">Q2</div><div class="cb"></div><div><div class="appname">AMPlayer</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+    <div class="approw"><div class="order apk">Q3</div><div class="cb"></div><div><div class="appname">Bear Player</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+    <div class="approw"><div class="order apk">Q4</div><div class="cb"></div><div><div class="appname">BPlayer</div></div><div class="codepill">CODE: _____</div><a class="btn apkbtn" href="#">APK</a></div>
+  </div>
+</div>
+
+<div class="footer">
+  Pro Installer Dashboard • Play Store Apps → Core APK Apps → Optional Sections → Test → Activate
+  <div class="version">Version 4.0 • Last Updated: March 2026</div>
 </div>
 
 </div>
-
-<div class="section">
-<h2>Sports</h2>
-
-<div class="app">StreamFire
-<a class="btn" href="https://example.com/streamfire.apk">Download</a>
-</div>
-
-<div class="app">SportsFire
-<a class="btn" href="https://example.com/sportsfire.apk">Download</a>
-</div>
-
-<div class="app">FalconCast
-<a class="btn" href="https://example.com/falconcast.apk">Download</a>
-</div>
-
-<div class="app">PLAYFy TV
-<a class="btn" href="https://example.com/playfytv.apk">Download</a>
-</div>
-
-</div>
-
-<div class="section">
-<h2>Players</h2>
-
-<div class="app">IPTV Smarters Pro
-<a class="btn" href="https://example.com/iptvsmarters.apk">Download</a>
-</div>
-
-<div class="app">MX Player
-<a class="btn" href="https://example.com/mxplayer.apk">Download</a>
-</div>
-
-<div class="app">VLC Player
-<a class="btn" href="https://example.com/vlc.apk">Download</a>
-</div>
-
-</div>
-
-<div class="section">
-<h2>Utilities</h2>
-
-<div class="app">ProtonVPN
-<a class="btn" href="https://example.com/protonvpn.apk">Download</a>
-</div>
-
-<div class="app">Background Apps & Process List
-<a class="btn" href="https://example.com/backgroundapps.apk">Download</a>
-</div>
-
-</div>
-
 </body>
 </html>
