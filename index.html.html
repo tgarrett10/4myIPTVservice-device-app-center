@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>4MyIPTV Customer Landing Page</title>
+<style>
+:root{
+  --bg:#08111f;
+  --panel:#101827;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --green:#22c55e;
+  --blue:#3b82f6;
+  --gold:#f59e0b;
+  --purple:#9333ea;
+  --border:#1f2937;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(180deg,#08111f,#0f172a);
+  color:var(--text);
+}
+.wrap{max-width:980px;margin:auto;padding:18px}
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  margin-bottom:14px;
+  overflow:hidden;
+  box-shadow:0 12px 28px rgba(0,0,0,.28);
+}
+.hero{padding:22px;text-align:center}
+h1{margin:0 0 8px;color:#86efac;font-size:2rem}
+.tagline-banner{
+  margin:10px auto 14px auto;
+  max-width:720px;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  text-align:center;
+  font-weight:600;
+  font-size:16px;
+  letter-spacing:.08em;
+  color:#e2e8f0;
+}
+.sub{color:var(--muted);line-height:1.5}
+.notice,.tip{
+  border-radius:14px;
+  padding:12px 14px;
+  margin-top:14px;
+  line-height:1.5;
+  text-align:left;
+}
+.notice{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe}
+.tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a}
+.header{
+  padding:14px 16px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
+}
+.content{padding:14px 16px}
+.section-label{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#94a3b8;
+  margin:0 0 8px 0;
+}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:900px){.grid2{grid-template-columns:1fr}}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn{
+  padding:11px 14px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:bold;
+  text-align:center;
+  display:inline-block;
+  border:none;
+  cursor:pointer;
+  font-size:14px;
+  color:#fff;
+}
+.playbtn{background:var(--blue)}
+.directbtn{background:var(--green);color:#052e16}
+.goldbtn{background:var(--gold);color:#3b2400}
+.adminbtn{background:var(--purple)}
+.linklist{margin:0;padding-left:18px}
+.linklist li{margin:0 0 8px;line-height:1.45}
+.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media (max-width:700px){.mini-grid{grid-template-columns:1fr}}
+.tile{
+  background:#0f172a;
+  border:1px solid #243044;
+  border-radius:14px;
+  padding:14px;
+}
+.tile strong{display:block;margin-bottom:8px}
+.footer-strip{
+  margin-top:18px;
+  padding:16px 10px;
+  border-top:1px solid #243044;
+  text-align:center;
+  color:#cbd5e1;
+  font-size:.9rem;
+}
+.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="card hero">
+    <h1>4MyIPTV Customer Start Page</h1>
+    <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
+    <div class="sub">This page is the simple customer-facing starting point. Use it to get help, install apps, and contact support without opening the internal installer dashboard.</div>
+
+    <div class="notice">
+      <strong>Before you begin</strong><br />
+      You still need an active internet connection and a supported streaming device. This service is designed to be plug-and-play, but it does not replace your internet service.
+    </div>
+
+    <div class="btnrow" style="margin-top:16px">
+      <a class="btn playbtn" href="setup-help.html">Setup Help</a>
+      <a class="btn adminbtn" href="support.html">Support / Tips</a>
+      <a class="btn goldbtn" href="apk-library.html">APK Library</a>
+      <a class="btn directbtn" href="https://aft.news/6234188" target="_blank">Install IPTV Smarters</a>
+    </div>
+
+    <div class="tip">
+      <strong>Best customer flow</strong><br />
+      1. Open <strong>Setup Help</strong><br />
+      2. Install <strong>IPTV Smarters Pro</strong><br />
+      3. Enter the login credentials provided to you exactly as shared<br />
+      4. If you need help, open <strong>Support / Tips</strong>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="header">
+        <div class="section-label">Quick Start</div>
+        <h2>What You Need</h2>
+      </div>
+      <div class="content">
+        <ul class="linklist">
+          <li>A stable internet connection</li>
+          <li>A supported Android streaming device</li>
+          <li>IPTV Smarters Pro installed</li>
+          <li>Your login credentials from your installer</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="header">
+        <div class="section-label">Support</div>
+        <h2>Need Help?</h2>
+      </div>
+      <div class="content">
+        <ul class="linklist">
+          <li><a href="https://t.me/4MyIPTVsupport" target="_blank" style="color:#fff;text-decoration:underline;">Telegram Support</a></li>
+          <li><a href="mailto:support@4myiptvservice.com?subject=IPTV%20Support%20Request" style="color:#fff;text-decoration:underline;">Email Support</a></li>
+          <li><a href="support.html" style="color:#fff;text-decoration:underline;">Support / Tips Page</a></li>
+          <li><a href="setup-help.html" style="color:#fff;text-decoration:underline;">Setup Help Page</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Why Customers Use This Service</div>
+      <h2>Customer Highlights</h2>
+    </div>
+    <div class="content">
+      <div class="mini-grid">
+        <div class="tile">
+          <strong>Plug-and-Play Setup</strong>
+          Connect to the internet, install the app, enter your credentials, and start watching.
+        </div>
+        <div class="tile">
+          <strong>Lower Cost</strong>
+          Save money compared to large traditional cable packages.
+        </div>
+        <div class="tile">
+          <strong>Large Content Library</strong>
+          Live TV, movies, series, sports, and pay-per-view in one service.
+        </div>
+        <div class="tile">
+          <strong>Travel Friendly</strong>
+          Works anywhere you have stable internet, including hotels and vacation travel.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-strip">
+    <strong>4MyIPTV Customer Start Page</strong>
+    <div class="version">Version 1.0 • Last Updated: March 2026</div>
+  </div>
+</div>
+</body>
+</html>
