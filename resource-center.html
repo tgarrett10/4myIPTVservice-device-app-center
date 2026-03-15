@@ -1,221 +1,339 @@
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My IPTV Service Resource Center</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resource Center</title>
 <style>
-:root{
-  --bg:#08111f; --panel:#101827; --panel2:#0f172a; --text:#f8fafc; --muted:#94a3b8;
-  --green:#22c55e; --blue:#3b82f6; --gold:#f59e0b; --purple:#9333ea; --border:#1f2937;
-  --shadow:0 12px 28px rgba(0,0,0,.28);
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0f172a;
+    color:#f1f5f9;
 }
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,var(--bg),var(--panel2));color:var(--text)}
-.wrap{max-width:1400px;margin:auto;padding:22px}
-.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:18px}
-.hero{padding:22px}
-h1{margin:0 0 8px;color:#86efac;font-size:2rem}
-.sub{color:var(--muted);line-height:1.5}
-.notice,.contact,.tip{
-  border-radius:14px;padding:12px 14px;margin-top:12px;line-height:1.45
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
 }
-.notice{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.28)}
-.contact{background:rgba(147,51,234,.12);border:1px solid rgba(147,51,234,.28);color:#f3e8ff}
-.tip{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.28);color:#dcfce7}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media (max-width:1100px){.grid2{grid-template-columns:1fr}}
-.header{padding:18px;border-bottom:1px solid var(--border)}
-.header h2{margin:0;font-size:1.15rem}
-.header .sub{margin-top:6px;font-size:.92rem}
-.content{padding:14px 18px}
-.resource{
-  display:grid;grid-template-columns:1fr 170px;gap:12px;align-items:center;
-  padding:12px 0;border-bottom:1px solid #1f2937
+header{
+    text-align:center;
+    padding:20px;
 }
-.resource:last-child{border-bottom:none}
-.rtitle{font-weight:bold}
-.rdesc{font-size:.86rem;color:var(--muted);line-height:1.4;margin-top:4px}
-.btn{
-  display:inline-block;text-align:center;text-decoration:none;font-weight:bold;
-  padding:10px 14px;border-radius:999px
+header h1{
+    margin-bottom:6px;
 }
-.download{background:var(--green);color:#052e16}
-.link{background:var(--blue);color:white}
-.pending{background:var(--gold);color:#3b2400}
-.list{margin:0;padding-left:20px}
-.list li{margin:0 0 8px;line-height:1.45}
-.footer{text-align:center;color:#cbd5e1;margin-top:16px;font-size:.9rem}
-.version{margin-top:6px;color:#94a3b8;font-size:.84rem}
+.tag{
+    color:#94a3b8;
+    font-size:14px;
+}
+.section{
+    background:#111827;
+    border:1px solid #1f2937;
+    border-radius:12px;
+    padding:18px;
+    margin-bottom:18px;
+}
+.section h2{
+    margin-top:0;
+}
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+.card{
+    background:#0b1220;
+    border:1px solid #1f2937;
+    border-radius:10px;
+    padding:14px;
+}
+.card strong{
+    display:block;
+    margin-bottom:6px;
+}
+ul{
+    padding-left:18px;
+}
+a{
+    color:#38bdf8;
+    text-decoration:none;
+}
+a:hover{
+    text-decoration:underline;
+}
+.footer{
+    text-align:center;
+    color:#64748b;
+    font-size:13px;
+    margin-top:30px;
+}
+@media(max-width:800px){
+.grid{
+grid-template-columns:1fr;
+}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-
-<div class="card hero">
-  <h1>My IPTV Service Resource Center</h1>
-  <div class="sub">Internal document hub for installer materials, sales documents, customer guides, and quick-access tools.</div>
-
-  <div class="notice">
-    Use this page as your one-stop shop for documents and support materials. You can assign helpers to this page so they can access guides, flyers, and setup documents without giving them the installer dashboard first.
-  </div>
-
-  <div class="contact">
-    <strong>Support Contact</strong><br>
-    WhatsApp / Phone: <strong>631-220-5117</strong><br>
-    Email: <strong>4myIPTVservice@gmail.com</strong>
-  </div>
-
-  <div class="tip">
-    <strong>Recommended Use:</strong> Keep the Installer Dashboard for device building and use this Resource Center for documents, sales materials, and helper training.
-  </div>
-</div>
-
-<div class="grid2">
-  <div class="card">
-    <div class="header">
-      <h2>Installer Tools</h2>
-      <div class="sub">Quick links for the technical side of the process.</div>
-    </div>
-    <div class="content">
-      <div class="resource">
-        <div>
-          <div class="rtitle">Pro Installer Dashboard</div>
-          <div class="rdesc">Main build console used to prepare devices and track installs.</div>
-        </div>
-        <a class="btn link" href="https://tgarrett10.github.io/4myIPTVservice-device-app-center/">Open</a>
-      </div>
-      <div class="resource">
-        <div>
-          <div class="rtitle">Downloader Short Code</div>
-          <div class="rdesc">Shortcut code for opening the installer dashboard inside Downloader.</div>
-        </div>
-        <a class="btn pending" href="#">4204657</a>
-      </div>
-      <div class="resource">
-        <div>
-          <div class="rtitle">APK Hosting Folder</div>
-          <div class="rdesc">Future area for hosted APK files inside your GitHub repository.</div>
-        </div>
-        <a class="btn pending" href="#">Coming Soon</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="header">
-      <h2>Customer & Sales Documents</h2>
-      <div class="sub">Keep your flyers, guides, and customer-facing materials here.</div>
-    </div>
-    <div class="content">
-      <div class="resource">
-        <div>
-          <div class="rtitle">Sales Flyer</div>
-          <div class="rdesc">Quick flyer for local selling and customer conversations.</div>
-        </div>
-        <a class="btn pending" href="#">Add Link</a>
-      </div>
-      <div class="resource">
-        <div>
-          <div class="rtitle">Customer Quick Start Guide</div>
-          <div class="rdesc">Simple setup guide for customers after purchase.</div>
-        </div>
-        <a class="btn pending" href="#">Add Link</a>
-      </div>
-      <div class="resource">
-        <div>
-          <div class="rtitle">Customer Device Manual</div>
-          <div class="rdesc">Longer guide explaining how the device works and what the apps do.</div>
-        </div>
-        <a class="btn pending" href="#">Add Link</a>
-      </div>
-      <div class="resource">
-        <div>
-          <div class="rtitle">Troubleshooting Guide</div>
-          <div class="rdesc">Common fixes for setup, playback, and support issues.</div>
-        </div>
-        <a class="btn pending" href="#">Add Link</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="grid2">
-  <div class="card">
-    <div class="header">
-      <h2>Installer Documentation</h2>
-      <div class="sub">Documents you or a helper can use during device preparation.</div>
-    </div>
-    <div class="content">
-      <div class="resource">
-        <div>
-          <div class="rtitle">IPTV Seller Toolkit</div>
-          <div class="rdesc">Toolkit package containing your structured business materials.</div>
-        </div>
-        <a class="btn pending" href="#">Add Link</a>
-      </div>
-      <div class="resource">
-        <div>
-          <div class="rtitle">Device Setup Guide</div>
-          <div class="rdesc">Step-by-step installer prep instructions.</div>
-        </div>
-        <a class="btn pending" href="#">Add Link</a>
-      </div>
-      <div class="resource">
-        <div>
-          <div class="rtitle">Batch Device Preparation Guide</div>
-          <div class="rdesc">Workflow for preparing multiple devices in one session.</div>
-        </div>
-        <a class="btn pending" href="#">Add Link</a>
-      </div>
-      <div class="resource">
-        <div>
-          <div class="rtitle">APK / Link Worksheet</div>
-          <div class="rdesc">Master spreadsheet for install order, direct links, and downloader codes.</div>
-        </div>
-        <a class="btn pending" href="#">Add Link</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="header">
-      <h2>Suggested Resource Center Workflow</h2>
-      <div class="sub">Simple process to keep this page useful and organized.</div>
-    </div>
-    <div class="content">
-      <ol class="list">
-        <li>Upload a document to GitHub or another stable location.</li>
-        <li>Copy the document link.</li>
-        <li>Edit this Resource Center page and replace an <strong>Add Link</strong> button with the real URL.</li>
-        <li>Keep the Installer Dashboard focused on app installs and the Resource Center focused on documents.</li>
-        <li>Only share this page with trusted helpers or installers.</li>
-      </ol>
-    </div>
-  </div>
-</div>
-
+<div class="container">
+<header>
+<h1>Installer Resource Center</h1>
+<div class="tag">Sales • Setup • Support • Business Tools</div>
+</header>
+<div class="section">
+<h2>Sales Materials</h2>
+<div class="grid">
 <div class="card">
-  <div class="header">
-    <h2>Future Expansion Area</h2>
-    <div class="sub">You can grow this into a full internal portal over time.</div>
-  </div>
-  <div class="content">
-    <ul class="list">
-      <li>Add direct download buttons for PDFs and spreadsheets.</li>
-      <li>Add training notes for helpers.</li>
-      <li>Add a section for current pricing updates.</li>
-      <li>Add a section for active Downloader codes.</li>
-      <li>Add a section for new device models and setup differences.</li>
-    </ul>
-  </div>
+<strong>Customer Sales Flyer</strong>
+Explain the service benefits clearly:
+<ul>
+<li>Stream More • Pay Less • Watch Anywhere</li>
+<li>Access to live TV, movies, series, sports, and PPV</li>
+<li>Works on Android TV and streaming devices</li>
+<li>Plug‑and‑play setup</li>
+</ul>
+</div>
+<div class="card">
+<strong>Pricing Sheet</strong>
+<ul>
+<li>$15 Monthly</li>
+<li>$120 Annual</li>
+<li>$200 Two‑Year</li>
+<li>Device purchase optional</li>
+</ul>
+</div>
+<div class="card">
+<strong>Comparison vs Cable</strong>
+<ul>
+<li>Lower monthly cost</li>
+<li>No contracts</li>
+<li>Portable between locations</li>
+<li>Access to global content</li>
+</ul>
+</div>
+<div class="card">
+<strong>Marketing Resources</strong>
+<ul>
+<li><a href="https://www.canva.com/" target="_blank">Create Flyers (Canva)</a></li>
+<li><a href="https://unsplash.com/" target="_blank">Free Marketing Images</a></li>
+<li><a href="https://pexels.com/" target="_blank">Free Video Content</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section">
+<h2>Setup Procedures</h2>
+<div class="grid">
+<div class="card">
+<strong>ONN Device Setup</strong>
+<ul>
+<li>Connect device to TV and power</li>
+<li>Connect to WiFi</li>
+<li>Install Downloader or IPTV Smarters</li>
+<li>Enter Xtream Codes login credentials</li>
+</ul>
+</div>
+<div class="card">
+<strong>Downloader Installation</strong>
+<ul>
+<li>Open Play Store</li>
+<li>Search Downloader</li>
+<li>Install application</li>
+<li>Use installer codes for APK downloads</li>
+</ul>
+</div>
+<div class="card">
+<strong>IPTV Smarters Login</strong>
+<ul>
+<li>Select Xtream Codes API</li>
+<li>Enter Name (any name)</li>
+<li>Enter Username and Password exactly</li>
+<li>Enter Server URL</li>
+</ul>
+</div>
+<div class="card">
+<strong>Helpful Tutorials</strong>
+<ul>
+<li><a href="https://www.youtube.com/results?search_query=onn+4k+setup" target="_blank">ONN Setup Videos</a></li>
+<li><a href="https://www.youtube.com/results?search_query=iptv+smarters+setup" target="_blank">IPTV Smarters Setup</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section">
+<h2>Support Materials</h2>
+<div class="grid">
+<div class="card">
+<strong>Buffering Checklist</strong>
+<ul>
+<li>Check internet speed</li>
+<li>Restart device</li>
+<li>Ensure credentials are not shared</li>
+<li>Close background apps</li>
+</ul>
+</div>
+<div class="card">
+<strong>Login Issues</strong>
+<ul>
+<li>Verify username/password</li>
+<li>Check server URL</li>
+<li>Confirm subscription status</li>
+</ul>
+</div>
+<div class="card">
+<strong>Device Fixes</strong>
+<ul>
+<li>Clear app cache</li>
+<li>Restart streaming device</li>
+<li>Reconnect WiFi</li>
+</ul>
+</div>
+<div class="card">
+<strong>Support Tools</strong>
+<ul>
+<li><a href="https://fast.com/" target="_blank">Internet Speed Test</a></li>
+<li><a href="https://downdetector.com/" target="_blank">Service Status Check</a></li>
+</ul>
+</div>
+</div>
 </div>
 
+<div class="section">
+<h2>APK Version Tracking</h2>
+<div class="grid">
+<div class="card">
+<strong>Recommended Tracking Method</strong>
+      Use one internal master tracker as the source of truth for:
+      <ul>
+<li>App name</li>
+<li>Category</li>
+<li>Current version installed</li>
+<li>Current download link</li>
+<li>Last verified date</li>
+<li>Update needed status</li>
+<li>Notes / change details</li>
+</ul>
+</div>
+<div class="card">
+<strong>Best Monthly Check Order</strong>
+      Check these first when verifying updates:
+      <ul>
+<li>IPTV Smarters Pro</li>
+<li>FlixVision</li>
+<li>SportsFire</li>
+<li>StreamFire</li>
+<li>Downloader-related apps</li>
+<li>Utility apps and VPN tools</li>
+</ul>
+</div>
+<div class="card">
+<strong>Internal Tracking Table</strong>
+<table style="width:100%;border-collapse:collapse;font-size:13px;">
+<tr>
+<th style="border:1px solid #334155;padding:6px;background:#172554;">App</th>
+<th style="border:1px solid #334155;padding:6px;background:#172554;">Version</th>
+<th style="border:1px solid #334155;padding:6px;background:#172554;">Last Verified</th>
+<th style="border:1px solid #334155;padding:6px;background:#172554;">Update Needed</th>
+</tr>
+<tr><td style="border:1px solid #334155;padding:6px;">IPTV Smarters Pro</td><td style="border:1px solid #334155;padding:6px;">5.0</td><td style="border:1px solid #334155;padding:6px;">03/2026</td><td style="border:1px solid #334155;padding:6px;">No</td></tr>
+<tr><td style="border:1px solid #334155;padding:6px;">FlixVision</td><td style="border:1px solid #334155;padding:6px;">3.4.0</td><td style="border:1px solid #334155;padding:6px;">03/2026</td><td style="border:1px solid #334155;padding:6px;">No</td></tr>
+<tr><td style="border:1px solid #334155;padding:6px;">SportsFire</td><td style="border:1px solid #334155;padding:6px;">2.0.8</td><td style="border:1px solid #334155;padding:6px;">03/2026</td><td style="border:1px solid #334155;padding:6px;">No</td></tr>
+</table>
+</div>
+<div class="card">
+<strong>Recommended Workflow</strong>
+<ul>
+<li>Update the internal tracker first</li>
+<li>Verify the direct link still works</li>
+<li>Confirm the version number</li>
+<li>Then update apk-library.html and dashboard.html only if needed</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>Device Families &amp; Procedures</h2>
+<div class="grid">
+<div class="card">
+<strong>ONN / Google Android Devices</strong>
+<ul>
+<li>ONN 4K Streaming Box</li>
+<li>ONN 4K Pro / Plus models</li>
+<li>Android TV and Google TV devices</li>
+<li>Main support workflow and dashboard setup standard</li>
+</ul>
+</div>
+<div class="card">
+<strong>Amazon Fire TV / Fire Stick</strong>
+<ul>
+<li>Fire TV Stick Lite</li>
+<li>Fire TV Stick HD / 4K / 4K Max</li>
+<li>Downloader install and unknown apps process</li>
+<li>Separate guidance should be maintained because menus differ from ONN</li>
+</ul>
+</div>
+<div class="card">
+<strong>Other Android Streaming Devices</strong>
+<ul>
+<li>Chromecast with Google TV</li>
+<li>NVIDIA Shield TV</li>
+<li>Generic Android TV boxes</li>
+<li>Projectivy / launcher-based devices as needed</li>
+</ul>
+</div>
+<div class="card">
+<strong>Reference Links</strong>
+<ul>
+<li><a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=G3JQBSW7P58C2M98" target="_blank">Amazon Fire TV Help</a></li>
+<li><a href="https://support.google.com/androidtv/" target="_blank">Android TV Help</a></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.esaba.downloader" target="_blank">Downloader App Listing</a></li>
+<li><a href="https://support.google.com/googleplay/answer/2812853" target="_blank">Google Play Device App Help</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section">
+<h2>Business Tools</h2>
+<div class="grid">
+<div class="card">
+<strong>Customer Management</strong>
+<ul>
+<li>Track subscription renewals</li>
+<li>Record device type</li>
+<li>Store login credentials securely</li>
+</ul>
+</div>
+<div class="card">
+<strong>Communication Tools</strong>
+<ul>
+<li><a href="https://telegram.org/" target="_blank">Telegram Support</a></li>
+<li><a href="https://gmail.com/" target="_blank">Customer Email Support</a></li>
+</ul>
+</div>
+<div class="card">
+<strong>Payment Handling</strong>
+<ul>
+<li>Track renewal dates</li>
+<li>Send reminders</li>
+<li>Confirm activation after payment</li>
+</ul>
+</div>
+<div class="card">
+<strong>Productivity Tools</strong>
+<ul>
+<li><a href="https://trello.com/" target="_blank">Task Tracking</a></li>
+<li><a href="https://notion.so/" target="_blank">Customer Notes</a></li>
+</ul>
+</div>
+</div>
+</div>
 <div class="footer">
-  Resource Center • Documents • Sales Materials • Installer Tools
-  <div class="version">Resource Center Version 1.0 • Last Updated: March 2026</div>
+Installer Resource Center • Internal Use
 </div>
-
 </div>
 </body>
 </html>
