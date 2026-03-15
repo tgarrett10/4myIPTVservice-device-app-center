@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Update Checker</title>
+<style>
+:root{
+  --bg:#08111f;
+  --panel:#101827;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --green:#22c55e;
+  --blue:#3b82f6;
+  --gold:#f59e0b;
+  --purple:#9333ea;
+  --border:#1f2937;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(180deg,#08111f,#0f172a);
+  color:var(--text);
+}
+.wrap{max-width:1200px;margin:auto;padding:18px}
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  margin-bottom:14px;
+  overflow:hidden;
+  box-shadow:0 12px 28px rgba(0,0,0,.28);
+}
+.hero{padding:22px;text-align:center}
+h1{margin:0 0 8px;color:#86efac;font-size:2rem}
+.tagline-banner{
+  margin:10px auto 14px auto;
+  max-width:760px;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  text-align:center;
+  font-weight:600;
+  font-size:16px;
+  letter-spacing:.08em;
+  color:#e2e8f0;
+}
+.sub{color:var(--muted);line-height:1.5}
+.notice,.tip,.warning{
+  border-radius:14px;
+  padding:12px 14px;
+  margin-top:14px;
+  line-height:1.5;
+  text-align:left;
+}
+.notice{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe}
+.tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a}
+.warning{background:rgba(239,68,68,.10);border:1px solid rgba(239,68,68,.24);color:#fecaca}
+.header{
+  padding:14px 16px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
+}
+.header h2{margin:0}
+.content{padding:14px 16px}
+.section-label{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#94a3b8;
+  margin:0 0 8px 0;
+}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:980px){.grid2{grid-template-columns:1fr}}
+.table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+.table th,.table td{
+  border:1px solid #243044;
+  padding:10px;
+  vertical-align:top;
+}
+.table th{
+  background:#0f172a;
+  text-align:left;
+}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{
+  padding:9px 12px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:bold;
+  text-align:center;
+  display:inline-block;
+  border:none;
+  cursor:pointer;
+  font-size:13px;
+  color:#fff;
+}
+.playbtn{background:var(--blue)}
+.directbtn{background:var(--green);color:#052e16}
+.goldbtn{background:var(--gold);color:#3b2400}
+.adminbtn{background:var(--purple)}
+.linkbtn{background:#475569}
+.footer-strip{
+  margin-top:18px;
+  padding:16px 10px;
+  border-top:1px solid #243044;
+  text-align:center;
+  color:#cbd5e1;
+  font-size:.9rem;
+}
+.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
+.small{font-size:.86rem;color:var(--muted);line-height:1.4}
+.check{
+  width:18px;height:18px;accent-color:#22c55e;cursor:pointer;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="card hero">
+    <h1>Internal Update Checker</h1>
+    <div class="tagline-banner">Check Versions • Verify Links • Update Only What Changed</div>
+    <div class="sub">This is an internal maintenance page. Use it to review app versions, test direct links, and mark apps as verified after your monthly update check.</div>
+
+    <div class="notice">
+      <strong>Important:</strong> GitHub Pages is a static website, so this page is designed to help you check updates efficiently rather than scrape every app source automatically. Use the <strong>Check Source</strong> and <strong>Test Link</strong> buttons, then update your spreadsheet and site pages only when needed.
+    </div>
+
+    <div class="tip">
+      <strong>Recommended monthly check order:</strong> IPTV Smarters Pro → FlixVision → SportsFire → StreamFire → Utility apps → Device-specific tools.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Workflow</div>
+      <h2>How to Use This Page</h2>
+    </div>
+    <div class="content">
+      <table class="table">
+        <tr>
+          <th style="width:33%;">Step 1</th>
+          <th style="width:33%;">Step 2</th>
+          <th style="width:34%;">Step 3</th>
+        </tr>
+        <tr>
+          <td>Click <strong>Check Source</strong> to look for the latest version information.</td>
+          <td>Click <strong>Test Link</strong> to confirm your current download link still works.</td>
+          <td>Update your spreadsheet and the site only if the version or link changed.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Core App Review</div>
+      <h2>Primary Apps</h2>
+    </div>
+    <div class="content">
+      <table class="table">
+        <tr>
+          <th>Verified</th>
+          <th>App</th>
+          <th>Current Version</th>
+          <th>Test Link</th>
+          <th>Check Source</th>
+          <th>Notes</th>
+        </tr>
+        <tr>
+          <td><input class="check" type="checkbox"></td>
+          <td>IPTV Smarters Pro</td>
+          <td>5.0</td>
+          <td><a class="btn directbtn" href="https://aft.news/6234188" target="_blank">Test Link</a></td>
+          <td><div class="btnrow"><a class="btn playbtn" href="https://www.google.com/search?q=IPTV+Smarters+Pro+latest+version" target="_blank">Check Source</a></div></td>
+          <td class="small">Primary customer app. Verify first each month.</td>
+        </tr>
+        <tr>
+          <td><input class="check" type="checkbox"></td>
+          <td>FlixVision</td>
+          <td>3.4.0</td>
+          <td><a class="btn directbtn" href="https://aft.news/4740537" target="_blank">Test Link</a></td>
+          <td><div class="btnrow"><a class="btn playbtn" href="https://www.google.com/search?q=FlixVision+latest+version" target="_blank">Check Source</a></div></td>
+          <td class="small">Direct-install only in your workflow.</td>
+        </tr>
+        <tr>
+          <td><input class="check" type="checkbox"></td>
+          <td>SportsFire</td>
+          <td>2.0.8</td>
+          <td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/bJgTC1aw" target="_blank">Test Link</a></td>
+          <td><div class="btnrow"><a class="btn playbtn" href="https://www.google.com/search?q=SportsFire+latest+version" target="_blank">Check Source</a></div></td>
+          <td class="small">Check monthly because sports apps change often.</td>
+        </tr>
+        <tr>
+          <td><input class="check" type="checkbox"></td>
+          <td>StreamFire</td>
+          <td>1.2.3</td>
+          <td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/EM6TZXCh" target="_blank">Test Link</a></td>
+          <td><div class="btnrow"><a class="btn playbtn" href="https://www.google.com/search?q=StreamFire+latest+version" target="_blank">Check Source</a></div></td>
+          <td class="small">Verify after SportsFire.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="header">
+        <div class="section-label">Utility App Review</div>
+        <h2>Utilities</h2>
+      </div>
+      <div class="content">
+        <table class="table">
+          <tr><th>Verified</th><th>App</th><th>Test Link</th></tr>
+          <tr><td><input class="check" type="checkbox"></td><td>Downloader</td><td><a class="btn directbtn" href="https://play.google.com/store/apps/details?id=com.esaba.downloader" target="_blank">Check Play Store</a></td></tr>
+          <tr><td><input class="check" type="checkbox"></td><td>VLC Media Player</td><td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/iacQyjir" target="_blank">Test Link</a></td></tr>
+          <tr><td><input class="check" type="checkbox"></td><td>Proton VPN</td><td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/tf5njBkT" target="_blank">Test Link</a></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="header">
+        <div class="section-label">Best Practice</div>
+        <h2>Update Rules</h2>
+      </div>
+      <div class="content">
+        <ul>
+          <li>Update the spreadsheet first.</li>
+          <li>Only update the site if the version or link actually changed.</li>
+          <li>Test the APK link from the APK Library page after every change.</li>
+          <li>Then test the matching dashboard button.</li>
+          <li>If a link breaks, replace it in the APK Library before touching customer pages.</li>
+        </ul>
+        <div class="warning">
+          <strong>Reminder:</strong> A Downloader code is only a shortcut that redirects to a URL. If you want direct access to a page like the Resource Center in Downloader, give that page its own direct URL or its own short code.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-strip">
+    <strong>Internal Update Checker</strong>
+    <div class="version">Version 1.0 • Last Updated: March 2026</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const key = 'iptv_update_checker_v1';
+  const checks = Array.from(document.querySelectorAll('.check'));
+  function saveState(){
+    const values = checks.map(c => c.checked);
+    try { localStorage.setItem(key, JSON.stringify(values)); } catch(e) {}
+  }
+  function loadState(){
+    try{
+      const raw = localStorage.getItem(key);
+      if(!raw) return;
+      const values = JSON.parse(raw);
+      checks.forEach((c,i) => c.checked = !!values[i]);
+    } catch(e){}
+  }
+  checks.forEach(c => c.addEventListener('change', saveState));
+  loadState();
+})();
+</script>
+</body>
+</html>
