@@ -212,6 +212,23 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
   padding:7px 10px;border-radius:999px;text-decoration:none;font-weight:bold;text-align:center;
   display:inline-block;border:none;cursor:pointer;font-size:12px;background:#475569;color:#fff
 }
+
+
+.quickbuild-panel{
+  background:#0b1220;border:1px solid #243044;border-radius:16px;padding:14px;margin-top:14px;
+}
+.quickbuild-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+@media (max-width:980px){.quickbuild-grid{grid-template-columns:1fr}}
+.quickbuild-col{
+  background:#111827;border:1px solid #243044;border-radius:14px;padding:14px;
+}
+.quickbuild-col h3{margin:0 0 10px 0;font-size:16px}
+.quickbuild-note{font-size:.84rem;color:#94a3b8;line-height:1.4;margin-top:10px}
+.quickbuild-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.quickbuild-list{margin:0;padding-left:18px}
+.quickbuild-list li{margin:0 0 8px;line-height:1.4}
 </style>
 </head>
 <body>
@@ -301,6 +318,57 @@ Additional Android devices are available on request depending on availability an
         </div>
 </div>
 </div>
+<div class="card" id="one-screen-installer">
+<div class="header">
+<div class="section-label">Installer Mode</div>
+<h2>One-Screen Installer Panel</h2>
+<div class="sub">Fast ONN / Android TV install flow. Open the app links below in order for the quickest device build.</div>
+</div>
+<div class="content">
+<div class="quickbuild-panel">
+<div class="quickbuild-grid">
+<div class="quickbuild-col">
+<h3>Recommended ONN Quick Build</h3>
+<ol class="quickbuild-list">
+<li>Run device setup first.</li>
+<li>Install IPTV Smarters Pro.</li>
+<li>Install MX Player if needed.</li>
+<li>Install FlixVision.</li>
+<li>Install one or two sports apps only if requested.</li>
+<li>Load credentials and test playback.</li>
+</ol>
+<div class="quickbuild-actions">
+<a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank">IPTV Smarters</a>
+<a class="btn playbtn" href="#" target="_blank">MX Player</a>
+<a class="btn directbtn" href="https://github.com/fvision8/fvreleases/releases/download/v3.4.0r/FlixVision_v3.4.0.apk" target="_blank">FlixVision</a>
+<a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/bJgTC1aw" target="_blank">SportsFire</a>
+<a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/EM6TZXCh" target="_blank">StreamFire</a>
+</div>
+<div class="quickbuild-note">
+            Best for most customer devices. Keep sports apps optional so the home screen stays clean.
+          </div>
+</div>
+<div class="quickbuild-col">
+<h3>Important Note</h3>
+<ul class="quickbuild-list">
+<li>This is the fastest install panel, but it is still not true one-click install because browsers and Downloader open links one at a time.</li>
+<li>Use this panel as a launch board so you do not have to scroll through the full dashboard during a build.</li>
+<li>If a direct link fails, open the APK Library or Update Checker to verify the link first.</li>
+</ul>
+<div class="quickbuild-actions">
+<a class="btn adminbtn" href="apk-library.html" target="_blank">Open APK Library</a>
+<a class="btn adminbtn" href="update-checker.html" target="_blank">Open Update Checker</a>
+<a class="btn linkbtn" href="device-setup.html" target="_blank">Device Setup Center</a>
+</div>
+<div class="quickbuild-note">
+            This gives you a real installer launch panel without exposing extra steps to customers.
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 <div class="card">
 <div class="header"><div class="section-label">Provisioning</div>
 <div class="section-divider">
@@ -356,7 +424,7 @@ Additional Android devices are available on request depending on availability an
 </div>
 <h2>Core APK Apps</h2><div class="sub">Use Direct Install first. Open Library is the backup for every app except FlixVision.</div></div>
 <div class="appgrid">
-<div class="approw app-row" id="app-iptv"><div class="order apk">C1</div><input class="cb app-select" data-name="IPTV Smarters Pro" data-priority="20" type="checkbox"/><div><div class="appname">IPTV Smarters Pro (v5.0)</div><div class="small">Direct shortcut available and also available in library → IPTV &amp; Media Player → IPTV Smarters Pro</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-iptv"><div class="order apk">C1</div><input class="cb app-select" data-name="IPTV Smarters Pro" data-priority="20" type="checkbox"/><div><div class="appname">IPTV Smarters Pro (v5.0)</div><div class="small">Direct shortcut available and also available in library → IPTV &amp; Media Player → IPTV Smarters Pro</div></div><div class="actions"><a class="btn directbtn" href="https://aft.news/6234188" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
 <div class="approw app-row" id="app-amplayer"><div class="order apk">C2</div><input class="cb app-select" data-name="AMPlayer" data-priority="21" type="checkbox"/><div><div class="appname">AMPlayer (v3.0.2)</div><div class="small">Library → IPTV &amp; Media Player → AMPlayer</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/J99DWABk" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
 <div class="approw app-row" id="app-bear"><div class="order apk">C3</div><input class="cb app-select" data-name="Bear Player" data-priority="22" type="checkbox"/><div><div class="appname">Bear Player (v2.20.24)</div><div class="small">Library → IPTV &amp; Media Player → Bear Player</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/m35yb9lekyxldlw/Bear+Player_v2.20.24_MOD_modded-1.com.apk/file" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
 <div class="approw app-row" id="app-bplayer"><div class="order apk">C4</div><input class="cb app-select" data-name="BPlayer" data-priority="23" type="checkbox"/><div><div class="appname">BPlayer (v1.3.2)</div><div class="small">Library → IPTV &amp; Media Player → BPlayer</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/TKHUxRbj" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
@@ -396,7 +464,7 @@ Additional Android devices are available on request depending on availability an
 </div>
 <h2>Movie / TV APK Apps</h2><div class="sub">FlixVision is Direct Install only. All others include library backup.</div></div>
 <div class="appgrid">
-<div class="approw app-row" id="app-flix"><div class="order apk">M1</div><input class="cb app-select" data-name="FlixVision" data-priority="30" type="checkbox"/><div><div class="appname">FlixVision (v3.4.0)</div><div class="small">Direct install only. Do not use library for this app because the library entry is not reliable.</div></div><div class="actions"><a class="btn directbtn" href="https://github.com/fvision8/fvreleases/releases/download/v3.4.0r/FlixVision_v3.4.0.apk" target="_blank">Direct Install</a></div></div>
+<div class="approw app-row" id="app-flix"><div class="order apk">M1</div><input class="cb app-select" data-name="FlixVision" data-priority="30" type="checkbox"/><div><div class="appname">FlixVision (v3.4.0)</div><div class="small">Direct install only. Do not use library for this app because the library entry is not reliable.</div></div><div class="actions"><a class="btn directbtn" href="https://aft.news/4740537" target="_blank">Direct Install</a></div></div>
 <div class="approw app-row" id="app-cinema"><div class="order apk">M2</div><input class="cb app-select" data-name="Cinema HQ" data-priority="31" type="checkbox"/><div><div class="appname">Cinema HQ (v5.6)</div><div class="small">Library → Movies/TV Shows Apps → Cinema HQ</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/sfreu6elqjpe248/Cinama+HQ+5.6.apk/file" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
 <div class="approw app-row" id="app-filmplus"><div class="order apk">M3</div><input class="cb app-select" data-name="FilmPlus" data-priority="32" type="checkbox"/><div><div class="appname">FilmPlus (v2.2.8)</div><div class="small">Library → Movies/TV Shows Apps → FilmPlus</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/sxwa97zmes7jey6/FilmPlus_-_v2.2.8r_%25281%2529.apk/file" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
 <div class="approw app-row" id="app-beetv"><div class="order apk">M4</div><input class="cb app-select" data-name="BeeTV" data-priority="33" type="checkbox"/><div><div class="appname">BeeTV (v4.5.9)</div><div class="small">Library → Movies/TV Shows Apps → BeeTV</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/5khvjyoz26umm0v/BeeTV_4.5.9_2459_06421d.apk/file" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
@@ -423,8 +491,8 @@ Additional Android devices are available on request depending on availability an
 <h2>Quick Install Reference</h2><div class="sub">Direct codes first. Use your custom APK library page as the controlled backup for internal APK access.</div></div>
 <div class="appgrid">
 <div class="approw"><div class="order apk">Q1</div><div class="cb"></div><div><div class="appname">Installer Dashboard</div><div class="small">Open this page in Downloader.</div></div><div class="actions"><a class="btn linkbtn" href="https://aft.news/4204657" target="_blank">Open</a></div></div>
-<div class="approw"><div class="order apk">Q2</div><div class="cb"></div><div><div class="appname">IPTV Smarters Pro</div><div class="small">Direct code plus shared library backup.</div></div><div class="actions"><a class="btn linkbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank">Open</a></div></div>
-<div class="approw"><div class="order apk">Q3</div><div class="cb"></div><div><div class="appname">FlixVision</div><div class="small">Direct code only.</div></div><div class="actions"><a class="btn linkbtn" href="https://github.com/fvision8/fvreleases/releases/download/v3.4.0r/FlixVision_v3.4.0.apk" target="_blank">Open</a></div></div>
+<div class="approw"><div class="order apk">Q2</div><div class="cb"></div><div><div class="appname">IPTV Smarters Pro</div><div class="small">Direct code plus shared library backup.</div></div><div class="actions"><a class="btn linkbtn" href="https://aft.news/6234188" target="_blank">Open</a></div></div>
+<div class="approw"><div class="order apk">Q3</div><div class="cb"></div><div><div class="appname">FlixVision</div><div class="small">Direct code only.</div></div><div class="actions"><a class="btn linkbtn" href="https://aft.news/4740537" target="_blank">Open</a></div></div>
 <div class="approw"><div class="order apk">Q4</div><div class="cb"></div><div><div class="appname">Main APK Library</div><div class="small">Open your custom APK library page for controlled internal downloads.</div></div><div class="actions"><a class="btn linkbtn" href="apk-library.html" target="_blank">Open</a></div></div>
 </div>
 </div><div class="card">
