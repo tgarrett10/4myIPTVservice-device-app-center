@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My IPTV Service Installer Dashboard v7.7</title>
+<style>
+:root{
+  --bg:#08111f; --panel:#101827; --text:#f8fafc; --muted:#94a3b8;
+  --green:#22c55e; --blue:#3b82f6; --gold:#f59e0b; --purple:#9333ea; --red:#ef4444; --border:#1f2937;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#08111f,#0f172a);color:var(--text)}
+.wrap{max-width:1480px;margin:auto;padding:16px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;margin-bottom:14px;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.28)}
+.hero{padding:18px}
+h1{margin:0 0 8px;color:#86efac;font-size:2rem}
+.sub{color:var(--muted);line-height:1.5}
+.notice,.confidential,.contactbox,.pricingbox,.tip,.librarybox,.directbox,.legendbox,.setupbox{border-radius:14px;padding:12px 14px;margin-top:12px;line-height:1.45}
+.notice{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.28)}
+.confidential{background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.28);color:#fed7aa}
+.contactbox{background:rgba(147,51,234,.12);border:1px solid rgba(147,51,234,.28);color:#f3e8ff}
+.pricingbox{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.28);color:#dcfce7}
+.tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a}
+.librarybox{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe}
+.directbox{background:rgba(34,197,94,.10);border:1px solid rgba(34,197,94,.24);color:#dcfce7}
+.legendbox{background:rgba(147,51,234,.10);border:1px solid rgba(147,51,234,.22);color:#f3e8ff}
+.setupbox{background:rgba(239,68,68,.10);border:1px solid rgba(239,68,68,.24);color:#fee2e2}
+.header{padding:14px 16px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
+.header h2,.header h3{margin:0}
+.header .sub{margin-top:6px;font-size:.92rem}
+.content{padding:12px 16px}
+.grid2,.grid4{display:grid;gap:18px}
+.grid2{grid-template-columns:1fr 1fr}
+.grid4{grid-template-columns:1fr 1fr}
+@media (max-width:1200px){.grid2,.grid4{grid-template-columns:1fr}}
+.list{margin:0;padding-left:20px}
+.list li{margin:0 0 8px;line-height:1.45}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{border:1px solid var(--border);padding:8px;text-align:center}
+.table th{background:#1f2937}
+.stepcard{background:#0f172a;border:1px solid #243044;border-radius:14px;padding:14px}
+.stepnum{width:34px;height:34px;border-radius:10px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.25);display:flex;align-items:center;justify-content:center;font-weight:bold;color:#bbf7d0;margin-bottom:8px}
+.profilebtnrow,.actionrow{display:flex;gap:10px;flex-wrap:wrap}
+
+.jumpbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.jumpbar .btn{padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:bold;text-align:center;display:inline-block}
+
+.appgrid{padding:8px 14px 10px}
+.approw{display:grid;grid-template-columns:52px 28px 1fr 250px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #1f2937}
+.approw:last-child{border-bottom:none}
+.order{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:bold;background:#1f2937}
+.order.play{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.25);color:#bfdbfe}
+.order.apk{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.25);color:#bbf7d0}
+.order.admin{background:rgba(147,51,234,.15);border:1px solid rgba(147,51,234,.25);color:#f3e8ff}
+.cb{width:22px;height:22px}
+.appname{font-weight:bold}
+.small{font-size:.86rem;color:var(--muted);line-height:1.4}
+.codepill{display:inline-block;padding:8px 10px;border-radius:999px;background:#0b1220;border:1px solid #243044;color:#e2e8f0;font-weight:bold;text-align:center;font-size:.84rem}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{padding:9px 12px;border-radius:999px;text-decoration:none;font-weight:bold;text-align:center;display:inline-block;border:none;cursor:pointer;font-size:13px}
+.playbtn{background:var(--blue);color:#fff}
+.directbtn{background:var(--green);color:#052e16}
+.librarybtn{background:var(--blue);color:#fff}
+.adminbtn{background:var(--purple);color:#fff}
+.linkbtn{background:#475569;color:#fff}
+.goldbtn{background:var(--gold);color:#3b2400}
+.redbtn{background:var(--red);color:#fff}
+.contactlinks a{color:#fff;text-decoration:underline}
+.inline-note{font-size:.82rem;color:#cbd5e1}
+.selected-panel{background:#0f172a;border:1px solid #243044;border-radius:16px;padding:14px}
+.selected-list{margin:0;padding-left:20px}
+.selected-list li{margin:0 0 8px}
+.badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:.78rem;font-weight:bold}
+.badge.direct{background:rgba(34,197,94,.15);color:#bbf7d0;border:1px solid rgba(34,197,94,.25)}
+.badge.library{background:rgba(59,130,246,.15);color:#bfdbfe;border:1px solid rgba(59,130,246,.25)}
+.badge.play{background:rgba(245,158,11,.15);color:#fde68a;border:1px solid rgba(245,158,11,.22)}
+.badge.admin{background:rgba(147,51,234,.15);color:#f3e8ff;border:1px solid rgba(147,51,234,.22)}
+.footer{text-align:center;color:#cbd5e1;margin-top:16px;font-size:.9rem}
+.version{margin-top:6px;color:#94a3b8;font-size:.84rem}
+.muted{color:var(--muted)}
+@media (max-width:980px){.approw{grid-template-columns:56px 32px 1fr}.codepill,.actions{grid-column:3}}
+
+.section-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;margin:0 0 8px 0}
+.footer-strip{margin-top:18px;padding:16px 10px;border-top:1px solid #243044;text-align:center;color:#cbd5e1;font-size:.9rem}
+.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
+
+.statusbar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.statusstep{background:#0f172a;border:1px solid #243044;border-radius:12px;padding:10px 12px}
+.statusnum{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.25);color:#bbf7d0;font-weight:bold;font-size:12px;margin-bottom:6px}
+.statustitle{font-size:13px;font-weight:bold;color:#f8fafc}
+.statusnote{font-size:11px;color:#94a3b8;line-height:1.4;margin-top:4px}
+@media (max-width:980px){.statusbar{grid-template-columns:1fr 1fr}}
+
+.utilitybar{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.utilitybar .btn{padding:8px 11px;font-size:12px}
+
+
+.status-strip{
+  margin-top:10px;
+  padding:10px 12px;
+  border:1px solid rgba(59,130,246,.22);
+  background:rgba(59,130,246,.08);
+  border-radius:12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+}
+.status-label{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#93c5fd;
+  font-weight:bold;
+}
+.status-pill{
+  display:inline-flex;
+  align-items:center;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:bold;
+  background:#0f172a;
+  border:1px solid #243044;
+  color:#dbeafe;
+}
+.section-divider{
+  margin:0 0 8px 0;
+  padding:8px 0 10px 0;
+  border-bottom:1px solid rgba(255,255,255,.10);
+}
+.section-divider .divider-title{
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#9fb1c9;
+  font-weight:bold;
+}
+.pricing-bullets{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px 20px;
+  margin-top:8px;
+}
+.pricing-bullets div{
+  color:#f8fafc;
+  font-size:14px;
+  line-height:1.45;
+}
+@media (max-width:980px){
+  .pricing-bullets{grid-template-columns:1fr}
+  .status-strip{display:block}
+  .status-pill{margin:6px 6px 0 0}
+}
+
+.tagline-banner{
+  margin-top:12px;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  text-align:center;
+  font-weight:600;
+  font-size:16px;
+  letter-spacing:.08em;
+  color:#e2e8f0;
+}
+
+
+.hero h1{
+  text-align:center;
+  margin-bottom:10px;
+  letter-spacing:.01em;
+}
+.tagline-banner{
+  margin:10px auto 12px auto;
+  max-width:760px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.18);
+}
+.status-strip{
+  justify-content:center;
+}
+.jumpbar{
+  justify-content:center;
+}
+.hero .confidential{
+  max-width:1100px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.grid2{
+  gap:12px;
+}
+.pricingbox{
+  border:1px solid rgba(34,197,94,.20);
+}
+.section-divider{
+  padding-top:6px;
+}
+.footer-strip{
+  text-align:center;
+}
+
+
+.tracker-wrap{overflow-x:auto}
+.tracker-check{width:18px;height:18px;accent-color:#22c55e;cursor:pointer}
+.tracker-header-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tracker-header-row h2{margin:0}
+.smallbtn{
+  padding:7px 10px;border-radius:999px;text-decoration:none;font-weight:bold;text-align:center;
+  display:inline-block;border:none;cursor:pointer;font-size:12px;background:#475569;color:#fff
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="card hero">
+<h1 style="text-align:center">My IPTV Service Installer Dashboard</h1><div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div><div class="confidential"><strong>Confidential Setup Page</strong><br/>If you do not have permission to access this page, please close this page now. This page is for internal installer and business workflow use only. Do not share this page or the linked business tools without permission.</div>
+<div class="jumpbar">
+<a class="btn redbtn" href="#device-setup">Do First • Device Setup</a>
+<a class="btn playbtn" href="#build-profiles">Build Profiles</a><a class="btn goldbtn" href="#rapid-build-mode">Rapid Build Mode</a>
+<a class="btn librarybtn" href="#quick-reference">Quick Install Codes</a>
+<a class="btn adminbtn" href="#admin-center">Admin Control Center</a>
+</div>
+<div class="status-strip">
+<span class="status-label">Dashboard Status</span>
+<span class="status-pill">System Ready</span>
+<span class="status-pill">Installer Mode</span>
+<span class="status-pill">Library Connected</span>
+</div>
+<div class="grid2">
+</div><div class="pricingbox" style=";width:100%;">
+<strong>Device, Service Pricing &amp; Support</strong><br/><br/>
+<table style="width:100%;border-collapse:collapse;">
+<tr>
+<td style="vertical-align:top;width:50%;padding-right:20px;">
+<strong>Device Pricing</strong><br/><br/>
+4K Stick — $35<br/>
+4K Streaming Device — $55<br/>
+4K Plus Device — $65<br/><br/>
+<strong>IPTV Service Pricing</strong><br/><br/>
+Monthly — $15<br/>
+1 Year — $120<br/>
+2 Years — $200<br/>
+</td>
+<td style="vertical-align:top;width:50%;">
+<strong>Customer Support &amp; Service Contact</strong><br/><br/>
+<strong>Telegram Support</strong><br/>
+<a href="https://t.me/4MyIPTVsupport" style="color:#fff;text-decoration:underline;" target="_blank">https://t.me/4MyIPTVsupport</a><br/><br/>
+<strong>Email Support</strong><br/>
+<a href="mailto:support@4myiptvservice.com?subject=IPTV%20Support%20Request" style="color:#fff;text-decoration:underline;">support@4myiptvservice.com</a><br/><br/>
+<a href="support.html" style="font-size:15px;color:#fff;text-decoration:underline;margin-right:18px;">Support / Tips</a>
+<a href="setup-help.html" style="font-size:15px;color:#fff;text-decoration:underline;">Setup Help</a><br/><br/>
+<span class="small" style="color:#f3e8ff;">Or contact your installer directly. For faster support include the device type, app being used, and a screenshot of the issue.</span>
+</td>
+</tr>
+</table>
+<br/>
+<div class="small">
+Additional Android devices are available on request depending on availability and model.
+</div>
+<hr style="border:none;border-top:1px solid rgba(255,255,255,0.15);margin:14px 0;"/>
+<div class="salesmini">
+<strong>Why Customers Choose This Service</strong><br/><br/>
+<div class="pricing-bullets">
+<div>• Lower monthly cost than traditional cable</div>
+<div>• One simple app instead of multiple subscriptions</div>
+<div>• Plug-and-play setup in minutes</div>
+<div>• Large international and specialty channel selection</div>
+<div>• Live TV channels, movies, series, sports, and pay-per-view</div>
+<div>• Portable service that travels with your device</div>
+<div>• Works anywhere with internet including home, hotels, and travel</div>
+<div>• Simple interface that feels similar to traditional cable</div>
+</div>
+<br/>
+<span class="small">Internet connection required.</span>
+</div>
+</div>
+<div class="legendbox"><strong>Install Method Legend</strong><br/>1. Use <strong>Direct Install</strong> first.<br/>2. Use <strong>Open Library</strong> if the direct link fails.<br/>3. FlixVision is intentionally <strong>Direct Install only</strong> because the library entry is not reliable.</div>
+<div class="tip"><strong>Maintenance Rule:</strong> Keep your spreadsheet as the master list. Update codes, direct links, Play Store links, and section paths there first. Then update this dashboard.</div>
+</div>
+<div class="card" id="build-profiles">
+<div class="header"><div class="section-label">Provisioning</div>
+<div class="section-divider">
+<div class="divider-title">Build Profiles</div>
+</div>
+<h2>Build Profiles</h2><div class="sub">Use one of these profiles to pre-select the most useful apps for the type of device build you want.</div></div>
+<div class="content">
+<div class="profilebtnrow">
+<button class="btn directbtn" onclick="applyProfile('standard')">Standard Build</button>
+<button class="btn playbtn" onclick="applyProfile('lite')">Lite Build</button>
+<button class="btn goldbtn" onclick="applyProfile('sports')">Sports Build</button>
+<button class="btn librarybtn" onclick="applyProfile('playstore')">Play Store Bundle</button>
+<button class="btn redbtn" onclick="clearSelections()">Clear Selections</button>
+</div>
+<div class="inline-note" style="margin-top:10px">Recommended use: click a profile first, then manually check or uncheck any apps you want to customize.</div>
+<div class="inline-note" style="margin-top:12px; line-height:1.5;">
+<strong>Recommended build sequence:</strong> Play Store apps first, Direct shortcut apps next, Remaining direct APK apps, Open Library for any missing shared-library apps, Arrange home screen, Load IPTV credentials, Test playback and deliver.
+        </div>
+</div>
+</div>
+<div class="card">
+<div class="header"><div class="section-label">Provisioning</div>
+<div class="section-divider">
+<div class="divider-title">Build Status Indicator</div>
+</div>
+<h2>Build Status Indicator</h2>
+<div class="sub">This is a simple visual progress bar for the installer. It does not change the workflow. It just makes the current stage obvious.</div>
+</div>
+<div class="content">
+<div class="statusbar">
+<div class="statusstep">
+<div class="statusnum">1</div>
+<div class="statustitle">Device Setup</div>
+<div class="statusnote">Downloader, unknown apps, Play Protect, developer settings.</div>
+</div>
+<div class="statusstep">
+<div class="statusnum">2</div>
+<div class="statustitle">Apps Selected</div>
+<div class="statusnote">Choose Play Store, Movie/TV, Sports, and Core APK apps.</div>
+</div>
+<div class="statusstep">
+<div class="statusnum">3</div>
+<div class="statustitle">Install Running</div>
+<div class="statusnote">Use direct buttons first, then library backup if needed.</div>
+</div>
+<div class="statusstep">
+<div class="statusnum">4</div>
+<div class="statustitle">Final Test</div>
+<div class="statusnote">Arrange home screen, load credentials, test playback, deliver.</div>
+</div>
+</div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div><div class="card">
+<div class="header"><div class="section-label">Install Apps</div>
+<div class="section-divider">
+<div class="divider-title">Recommended Play Store Apps</div>
+</div>
+<h2>Recommended Play Store Apps</h2><div class="sub">These are recommended for customer convenience and core playback.</div></div>
+<div class="appgrid">
+<div class="approw app-row" id="app-mx"><div class="order play">P1</div><input class="cb app-select" data-name="MX Player" data-priority="10" type="checkbox"/><div><div class="appname">MX Player</div><div class="small">Required playback app. Install from Play Store.</div></div><div class="actions"><a class="btn playbtn" href="#" target="_blank">Play Store</a></div></div>
+<div class="approw app-row" id="app-browser"><div class="order play">P2</div><input class="cb app-select" data-name="Browser" data-priority="11" type="checkbox"/><div><div class="appname">Browser</div><div class="small">Recommended browser app. Install from Play Store.</div></div><div class="actions"><a class="btn playbtn" href="#" target="_blank">Play Store</a></div></div>
+<div class="approw app-row" id="app-tubi"><div class="order play">P3</div><input class="cb app-select" data-name="Tubi TV" data-priority="12" type="checkbox"/><div><div class="appname">Tubi TV</div><div class="small">Free TV and movies.</div></div><div class="actions"><a class="btn playbtn" href="#" target="_blank">Play Store</a></div></div>
+<div class="approw app-row" id="app-pluto"><div class="order play">P4</div><input class="cb app-select" data-name="Pluto TV" data-priority="13" type="checkbox"/><div><div class="appname">Pluto TV</div><div class="small">Play Store recommended. Direct page can be added later if needed.</div></div><div class="actions"><a class="btn playbtn" href="#" target="_blank">Play Store</a><a class="btn linkbtn" href="#" target="_blank">Direct Link</a></div></div>
+<div class="approw app-row" id="app-newson"><div class="order play">P5</div><input class="cb app-select" data-name="NewsOn" data-priority="14" type="checkbox"/><div><div class="appname">NewsOn</div><div class="small">Local news and weather.</div></div><div class="actions"><a class="btn playbtn" href="#" target="_blank">Play Store</a></div></div>
+<div class="approw app-row" id="app-xumo"><div class="order play">P6</div><input class="cb app-select" data-name="Xumo Play" data-priority="15" type="checkbox"/><div><div class="appname">Xumo Play</div><div class="small">Free live channels and on-demand content.</div></div><div class="actions"><a class="btn playbtn" href="#" target="_blank">Play Store</a></div></div>
+<div class="approw app-row" id="app-philo"><div class="order play">P7</div><input class="cb app-select" data-name="Philo TV" data-priority="16" type="checkbox"/><div><div class="appname">Philo TV</div><div class="small">Play Store recommended. Direct page can be added later if needed.</div></div><div class="actions"><a class="btn playbtn" href="#" target="_blank">Play Store</a><a class="btn linkbtn" href="#" target="_blank">Direct Link</a></div></div>
+</div>
+</div><div class="card">
+<div class="header"><div class="section-label">Install Apps</div>
+<div class="section-divider">
+<div class="divider-title">Core APK Apps</div>
+</div>
+<h2>Core APK Apps</h2><div class="sub">Use Direct Install first. Open Library is the backup for every app except FlixVision.</div></div>
+<div class="appgrid">
+<div class="approw app-row" id="app-iptv"><div class="order apk">C1</div><input class="cb app-select" data-name="IPTV Smarters Pro" data-priority="20" type="checkbox"/><div><div class="appname">IPTV Smarters Pro (v5.0)</div><div class="small">Direct shortcut available and also available in library → IPTV &amp; Media Player → IPTV Smarters Pro</div></div><div class="actions"><a class="btn directbtn" href="https://aft.news/6234188" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-amplayer"><div class="order apk">C2</div><input class="cb app-select" data-name="AMPlayer" data-priority="21" type="checkbox"/><div><div class="appname">AMPlayer (v3.0.2)</div><div class="small">Library → IPTV &amp; Media Player → AMPlayer</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/J99DWABk" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-bear"><div class="order apk">C3</div><input class="cb app-select" data-name="Bear Player" data-priority="22" type="checkbox"/><div><div class="appname">Bear Player (v2.20.24)</div><div class="small">Library → IPTV &amp; Media Player → Bear Player</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/m35yb9lekyxldlw/Bear+Player_v2.20.24_MOD_modded-1.com.apk/file" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-bplayer"><div class="order apk">C4</div><input class="cb app-select" data-name="BPlayer" data-priority="23" type="checkbox"/><div><div class="appname">BPlayer (v1.3.2)</div><div class="small">Library → IPTV &amp; Media Player → BPlayer</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/TKHUxRbj" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-bgapps"><div class="order apk">C5</div><input class="cb app-select" data-name="Background Apps &amp; Process List" data-priority="24" type="checkbox"/><div><div class="appname">Background Apps &amp; Process List</div><div class="small">Library → Utility Apps → Background Apps &amp; Process List</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/fyzsjrY4" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-vlc"><div class="order apk">C6</div><input class="cb app-select" data-name="VLC Media Player" data-priority="25" type="checkbox"/><div><div class="appname">VLC Media Player (v3.3.4)</div><div class="small">Library → IPTV &amp; Media Player → VLC Media Player</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/iacQyjir" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-proton"><div class="order apk">C7</div><input class="cb app-select" data-name="Proton VPN" data-priority="26" type="checkbox"/><div><div class="appname">Proton VPN (v5.14.76.0)</div><div class="small">Library → VPNs → ProtonVPN</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/tf5njBkT" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-cloner"><div class="order apk">C8</div><input class="cb app-select" data-name="App Cloner" data-priority="27" type="checkbox"/><div><div class="appname">App Cloner (v3.4.2)</div><div class="small">Library → Utility Apps → App Cloner</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/nhsNDbv8" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+</div>
+</div><div class="card" id="selected-workflow">
+<div class="header"><div class="section-label">Workflow</div>
+<div class="section-divider">
+<div class="divider-title">Selected Install Workflow</div>
+</div>
+<h2>Selected Install Workflow</h2><div class="sub">Select apps from the sections below, then use this panel to install them in the correct order.</div></div>
+<div class="content grid2">
+<div class="selected-panel">
+<h3>Selected Apps in Install Order</h3>
+<ol class="selected-list" id="selectedList"><li class="muted">No apps selected yet.</li></ol>
+</div>
+<div class="selected-panel">
+<h3>Recommended Build Sequence</h3>
+<ol class="selected-list">
+<li>Play Store apps first</li>
+<li>Direct shortcut apps next</li>
+<li>Remaining direct APK apps</li>
+<li>Open Library for any missing shared-library apps</li>
+<li>Arrange home screen</li>
+<li>Load IPTV credentials</li>
+<li>Test playback and deliver</li>
+</ol>
+</div>
+</div>
+</div></div><div><div class="card">
+<div class="header"><div class="section-label">Install Apps</div>
+<div class="section-divider">
+<div class="divider-title">Movie / TV APK Apps</div>
+</div>
+<h2>Movie / TV APK Apps</h2><div class="sub">FlixVision is Direct Install only. All others include library backup.</div></div>
+<div class="appgrid">
+<div class="approw app-row" id="app-flix"><div class="order apk">M1</div><input class="cb app-select" data-name="FlixVision" data-priority="30" type="checkbox"/><div><div class="appname">FlixVision (v3.4.0)</div><div class="small">Direct install only. Do not use library for this app because the library entry is not reliable.</div></div><div class="actions"><a class="btn directbtn" href="https://aft.news/4740537" target="_blank">Direct Install</a></div></div>
+<div class="approw app-row" id="app-cinema"><div class="order apk">M2</div><input class="cb app-select" data-name="Cinema HQ" data-priority="31" type="checkbox"/><div><div class="appname">Cinema HQ (v5.6)</div><div class="small">Library → Movies/TV Shows Apps → Cinema HQ</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/sfreu6elqjpe248/Cinama+HQ+5.6.apk/file" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-filmplus"><div class="order apk">M3</div><input class="cb app-select" data-name="FilmPlus" data-priority="32" type="checkbox"/><div><div class="appname">FilmPlus (v2.2.8)</div><div class="small">Library → Movies/TV Shows Apps → FilmPlus</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/sxwa97zmes7jey6/FilmPlus_-_v2.2.8r_%25281%2529.apk/file" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-beetv"><div class="order apk">M4</div><input class="cb app-select" data-name="BeeTV" data-priority="33" type="checkbox"/><div><div class="appname">BeeTV (v4.5.9)</div><div class="small">Library → Movies/TV Shows Apps → BeeTV</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/5khvjyoz26umm0v/BeeTV_4.5.9_2459_06421d.apk/file" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-onstream"><div class="order apk">M5</div><input class="cb app-select" data-name="OnStream" data-priority="34" type="checkbox"/><div><div class="appname">OnStream (v1.0.0)</div><div class="small">Library → Movies/TV Shows Apps → OnStream</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/226ail3nl8b8s1g/onstream-fireTV.apk/file" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-moviehd"><div class="order apk">M6</div><input class="cb app-select" data-name="Movie HD" data-priority="35" type="checkbox"/><div><div class="appname">Movie HD (v5.4.2)</div><div class="small">Library → Movies/TV Shows Apps → Movie HD / GStream</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/u4790rpo5l4md0s/moviehd-542-mod-1.apk/file" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+</div>
+</div><div class="card">
+<div class="header"><div class="section-label">Install Apps</div>
+<div class="section-divider">
+<div class="divider-title">Sports APK Apps</div>
+</div>
+<h2>Sports APK Apps</h2><div class="sub">Each app includes Direct Install and Open Library backup.</div></div>
+<div class="appgrid">
+<div class="approw app-row" id="app-falcon"><div class="order apk">S1</div><input class="cb app-select" data-name="FalconCast" data-priority="40" type="checkbox"/><div><div class="appname">FalconCast (v4.1)</div><div class="small">Library → Sports Apps → FalconCast</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/5mvpvpdpzn62h05/FalconCast_(V4.1)+(1).apk/file" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-playfy"><div class="order apk">S2</div><input class="cb app-select" data-name="Playfy TV" data-priority="41" type="checkbox"/><div><div class="appname">Playfy TV (v1.5)</div><div class="small">Library → Sports Apps → Playfy TV</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/tfdwts9y73jpdrp/PLAYFy_TV_1.5.apk/file" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-sportsfire"><div class="order apk">S3</div><input class="cb app-select" data-name="SportsFire" data-priority="42" type="checkbox"/><div><div class="appname">SportsFire unblocked v2.0.8</div><div class="small">Library → Sports Apps → SportsFire</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/bJgTC1aw" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+<div class="approw app-row" id="app-streamfire"><div class="order apk">S4</div><input class="cb app-select" data-name="StreamFire" data-priority="43" type="checkbox"/><div><div class="appname">StreamFire (v1.2.3)</div><div class="small">Library → Sports Apps → StreamFire</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/EM6TZXCh" target="_blank">Direct Install</a><a class="btn librarybtn" href="https://aft.news/730116" target="_blank">Open Library</a></div></div>
+</div>
+</div><div class="card" id="quick-reference">
+<div class="header"><div class="section-label">Workflow</div>
+<div class="section-divider">
+<div class="divider-title">Quick Install Reference</div>
+</div>
+<h2>Quick Install Reference</h2><div class="sub">Direct codes first. Use your custom APK library page as the controlled backup for internal APK access.</div></div>
+<div class="appgrid">
+<div class="approw"><div class="order apk">Q1</div><div class="cb"></div><div><div class="appname">Installer Dashboard</div><div class="small">Open this page in Downloader.</div></div><div class="actions"><a class="btn linkbtn" href="https://aft.news/4204657" target="_blank">Open</a></div></div>
+<div class="approw"><div class="order apk">Q2</div><div class="cb"></div><div><div class="appname">IPTV Smarters Pro</div><div class="small">Direct code plus shared library backup.</div></div><div class="actions"><a class="btn linkbtn" href="https://aft.news/6234188" target="_blank">Open</a></div></div>
+<div class="approw"><div class="order apk">Q3</div><div class="cb"></div><div><div class="appname">FlixVision</div><div class="small">Direct code only.</div></div><div class="actions"><a class="btn linkbtn" href="https://aft.news/4740537" target="_blank">Open</a></div></div>
+<div class="approw"><div class="order apk">Q4</div><div class="cb"></div><div><div class="appname">Main APK Library</div><div class="small">Open your custom APK library page for controlled internal downloads.</div></div><div class="actions"><a class="btn linkbtn" href="apk-library.html" target="_blank">Open</a></div></div>
+</div>
+</div><div class="card">
+<div class="header"><div class="section-label">Workflow</div>
+<div class="section-divider">
+<div class="divider-title">Multi-Device Build Tracker</div>
+</div><div class="tracker-header-row"><h2>Multi-Device Build Tracker</h2><button class="smallbtn" onclick="clearTrackerSelections()">Clear Tracker</button></div>
+<div class="sub">Use this while preparing several devices in one session.</div><div class="small" id="trackerStatus" style="margin-top:6px;color:#94a3b8;">Tracker saves automatically in this browser.</div></div>
+<div class="content">
+<div class="tracker-wrap">
+<table class="table">
+<tr><th>Device</th><th>Play Store</th><th>Direct APK</th><th>Library</th><th>Order</th><th>Tested</th><th>Delivered</th></tr>
+<tr><td>1</td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td></tr>
+<tr><td>2</td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td></tr>
+<tr><td>3</td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td></tr>
+<tr><td>4</td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td></tr>
+<tr><td>5</td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td><td><input class="tracker-check" type="checkbox"/></td></tr>
+</table>
+</div>
+</div>
+</div></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px"><div></div><div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:18px"><div></div><div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:18px"><div></div><div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:18px"><div></div><div></div></div>
+<div class="grid2">
+</div>
+<div class="grid2">
+</div>
+<div class="card" id="device-setup">
+<div class="header"><div class="section-label">Setup</div>
+<div class="section-divider">
+<div class="divider-title">Device Setup Prior to Install</div>
+</div>
+<h2>Device Setup Prior to Install</h2><div class="sub">This section is intentionally placed near the bottom. Use the top button if you need the setup steps before installing.</div></div>
+<div class="appgrid">
+<div class="approw">
+<div class="order admin">D1</div>
+<div class="cb"></div>
+<div>
+<div class="appname">Turn Off Play Protect Scanning</div>
+<div class="small">Start on the <strong>ONN device home screen</strong>. Press the <strong>gear button</strong>, select <strong>All Settings</strong>, then go down to <strong>Privacy</strong>. Scroll all the way to the bottom and open the last option, <strong>Security</strong>. Turn off <strong>Scan apps with Play Protect</strong>, and make sure <strong>Improve harmful app detection</strong> is turned off as well.</div>
+</div>
+<div class="actions"></div>
+</div>
+<div class="approw">
+<div class="order admin">D2</div>
+<div class="cb"></div>
+<div>
+<div class="appname">Allow Unknown Apps for Downloader</div>
+<div class="small">
+              Go to <strong>Settings</strong> → <strong>Apps</strong> → <strong>Special app access</strong> → <strong>Install unknown apps</strong>. Open <strong>Downloader</strong> and turn permission <strong>On</strong>. If your device menu is slightly different, look for <strong>Security</strong> or <strong>Privacy</strong>, then find the unknown apps setting there.
+            </div>
+</div>
+<div class="actions"></div>
+</div>
+<div class="approw">
+<div class="order admin">D3</div>
+<div class="cb"></div>
+<div>
+<div class="appname">Enable Developer Options</div>
+<div class="small">
+              Go to <strong>Settings</strong> → <strong>System</strong> or <strong>Device Preferences</strong> → <strong>About</strong>. Scroll to <strong>Android TV OS Build</strong> or <strong>Build</strong>. Press the remote <strong>OK</strong> button <strong>7 times</strong> until the device says Developer Options are enabled.
+            </div>
+</div>
+<div class="actions"></div>
+</div>
+<div class="approw">
+<div class="order admin">D4</div>
+<div class="cb"></div>
+<div>
+<div class="appname">Recommended Developer Options</div>
+<div class="small">
+              Open <strong>Developer Options</strong> and look for the three animation settings: <strong>Window animation scale</strong>, <strong>Transition animation scale</strong>, and <strong>Animator duration scale</strong>. Set each one to <strong>0.5x</strong> for a cleaner feel, or <strong>Off</strong> if you want the fastest response. Do <strong>not</strong> change advanced items like background process limits unless you are testing and know exactly why you need it.
+            </div>
+</div>
+<div class="actions"></div>
+</div>
+<div class="approw">
+<div class="order admin">D5</div>
+<div class="cb"></div>
+<div>
+<div class="appname">Best Install Flow After Setup</div>
+<div class="small">
+              After these settings are complete, install <strong>Downloader</strong> first, open the dashboard inside Downloader, choose your apps, then use the <strong>Selected Workflow</strong> section to finish the build in order.
+            </div>
+</div>
+<div class="actions"></div>
+</div>
+</div>
+</div><div class="card" id="rapid-build-mode">
+<div class="header"><div class="section-label">Setup</div>
+<div class="section-divider">
+<div class="divider-title">Rapid Build Mode</div>
+</div>
+<h2>Rapid Build Mode</h2><div class="sub">This is the faster provisioning workflow for multiple devices.</div></div>
+<div class="content grid4">
+<div class="stepcard"><div class="stepnum">1</div><strong>Play Store First</strong><div class="sub">Install Downloader, MX Player, Browser, and recommended free TV apps.</div></div>
+<div class="stepcard"><div class="stepnum">2</div><strong>Direct Apps Next</strong><div class="sub">Install IPTV Smarters Pro, FlixVision, and any other app with a ready direct button.</div></div>
+<div class="stepcard"><div class="stepnum">3</div><strong>Library Sweep</strong><div class="sub">Open 730116 once and install the remaining shared-library apps in one pass.</div></div>
+<div class="stepcard"><div class="stepnum">4</div><strong>QA and Handoff</strong><div class="sub">Arrange the home screen, test playback, load credentials, and deliver the device.</div></div>
+</div>
+</div><div class="card" id="admin-center">
+<div class="header"><div class="section-label">Business Controls</div>
+<div class="section-divider">
+<div class="divider-title">Admin Control Center</div>
+</div>
+<h2>Admin Control Center</h2><div class="sub">Private business links live here at the bottom of the installer dashboard.</div></div>
+<div class="appgrid">
+<div class="approw"><div class="order admin">A1</div><div class="cb"></div><div><div class="appname">Open TVPlusPanel</div><div class="small">Provider dashboard login.</div></div><div class="actions"><a class="btn adminbtn" href="https://www.tvpluspanel.net/login" target="_blank">Open TVPlusPanel</a></div></div>
+<div class="approw"><div class="order admin">A2</div><div class="cb"></div><div><div class="appname">Open Business Control Center</div><div class="small">Google Drive folder for customer records, renewals, and business files.</div></div><div class="actions"><a class="btn adminbtn" href="https://drive.google.com/drive/u/0/folders/1AHN3AGihMrSu79VrCczONe84JuO7Cg4u?hl=en" target="_blank">Open Google Drive</a></div></div>
+<div class="approw"><div class="order admin">A3</div><div class="cb"></div><div><div class="appname">Open Resource Center</div><div class="small">Guides, sales materials, and support documents.</div></div><div class="actions"><a class="btn adminbtn" href="https://tgarrett10.github.io/4myIPTVservice-device-app-center/resource-center.html" target="_blank">Open Resource Center</a></div></div>
+<div class="approw">
+<div class="order admin">A4</div>
+<div class="cb"></div>
+<div>
+<div class="appname">Open APK Library</div>
+<div class="small">Direct access to your custom APK library page for updates and internal use.</div>
+</div>
+<div class="actions"><a class="btn adminbtn" href="apk-library.html" target="_blank">Open APK Library</a></div>
+</div>
+</div>
+</div>
+<div class="footer-strip">
+<strong>IPTV Installer Dashboard • Direct Install First • Library Backup • Business Control Center</strong>
+<div class="version">Version 7.7 • Last Updated: March 2026</div>
+<div class="version">Visitors: <span id="visitorCount">Loading...</span></div>
+</div>
+</div>
+<script>
+(function(){
+  const key = 'iptv_build_tracker_v1';
+  const boxes = Array.from(document.querySelectorAll('.tracker-check'));
+  function saveTracker(){
+    const values = boxes.map(cb => cb.checked);
+    try { localStorage.setItem(key, JSON.stringify(values)); } catch(e) {}
+  }
+  function loadTracker(){
+    try{
+      const raw = localStorage.getItem(key);
+      if(!raw) return;
+      const values = JSON.parse(raw);
+      boxes.forEach((cb, i) => cb.checked = !!values[i]);
+    } catch(e) {}
+  }
+  window.clearTrackerSelections = function(){
+    boxes.forEach(cb => cb.checked = false);
+    saveTracker();
+  };
+  boxes.forEach(cb => cb.addEventListener('change', saveTracker));
+  loadTracker();
+})();
+</script><script>
+fetch("https://api.countapi.xyz/hit/4myiptvservice/dashboard")
+  .then(res => res.json())
+  .then(res => {
+    const el = document.getElementById("visitorCount");
+    if (el) el.innerText = res.value;
+  })
+  .catch(() => {
+    const el = document.getElementById("visitorCount");
+    if (el) el.innerText = "Unavailable";
+  });
+</script><script>
+const profileMap = {
+  standard: ['app-mx','app-browser','app-tubi','app-pluto','app-newson','app-xumo','app-philo','app-plex','app-iptv','app-amplayer','app-bear','app-bplayer','app-bgapps','app-vlc','app-proton','app-flix','app-cinema','app-filmplus','app-beetv','app-onstream','app-moviehd','app-falcon','app-playfy','app-sportsfire','app-streamfire'],
+  lite: ['app-mx','app-browser','app-tubi','app-pluto','app-newson','app-xumo','app-philo','app-plex','app-iptv','app-flix'],
+  sports: ['app-mx','app-browser','app-iptv','app-amplayer','app-bear','app-bplayer','app-falcon','app-playfy','app-sportsfire','app-streamfire'],
+  playstore: ['app-mx','app-browser','app-tubi','app-pluto','app-newson','app-xumo','app-philo','app-plex']
+};
+function updateSelectedList(){
+  const checks = Array.from(document.querySelectorAll('.app-select:checked'));
+  const list = document.getElementById('selectedList');
+  list.innerHTML = '';
+  if(!checks.length){ list.innerHTML = '<li class="muted">No apps selected yet.</li>'; return; }
+  checks.map(cb => ({name: cb.dataset.name, priority: Number(cb.dataset.priority||999)}))
+    .sort((a,b)=>a.priority-b.priority)
+    .forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.name;
+      list.appendChild(li);
+    });
+}
+function clearSelections(){ document.querySelectorAll('.app-select').forEach(cb => cb.checked = false); updateSelectedList(); }
+function applyProfile(profile){
+  clearSelections();
+  (profileMap[profile] || []).forEach(id => {
+    const row = document.getElementById(id);
+    if(row){ const cb = row.querySelector('.app-select'); if(cb) cb.checked = true; }
+  });
+  updateSelectedList();
+}
+function scrollToFirstSelected(){
+  const checks = Array.from(document.querySelectorAll('.app-select:checked'))
+    .map(cb => ({priority: Number(cb.dataset.priority||999), row: cb.closest('.app-row')}))
+    .sort((a,b)=>a.priority-b.priority);
+  if(checks.length){ checks[0].row.scrollIntoView({behavior:'smooth', block:'center'}); }
+}
+document.querySelectorAll('.app-select').forEach(cb => cb.addEventListener('change', updateSelectedList));
+updateSelectedList();
+</script>
+</body>
+</html>
