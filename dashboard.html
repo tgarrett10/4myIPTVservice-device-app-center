@@ -212,6 +212,13 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
   padding:7px 10px;border-radius:999px;text-decoration:none;font-weight:bold;text-align:center;
   display:inline-block;border:none;cursor:pointer;font-size:12px;background:#475569;color:#fff
 }
+
+.handoff-panel{background:#0b1220;border:1px solid #243044;border-radius:16px;padding:14px;margin-top:14px}
+.handoff-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:980px){.handoff-grid{grid-template-columns:1fr}}
+.handoff-box{background:#111827;border:1px solid #243044;border-radius:14px;padding:14px}
+.handoff-box h3{margin:0 0 10px 0;font-size:16px}
+.handoff-text{width:100%;min-height:260px;background:#0f172a;color:#f8fafc;border:1px solid #243044;border-radius:12px;padding:12px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.45}
 </style>
 </head>
 <body>
@@ -550,7 +557,6 @@ Additional Android devices are available on request depending on availability an
 <div class="version">Version 7.7 • Last Updated: March 2026</div>
 <div class="version">Visitors: <span id="visitorCount">Loading...</span></div>
 </div>
-
 <div class="card" id="provider-console">
 <div class="header">
 <div class="section-label">Provider Console</div>
@@ -585,8 +591,8 @@ Additional Android devices are available on request depending on availability an
 <h3>A La Carte Services</h3>
 <table style="width:100%;font-size:0.9rem;">
 <tr><td>Device Setup Service</td><td style="text-align:right;">$40</td></tr>
-<tr><td>Monthly Subscription</td><td style="text-align:right;">$20</td></tr>
-<tr><td>Annual Subscription</td><td style="text-align:right;">$150</td></tr>
+<tr><td>Monthly Subscription</td><td style="text-align:right;">$15</td></tr><tr><td>6 Month Subscription</td><td style="text-align:right;">$70</td></tr>
+<tr><td>Annual Subscription</td><td style="text-align:right;">$120</td></tr><tr><td>2 Year Subscription</td><td style="text-align:right;">$200</td></tr>
 <tr><td>Express Device Shipping</td><td style="text-align:right;">$20</td></tr>
 </table>
 <div style="margin-top:10px;">
@@ -609,6 +615,33 @@ Additional Android devices are available on request depending on availability an
 </div>
 </div>
 </div>
+<div class="card" id="customer-handoff-generator">
+<div class="header">
+<div class="section-label">Provider Console</div>
+<h2>Customer Handoff Generator</h2>
+<div class="sub">Create a ready-to-send setup message based on the selected apps and current support links.</div>
+</div>
+<div class="content">
+<div class="handoff-panel">
+<div class="handoff-grid">
+<div class="handoff-box">
+<h3>Generate Customer Instructions</h3>
+<p class="small">Use this after you finish selecting apps. It builds a simple customer message with setup, support, and the selected app list.</p>
+<div class="profilebtnrow">
+<button class="btn directbtn" onclick="generateCustomerHandoff()">Generate Instructions</button>
+<button class="btn linkbtn" onclick="copyCustomerHandoff()">Copy Text</button>
+</div>
+<div class="small" style="margin-top:10px;">This saves time when sending setup instructions after a new install or renewal.</div>
+</div>
+<div class="handoff-box">
+<h3>Customer Handoff Message</h3>
+<textarea class="handoff-text" id="customerHandoffText">Click "Generate Instructions" to create the customer handoff message.</textarea>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 </div>
 <script>
 (function(){
@@ -681,6 +714,55 @@ function scrollToFirstSelected(){
 }
 document.querySelectorAll('.app-select').forEach(cb => cb.addEventListener('change', updateSelectedList));
 updateSelectedList();
+</script><script>
+function generateCustomerHandoff(){
+  const selected = Array.from(document.querySelectorAll('.app-select:checked'))
+    .map(cb => cb.dataset.name)
+    .filter(Boolean);
+  const selectedText = selected.length ? selected.map(x => '- ' + x).join('\n') : '- IPTV Smarters Pro';
+  const message = `Thank you for choosing MY IPTV Service.
+
+Your device is ready to go.
+
+Installed apps:
+${selectedText}
+
+Getting started:
+1. Connect the device to the internet.
+2. Open IPTV Smarters Pro.
+3. Enter the credentials exactly as provided.
+4. If you need help, use the support options below.
+
+Helpful links:
+Device Setup Center
+https://tgarrett10.github.io/4myIPTVservice-device-app-center/device-setup.html
+
+Setup Guide
+https://tgarrett10.github.io/4myIPTVservice-device-app-center/setup-help.html
+
+Troubleshooting
+https://tgarrett10.github.io/4myIPTVservice-device-app-center/support.html
+
+Support Bot
+https://t.me/myiptvservice_support_bot?start=help
+
+Live Support
+https://t.me/myiptvservice4
+
+Service Overview
+https://tgarrett10.github.io/4myIPTVservice-device-app-center/sell-sheet.html
+
+Internet service is required. Sideloaded apps are included for convenience and may change over time. At the time of delivery, included sideloaded apps were verified as working.`;
+  const box = document.getElementById('customerHandoffText');
+  if(box) box.value = message;
+}
+function copyCustomerHandoff(){
+  const box = document.getElementById('customerHandoffText');
+  if(!box) return;
+  box.select();
+  box.setSelectionRange(0, 99999);
+  try{ document.execCommand('copy'); }catch(e){}
+}
 </script>
 </body>
 </html>
