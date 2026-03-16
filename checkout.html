@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4MyIPTVService Checkout</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .header h1 {
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #cbd5e1;
+      margin-top: 0;
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .plans {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .plan {
+      padding: 14px;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      background: #020617;
+      cursor: pointer;
+    }
+
+    .plan.active {
+      border-color: #22c55e;
+      background: #0c1a14;
+    }
+
+    .plan-title {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #cbd5e1;
+    }
+
+    input, select, textarea, button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      background: #020617;
+      color: #e5e7eb;
+      font-size: 1rem;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    button {
+      background: #2563eb;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .summary {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 10px;
+      background: #020617;
+      border: 1px solid #334155;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .summary-row:last-child {
+      margin-bottom: 0;
+      font-weight: bold;
+      color: #86efac;
+    }
+
+    .status {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .status.success {
+      display: block;
+      background: #052e16;
+      border: 1px solid #166534;
+      color: #bbf7d0;
+    }
+
+    .status.error {
+      display: block;
+      background: #450a0a;
+      border: 1px solid #991b1b;
+      color: #fecaca;
+    }
+
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>4MyIPTVService</h1>
+      <p>Checkout and activation request</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Select a Plan</h2>
+
+        <div class="plans" id="planList">
+          <div class="plan active" data-plan="Monthly" data-price="15">
+            <div class="plan-title">
+              <span>Monthly</span>
+              <span>$15</span>
+            </div>
+            <div>Best for new customers</div>
+          </div>
+
+          <div class="plan" data-plan="6 Months" data-price="70">
+            <div class="plan-title">
+              <span>6 Months</span>
+              <span>$70</span>
+            </div>
+            <div>Lower cost than monthly</div>
+          </div>
+
+          <div class="plan" data-plan="1 Year" data-price="120">
+            <div class="plan-title">
+              <span>1 Year</span>
+              <span>$120</span>
+            </div>
+            <div>Strong value for long-term use</div>
+          </div>
+
+          <div class="plan" data-plan="2 Years" data-price="200">
+            <div class="plan-title">
+              <span>2 Years</span>
+              <span>$200</span>
+            </div>
+            <div>Best overall value</div>
+          </div>
+        </div>
+
+        <div class="summary">
+          <div class="summary-row">
+            <span>Selected Plan</span>
+            <span id="selectedPlanLabel">Monthly</span>
+          </div>
+          <div class="summary-row">
+            <span>Price</span>
+            <span id="selectedPlanPrice">$15</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Customer Information</h2>
+
+        <form id="checkoutForm">
+          <div class="field">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" required />
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" required />
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" required />
+          </div>
+
+          <div class="field">
+            <label for="deviceType">Device Type</label>
+            <select id="deviceType">
+              <option value="ONN 4K Stick">ONN 4K Stick</option>
+              <option value="ONN 4K">ONN 4K</option>
+              <option value="ONN 4K Plus">ONN 4K Plus</option>
+              <option value="Firestick">Firestick</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="deviceNickname">Device Nickname</label>
+            <input type="text" id="deviceNickname" placeholder="Living Room TV" />
+          </div>
+
+          <div class="field">
+            <label for="macAddress">MAC Address or Device ID</label>
+            <input type="text" id="macAddress" placeholder="Optional" />
+          </div>
+
+          <div class="field">
+            <label for="notes">Notes</label>
+            <textarea id="notes" placeholder="Any setup notes or requests"></textarea>
+          </div>
+
+          <button type="submit">Submit Order</button>
+        </form>
+
+        <div id="statusMessage" class="status"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFGoXc-PfNNrCMb6dMSlGkE7w5CAF_7ObTslWoN2VHQU6OH7t_GZkzl4WD8miiAmIj/exec";
+
+    let selectedPlan = {
+      name: "Monthly",
+      price: "15"
+    };
+
+    const planEls = document.querySelectorAll(".plan");
+    const selectedPlanLabel = document.getElementById("selectedPlanLabel");
+    const selectedPlanPrice = document.getElementById("selectedPlanPrice");
+    const checkoutForm = document.getElementById("checkoutForm");
+    const statusMessage = document.getElementById("statusMessage");
+
+    function showStatus(message, type) {
+      statusMessage.className = "status " + type;
+      statusMessage.textContent = message;
+    }
+
+    function getFormData() {
+      return {
+        fullName: document.getElementById("fullName").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        deviceType: document.getElementById("deviceType").value,
+        deviceNickname: document.getElementById("deviceNickname").value.trim(),
+        macAddress: document.getElementById("macAddress").value.trim(),
+        notes: document.getElementById("notes").value.trim()
+      };
+    }
+
+    async function saveOrder(orderData) {
+      const response = await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(orderData)
+      });
+
+      return await response.json();
+    }
+
+    planEls.forEach(plan => {
+      plan.addEventListener("click", () => {
+        planEls.forEach(p => p.classList.remove("active"));
+        plan.classList.add("active");
+
+        selectedPlan = {
+          name: plan.dataset.plan,
+          price: plan.dataset.price
+        };
+
+        selectedPlanLabel.textContent = selectedPlan.name;
+        selectedPlanPrice.textContent = "$" + selectedPlan.price;
+      });
+    });
+
+    checkoutForm.addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const formData = getFormData();
+
+      if (!formData.fullName || !formData.email || !formData.phone) {
+        showStatus("Please complete Full Name, Email, and Phone.", "error");
+        return;
+      }
+
+      const orderData = {
+        timestamp: new Date().toISOString(),
+        orderType: "Manual Checkout Form",
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        deviceType: formData.deviceType,
+        deviceNickname: formData.deviceNickname,
+        macAddress: formData.macAddress,
+        notes: formData.notes,
+        planName: selectedPlan.name,
+        amount: selectedPlan.price,
+        paymentType: "Pending Payment",
+        paypalSubscriptionId: "",
+        status: "New Lead"
+      };
+
+      try {
+        const result = await saveOrder(orderData);
+
+        if (result.success) {
+          showStatus("Order submitted successfully. It has been added to your sheet.", "success");
+          checkoutForm.reset();
+
+          selectedPlan = {
+            name: "Monthly",
+            price: "15"
+          };
+
+          planEls.forEach(p => p.classList.remove("active"));
+          planEls[0].classList.add("active");
+          selectedPlanLabel.textContent = "Monthly";
+          selectedPlanPrice.textContent = "$15";
+        } else {
+          showStatus("The form submitted, but the sheet did not save correctly.", "error");
+        }
+      } catch (error) {
+        console.error(error);
+        showStatus("Connection error. Please check your Apps Script URL.", "error");
+      }
+    });
+  </script>
+</body>
+</html>
