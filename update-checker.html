@@ -1,9 +1,10 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Update Checker</title>
 <style>
 :root{
@@ -124,135 +125,258 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
 </head>
 <body>
 <div class="wrap">
-
-  <div class="card hero">
-    <h1>Internal Update Checker</h1>
-    <div class="tagline-banner">Check Versions • Verify Links • Update Only What Changed</div>
-    <div class="sub">This is an internal maintenance page. Use it to review app versions, test direct links, and mark apps as verified after your monthly update check.</div>
-
-    <div class="notice">
-      <strong>Important:</strong> GitHub Pages is a static website, so this page is designed to help you check updates efficiently rather than scrape every app source automatically. Use the <strong>Check Source</strong> and <strong>Test Link</strong> buttons, then update your spreadsheet and site pages only when needed.
+<div class="card hero">
+<h1>Internal Update Checker</h1>
+<div class="tagline-banner">Check Versions • Verify Links • Update Only What Changed</div>
+<div class="sub">This is an internal maintenance page. Use it to review app versions, test direct links, and mark apps as verified after your monthly update check.</div>
+<div class="notice">
+<strong>Important:</strong> GitHub Pages is a static website, so this page is designed to help you check updates efficiently rather than scrape every app source automatically. Use the <strong>Check Source</strong> and <strong>Test Link</strong> buttons, then update your spreadsheet and site pages only when needed.
     </div>
-
-    <div class="tip">
-      <strong>Recommended monthly check order:</strong> IPTV Smarters Pro → FlixVision → SportsFire → StreamFire → Utility apps → Device-specific tools.
+<div class="tip">
+<strong>Recommended monthly check order:</strong> IPTV Smarters Pro → FlixVision → SportsFire → StreamFire → Utility apps → Device-specific tools.
     </div>
-  </div>
-
-  <div class="card">
-    <div class="header">
-      <div class="section-label">Workflow</div>
-      <h2>How to Use This Page</h2>
+</div>
+<div class="card">
+<div class="header">
+<div class="section-label">Workflow</div>
+<h2>How to Use This Page</h2>
+</div>
+<div class="content">
+<table class="table">
+<tr>
+<th style="width:33%;">Step 1</th>
+<th style="width:33%;">Step 2</th>
+<th style="width:34%;">Step 3</th>
+</tr>
+<tr>
+<td>Click <strong>Test Link</strong> for every non-Play Store APK app once per month.</td>
+<td>Click <strong>Check Source</strong> to confirm whether a newer version exists.</td>
+<td>Update the spreadsheet first, then update the APK Library, Dashboard, and Downloader Portal only if needed.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="card">
+<div class="header">
+<div class="section-label">Monthly Audit</div>
+<h2>APK Link &amp; Version Review</h2>
+</div>
+<div class="content">
+<h3 style="margin:18px 0 10px 0;">Core IPTV Apps</h3>
+<table class="table" style="margin-bottom:18px;">
+<tr>
+<th>Verified</th>
+<th>App</th>
+<th>Test Link</th>
+<th>Check Source</th>
+<th>Notes</th>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>IPTV Smarters Pro</td>
+<td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=IPTV+Smarters+Pro+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>AMPlayer</td>
+<td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/J99DWABk" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=AMPlayer+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>Bear Player</td>
+<td><a class="btn directbtn" href="https://www.mediafire.com/file/m35yb9lekyxldlw/Bear+Player_v2.20.24_MOD_modded-1.com.apk/file" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=Bear+Player+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>BPlayer</td>
+<td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/TKHUxRbj" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=BPlayer+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+</table>
+<h3 style="margin:18px 0 10px 0;">Movie / TV APK Apps</h3>
+<table class="table" style="margin-bottom:18px;">
+<tr>
+<th>Verified</th>
+<th>App</th>
+<th>Test Link</th>
+<th>Check Source</th>
+<th>Notes</th>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>FlixVision</td>
+<td><a class="btn directbtn" href="https://github.com/fvision8/fvreleases/releases/download/v3.4.0r/FlixVision_v3.4.0.apk" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=FlixVision+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>Cinema HQ</td>
+<td><a class="btn directbtn" href="https://www.mediafire.com/file/sfreu6elqjpe248/Cinama+HQ+5.6.apk/file" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=Cinema+HQ+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>FilmPlus</td>
+<td><a class="btn directbtn" href="https://www.mediafire.com/file/sxwa97zmes7jey6/FilmPlus_-_v2.2.8r_%25281%2529.apk/file" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=FilmPlus+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>BeeTV</td>
+<td><a class="btn directbtn" href="https://www.mediafire.com/file/5khvjyoz26umm0v/BeeTV_4.5.9_2459_06421d.apk/file" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=BeeTV+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>OnStream</td>
+<td><a class="btn directbtn" href="https://www.mediafire.com/file/226ail3nl8b8s1g/onstream-fireTV.apk/file" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=OnStream+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>Movie HD</td>
+<td><a class="btn directbtn" href="https://www.mediafire.com/file/u4790rpo5l4md0s/moviehd-542-mod-1.apk/file" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=Movie+HD+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+</table>
+<h3 style="margin:18px 0 10px 0;">Sports APK Apps</h3>
+<table class="table" style="margin-bottom:18px;">
+<tr>
+<th>Verified</th>
+<th>App</th>
+<th>Test Link</th>
+<th>Check Source</th>
+<th>Notes</th>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>FalconCast</td>
+<td><a class="btn directbtn" href="https://www.mediafire.com/file/5mvpvpdpzn62h05/FalconCast_(V4.1)+(1).apk/file" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=FalconCast+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>Playfy TV</td>
+<td><a class="btn directbtn" href="https://www.mediafire.com/file/tfdwts9y73jpdrp/PLAYFy_TV_1.5.apk/file" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=Playfy+TV+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>SportsFire</td>
+<td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/bJgTC1aw" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=SportsFire+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>StreamFire</td>
+<td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/EM6TZXCh" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=StreamFire+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+</table>
+<h3 style="margin:18px 0 10px 0;">Utility APK Apps</h3>
+<table class="table" style="margin-bottom:18px;">
+<tr>
+<th>Verified</th>
+<th>App</th>
+<th>Test Link</th>
+<th>Check Source</th>
+<th>Notes</th>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>VLC Media Player</td>
+<td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/iacQyjir" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=VLC+Media+Player+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>Background Apps &amp; Process List</td>
+<td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/fyzsjrY4" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=Background+Apps+&amp;+Process+List+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>Proton VPN</td>
+<td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/tf5njBkT" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=Proton+VPN+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+<tr>
+<td><input class="check" type="checkbox"/></td>
+<td>App Cloner</td>
+<td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/nhsNDbv8" target="_blank">Test Link</a></td>
+<td><a class="btn playbtn" href="https://www.google.com/search?q=App+Cloner+latest+version" target="_blank">Check Source</a></td>
+<td class="small">Monthly review required.</td>
+</tr>
+</table>
+<div class="warning">
+<strong>Excluded from monthly APK audit:</strong> Google Play Store apps are not included here because they are maintained through the Play Store workflow instead of direct APK link replacement.
     </div>
-    <div class="content">
-      <table class="table">
-        <tr>
-          <th style="width:33%;">Step 1</th>
-          <th style="width:33%;">Step 2</th>
-          <th style="width:34%;">Step 3</th>
-        </tr>
-        <tr>
-          <td>Click <strong>Check Source</strong> to look for the latest version information.</td>
-          <td>Click <strong>Test Link</strong> to confirm your current download link still works.</td>
-          <td>Update your spreadsheet and the site only if the version or link changed.</td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="header">
-      <div class="section-label">Core App Review</div>
-      <h2>Primary Apps</h2>
-    </div>
-    <div class="content">
-      <table class="table">
-        <tr>
-          <th>Verified</th>
-          <th>App</th>
-          <th>Current Version</th>
-          <th>Test Link</th>
-          <th>Check Source</th>
-          <th>Notes</th>
-        </tr>
-        <tr>
-          <td><input class="check" type="checkbox"></td>
-          <td>IPTV Smarters Pro</td>
-          <td>5.0</td>
-          <td><a class="btn directbtn" href="https://aft.news/6234188" target="_blank">Test Link</a></td>
-          <td><div class="btnrow"><a class="btn playbtn" href="https://www.google.com/search?q=IPTV+Smarters+Pro+latest+version" target="_blank">Check Source</a></div></td>
-          <td class="small">Primary customer app. Verify first each month.</td>
-        </tr>
-        <tr>
-          <td><input class="check" type="checkbox"></td>
-          <td>FlixVision</td>
-          <td>3.4.0</td>
-          <td><a class="btn directbtn" href="https://aft.news/4740537" target="_blank">Test Link</a></td>
-          <td><div class="btnrow"><a class="btn playbtn" href="https://www.google.com/search?q=FlixVision+latest+version" target="_blank">Check Source</a></div></td>
-          <td class="small">Direct-install only in your workflow.</td>
-        </tr>
-        <tr>
-          <td><input class="check" type="checkbox"></td>
-          <td>SportsFire</td>
-          <td>2.0.8</td>
-          <td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/bJgTC1aw" target="_blank">Test Link</a></td>
-          <td><div class="btnrow"><a class="btn playbtn" href="https://www.google.com/search?q=SportsFire+latest+version" target="_blank">Check Source</a></div></td>
-          <td class="small">Check monthly because sports apps change often.</td>
-        </tr>
-        <tr>
-          <td><input class="check" type="checkbox"></td>
-          <td>StreamFire</td>
-          <td>1.2.3</td>
-          <td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/EM6TZXCh" target="_blank">Test Link</a></td>
-          <td><div class="btnrow"><a class="btn playbtn" href="https://www.google.com/search?q=StreamFire+latest+version" target="_blank">Check Source</a></div></td>
-          <td class="small">Verify after SportsFire.</td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-  <div class="grid2">
-    <div class="card">
-      <div class="header">
-        <div class="section-label">Utility App Review</div>
-        <h2>Utilities</h2>
-      </div>
-      <div class="content">
-        <table class="table">
-          <tr><th>Verified</th><th>App</th><th>Test Link</th></tr>
-          <tr><td><input class="check" type="checkbox"></td><td>Downloader</td><td><a class="btn directbtn" href="https://play.google.com/store/apps/details?id=com.esaba.downloader" target="_blank">Check Play Store</a></td></tr>
-          <tr><td><input class="check" type="checkbox"></td><td>VLC Media Player</td><td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/iacQyjir" target="_blank">Test Link</a></td></tr>
-          <tr><td><input class="check" type="checkbox"></td><td>Proton VPN</td><td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/tf5njBkT" target="_blank">Test Link</a></td></tr>
-        </table>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="header">
-        <div class="section-label">Best Practice</div>
-        <h2>Update Rules</h2>
-      </div>
-      <div class="content">
-        <ul>
-          <li>Update the spreadsheet first.</li>
-          <li>Only update the site if the version or link actually changed.</li>
-          <li>Test the APK link from the APK Library page after every change.</li>
-          <li>Then test the matching dashboard button.</li>
-          <li>If a link breaks, replace it in the APK Library before touching customer pages.</li>
-        </ul>
-        <div class="warning">
-          <strong>Reminder:</strong> A Downloader code is only a shortcut that redirects to a URL. If you want direct access to a page like the Resource Center in Downloader, give that page its own direct URL or its own short code.
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-strip">
-    <strong>Internal Update Checker</strong>
-    <div class="version">Version 1.0 • Last Updated: March 2026</div>
-  </div>
+</div>
+</div>
+<div class="card">
+<div class="header">
+<div class="section-label">Best Practice</div>
+<h2>Update Rules</h2>
+</div>
+<div class="content">
+<ul>
+<li>Review every direct APK app monthly.</li>
+<li>Update the spreadsheet first.</li>
+<li>Only update the site if the version or link actually changed.</li>
+<li>Test the APK link from the APK Library page after every change.</li>
+<li>Then test the matching dashboard button and Downloader Portal if applicable.</li>
+<li>Exclude Google Play Store apps from this audit unless you decide to replace them with direct APK installs.</li>
+</ul>
+</div>
 </div>
 
+
+<div class="grid2">
+
+<div class="card">
+<div class="header">
+<div class="section-label">Best Practice</div>
+<h2>Update Rules</h2>
+</div>
+<div class="content">
+<ul>
+<li>Update the spreadsheet first.</li>
+<li>Only update the site if the version or link actually changed.</li>
+<li>Test the APK link from the APK Library page after every change.</li>
+<li>Then test the matching dashboard button.</li>
+<li>If a link breaks, replace it in the APK Library before touching customer pages.</li>
+</ul>
+<div class="warning">
+<strong>Reminder:</strong> A Downloader code is only a shortcut that redirects to a URL. If you want direct access to a page like the Resource Center in Downloader, give that page its own direct URL or its own short code.
+        </div>
+</div>
+</div>
+</div>
+<div class="footer-strip">
+<strong>Internal Update Checker</strong>
+<div class="version">Version 1.0 • Last Updated: March 2026</div>
+</div>
+</div>
 <script>
 (function(){
   const key = 'iptv_update_checker_v1';
