@@ -263,14 +263,14 @@
             <textarea id="notes" placeholder="Any setup notes or requests"></textarea>
           </div>
 
-          <button type="submit">Submit Order</button>
+       
         </form>
 
         <div id="statusMessage" class="status"></div>
       </div>
     </div>
   </div>
-
+<div id="paypal-button-container"></div>
   <script>
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFGoXc-PfNNrCMb6dMSlGkE7w5CAF_7ObTslWoN2VHQU6OH7t_GZkzl4WD8miiAmIj/exec";
 
@@ -381,5 +381,48 @@
       }
     });
   </script>
-</body>
+<script src="https://www.paypal.com/sdk/js?client-id=AWGNEkU-dS6LJz4eaNHNB93LP5SxnRc377VvcdF7BIVE8jYXiK2Banltv9Cr85F9jMQLp33GoOplY5yu&vault=true&intent=subscription"></script>
+
+<script>
+paypal.Buttons({
+
+createSubscription: function(data, actions) {
+return actions.subscription.create({
+plan_id: 'P-1NA50773B9841645GNG326WI'
+});
+},
+
+onApprove: async function(data, actions) {
+
+const orderData = {
+timestamp: new Date().toISOString(),
+orderType: "PayPal Subscription",
+fullName: document.getElementById("fullName").value,
+email: document.getElementById("email").value,
+phone: document.getElementById("phone").value,
+deviceType: document.getElementById("deviceType").value,
+deviceNickname: document.getElementById("deviceNickname").value,
+macAddress: document.getElementById("macAddress").value,
+notes: document.getElementById("notes").value,
+planName: "Monthly",
+amount: "15",
+paymentType: "PayPal",
+paypalSubscriptionId: data.subscriptionID,
+status: "Paid"
+};
+
+await fetch(APPS_SCRIPT_URL, {
+method: "POST",
+headers: {
+"Content-Type": "text/plain;charset=utf-8"
+},
+body: JSON.stringify(orderData)
+});
+
+alert("Subscription created successfully.");
+
+}
+
+}).render('#paypal-button-container');
+</script></body>
 </html>
