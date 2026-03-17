@@ -14,7 +14,6 @@
   --blue:#3b82f6;
   --gold:#f59e0b;
   --purple:#9333ea;
-  --red:#ef4444;
   --border:#1f2937;
 }
 *{box-sizing:border-box}
@@ -77,7 +76,6 @@ h2{margin:0 0 6px}
 .directbtn{background:var(--green);color:#052e16}
 .goldbtn{background:var(--gold);color:#3b2400}
 .adminbtn{background:var(--purple)}
-.inactivebtn{background:var(--red)}
 .header{
   padding:14px 16px;
   border-bottom:1px solid var(--border);
@@ -122,7 +120,6 @@ h2{margin:0 0 6px}
 .order.movie{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.25);color:#bfdbfe}
 .order.sports{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.22);color:#fde68a}
 .order.util{background:rgba(147,51,234,.15);border:1px solid rgba(147,51,234,.22);color:#f3e8ff}
-.order.inactive{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.22);color:#fecaca}
 .appname{font-weight:bold}
 .small{font-size:.86rem;color:var(--muted);line-height:1.4}
 .actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
@@ -158,7 +155,6 @@ h2{margin:0 0 6px}
       <a class="btn playbtn" href="#movies">Movie / TV Apps</a>
       <a class="btn goldbtn" href="#sports">Sports Apps</a>
       <a class="btn adminbtn" href="#utilities">Utility Apps</a>
-      <a class="btn inactivebtn" href="#inactive">Inactive Downloads</a>
     </div>
 
     <div class="info">
@@ -270,26 +266,31 @@ h2{margin:0 0 6px}
         <div class="appgrid">
           <div class="approw app-row">
             <div class="order movie">M1</div>
+            <div><div class="appname">FlixVision</div><div class="small">Movie / TV app using direct APK link.</div></div>
+            <div class="actions"><a class="btn playbtn" href="https://github.com/fvision8/fvreleases/releases/download/v3.4.0r/FlixVision_v3.4.0.apk" target="_blank" rel="noopener noreferrer">Download</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order movie">M2</div>
             <div><div class="appname">Cinema HQ</div><div class="small">Movie / TV app.</div></div>
             <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/sfreu6elqjpe248/Cinama+HQ+5.6.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
-            <div class="order movie">M2</div>
+            <div class="order movie">M3</div>
             <div><div class="appname">FilmPlus</div><div class="small">Movie / TV app.</div></div>
             <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/sxwa97zmes7jey6/FilmPlus_-_v2.2.8r_%25281%2529.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
-            <div class="order movie">M3</div>
+            <div class="order movie">M4</div>
             <div><div class="appname">BeeTV</div><div class="small">Movie / TV app. NVPlayer recommended for playback support.</div></div>
             <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/5khvjyoz26umm0v/BeeTV_4.5.9_2459_06421d.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
-            <div class="order movie">M4</div>
+            <div class="order movie">M5</div>
             <div><div class="appname">OnStream</div><div class="small">Movie / TV app.</div></div>
             <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/226ail3nl8b8s1g/onstream-fireTV.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
-            <div class="order movie">M5</div>
+            <div class="order movie">M6</div>
             <div><div class="appname">Movie HD</div><div class="small">Movie / TV app.</div></div>
             <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/u4790rpo5l4md0s/moviehd-542-mod-1.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
@@ -320,27 +321,12 @@ h2{margin:0 0 6px}
           </div>
         </div>
       </div>
-
-      <div class="card" id="inactive">
-        <div class="header">
-          <div class="section-label">Inactive Downloads</div>
-          <h2>Inactive / Secondary Apps</h2>
-          <div class="sub">Apps that are not part of the primary supported setup flow.</div>
-        </div>
-        <div class="appgrid">
-          <div class="approw app-row">
-            <div class="order inactive">I1</div>
-            <div><div class="appname">FlixVision</div><div class="small">Inactive download. Use direct URL only. Not part of the primary supported setup path.</div></div>
-            <div class="actions"><a class="btn inactivebtn" href="https://github.com/fvision8/fvreleases/releases/download/v3.4.0r/FlixVision_v3.4.0.apk" target="_blank" rel="noopener noreferrer">Download</a></div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
   <div class="footer-strip">
     <strong>4MyIPTV APK Library • Controlled Internal Download Page</strong>
-    <div class="version">Version 1.2 • Last Updated: March 2026</div>
+    <div class="version">Version 1.3 • Last Updated: March 2026</div>
   </div>
 </div>
 
