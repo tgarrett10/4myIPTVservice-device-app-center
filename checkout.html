@@ -490,9 +490,12 @@
           }
         },
         onError: function(err) {
-          console.error(err);
-          showStatus('PayPal error. Please try again.', 'error');
-        }
+         console.error('PayPal onError:', err);
+  let message = 'PayPal error. Please try again.';
+
+  if (err && err.message) {
+    message = 'PayPal error: ' + err.message;
+  }
       }).render('#paypal-button-container');
     }
 
