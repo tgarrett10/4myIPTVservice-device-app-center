@@ -9,7 +9,7 @@
       color: white;
       padding: 20px;
     }
-    h1 {
+    h1, h2, h3 {
       margin-bottom: 10px;
     }
     .top-bar {
@@ -70,10 +70,17 @@
     .error {
       color: #fca5a5;
     }
+    .layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
     table {
       width: 100%;
       margin-top: 20px;
       border-collapse: collapse;
+      background: #111827;
     }
     th, td {
       padding: 10px;
@@ -84,7 +91,46 @@
     th {
       background: #1e293b;
     }
-    @media (max-width: 900px) {
+    tr.clickable {
+      cursor: pointer;
+    }
+    tr.clickable:hover {
+      background: #172033;
+    }
+    .details-panel {
+      margin-top: 20px;
+      background: #111827;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .detail-row {
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #334155;
+    }
+    .detail-row:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .detail-label {
+      color: #94a3b8;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    .detail-value {
+      font-size: 14px;
+      word-break: break-word;
+    }
+    .empty-note {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+    @media (max-width: 1000px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
       .stats {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -142,24 +188,34 @@
   </div>
 </div>
 
-<table id="ordersTable">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Service</th>
-      <th>Amount</th>
-      <th>Status</th>
-      <th>Update Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td colspan="6">No data loaded yet.</td></tr>
-  </tbody>
-</table>
+<div class="layout">
+  <div>
+    <table id="ordersTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Service</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Update Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="6">No data loaded yet.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="details-panel">
+    <h3>Order Details</h3>
+    <div id="detailsContent" class="empty-note">Click an order row to view details.</div>
+  </div>
+</div>
 
 <script>
   let allOrders = [];
+  let selectedOrder = null;
 
   function showMessage(text, type) {
     const message = document.getElementById('message');
@@ -250,7 +306,67 @@
       <select id="${selectId}">
         ${optionsHtml}
       </select>
-      <button onclick="updateStatus(${rowNumber}, document.getElementById('${selectId}').value)">Save</button>
+      <button onclick="event.stopPropagation(); updateStatus(${rowNumber}, document.getElementById('${selectId}').value)">Save</button>
+    `;
+  }
+
+  function renderDetails(order) {
+    const details = document.getElementById('detailsContent');
+
+    if (!order) {
+      details.innerHTML = 'Click an order row to view details.';
+      return;
+    }
+
+    details.innerHTML = `
+      <div class="detail-row">
+        <div class="detail-label">Full Name</div>
+        <div class="detail-value">${getField(order, ['FullName', 'fullName', 'Name', 'name'])}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Email</div>
+        <div class="detail-value">${getField(order, ['Email', 'email'])}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Phone</div>
+        <div class="detail-value">${getField(order, ['Phone', 'phone'])}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Service</div>
+        <div class="detail-value">${getField(order, ['PlanName', 'planName', 'Service', 'service'])}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Amount</div>
+        <div class="detail-value">$${getField(order, ['Amount', 'amount'])}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Status</div>
+        <div class="detail-value">${getField(order, ['Status', 'status'])}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Device Type</div>
+        <div class="detail-value">${getField(order, ['DeviceType', 'deviceType'])}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Device Nickname</div>
+        <div class="detail-value">${getField(order, ['DeviceNickname', 'deviceNickname'])}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Notes</div>
+        <div class="detail-value">${getField(order, ['Notes', 'notes'])}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Payment Type</div>
+        <div class="detail-value">${getField(order, ['PaymentType', 'paymentType'])}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">PayPal ID</div>
+        <div class="detail-value">${getField(order, ['PayPalSubscriptionId', 'paypalSubscriptionId'])}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Timestamp</div>
+        <div class="detail-value">${getField(order, ['Timestamp', 'timestamp'])}</div>
+      </div>
     `;
   }
 
@@ -282,6 +398,7 @@
 
     if (!filtered.length) {
       table.innerHTML = '<tr><td colspan="6">No matching orders found.</td></tr>';
+      renderDetails(null);
       return;
     }
 
@@ -293,18 +410,32 @@
       const amount = getField(order, ['Amount', 'amount']);
       const status = getField(order, ['Status', 'status']);
 
-      const row = `
-        <tr>
-          <td>${fullName}</td>
-          <td>${email}</td>
-          <td>${planName}</td>
-          <td>$${amount}</td>
-          <td>${status}</td>
-          <td>${buildStatusDropdown(status, rowNumber)}</td>
-        </tr>
+      const row = document.createElement('tr');
+      row.className = 'clickable';
+      row.innerHTML = `
+        <td>${fullName}</td>
+        <td>${email}</td>
+        <td>${planName}</td>
+        <td>$${amount}</td>
+        <td>${status}</td>
+        <td>${buildStatusDropdown(status, rowNumber)}</td>
       `;
-      table.innerHTML += row;
+      row.addEventListener('click', () => {
+        selectedOrder = order;
+        renderDetails(order);
+      });
+
+      table.appendChild(row);
     });
+
+    if (selectedOrder) {
+      const updatedSelected = allOrders.find(order =>
+        getField(order, ['RowNumber']) == getField(selectedOrder, ['RowNumber'])
+      );
+      renderDetails(updatedSelected || filtered[0]);
+    } else {
+      renderDetails(filtered[0]);
+    }
   }
 
   function loadOrders() {
