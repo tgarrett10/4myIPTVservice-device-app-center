@@ -261,13 +261,13 @@
 
 <div class="top-bar">
   <input id="apiUrl" placeholder="Paste your Apps Script URL here" />
-  <button type="button" onclick="saveUrl()">Save URL</button>
-  <button type="button" class="primary-btn" onclick="loadOrders()">Load Orders</button>
+  <button id="saveUrlBtn" type="button">Save URL</button>
+  <button id="loadOrdersBtn" type="button" class="primary-btn">Load Orders</button>
 </div>
 
 <div class="top-bar">
-  <input id="searchInput" placeholder="Search name, email, or service" oninput="renderOrders()" />
-  <select id="statusFilter" onchange="syncQuickFiltersFromDropdown(); renderOrders();">
+  <input id="searchInput" placeholder="Search name, email, or service" />
+  <select id="statusFilter">
     <option value="">All Statuses</option>
     <option value="New Lead">New Lead</option>
     <option value="Paid - Awaiting Fulfillment">Paid - Awaiting Fulfillment</option>
@@ -278,12 +278,12 @@
 </div>
 
 <div class="pill-row" id="quickFilters">
-  <button type="button" class="pill active" onclick="setQuickFilter('')">All</button>
-  <button type="button" class="pill" onclick="setQuickFilter('New Lead')">New Lead</button>
-  <button type="button" class="pill" onclick="setQuickFilter('Paid - Awaiting Fulfillment')">Paid</button>
-  <button type="button" class="pill" onclick="setQuickFilter('In Progress')">In Progress</button>
-  <button type="button" class="pill" onclick="setQuickFilter('Completed')">Completed</button>
-  <button type="button" class="pill" onclick="setQuickFilter('Follow Up')">Follow Up</button>
+  <button type="button" class="pill active" data-filter="">All</button>
+  <button type="button" class="pill" data-filter="New Lead">New Lead</button>
+  <button type="button" class="pill" data-filter="Paid - Awaiting Fulfillment">Paid</button>
+  <button type="button" class="pill" data-filter="In Progress">In Progress</button>
+  <button type="button" class="pill" data-filter="Completed">Completed</button>
+  <button type="button" class="pill" data-filter="Follow Up">Follow Up</button>
 </div>
 
 <div id="message" class="message"></div>
@@ -336,6 +336,13 @@
   let allOrders = [];
   let selectedOrder = null;
 
+  const apiUrlInput = document.getElementById('apiUrl');
+  const searchInput = document.getElementById('searchInput');
+  const statusFilter = document.getElementById('statusFilter');
+  const quickFilters = document.getElementById('quickFilters');
+  const ordersTableBody = document.querySelector('#ordersTable tbody');
+  const detailsContent = document.getElementById('detailsContent');
+
   function showMessage(text, type) {
     const message = document.getElementById('message');
     message.className = 'message ' + type;
@@ -343,14 +350,14 @@
   }
 
   function saveUrl() {
-    const url = document.getElementById('apiUrl').value.trim();
+    const url = apiUrlInput.value.trim();
     localStorage.setItem('apiUrl', url);
     showMessage('API URL saved.', 'success');
   }
 
   function getField(order, possibleNames) {
     for (const name of possibleNames) {
-      if (order[name] !== undefined && order[name] !== null && order[name] !== '') {
+      if (order && order[name] !== undefined && order[name] !== null && order[name] !== '') {
         return order[name];
       }
     }
@@ -379,31 +386,13 @@
     ).length;
   }
 
-  function setQuickFilter(statusValue) {
-    document.getElementById('statusFilter').value = statusValue;
-    syncQuickFiltersFromDropdown();
-    renderOrders();
-  }
-
   function syncQuickFiltersFromDropdown() {
-    const current = document.getElementById('statusFilter').value;
+    const current = statusFilter.value;
     const buttons = Array.from(document.querySelectorAll('#quickFilters .pill'));
-
     buttons.forEach(btn => btn.classList.remove('active'));
-
-    const matchingButton = buttons.find(btn => {
-      const label = btn.textContent.trim();
-      if (current === '' && label === 'All') return true;
-      if (current === 'New Lead' && label === 'New Lead') return true;
-      if (current === 'Paid - Awaiting Fulfillment' && label === 'Paid') return true;
-      if (current === 'In Progress' && label === 'In Progress') return true;
-      if (current === 'Completed' && label === 'Completed') return true;
-      if (current === 'Follow Up' && label === 'Follow Up') return true;
-      return false;
-    });
-
-    if (matchingButton) {
-      matchingButton.classList.add('active');
+    const match = buttons.find(btn => btn.dataset.filter === current);
+    if (match) {
+      match.classList.add('active');
     }
   }
 
@@ -418,9 +407,7 @@
     try {
       const response = await fetch(url, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8'
-        },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({
           action: 'updateStatus',
           rowNumber: rowNumber,
@@ -442,16 +429,6 @@
     }
   }
 
-  async function handleStatusSaveClick(evt, rowNumber, selectId) {
-    evt.stopPropagation();
-    const select = document.getElementById(selectId);
-    if (!select) {
-      showMessage('Status selector not found.', 'error');
-      return;
-    }
-    await updateStatus(rowNumber, select.value);
-  }
-
   async function updateOrderFields() {
     if (!selectedOrder) {
       showMessage('Select an order first.', 'error');
@@ -459,7 +436,6 @@
     }
 
     const url = localStorage.getItem('apiUrl');
-
     if (!url) {
       showMessage('API URL is missing.', 'error');
       return;
@@ -473,9 +449,7 @@
     try {
       const response = await fetch(url, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8'
-        },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({
           action: 'updateOrderFields',
           rowNumber: rowNumber,
@@ -499,37 +473,9 @@
     }
   }
 
-  function buildStatusDropdown(currentStatus, rowNumber) {
-    const options = [
-      'New Lead',
-      'Paid - Awaiting Fulfillment',
-      'In Progress',
-      'Completed',
-      'Follow Up'
-    ];
-
-    const selectId = 'status_' + rowNumber;
-
-    const optionsHtml = options.map(status => {
-      const selected = status === currentStatus ? 'selected' : '';
-      return `<option value="${escapeHtml(status)}" ${selected}>${escapeHtml(status)}</option>`;
-    }).join('');
-
-    return `
-      <div class="status-cell">
-        <select id="${selectId}">
-          ${optionsHtml}
-        </select>
-        <button type="button" onclick="handleStatusSaveClick(event, ${rowNumber}, '${selectId}')">Save</button>
-      </div>
-    `;
-  }
-
   function renderDetails(order) {
-    const details = document.getElementById('detailsContent');
-
     if (!order) {
-      details.innerHTML = 'Click an order row to view details.';
+      detailsContent.innerHTML = 'Click an order row to view details.';
       return;
     }
 
@@ -549,7 +495,7 @@
     const paypalId = getField(order, ['PayPalSubscriptionId', 'paypalSubscriptionId']);
     const timestamp = getField(order, ['Timestamp', 'timestamp']);
 
-    details.innerHTML = `
+    detailsContent.innerHTML = `
       <div class="detail-row">
         <div class="detail-label">Full Name</div>
         <div class="detail-value">${escapeHtml(fullName)}</div>
@@ -616,15 +562,16 @@
         <div class="detail-value">${escapeHtml(timestamp)}</div>
       </div>
       <div class="detail-actions">
-        <button type="button" class="success-btn" onclick="updateOrderFields()">Save Shipping / Tracking / Notes</button>
+        <button type="button" id="saveDetailFieldsBtn" class="success-btn">Save Shipping / Tracking / Notes</button>
       </div>
     `;
+
+    document.getElementById('saveDetailFieldsBtn').addEventListener('click', updateOrderFields);
   }
 
-  function renderOrders() {
-    const table = document.querySelector('#ordersTable tbody');
-    const searchText = document.getElementById('searchInput').value.toLowerCase().trim();
-    const statusFilter = document.getElementById('statusFilter').value;
+  function getFilteredOrders() {
+    const searchText = searchInput.value.toLowerCase().trim();
+    const currentStatusFilter = statusFilter.value;
 
     let filtered = allOrders.slice().reverse();
 
@@ -637,20 +584,37 @@
       });
     }
 
-    if (statusFilter) {
+    if (currentStatusFilter) {
       filtered = filtered.filter(order => {
         const status = String(getField(order, ['Status', 'status']));
-        return status === statusFilter;
+        return status === currentStatusFilter;
       });
     }
 
+    return filtered;
+  }
+
+  function renderOrders() {
+    const filtered = getFilteredOrders();
+
     updateStats(allOrders);
-    table.innerHTML = '';
+    ordersTableBody.innerHTML = '';
 
     if (!filtered.length) {
-      table.innerHTML = '<tr><td colspan="6">No matching orders found.</td></tr>';
+      ordersTableBody.innerHTML = '<tr><td colspan="6">No matching orders found.</td></tr>';
       renderDetails(null);
       return;
+    }
+
+    if (selectedOrder) {
+      const updatedSelected = allOrders.find(order =>
+        String(getField(order, ['RowNumber'])) === String(getField(selectedOrder, ['RowNumber']))
+      );
+      selectedOrder = updatedSelected || null;
+    }
+
+    if (!selectedOrder) {
+      selectedOrder = filtered[0];
     }
 
     filtered.forEach(order => {
@@ -660,18 +624,30 @@
       const planName = getField(order, ['PlanName', 'planName', 'Service', 'service']);
       const amount = getField(order, ['Amount', 'amount']);
       const status = getField(order, ['Status', 'status']);
-
-      const isSelected = selectedOrder && String(getField(selectedOrder, ['RowNumber'])) === String(rowNumber);
+      const isSelected = String(getField(selectedOrder, ['RowNumber'])) === String(rowNumber);
 
       const row = document.createElement('tr');
       row.className = 'clickable' + (isSelected ? ' selected-row' : '');
+      row.dataset.rowNumber = rowNumber;
+
       row.innerHTML = `
         <td>${escapeHtml(fullName)}</td>
         <td>${escapeHtml(email)}</td>
         <td>${escapeHtml(planName)}</td>
         <td>$${escapeHtml(amount)}</td>
         <td>${escapeHtml(status)}</td>
-        <td>${buildStatusDropdown(status, rowNumber)}</td>
+        <td>
+          <div class="status-cell">
+            <select class="row-status-select" data-row-number="${escapeHtml(rowNumber)}">
+              <option value="New Lead" ${status === 'New Lead' ? 'selected' : ''}>New Lead</option>
+              <option value="Paid - Awaiting Fulfillment" ${status === 'Paid - Awaiting Fulfillment' ? 'selected' : ''}>Paid - Awaiting Fulfillment</option>
+              <option value="In Progress" ${status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+              <option value="Completed" ${status === 'Completed' ? 'selected' : ''}>Completed</option>
+              <option value="Follow Up" ${status === 'Follow Up' ? 'selected' : ''}>Follow Up</option>
+            </select>
+            <button type="button" class="row-status-save-btn" data-row-number="${escapeHtml(rowNumber)}">Save</button>
+          </div>
+        </td>
       `;
 
       row.addEventListener('click', () => {
@@ -680,24 +656,14 @@
         renderDetails(order);
       });
 
-      table.appendChild(row);
+      ordersTableBody.appendChild(row);
     });
 
-    if (selectedOrder) {
-      const updatedSelected = allOrders.find(order =>
-        String(getField(order, ['RowNumber'])) === String(getField(selectedOrder, ['RowNumber']))
-      );
-      if (updatedSelected) {
-        selectedOrder = updatedSelected;
-        renderDetails(updatedSelected);
-      } else {
-        selectedOrder = filtered[0];
-        renderDetails(filtered[0]);
-      }
-    } else {
-      selectedOrder = filtered[0];
-      renderDetails(filtered[0]);
-    }
+    const selectedInFiltered = filtered.find(order =>
+      String(getField(order, ['RowNumber'])) === String(getField(selectedOrder, ['RowNumber']))
+    );
+
+    renderDetails(selectedInFiltered || filtered[0]);
   }
 
   async function loadOrders(silent = false) {
@@ -729,10 +695,48 @@
     }
   }
 
+  document.getElementById('saveUrlBtn').addEventListener('click', saveUrl);
+  document.getElementById('loadOrdersBtn').addEventListener('click', () => loadOrders());
+  searchInput.addEventListener('input', renderOrders);
+  statusFilter.addEventListener('change', () => {
+    syncQuickFiltersFromDropdown();
+    renderOrders();
+  });
+
+  quickFilters.addEventListener('click', (e) => {
+    const btn = e.target.closest('.pill');
+    if (!btn) return;
+    statusFilter.value = btn.dataset.filter || '';
+    syncQuickFiltersFromDropdown();
+    renderOrders();
+  });
+
+  ordersTableBody.addEventListener('click', async (e) => {
+    const saveBtn = e.target.closest('.row-status-save-btn');
+    const select = e.target.closest('.row-status-select');
+
+    if (saveBtn) {
+      e.stopPropagation();
+      const rowNumber = saveBtn.dataset.rowNumber;
+      const row = saveBtn.closest('td');
+      const statusSelect = row.querySelector('.row-status-select');
+      if (!statusSelect) {
+        showMessage('Status selector not found.', 'error');
+        return;
+      }
+      await updateStatus(rowNumber, statusSelect.value);
+      return;
+    }
+
+    if (select) {
+      e.stopPropagation();
+    }
+  });
+
   window.onload = () => {
     const saved = localStorage.getItem('apiUrl');
     if (saved) {
-      document.getElementById('apiUrl').value = saved;
+      apiUrlInput.value = saved;
     }
     syncQuickFiltersFromDropdown();
   };
