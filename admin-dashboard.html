@@ -59,16 +59,6 @@
       background: #166534;
     }
 
-    .filter-btn {
-      background: #1e293b;
-      border: 1px solid #334155;
-    }
-
-    .filter-btn.active {
-      background: #2563eb;
-      border-color: #3b82f6;
-    }
-
     .stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -232,6 +222,17 @@
       font-size: 13px;
     }
 
+    .status-cell {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .status-cell select {
+      min-width: 160px;
+    }
+
     @media (max-width: 1000px) {
       .layout {
         grid-template-columns: 1fr;
@@ -260,8 +261,8 @@
 
 <div class="top-bar">
   <input id="apiUrl" placeholder="Paste your Apps Script URL here" />
-  <button onclick="saveUrl()">Save URL</button>
-  <button class="primary-btn" onclick="loadOrders()">Load Orders</button>
+  <button type="button" onclick="saveUrl()">Save URL</button>
+  <button type="button" class="primary-btn" onclick="loadOrders()">Load Orders</button>
 </div>
 
 <div class="top-bar">
@@ -277,12 +278,12 @@
 </div>
 
 <div class="pill-row" id="quickFilters">
-  <button class="pill active" onclick="setQuickFilter('')">All</button>
-  <button class="pill" onclick="setQuickFilter('New Lead')">New Lead</button>
-  <button class="pill" onclick="setQuickFilter('Paid - Awaiting Fulfillment')">Paid</button>
-  <button class="pill" onclick="setQuickFilter('In Progress')">In Progress</button>
-  <button class="pill" onclick="setQuickFilter('Completed')">Completed</button>
-  <button class="pill" onclick="setQuickFilter('Follow Up')">Follow Up</button>
+  <button type="button" class="pill active" onclick="setQuickFilter('')">All</button>
+  <button type="button" class="pill" onclick="setQuickFilter('New Lead')">New Lead</button>
+  <button type="button" class="pill" onclick="setQuickFilter('Paid - Awaiting Fulfillment')">Paid</button>
+  <button type="button" class="pill" onclick="setQuickFilter('In Progress')">In Progress</button>
+  <button type="button" class="pill" onclick="setQuickFilter('Completed')">Completed</button>
+  <button type="button" class="pill" onclick="setQuickFilter('Follow Up')">Follow Up</button>
 </div>
 
 <div id="message" class="message"></div>
@@ -441,6 +442,16 @@
     }
   }
 
+  async function handleStatusSaveClick(evt, rowNumber, selectId) {
+    evt.stopPropagation();
+    const select = document.getElementById(selectId);
+    if (!select) {
+      showMessage('Status selector not found.', 'error');
+      return;
+    }
+    await updateStatus(rowNumber, select.value);
+  }
+
   async function updateOrderFields() {
     if (!selectedOrder) {
       showMessage('Select an order first.', 'error');
@@ -505,10 +516,12 @@
     }).join('');
 
     return `
-      <select id="${selectId}">
-        ${optionsHtml}
-      </select>
-      <button onclick="event.stopPropagation(); updateStatus(${rowNumber}, document.getElementById('${selectId}').value)">Save</button>
+      <div class="status-cell">
+        <select id="${selectId}">
+          ${optionsHtml}
+        </select>
+        <button type="button" onclick="handleStatusSaveClick(event, ${rowNumber}, '${selectId}')">Save</button>
+      </div>
     `;
   }
 
@@ -571,6 +584,7 @@
           <option value="" ${orderShipped === '' ? 'selected' : ''}>Blank</option>
           <option value="No" ${String(orderShipped) === 'No' ? 'selected' : ''}>No</option>
           <option value="Yes" ${String(orderShipped) === 'Yes' ? 'selected' : ''}>Yes</option>
+          <option value="Not Shipped" ${String(orderShipped) === 'Not Shipped' ? 'selected' : ''}>Not Shipped</option>
         </select>
       </div>
       <div class="detail-row">
@@ -602,10 +616,7 @@
         <div class="detail-value">${escapeHtml(timestamp)}</div>
       </div>
       <div class="detail-actions">
-        <button class="success-btn" onclick="updateOrderFields()">Save Shipping / Tracking / Notes</button>
-      </div>
-      <div class="muted" style="margin-top:10px;">
-        Changes here require Apps Script support for the updateOrderFields action.
+        <button type="button" class="success-btn" onclick="updateOrderFields()">Save Shipping / Tracking / Notes</button>
       </div>
     `;
   }
