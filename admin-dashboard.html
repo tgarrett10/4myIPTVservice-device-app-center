@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Order Dashboard</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    input {
+      padding: 10px;
+      width: 400px;
+      margin-right: 10px;
+    }
+    button {
+      padding: 10px 14px;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #334155;
+      font-size: 14px;
+    }
+    th {
+      background: #1e293b;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Order Dashboard</h1>
+
+<input id="apiUrl" placeholder="Paste your Apps Script URL here" />
+<button onclick="saveUrl()">Save URL</button>
+<button onclick="loadOrders()">Load Orders</button>
+
+<table id="ordersTable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Service</th>
+      <th>Amount</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+  function saveUrl() {
+    const url = document.getElementById('apiUrl').value;
+    localStorage.setItem('apiUrl', url);
+    alert('Saved');
+  }
+
+  function loadOrders() {
+    const url = localStorage.getItem('apiUrl');
+
+    if (!url) {
+      alert('Enter your API URL first');
+      return;
+    }
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        const table = document.querySelector('#ordersTable tbody');
+        table.innerHTML = '';
+
+        data.reverse().forEach(order => {
+          const row = `
+            <tr>
+              <td>${order.fullName || ''}</td>
+              <td>${order.email || ''}</td>
+              <td>${order.planName || ''}</td>
+              <td>$${order.amount || ''}</td>
+              <td>${order.status || ''}</td>
+            </tr>
+          `;
+          table.innerHTML += row;
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        alert('Error loading orders');
+      });
+  }
+
+  window.onload = () => {
+    const saved = localStorage.getItem('apiUrl');
+    if (saved) document.getElementById('apiUrl').value = saved;
+  };
+</script>
+
+</body>
+</html>
