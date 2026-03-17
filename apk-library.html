@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +14,7 @@
   --blue:#3b82f6;
   --gold:#f59e0b;
   --purple:#9333ea;
+  --red:#ef4444;
   --border:#1f2937;
 }
 *{box-sizing:border-box}
@@ -35,6 +35,7 @@ body{
 }
 .hero{padding:18px}
 h1{margin:0 0 8px;text-align:center;color:#86efac;font-size:2rem}
+h2{margin:0 0 6px}
 .tagline-banner{
   margin:10px auto 12px auto;
   max-width:760px;
@@ -59,7 +60,7 @@ h1{margin:0 0 8px;text-align:center;color:#86efac;font-size:2rem}
 .confidential{background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.28);color:#fed7aa}
 .info{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe}
 .tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a}
-.jumpbar,.actionrow{display:flex;gap:10px;flex-wrap:wrap}
+.jumpbar{display:flex;gap:10px;flex-wrap:wrap}
 .btn{
   padding:9px 12px;
   border-radius:999px;
@@ -76,7 +77,7 @@ h1{margin:0 0 8px;text-align:center;color:#86efac;font-size:2rem}
 .directbtn{background:var(--green);color:#052e16}
 .goldbtn{background:var(--gold);color:#3b2400}
 .adminbtn{background:var(--purple)}
-.linkbtn{background:#475569}
+.inactivebtn{background:var(--red)}
 .header{
   padding:14px 16px;
   border-bottom:1px solid var(--border);
@@ -121,6 +122,7 @@ h1{margin:0 0 8px;text-align:center;color:#86efac;font-size:2rem}
 .order.movie{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.25);color:#bfdbfe}
 .order.sports{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.22);color:#fde68a}
 .order.util{background:rgba(147,51,234,.15);border:1px solid rgba(147,51,234,.22);color:#f3e8ff}
+.order.inactive{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.22);color:#fecaca}
 .appname{font-weight:bold}
 .small{font-size:.86rem;color:var(--muted);line-height:1.4}
 .actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
@@ -156,6 +158,7 @@ h1{margin:0 0 8px;text-align:center;color:#86efac;font-size:2rem}
       <a class="btn playbtn" href="#movies">Movie / TV Apps</a>
       <a class="btn goldbtn" href="#sports">Sports Apps</a>
       <a class="btn adminbtn" href="#utilities">Utility Apps</a>
+      <a class="btn inactivebtn" href="#inactive">Inactive Downloads</a>
     </div>
 
     <div class="info">
@@ -191,27 +194,37 @@ h1{margin:0 0 8px;text-align:center;color:#86efac;font-size:2rem}
           <div class="approw app-row">
             <div class="order core">C1</div>
             <div><div class="appname">IPTV Smarters Pro</div><div class="small">Core IPTV app.</div></div>
-            <div class="actions"><a class="btn directbtn" href="https://aft.news/6234188" target="_blank">Download</a></div>
+            <div class="actions"><a class="btn directbtn" href="https://aft.news/6234188" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
             <div class="order core">C2</div>
             <div><div class="appname">AMPlayer</div><div class="small">Alternate IPTV / media player.</div></div>
-            <div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/J99DWABk" target="_blank">Download</a></div>
+            <div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/J99DWABk" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
             <div class="order core">C3</div>
             <div><div class="appname">Bear Player</div><div class="small">Alternate IPTV / media player.</div></div>
-            <div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/m35yb9lekyxldlw/Bear+Player_v2.20.24_MOD_modded-1.com.apk/file" target="_blank">Download</a></div>
+            <div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/m35yb9lekyxldlw/Bear+Player_v2.20.24_MOD_modded-1.com.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
             <div class="order core">C4</div>
             <div><div class="appname">BPlayer</div><div class="small">Alternate IPTV / media player.</div></div>
-            <div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/TKHUxRbj" target="_blank">Download</a></div>
+            <div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/TKHUxRbj" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
             <div class="order core">C5</div>
             <div><div class="appname">VLC Media Player</div><div class="small">Media playback utility.</div></div>
-            <div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/iacQyjir" target="_blank">Download</a></div>
+            <div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/iacQyjir" target="_blank" rel="noopener noreferrer">Download</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order core">C6</div>
+            <div><div class="appname">MX Player</div><div class="small">External media player for additional playback support.</div></div>
+            <div class="actions"><a class="btn directbtn" href="https://f.mxplayer.j2inter.com/download?id=mxplayer&type=arm" target="_blank" rel="noopener noreferrer">Download</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order core">C7</div>
+            <div><div class="appname">NVPlayer</div><div class="small">Recommended external player for apps like BeeTV.</div></div>
+            <div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file_premium/juor2m522tuhjog/NV_Video_Player_%2528v1.1.2%2529.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
         </div>
       </div>
@@ -226,22 +239,22 @@ h1{margin:0 0 8px;text-align:center;color:#86efac;font-size:2rem}
           <div class="approw app-row">
             <div class="order sports">S1</div>
             <div><div class="appname">FalconCast</div><div class="small">Sports app.</div></div>
-            <div class="actions"><a class="btn goldbtn" href="https://www.mediafire.com/file/5mvpvpdpzn62h05/FalconCast_(V4.1)+(1).apk/file" target="_blank">Download</a></div>
+            <div class="actions"><a class="btn goldbtn" href="https://www.mediafire.com/file/5mvpvpdpzn62h05/FalconCast_(V4.1)+(1).apk/file" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
             <div class="order sports">S2</div>
             <div><div class="appname">Playfy TV</div><div class="small">Sports app.</div></div>
-            <div class="actions"><a class="btn goldbtn" href="https://www.mediafire.com/file/tfdwts9y73jpdrp/PLAYFy_TV_1.5.apk/file" target="_blank">Download</a></div>
+            <div class="actions"><a class="btn goldbtn" href="https://www.mediafire.com/file/tfdwts9y73jpdrp/PLAYFy_TV_1.5.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
             <div class="order sports">S3</div>
             <div><div class="appname">SportsFire</div><div class="small">Sports app.</div></div>
-            <div class="actions"><a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/bJgTC1aw" target="_blank">Download</a></div>
+            <div class="actions"><a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/bJgTC1aw" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
             <div class="order sports">S4</div>
             <div><div class="appname">StreamFire</div><div class="small">Sports app.</div></div>
-            <div class="actions"><a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/EM6TZXCh" target="_blank">Download</a></div>
+            <div class="actions"><a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/EM6TZXCh" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
         </div>
       </div>
@@ -257,33 +270,28 @@ h1{margin:0 0 8px;text-align:center;color:#86efac;font-size:2rem}
         <div class="appgrid">
           <div class="approw app-row">
             <div class="order movie">M1</div>
-            <div><div class="appname">FlixVision</div><div class="small">Direct install only.</div></div>
-            <div class="actions"><a class="btn playbtn" href="https://aft.news/4740537" target="_blank">Download</a></div>
+            <div><div class="appname">Cinema HQ</div><div class="small">Movie / TV app.</div></div>
+            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/sfreu6elqjpe248/Cinama+HQ+5.6.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
             <div class="order movie">M2</div>
-            <div><div class="appname">Cinema HQ</div><div class="small">Movie / TV app.</div></div>
-            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/sfreu6elqjpe248/Cinama+HQ+5.6.apk/file" target="_blank">Download</a></div>
+            <div><div class="appname">FilmPlus</div><div class="small">Movie / TV app.</div></div>
+            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/sxwa97zmes7jey6/FilmPlus_-_v2.2.8r_%25281%2529.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
             <div class="order movie">M3</div>
-            <div><div class="appname">FilmPlus</div><div class="small">Movie / TV app.</div></div>
-            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/sxwa97zmes7jey6/FilmPlus_-_v2.2.8r_%25281%2529.apk/file" target="_blank">Download</a></div>
+            <div><div class="appname">BeeTV</div><div class="small">Movie / TV app. NVPlayer recommended for playback support.</div></div>
+            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/5khvjyoz26umm0v/BeeTV_4.5.9_2459_06421d.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
             <div class="order movie">M4</div>
-            <div><div class="appname">BeeTV</div><div class="small">Movie / TV app.</div></div>
-            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/5khvjyoz26umm0v/BeeTV_4.5.9_2459_06421d.apk/file" target="_blank">Download</a></div>
+            <div><div class="appname">OnStream</div><div class="small">Movie / TV app.</div></div>
+            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/226ail3nl8b8s1g/onstream-fireTV.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
             <div class="order movie">M5</div>
-            <div><div class="appname">OnStream</div><div class="small">Movie / TV app.</div></div>
-            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/226ail3nl8b8s1g/onstream-fireTV.apk/file" target="_blank">Download</a></div>
-          </div>
-          <div class="approw app-row">
-            <div class="order movie">M6</div>
             <div><div class="appname">Movie HD</div><div class="small">Movie / TV app.</div></div>
-            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/u4790rpo5l4md0s/moviehd-542-mod-1.apk/file" target="_blank">Download</a></div>
+            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/u4790rpo5l4md0s/moviehd-542-mod-1.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
         </div>
       </div>
@@ -298,17 +306,32 @@ h1{margin:0 0 8px;text-align:center;color:#86efac;font-size:2rem}
           <div class="approw app-row">
             <div class="order util">U1</div>
             <div><div class="appname">Background Apps & Process List</div><div class="small">Utility tool for closing background apps.</div></div>
-            <div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/fyzsjrY4" target="_blank">Download</a></div>
+            <div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/fyzsjrY4" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
             <div class="order util">U2</div>
             <div><div class="appname">Proton VPN</div><div class="small">VPN utility.</div></div>
-            <div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/tf5njBkT" target="_blank">Download</a></div>
+            <div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/tf5njBkT" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
           <div class="approw app-row">
             <div class="order util">U3</div>
             <div><div class="appname">App Cloner</div><div class="small">Utility app.</div></div>
-            <div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/nhsNDbv8" target="_blank">Download</a></div>
+            <div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/nhsNDbv8" target="_blank" rel="noopener noreferrer">Download</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="inactive">
+        <div class="header">
+          <div class="section-label">Inactive Downloads</div>
+          <h2>Inactive / Secondary Apps</h2>
+          <div class="sub">Apps that are not part of the primary supported setup flow.</div>
+        </div>
+        <div class="appgrid">
+          <div class="approw app-row">
+            <div class="order inactive">I1</div>
+            <div><div class="appname">FlixVision</div><div class="small">Inactive download. Use direct URL only. Not part of the primary supported setup path.</div></div>
+            <div class="actions"><a class="btn inactivebtn" href="https://github.com/fvision8/fvreleases/releases/download/v3.4.0r/FlixVision_v3.4.0.apk" target="_blank" rel="noopener noreferrer">Download</a></div>
           </div>
         </div>
       </div>
@@ -317,7 +340,7 @@ h1{margin:0 0 8px;text-align:center;color:#86efac;font-size:2rem}
 
   <div class="footer-strip">
     <strong>4MyIPTV APK Library • Controlled Internal Download Page</strong>
-    <div class="version">Version 1.0 • Last Updated: March 2026</div>
+    <div class="version">Version 1.2 • Last Updated: March 2026</div>
   </div>
 </div>
 
