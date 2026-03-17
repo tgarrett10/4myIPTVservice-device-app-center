@@ -12,11 +12,13 @@
     h1, h2 {
       margin-bottom: 10px;
     }
-    input {
+    input, select {
       padding: 10px;
-      width: 420px;
       margin-right: 10px;
       margin-bottom: 10px;
+    }
+    input {
+      width: 420px;
     }
     button {
       padding: 10px 14px;
@@ -38,17 +40,13 @@
     th {
       background: #1e293b;
     }
-    pre {
-      background: #020617;
-      border: 1px solid #334155;
-      padding: 12px;
-      overflow: auto;
-      white-space: pre-wrap;
-      word-break: break-word;
-      border-radius: 8px;
+    .success {
+      color: #86efac;
+      margin-top: 10px;
     }
-    .section {
-      margin-top: 24px;
+    .error {
+      color: #fca5a5;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -60,30 +58,31 @@
 <button onclick="saveUrl()">Save URL</button>
 <button onclick="loadOrders()">Load Orders</button>
 
-<div class="section">
-  <h2>Orders</h2>
-  <table id="ordersTable">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Service</th>
-        <th>Amount</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td colspan="5">No data loaded yet.</td></tr>
-    </tbody>
-  </table>
-</div>
+<div id="message"></div>
 
-<div class="section">
-  <h2>Debug Preview</h2>
-  <pre id="debugBox">No data loaded yet.</pre>
-</div>
+<table id="ordersTable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Service</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Update Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td colspan="6">No data loaded yet.</td></tr>
+  </tbody>
+</table>
 
 <script>
+  function showMessage(text, type) {
+    const message = document.getElementById('message');
+    message.className = type;
+    message.textContent = text;
+  }
+
   function saveUrl() {
     const url = document.getElementById('apiUrl').value.trim();
     localStorage.setItem('apiUrl', url);
@@ -92,11 +91,71 @@
 
   function getField(order, possibleNames) {
     for (const name of possibleNames) {
-      if (order[name] !== undefined && order[name] !== null && order[name] !== '') {
+      if (order[name] !== undefined && order[name] !== null) {
         return order[name];
       }
     }
     return '';
+  }
+
+  async function updateStatus(timestamp, email, newStatus) {
+    const url = localStorage.getItem('apiUrl');
+
+    if (!url) {
+      showMessage('API URL is missing.', 'error');
+      return;
+    }
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify({
+          action: 'updateStatus',
+          timestamp: timestamp,
+          email: email,
+          status: newStatus
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        showMessage('Status updated successfully.', 'success');
+        loadOrders();
+      } else {
+        showMessage('Status update failed: ' + (result.error || 'Unknown error'), 'error');
+      }
+    } catch (error) {
+      console.error(error);
+      showMessage('Error updating status.', 'error');
+    }
+  }
+
+  function buildStatusDropdown(currentStatus, timestamp, email) {
+    const options = [
+      'New Lead',
+      'Paid - Awaiting Fulfillment',
+      'In Progress',
+      'Completed',
+      'Follow Up'
+    ];
+
+    const selectId = 'status_' + btoa(timestamp + email).replace(/[^a-zA-Z0-9]/g, '');
+
+    const optionsHtml = options.map(status => {
+      const selected = status === currentStatus ? 'selected' : '';
+      return `<option value="${status}" ${selected}>${status}</option>`;
+    }).join('');
+
+    return `
+      <select id="${selectId}">
+        ${optionsHtml}
+      </select>
+      <button onclick="updateStatus('${String(timestamp).replace(/'/g, "\\'")}', '${String(email).replace(/'/g, "\\'")}', document.getElementById('${selectId}').value)">Save</button>
+    `;
   }
 
   function loadOrders() {
@@ -111,17 +170,15 @@
       .then(res => res.json())
       .then(data => {
         const table = document.querySelector('#ordersTable tbody');
-        const debugBox = document.getElementById('debugBox');
-
-        debugBox.textContent = JSON.stringify(data, null, 2);
         table.innerHTML = '';
 
         if (!Array.isArray(data) || data.length === 0) {
-          table.innerHTML = '<tr><td colspan="5">No orders found.</td></tr>';
+          table.innerHTML = '<tr><td colspan="6">No orders found.</td></tr>';
           return;
         }
 
         data.slice().reverse().forEach(order => {
+          const timestamp = getField(order, ['Timestamp', 'timestamp']);
           const fullName = getField(order, ['FullName', 'fullName', 'Name', 'name']);
           const email = getField(order, ['Email', 'email']);
           const planName = getField(order, ['PlanName', 'planName', 'Service', 'service']);
@@ -135,6 +192,7 @@
               <td>${planName}</td>
               <td>$${amount}</td>
               <td>${status}</td>
+              <td>${buildStatusDropdown(status, timestamp, email)}</td>
             </tr>
           `;
           table.innerHTML += row;
@@ -142,8 +200,7 @@
       })
       .catch(err => {
         console.error(err);
-        document.getElementById('debugBox').textContent = 'Error: ' + err;
-        alert('Error loading orders');
+        showMessage('Error loading orders.', 'error');
       });
   }
 
