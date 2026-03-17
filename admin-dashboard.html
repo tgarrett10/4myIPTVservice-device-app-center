@@ -81,11 +81,11 @@
         data.reverse().forEach(order => {
           const row = `
             <tr>
-              <td>${order.fullName || ''}</td>
-              <td>${order.email || ''}</td>
-              <td>${order.planName || ''}</td>
-              <td>$${order.amount || ''}</td>
-              <td>${order.status || ''}</td>
+              <td>${order.FullName || ''}</td>
+              <td>${order.Email || ''}</td>
+              <td>${order.PlanName || ''}</td>
+              <td>$${order.Amount || ''}</td>
+              <td>${order.Status || ''}</td>
             </tr>
           `;
           table.innerHTML += row;
