@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Support / Tips</title>
+<title>4MyIPTV Service Support / Tips</title>
 <style>
 :root{
   --bg:#0f172a;
@@ -14,6 +14,9 @@
   --muted:#94a3b8;
   --border:#334155;
   --accent:#86efac;
+  --blue:#3b82f6;
+  --gold:#f59e0b;
+  --purple:#9333ea;
 }
 *{box-sizing:border-box}
 body{
@@ -32,11 +35,26 @@ h1{
   text-align: center;
   margin: 0 0 6px 0;
   color: var(--accent);
+  font-size: 2rem;
+}
+.tagline-banner{
+  margin:10px auto 14px auto;
+  max-width:760px;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  text-align:center;
+  font-weight:600;
+  font-size:16px;
+  letter-spacing:.08em;
+  color:#e2e8f0;
 }
 .tagline{
   text-align: center;
   color: var(--muted);
-  margin-bottom: 28px;
+  margin-bottom: 20px;
+  line-height: 1.6;
 }
 .section{
   background: var(--panel);
@@ -80,7 +98,7 @@ h1{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
-  justify-content:flex-start;
+  justify-content:center;
   margin-top:12px;
 }
 .btn{
@@ -98,6 +116,7 @@ h1{
 .playbtn{background:#3b82f6}
 .goldbtn{background:#f59e0b;color:#3b2400}
 .adminbtn{background:#9333ea}
+.linkbtn{background:#475569;color:#fff}
 .support-box{
   background: var(--panel-dark);
   border: 1px solid var(--border);
@@ -119,6 +138,24 @@ h1{
   letter-spacing: .08em;
   margin-bottom: 4px;
 }
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+@media(max-width:800px){
+  .grid2{grid-template-columns:1fr;}
+}
+.tile{
+  background: var(--panel-dark);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+}
+.tile strong{
+  display:block;
+  margin-bottom:8px;
+}
 ul{
   margin: 0;
   padding-left: 20px;
@@ -127,22 +164,31 @@ ul li{
   margin-bottom: 8px;
   line-height: 1.5;
 }
-.footer{
+.footer-strip{
+  margin-top:18px;
+  padding:16px 10px;
+  border-top:1px solid #243044;
   text-align:center;
-  margin-top:30px;
-  color:var(--muted);
-  line-height:1.6;
+  color:#cbd5e1;
+  font-size:.9rem;
 }
-.footer a{
-  color:#fff;
-  text-decoration:underline;
+.footer-strip .version{
+  margin-top:6px;
+  color:#94a3b8;
+  font-size:.82rem;
 }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>Support / Tips</h1>
-  <div class="tagline">Helpful support information and troubleshooting guidance</div>
+  <h1>4MyIPTV Service Support / Tips</h1>
+  <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
+  <div class="tagline">Helpful support information, troubleshooting guidance, and clear next steps when you need assistance.</div>
+
+  <div class="btnrow" style="margin-bottom:18px;">
+    <a class="btn playbtn" href="index.html">Back to Customer Start Page</a>
+    <a class="btn goldbtn" href="device-setup.html">Device Setup Center</a>
+  </div>
 
   <div class="section">
     <h2>Customer Support</h2>
@@ -165,31 +211,34 @@ ul li{
       </div>
       <div class="support-line">
         <div class="support-label">Support Email</div>
-        <div>support@4myiptvservice.com</div>
+        <div>4myIPTVservice@gmail.com</div>
       </div>
     </div>
 
     <div class="note">
-      Start with the Support Bot for first contact or to leave a message. Use Live Telegram Support if you need direct person-to-person help.
+      Start with the Support Bot for first contact or to leave a message. Use Live Telegram Support when you need direct person-to-person help.
     </div>
   </div>
 
   <div class="section">
-    <h2>Thank You for Your Support</h2>
-    <p>I appreciate your business and the opportunity to help you save money while enjoying a large entertainment catalog.</p>
-
-    <div class="tipbox">
-      Tips are always optional, but they are appreciated and help support:
-      <ul>
-        <li>ongoing setup assistance</li>
-        <li>general troubleshooting help</li>
-        <li>time spent supporting customers</li>
-        <li>continued improvement of setup resources</li>
-      </ul>
-    </div>
-
-    <div class="note">
-      Optional tip support can be added through the checkout flow once that payment path is finalized.
+    <h2>Best Support Flow</h2>
+    <div class="grid2">
+      <div class="tile">
+        <strong>Step 1: Check Setup</strong>
+        Go back through the Device Setup Center and confirm your device is online, the app is installed, and your credentials were entered exactly as provided.
+      </div>
+      <div class="tile">
+        <strong>Step 2: Use Support Bot First</strong>
+        Use the Support Bot for first contact, to leave a message, or to explain the issue clearly before live follow-up.
+      </div>
+      <div class="tile">
+        <strong>Step 3: Move to Live Support</strong>
+        If the problem continues or needs a direct conversation, use Live Telegram Support for person-to-person help.
+      </div>
+      <div class="tile">
+        <strong>Step 4: Include Useful Details</strong>
+        For faster help, include your device type, the app you are using, and a screenshot of the issue when possible.
+      </div>
     </div>
   </div>
 
@@ -211,6 +260,7 @@ ul li{
       <li>Check your internet connection.</li>
       <li>Log out and log back into the app.</li>
       <li>Refresh channels or playlist inside the app.</li>
+      <li>Try re-entering your username, password, and server URL carefully.</li>
       <li>If problems continue, use one of the support options listed above.</li>
     </ul>
 
@@ -219,8 +269,34 @@ ul li{
     </div>
   </div>
 
-  <div class="footer">
-    Return to the <a href="index.html">Customer Start Page</a>.
+  <div class="section">
+    <h2>Thank You for Your Support</h2>
+    <p>We appreciate your business and the opportunity to help you save money while enjoying a large entertainment catalog.</p>
+
+    <div class="tipbox">
+      Tips are always optional, but they are appreciated and help support:
+      <ul>
+        <li>ongoing setup assistance</li>
+        <li>general troubleshooting help</li>
+        <li>time spent supporting customers</li>
+        <li>continued improvement of setup resources</li>
+      </ul>
+    </div>
+
+    <div class="note">
+      Optional tip support can be added through the checkout flow once that payment path is finalized.
+    </div>
+  </div>
+
+  <div class="btnrow">
+    <a class="btn playbtn" href="index.html">Back to Customer Start Page</a>
+    <a class="btn goldbtn" href="device-setup.html">Device Setup Center</a>
+    <a class="btn linkbtn" href="downloader-portal.html">Downloader Portal</a>
+  </div>
+
+  <div class="footer-strip">
+    <strong>4MyIPTV Service • Support / Tips</strong>
+    <div class="version">Version 1.1 • Last Updated: March 2026</div>
   </div>
 </div>
 </body>
