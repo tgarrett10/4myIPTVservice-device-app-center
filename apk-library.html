@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>4MyIPTV APK Library</title>
+<title>4MyIPTV Service APK Library</title>
 <style>
 :root{
   --bg:#08111f;
@@ -76,6 +76,7 @@ h2{margin:0 0 6px}
 .directbtn{background:var(--green);color:#052e16}
 .goldbtn{background:var(--gold);color:#3b2400}
 .adminbtn{background:var(--purple)}
+.linkbtn{background:#475569;color:#fff}
 .header{
   padding:14px 16px;
   border-bottom:1px solid var(--border);
@@ -132,6 +133,13 @@ h2{margin:0 0 6px}
   font-size:.9rem;
 }
 .footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
+.bottom-actions{
+  margin-top:14px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
 @media (max-width:980px){
   .approw{grid-template-columns:52px 1fr}
   .actions{grid-column:2;justify-content:flex-start}
@@ -142,12 +150,16 @@ h2{margin:0 0 6px}
 <div class="wrap">
 
   <div class="card hero">
-    <h1>4MyIPTV APK Library</h1>
-    <div class="tagline-banner">Controlled Internal APK Download Page</div>
+    <h1>4MyIPTV Service APK Library</h1>
+    <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
+
+    <div class="jumpbar" style="justify-content:center;margin-bottom:12px;">
+      <a class="btn adminbtn" href="dashboard.html">Back to Installer Dashboard</a>
+    </div>
 
     <div class="confidential">
       <strong>Internal Installer Library</strong><br />
-      This page is for internal installer workflow use. Keep only the APK links you want active. Remove or replace old links here first before updating the main dashboard.
+      This page is for internal installer workflow use. Keep only the APK links you want active. Update this page first before changing installer workflow buttons elsewhere.
     </div>
 
     <div class="jumpbar" style="margin-top:12px">
@@ -159,11 +171,11 @@ h2{margin:0 0 6px}
 
     <div class="info">
       <strong>How to use this page</strong><br />
-      Open this page from the installer dashboard, choose the category you need, and use the direct download buttons below. This page is designed to replace the generic shared library workflow.
+      Open this page from the installer dashboard, choose the category you need, and use the direct download buttons below. This page is your controlled internal APK source.
     </div>
 
     <div class="tip">
-      <strong>Maintenance Rule:</strong> Keep your spreadsheet as the master list. Update APK URLs in one place, then update this page so your installer dashboard always points to a controlled internal library.
+      <strong>Maintenance Rule:</strong> Keep your spreadsheet as the master list. Update APK URLs there first, then update this page so the installer dashboard always points to a controlled internal library.
     </div>
   </div>
 
@@ -319,9 +331,13 @@ h2{margin:0 0 6px}
     </div>
   </div>
 
+  <div class="bottom-actions">
+    <a class="btn adminbtn" href="dashboard.html">Back to Installer Dashboard</a>
+  </div>
+
   <div class="footer-strip">
-    <strong>4MyIPTV APK Library • Controlled Internal Download Page</strong>
-    <div class="version">Version 1.7 • Last Updated: March 2026</div>
+    <strong>4MyIPTV Service APK Library • Controlled Internal Download Page</strong>
+    <div class="version">Version 1.8 • Last Updated: March 2026</div>
   </div>
 </div>
 
