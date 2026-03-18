@@ -31,18 +31,8 @@ body{
   padding:20px;
 }
 h1{text-align:center;color:#86efac;margin-bottom:6px}
-.tagline{
-  text-align:center;
-  margin-bottom:12px;
-  color:#e2e8f0;
-  letter-spacing:.08em;
-}
-.sub{
-  text-align:center;
-  color:var(--muted);
-  max-width:700px;
-  margin:0 auto 16px;
-}
+.tagline{text-align:center;margin-bottom:12px;color:#e2e8f0;letter-spacing:.08em}
+.sub{text-align:center;color:var(--muted);max-width:700px;margin:0 auto 16px}
 
 /* CTA */
 .cta{
@@ -50,7 +40,6 @@ h1{text-align:center;color:#86efac;margin-bottom:6px}
   justify-content:center;
   gap:12px;
   flex-wrap:wrap;
-  margin-top:10px;
 }
 .btn{
   padding:12px 16px;
@@ -62,11 +51,23 @@ h1{text-align:center;color:#86efac;margin-bottom:6px}
 .primary{background:var(--green);color:#052e16}
 .secondary{background:var(--blue)}
 
-/* Sections */
-.section-title{
-  text-align:center;
-  margin-bottom:10px;
+/* Trust */
+.trust{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:10px;
 }
+.trust span{
+  background:#0b1220;
+  padding:8px 12px;
+  border-radius:10px;
+  border:1px solid #243044;
+  font-size:13px;
+}
+
+/* Grid */
 .grid3{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -76,7 +77,7 @@ h1{text-align:center;color:#86efac;margin-bottom:6px}
   .grid3{grid-template-columns:1fr}
 }
 
-/* Feature blocks */
+/* Feature */
 .feature{
   background:#0b1220;
   border:1px solid #243044;
@@ -96,35 +97,12 @@ h1{text-align:center;color:#86efac;margin-bottom:6px}
 }
 .video-wrap iframe{
   position:absolute;
-  top:0;
-  left:0;
   width:100%;
   height:100%;
 }
 
-/* Trust */
-.trust{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:14px;
-  text-align:center;
-  color:#cbd5e1;
-}
-.trust span{
-  background:#0b1220;
-  padding:10px 14px;
-  border-radius:10px;
-  border:1px solid #243044;
-}
-
 /* Footer */
-.footer{
-  text-align:center;
-  color:#94a3b8;
-  font-size:13px;
-  margin-top:10px;
-}
+.footer{text-align:center;color:#94a3b8;font-size:13px;margin-top:10px}
 </style>
 </head>
 
@@ -132,88 +110,124 @@ h1{text-align:center;color:#86efac;margin-bottom:6px}
 
 <div class="wrap">
 
-  <!-- HERO -->
-  <div class="card">
-    <h1>4MyIPTV Service</h1>
-    <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
+<!-- HERO -->
+<div class="card">
+  <h1>4MyIPTV Service</h1>
+  <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
 
-    <div class="sub">
-      Cut the cord and take control of your entertainment. Simple setup, reliable streaming, and support when you need it.
-    </div>
-
-    <div class="cta">
-      <a href="device-setup.html" class="btn primary">Get Started</a>
-      <a href="support.html" class="btn secondary">Support</a>
-    </div>
+  <div class="sub">
+    Cut the cord and take control of your entertainment.
   </div>
 
-  <!-- VIDEO SECTION -->
-  <div class="card">
-    <div class="section-title">
-      <h2>See How It Works</h2>
-      <div class="sub">Quick setup. Instant access. No hassle.</div>
-    </div>
-
-    <div class="video-wrap">
-      <!-- Replace with your video -->
-      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-    </div>
+  <div style="text-align:center;color:#86efac;font-weight:bold;margin-bottom:10px;">
+    Setup takes less than 5 minutes
   </div>
 
-  <!-- FEATURES -->
-  <div class="card">
-    <div class="section-title">
-      <h2>Why Choose 4MyIPTV Service</h2>
-    </div>
-
-    <div class="grid3">
-      <div class="feature">
-        <h3>Easy Setup</h3>
-        <p>Get up and running in minutes with guided setup and simple steps.</p>
-      </div>
-
-      <div class="feature">
-        <h3>Fast Support</h3>
-        <p>Direct help when you need it. No waiting around or guessing.</p>
-      </div>
-
-      <div class="feature">
-        <h3>Flexible Viewing</h3>
-        <p>Watch on multiple devices anywhere with a stable connection.</p>
-      </div>
-    </div>
+  <div class="cta">
+    <a href="device-setup.html" class="btn primary">Start Streaming Now</a>
+    <a href="support.html" class="btn secondary">Get Help</a>
   </div>
 
-  <!-- TRUST -->
-  <div class="card">
-    <div class="section-title">
-      <h2>What You Get</h2>
-    </div>
-
-    <div class="trust">
-      <span>No Contracts</span>
-      <span>Affordable Options</span>
-      <span>Reliable Streaming</span>
-      <span>Real Support</span>
-    </div>
+  <div style="text-align:center;color:#94a3b8;margin-top:8px;font-size:13px;">
+    No contracts. No long-term commitment. Cancel anytime.
   </div>
 
-  <!-- FINAL CTA -->
-  <div class="card">
-    <div class="section-title">
-      <h2>Ready to Get Started?</h2>
-      <div class="sub">Setup takes just a few minutes.</div>
-    </div>
+  <div class="trust">
+    <span>✔ Easy Setup</span>
+    <span>✔ Fast Support</span>
+    <span>✔ Works on Multiple Devices</span>
+    <span>✔ No Contracts</span>
+  </div>
+</div>
 
-    <div class="cta">
-      <a href="device-setup.html" class="btn primary">Start Setup</a>
-      <a href="checkout.html" class="btn secondary">View Services</a>
-    </div>
+<!-- VIDEO -->
+<div class="card">
+  <h2 style="text-align:center;">See How It Works</h2>
+  <div class="sub">Simple. Fast. Reliable.</div>
+
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
   </div>
 
-  <div class="footer">
-    4MyIPTV Service • Stream More • Pay Less • Watch Anywhere
+  <div style="text-align:center;margin-top:14px;">
+    <div style="font-size:18px;color:#86efac;font-weight:bold;">
+      Everything you need. Nothing you don’t.
+    </div>
+    <div style="color:#94a3b8;margin-top:6px;">
+      No contracts. No confusion. Just entertainment.
+    </div>
   </div>
+</div>
+
+<!-- WHO IT'S FOR -->
+<div class="card">
+  <h2 style="text-align:center;">Who This Is Perfect For</h2>
+
+  <div class="grid3">
+    <div class="feature">
+      <h3>Cable Cutters</h3>
+      <p>Tired of high monthly bills.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Sports Fans</h3>
+      <p>Watch games without limits.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Everyday Viewers</h3>
+      <p>Simple, reliable entertainment.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="card">
+  <h2 style="text-align:center;">Why Choose Us</h2>
+
+  <div class="grid3">
+    <div class="feature">
+      <h3>Easy Setup</h3>
+      <p>Get started in minutes.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Fast Support</h3>
+      <p>Help when you need it.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Flexible Viewing</h3>
+      <p>Watch anywhere.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT HAPPENS NEXT -->
+<div class="card">
+  <h2 style="text-align:center;">What Happens Next</h2>
+
+  <div class="sub">
+    1. Choose your service<br/>
+    2. Complete checkout<br/>
+    3. Receive setup instructions<br/>
+    4. Start watching within minutes
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="card">
+  <h2 style="text-align:center;">Ready to Get Started?</h2>
+
+  <div class="cta">
+    <a href="device-setup.html" class="btn primary">Start Watching Today</a>
+    <a href="checkout.html" class="btn secondary">View Services</a>
+  </div>
+</div>
+
+<div class="footer">
+  4MyIPTV Service • Stream More • Pay Less • Watch Anywhere
+</div>
 
 </div>
 
