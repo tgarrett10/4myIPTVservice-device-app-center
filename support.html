@@ -1,131 +1,223 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Support / Tips</title>
 <style>
+:root{
+  --bg:#0f172a;
+  --panel:#1e293b;
+  --panel-dark:#020617;
+  --panel-blue:#172554;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --border:#334155;
+  --accent:#86efac;
+}
+*{box-sizing:border-box}
 body{
-    font-family: Arial, Helvetica, sans-serif;
-    background:#0f172a;
-    color:#e5e7eb;
-    margin:0;
-    padding:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
 }
 .container{
-    max-width:1000px;
-    margin:auto;
-    padding:30px;
+  max-width: 1000px;
+  margin: auto;
+  padding: 30px 20px 40px;
 }
 h1{
-    text-align:center;
-    margin-bottom:5px;
+  text-align: center;
+  margin: 0 0 6px 0;
+  color: var(--accent);
 }
 .tagline{
-    text-align:center;
-    color:#94a3b8;
-    margin-bottom:30px;
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 28px;
 }
 .section{
-    background:#1e293b;
-    border-radius:10px;
-    padding:20px;
-    margin-bottom:20px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 18px;
 }
 .section h2{
-    margin-top:0;
+  margin-top: 0;
+  margin-bottom: 12px;
 }
 .note{
-    background:#020617;
-    padding:12px;
-    border-radius:6px;
-    margin-top:12px;
-    color:#cbd5f5;
+  background: var(--panel-dark);
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 12px;
+  color: #cbd5f5;
+  line-height: 1.5;
 }
 .warning{
-    background:#3f1d1d;
-    padding:12px;
-    border-radius:6px;
-    margin-top:12px;
-    color:#fca5a5;
-}
-.links a{
-    color:#fff;
-    text-decoration:underline;
-    margin-right:18px;
-    font-size:15px;
+  background: #3f1d1d;
+  border: 1px solid rgba(252,165,165,.25);
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 12px;
+  color: #fca5a5;
+  line-height: 1.5;
 }
 .tipbox{
-    background:#172554;
-    border-radius:8px;
-    padding:14px;
-    margin-top:12px;
-    color:#dbeafe;
+  background: var(--panel-blue);
+  border: 1px solid rgba(147,197,253,.2);
+  border-radius: 8px;
+  padding: 14px;
+  margin-top: 12px;
+  color: #dbeafe;
+  line-height: 1.5;
+}
+.btnrow{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-start;
+  margin-top:12px;
+}
+.btn{
+  padding:11px 14px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:bold;
+  text-align:center;
+  display:inline-block;
+  border:none;
+  cursor:pointer;
+  font-size:14px;
+  color:#fff;
+}
+.playbtn{background:#3b82f6}
+.goldbtn{background:#f59e0b;color:#3b2400}
+.adminbtn{background:#9333ea}
+.support-box{
+  background: var(--panel-dark);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin-top: 12px;
+}
+.support-line{
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.support-line:last-child{
+  margin-bottom: 0;
+}
+.support-label{
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 4px;
+}
+ul{
+  margin: 0;
+  padding-left: 20px;
+}
+ul li{
+  margin-bottom: 8px;
+  line-height: 1.5;
 }
 .footer{
-    text-align:center;
-    margin-top:40px;
-    color:#94a3b8;
+  text-align:center;
+  margin-top:30px;
+  color:var(--muted);
+  line-height:1.6;
+}
+.footer a{
+  color:#fff;
+  text-decoration:underline;
 }
 </style>
 </head>
 <body>
 <div class="container">
-<h1>Support / Tips</h1>
-<div class="tagline">Thank you for using my service</div>
-<div class="section">
-<h2>Customer Support</h2>
-<p>If you need assistance with setup, troubleshooting, renewals, or service questions, please use one of the support options below.</p>
-<div class="links">
-<a href="https://t.me/4MyIPTVsupport" target="_blank">Telegram Support</a>
-<a href="mailto:support@4myiptvservice.com?subject=IPTV%20Support%20Request">Email Support</a>
-<a href="setup-help.html">Setup Help</a>
-<a href="device-setup.html">Device Setup Center</a></div>
-<div class="note">
-For faster support, please include your device type, the app you are using, and a screenshot of the issue if possible.
-</div>
-</div>
-<div class="section">
-<h2>Thank You for Your Support</h2>
-<p>I appreciate your business and the opportunity to help you cut the cable bill and save money while enjoying a large entertainment catalog.</p>
-<div class="tipbox">
-Tips are always optional, but they are appreciated and help support:
-<ul>
-<li>ongoing setup assistance</li>
-<li>general troubleshooting help</li>
-<li>time spent supporting customers</li>
-<li>continued improvement of setup resources</li>
-</ul>
-</div>
-<p><strong>Optional tip / support link placeholder:</strong></p>
-<div class="links">
-<a href="#">Leave a Tip</a>
-</div>
-</div>
-<div class="section">
-<h2>Service Reminders</h2>
-<ul>
-<li>An active internet connection is required to use the service.</li>
-<li>Your login credentials should be entered exactly as provided.</li>
-<li>Sharing login credentials may cause buffering or service interruption.</li>
-<li>Service works best on supported Android streaming devices.</li>
-<li>Service can travel with you and be used anywhere you have stable internet, including hotels and vacation travel.</li>
-</ul>
-</div>
-<div class="section">
-<h2>Quick Troubleshooting</h2>
-<ul>
-<li>Restart the streaming device.</li>
-<li>Check your internet connection.</li>
-<li>Log out and log back into the app.</li>
-<li>Refresh channels or playlist inside the app.</li>
-<li>If problems continue, reach out through Telegram or email.</li>
-</ul>
-</div>
-<div class="footer">
-Return to the Installer Dashboard for additional tools and support.
-</div>
+  <h1>Support / Tips</h1>
+  <div class="tagline">Helpful support information and troubleshooting guidance</div>
+
+  <div class="section">
+    <h2>Customer Support</h2>
+    <p>If you need help with setup, troubleshooting, renewals, or general service questions, use the support information below and the guided pages linked here.</p>
+
+    <div class="btnrow">
+      <a class="btn adminbtn" href="device-setup.html">Device Setup Center</a>
+      <a class="btn playbtn" href="apk-library.html">APK Library</a>
+      <a class="btn goldbtn" href="sell-sheet.html">Service Overview</a>
+    </div>
+
+    <div class="support-box">
+      <div class="support-line">
+        <div class="support-label">Support Email</div>
+        <div>support@4myiptvservice.com</div>
+      </div>
+      <div class="support-line">
+        <div class="support-label">Telegram Support</div>
+        <div>@4MyIPTVsupport</div>
+      </div>
+    </div>
+
+    <div class="note">
+      For faster support, include your device type, the app you are using, and a screenshot of the issue if possible.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Thank You for Your Support</h2>
+    <p>I appreciate your business and the opportunity to help you save money while enjoying a large entertainment catalog.</p>
+
+    <div class="tipbox">
+      Tips are always optional, but they are appreciated and help support:
+      <ul>
+        <li>ongoing setup assistance</li>
+        <li>general troubleshooting help</li>
+        <li>time spent supporting customers</li>
+        <li>continued improvement of setup resources</li>
+      </ul>
+    </div>
+
+    <div class="note">
+      Optional tip support can be added through the checkout flow once that payment path is finalized.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Service Reminders</h2>
+    <ul>
+      <li>An active internet connection is required to use the service.</li>
+      <li>Your login credentials should be entered exactly as provided.</li>
+      <li>Sharing login credentials may cause buffering or service interruption.</li>
+      <li>Service works best on supported Android streaming devices.</li>
+      <li>Service can travel with you and be used anywhere you have stable internet, including hotels and vacation travel.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Quick Troubleshooting</h2>
+    <ul>
+      <li>Restart the streaming device.</li>
+      <li>Check your internet connection.</li>
+      <li>Log out and log back into the app.</li>
+      <li>Refresh channels or playlist inside the app.</li>
+      <li>If problems continue, use the support contact information listed above.</li>
+    </ul>
+
+    <div class="warning">
+      If your device is offline or your login details are entered incorrectly, the app may not load properly.
+    </div>
+  </div>
+
+  <div class="footer">
+    Return to the <a href="index.html">Customer Start Page</a>.
+  </div>
 </div>
 </body>
 </html>
