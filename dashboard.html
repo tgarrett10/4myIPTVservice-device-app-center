@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>4MyIPTV Service Installer Dashboard v8.1</title>
+<title>4MyIPTV Service Installer Dashboard v8.2</title>
 <style>
 :root{
   --bg:#08111f; --panel:#101827; --text:#f8fafc; --muted:#94a3b8;
@@ -717,12 +717,6 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
     </div>
   </div>
 
-  <div class="footer-strip">
-    <strong>4MyIPTV Service Installer Dashboard • Direct Install First • Controlled Library Backup • Business Control Center</strong>
-    <div class="version">Version 8.1 • Last Updated: March 2026</div>
-    <div class="version">Visitors: <span id="visitorCount">Loading...</span></div>
-  </div>
-
   <div class="card" id="provider-console">
     <div class="header">
       <div class="section-label">Provider Console</div>
@@ -814,6 +808,11 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
     </div>
   </div>
 
+  <div class="footer-strip">
+    <strong>4MyIPTV Service • Installer Dashboard</strong>
+    <div class="version">Version 8.2 • Last Updated: March 2026</div>
+  </div>
+
 </div>
 
 <script>
@@ -839,19 +838,6 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
   boxes.forEach(cb => cb.addEventListener('change', saveTracker));
   loadTracker();
 })();
-</script>
-
-<script>
-fetch("https://api.countapi.xyz/hit/4myiptvservice/dashboard")
-  .then(res => res.json())
-  .then(res => {
-    const el = document.getElementById("visitorCount");
-    if (el) el.innerText = res.value;
-  })
-  .catch(() => {
-    const el = document.getElementById("visitorCount");
-    if (el) el.innerText = "Unavailable";
-  });
 </script>
 
 <script>
