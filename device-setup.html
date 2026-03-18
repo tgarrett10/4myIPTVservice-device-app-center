@@ -1,6 +1,4 @@
-
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -36,6 +34,7 @@ body{
 }
 .hero{padding:22px;text-align:center}
 h1{margin:0 0 8px;color:#86efac;font-size:2rem}
+h2{margin:0}
 .tagline-banner{
   margin:10px auto 14px auto;
   max-width:760px;
@@ -65,7 +64,6 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
   border-bottom:1px solid var(--border);
   background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
 }
-.header h2{margin:0}
 .content{padding:14px 16px}
 .section-label{
   font-size:11px;
@@ -147,6 +145,25 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
   border:1px solid #243044;
   color:#dbeafe;
 }
+.support-box{
+  background:#0f172a;
+  border:1px solid #243044;
+  border-radius:14px;
+  padding:14px;
+  margin-top:14px;
+}
+.support-line{
+  margin-bottom:10px;
+  line-height:1.5;
+}
+.support-line:last-child{margin-bottom:0}
+.support-label{
+  color:#94a3b8;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-bottom:4px;
+}
 .footer-strip{
   margin-top:18px;
   padding:16px 10px;
@@ -160,130 +177,156 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
 </head>
 <body>
 <div class="wrap">
-<div class="card hero">
-<h1>Device Setup Center</h1>
-<div class="tagline-banner">Choose Your Device • Follow the Steps • Get Connected</div>
-<div class="sub">This page gives customers a simple place to set up their device, install the required app, and troubleshoot common issues without opening the internal installer dashboard.</div>
-<div class="status-strip">
-<span class="status-label">Setup Status</span>
-<span class="status-pill">Internet Required</span>
-<span class="status-pill">Guided Setup</span>
-<span class="status-pill">Support Available</span>
-</div>
-<div class="notice">
-<strong>Before you begin</strong><br/>
+  <div class="card hero">
+    <h1>Device Setup Center</h1>
+    <div class="tagline-banner">Choose Your Device • Follow the Steps • Get Connected</div>
+    <div class="sub">This is the main guided setup page. Use it to prepare your device, install the required app, and fix common issues without opening any internal tools.</div>
+
+    <div class="status-strip">
+      <span class="status-label">Setup Status</span>
+      <span class="status-pill">Internet Required</span>
+      <span class="status-pill">Guided Setup</span>
+      <span class="status-pill">Support Available</span>
+    </div>
+
+    <div class="notice">
+      <strong>Before you begin</strong><br/>
       You need a stable internet connection, a supported Android-based streaming device, and the login credentials provided by your installer. This setup is designed to be plug-and-play, but it does not replace your internet service.
     </div>
-<div class="btnrow" style="margin-top:16px">
-<a class="btn playbtn" href="setup-help.html">General Setup Help</a>
-<a class="btn goldbtn" href="https://aft.news/6234188" target="_blank">Install IPTV Smarters</a>
-<a class="btn adminbtn" href="support.html">Support / Tips</a>
-<a class="btn gold" href="sell-sheet.html">Service Overview</a></div>
-</div>
-<div class="grid2">
-<div class="card">
-<div class="header">
-<div class="section-label">Device Setup</div>
-<h2>ONN 4K / ONN 4K Plus</h2>
-</div>
-<div class="content">
-<ul class="list">
-<li>Connect the device to your TV and power.</li>
-<li>Connect to Wi-Fi during first setup.</li>
-<li>Open Settings and complete your ONN device preparation steps.</li>
-<li>Install IPTV Smarters Pro and enter your credentials exactly as provided.</li>
-</ul>
-<div class="video-wrap" style="margin-top:12px;">
-<iframe allowfullscreen="" loading="lazy" src="https://www.youtube-nocookie.com/embed/zcAS26bd7lw" title="ONN 4K setup video"></iframe>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="header">
-<div class="section-label">Downloader Basics</div>
-<h2>Install Downloader App</h2>
-</div>
-<div class="content">
-<ul class="list">
-<li>Open the Play Store on your Android streaming device.</li>
-<li>Search for <strong>Downloader</strong>.</li>
-<li>Install the app.</li>
-<li>Use Downloader to open installer links and app codes when needed.</li>
-</ul>
-<div class="video-wrap" style="margin-top:12px;">
-<iframe allowfullscreen="" loading="lazy" src="https://www.youtube-nocookie.com/embed/MCy4vFD_FQk" title="Downloader install video"></iframe>
-</div>
-</div>
-</div>
-</div>
-<div class="grid2">
-<div class="card">
-<div class="header">
-<div class="section-label">Login Help</div>
-<h2>IPTV Smarters Pro Login</h2>
-</div>
-<div class="content">
-<ul class="list">
-<li>Select <strong>Login with Xtream Codes API</strong>.</li>
-<li><strong>Name</strong> can be anything, such as IPTV.</li>
-<li><strong>Username</strong>, <strong>Password</strong>, and <strong>Server URL</strong> must match exactly as provided.</li>
-<li>Do not share your credentials. Shared logins can cause buffering or service interruption.</li>
-</ul>
-<div class="video-wrap" style="margin-top:12px;">
-<iframe allowfullscreen="" loading="lazy" src="https://www.youtube-nocookie.com/embed/ApwZjqpP9fs" title="Xtream Codes login video"></iframe>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="header">
-<div class="section-label">Troubleshooting</div>
-<h2>Common Fixes</h2>
-</div>
-<div class="content">
-<div class="grid3">
-<div class="tile">
-<strong>Buffering</strong>
+
+    <div class="btnrow" style="margin-top:16px">
+      <a class="btn goldbtn" href="https://aft.news/6234188" target="_blank" rel="noopener noreferrer">Install IPTV Smarters</a>
+      <a class="btn playbtn" href="apk-library.html">APK Library</a>
+      <a class="btn adminbtn" href="support.html">Support / Tips</a>
+      <a class="btn goldbtn" href="sell-sheet.html">Service Overview</a>
+    </div>
+
+    <div class="tip">
+      <strong>Recommended order</strong><br/>
+      1. Prepare your device settings<br/>
+      2. Install IPTV Smarters Pro<br/>
+      3. Enter your credentials exactly as provided<br/>
+      4. Open Support / Tips if you need help
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="header">
+        <div class="section-label">Step 1</div>
+        <h2>Prepare Your Device</h2>
+      </div>
+      <div class="content">
+        <ul class="list">
+          <li>Connect the device to your TV and power.</li>
+          <li>Connect to Wi-Fi during first setup.</li>
+          <li>Open Settings and complete your ONN device preparation steps.</li>
+          <li>Turn off any Play Protect or harmful app scanning settings if your device requires it.</li>
+        </ul>
+        <div class="video-wrap" style="margin-top:12px;">
+          <iframe allowfullscreen="" loading="lazy" src="https://www.youtube-nocookie.com/embed/zcAS26bd7lw" title="ONN 4K setup video"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="header">
+        <div class="section-label">Step 2</div>
+        <h2>Install Downloader App</h2>
+      </div>
+      <div class="content">
+        <ul class="list">
+          <li>Open the Play Store on your Android streaming device.</li>
+          <li>Search for <strong>Downloader</strong>.</li>
+          <li>Install the app.</li>
+          <li>Use Downloader when you need to open installer links and app codes.</li>
+        </ul>
+        <div class="video-wrap" style="margin-top:12px;">
+          <iframe allowfullscreen="" loading="lazy" src="https://www.youtube-nocookie.com/embed/MCy4vFD_FQk" title="Downloader install video"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="header">
+        <div class="section-label">Step 3</div>
+        <h2>Log Into IPTV Smarters Pro</h2>
+      </div>
+      <div class="content">
+        <ul class="list">
+          <li>Select <strong>Login with Xtream Codes API</strong>.</li>
+          <li><strong>Name</strong> can be anything, such as IPTV.</li>
+          <li><strong>Username</strong>, <strong>Password</strong>, and <strong>Server URL</strong> must match exactly as provided.</li>
+          <li>Do not share your credentials. Shared logins can cause buffering or service interruption.</li>
+        </ul>
+        <div class="video-wrap" style="margin-top:12px;">
+          <iframe allowfullscreen="" loading="lazy" src="https://www.youtube-nocookie.com/embed/ApwZjqpP9fs" title="Xtream Codes login video"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="header">
+        <div class="section-label">Step 4</div>
+        <h2>Common Fixes</h2>
+      </div>
+      <div class="content">
+        <div class="grid3">
+          <div class="tile">
+            <strong>Buffering</strong>
             Restart the device, check Wi-Fi strength, and make sure the account is not being shared.
           </div>
-<div class="tile">
-<strong>Login Errors</strong>
+          <div class="tile">
+            <strong>Login Errors</strong>
             Re-enter the username, password, and server URL exactly as provided.
           </div>
-<div class="tile">
-<strong>No Channels</strong>
+          <div class="tile">
+            <strong>No Channels</strong>
             Refresh the playlist inside the app and allow the app a moment to load content.
           </div>
-</div>
-<div class="warning" style="margin-top:12px;">
-<strong>Important:</strong> This service requires internet access. If your device is offline, the app and channels will not load correctly.
         </div>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="header">
-<div class="section-label">Support</div>
-<h2>Need More Help?</h2>
-</div>
-<div class="content">
-<div class="btnrow">
-<a class="btn adminbtn" href="https://t.me/4MyIPTVsupport" target="_blank">Telegram Support</a>
-<a class="btn playbtn" href="mailto:support@4myiptvservice.com?subject=IPTV%20Support%20Request">Email Support</a>
-<a class="btn goldbtn" href="support.html">Support / Tips Page</a>
-</div>
-<div class="tip" style="margin-top:14px;">
-<strong>Best practice:</strong> When requesting help, include your device type, the app you are using, and a screenshot if possible. That makes support much faster.
+
+        <div class="warning" style="margin-top:12px;">
+          <strong>Important:</strong> This service requires internet access. If your device is offline, the app and channels will not load correctly.
+        </div>
       </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Support</div>
+      <h2>Need More Help?</h2>
+    </div>
+    <div class="content">
+      <div class="btnrow">
+        <a class="btn adminbtn" href="support.html">Support / Tips Page</a>
+        <a class="btn playbtn" href="apk-library.html">APK Library</a>
+      </div>
+
+      <div class="support-box">
+        <div class="support-line">
+          <div class="support-label">Support Email</div>
+          <div>support@4myiptvservice.com</div>
+        </div>
+        <div class="support-line">
+          <div class="support-label">Telegram Support</div>
+          <div>@4MyIPTVsupport</div>
+        </div>
+      </div>
+
+      <div class="tip">
+        <strong>Best practice:</strong> When requesting help, include your device type, the app you are using, and a screenshot if possible. That makes support much faster.
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-strip">
+    <strong>4MyIPTV Device Setup Center</strong>
+    <div class="version">Version 1.1 • Last Updated: March 2026</div>
+  </div>
 </div>
-</div>
-<div class="footer-strip">
-<strong>4MyIPTV Device Setup Center</strong>
-<div class="version">Version 1.0 • Last Updated: March 2026</div>
-</div>
-</div>
-<script>
-fetch("https://api.countapi.xyz/hit/4myiptvservice/device-setup")
-  .catch(() => {});
-</script>
 </body>
 </html>
