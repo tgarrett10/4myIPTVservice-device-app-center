@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>My IPTV Service Downloader Portal</title>
+<title>4MyIPTV Service Downloader Portal</title>
 <style>
 :root{
   --bg:#08111f;
@@ -62,7 +62,9 @@ h2{
 }
 .sub{
   color:var(--muted);
-  line-height:1.5;
+  line-height:1.6;
+  max-width:840px;
+  margin:0 auto;
 }
 .notice,.tip{
   border-radius:14px;
@@ -104,8 +106,13 @@ h2{
   grid-template-columns:1fr 1fr;
   gap:14px;
 }
+.grid4{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
 @media (max-width:900px){
-  .grid2{grid-template-columns:1fr}
+  .grid2,.grid4{grid-template-columns:1fr}
 }
 .bigbtn{
   display:block;
@@ -130,7 +137,17 @@ h2{
 }
 .linklist li{
   margin:0 0 8px;
-  line-height:1.45;
+  line-height:1.5;
+}
+.tile{
+  background:#0f172a;
+  border:1px solid #243044;
+  border-radius:14px;
+  padding:14px;
+}
+.tile strong{
+  display:block;
+  margin-bottom:8px;
 }
 .footer-strip{
   margin-top:18px;
@@ -151,21 +168,26 @@ h2{
 <div class="wrap">
 
   <div class="card hero">
-    <h1>My IPTV Service Downloader Portal</h1>
-    <div class="tagline">Fast Install • Guided Setup • Support When Needed</div>
+    <h1>4MyIPTV Service Downloader Portal</h1>
+    <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
     <div class="sub">
-      This page is optimized for opening inside Downloader. Use the main buttons below to install the primary app, open setup help, and reach the most useful customer support resources.
+      This page is optimized for opening inside Downloader. Use it as a fast and simple install portal to reach the primary app, setup guidance, support resources, and your controlled APK library.
+    </div>
+
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;">
+      <a class="bigbtn blue" href="index.html" style="max-width:280px;margin-bottom:0;">Back to Customer Start Page</a>
+      <a class="bigbtn purple" href="support.html" style="max-width:280px;margin-bottom:0;">Get Support</a>
     </div>
 
     <div class="notice">
       <strong>Before you begin</strong><br/>
-      Make sure your device is connected to the internet. Downloader is best for Firestick and sideloading workflows. Android TV and Google TV users may also use direct install links when available.
+      Make sure your device is connected to the internet. Downloader is especially useful for Firestick and sideloading workflows. Android TV and Google TV users may also use direct install links when available.
     </div>
 
     <div class="tip">
       <strong>Recommended order</strong><br/>
       1. Open Device Setup Center<br/>
-      2. Install IPTV Smarters<br/>
+      2. Install IPTV Smarters Pro<br/>
       3. Enter your credentials exactly as provided<br/>
       4. Open Support / Tips if you need help
     </div>
@@ -207,15 +229,42 @@ h2{
         <li>Use IPTV Smarters Pro as the primary customer app.</li>
         <li>Credentials must be entered exactly as provided.</li>
         <li>Do not share login credentials. Shared access can cause buffering or service interruption.</li>
-        <li>If a download link fails, use the APK Library page.</li>
-        <li>For support, use the Support / Tips page and the setup resources linked above.</li>
+        <li>If a direct install link fails, use the APK Library page.</li>
+        <li>For support, use the Support / Tips page and setup resources linked above.</li>
       </ul>
     </div>
   </div>
 
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Customer Flow</div>
+      <h2>What to Do Next</h2>
+    </div>
+    <div class="content">
+      <div class="grid4">
+        <div class="tile">
+          <strong>Step 1: Prepare the Device</strong>
+          Open the Device Setup Center for guided setup steps and help videos.
+        </div>
+        <div class="tile">
+          <strong>Step 2: Install the App</strong>
+          Install IPTV Smarters Pro first. Use the APK Library if you need the controlled backup source.
+        </div>
+        <div class="tile">
+          <strong>Step 3: Enter Credentials</strong>
+          Log in using the exact credentials that were provided to you.
+        </div>
+        <div class="tile">
+          <strong>Step 4: Get Help if Needed</strong>
+          Use Support / Tips for troubleshooting, support contact options, and next steps.
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="footer-strip">
-    <strong>My IPTV Service Downloader Portal</strong>
-    <div class="version">Version 1.4 • Last Updated: March 2026</div>
+    <strong>4MyIPTV Service • Downloader Portal</strong>
+    <div class="version">Version 1.5 • Last Updated: March 2026</div>
   </div>
 
 </div>
