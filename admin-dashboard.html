@@ -341,8 +341,6 @@
   let allOrders = [];
   let selectedOrderId = null;
   let isLoadingOrders = false;
-  let isSavingRowStatus = false;
-  let isSavingDetails = false;
 
   const apiUrlInput = document.getElementById('apiUrl');
   const searchInput = document.getElementById('searchInput');
@@ -372,12 +370,7 @@
   function getEffectiveApiUrl() {
     const typedUrl = apiUrlInput.value.trim();
     const savedUrl = localStorage.getItem('apiUrl') || '';
-
-    if (typedUrl) {
-      return typedUrl;
-    }
-
-    return savedUrl.trim();
+    return typedUrl || savedUrl.trim();
   }
 
   function getField(order, possibleNames) {
@@ -452,9 +445,138 @@
       selectedOrderId = null;
       return;
     }
+    selectedOrderId = getRowId(order) || null;
+  }
 
-    const rowId = getRowId(order);
-    selectedOrderId = rowId || null;
+  function getFilteredOrders() {
+    const searchText = searchInput.value.toLowerCase().trim();
+    const currentStatusFilter = statusFilter.value;
+
+    let filtered = allOrders.slice().reverse();
+
+    if (searchText) {
+      filtered = filtered.filter(order => {
+        const fullName = String(getField(order, ['FullName', 'fullName', 'Name', 'name'])).toLowerCase();
+        const email = String(getField(order, ['Email', 'email'])).toLowerCase();
+        const planName = String(getField(order, ['PlanName', 'planName', 'Service', 'service'])).toLowerCase();
+        return fullName.includes(searchText) || email.includes(searchText) || planName.includes(searchText);
+      });
+    }
+
+    if (currentStatusFilter) {
+      filtered = filtered.filter(order => {
+        const status = String(getField(order, ['Status', 'status']));
+        return status === currentStatusFilter;
+      });
+    }
+
+    return filtered;
+  }
+
+  function buildPrintHtml(order) {
+    const fullName = getField(order, ['FullName', 'fullName', 'Name', 'name']);
+    const email = getField(order, ['Email', 'email']);
+    const phone = getField(order, ['Phone', 'phone']);
+    const address = getField(order, ['Address', 'address']);
+    const service = getField(order, ['PlanName', 'planName', 'Service', 'service']);
+    const amount = getField(order, ['Amount', 'amount']);
+    const status = getField(order, ['Status', 'status']);
+    const orderShipped = getField(order, ['OrderShipped', 'orderShipped']);
+    const trackingNumber = getField(order, ['TrackingNumber', 'trackingNumber']);
+    const deviceType = getField(order, ['DeviceType', 'deviceType']);
+    const deviceNickname = getField(order, ['DeviceNickname', 'deviceNickname']);
+    const notes = getField(order, ['Notes', 'notes']);
+    const paymentType = getField(order, ['PaymentType', 'paymentType']);
+    const timestamp = getField(order, ['Timestamp', 'timestamp']);
+
+    function safe(value) {
+      return String(value || '').trim() || 'Not provided';
+    }
+
+    return `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Customer Details Print View</title>
+        <style>
+          body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #111;
+            margin: 30px;
+            line-height: 1.4;
+          }
+          h1 {
+            margin: 0 0 20px 0;
+          }
+          .row {
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ccc;
+          }
+          .label {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+          }
+          .value {
+            font-size: 14px;
+          }
+          .notes {
+            white-space: pre-wrap;
+          }
+          @media print {
+            body {
+              margin: 20px;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <h1>Customer Details Record</h1>
+
+        <div class="row"><div class="label">Full Name</div><div class="value">${safe(fullName)}</div></div>
+        <div class="row"><div class="label">Email</div><div class="value">${safe(email)}</div></div>
+        <div class="row"><div class="label">Phone</div><div class="value">${safe(phone)}</div></div>
+        <div class="row"><div class="label">Address</div><div class="value">${safe(address)}</div></div>
+        <div class="row"><div class="label">Service</div><div class="value">${safe(service)}</div></div>
+        <div class="row"><div class="label">Amount</div><div class="value">$${safe(amount)}</div></div>
+        <div class="row"><div class="label">Status</div><div class="value">${safe(status)}</div></div>
+        <div class="row"><div class="label">Order Shipped</div><div class="value">${safe(orderShipped)}</div></div>
+        <div class="row"><div class="label">Tracking Number</div><div class="value">${safe(trackingNumber)}</div></div>
+        <div class="row"><div class="label">Device Type</div><div class="value">${safe(deviceType)}</div></div>
+        <div class="row"><div class="label">Device Nickname</div><div class="value">${safe(deviceNickname)}</div></div>
+        <div class="row"><div class="label">Payment Type</div><div class="value">${safe(paymentType)}</div></div>
+        <div class="row"><div class="label">Timestamp</div><div class="value">${safe(timestamp)}</div></div>
+        <div class="row"><div class="label">Notes</div><div class="value notes">${safe(notes)}</div></div>
+      </body>
+      </html>
+    `;
+  }
+
+  function printSelectedOrder() {
+    const selectedOrder = getSelectedOrder();
+
+    if (!selectedOrder) {
+      showMessage('Select an order first before printing.', 'error');
+      return;
+    }
+
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      showMessage('Pop-up blocked. Allow pop-ups for this page, then try printing again.', 'error');
+      return;
+    }
+
+    printWindow.document.open();
+    printWindow.document.write(buildPrintHtml(selectedOrder));
+    printWindow.document.close();
+    printWindow.focus();
+
+    setTimeout(() => {
+      printWindow.print();
+    }, 300);
   }
 
   async function updateStatus(rowNumber, newStatus, buttonEl) {
@@ -470,13 +592,11 @@
       return;
     }
 
-    isSavingRowStatus = true;
+    const selectedBeforeSave = selectedOrderId;
+    const originalText = buttonEl.textContent;
 
-    const originalText = buttonEl ? buttonEl.textContent : 'Save';
-    if (buttonEl) {
-      buttonEl.disabled = true;
-      buttonEl.textContent = 'Saving...';
-    }
+    buttonEl.disabled = true;
+    buttonEl.textContent = 'Saving...';
 
     try {
       const response = await fetch(url, {
@@ -492,8 +612,9 @@
       const result = await response.json();
 
       if (result.success) {
+        selectedOrderId = selectedBeforeSave || String(rowNumber);
         showMessage('Status updated successfully.', 'success');
-        await loadOrders(true);
+        await loadOrders(true, selectedOrderId);
       } else {
         showMessage('Status update failed: ' + (result.error || 'Unknown error from Apps Script.'), 'error');
       }
@@ -501,11 +622,8 @@
       console.error(error);
       showMessage('Error updating status: ' + error.message, 'error');
     } finally {
-      isSavingRowStatus = false;
-      if (buttonEl) {
-        buttonEl.disabled = false;
-        buttonEl.textContent = originalText;
-      }
+      buttonEl.disabled = false;
+      buttonEl.textContent = originalText;
     }
   }
 
@@ -539,11 +657,11 @@
       return;
     }
 
+    const selectedBeforeSave = selectedOrderId;
     const orderShipped = orderShippedEl.value;
     const trackingNumber = trackingNumberEl.value.trim();
     const notes = notesEl.value.trim();
 
-    isSavingDetails = true;
     saveBtn.disabled = true;
     saveBtn.textContent = 'Saving...';
 
@@ -563,8 +681,9 @@
       const result = await response.json();
 
       if (result.success) {
+        selectedOrderId = selectedBeforeSave || String(rowNumber);
         showMessage('Order details updated successfully.', 'success');
-        await loadOrders(true);
+        await loadOrders(true, selectedOrderId);
       } else {
         showMessage('Order detail update failed: ' + (result.error || 'Unknown error from Apps Script.'), 'error');
       }
@@ -572,7 +691,6 @@
       console.error(error);
       showMessage('Error updating order details: ' + error.message, 'error');
     } finally {
-      isSavingDetails = false;
       const refreshedSaveBtn = document.getElementById('saveDetailFieldsBtn');
       if (refreshedSaveBtn) {
         refreshedSaveBtn.disabled = false;
@@ -671,40 +789,16 @@
       </div>
       <div class="detail-actions">
         <button type="button" id="saveDetailFieldsBtn" class="success-btn">Save Shipping / Tracking / Notes</button>
+        <button type="button" id="printCustomerBtn">Print Customer Details</button>
       </div>
     `;
 
     document.getElementById('saveDetailFieldsBtn').addEventListener('click', updateOrderFields);
-  }
-
-  function getFilteredOrders() {
-    const searchText = searchInput.value.toLowerCase().trim();
-    const currentStatusFilter = statusFilter.value;
-
-    let filtered = allOrders.slice().reverse();
-
-    if (searchText) {
-      filtered = filtered.filter(order => {
-        const fullName = String(getField(order, ['FullName', 'fullName', 'Name', 'name'])).toLowerCase();
-        const email = String(getField(order, ['Email', 'email'])).toLowerCase();
-        const planName = String(getField(order, ['PlanName', 'planName', 'Service', 'service'])).toLowerCase();
-        return fullName.includes(searchText) || email.includes(searchText) || planName.includes(searchText);
-      });
-    }
-
-    if (currentStatusFilter) {
-      filtered = filtered.filter(order => {
-        const status = String(getField(order, ['Status', 'status']));
-        return status === currentStatusFilter;
-      });
-    }
-
-    return filtered;
+    document.getElementById('printCustomerBtn').addEventListener('click', printSelectedOrder);
   }
 
   function renderOrders() {
     const filtered = getFilteredOrders();
-    const selectedOrder = getSelectedOrder();
 
     updateStats(allOrders);
     ordersTableBody.innerHTML = '';
@@ -717,7 +811,7 @@
 
     let displaySelectedOrder = null;
 
-    if (selectedOrder) {
+    if (selectedOrderId) {
       displaySelectedOrder = filtered.find(order => getRowId(order) === selectedOrderId) || null;
     }
 
@@ -739,6 +833,7 @@
       const row = document.createElement('tr');
       row.className = 'clickable' + (isSelected ? ' selected-row' : '');
       row.dataset.rowNumber = rowNumber;
+      row.dataset.rowId = rowId;
 
       row.innerHTML = `
         <td>${escapeHtml(fullName)}</td>
@@ -746,7 +841,7 @@
         <td>${escapeHtml(planName)}</td>
         <td>$${escapeHtml(amount)}</td>
         <td>${escapeHtml(status)}</td>
-        <td>
+        <td class="status-actions-cell">
           <div class="status-cell">
             <select class="row-status-select" data-row-number="${escapeHtml(rowNumber)}">
               <option value="New Lead" ${status === 'New Lead' ? 'selected' : ''}>New Lead</option>
@@ -760,23 +855,22 @@
         </td>
       `;
 
-      row.addEventListener('click', () => {
-        setSelectedOrder(order);
-        renderOrders();
-      });
-
       ordersTableBody.appendChild(row);
     });
 
     renderDetails(displaySelectedOrder);
   }
 
-  async function loadOrders(silent = false) {
+  async function loadOrders(silent = false, preferredSelectedId = null) {
     const url = getEffectiveApiUrl();
 
     if (!url) {
       showMessage('Enter or paste your API URL first.', 'error');
       return;
+    }
+
+    if (preferredSelectedId) {
+      selectedOrderId = preferredSelectedId;
     }
 
     setLoadingState(true);
@@ -814,7 +908,9 @@
 
   document.getElementById('saveUrlBtn').addEventListener('click', saveUrl);
   document.getElementById('loadOrdersBtn').addEventListener('click', () => loadOrders());
+
   searchInput.addEventListener('input', renderOrders);
+
   statusFilter.addEventListener('change', () => {
     syncQuickFiltersFromDropdown();
     renderOrders();
@@ -830,26 +926,45 @@
 
   ordersTableBody.addEventListener('click', async (e) => {
     const saveBtn = e.target.closest('.row-status-save-btn');
-    const select = e.target.closest('.row-status-select');
+    const selectEl = e.target.closest('.row-status-select');
+    const statusCell = e.target.closest('.status-actions-cell');
+    const row = e.target.closest('tr.clickable');
 
     if (saveBtn) {
       e.stopPropagation();
 
       const rowNumber = saveBtn.dataset.rowNumber;
-      const row = saveBtn.closest('td');
-      const statusSelect = row ? row.querySelector('.row-status-select') : null;
+      const parentRow = saveBtn.closest('tr.clickable');
+      const statusSelect = parentRow ? parentRow.querySelector('.row-status-select') : null;
 
       if (!statusSelect) {
         showMessage('Status selector not found.', 'error');
         return;
       }
 
+      if (parentRow) {
+        const clickedOrder = allOrders.find(order => getRowId(order) === parentRow.dataset.rowId);
+        if (clickedOrder) {
+          setSelectedOrder(clickedOrder);
+          renderOrders();
+        }
+      }
+
       await updateStatus(rowNumber, statusSelect.value, saveBtn);
       return;
     }
 
-    if (select) {
+    if (selectEl || statusCell) {
       e.stopPropagation();
+      return;
+    }
+
+    if (row) {
+      const clickedOrder = allOrders.find(order => getRowId(order) === row.dataset.rowId);
+      if (clickedOrder) {
+        setSelectedOrder(clickedOrder);
+        renderOrders();
+      }
     }
   });
 
