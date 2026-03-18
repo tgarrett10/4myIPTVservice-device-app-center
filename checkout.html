@@ -1,509 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4MyTechService Checkout</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-      font-size: 18px;
-    }
-    .container {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 24px;
-    }
-    .header {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    .header h1 {
-      margin: 0 0 8px;
-      font-size: 2.2rem;
-    }
-    .header p {
-      margin: 0;
-      color: #cbd5e1;
-      font-size: 1.05rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: 24px;
-    }
-    .card {
-      background: #111827;
-      border: 1px solid #334155;
-      border-radius: 14px;
-      padding: 22px;
-      box-shadow: 0 10px 20px rgba(0,0,0,.25);
-    }
-    .card h2 {
-      margin-top: 0;
-      margin-bottom: 16px;
-      font-size: 1.4rem;
-    }
-    .field {
-      margin-bottom: 16px;
-    }
-    label.block {
-      display: block;
-      margin-bottom: 7px;
-      color: #cbd5e1;
-      font-size: 1rem;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid #334155;
-      background: #020617;
-      color: #e5e7eb;
-      font-size: 1rem;
-    }
-    textarea {
-      min-height: 115px;
-      resize: vertical;
-    }
-    .hint {
-      margin-top: 6px;
-      color: #94a3b8;
-      font-size: 0.95rem;
-      line-height: 1.45;
-    }
-    .summary {
-      border: 1px solid #334155;
-      border-radius: 12px;
-      background: #020617;
-      padding: 16px;
-      margin-top: 10px;
-    }
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
-      font-size: 1rem;
-    }
-    .summary-row:last-child {
-      margin-bottom: 0;
-    }
-    .summary-items {
-      color: #cbd5e1;
-      line-height: 1.5;
-      min-height: 48px;
-      text-align: right;
-    }
-    .summary-total {
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid #334155;
-      display: flex;
-      justify-content: space-between;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #86efac;
-    }
-    .pay-area {
-      margin-top: 18px;
-    }
-    .status {
-      margin-top: 14px;
-      padding: 12px;
-      border-radius: 10px;
-      display: none;
-      line-height: 1.45;
-      font-size: 0.98rem;
-    }
-    .status.success {
-      display: block;
-      background: #052e16;
-      border: 1px solid #166534;
-      color: #bbf7d0;
-    }
-    .status.error {
-      display: block;
-      background: #450a0a;
-      border: 1px solid #991b1b;
-      color: #fecaca;
-    }
-    .footer-note {
-      text-align: center;
-      margin-top: 20px;
-      color: #94a3b8;
-      font-size: 0.95rem;
-    }
-    @media (max-width: 920px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-      body {
-        font-size: 17px;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>4MyTechService Checkout</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#0f172a;
+  color:#e5e7eb;
+}
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+.card{
+  background:#111827;
+  border:1px solid #334155;
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:18px;
+}
+h1,h2{margin-top:0}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+}
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #334155;
+  background:#020617;
+  color:#fff;
+}
+label{display:block;margin-bottom:6px}
+.field{margin-bottom:14px}
+
+.summary{
+  background:#020617;
+  border:1px solid #334155;
+  border-radius:10px;
+  padding:14px;
+}
+.row{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+.total{
+  font-weight:bold;
+  color:#86efac;
+  border-top:1px solid #334155;
+  padding-top:10px;
+}
+
+.status{
+  margin-top:12px;
+  padding:10px;
+  border-radius:10px;
+  display:none;
+}
+.success{
+  display:block;
+  background:#052e16;
+  border:1px solid #166534;
+}
+.error{
+  display:block;
+  background:#450a0a;
+  border:1px solid #991b1b;
+}
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>4MyTechService</h1>
-      <p>Review your approved service quote, confirm your details, and complete one secure payment.</p>
-    </div>
 
-    <div class="grid">
-      <div class="card">
-        <h2>Service Request</h2>
+<div class="container">
+<h1>4MyTechService Checkout</h1>
 
-        <div class="field">
-          <label class="block" for="serviceTitle">Service Title</label>
-          <input type="text" id="serviceTitle" placeholder="Example: Device setup and remote support" />
-          <div class="hint">Use a short title that describes the service package or approved quote.</div>
-        </div>
+<div class="grid">
 
-        <div class="field">
-          <label class="block" for="serviceCategory">Service Category</label>
-          <select id="serviceCategory">
-            <option value="Device Setup">Device Setup</option>
-            <option value="Remote Support">Remote Support</option>
-            <option value="Troubleshooting">Troubleshooting</option>
-            <option value="Training">Training</option>
-            <option value="Hardware Assistance">Hardware Assistance</option>
-            <option value="Custom Quote">Custom Quote</option>
-          </select>
-        </div>
+<div class="card">
+<h2>Service Details</h2>
 
-        <div class="field">
-          <label class="block" for="serviceDescription">Service Description</label>
-          <textarea id="serviceDescription" placeholder="Describe the services requested, what is included, and any agreed scope."></textarea>
-          <div class="hint">This can be your a la carte service list, custom quote notes, or agreed deliverables.</div>
-        </div>
+<div class="field">
+<label>Service Title</label>
+<input id="serviceTitle" placeholder="Example: Device setup"/>
+</div>
 
-        <div class="field">
-          <label class="block" for="customAmount">Approved Quote Amount (USD)</label>
-          <input type="number" id="customAmount" min="1" step="0.01" value="50.00" readonly />
-          <div class="hint">This amount is pre-filled by you and locked so the customer can review it but cannot change it.</div>
-        </div>
-      </div>
+<div class="field">
+<label>Description</label>
+<textarea id="serviceDescription"></textarea>
+</div>
 
-      <div class="card">
-        <h2>Customer Information</h2>
+<div class="field">
+<label>Approved Amount (USD)</label>
+<input id="amount" type="number" value="50" readonly/>
+</div>
 
-        <div class="field">
-          <label class="block" for="fullName">Full Name</label>
-          <input type="text" id="fullName" required />
-        </div>
+<div class="field">
+<label>Optional Tip (USD)</label>
+<input id="tip" type="number" value="0" min="0" step="1"/>
+</div>
 
-        <div class="field">
-          <label class="block" for="email">Email</label>
-          <input type="email" id="email" required />
-        </div>
+</div>
 
-        <div class="field">
-          <label class="block" for="phone">Phone</label>
-          <input type="text" id="phone" required />
-        </div>
+<div class="card">
+<h2>Customer Info</h2>
 
-        <div class="field">
-          <label class="block" for="address">Address</label>
-          <textarea id="address" placeholder="Street address, city, state, ZIP"></textarea>
-        </div>
+<div class="field">
+<label>Name</label>
+<input id="name"/>
+</div>
 
-        <div class="field">
-          <label class="block" for="deviceType">Device Type</label>
-          <select id="deviceType">
-            <option value="ONN 4K Stick">ONN 4K Stick</option>
-            <option value="ONN 4K">ONN 4K</option>
-            <option value="ONN 4K Plus">ONN 4K Plus</option>
-            <option value="Firestick">Firestick</option>
-            <option value="Android Box">Android Box</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
+<div class="field">
+<label>Email</label>
+<input id="email"/>
+</div>
 
-        <div class="field">
-          <label class="block" for="deviceNickname">Device Nickname</label>
-          <input type="text" id="deviceNickname" placeholder="Living Room TV" />
-        </div>
+<div class="field">
+<label>Phone</label>
+<input id="phone"/>
+</div>
 
-        <div class="field">
-          <label class="block" for="notes">Additional Notes</label>
-          <textarea id="notes" placeholder="Add timing, contact preferences, and any extra details."></textarea>
-        </div>
+<h2>Order Summary</h2>
+<div class="summary">
+<div class="row"><span>Service</span><span id="sumService">-</span></div>
+<div class="row"><span>Amount</span><span id="sumAmount">$0</span></div>
+<div class="row"><span>Tip</span><span id="sumTip">$0</span></div>
+<div class="row total"><span>Total</span><span id="sumTotal">$0</span></div>
+</div>
 
-        <h2>Order Summary</h2>
-        <div class="summary">
-          <div class="summary-row">
-            <span>Service Title</span>
-            <span id="serviceTitleSummary">Not entered</span>
-          </div>
-          <div class="summary-row">
-            <span>Category</span>
-            <span id="serviceCategorySummary">Device Setup</span>
-          </div>
-          <div class="summary-row" style="align-items:flex-start;">
-            <span>Description</span>
-            <span class="summary-items" id="serviceDescriptionSummary">Not entered</span>
-          </div>
-          <div class="summary-total">
-            <span>Total</span>
-            <span id="totalPrice">$0.00</span>
-          </div>
-        </div>
+<div id="paypal-button-container" style="margin-top:14px;"></div>
+<div id="status" class="status"></div>
 
-        <div class="pay-area">
-          <div id="paypal-button-container"></div>
-          <div id="statusMessage" class="status"></div>
-        </div>
-      </div>
-    </div>
+</div>
 
-    <div class="footer-note">4MyTechService Approved Quote Checkout v5</div>
-  </div>
+</div>
+</div>
 
-  <script>
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFGoXc-PfNNrCMb6dMSlGkE7w5CAF_7ObTslWoN2VHQU6OH7t_GZkzl4WD8miiAmIj/exec";
-    const DEFAULT_APPROVED_QUOTE_AMOUNT = 50.00;
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbyFGoXc-PfNNrCMb6dMSlGkE7w5CAF_7ObTslWoN2VHQU6OH7t_GZkzl4WD8miiAmIj/exec";
 
-    const serviceTitleInput = document.getElementById('serviceTitle');
-    const serviceCategoryInput = document.getElementById('serviceCategory');
-    const serviceDescriptionInput = document.getElementById('serviceDescription');
-    const customAmountInput = document.getElementById('customAmount');
-    const serviceTitleSummary = document.getElementById('serviceTitleSummary');
-    const serviceCategorySummary = document.getElementById('serviceCategorySummary');
-    const serviceDescriptionSummary = document.getElementById('serviceDescriptionSummary');
-    const totalPrice = document.getElementById('totalPrice');
-    const statusMessage = document.getElementById('statusMessage');
+function updateSummary(){
+  const service = document.getElementById('serviceTitle').value || '-';
+  const amount = Number(document.getElementById('amount').value || 0);
+  const tip = Number(document.getElementById('tip').value || 0);
+  const total = amount + tip;
 
-    function showStatus(message, type) {
-      statusMessage.className = 'status ' + type;
-      statusMessage.textContent = message;
-    }
+  document.getElementById('sumService').textContent = service;
+  document.getElementById('sumAmount').textContent = '$'+amount.toFixed(2);
+  document.getElementById('sumTip').textContent = '$'+tip.toFixed(2);
+  document.getElementById('sumTotal').textContent = '$'+total.toFixed(2);
+}
 
-    function getQueryParams() {
-      const params = new URLSearchParams(window.location.search);
-      return {
-        amount: params.get('amount') || '',
-        service: params.get('service') || '',
-        category: params.get('category') || '',
-        description: params.get('description') || '',
-        name: params.get('name') || '',
-        email: params.get('email') || '',
-        phone: params.get('phone') || '',
-        address: params.get('address') || '',
-        device: params.get('device') || '',
-        nickname: params.get('nickname') || '',
-        notes: params.get('notes') || ''
-      };
-    }
+document.querySelectorAll('input,textarea').forEach(el=>{
+  el.addEventListener('input', updateSummary);
+});
 
-    function getAmountValue() {
-      const rawValue = Number(customAmountInput.value || DEFAULT_APPROVED_QUOTE_AMOUNT || 0);
-      return rawValue > 0 ? rawValue : 0;
-    }
+function showStatus(msg,type){
+  const box = document.getElementById('status');
+  box.className = 'status ' + type;
+  box.textContent = msg;
+}
 
-    function updateSummary() {
-      const title = serviceTitleInput.value.trim() || 'Not entered';
-      const category = serviceCategoryInput.value;
-      const description = serviceDescriptionInput.value.trim() || 'Not entered';
-      const amount = getAmountValue();
-
-      serviceTitleSummary.textContent = title;
-      serviceCategorySummary.textContent = category;
-      serviceDescriptionSummary.textContent = description;
-      totalPrice.textContent = `$${amount.toFixed(2)}`;
-    }
-
-    function getCustomerData() {
-      return {
-        fullName: document.getElementById('fullName').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        phone: document.getElementById('phone').value.trim(),
-        address: document.getElementById('address').value.trim(),
-        deviceType: document.getElementById('deviceType').value,
-        deviceNickname: document.getElementById('deviceNickname').value.trim(),
-        notes: document.getElementById('notes').value.trim()
-      };
-    }
-
-    function validateForm() {
-      const customer = getCustomerData();
-      const amount = getAmountValue();
-
-      if (!customer.fullName || !customer.email || !customer.phone) {
-        showStatus('Please complete Full Name, Email, and Phone before payment.', 'error');
-        return false;
-      }
-
-      if (!serviceTitleInput.value.trim()) {
-        showStatus('Please enter a service title before payment.', 'error');
-        return false;
-      }
-
-      if (amount <= 0) {
-        showStatus('Please enter a valid payment amount greater than $0.00.', 'error');
-        return false;
-      }
-
-      return true;
-    }
-
-    async function saveOrder(orderData) {
-      const response = await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8'
-        },
-        body: JSON.stringify(orderData)
-      });
-
-      return await response.json();
-    }
-
-    function applyPrefilledValues() {
-      const query = getQueryParams();
-      const approvedAmount = Number(query.amount || DEFAULT_APPROVED_QUOTE_AMOUNT || 0);
-
-      if (query.service) {
-        serviceTitleInput.value = query.service;
-      }
-
-      if (query.category) {
-        const matchingOption = [...serviceCategoryInput.options].find(option => option.value === query.category);
-        if (matchingOption) {
-          serviceCategoryInput.value = query.category;
-        }
-      }
-
-      if (query.description) {
-        serviceDescriptionInput.value = query.description;
-      }
-
-      if (query.name) {
-        document.getElementById('fullName').value = query.name;
-      }
-
-      if (query.email) {
-        document.getElementById('email').value = query.email;
-      }
-
-      if (query.phone) {
-        document.getElementById('phone').value = query.phone;
-      }
-
-      if (query.address) {
-        document.getElementById('address').value = query.address;
-      }
-
-      if (query.device) {
-        const matchingDevice = [...document.getElementById('deviceType').options].find(option => option.value === query.device);
-        if (matchingDevice) {
-          document.getElementById('deviceType').value = query.device;
-        }
-      }
-
-      if (query.nickname) {
-        document.getElementById('deviceNickname').value = query.nickname;
-      }
-
-      if (query.notes) {
-        document.getElementById('notes').value = query.notes;
-      }
-
-      customAmountInput.value = approvedAmount > 0 ? approvedAmount.toFixed(2) : DEFAULT_APPROVED_QUOTE_AMOUNT.toFixed(2);
-    }
-
-    applyPrefilledValues();
-
-    [serviceTitleInput, serviceCategoryInput, serviceDescriptionInput].forEach(input => {
-      input.addEventListener('input', updateSummary);
-      input.addEventListener('change', updateSummary);
-    });
-
-    function renderPayPalButton() {
-      const container = document.getElementById('paypal-button-container');
-      container.innerHTML = '';
-
-      if (!window.paypal) {
-        showStatus('PayPal failed to load. Please check your client ID.', 'error');
-        return;
-      }
-
-      paypal.Buttons({
-        createOrder: function(data, actions) {
-          if (!validateForm()) {
-            return Promise.reject(new Error('Form validation failed'));
-          }
-
-          const amount = getAmountValue();
-
-          return actions.order.create({
-            purchase_units: [{
-              amount: {
-                currency_code: 'USD',
-                value: amount.toFixed(2)
-              },
-              description: serviceTitleInput.value.trim()
-            }]
-          });
-        },
-        onApprove: async function(data, actions) {
-          try {
-            const capture = await actions.order.capture();
-            const customer = getCustomerData();
-            const amount = getAmountValue();
-
-            const orderData = {
-              timestamp: new Date().toISOString(),
-              orderType: 'Custom Quote Checkout',
-              fullName: customer.fullName,
-              email: customer.email,
-              phone: customer.phone,
-              deviceType: customer.deviceType,
-              deviceNickname: customer.deviceNickname,
-              macAddress: '',
-              notes: customer.notes,
-              planName: serviceTitleInput.value.trim(),
-              amount: amount.toFixed(2),
-              paymentType: 'PayPal One-Time Payment',
-              paypalSubscriptionId: capture.id || '',
-              status: 'Paid - Awaiting Fulfillment',
-              address: customer.address,
-              orderShipped: 'Not Shipped',
-              trackingNumber: ''
-            };
-
-            const result = await saveOrder(orderData);
-
-            if (result.success) {
-              showStatus('Payment successful. Your order has been saved and added to your fulfillment queue.', 'success');
-            } else {
-              showStatus('Payment succeeded, but the order log failed. Please check your Google Sheet.', 'error');
-            }
-          } catch (error) {
-            console.error(error);
-            showStatus('Payment completed, but there was an error saving your order details.', 'error');
-          }
-        },
-        onError: function(err) {
-         console.error('PayPal onError:', err);
-  let message = 'PayPal error. Please try again.';
-
-  if (err && err.message) {
-    message = 'PayPal error: ' + err.message;
+function validate(){
+  if(!document.getElementById('name').value ||
+     !document.getElementById('email').value){
+     showStatus('Fill out required fields','error');
+     return false;
   }
-      }).render('#paypal-button-container');
-    }
+  return true;
+}
 
-    updateSummary();
-  </script>
-  <script src="https://www.paypal.com/sdk/js?client-id=AWGNEkU-dS6LJz4eaNHNB93LP5SxnRc377VvcdF7BIVE8jYXiK2Banltv9Cr85F9jMQLp33GoOplY5yu&currency=USD"></script>
-  <script>
-    renderPayPalButton();
-  </script>
+async function saveOrder(data){
+  await fetch(scriptURL,{
+    method:'POST',
+    headers:{'Content-Type':'text/plain'},
+    body:JSON.stringify(data)
+  });
+}
+
+function renderPayPal(){
+paypal.Buttons({
+
+createOrder: function(data, actions){
+  if(!validate()) return;
+
+  const amount = Number(document.getElementById('amount').value);
+  const tip = Number(document.getElementById('tip').value || 0);
+  const total = amount + tip;
+
+  return actions.order.create({
+    purchase_units:[{
+      amount:{value: total.toFixed(2)}
+    }]
+  });
+},
+
+onApprove: async function(data, actions){
+  const details = await actions.order.capture();
+
+  const order = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    service: document.getElementById('serviceTitle').value,
+    amount: document.getElementById('amount').value,
+    tip: document.getElementById('tip').value,
+    total: document.getElementById('sumTotal').textContent,
+    paypalId: details.id,
+    time: new Date().toISOString()
+  };
+
+  try{
+    await saveOrder(order);
+    showStatus('Payment successful. Order saved.','success');
+  }catch{
+    showStatus('Payment completed but saving failed.','error');
+  }
+},
+
+onError: function(err){
+  console.error(err);
+  showStatus('PayPal error. Try again.','error');
+}
+
+}).render('#paypal-button-container');
+}
+
+updateSummary();
+</script>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AWGNEkU-dS6LJz4eaNHNB93LP5SxnRc377VvcdF7BIVE8jYXiK2Banltv9Cr85F9jMQLp33GoOplY5yu&currency=USD"></script>
+
+<script>
+renderPayPal();
+</script>
+
 </body>
 </html>
