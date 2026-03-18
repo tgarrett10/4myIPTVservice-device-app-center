@@ -1,6 +1,4 @@
-
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -25,7 +23,11 @@ body{
   background:linear-gradient(180deg,#08111f,#0f172a);
   color:var(--text);
 }
-.wrap{max-width:1100px;margin:auto;padding:20px}
+.wrap{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
 .card{
   background:var(--panel);
   border:1px solid var(--border);
@@ -34,8 +36,18 @@ body{
   overflow:hidden;
   box-shadow:0 12px 28px rgba(0,0,0,.28);
 }
-.hero{padding:24px;text-align:center}
-h1{margin:0 0 8px;color:#86efac;font-size:2rem}
+.hero{
+  padding:24px;
+  text-align:center;
+}
+h1{
+  margin:0 0 8px;
+  color:#86efac;
+  font-size:2rem;
+}
+h2{
+  margin:0;
+}
 .tagline{
   margin:10px auto 14px auto;
   max-width:760px;
@@ -48,7 +60,10 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
   letter-spacing:.08em;
   color:#e2e8f0;
 }
-.sub{color:var(--muted);line-height:1.5}
+.sub{
+  color:var(--muted);
+  line-height:1.5;
+}
 .notice,.tip{
   border-radius:14px;
   padding:12px 14px;
@@ -56,15 +71,27 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
   line-height:1.5;
   text-align:left;
 }
-.notice{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe}
-.tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a}
+.notice{
+  background:rgba(59,130,246,.10);
+  border:1px solid rgba(59,130,246,.24);
+  color:#dbeafe;
+}
+.tip{
+  background:rgba(245,158,11,.12);
+  border:1px solid rgba(245,158,11,.28);
+  color:#fde68a;
+}
 .header{
   padding:14px 16px;
   border-bottom:1px solid var(--border);
   background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
 }
-.header h2{margin:0}
-.content{padding:16px}
+.header h2{
+  margin:0;
+}
+.content{
+  padding:16px;
+}
 .section-label{
   font-size:11px;
   letter-spacing:.14em;
@@ -72,8 +99,14 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
   color:#94a3b8;
   margin:0 0 8px 0;
 }
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media (max-width:900px){.grid2{grid-template-columns:1fr}}
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+@media (max-width:900px){
+  .grid2{grid-template-columns:1fr}
+}
 .bigbtn{
   display:block;
   width:100%;
@@ -91,8 +124,14 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
 .green{background:var(--green);color:#052e16}
 .gold{background:var(--gold);color:#3b2400}
 .purple{background:var(--purple)}
-.linklist{margin:0;padding-left:18px}
-.linklist li{margin:0 0 8px;line-height:1.45}
+.linklist{
+  margin:0;
+  padding-left:18px;
+}
+.linklist li{
+  margin:0 0 8px;
+  line-height:1.45;
+}
 .footer-strip{
   margin-top:18px;
   padding:16px 10px;
@@ -101,91 +140,84 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
   color:#cbd5e1;
   font-size:.9rem;
 }
-.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
-.telegram-float {
-position: fixed;
-bottom: 25px;
-right: 25px;
-background: #229ED9;
-color: white;
-padding: 12px 16px;
-border-radius: 50px;
-font-size: 14px;
-font-weight: bold;
-text-decoration: none;
-box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-z-index: 9999;
+.footer-strip .version{
+  margin-top:6px;
+  color:#94a3b8;
+  font-size:.82rem;
 }
-.telegram-float:hover {background: #1b8dc4;}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="card hero">
-<h1>MY IPTV Service Downloader Portal</h1>
-<div class="tagline">Fast Install • Guided Setup • Support When Needed</div>
-<div class="sub">This page is optimized for opening inside Downloader. Use the large buttons below to install apps, open setup help, and troubleshoot common issues.</div>
-<div class="notice">
-<strong>Before you begin</strong><br/>
-      Make sure your device is connected to the internet. Downloader is best for Firestick and sideloading workflows. Android TV and Google TV users may use direct install links when available.
+
+  <div class="card hero">
+    <h1>MY IPTV Service Downloader Portal</h1>
+    <div class="tagline">Fast Install • Guided Setup • Support When Needed</div>
+    <div class="sub">
+      This page is optimized for opening inside Downloader. Use the main buttons below to install the primary app, open setup help, and reach the most useful customer support resources.
     </div>
-<div class="tip">
-<strong>Recommended order</strong><br/>
-      1. Open Device Setup<br/>
+
+    <div class="notice">
+      <strong>Before you begin</strong><br/>
+      Make sure your device is connected to the internet. Downloader is best for Firestick and sideloading workflows. Android TV and Google TV users may also use direct install links when available.
+    </div>
+
+    <div class="tip">
+      <strong>Recommended order</strong><br/>
+      1. Open Device Setup Center<br/>
       2. Install IPTV Smarters<br/>
       3. Enter your credentials exactly as provided<br/>
-      4. Open Support if you need help
+      4. Open Support / Tips if you need help
     </div>
-</div>
-<div class="card">
-<div class="content">
-<a class="btn gold" href="sell-sheet.html">Service Overview</a>
-</div>
-</div>
+  </div>
 
-<div class="grid2">
-<div class="card">
-<div class="header">
-<div class="section-label">Install</div>
-<h2>Main Install Actions</h2>
+  <div class="grid2">
+    <div class="card">
+      <div class="header">
+        <div class="section-label">Install</div>
+        <h2>Main Install Actions</h2>
+      </div>
+      <div class="content">
+        <a class="bigbtn green" href="https://aft.news/6234188" target="_blank" rel="noopener noreferrer">Install IPTV Smarters</a>
+        <a class="bigbtn blue" href="device-setup.html">Open Device Setup Center</a>
+        <a class="bigbtn gold" href="setup-help.html">Open Setup Guide</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="header">
+        <div class="section-label">Help</div>
+        <h2>Support Actions</h2>
+      </div>
+      <div class="content">
+        <a class="bigbtn purple" href="support.html">Open Support / Tips</a>
+        <a class="bigbtn blue" href="apk-library.html">Open APK Library</a>
+        <a class="bigbtn gold" href="sell-sheet.html">Open Service Overview</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Quick Notes</div>
+      <h2>Important Reminders</h2>
+    </div>
+    <div class="content">
+      <ul class="linklist">
+        <li>Use IPTV Smarters Pro as the primary customer app.</li>
+        <li>Credentials must be entered exactly as provided.</li>
+        <li>Do not share login credentials. Shared access can cause buffering or service interruption.</li>
+        <li>If a download link fails, use the APK Library page.</li>
+        <li>For support, use the Support / Tips page and the setup resources linked above.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-strip">
+    <strong>MY IPTV Service Downloader Portal</strong>
+    <div class="version">Version 1.1 • Last Updated: March 2026</div>
+  </div>
+
 </div>
-<div class="content">
-<a class="bigbtn green" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank">Install IPTV Smarters</a>
-<a class="bigbtn blue" href="device-setup.html">Open Device Setup Center</a>
-<a class="bigbtn gold" href="setup-help.html">Open Setup Guide</a>
-</div>
-</div>
-<div class="card">
-<div class="header">
-<div class="section-label">Help</div>
-<h2>Support Actions</h2>
-</div>
-<div class="content">
-<a class="bigbtn purple" href="support.html">Open Troubleshooting</a>
-<a class="bigbtn blue" href="https://t.me/myiptvservice_support_bot" target="_blank">Telegram Support Bot</a>
-<a class="bigbtn gold" href="apk-library.html">Open APK Library</a>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="header">
-<div class="section-label">Quick Notes</div>
-<h2>Important Reminders</h2>
-</div>
-<div class="content">
-<ul class="linklist">
-<li>Use IPTV Smarters Pro as the primary customer app.</li>
-<li>Credentials must be entered exactly as provided.</li>
-<li>Do not share login credentials. Shared access can cause buffering or service interruption.</li>
-<li>If a download link fails, contact support or use the APK Library page.</li>
-</ul>
-</div>
-</div>
-<div class="footer-strip">
-<strong>MY IPTV Service Downloader Portal</strong>
-<div class="version">Version 1.0 • Last Updated: March 2026</div>
-</div>
-</div>
-<a class="telegram-float" href="https://t.me/myiptvservice_support_bot" target="_blank">💬 Telegram Support</a>
 </body>
 </html>
