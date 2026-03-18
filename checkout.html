@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>4MyTechService Checkout</title>
-
 <style>
 *{box-sizing:border-box}
 body{
@@ -18,14 +17,19 @@ body{
   margin:auto;
   padding:20px;
 }
-.card{
-  background:#111827;
-  border:1px solid #334155;
-  border-radius:14px;
-  padding:20px;
-  margin-bottom:18px;
+.header{
+  text-align:center;
+  margin-bottom:20px;
 }
-h1,h2{margin-top:0}
+.header h1{
+  margin:0 0 8px;
+  color:#86efac;
+}
+.header p{
+  margin:0;
+  color:#94a3b8;
+  line-height:1.5;
+}
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -34,6 +38,25 @@ h1,h2{margin-top:0}
 @media(max-width:900px){
   .grid{grid-template-columns:1fr}
 }
+.card{
+  background:#111827;
+  border:1px solid #334155;
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:18px;
+}
+h2{
+  margin-top:0;
+  margin-bottom:14px;
+}
+label{
+  display:block;
+  margin-bottom:6px;
+  color:#cbd5e1;
+}
+.field{
+  margin-bottom:14px;
+}
 input,select,textarea{
   width:100%;
   padding:12px;
@@ -41,10 +64,19 @@ input,select,textarea{
   border:1px solid #334155;
   background:#020617;
   color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:14px;
 }
-label{display:block;margin-bottom:6px}
-.field{margin-bottom:14px}
-
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+.note{
+  color:#94a3b8;
+  font-size:13px;
+  line-height:1.45;
+  margin-top:6px;
+}
 .summary{
   background:#020617;
   border:1px solid #334155;
@@ -54,194 +86,351 @@ label{display:block;margin-bottom:6px}
 .row{
   display:flex;
   justify-content:space-between;
+  gap:12px;
   margin-bottom:10px;
+}
+.row:last-child{
+  margin-bottom:0;
+}
+.summary-value{
+  text-align:right;
 }
 .total{
   font-weight:bold;
   color:#86efac;
   border-top:1px solid #334155;
   padding-top:10px;
+  margin-top:10px;
 }
-
 .status{
   margin-top:12px;
   padding:10px;
   border-radius:10px;
   display:none;
+  line-height:1.45;
 }
 .success{
   display:block;
   background:#052e16;
   border:1px solid #166534;
+  color:#bbf7d0;
 }
 .error{
   display:block;
   background:#450a0a;
   border:1px solid #991b1b;
+  color:#fecaca;
+}
+.footer-note{
+  text-align:center;
+  color:#94a3b8;
+  margin-top:10px;
+  font-size:13px;
 }
 </style>
 </head>
-
 <body>
 
 <div class="container">
-<h1>4MyTechService Checkout</h1>
+  <div class="header">
+    <h1>4MyTechService Checkout</h1>
+    <p>Review your approved service request, confirm your information, and complete payment securely.</p>
+  </div>
 
-<div class="grid">
+  <div class="grid">
+    <div class="card">
+      <h2>Service Details</h2>
 
-<div class="card">
-<h2>Service Details</h2>
+      <div class="field">
+        <label for="serviceTitle">Service Title</label>
+        <input id="serviceTitle" placeholder="Example: Device setup"/>
+      </div>
 
-<div class="field">
-<label>Service Title</label>
-<input id="serviceTitle" placeholder="Example: Device setup"/>
-</div>
+      <div class="field">
+        <label for="serviceCategory">Service Category</label>
+        <select id="serviceCategory">
+          <option value="Device Setup">Device Setup</option>
+          <option value="Remote Support">Remote Support</option>
+          <option value="Troubleshooting">Troubleshooting</option>
+          <option value="Training">Training</option>
+          <option value="Hardware Assistance">Hardware Assistance</option>
+          <option value="Custom Quote">Custom Quote</option>
+        </select>
+      </div>
 
-<div class="field">
-<label>Description</label>
-<textarea id="serviceDescription"></textarea>
-</div>
+      <div class="field">
+        <label for="serviceDescription">Service Description</label>
+        <textarea id="serviceDescription" placeholder="Describe the service being provided."></textarea>
+      </div>
 
-<div class="field">
-<label>Approved Amount (USD)</label>
-<input id="amount" type="number" value="50" readonly/>
-</div>
+      <div class="field">
+        <label for="amount">Approved Amount (USD)</label>
+        <input id="amount" type="number" value="50" readonly/>
+        <div class="note">This amount should match the approved quote you sent the customer.</div>
+      </div>
 
-<div class="field">
-<label>Optional Tip (USD)</label>
-<input id="tip" type="number" value="0" min="0" step="1"/>
-</div>
+      <div class="field">
+        <label for="tip">Optional Tip (USD)</label>
+        <input id="tip" type="number" value="0" min="0" step="1"/>
+        <div class="note">Optional. This is added on top of the approved service amount.</div>
+      </div>
+    </div>
 
-</div>
+    <div class="card">
+      <h2>Customer Information</h2>
 
-<div class="card">
-<h2>Customer Info</h2>
+      <div class="field">
+        <label for="fullName">Full Name</label>
+        <input id="fullName"/>
+      </div>
 
-<div class="field">
-<label>Name</label>
-<input id="name"/>
-</div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email"/>
+      </div>
 
-<div class="field">
-<label>Email</label>
-<input id="email"/>
-</div>
+      <div class="field">
+        <label for="phone">Phone</label>
+        <input id="phone"/>
+      </div>
 
-<div class="field">
-<label>Phone</label>
-<input id="phone"/>
-</div>
+      <div class="field">
+        <label for="address">Address</label>
+        <textarea id="address" placeholder="Street address, city, state, ZIP"></textarea>
+      </div>
 
-<h2>Order Summary</h2>
-<div class="summary">
-<div class="row"><span>Service</span><span id="sumService">-</span></div>
-<div class="row"><span>Amount</span><span id="sumAmount">$0</span></div>
-<div class="row"><span>Tip</span><span id="sumTip">$0</span></div>
-<div class="row total"><span>Total</span><span id="sumTotal">$0</span></div>
-</div>
+      <div class="field">
+        <label for="deviceType">Device Type</label>
+        <select id="deviceType">
+          <option value="ONN 4K Stick">ONN 4K Stick</option>
+          <option value="ONN 4K">ONN 4K</option>
+          <option value="ONN 4K Plus">ONN 4K Plus</option>
+          <option value="Firestick">Firestick</option>
+          <option value="Android Box">Android Box</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
 
-<div id="paypal-button-container" style="margin-top:14px;"></div>
-<div id="status" class="status"></div>
+      <div class="field">
+        <label for="deviceNickname">Device Nickname</label>
+        <input id="deviceNickname" placeholder="Living Room TV"/>
+      </div>
 
-</div>
+      <div class="field">
+        <label for="notes">Additional Notes</label>
+        <textarea id="notes" placeholder="Timing, contact preferences, or extra details."></textarea>
+      </div>
 
-</div>
+      <h2>Order Summary</h2>
+      <div class="summary">
+        <div class="row">
+          <span>Service</span>
+          <span class="summary-value" id="sumService">-</span>
+        </div>
+        <div class="row">
+          <span>Category</span>
+          <span class="summary-value" id="sumCategory">-</span>
+        </div>
+        <div class="row">
+          <span>Amount</span>
+          <span class="summary-value" id="sumAmount">$0.00</span>
+        </div>
+        <div class="row">
+          <span>Tip</span>
+          <span class="summary-value" id="sumTip">$0.00</span>
+        </div>
+        <div class="row total">
+          <span>Total</span>
+          <span class="summary-value" id="sumTotal">$0.00</span>
+        </div>
+      </div>
+
+      <div id="paypal-button-container" style="margin-top:14px;"></div>
+      <div id="status" class="status"></div>
+    </div>
+  </div>
+
+  <div class="footer-note">4MyTechService Checkout • Existing order schema preserved</div>
 </div>
 
 <script>
 const scriptURL = "https://script.google.com/macros/s/AKfycbyFGoXc-PfNNrCMb6dMSlGkE7w5CAF_7ObTslWoN2VHQU6OH7t_GZkzl4WD8miiAmIj/exec";
 
-function updateSummary(){
-  const service = document.getElementById('serviceTitle').value || '-';
-  const amount = Number(document.getElementById('amount').value || 0);
-  const tip = Number(document.getElementById('tip').value || 0);
-  const total = amount + tip;
+const serviceTitle = document.getElementById('serviceTitle');
+const serviceCategory = document.getElementById('serviceCategory');
+const serviceDescription = document.getElementById('serviceDescription');
+const amountInput = document.getElementById('amount');
+const tipInput = document.getElementById('tip');
 
-  document.getElementById('sumService').textContent = service;
-  document.getElementById('sumAmount').textContent = '$'+amount.toFixed(2);
-  document.getElementById('sumTip').textContent = '$'+tip.toFixed(2);
-  document.getElementById('sumTotal').textContent = '$'+total.toFixed(2);
+function getAmount() {
+  return Number(amountInput.value || 0);
 }
 
-document.querySelectorAll('input,textarea').forEach(el=>{
-  el.addEventListener('input', updateSummary);
-});
+function getTip() {
+  return Number(tipInput.value || 0);
+}
 
-function showStatus(msg,type){
+function getTotal() {
+  return getAmount() + getTip();
+}
+
+function showStatus(msg, type) {
   const box = document.getElementById('status');
   box.className = 'status ' + type;
   box.textContent = msg;
 }
 
-function validate(){
-  if(!document.getElementById('name').value ||
-     !document.getElementById('email').value){
-     showStatus('Fill out required fields','error');
-     return false;
+function updateSummary() {
+  document.getElementById('sumService').textContent = serviceTitle.value.trim() || '-';
+  document.getElementById('sumCategory').textContent = serviceCategory.value || '-';
+  document.getElementById('sumAmount').textContent = '$' + getAmount().toFixed(2);
+  document.getElementById('sumTip').textContent = '$' + getTip().toFixed(2);
+  document.getElementById('sumTotal').textContent = '$' + getTotal().toFixed(2);
+}
+
+function getCustomerData() {
+  return {
+    fullName: document.getElementById('fullName').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+    address: document.getElementById('address').value.trim(),
+    deviceType: document.getElementById('deviceType').value,
+    deviceNickname: document.getElementById('deviceNickname').value.trim(),
+    notes: document.getElementById('notes').value.trim()
+  };
+}
+
+function validate() {
+  const customer = getCustomerData();
+
+  if (!customer.fullName || !customer.email || !customer.phone) {
+    showStatus('Please complete Full Name, Email, and Phone before payment.', 'error');
+    return false;
   }
+
+  if (!serviceTitle.value.trim()) {
+    showStatus('Please enter a service title before payment.', 'error');
+    return false;
+  }
+
+  if (getAmount() <= 0) {
+    showStatus('Approved amount must be greater than $0.00.', 'error');
+    return false;
+  }
+
   return true;
 }
 
-async function saveOrder(data){
-  await fetch(scriptURL,{
-    method:'POST',
-    headers:{'Content-Type':'text/plain'},
-    body:JSON.stringify(data)
+async function saveOrder(orderData) {
+  const response = await fetch(scriptURL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'text/plain;charset=utf-8'
+    },
+    body: JSON.stringify(orderData)
   });
+
+  return await response.json();
 }
 
-function renderPayPal(){
-paypal.Buttons({
+function applyQueryParams() {
+  const params = new URLSearchParams(window.location.search);
 
-createOrder: function(data, actions){
-  if(!validate()) return;
+  if (params.get('service')) serviceTitle.value = params.get('service');
+  if (params.get('category')) serviceCategory.value = params.get('category');
+  if (params.get('description')) serviceDescription.value = params.get('description');
+  if (params.get('amount')) amountInput.value = params.get('amount');
 
-  const amount = Number(document.getElementById('amount').value);
-  const tip = Number(document.getElementById('tip').value || 0);
-  const total = amount + tip;
+  if (params.get('name')) document.getElementById('fullName').value = params.get('name');
+  if (params.get('email')) document.getElementById('email').value = params.get('email');
+  if (params.get('phone')) document.getElementById('phone').value = params.get('phone');
+  if (params.get('address')) document.getElementById('address').value = params.get('address');
+  if (params.get('device')) document.getElementById('deviceType').value = params.get('device');
+  if (params.get('nickname')) document.getElementById('deviceNickname').value = params.get('nickname');
+  if (params.get('notes')) document.getElementById('notes').value = params.get('notes');
+}
 
-  return actions.order.create({
-    purchase_units:[{
-      amount:{value: total.toFixed(2)}
-    }]
-  });
-},
+function renderPayPal() {
+  const container = document.getElementById('paypal-button-container');
+  container.innerHTML = '';
 
-onApprove: async function(data, actions){
-  const details = await actions.order.capture();
-
-  const order = {
-    name: document.getElementById('name').value,
-    email: document.getElementById('email').value,
-    service: document.getElementById('serviceTitle').value,
-    amount: document.getElementById('amount').value,
-    tip: document.getElementById('tip').value,
-    total: document.getElementById('sumTotal').textContent,
-    paypalId: details.id,
-    time: new Date().toISOString()
-  };
-
-  try{
-    await saveOrder(order);
-    showStatus('Payment successful. Order saved.','success');
-  }catch{
-    showStatus('Payment completed but saving failed.','error');
+  if (!window.paypal) {
+    showStatus('PayPal failed to load. Please check your client ID.', 'error');
+    return;
   }
-},
 
-onError: function(err){
-  console.error(err);
-  showStatus('PayPal error. Try again.','error');
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      if (!validate()) {
+        return Promise.reject(new Error('Validation failed'));
+      }
+
+      return actions.order.create({
+        purchase_units: [{
+          description: serviceTitle.value.trim(),
+          amount: {
+            currency_code: 'USD',
+            value: getTotal().toFixed(2)
+          }
+        }]
+      });
+    },
+
+    onApprove: async function(data, actions) {
+      try {
+        const details = await actions.order.capture();
+        const customer = getCustomerData();
+
+        const orderData = {
+          timestamp: new Date().toISOString(),
+          orderType: 'Manual Checkout Form',
+          fullName: customer.fullName,
+          email: customer.email,
+          phone: customer.phone,
+          deviceType: customer.deviceType,
+          deviceNickname: customer.deviceNickname,
+          macAddress: '',
+          notes: customer.notes + (getTip() > 0 ? ` | Tip: $${getTip().toFixed(2)}` : ''),
+          planName: serviceTitle.value.trim(),
+          amount: getTotal().toFixed(2),
+          paymentType: 'PayPal One-Time Payment',
+          paypalSubscriptionId: details.id || '',
+          status: 'Paid - Awaiting Fulfillment',
+          address: customer.address,
+          orderShipped: 'Not Shipped',
+          trackingNumber: ''
+        };
+
+        const result = await saveOrder(orderData);
+
+        if (result.success) {
+          showStatus('Payment successful. Your order has been saved.', 'success');
+        } else {
+          showStatus('Payment succeeded, but saving the order failed. Please check your Google Sheet.', 'error');
+        }
+      } catch (error) {
+        console.error(error);
+        showStatus('Payment completed, but there was an error saving your order details.', 'error');
+      }
+    },
+
+    onError: function(err) {
+      console.error('PayPal error:', err);
+      showStatus('PayPal error. Please try again.', 'error');
+    }
+  }).render('#paypal-button-container');
 }
 
-}).render('#paypal-button-container');
-}
+[serviceTitle, serviceCategory, serviceDescription, amountInput, tipInput].forEach(el => {
+  el.addEventListener('input', updateSummary);
+  el.addEventListener('change', updateSummary);
+});
 
+applyQueryParams();
 updateSummary();
 </script>
 
 <script src="https://www.paypal.com/sdk/js?client-id=AWGNEkU-dS6LJz4eaNHNB93LP5SxnRc377VvcdF7BIVE8jYXiK2Banltv9Cr85F9jMQLp33GoOplY5yu&currency=USD"></script>
-
 <script>
 renderPayPal();
 </script>
