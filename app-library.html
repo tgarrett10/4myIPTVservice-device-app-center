@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>4MyIPTV Service App Library</title>
 <style>
 :root{
@@ -23,110 +23,44 @@ body{
   background:linear-gradient(180deg,#08111f,#0f172a);
   color:var(--text);
 }
-.wrap{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-}
+.wrap{max-width:1200px;margin:auto;padding:18px}
 .card{
   background:var(--panel);
   border:1px solid var(--border);
   border-radius:18px;
-  margin-bottom:16px;
+  margin-bottom:14px;
   overflow:hidden;
   box-shadow:0 12px 28px rgba(0,0,0,.28);
 }
-.hero{
-  padding:24px;
-  text-align:center;
-}
-h1{
-  margin:0 0 8px;
-  color:#86efac;
-  font-size:2rem;
-}
-h2{
-  margin:0;
-}
-.tagline{
-  margin:10px auto 14px auto;
+.hero{padding:18px}
+h1{margin:0 0 8px;text-align:center;color:#86efac;font-size:2rem}
+h2{margin:0 0 6px}
+.tagline-banner{
+  margin:10px auto 12px auto;
   max-width:760px;
   padding:10px 14px;
   border-radius:10px;
   border:1px solid rgba(255,255,255,.12);
   background:rgba(255,255,255,.04);
+  text-align:center;
   font-weight:600;
   font-size:16px;
   letter-spacing:.08em;
   color:#e2e8f0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.18);
 }
-.sub{
-  color:var(--muted);
-  line-height:1.6;
-  max-width:840px;
-  margin:0 auto;
-}
-.notice,.tip{
+.sub{color:var(--muted);line-height:1.5}
+.info,.tip{
   border-radius:14px;
   padding:12px 14px;
-  margin-top:14px;
-  line-height:1.5;
-  text-align:left;
+  margin-top:12px;
+  line-height:1.45;
 }
-.notice{
-  background:rgba(59,130,246,.10);
-  border:1px solid rgba(59,130,246,.24);
-  color:#dbeafe;
-}
-.tip{
-  background:rgba(245,158,11,.12);
-  border:1px solid rgba(245,158,11,.28);
-  color:#fde68a;
-}
-.header{
-  padding:14px 16px;
-  border-bottom:1px solid var(--border);
-  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
-}
-.content{
-  padding:16px;
-}
-.section-label{
-  font-size:11px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:#94a3b8;
-  margin:0 0 8px 0;
-}
-.grid2{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-@media (max-width:900px){
-  .grid2{grid-template-columns:1fr}
-}
-.btnrow{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-.bigbtn{
-  display:block;
-  width:100%;
-  padding:18px 18px;
-  border-radius:14px;
-  text-decoration:none;
-  font-weight:bold;
-  text-align:center;
-  font-size:18px;
-  margin-bottom:12px;
-  border:none;
-  color:#fff;
-}
+.info{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe}
+.tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a}
+.jumpbar{display:flex;gap:10px;flex-wrap:wrap}
 .btn{
-  padding:11px 14px;
+  padding:9px 12px;
   border-radius:999px;
   text-decoration:none;
   font-weight:bold;
@@ -134,31 +68,61 @@ h2{
   display:inline-block;
   border:none;
   cursor:pointer;
-  font-size:14px;
+  font-size:13px;
   color:#fff;
 }
-.blue{background:var(--blue)}
-.green{background:var(--green);color:#052e16}
-.gold{background:var(--gold);color:#3b2400}
-.purple{background:var(--purple)}
-.linklist{
-  margin:0;
-  padding-left:18px;
+.playbtn{background:var(--blue)}
+.directbtn{background:var(--green);color:#052e16}
+.goldbtn{background:var(--gold);color:#3b2400}
+.adminbtn{background:var(--purple)}
+.linkbtn{background:#475569;color:#fff}
+.header{
+  padding:14px 16px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
 }
-.linklist li{
-  margin:0 0 8px;
-  line-height:1.5;
+.content{padding:12px 16px}
+.section-label{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#94a3b8;
+  margin:0 0 8px 0;
 }
-.tile{
-  background:#0f172a;
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:980px){.grid2{grid-template-columns:1fr}}
+.search{
+  width:100%;
+  background:#0b1220;
   border:1px solid #243044;
-  border-radius:14px;
-  padding:14px;
+  border-radius:12px;
+  color:#e2e8f0;
+  padding:12px 14px;
+  font-size:14px;
+  outline:none;
 }
-.tile strong{
-  display:block;
-  margin-bottom:8px;
+.appgrid{padding:8px 14px 10px}
+.approw{
+  display:grid;
+  grid-template-columns:52px 1fr 230px;
+  gap:10px;
+  align-items:center;
+  padding:8px 0;
+  border-bottom:1px solid #1f2937;
 }
+.approw:last-child{border-bottom:none}
+.order{
+  width:42px;height:42px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:bold;background:#1f2937;
+}
+.order.core{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.25);color:#bbf7d0}
+.order.movie{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.25);color:#bfdbfe}
+.order.sports{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.22);color:#fde68a}
+.order.util{background:rgba(147,51,234,.15);border:1px solid rgba(147,51,234,.22);color:#f3e8ff}
+.appname{font-weight:bold}
+.small{font-size:.86rem;color:var(--muted);line-height:1.4}
+.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .footer-strip{
   margin-top:18px;
   padding:16px 10px;
@@ -167,10 +131,17 @@ h2{
   color:#cbd5e1;
   font-size:.9rem;
 }
-.footer-strip .version{
-  margin-top:6px;
-  color:#94a3b8;
-  font-size:.82rem;
+.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
+.bottom-actions{
+  margin-top:14px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+@media (max-width:980px){
+  .approw{grid-template-columns:52px 1fr}
+  .actions{grid-column:2;justify-content:flex-start}
 }
 </style>
 </head>
@@ -179,81 +150,207 @@ h2{
 
   <div class="card hero">
     <h1>4MyIPTV Service App Library</h1>
-    <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
-    <div class="sub">
-      This is the public app library for customer-safe installs and setup help. Use the options below to install the primary app and reach support resources without opening any internal tools.
+    <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
+
+    <div class="jumpbar" style="justify-content:center;margin-bottom:12px;">
+      <a class="btn playbtn" href="index.html">Customer Start Page</a>
+      <a class="btn goldbtn" href="device-setup.html">Device Setup</a>
+      <a class="btn adminbtn" href="support.html">Support / Tips</a>
+      <a class="btn linkbtn" href="downloader-portal.html">Downloader Portal</a>
     </div>
 
-    <div class="btnrow" style="margin-top:16px;">
-      <a class="btn blue" href="index.html">Customer Start Page</a>
-      <a class="btn gold" href="device-setup.html">Device Setup</a>
-      <a class="btn purple" href="support.html">Support / Tips</a>
-      <a class="btn green" href="downloader-portal.html">Downloader Portal</a>
+    <div class="jumpbar" style="margin-top:12px">
+      <a class="btn directbtn" href="#core">Core IPTV Apps</a>
+      <a class="btn playbtn" href="#movies">Movie / TV Apps</a>
+      <a class="btn goldbtn" href="#sports">Sports Apps</a>
+      <a class="btn adminbtn" href="#utilities">Utility Apps</a>
     </div>
 
-    <div class="notice">
-      <strong>Primary app recommendation</strong><br/>
-      IPTV Smarters Pro is the main customer app. Start there first unless you were specifically told to use another app by your installer.
+    <div class="info">
+      <strong>How to use this page</strong><br />
+      This is the customer-safe app library. Choose the category you need and use the download buttons below for the app you want to install.
     </div>
 
     <div class="tip">
-      <strong>Best customer flow</strong><br/>
-      1. Open Device Setup if your device still needs preparation<br/>
-      2. Install IPTV Smarters Pro<br/>
-      3. Enter your credentials exactly as provided<br/>
-      4. Use Support / Tips if you need help
-    </div>
-  </div>
-
-  <div class="grid2">
-    <div class="card">
-      <div class="header">
-        <div class="section-label">Primary Install</div>
-        <h2>Main Customer App</h2>
-      </div>
-      <div class="content">
-        <a class="bigbtn gold" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank" rel="noopener noreferrer">Install IPTV Smarters Pro</a>
-        <div class="tile">
-          <strong>Recommended for most customers</strong>
-          Start with IPTV Smarters Pro for the easiest guided setup experience.
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="header">
-        <div class="section-label">Support</div>
-        <h2>Need Help?</h2>
-      </div>
-      <div class="content">
-        <a class="bigbtn purple" href="support.html">Open Support / Tips</a>
-        <a class="bigbtn blue" href="device-setup.html">Open Device Setup Center</a>
-        <a class="bigbtn green" href="downloader-portal.html">Open Downloader Portal</a>
-      </div>
+      <strong>Recommended order:</strong> Start with IPTV Smarters Pro first. If you need setup help, go to Device Setup or Support / Tips for the next best step.
     </div>
   </div>
 
   <div class="card">
     <div class="header">
-      <div class="section-label">Important Notes</div>
-      <h2>Before You Install</h2>
+      <div class="section-label">Library Search</div>
+      <h2>Find an App Quickly</h2>
+      <div class="sub">Type any part of an app name to filter the page.</div>
     </div>
     <div class="content">
-      <ul class="linklist">
-        <li>Use IPTV Smarters Pro as the primary customer app unless told otherwise.</li>
-        <li>Your device must be connected to the internet.</li>
-        <li>Enter your username, password, and server URL exactly as provided.</li>
-        <li>Do not share login credentials. Shared access can cause buffering or service interruption.</li>
-        <li>If you run into trouble, use the Support / Tips page or Device Setup Center for the next best step.</li>
-      </ul>
+      <input id="searchBox" class="search" type="text" placeholder="Search apps like Smarters, FlixVision, SportsFire, VLC..." />
     </div>
+  </div>
+
+  <div class="grid2">
+    <div>
+      <div class="card" id="core">
+        <div class="header">
+          <div class="section-label">Core IPTV</div>
+          <h2>Core IPTV Apps</h2>
+          <div class="sub">Primary IPTV and media player applications.</div>
+        </div>
+        <div class="appgrid">
+          <div class="approw app-row">
+            <div class="order core">C1</div>
+            <div><div class="appname">IPTV Smarters Pro</div><div class="small">Core IPTV app.</div></div>
+            <div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank" rel="noopener noreferrer">Download v5.0</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order core">C2</div>
+            <div><div class="appname">AMPlayer</div><div class="small">Alternate IPTV / media player.</div></div>
+            <div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/J99DWABk" target="_blank" rel="noopener noreferrer">Download v3.0.2</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order core">C3</div>
+            <div><div class="appname">Bear Player</div><div class="small">Alternate IPTV / media player.</div></div>
+            <div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/m35yb9lekyxldlw/Bear+Player_v2.20.24_MOD_modded-1.com.apk/file" target="_blank" rel="noopener noreferrer">Download v2.20.24</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order core">C4</div>
+            <div><div class="appname">BPlayer</div><div class="small">Alternate IPTV / media player.</div></div>
+            <div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/TKHUxRbj" target="_blank" rel="noopener noreferrer">Download v1.3.2</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order core">C5</div>
+            <div><div class="appname">VLC Media Player</div><div class="small">Media playback utility.</div></div>
+            <div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/iacQyjir" target="_blank" rel="noopener noreferrer">Download v3.3.4</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order core">C6</div>
+            <div><div class="appname">MX Player</div><div class="small">External media player for additional playback support.</div></div>
+            <div class="actions"><a class="btn directbtn" href="https://f.mxplayer.j2inter.com/download?id=mxplayer&type=arm" target="_blank" rel="noopener noreferrer">Download Latest</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order core">C7</div>
+            <div><div class="appname">NVPlayer</div><div class="small">Recommended external player for apps like BeeTV.</div></div>
+            <div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file_premium/juor2m522tuhjog/NV_Video_Player_%2528v1.1.2%2529.apk/file" target="_blank" rel="noopener noreferrer">Download v1.1.2</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="sports">
+        <div class="header">
+          <div class="section-label">Sports</div>
+          <h2>Sports Apps</h2>
+          <div class="sub">Sports-focused viewing applications.</div>
+        </div>
+        <div class="appgrid">
+          <div class="approw app-row">
+            <div class="order sports">S1</div>
+            <div><div class="appname">FalconCast</div><div class="small">Sports app.</div></div>
+            <div class="actions"><a class="btn goldbtn" href="https://www.mediafire.com/file/5mvpvpdpzn62h05/FalconCast_(V4.1)+(1).apk/file" target="_blank" rel="noopener noreferrer">Download v4.1</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order sports">S2</div>
+            <div><div class="appname">Playfy TV</div><div class="small">Sports app.</div></div>
+            <div class="actions"><a class="btn goldbtn" href="https://www.mediafire.com/file/tfdwts9y73jpdrp/PLAYFy_TV_1.5.apk/file" target="_blank" rel="noopener noreferrer">Download v1.5</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order sports">S3</div>
+            <div><div class="appname">SportsFire</div><div class="small">Sports app.</div></div>
+            <div class="actions"><a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/bJgTC1aw" target="_blank" rel="noopener noreferrer">Download v2.0.8</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order sports">S4</div>
+            <div><div class="appname">StreamFire</div><div class="small">Sports app.</div></div>
+            <div class="actions"><a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/EM6TZXCh" target="_blank" rel="noopener noreferrer">Download v1.2.3</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" id="movies">
+        <div class="header">
+          <div class="section-label">Movies / TV</div>
+          <h2>Movie / TV Apps</h2>
+          <div class="sub">Streaming and on-demand video applications.</div>
+        </div>
+        <div class="appgrid">
+          <div class="approw app-row">
+            <div class="order movie">M1</div>
+            <div><div class="appname">FlixVision</div><div class="small">Movie / TV app using direct APK link.</div></div>
+            <div class="actions"><a class="btn playbtn" href="https://github.com/fvision8/fvreleases/releases/download/v3.4.0r/FlixVision_v3.4.0.apk" target="_blank" rel="noopener noreferrer">Download v3.4.0</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order movie">M2</div>
+            <div><div class="appname">Cinema HQ</div><div class="small">Movie / TV app.</div></div>
+            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/sfreu6elqjpe248/Cinama+HQ+5.6.apk/file" target="_blank" rel="noopener noreferrer">Download v5.6</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order movie">M3</div>
+            <div><div class="appname">FilmPlus</div><div class="small">Movie / TV app.</div></div>
+            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/sxwa97zmes7jey6/FilmPlus_-_v2.2.8r_%25281%2529.apk/file" target="_blank" rel="noopener noreferrer">Download v2.2.8</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order movie">M4</div>
+            <div><div class="appname">BeeTV</div><div class="small">Movie / TV app. NVPlayer recommended for playback support.</div></div>
+            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/5khvjyoz26umm0v/BeeTV_4.5.9_2459_06421d.apk/file" target="_blank" rel="noopener noreferrer">Download v4.5.9</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order movie">M5</div>
+            <div><div class="appname">OnStream</div><div class="small">Movie / TV app.</div></div>
+            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/226ail3nl8b8s1g/onstream-fireTV.apk/file" target="_blank" rel="noopener noreferrer">Download v1.0.0</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order movie">M6</div>
+            <div><div class="appname">Movie HD</div><div class="small">Movie / TV app.</div></div>
+            <div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/u4790rpo5l4md0s/moviehd-542-mod-1.apk/file" target="_blank" rel="noopener noreferrer">Download v5.4.2</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="utilities">
+        <div class="header">
+          <div class="section-label">Utilities</div>
+          <h2>Utility Apps</h2>
+          <div class="sub">Support and maintenance tools.</div>
+        </div>
+        <div class="appgrid">
+          <div class="approw app-row">
+            <div class="order util">U1</div>
+            <div><div class="appname">Background Apps & Process List</div><div class="small">Utility tool for closing background apps.</div></div>
+            <div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/fyzsjrY4" target="_blank" rel="noopener noreferrer">Download Latest</a></div>
+          </div>
+          <div class="approw app-row">
+            <div class="order util">U2</div>
+            <div><div class="appname">Proton VPN</div><div class="small">VPN utility.</div></div>
+            <div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/tf5njBkT" target="_blank" rel="noopener noreferrer">Download v5.14.76.0</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-actions">
+    <a class="btn blue" href="index.html">Customer Start Page</a>
+    <a class="btn goldbtn" href="device-setup.html">Device Setup</a>
+    <a class="btn adminbtn" href="support.html">Support / Tips</a>
   </div>
 
   <div class="footer-strip">
-    <strong>4MyIPTV Service • App Library</strong>
-    <div class="version">Version 1.0 • Last Updated: March 2026</div>
+    <strong>4MyIPTV Service App Library • Customer-Safe Download Page</strong>
+    <div class="version">Version 1.1 • Last Updated: March 2026</div>
   </div>
-
 </div>
+
+<script>
+const searchBox = document.getElementById('searchBox');
+const rows = Array.from(document.querySelectorAll('.app-row'));
+
+searchBox.addEventListener('input', function () {
+  const term = this.value.toLowerCase().trim();
+  rows.forEach(row => {
+    const text = row.innerText.toLowerCase();
+    row.style.display = text.includes(term) ? 'grid' : 'none';
+  });
+});
+</script>
 </body>
 </html>
