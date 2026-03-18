@@ -59,7 +59,18 @@ h2{margin:0 0 6px}
 .confidential{background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.28);color:#fed7aa}
 .info{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe}
 .tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a}
-.jumpbar{display:flex;gap:10px;flex-wrap:wrap}
+.jumpbar{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.topnav{
+  margin-bottom:12px;
+}
+.categorynav{
+  margin-top:12px;
+}
 .btn{
   padding:9px 12px;
   border-radius:999px;
@@ -71,6 +82,7 @@ h2{margin:0 0 6px}
   cursor:pointer;
   font-size:13px;
   color:#fff;
+  min-width:170px;
 }
 .playbtn{background:var(--blue)}
 .directbtn{background:var(--green);color:#052e16}
@@ -140,9 +152,17 @@ h2{margin:0 0 6px}
   flex-wrap:wrap;
   gap:10px;
 }
+.bottom-actions .btn{
+  min-width:170px;
+}
 @media (max-width:980px){
   .approw{grid-template-columns:52px 1fr}
   .actions{grid-column:2;justify-content:flex-start}
+}
+@media (max-width:640px){
+  .btn{
+    min-width:220px;
+  }
 }
 </style>
 </head>
@@ -153,7 +173,7 @@ h2{margin:0 0 6px}
     <h1>4MyIPTV Service APK Library</h1>
     <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
 
-    <div class="jumpbar" style="justify-content:center;margin-bottom:12px;">
+    <div class="jumpbar topnav">
       <a class="btn adminbtn" href="dashboard.html">Back to Installer Dashboard</a>
       <a class="btn playbtn" href="app-library.html">Open Public App Library</a>
     </div>
@@ -163,7 +183,7 @@ h2{margin:0 0 6px}
       This page is for internal installer workflow use. Keep only the APK links you want active. Update this page first before changing installer workflow buttons elsewhere.
     </div>
 
-    <div class="jumpbar" style="margin-top:12px">
+    <div class="jumpbar categorynav">
       <a class="btn directbtn" href="#core">Core IPTV Apps</a>
       <a class="btn playbtn" href="#movies">Movie / TV Apps</a>
       <a class="btn goldbtn" href="#sports">Sports Apps</a>
@@ -339,7 +359,7 @@ h2{margin:0 0 6px}
 
   <div class="footer-strip">
     <strong>4MyIPTV Service APK Library • Controlled Internal Download Page</strong>
-    <div class="version">Version 1.9 • Last Updated: March 2026</div>
+    <div class="version">Version 2.0 • Last Updated: March 2026</div>
   </div>
 </div>
 
