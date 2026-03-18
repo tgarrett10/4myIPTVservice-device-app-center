@@ -51,6 +51,11 @@
       opacity: 0.92;
     }
 
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.65;
+    }
+
     .primary-btn {
       background: #2563eb;
     }
@@ -334,7 +339,10 @@
 
 <script>
   let allOrders = [];
-  let selectedOrder = null;
+  let selectedOrderId = null;
+  let isLoadingOrders = false;
+  let isSavingRowStatus = false;
+  let isSavingDetails = false;
 
   const apiUrlInput = document.getElementById('apiUrl');
   const searchInput = document.getElementById('searchInput');
@@ -342,6 +350,8 @@
   const quickFilters = document.getElementById('quickFilters');
   const ordersTableBody = document.querySelector('#ordersTable tbody');
   const detailsContent = document.getElementById('detailsContent');
+  const saveUrlBtn = document.getElementById('saveUrlBtn');
+  const loadOrdersBtn = document.getElementById('loadOrdersBtn');
 
   function showMessage(text, type) {
     const message = document.getElementById('message');
@@ -351,8 +361,23 @@
 
   function saveUrl() {
     const url = apiUrlInput.value.trim();
+    if (!url) {
+      showMessage('Please paste your Apps Script URL before saving.', 'error');
+      return;
+    }
     localStorage.setItem('apiUrl', url);
     showMessage('API URL saved.', 'success');
+  }
+
+  function getEffectiveApiUrl() {
+    const typedUrl = apiUrlInput.value.trim();
+    const savedUrl = localStorage.getItem('apiUrl') || '';
+
+    if (typedUrl) {
+      return typedUrl;
+    }
+
+    return savedUrl.trim();
   }
 
   function getField(order, possibleNames) {
@@ -364,6 +389,10 @@
     return '';
   }
 
+  function getRowId(order) {
+    return String(getField(order, ['RowNumber', 'rowNumber', 'row_number']));
+  }
+
   function escapeHtml(value) {
     return String(value || '')
       .replace(/&/g, '&amp;')
@@ -371,6 +400,11 @@
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
+  }
+
+  function displayValue(value, fallback = 'Not provided') {
+    const clean = String(value || '').trim();
+    return clean ? escapeHtml(clean) : '<span class="muted">' + escapeHtml(fallback) + '</span>';
   }
 
   function updateStats(orders) {
@@ -396,12 +430,52 @@
     }
   }
 
-  async function updateStatus(rowNumber, newStatus) {
-    const url = localStorage.getItem('apiUrl');
+  function setLoadingState(loading) {
+    isLoadingOrders = loading;
+    loadOrdersBtn.disabled = loading;
+    saveUrlBtn.disabled = loading;
+
+    if (loading) {
+      loadOrdersBtn.textContent = 'Loading...';
+    } else {
+      loadOrdersBtn.textContent = 'Load Orders';
+    }
+  }
+
+  function getSelectedOrder() {
+    if (!selectedOrderId) return null;
+    return allOrders.find(order => getRowId(order) === selectedOrderId) || null;
+  }
+
+  function setSelectedOrder(order) {
+    if (!order) {
+      selectedOrderId = null;
+      return;
+    }
+
+    const rowId = getRowId(order);
+    selectedOrderId = rowId || null;
+  }
+
+  async function updateStatus(rowNumber, newStatus, buttonEl) {
+    const url = getEffectiveApiUrl();
 
     if (!url) {
-      showMessage('API URL is missing.', 'error');
+      showMessage('API URL is missing. Paste it into the field first.', 'error');
       return;
+    }
+
+    if (!rowNumber) {
+      showMessage('This order is missing its row number, so status cannot be updated.', 'error');
+      return;
+    }
+
+    isSavingRowStatus = true;
+
+    const originalText = buttonEl ? buttonEl.textContent : 'Save';
+    if (buttonEl) {
+      buttonEl.disabled = true;
+      buttonEl.textContent = 'Saving...';
     }
 
     try {
@@ -421,30 +495,57 @@
         showMessage('Status updated successfully.', 'success');
         await loadOrders(true);
       } else {
-        showMessage('Status update failed: ' + (result.error || 'Unknown error'), 'error');
+        showMessage('Status update failed: ' + (result.error || 'Unknown error from Apps Script.'), 'error');
       }
     } catch (error) {
       console.error(error);
       showMessage('Error updating status: ' + error.message, 'error');
+    } finally {
+      isSavingRowStatus = false;
+      if (buttonEl) {
+        buttonEl.disabled = false;
+        buttonEl.textContent = originalText;
+      }
     }
   }
 
   async function updateOrderFields() {
+    const selectedOrder = getSelectedOrder();
+
     if (!selectedOrder) {
       showMessage('Select an order first.', 'error');
       return;
     }
 
-    const url = localStorage.getItem('apiUrl');
+    const url = getEffectiveApiUrl();
     if (!url) {
-      showMessage('API URL is missing.', 'error');
+      showMessage('API URL is missing. Paste it into the field first.', 'error');
       return;
     }
 
     const rowNumber = getField(selectedOrder, ['RowNumber']);
-    const orderShipped = document.getElementById('detailOrderShipped').value;
-    const trackingNumber = document.getElementById('detailTrackingNumber').value.trim();
-    const notes = document.getElementById('detailNotes').value.trim();
+    if (!rowNumber) {
+      showMessage('This order is missing its row number, so details cannot be updated.', 'error');
+      return;
+    }
+
+    const orderShippedEl = document.getElementById('detailOrderShipped');
+    const trackingNumberEl = document.getElementById('detailTrackingNumber');
+    const notesEl = document.getElementById('detailNotes');
+    const saveBtn = document.getElementById('saveDetailFieldsBtn');
+
+    if (!orderShippedEl || !trackingNumberEl || !notesEl || !saveBtn) {
+      showMessage('Detail fields are not ready. Please reselect the order and try again.', 'error');
+      return;
+    }
+
+    const orderShipped = orderShippedEl.value;
+    const trackingNumber = trackingNumberEl.value.trim();
+    const notes = notesEl.value.trim();
+
+    isSavingDetails = true;
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Saving...';
 
     try {
       const response = await fetch(url, {
@@ -465,11 +566,18 @@
         showMessage('Order details updated successfully.', 'success');
         await loadOrders(true);
       } else {
-        showMessage('Order detail update failed: ' + (result.error || 'Unknown error'), 'error');
+        showMessage('Order detail update failed: ' + (result.error || 'Unknown error from Apps Script.'), 'error');
       }
     } catch (error) {
       console.error(error);
       showMessage('Error updating order details: ' + error.message, 'error');
+    } finally {
+      isSavingDetails = false;
+      const refreshedSaveBtn = document.getElementById('saveDetailFieldsBtn');
+      if (refreshedSaveBtn) {
+        refreshedSaveBtn.disabled = false;
+        refreshedSaveBtn.textContent = 'Save Shipping / Tracking / Notes';
+      }
     }
   }
 
@@ -498,31 +606,31 @@
     detailsContent.innerHTML = `
       <div class="detail-row">
         <div class="detail-label">Full Name</div>
-        <div class="detail-value">${escapeHtml(fullName)}</div>
+        <div class="detail-value">${displayValue(fullName)}</div>
       </div>
       <div class="detail-row">
         <div class="detail-label">Email</div>
-        <div class="detail-value">${escapeHtml(email)}</div>
+        <div class="detail-value">${displayValue(email)}</div>
       </div>
       <div class="detail-row">
         <div class="detail-label">Phone</div>
-        <div class="detail-value">${escapeHtml(phone)}</div>
+        <div class="detail-value">${displayValue(phone)}</div>
       </div>
       <div class="detail-row">
         <div class="detail-label">Address</div>
-        <div class="detail-value">${escapeHtml(address)}</div>
+        <div class="detail-value">${displayValue(address)}</div>
       </div>
       <div class="detail-row">
         <div class="detail-label">Service</div>
-        <div class="detail-value">${escapeHtml(service)}</div>
+        <div class="detail-value">${displayValue(service)}</div>
       </div>
       <div class="detail-row">
         <div class="detail-label">Amount</div>
-        <div class="detail-value">$${escapeHtml(amount)}</div>
+        <div class="detail-value">${String(amount).trim() ? '$' + escapeHtml(amount) : '<span class="muted">Not provided</span>'}</div>
       </div>
       <div class="detail-row">
         <div class="detail-label">Status</div>
-        <div class="detail-value">${escapeHtml(status)}</div>
+        <div class="detail-value">${displayValue(status)}</div>
       </div>
       <div class="detail-row">
         <div class="detail-label">Order Shipped</div>
@@ -539,11 +647,11 @@
       </div>
       <div class="detail-row">
         <div class="detail-label">Device Type</div>
-        <div class="detail-value">${escapeHtml(deviceType)}</div>
+        <div class="detail-value">${displayValue(deviceType)}</div>
       </div>
       <div class="detail-row">
         <div class="detail-label">Device Nickname</div>
-        <div class="detail-value">${escapeHtml(deviceNickname)}</div>
+        <div class="detail-value">${displayValue(deviceNickname)}</div>
       </div>
       <div class="detail-row">
         <div class="detail-label">Notes</div>
@@ -551,15 +659,15 @@
       </div>
       <div class="detail-row">
         <div class="detail-label">Payment Type</div>
-        <div class="detail-value">${escapeHtml(paymentType)}</div>
+        <div class="detail-value">${displayValue(paymentType)}</div>
       </div>
       <div class="detail-row">
         <div class="detail-label">PayPal ID</div>
-        <div class="detail-value">${escapeHtml(paypalId)}</div>
+        <div class="detail-value">${displayValue(paypalId)}</div>
       </div>
       <div class="detail-row">
         <div class="detail-label">Timestamp</div>
-        <div class="detail-value">${escapeHtml(timestamp)}</div>
+        <div class="detail-value">${displayValue(timestamp)}</div>
       </div>
       <div class="detail-actions">
         <button type="button" id="saveDetailFieldsBtn" class="success-btn">Save Shipping / Tracking / Notes</button>
@@ -596,6 +704,7 @@
 
   function renderOrders() {
     const filtered = getFilteredOrders();
+    const selectedOrder = getSelectedOrder();
 
     updateStats(allOrders);
     ordersTableBody.innerHTML = '';
@@ -606,25 +715,26 @@
       return;
     }
 
+    let displaySelectedOrder = null;
+
     if (selectedOrder) {
-      const updatedSelected = allOrders.find(order =>
-        String(getField(order, ['RowNumber'])) === String(getField(selectedOrder, ['RowNumber']))
-      );
-      selectedOrder = updatedSelected || null;
+      displaySelectedOrder = filtered.find(order => getRowId(order) === selectedOrderId) || null;
     }
 
-    if (!selectedOrder) {
-      selectedOrder = filtered[0];
+    if (!displaySelectedOrder) {
+      displaySelectedOrder = filtered[0];
+      setSelectedOrder(displaySelectedOrder);
     }
 
     filtered.forEach(order => {
       const rowNumber = getField(order, ['RowNumber']);
+      const rowId = getRowId(order);
       const fullName = getField(order, ['FullName', 'fullName', 'Name', 'name']);
       const email = getField(order, ['Email', 'email']);
       const planName = getField(order, ['PlanName', 'planName', 'Service', 'service']);
       const amount = getField(order, ['Amount', 'amount']);
       const status = getField(order, ['Status', 'status']);
-      const isSelected = String(getField(selectedOrder, ['RowNumber'])) === String(rowNumber);
+      const isSelected = selectedOrderId && rowId === selectedOrderId;
 
       const row = document.createElement('tr');
       row.className = 'clickable' + (isSelected ? ' selected-row' : '');
@@ -651,39 +761,44 @@
       `;
 
       row.addEventListener('click', () => {
-        selectedOrder = order;
+        setSelectedOrder(order);
         renderOrders();
-        renderDetails(order);
       });
 
       ordersTableBody.appendChild(row);
     });
 
-    const selectedInFiltered = filtered.find(order =>
-      String(getField(order, ['RowNumber'])) === String(getField(selectedOrder, ['RowNumber']))
-    );
-
-    renderDetails(selectedInFiltered || filtered[0]);
+    renderDetails(displaySelectedOrder);
   }
 
   async function loadOrders(silent = false) {
-    const url = localStorage.getItem('apiUrl');
+    const url = getEffectiveApiUrl();
 
     if (!url) {
-      showMessage('Enter your API URL first.', 'error');
+      showMessage('Enter or paste your API URL first.', 'error');
       return;
     }
+
+    setLoadingState(true);
 
     try {
       const res = await fetch(url);
       const data = await res.json();
 
       if (!Array.isArray(data)) {
-        showMessage('Unexpected response format.', 'error');
+        showMessage('Unexpected response format. Expected a list of orders.', 'error');
         return;
       }
 
       allOrders = data;
+
+      if (selectedOrderId) {
+        const stillExists = allOrders.find(order => getRowId(order) === selectedOrderId);
+        if (!stillExists) {
+          selectedOrderId = null;
+        }
+      }
+
       renderOrders();
 
       if (!silent) {
@@ -691,7 +806,9 @@
       }
     } catch (err) {
       console.error(err);
-      showMessage('Error loading orders.', 'error');
+      showMessage('Error loading orders. Check the API URL and Apps Script response.', 'error');
+    } finally {
+      setLoadingState(false);
     }
   }
 
@@ -717,14 +834,17 @@
 
     if (saveBtn) {
       e.stopPropagation();
+
       const rowNumber = saveBtn.dataset.rowNumber;
       const row = saveBtn.closest('td');
-      const statusSelect = row.querySelector('.row-status-select');
+      const statusSelect = row ? row.querySelector('.row-status-select') : null;
+
       if (!statusSelect) {
         showMessage('Status selector not found.', 'error');
         return;
       }
-      await updateStatus(rowNumber, statusSelect.value);
+
+      await updateStatus(rowNumber, statusSelect.value, saveBtn);
       return;
     }
 
