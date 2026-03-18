@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>4MyIPTV Customer Landing Page</title>
+<title>4MyIPTV Service</title>
 <style>
 :root{
   --bg:#08111f;
@@ -23,7 +23,7 @@ body{
   background:linear-gradient(180deg,#08111f,#0f172a);
   color:var(--text);
 }
-.wrap{max-width:980px;margin:auto;padding:18px}
+.wrap{max-width:1080px;margin:auto;padding:18px}
 .card{
   background:var(--panel);
   border:1px solid var(--border);
@@ -32,12 +32,21 @@ body{
   overflow:hidden;
   box-shadow:0 12px 28px rgba(0,0,0,.28);
 }
-.hero{padding:22px;text-align:center}
-h1{margin:0 0 8px;color:#86efac;font-size:2rem}
-h2{margin:0}
+.hero{
+  padding:26px 22px;
+  text-align:center;
+}
+h1{
+  margin:0 0 8px;
+  color:#86efac;
+  font-size:2.2rem;
+}
+h2{
+  margin:0;
+}
 .tagline-banner{
   margin:10px auto 14px auto;
-  max-width:720px;
+  max-width:760px;
   padding:10px 14px;
   border-radius:10px;
   border:1px solid rgba(255,255,255,.12);
@@ -48,7 +57,12 @@ h2{margin:0}
   letter-spacing:.08em;
   color:#e2e8f0;
 }
-.sub{color:var(--muted);line-height:1.5}
+.sub{
+  color:var(--muted);
+  line-height:1.6;
+  max-width:860px;
+  margin:0 auto;
+}
 .notice,.tip{
   border-radius:14px;
   padding:12px 14px;
@@ -56,14 +70,22 @@ h2{margin:0}
   line-height:1.5;
   text-align:left;
 }
-.notice{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe}
-.tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a}
+.notice{
+  background:rgba(59,130,246,.10);
+  border:1px solid rgba(59,130,246,.24);
+  color:#dbeafe;
+}
+.tip{
+  background:rgba(245,158,11,.12);
+  border:1px solid rgba(245,158,11,.28);
+  color:#fde68a;
+}
 .header{
   padding:14px 16px;
   border-bottom:1px solid var(--border);
   background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
 }
-.content{padding:14px 16px}
+.content{padding:16px}
 .section-label{
   font-size:11px;
   letter-spacing:.14em;
@@ -71,9 +93,25 @@ h2{margin:0}
   color:#94a3b8;
   margin:0 0 8px 0;
 }
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media (max-width:900px){.grid2{grid-template-columns:1fr}}
-.btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.grid4{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+@media (max-width:900px){
+  .grid2,.grid4{grid-template-columns:1fr}
+}
+.btnrow{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
 .btn{
   padding:11px 14px;
   border-radius:999px;
@@ -91,17 +129,17 @@ h2{margin:0}
 .goldbtn{background:var(--gold);color:#3b2400}
 .supportbtn{background:var(--purple)}
 .linklist{margin:0;padding-left:18px}
-.linklist li{margin:0 0 8px;line-height:1.45}
-.linklist a{color:#fff;text-decoration:underline}
-.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-@media (max-width:700px){.mini-grid{grid-template-columns:1fr}}
+.linklist li{margin:0 0 8px;line-height:1.5}
 .tile{
   background:#0f172a;
   border:1px solid #243044;
   border-radius:14px;
   padding:14px;
 }
-.tile strong{display:block;margin-bottom:8px}
+.tile strong{
+  display:block;
+  margin-bottom:8px;
+}
 .support-box{
   background:#0f172a;
   border:1px solid #243044;
@@ -116,6 +154,21 @@ h2{margin:0}
   letter-spacing:.08em;
   margin-bottom:4px;
 }
+.support-line{
+  margin-bottom:10px;
+  line-height:1.5;
+}
+.support-line:last-child{
+  margin-bottom:0;
+}
+.highlight-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+@media (max-width:700px){
+  .highlight-grid{grid-template-columns:1fr}
+}
 .footer-strip{
   margin-top:18px;
   padding:16px 10px;
@@ -124,34 +177,41 @@ h2{margin:0}
   color:#cbd5e1;
   font-size:.9rem;
 }
-.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
+.footer-strip .version{
+  margin-top:6px;
+  color:#94a3b8;
+  font-size:.82rem;
+}
 </style>
 </head>
 <body>
 <div class="wrap">
+
   <div class="card hero">
-    <h1>4MyIPTV Customer Start Page</h1>
+    <h1>4MyIPTV Service</h1>
     <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
-    <div class="sub">This page is the simple customer-facing starting point. Use it to get setup help, install apps, and reach support without opening any internal tools.</div>
+    <div class="sub">
+      Welcome to 4MyIPTV Service. This is your customer starting point for setup help, app installation, troubleshooting support, and service information. Our goal is to keep the experience simple, professional, and easy to follow.
+    </div>
+
+    <div class="btnrow" style="margin-top:18px;">
+      <a class="btn playbtn" href="device-setup.html">Start Device Setup</a>
+      <a class="btn goldbtn" href="apk-library.html">Open APK Library</a>
+      <a class="btn supportbtn" href="support.html">Get Support</a>
+      <a class="btn goldbtn" href="sell-sheet.html">View Service Overview</a>
+    </div>
 
     <div class="notice">
       <strong>Before you begin</strong><br/>
-      You still need an active internet connection and a supported streaming device. This service is designed to be plug-and-play, but it does not replace your internet service.
-    </div>
-
-    <div class="btnrow" style="margin-top:16px">
-      <a class="btn playbtn" href="device-setup.html">Device Setup</a>
-      <a class="btn supportbtn" href="support.html">Support / Tips</a>
-      <a class="btn goldbtn" href="apk-library.html">APK Library</a>
-      <a class="btn goldbtn" href="sell-sheet.html">Service Overview</a>
+      You need an active internet connection, a supported streaming device, and the login credentials provided to you. This service is designed to be simple to access, but it still depends on your device setup and internet connection.
     </div>
 
     <div class="tip">
       <strong>Best customer flow</strong><br/>
-      1. Open <strong>Device Setup</strong><br/>
-      2. Open <strong>APK Library</strong> and install IPTV Smarters Pro<br/>
-      3. Enter the login credentials provided to you exactly as shared<br/>
-      4. If you need help, open <strong>Support / Tips</strong>
+      1. Open Device Setup<br/>
+      2. Install IPTV Smarters Pro from the APK Library or direct install link<br/>
+      3. Enter the credentials shared with you exactly as provided<br/>
+      4. Use Support / Tips if you need help
     </div>
   </div>
 
@@ -178,14 +238,24 @@ h2{margin:0}
       </div>
       <div class="content">
         <ul class="linklist">
-          <li><a href="support.html">Support / Tips Page</a></li>
-          <li><a href="device-setup.html">Device Setup Center</a></li>
-          <li><a href="apk-library.html">APK Library</a></li>
+          <li><a href="device-setup.html" style="color:#fff;text-decoration:underline;">Device Setup Center</a></li>
+          <li><a href="support.html" style="color:#fff;text-decoration:underline;">Support / Tips Page</a></li>
+          <li><a href="apk-library.html" style="color:#fff;text-decoration:underline;">APK Library</a></li>
         </ul>
 
         <div class="support-box">
-          <div class="support-label">Support Email</div>
-          <div>support@4myiptvservice.com</div>
+          <div class="support-line">
+            <div class="support-label">Support Email</div>
+            <div>4myIPTVservice@gmail.com</div>
+          </div>
+          <div class="support-line">
+            <div class="support-label">Support Bot</div>
+            <div>@myiptvservice_support_bot</div>
+          </div>
+          <div class="support-line">
+            <div class="support-label">Live Telegram Support</div>
+            <div>@myiptvservice4</div>
+          </div>
         </div>
       </div>
     </div>
@@ -193,35 +263,67 @@ h2{margin:0}
 
   <div class="card">
     <div class="header">
-      <div class="section-label">Why Customers Use This Service</div>
+      <div class="section-label">Why Customers Choose This Service</div>
       <h2>Customer Highlights</h2>
     </div>
     <div class="content">
-      <div class="mini-grid">
+      <div class="highlight-grid">
         <div class="tile">
-          <strong>Plug-and-Play Setup</strong>
-          Connect to the internet, install the app, enter your credentials, and start watching.
+          <strong>Simple Setup</strong>
+          Connect your device, install the app, enter your credentials, and start watching with a guided setup flow designed to keep things straightforward.
         </div>
         <div class="tile">
-          <strong>Lower Cost</strong>
-          Save money compared to large traditional cable packages.
+          <strong>Better Value</strong>
+          Enjoy a lower-cost option compared to many traditional cable packages while keeping access to a wide range of entertainment.
         </div>
         <div class="tile">
-          <strong>Large Content Library</strong>
-          Live TV, movies, series, sports, and pay-per-view in one service.
+          <strong>Large Content Selection</strong>
+          Access live TV, movies, series, sports, and pay-per-view content in one service experience.
         </div>
         <div class="tile">
           <strong>Travel Friendly</strong>
-          Works anywhere you have stable internet, including hotels and vacation travel.
+          Use the service anywhere you have stable internet, including at home, while traveling, or during hotel stays.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Next Steps</div>
+      <h2>Where to Go From Here</h2>
+    </div>
+    <div class="content">
+      <div class="grid4">
+        <div class="tile">
+          <strong>Device Setup</strong>
+          Open the guided setup page for step-by-step instructions and support videos.
+          <div style="margin-top:10px;"><a class="btn playbtn" href="device-setup.html">Open Device Setup</a></div>
+        </div>
+        <div class="tile">
+          <strong>APK Library</strong>
+          Install IPTV Smarters Pro and other supported apps from the controlled app page.
+          <div style="margin-top:10px;"><a class="btn goldbtn" href="apk-library.html">Open APK Library</a></div>
+        </div>
+        <div class="tile">
+          <strong>Support / Tips</strong>
+          Use the support page for help with buffering, login issues, and troubleshooting.
+          <div style="margin-top:10px;"><a class="btn supportbtn" href="support.html">Open Support</a></div>
+        </div>
+        <div class="tile">
+          <strong>Service Overview</strong>
+          Review service pricing, device options, and general service information.
+          <div style="margin-top:10px;"><a class="btn goldbtn" href="sell-sheet.html">Open Overview</a></div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="footer-strip">
-    <strong>4MyIPTV Customer Start Page</strong>
-    <div class="version">Version 1.3 • Last Updated: March 2026</div>
+    <strong>4MyIPTV Service • Customer Start Page</strong>
+    <div class="version">Version 1.4 • Last Updated: March 2026</div>
   </div>
+
 </div>
 </body>
 </html>
