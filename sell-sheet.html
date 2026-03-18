@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MY IPTV Service Overview</title>
+<title>4MyIPTV Service Overview</title>
 <style>
 :root{
   --bg:#08111f;
@@ -34,6 +34,7 @@ body{
 }
 .hero{padding:24px;text-align:center}
 h1{margin:0 0 8px;color:#86efac;font-size:2rem}
+h2{margin:0}
 .tagline{
   margin:10px auto 14px auto;
   max-width:760px;
@@ -46,7 +47,12 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
   letter-spacing:.08em;
   color:#e2e8f0;
 }
-.sub{color:var(--muted);line-height:1.5}
+.sub{
+  color:var(--muted);
+  line-height:1.6;
+  max-width:860px;
+  margin:0 auto;
+}
 .notice,.tip,.warning{
   border-radius:14px;
   padding:12px 14px;
@@ -70,8 +76,9 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
   margin:0 0 8px 0;
 }
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media (max-width:900px){.grid2{grid-template-columns:1fr}}
-.btnrow{display:flex;gap:10px;flex-wrap:wrap}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media (max-width:900px){.grid2,.grid3{grid-template-columns:1fr}}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 .btn{
   padding:11px 14px;
   border-radius:999px;
@@ -92,7 +99,18 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem}
 .table th,.table td{border:1px solid #243044;padding:10px;text-align:left}
 .table th{background:#0f172a}
 ul{margin:0;padding-left:18px}
-li{margin:0 0 8px;line-height:1.45}
+li{margin:0 0 8px;line-height:1.5}
+.tile{
+  background:#0f172a;
+  border:1px solid #243044;
+  border-radius:14px;
+  padding:14px;
+}
+.tile strong{
+  display:block;
+  margin-bottom:8px;
+}
+.small{font-size:.86rem;color:var(--muted);line-height:1.4}
 .footer-strip{
   margin-top:18px;
   padding:16px 10px;
@@ -101,19 +119,33 @@ li{margin:0 0 8px;line-height:1.45}
   color:#cbd5e1;
   font-size:.9rem;
 }
-.small{font-size:.86rem;color:var(--muted);line-height:1.4}
+.footer-strip .version{
+  margin-top:6px;
+  color:#94a3b8;
+  font-size:.82rem;
+}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <div class="card hero">
-    <h1>MY IPTV Service Overview</h1>
-    <div class="tagline">Ready-to-Go Devices • Flexible Plans • Simple Support</div>
-    <div class="sub">A simple overview of the products, services, device options, and setup support available through MY IPTV Service.</div>
+    <h1>4MyIPTV Service Overview</h1>
+    <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
+    <div class="sub">
+      4MyIPTV Service provides flexible streaming service plans and optional ready-to-go device support designed to make setup simple, affordable, and convenient.
+    </div>
+
+    <div class="btnrow" style="margin-top:18px;">
+      <a class="btn blue" href="index.html">Customer Start Page</a>
+      <a class="btn gold" href="device-setup.html">Device Setup</a>
+      <a class="btn purple" href="support.html">Support / Tips</a>
+      <a class="btn gold" href="downloader-portal.html">Downloader Portal</a>
+    </div>
+
     <div class="notice">
       <strong>What you are getting</strong><br>
-      We provide IPTV service plans and optional fully set up streaming devices. Devices are prepared to be ready-to-go at the time of purchase, with setup guidance and support resources available after delivery.
+      We provide IPTV service plans and optional setup support for compatible streaming devices. Our goal is to make access straightforward while giving customers clear setup help and support resources when needed.
     </div>
   </div>
 
@@ -161,16 +193,39 @@ li{margin:0 0 8px;line-height:1.45}
       <div class="grid2">
         <ul>
           <li>Lower monthly cost than many traditional cable packages.</li>
-          <li>Ready-to-go devices can be set up before delivery for a simpler customer experience.</li>
+          <li>Simple setup flow supported by guided pages and support resources.</li>
           <li>One service can bring together live TV, movies, series, sports, and specialty content in one place.</li>
           <li>Portable streaming experience for home, travel, and hotel use where internet is available.</li>
         </ul>
         <ul>
-          <li>Customer support options through Telegram, email, and setup guides.</li>
-          <li>Device setup and troubleshooting pages reduce the need for complicated manual setup.</li>
+          <li>Support options through Telegram, email, and setup guidance.</li>
           <li>Popular ONN device options offer a simple Android-based streaming environment.</li>
           <li>Service plans are flexible with monthly and longer-term options.</li>
+          <li>Customer-facing pages are designed to keep setup and support easier to follow.</li>
         </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Customer Highlights</div>
+      <h2>What Makes It Convenient</h2>
+    </div>
+    <div class="content">
+      <div class="grid3">
+        <div class="tile">
+          <strong>Simple Access</strong>
+          Get started with guided setup steps, controlled app access, and clear support options.
+        </div>
+        <div class="tile">
+          <strong>Large Content Selection</strong>
+          Enjoy live TV, movies, series, sports, and pay-per-view content in one service experience.
+        </div>
+        <div class="tile">
+          <strong>Travel Friendly</strong>
+          Use the service anywhere you have stable internet, including hotels and while traveling.
+        </div>
       </div>
     </div>
   </div>
@@ -182,13 +237,13 @@ li{margin:0 0 8px;line-height:1.45}
     </div>
     <div class="content">
       <div class="notice">
-        Sideloaded apps are apps installed from sources outside of the Google Play Store or Amazon Appstore. Android treats these as apps from unknown sources, and Android blocks installs from other sources until the user opts in. Fire TV also requires Developer Options and Apps from Unknown Sources to be enabled before sideloading. 
+        Sideloaded apps are apps installed from sources outside of the Google Play Store or Amazon Appstore. Some devices may require security or installer permissions to be adjusted before these apps can be installed.
       </div>
       <div class="tip">
-        Sideloaded apps are provided for convenience and can change more frequently than Play Store apps. At the time of purchase, we will verify that any included sideloaded apps are working. Ongoing availability depends on the app provider's ability to maintain the app and its service.
+        Sideloaded apps are provided for convenience and can change more frequently than Play Store apps. At the time of setup or delivery, included sideloaded apps can be verified as working, but future availability may depend on the third-party app provider.
       </div>
       <div class="warning">
-        Because sideloaded apps come from outside official app stores, device settings must be adjusted to allow installation, and app updates may require periodic review.
+        Because sideloaded apps come from outside official app stores, installation settings may need to be adjusted and ongoing app updates may require periodic review.
       </div>
     </div>
   </div>
@@ -200,17 +255,17 @@ li{margin:0 0 8px;line-height:1.45}
     </div>
     <div class="content">
       <div class="btnrow">
-        <a class="btn blue" href="device-setup.html">Device Setup & Service Center</a>
-        <a class="btn gold" href="setup-help.html">Setup Guide</a>
-        <a class="btn purple" href="support.html">Troubleshooting</a>
-        <a class="btn blue" href="https://t.me/myiptvservice_support_bot?start=help" target="_blank">Telegram Support Bot</a>
+        <a class="btn blue" href="device-setup.html">Device Setup Center</a>
+        <a class="btn gold" href="downloader-portal.html">Downloader Portal</a>
+        <a class="btn purple" href="support.html">Support / Tips</a>
+        <a class="btn blue" href="https://t.me/myiptvservice_support_bot?start=help" target="_blank">Support Bot</a>
       </div>
     </div>
   </div>
 
   <div class="footer-strip">
-    <strong>MY IPTV Service Overview</strong>
-    <div class="small">Sideload explanation based on Android's handling of apps from unknown sources and Amazon Fire TV developer settings guidance.</div>
+    <strong>4MyIPTV Service • Service Overview</strong>
+    <div class="version">Version 1.0 • Last Updated: March 2026</div>
   </div>
 
 </div>
