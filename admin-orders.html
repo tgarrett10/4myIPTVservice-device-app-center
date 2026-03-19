@@ -1,666 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>4MyIPTV Service Admin Orders</title>
+<meta charset="UTF-8">
+<title>Admin Orders</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-:root{
-  --bg:#08111f;--panel:#101827;--text:#f8fafc;--muted:#94a3b8;--green:#22c55e;--blue:#3b82f6;--gold:#f59e0b;--purple:#9333ea;--red:#ef4444;--border:#1f2937;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#08111f,#0f172a);color:var(--text)}
-.wrap{max-width:1440px;margin:auto;padding:18px}
-.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;margin-bottom:14px;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.28)}
-.hero{padding:18px}
-h1{margin:0 0 8px;color:#86efac;font-size:2rem;text-align:center}
-.tagline-banner{margin:10px auto 12px auto;max-width:760px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);text-align:center;font-weight:600;font-size:16px;letter-spacing:.08em;color:#e2e8f0;box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.18)}
-.sub{color:var(--muted);line-height:1.5}
-.notice{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe;border-radius:14px;padding:12px 14px;margin-top:12px;line-height:1.45}
-.header{padding:14px 16px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
-.header h2,.header h3{margin:0}
-.header .sub{margin-top:6px;font-size:.92rem}
-.content{padding:12px 16px}
-.section-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;margin:0 0 8px 0}
-.top-bar,.pill-row,.detail-actions,.quick-status-actions,.message-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-input, select, button, textarea{padding:10px 14px;border-radius:10px;border:1px solid #334155;font-size:14px;font-family:Arial,Helvetica,sans-serif}
-input,textarea,select{background:#0b1220;color:#fff}
-button{cursor:pointer}
-button:hover{opacity:.92}
-button:disabled{cursor:not-allowed;opacity:.65}
-.primary-btn{background:#2563eb;color:#fff}
-.success-btn{background:#166534;color:#fff}
-.warning-btn{background:#a16207;color:#fff}
-.info-btn{background:#1d4ed8;color:#fff}
-.purple-btn{background:#7e22ce;color:#fff}
-.linkbtn{background:#475569;color:#fff}
-.adminbtn{background:var(--purple);color:#fff}
-.gray-btn{background:#475569;color:#fff}
-.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:0}
-.stat-card{background:#0f172a;border:1px solid #243044;border-radius:14px;padding:16px}
-.stat-label{color:#94a3b8;font-size:13px;margin-bottom:8px}
-.stat-value{font-size:28px;font-weight:bold}
-.message{margin-top:10px;font-weight:bold;min-height:22px}
-.success{color:#86efac}.error{color:#fca5a5}
-.layout{display:grid;grid-template-columns:2fr 1fr;gap:20px;align-items:start}
-.table-wrap{overflow:auto}
-table{width:100%;border-collapse:collapse;background:#0f172a}
-th,td{padding:10px;border:1px solid #243044;font-size:14px;vertical-align:top}
-th{background:#172033;text-align:left}
-tr.clickable{cursor:pointer}
-tr.clickable:hover{background:#111a2d}
-tr.selected-row{background:#1e3a5f}
-.details-panel{background:#0f172a;border:1px solid #243044;border-radius:14px;padding:16px;position:sticky;top:20px}
-.detail-row{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #243044}
-.detail-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.detail-label{color:#94a3b8;font-size:12px;margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}
-.detail-value{font-size:14px;word-break:break-word;line-height:1.45}
-.detail-input,.detail-select,.detail-textarea{width:100%;margin-top:6px}
-.detail-textarea{min-height:90px;resize:vertical}
-.empty-note{color:#94a3b8;font-size:14px;line-height:1.5}
-.pill{padding:8px 12px;border-radius:999px;font-size:13px;border:1px solid #334155;background:#111827;color:white;cursor:pointer}
-.pill.active{background:#2563eb;border-color:#3b82f6}
-.muted{color:#94a3b8;font-size:13px}
-.status-cell{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.status-cell select{min-width:180px}
-.mini-note{margin-top:10px;padding:10px 12px;border-radius:12px;background:#111827;border:1px solid #243044;color:#cbd5e1;font-size:13px;line-height:1.45}
-.footer-strip{margin-top:18px;padding:16px 10px;border-top:1px solid #243044;text-align:center;color:#cbd5e1;font-size:.9rem}
-.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
-@media (max-width:1100px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}.details-panel{position:static}}
-@media (max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}input{width:100%}}
-@media (max-width:500px){.stats{grid-template-columns:1fr}}
+body { font-family: Arial; background:#08111f; color:white; margin:0; }
+.container { padding:20px; }
+.card { background:#101827; padding:15px; margin-bottom:15px; border-radius:8px; }
+button { padding:8px 12px; margin:5px; border:none; border-radius:6px; cursor:pointer; }
+.green { background:#22c55e; }
+.blue { background:#3b82f6; }
+.gold { background:#f59e0b; }
+.red { background:#ef4444; }
 </style>
 </head>
+
 <body>
-<div class="wrap">
+<div class="container">
 
-  <div class="card hero">
-    <h1>4MyIPTV Service Admin Orders</h1>
-    <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
-    <div class="sub">Manage new requests, follow-up status, payment collection, and completed customer delivery from one internal page.</div>
-    <div class="notice"><strong>Internal Use</strong><br/>This page is now aligned to the request-first workflow. New customers should come in as requests first, then move through contact, payment, and completion.</div>
-  </div>
+<h2>Admin Orders</h2>
 
-  <div class="card">
-    <div class="header">
-      <div class="section-label">Connection</div>
-      <h2>Orders Data Source</h2>
-      <div class="sub">Save your Apps Script URL once, then load the latest orders when needed.</div>
-    </div>
-    <div class="content">
-      <div class="top-bar">
-        <input id="apiUrl" placeholder="Paste your Apps Script URL here" style="min-width:320px;flex:1;"/>
-        <button id="saveUrlBtn" type="button" class="linkbtn">Save URL</button>
-        <button id="loadOrdersBtn" type="button" class="primary-btn">Load Orders</button>
-        <a class="adminbtn" href="admin-dashboard.html" style="text-decoration:none;padding:10px 14px;border-radius:10px;">Back to Dashboard</a>
-      </div>
-      <div id="message" class="message"></div>
-    </div>
-  </div>
+<div id="orders"></div>
 
-  <div class="card">
-    <div class="header">
-      <div class="section-label">Filters</div>
-      <h2>Search & Order Filters</h2>
-    </div>
-    <div class="content">
-      <div class="top-bar" style="margin-bottom:12px;">
-        <input id="searchInput" placeholder="Search name, email, phone, service, or payment type" style="min-width:260px;flex:1;"/>
-        <select id="statusFilter" style="min-width:220px;"></select>
-      </div>
-
-      <div class="pill-row" id="quickFilters">
-        <button type="button" class="pill active" data-filter="">All</button>
-        <button type="button" class="pill" data-filter="NEW REQUEST">New Requests</button>
-        <button type="button" class="pill" data-filter="CONTACTED">Contacted</button>
-        <button type="button" class="pill" data-filter="PAYMENT SENT">Payment Sent</button>
-        <button type="button" class="pill" data-filter="PAID">Paid</button>
-        <button type="button" class="pill" data-filter="COMPLETED">Completed</button>
-      </div>
-      <div class="mini-note">Legacy statuses are still supported so older rows do not break. New request workflow statuses are the default going forward.</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="header"><div class="section-label">Snapshot</div><h2>Orders Overview</h2></div>
-    <div class="content">
-      <div class="stats">
-        <div class="stat-card"><div class="stat-label">Total Orders</div><div class="stat-value" id="statTotal">0</div></div>
-        <div class="stat-card"><div class="stat-label">New Requests</div><div class="stat-value" id="statNew">0</div></div>
-        <div class="stat-card"><div class="stat-label">Contacted</div><div class="stat-value" id="statContacted">0</div></div>
-        <div class="stat-card"><div class="stat-label">Payment Sent / Paid</div><div class="stat-value" id="statMoney">0</div></div>
-        <div class="stat-card"><div class="stat-label">Completed</div><div class="stat-value" id="statCompleted">0</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="layout">
-    <div class="card">
-      <div class="header"><div class="section-label">Order Queue</div><h2>Orders Table</h2><div class="sub">Click a row to open the full detail panel.</div></div>
-      <div class="content table-wrap">
-        <table id="ordersTable">
-          <thead><tr><th>Name</th><th>Email</th><th>Service</th><th>Payment</th><th>Status</th><th>Update Status</th></tr></thead>
-          <tbody><tr><td colspan="6">No data loaded yet.</td></tr></tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="details-panel">
-      <h3 style="margin-top:0;">Order Details</h3>
-      <div id="detailsContent" class="empty-note">Click an order row to view details.</div>
-    </div>
-  </div>
-
-  <div class="footer-strip"><strong>4MyIPTV Service • Admin Orders</strong><div class="version">Version 3.0 • Last Updated: March 2026</div></div>
 </div>
 
 <script>
-  let allOrders = [];
-  let selectedOrderId = null;
+const API_URL = "PASTE_YOUR_APPS_SCRIPT_URL_HERE";
 
-  const BRAND_NAME = '4MyIPTV Service';
-  const SUPPORT_EMAIL = '4myIPTVservice@gmail.com';
-  const SUPPORT_BOT = '@myiptvservice_support_bot';
-  const LIVE_SUPPORT = '@myiptvservice4';
-  const SETUP_PAGE = 'https://tgarrett10.github.io/4myIPTVservice-device-app-center/device-setup.html';
-  const SUPPORT_PAGE = 'https://tgarrett10.github.io/4myIPTVservice-device-app-center/support.html';
-  const SUCCESS_PAGE = 'https://tgarrett10.github.io/4myIPTVservice-device-app-center/success.html';
-  const TELEGRAM_UPDATES = 'https://t.me/+d3y9ny-g131mYTY0';
+async function loadOrders() {
+  const res = await fetch(API_URL);
+  const data = await res.json();
 
-  const PRIMARY_STATUS_OPTIONS = ['NEW REQUEST', 'CONTACTED', 'PAYMENT SENT', 'PAID', 'COMPLETED'];
-  const LEGACY_STATUS_OPTIONS = ['New Lead', 'Paid - Awaiting Fulfillment', 'Credentials Sent', 'Setup In Progress', 'Completed', 'Follow Up Needed'];
-  const STATUS_OPTIONS = Array.from(new Set([...PRIMARY_STATUS_OPTIONS, ...LEGACY_STATUS_OPTIONS]));
+  let html = "";
 
-  const apiUrlInput = document.getElementById('apiUrl');
-  const searchInput = document.getElementById('searchInput');
-  const statusFilter = document.getElementById('statusFilter');
-  const quickFilters = document.getElementById('quickFilters');
-  const ordersTableBody = document.querySelector('#ordersTable tbody');
-  const detailsContent = document.getElementById('detailsContent');
-  const saveUrlBtn = document.getElementById('saveUrlBtn');
-  const loadOrdersBtn = document.getElementById('loadOrdersBtn');
+  data.forEach(order => {
+    html += `
+      <div class="card">
+        <b>${order.name}</b><br>
+        ${order.email}<br>
+        ${order.plan}<br>
+        Status: ${order.status}<br><br>
 
-  function initializeStatusFilter() {
-    statusFilter.innerHTML = '<option value="">All Statuses</option>' + STATUS_OPTIONS.map(status => `<option value="${escapeHtml(status)}">${escapeHtml(status)}</option>`).join('');
-  }
+        <button class="blue" onclick="updateStatus('${order.id}','CONTACTED')">Contacted</button>
+        <button class="gold" onclick="updateStatus('${order.id}','PAYMENT SENT')">Payment Sent</button>
+        <button class="green" onclick="updateStatus('${order.id}','PAID')">Paid</button>
+        <button class="green" onclick="updateStatus('${order.id}','COMPLETED')">Completed</button>
 
-  function showMessage(text, type) {
-    const message = document.getElementById('message');
-    message.className = 'message ' + type;
-    message.textContent = text;
-  }
+        <br><br>
 
-  function saveUrl() {
-    const url = apiUrlInput.value.trim();
-    if (!url) {
-      showMessage('Please paste your Apps Script URL before saving.', 'error');
-      return;
-    }
-    localStorage.setItem('apiUrl', url);
-    showMessage('API URL saved.', 'success');
-  }
-
-  function getEffectiveApiUrl() {
-    const typedUrl = apiUrlInput.value.trim();
-    const savedUrl = localStorage.getItem('apiUrl') || '';
-    return typedUrl || savedUrl.trim();
-  }
-
-  function getField(order, possibleNames) {
-    for (const name of possibleNames) {
-      if (order && order[name] !== undefined && order[name] !== null && order[name] !== '') {
-        return order[name];
-      }
-    }
-    return '';
-  }
-
-  function getRowId(order) {
-    return String(getField(order, ['RowNumber', 'rowNumber', 'row_number']));
-  }
-
-  function escapeHtml(value) {
-    return String(value || '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
-
-  function displayValue(value, fallback = 'Not provided') {
-    const clean = String(value || '').trim();
-    return clean ? escapeHtml(clean) : '<span class="muted">' + escapeHtml(fallback) + '</span>';
-  }
-
-  function normalizeStatus(rawStatus) {
-    const clean = String(rawStatus || '').trim();
-    if (!clean) return 'NEW REQUEST';
-    if (clean === 'Completed') return 'COMPLETED';
-    return clean;
-  }
-
-  function inferAmountFromPlan(planName) {
-    const plan = String(planName || '');
-    const match = plan.match(/\$(\d+(?:\.\d+)?)/);
-    return match ? match[1] : '';
-  }
-
-  function getDisplayAmount(order) {
-    const directAmount = String(getField(order, ['Amount', 'amount'])).trim();
-    if (directAmount) return directAmount;
-    const inferred = inferAmountFromPlan(getField(order, ['PlanName', 'planName', 'Service', 'service']));
-    return inferred;
-  }
-
-  function buildStatusCounts(orders) {
-    const counts = { total: orders.length, newRequest: 0, contacted: 0, money: 0, completed: 0 };
-    orders.forEach(order => {
-      const status = normalizeStatus(getField(order, ['Status', 'status']));
-      if (status === 'NEW REQUEST' || status === 'New Lead') counts.newRequest += 1;
-      if (status === 'CONTACTED' || status === 'Follow Up Needed') counts.contacted += 1;
-      if (status === 'PAYMENT SENT' || status === 'PAID' || status === 'Paid - Awaiting Fulfillment' || status === 'Credentials Sent' || status === 'Setup In Progress') counts.money += 1;
-      if (status === 'COMPLETED' || status === 'Completed') counts.completed += 1;
-    });
-    return counts;
-  }
-
-  function updateStats(orders) {
-    const counts = buildStatusCounts(orders);
-    document.getElementById('statTotal').textContent = counts.total;
-    document.getElementById('statNew').textContent = counts.newRequest;
-    document.getElementById('statContacted').textContent = counts.contacted;
-    document.getElementById('statMoney').textContent = counts.money;
-    document.getElementById('statCompleted').textContent = counts.completed;
-  }
-
-  function syncQuickFiltersFromDropdown() {
-    const current = statusFilter.value;
-    const buttons = Array.from(document.querySelectorAll('#quickFilters .pill'));
-    buttons.forEach(btn => btn.classList.remove('active'));
-    const match = buttons.find(btn => btn.dataset.filter === current);
-    if (match) match.classList.add('active');
-    if (!current) {
-      const allBtn = buttons.find(btn => btn.dataset.filter === '');
-      if (allBtn) allBtn.classList.add('active');
-    }
-  }
-
-  function getSelectedOrder() {
-    if (!selectedOrderId) return null;
-    return allOrders.find(order => getRowId(order) === selectedOrderId) || null;
-  }
-
-  function setSelectedOrder(order) {
-    if (!order) { selectedOrderId = null; return; }
-    selectedOrderId = getRowId(order) || null;
-  }
-
-  function getFilteredOrders() {
-    const searchText = searchInput.value.toLowerCase().trim();
-    const currentStatusFilter = statusFilter.value;
-    let filtered = allOrders.slice().reverse();
-
-    if (searchText) {
-      filtered = filtered.filter(order => {
-        const fullName = String(getField(order, ['FullName', 'fullName', 'Name', 'name'])).toLowerCase();
-        const email = String(getField(order, ['Email', 'email'])).toLowerCase();
-        const planName = String(getField(order, ['PlanName', 'planName', 'Service', 'service'])).toLowerCase();
-        const phone = String(getField(order, ['Phone', 'phone'])).toLowerCase();
-        const paymentType = String(getField(order, ['PaymentType', 'paymentType'])).toLowerCase();
-        return fullName.includes(searchText) || email.includes(searchText) || planName.includes(searchText) || phone.includes(searchText) || paymentType.includes(searchText);
-      });
-    }
-
-    if (currentStatusFilter) {
-      filtered = filtered.filter(order => normalizeStatus(getField(order, ['Status', 'status'])) === currentStatusFilter || String(getField(order, ['Status', 'status'])) === currentStatusFilter);
-    }
-
-    return filtered;
-  }
-
-  async function updateStatus(rowNumber, newStatus, buttonEl = null) {
-    const url = getEffectiveApiUrl();
-    if (!url) { showMessage('API URL is missing. Paste it into the field first.', 'error'); return; }
-    if (!rowNumber) { showMessage('This order is missing its row number, so status cannot be updated.', 'error'); return; }
-
-    let originalText = '';
-    if (buttonEl) { originalText = buttonEl.textContent; buttonEl.disabled = true; buttonEl.textContent = 'Saving...'; }
-
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ action: 'updateStatus', rowNumber: rowNumber, status: newStatus })
-      });
-      const result = await response.json();
-
-      if (result.success) {
-        showMessage('Status updated successfully.', 'success');
-        await loadOrders(true, selectedOrderId);
-      } else {
-        showMessage('Status update failed: ' + (result.error || 'Unknown error from Apps Script.'), 'error');
-      }
-    } catch (error) {
-      console.error(error);
-      showMessage('Error updating status: ' + error.message, 'error');
-    } finally {
-      if (buttonEl) { buttonEl.disabled = false; buttonEl.textContent = originalText; }
-    }
-  }
-
-  async function updateOrderFields() {
-    const selectedOrder = getSelectedOrder();
-    if (!selectedOrder) { showMessage('Select an order first.', 'error'); return; }
-
-    const url = getEffectiveApiUrl();
-    if (!url) { showMessage('API URL is missing. Paste it into the field first.', 'error'); return; }
-
-    const rowNumber = getField(selectedOrder, ['RowNumber', 'rowNumber', 'row_number']);
-    if (!rowNumber) { showMessage('This order is missing its row number, so details cannot be updated.', 'error'); return; }
-
-    const orderShippedEl = document.getElementById('detailOrderShipped');
-    const trackingNumberEl = document.getElementById('detailTrackingNumber');
-    const notesEl = document.getElementById('detailNotes');
-    const amountEl = document.getElementById('detailAmount');
-    const saveBtn = document.getElementById('saveDetailFieldsBtn');
-
-    if (!orderShippedEl || !trackingNumberEl || !notesEl || !saveBtn || !amountEl) {
-      showMessage('Detail fields are not ready. Please reselect the order and try again.', 'error');
-      return;
-    }
-
-    saveBtn.disabled = true;
-    saveBtn.textContent = 'Saving...';
-
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({
-          action: 'updateOrderFields',
-          rowNumber: rowNumber,
-          orderShipped: orderShippedEl.value,
-          trackingNumber: trackingNumberEl.value.trim(),
-          notes: notesEl.value.trim(),
-          amount: amountEl.value.trim()
-        })
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        showMessage('Order details updated successfully.', 'success');
-        await loadOrders(true, selectedOrderId);
-      } else {
-        showMessage('Order detail update failed: ' + (result.error || 'Unknown error from Apps Script.'), 'error');
-      }
-    } catch (error) {
-      console.error(error);
-      showMessage('Error updating order details: ' + error.message, 'error');
-    } finally {
-      const refreshedSaveBtn = document.getElementById('saveDetailFieldsBtn');
-      if (refreshedSaveBtn) {
-        refreshedSaveBtn.disabled = false;
-        refreshedSaveBtn.textContent = 'Save Amount / Shipping / Tracking / Notes';
-      }
-    }
-  }
-
-  function buildSetupMessage(order) {
-    const fullName = getField(order, ['FullName', 'fullName', 'Name', 'name']) || 'Customer';
-    return `Hi ${fullName},\n\nYour service is ready for the next step.\n\nStart here:\n${SETUP_PAGE}\n\nSupport page:\n${SUPPORT_PAGE}\n\nSupport Bot: ${SUPPORT_BOT}\nLive Support: ${LIVE_SUPPORT}\nUpdates Channel: ${TELEGRAM_UPDATES}\n\nThank you,\n${BRAND_NAME}`;
-  }
-
-  function buildSupportMessage(order) {
-    const fullName = getField(order, ['FullName', 'fullName', 'Name', 'name']) || 'Customer';
-    return `Hi ${fullName},\n\nIf you need help with setup or troubleshooting, use the support options below:\n\nSupport page:\n${SUPPORT_PAGE}\n\nSupport Bot:\n${SUPPORT_BOT}\n\nLive Support:\n${LIVE_SUPPORT}\n\nUpdates Channel:\n${TELEGRAM_UPDATES}\n\nThank you,\n${BRAND_NAME}`;
-  }
-
-  function buildPaymentConfirmationMessage(order) {
-    const fullName = getField(order, ['FullName', 'fullName', 'Name', 'name']) || 'Customer';
-    const service = getField(order, ['PlanName', 'planName', 'Service', 'service']) || 'your service';
-    const amount = getDisplayAmount(order);
-    return `Hi ${fullName},\n\nYour payment has been received successfully for ${service}${amount ? ` ($${amount})` : ''}.\n\nNext step:\n${SUCCESS_PAGE}\n\nSetup guide:\n${SETUP_PAGE}\n\nSupport:\n${SUPPORT_PAGE}\n\nThank you,\n${BRAND_NAME}`;
-  }
-
-  function buildCashAppMessage(order) {
-    const fullName = getField(order, ['FullName', 'fullName', 'Name', 'name']) || 'Customer';
-    const service = getField(order, ['PlanName', 'planName', 'Service', 'service']) || 'service';
-    const amount = getDisplayAmount(order);
-    return `Hi ${fullName},\n\nYour request has been reviewed.\n\nService: ${service}\nAmount Due: ${amount ? '$' + amount : 'Please confirm amount'}\nPayment Method: Cash App\n\nPlease send payment and reply once completed so I can continue setup.\n\nThank you,\n${BRAND_NAME}`;
-  }
-
-  function buildZelleMessage(order) {
-    const fullName = getField(order, ['FullName', 'fullName', 'Name', 'name']) || 'Customer';
-    const service = getField(order, ['PlanName', 'planName', 'Service', 'service']) || 'service';
-    const amount = getDisplayAmount(order);
-    return `Hi ${fullName},\n\nYour request has been reviewed.\n\nService: ${service}\nAmount Due: ${amount ? '$' + amount : 'Please confirm amount'}\nPayment Method: Zelle\n\nPlease send payment and reply once completed so I can continue setup.\n\nThank you,\n${BRAND_NAME}`;
-  }
-
-  function buildPayPalMessage(order) {
-    const fullName = getField(order, ['FullName', 'fullName', 'Name', 'name']) || 'Customer';
-    const service = getField(order, ['PlanName', 'planName', 'Service', 'service']) || 'service';
-    const amount = getDisplayAmount(order);
-    return `Hi ${fullName},\n\nYour request has been reviewed.\n\nService: ${service}\nAmount Due: ${amount ? '$' + amount : 'Please confirm amount'}\nPayment Method: PayPal\n\nI will send your payment link next. Once payment is complete, I will send your next steps.\n\nThank you,\n${BRAND_NAME}`;
-  }
-
-  async function copyToClipboard(text, successMessage) {
-    try {
-      await navigator.clipboard.writeText(text);
-      showMessage(successMessage, 'success');
-    } catch (error) {
-      console.error(error);
-      showMessage('Copy failed. Your browser may be blocking clipboard access.', 'error');
-    }
-  }
-
-  function renderDetails(order) {
-    if (!order) { detailsContent.innerHTML = 'Click an order row to view details.'; return; }
-
-    const fullName = getField(order, ['FullName', 'fullName', 'Name', 'name']);
-    const email = getField(order, ['Email', 'email']);
-    const phone = getField(order, ['Phone', 'phone']);
-    const address = getField(order, ['Address', 'address']);
-    const service = getField(order, ['PlanName', 'planName', 'Service', 'service']);
-    const amount = getDisplayAmount(order);
-    const status = normalizeStatus(getField(order, ['Status', 'status']));
-    const orderShipped = getField(order, ['OrderShipped', 'orderShipped']);
-    const trackingNumber = getField(order, ['TrackingNumber', 'trackingNumber']);
-    const deviceType = getField(order, ['DeviceType', 'deviceType']);
-    const deviceNickname = getField(order, ['DeviceNickname', 'deviceNickname']);
-    const notes = getField(order, ['Notes', 'notes']);
-    const paymentType = getField(order, ['PaymentType', 'paymentType']);
-    const paypalId = getField(order, ['PayPalSubscriptionId', 'paypalSubscriptionId']);
-    const timestamp = getField(order, ['Timestamp', 'timestamp']);
-    const orderType = getField(order, ['OrderType', 'orderType']);
-    const rowNumber = getField(order, ['RowNumber', 'rowNumber', 'row_number']);
-
-    detailsContent.innerHTML = `
-      <div class="detail-row"><div class="detail-label">Full Name</div><div class="detail-value">${displayValue(fullName)}</div></div>
-      <div class="detail-row"><div class="detail-label">Email</div><div class="detail-value">${displayValue(email)}</div></div>
-      <div class="detail-row"><div class="detail-label">Phone</div><div class="detail-value">${displayValue(phone)}</div></div>
-      <div class="detail-row"><div class="detail-label">Order Type</div><div class="detail-value">${displayValue(orderType, 'Standard Order')}</div></div>
-      <div class="detail-row"><div class="detail-label">Service</div><div class="detail-value">${displayValue(service)}</div></div>
-      <div class="detail-row"><div class="detail-label">Amount</div><input id="detailAmount" class="detail-input" value="${escapeHtml(amount)}" placeholder="Enter amount if blank" /></div>
-      <div class="detail-row"><div class="detail-label">Payment Type</div><div class="detail-value">${displayValue(paymentType)}</div></div>
-      <div class="detail-row"><div class="detail-label">Status</div><div class="detail-value">${displayValue(status)}</div></div>
-      <div class="detail-row"><div class="detail-label">Address</div><div class="detail-value">${displayValue(address)}</div></div>
-      <div class="detail-row"><div class="detail-label">Order Shipped</div>
-        <select id="detailOrderShipped" class="detail-select">
-          <option value="" ${orderShipped === '' ? 'selected' : ''}>Blank</option>
-          <option value="No" ${String(orderShipped) === 'No' ? 'selected' : ''}>No</option>
-          <option value="Yes" ${String(orderShipped) === 'Yes' ? 'selected' : ''}>Yes</option>
-          <option value="Not Shipped" ${String(orderShipped) === 'Not Shipped' ? 'selected' : ''}>Not Shipped</option>
-        </select>
-      </div>
-      <div class="detail-row"><div class="detail-label">Tracking Number</div><input id="detailTrackingNumber" class="detail-input" value="${escapeHtml(trackingNumber)}" placeholder="Enter tracking number" /></div>
-      <div class="detail-row"><div class="detail-label">Device Type</div><div class="detail-value">${displayValue(deviceType)}</div></div>
-      <div class="detail-row"><div class="detail-label">Device Nickname</div><div class="detail-value">${displayValue(deviceNickname)}</div></div>
-      <div class="detail-row"><div class="detail-label">Notes</div><textarea id="detailNotes" class="detail-textarea" placeholder="Add internal notes here">${escapeHtml(notes)}</textarea></div>
-      <div class="detail-row"><div class="detail-label">PayPal ID</div><div class="detail-value">${displayValue(paypalId)}</div></div>
-      <div class="detail-row"><div class="detail-label">Timestamp</div><div class="detail-value">${displayValue(timestamp)}</div></div>
-      <div class="detail-actions">
-        <button type="button" id="saveDetailFieldsBtn" class="success-btn">Save Amount / Shipping / Tracking / Notes</button>
-      </div>
-      <div class="quick-status-actions" style="margin-top:12px;">
-        <button type="button" id="markContactedBtn" class="info-btn">Mark Contacted</button>
-        <button type="button" id="markPaymentSentBtn" class="warning-btn">Mark Payment Sent</button>
-        <button type="button" id="markPaidBtn" class="purple-btn">Mark Paid</button>
-        <button type="button" id="markCompletedBtn" class="success-btn">Mark Completed</button>
-      </div>
-      <div class="message-actions" style="margin-top:12px;">
-        <button type="button" id="copyCashAppMsgBtn" class="gray-btn">Copy Cash App Request</button>
-        <button type="button" id="copyZelleMsgBtn" class="gray-btn">Copy Zelle Request</button>
-        <button type="button" id="copyPayPalMsgBtn" class="gray-btn">Copy PayPal Request</button>
-      </div>
-      <div class="message-actions" style="margin-top:10px;">
-        <button type="button" id="copySetupMsgBtn" class="info-btn">Copy Setup Message</button>
-        <button type="button" id="copySupportMsgBtn" class="purple-btn">Copy Support Message</button>
-        <button type="button" id="copyPaymentMsgBtn" class="warning-btn">Copy Payment Confirmation</button>
+        <button onclick="copyCash('${order.name}', '${order.plan}')">Cash App</button>
+        <button onclick="copyZelle('${order.name}', '${order.plan}')">Zelle</button>
+        <button onclick="copyPayPal('${order.name}', '${order.plan}')">PayPal</button>
+        <button onclick="copySetup()">Setup</button>
       </div>
     `;
-
-    document.getElementById('saveDetailFieldsBtn').addEventListener('click', updateOrderFields);
-    document.getElementById('copyCashAppMsgBtn').addEventListener('click', () => copyToClipboard(buildCashAppMessage(order), 'Cash App request copied.'));
-    document.getElementById('copyZelleMsgBtn').addEventListener('click', () => copyToClipboard(buildZelleMessage(order), 'Zelle request copied.'));
-    document.getElementById('copyPayPalMsgBtn').addEventListener('click', () => copyToClipboard(buildPayPalMessage(order), 'PayPal request copied.'));
-    document.getElementById('copySetupMsgBtn').addEventListener('click', () => copyToClipboard(buildSetupMessage(order), 'Setup message copied.'));
-    document.getElementById('copySupportMsgBtn').addEventListener('click', () => copyToClipboard(buildSupportMessage(order), 'Support message copied.'));
-    document.getElementById('copyPaymentMsgBtn').addEventListener('click', () => copyToClipboard(buildPaymentConfirmationMessage(order), 'Payment confirmation copied.'));
-    document.getElementById('markContactedBtn').addEventListener('click', async (e) => { await updateStatus(rowNumber, 'CONTACTED', e.currentTarget); });
-    document.getElementById('markPaymentSentBtn').addEventListener('click', async (e) => { await updateStatus(rowNumber, 'PAYMENT SENT', e.currentTarget); });
-    document.getElementById('markPaidBtn').addEventListener('click', async (e) => { await updateStatus(rowNumber, 'PAID', e.currentTarget); });
-    document.getElementById('markCompletedBtn').addEventListener('click', async (e) => { await updateStatus(rowNumber, 'COMPLETED', e.currentTarget); });
-  }
-
-  function renderOrders() {
-    const filtered = getFilteredOrders();
-    updateStats(allOrders);
-    ordersTableBody.innerHTML = '';
-
-    if (!filtered.length) {
-      ordersTableBody.innerHTML = '<tr><td colspan="6">No matching orders found.</td></tr>';
-      renderDetails(null);
-      return;
-    }
-
-    let displaySelectedOrder = null;
-    if (selectedOrderId) displaySelectedOrder = filtered.find(order => getRowId(order) === selectedOrderId) || null;
-    if (!displaySelectedOrder) { displaySelectedOrder = filtered[0]; setSelectedOrder(displaySelectedOrder); }
-
-    filtered.forEach(order => {
-      const rowNumber = getField(order, ['RowNumber', 'rowNumber', 'row_number']);
-      const rowId = getRowId(order);
-      const fullName = getField(order, ['FullName', 'fullName', 'Name', 'name']);
-      const email = getField(order, ['Email', 'email']);
-      const planName = getField(order, ['PlanName', 'planName', 'Service', 'service']);
-      const paymentType = getField(order, ['PaymentType', 'paymentType']) || 'Not provided';
-      const status = normalizeStatus(getField(order, ['Status', 'status']));
-      const isSelected = selectedOrderId && rowId === selectedOrderId;
-
-      const statusOptionsHtml = STATUS_OPTIONS.map(option => {
-        const selected = status === option || String(getField(order, ['Status', 'status'])) === option ? 'selected' : '';
-        return `<option value="${escapeHtml(option)}" ${selected}>${escapeHtml(option)}</option>`;
-      }).join('');
-
-      const row = document.createElement('tr');
-      row.className = 'clickable' + (isSelected ? ' selected-row' : '');
-      row.dataset.rowNumber = rowNumber;
-      row.dataset.rowId = rowId;
-      row.innerHTML = `
-        <td>${escapeHtml(fullName)}</td>
-        <td>${escapeHtml(email)}</td>
-        <td>${escapeHtml(planName)}</td>
-        <td>${escapeHtml(paymentType)}</td>
-        <td>${escapeHtml(status)}</td>
-        <td class="status-actions-cell"><div class="status-cell"><select class="row-status-select" data-row-number="${escapeHtml(rowNumber)}">${statusOptionsHtml}</select><button type="button" class="row-status-save-btn" data-row-number="${escapeHtml(rowNumber)}">Save</button></div></td>
-      `;
-      ordersTableBody.appendChild(row);
-    });
-
-    renderDetails(displaySelectedOrder);
-  }
-
-  async function loadOrders(silent = false, preferredSelectedId = null) {
-    const url = getEffectiveApiUrl();
-    if (!url) { showMessage('Enter or paste your API URL first.', 'error'); return; }
-    if (preferredSelectedId) selectedOrderId = preferredSelectedId;
-
-    loadOrdersBtn.disabled = true;
-    loadOrdersBtn.textContent = 'Loading...';
-
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-
-      if (!Array.isArray(data)) {
-        showMessage('Unexpected response format. Expected a list of orders.', 'error');
-        return;
-      }
-
-      allOrders = data;
-      if (selectedOrderId) {
-        const stillExists = allOrders.find(order => getRowId(order) === selectedOrderId);
-        if (!stillExists) selectedOrderId = null;
-      }
-
-      renderOrders();
-      if (!silent) showMessage('Orders loaded successfully.', 'success');
-    } catch (err) {
-      console.error(err);
-      showMessage('Error loading orders. Check the API URL and Apps Script response.', 'error');
-    } finally {
-      loadOrdersBtn.disabled = false;
-      loadOrdersBtn.textContent = 'Load Orders';
-    }
-  }
-
-  saveUrlBtn.addEventListener('click', saveUrl);
-  loadOrdersBtn.addEventListener('click', () => loadOrders());
-  searchInput.addEventListener('input', renderOrders);
-  statusFilter.addEventListener('change', () => { syncQuickFiltersFromDropdown(); renderOrders(); });
-  quickFilters.addEventListener('click', (e) => {
-    const btn = e.target.closest('.pill');
-    if (!btn) return;
-    statusFilter.value = btn.dataset.filter || '';
-    syncQuickFiltersFromDropdown();
-    renderOrders();
   });
 
-  ordersTableBody.addEventListener('click', async (e) => {
-    const saveBtn = e.target.closest('.row-status-save-btn');
-    const selectEl = e.target.closest('.row-status-select');
-    const statusCell = e.target.closest('.status-actions-cell');
-    const row = e.target.closest('tr.clickable');
+  document.getElementById("orders").innerHTML = html;
+}
 
-    if (saveBtn) {
-      e.stopPropagation();
-      const rowNumber = saveBtn.dataset.rowNumber;
-      const parentRow = saveBtn.closest('tr.clickable');
-      const statusSelect = parentRow ? parentRow.querySelector('.row-status-select') : null;
-      if (!statusSelect) { showMessage('Status selector not found.', 'error'); return; }
-      if (parentRow) {
-        const clickedOrder = allOrders.find(order => getRowId(order) === parentRow.dataset.rowId);
-        if (clickedOrder) { setSelectedOrder(clickedOrder); renderOrders(); }
-      }
-      await updateStatus(rowNumber, statusSelect.value, saveBtn);
-      return;
-    }
-
-    if (selectEl || statusCell) { e.stopPropagation(); return; }
-    if (row) {
-      const clickedOrder = allOrders.find(order => getRowId(order) === row.dataset.rowId);
-      if (clickedOrder) { setSelectedOrder(clickedOrder); renderOrders(); }
-    }
+async function updateStatus(id, status) {
+  await fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify({
+      action: "update",
+      id,
+      status
+    })
   });
+  loadOrders();
+}
 
-  window.onload = () => {
-    initializeStatusFilter();
-    const saved = localStorage.getItem('apiUrl');
-    if (saved) apiUrlInput.value = saved;
-    syncQuickFiltersFromDropdown();
-  };
+function copyCash(name, plan) {
+  const msg = `Hi ${name}, your total is for ${plan}. Send via Cash App.`;
+  navigator.clipboard.writeText(msg);
+  alert("Copied");
+}
+
+function copyZelle(name, plan) {
+  const msg = `Hi ${name}, send payment for ${plan} via Zelle.`;
+  navigator.clipboard.writeText(msg);
+  alert("Copied");
+}
+
+function copyPayPal(name, plan) {
+  const msg = `Hi ${name}, I will send your PayPal link for ${plan}.`;
+  navigator.clipboard.writeText(msg);
+  alert("Copied");
+}
+
+function copySetup() {
+  const msg = `Go here to setup: https://tgarrett10.github.io/4myIPTVservice-device-app-center/device-setup.html`;
+  navigator.clipboard.writeText(msg);
+  alert("Copied");
+}
+
+loadOrders();
 </script>
+
 </body>
 </html>
