@@ -418,7 +418,7 @@ function renderPayPal() {
         const result = await saveOrder(orderData);
 
         if (result.success) {
-          showStatus('Payment successful. Your order has been saved.', 'success');
+          window.location.href = "success.html";
         } else {
           showStatus('Payment succeeded, but saving the order failed. Please check your Google Sheet.', 'error');
         }
