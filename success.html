@@ -4,121 +4,41 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Payment Successful - 4MyIPTV Service</title>
-
 <style>
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#0f172a;
-  color:#e5e7eb;
-}
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:30px 20px;
-  text-align:center;
-}
-.card{
-  background:#111827;
-  border:1px solid #334155;
-  border-radius:14px;
-  padding:24px;
-  margin-bottom:20px;
-}
-h1{
-  color:#86efac;
-  margin-bottom:10px;
-}
-.tagline{
-  color:#94a3b8;
-  margin-bottom:20px;
-}
-.btn{
-  display:inline-block;
-  padding:12px 16px;
-  margin:6px;
-  border-radius:10px;
-  font-weight:bold;
-  text-decoration:none;
-  color:#fff;
-}
-.primary{background:#22c55e;color:#052e16}
-.secondary{background:#3b82f6}
-.note{
-  color:#94a3b8;
-  margin-top:10px;
-  font-size:14px;
-}
-.video-wrap{
-  position:relative;
-  width:100%;
-  padding-bottom:56.25%;
-  height:0;
-  overflow:hidden;
-  border-radius:12px;
-  background:#020617;
-  border:1px solid #334155;
-}
-.video-wrap iframe{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  border:0;
-}
+:root{--bg:#08111f;--panel:#101827;--text:#f8fafc;--muted:#94a3b8;--green:#22c55e;--blue:#3b82f6;--purple:#9333ea;--border:#1f2937}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#08111f,#0f172a);color:var(--text)}
+.container{max-width:900px;margin:auto;padding:30px 20px}.card{background:#111827;border:1px solid #334155;border-radius:18px;padding:24px;margin-bottom:20px;box-shadow:0 12px 28px rgba(0,0,0,.28)}
+h1{color:#86efac;margin-bottom:10px;text-align:center}.tagline-banner{margin:10px auto 14px auto;max-width:760px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);text-align:center;font-weight:600;font-size:16px;letter-spacing:.08em;color:#e2e8f0}
+.note{color:#94a3b8;margin-top:10px;font-size:14px;line-height:1.5;text-align:center}.btn{display:inline-block;padding:12px 16px;margin:6px;border-radius:999px;font-weight:bold;text-decoration:none;color:#fff}.primary{background:#22c55e;color:#052e16}.secondary{background:#3b82f6}.third{background:#9333ea}
+.video-wrap{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#020617;border:1px solid #334155}.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.footer-strip{margin-top:18px;padding:16px 10px;border-top:1px solid #243044;text-align:center;color:#cbd5e1;font-size:.9rem}.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
 </style>
 </head>
-
 <body>
-
 <div class="container">
-
   <div class="card">
     <h1>Payment Successful</h1>
-    <div class="tagline">
-      Your order has been received and is being processed.
-    </div>
-
-    <div style="color:#86efac;font-weight:bold;">
-      Setup takes less than 5 minutes
-    </div>
-
-    <div class="note">
-      Follow the steps below to get started immediately.
-    </div>
+    <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
+    <div class="note">Your order has been received and is being processed.</div>
+    <div style="color:#86efac;font-weight:bold;text-align:center;margin-top:8px;">Setup takes less than 5 minutes</div>
+    <div class="note">Follow the steps below to get started immediately.</div>
   </div>
 
   <div class="card">
-    <h2>Start Here</h2>
-
-    <a href="device-setup.html" class="btn primary">Go to Setup Guide</a>
-    <a href="support.html" class="btn secondary">Get Support</a>
-
-    <div class="note">
-      Use your login details provided to complete setup.
+    <h2 style="text-align:center;">Start Here</h2>
+    <div style="text-align:center;">
+      <a href="device-setup.html" class="btn primary">Go to Setup Guide</a>
+      <a href="support.html" class="btn secondary">Get Support</a>
+      <a href="sell-sheet.html" class="btn third">Service Overview</a>
     </div>
+    <div class="note">Use your login details provided to complete setup.</div>
   </div>
 
-  <div class="card">
-    <h2>Watch Setup Video</h2>
+  <div class="card"><h2 style="text-align:center;">Watch Setup Video</h2><div class="video-wrap"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe></div></div>
 
-    <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-    </div>
-  </div>
+  <div class="card"><h3 style="text-align:center;">Need Help?</h3><div class="note">Support is available if you need assistance at any step.</div><div style="text-align:center;"><a href="support.html" class="btn secondary">Contact Support</a></div></div>
 
-  <div class="card">
-    <h3>Need Help?</h3>
-
-    <div class="note">
-      Support is available if you need assistance at any step.
-    </div>
-
-    <a href="support.html" class="btn secondary">Contact Support</a>
-  </div>
-
+  <div class="footer-strip"><strong>4MyIPTV Service • Payment Success</strong><div class="version">Version 1.1 • Last Updated: March 2026</div></div>
 </div>
-
 </body>
 </html>
