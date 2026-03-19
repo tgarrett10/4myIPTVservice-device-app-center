@@ -1,364 +1,161 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>4MyIPTV Service Admin Orders</title>
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0f172a;
-      color: white;
-      padding: 20px;
-      margin: 0;
-    }
-
-    h1, h2, h3 {
-      margin-bottom: 10px;
-    }
-
-    .top-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 15px;
-      align-items: center;
-    }
-
-    input, select, button, textarea {
-      padding: 10px 14px;
-      border-radius: 6px;
-      border: 1px solid #334155;
-      font-size: 14px;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    input, textarea {
-      background: white;
-      color: black;
-    }
-
-    select {
-      background: white;
-      color: black;
-    }
-
-    button {
-      cursor: pointer;
-      background: #1e293b;
-      color: white;
-    }
-
-    button:hover {
-      opacity: 0.92;
-    }
-
-    button:disabled {
-      cursor: not-allowed;
-      opacity: 0.65;
-    }
-
-    .primary-btn {
-      background: #2563eb;
-    }
-
-    .success-btn {
-      background: #166534;
-    }
-
-    .warning-btn {
-      background: #a16207;
-      color: white;
-    }
-
-    .info-btn {
-      background: #1d4ed8;
-      color: white;
-    }
-
-    .purple-btn {
-      background: #7e22ce;
-      color: white;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin: 20px 0;
-    }
-
-    .stat-card {
-      background: #111827;
-      border: 1px solid #334155;
-      border-radius: 10px;
-      padding: 16px;
-    }
-
-    .stat-label {
-      color: #94a3b8;
-      font-size: 13px;
-      margin-bottom: 8px;
-    }
-
-    .stat-value {
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .message {
-      margin-top: 10px;
-      font-weight: bold;
-      min-height: 22px;
-    }
-
-    .success {
-      color: #86efac;
-    }
-
-    .error {
-      color: #fca5a5;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    table {
-      width: 100%;
-      margin-top: 20px;
-      border-collapse: collapse;
-      background: #111827;
-    }
-
-    th, td {
-      padding: 10px;
-      border: 1px solid #334155;
-      font-size: 14px;
-      vertical-align: top;
-    }
-
-    th {
-      background: #1e293b;
-      text-align: left;
-    }
-
-    tr.clickable {
-      cursor: pointer;
-    }
-
-    tr.clickable:hover {
-      background: #172033;
-    }
-
-    tr.selected-row {
-      background: #1e3a5f;
-    }
-
-    .details-panel {
-      margin-top: 20px;
-      background: #111827;
-      border: 1px solid #334155;
-      border-radius: 10px;
-      padding: 16px;
-      position: sticky;
-      top: 20px;
-    }
-
-    .detail-row {
-      margin-bottom: 12px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #334155;
-    }
-
-    .detail-row:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .detail-label {
-      color: #94a3b8;
-      font-size: 12px;
-      margin-bottom: 4px;
-    }
-
-    .detail-value {
-      font-size: 14px;
-      word-break: break-word;
-      line-height: 1.45;
-    }
-
-    .detail-input,
-    .detail-select,
-    .detail-textarea {
-      width: 100%;
-      margin-top: 6px;
-    }
-
-    .detail-textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
-
-    .detail-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-
-    .quick-status-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-
-    .empty-note {
-      color: #94a3b8;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .pill-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 4px;
-    }
-
-    .pill {
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      border: 1px solid #334155;
-      background: #111827;
-      color: white;
-      cursor: pointer;
-    }
-
-    .pill.active {
-      background: #2563eb;
-      border-color: #3b82f6;
-    }
-
-    .muted {
-      color: #94a3b8;
-      font-size: 13px;
-    }
-
-    .status-cell {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .status-cell select {
-      min-width: 180px;
-    }
-
-    @media (max-width: 1000px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .details-panel {
-        position: static;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .stats {
-        grid-template-columns: 1fr;
-      }
-      input {
-        width: 100%;
-      }
-    }
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>4MyIPTV Service Admin Orders</title>
+<style>
+:root{
+  --bg:#08111f;--panel:#101827;--text:#f8fafc;--muted:#94a3b8;--green:#22c55e;--blue:#3b82f6;--gold:#f59e0b;--purple:#9333ea;--red:#ef4444;--border:#1f2937;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#08111f,#0f172a);color:var(--text)}
+.wrap{max-width:1440px;margin:auto;padding:18px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;margin-bottom:14px;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.28)}
+.hero{padding:18px}
+h1{margin:0 0 8px;color:#86efac;font-size:2rem;text-align:center}
+.tagline-banner{margin:10px auto 12px auto;max-width:760px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);text-align:center;font-weight:600;font-size:16px;letter-spacing:.08em;color:#e2e8f0;box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.18)}
+.sub{color:var(--muted);line-height:1.5}
+.notice{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe;border-radius:14px;padding:12px 14px;margin-top:12px;line-height:1.45}
+.header{padding:14px 16px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0))}
+.header h2,.header h3{margin:0}
+.header .sub{margin-top:6px;font-size:.92rem}
+.content{padding:12px 16px}
+.section-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;margin:0 0 8px 0}
+.top-bar,.pill-row,.detail-actions,.quick-status-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input, select, button, textarea{padding:10px 14px;border-radius:10px;border:1px solid #334155;font-size:14px;font-family:Arial,Helvetica,sans-serif}
+input,textarea,select{background:#0b1220;color:#fff}
+button{cursor:pointer}
+button:hover{opacity:.92}
+button:disabled{cursor:not-allowed;opacity:.65}
+.primary-btn{background:#2563eb;color:#fff}
+.success-btn{background:#166534;color:#fff}
+.warning-btn{background:#a16207;color:#fff}
+.info-btn{background:#1d4ed8;color:#fff}
+.purple-btn{background:#7e22ce;color:#fff}
+.linkbtn{background:#475569;color:#fff}
+.adminbtn{background:var(--purple);color:#fff}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0}
+.stat-card{background:#0f172a;border:1px solid #243044;border-radius:14px;padding:16px}
+.stat-label{color:#94a3b8;font-size:13px;margin-bottom:8px}
+.stat-value{font-size:28px;font-weight:bold}
+.message{margin-top:10px;font-weight:bold;min-height:22px}
+.success{color:#86efac}.error{color:#fca5a5}
+.layout{display:grid;grid-template-columns:2fr 1fr;gap:20px;align-items:start}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;background:#0f172a}
+th,td{padding:10px;border:1px solid #243044;font-size:14px;vertical-align:top}
+th{background:#172033;text-align:left}
+tr.clickable{cursor:pointer}
+tr.clickable:hover{background:#111a2d}
+tr.selected-row{background:#1e3a5f}
+.details-panel{background:#0f172a;border:1px solid #243044;border-radius:14px;padding:16px;position:sticky;top:20px}
+.detail-row{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #243044}
+.detail-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.detail-label{color:#94a3b8;font-size:12px;margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}
+.detail-value{font-size:14px;word-break:break-word;line-height:1.45}
+.detail-input,.detail-select,.detail-textarea{width:100%;margin-top:6px}
+.detail-textarea{min-height:90px;resize:vertical}
+.empty-note{color:#94a3b8;font-size:14px;line-height:1.5}
+.pill{padding:8px 12px;border-radius:999px;font-size:13px;border:1px solid #334155;background:#111827;color:white;cursor:pointer}
+.pill.active{background:#2563eb;border-color:#3b82f6}
+.muted{color:#94a3b8;font-size:13px}
+.status-cell{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.status-cell select{min-width:180px}
+.footer-strip{margin-top:18px;padding:16px 10px;border-top:1px solid #243044;text-align:center;color:#cbd5e1;font-size:.9rem}
+.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
+@media (max-width:1000px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.details-panel{position:static}}
+@media (max-width:600px){.stats{grid-template-columns:1fr}input{width:100%}}
+</style>
 </head>
 <body>
+<div class="wrap">
 
-<h1>4MyIPTV Service Admin Orders</h1>
-
-<div class="top-bar">
-  <input id="apiUrl" placeholder="Paste your Apps Script URL here" />
-  <button id="saveUrlBtn" type="button">Save URL</button>
-  <button id="loadOrdersBtn" type="button" class="primary-btn">Load Orders</button>
-</div>
-
-<div class="top-bar">
-  <input id="searchInput" placeholder="Search name, email, or service" />
-  <select id="statusFilter">
-    <option value="">All Statuses</option>
-    <option value="New Lead">New Lead</option>
-    <option value="Paid - Awaiting Fulfillment">Paid - Awaiting Fulfillment</option>
-    <option value="Credentials Sent">Credentials Sent</option>
-    <option value="Setup In Progress">Setup In Progress</option>
-    <option value="Completed">Completed</option>
-    <option value="Follow Up Needed">Follow Up Needed</option>
-  </select>
-</div>
-
-<div class="pill-row" id="quickFilters">
-  <button type="button" class="pill active" data-filter="">All</button>
-  <button type="button" class="pill" data-filter="New Lead">New Lead</button>
-  <button type="button" class="pill" data-filter="Paid - Awaiting Fulfillment">Awaiting Fulfillment</button>
-  <button type="button" class="pill" data-filter="Credentials Sent">Credentials Sent</button>
-  <button type="button" class="pill" data-filter="Setup In Progress">Setup In Progress</button>
-  <button type="button" class="pill" data-filter="Completed">Completed</button>
-  <button type="button" class="pill" data-filter="Follow Up Needed">Follow Up Needed</button>
-</div>
-
-<div id="message" class="message"></div>
-
-<div class="stats">
-  <div class="stat-card">
-    <div class="stat-label">Total Orders</div>
-    <div class="stat-value" id="statTotal">0</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-label">Awaiting Fulfillment</div>
-    <div class="stat-value" id="statAwaiting">0</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-label">Setup In Progress</div>
-    <div class="stat-value" id="statInProgress">0</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-label">Completed</div>
-    <div class="stat-value" id="statCompleted">0</div>
-  </div>
-</div>
-
-<div class="layout">
-  <div>
-    <table id="ordersTable">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Service</th>
-          <th>Amount</th>
-          <th>Status</th>
-          <th>Update Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td colspan="6">No data loaded yet.</td></tr>
-      </tbody>
-    </table>
+  <div class="card hero">
+    <h1>4MyIPTV Service Admin Orders</h1>
+    <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
+    <div class="sub">Review orders, update statuses, manage shipping and tracking, and copy customer follow-up messages from one internal page.</div>
+    <div class="notice"><strong>Internal Use</strong><br/>This page is for private order management only. Use it to load orders from your Apps Script endpoint, track fulfillment progress, and maintain customer follow-up notes.</div>
   </div>
 
-  <div class="details-panel">
-    <h3>Order Details</h3>
-    <div id="detailsContent" class="empty-note">Click an order row to view details.</div>
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Connection</div>
+      <h2>Orders Data Source</h2>
+      <div class="sub">Save your Apps Script URL once, then load the latest orders when needed.</div>
+    </div>
+    <div class="content">
+      <div class="top-bar">
+        <input id="apiUrl" placeholder="Paste your Apps Script URL here" style="min-width:320px;flex:1;"/>
+        <button id="saveUrlBtn" type="button" class="linkbtn">Save URL</button>
+        <button id="loadOrdersBtn" type="button" class="primary-btn">Load Orders</button>
+        <a class="adminbtn" href="admin-dashboard.html" style="text-decoration:none;padding:10px 14px;border-radius:10px;">Back to Dashboard</a>
+      </div>
+      <div id="message" class="message"></div>
+    </div>
   </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Filters</div>
+      <h2>Search & Order Filters</h2>
+    </div>
+    <div class="content">
+      <div class="top-bar" style="margin-bottom:12px;">
+        <input id="searchInput" placeholder="Search name, email, or service" style="min-width:260px;flex:1;"/>
+        <select id="statusFilter" style="min-width:220px;">
+          <option value="">All Statuses</option>
+          <option value="New Lead">New Lead</option>
+          <option value="Paid - Awaiting Fulfillment">Paid - Awaiting Fulfillment</option>
+          <option value="Credentials Sent">Credentials Sent</option>
+          <option value="Setup In Progress">Setup In Progress</option>
+          <option value="Completed">Completed</option>
+          <option value="Follow Up Needed">Follow Up Needed</option>
+        </select>
+      </div>
+
+      <div class="pill-row" id="quickFilters">
+        <button type="button" class="pill active" data-filter="">All</button>
+        <button type="button" class="pill" data-filter="New Lead">New Lead</button>
+        <button type="button" class="pill" data-filter="Paid - Awaiting Fulfillment">Awaiting Fulfillment</button>
+        <button type="button" class="pill" data-filter="Credentials Sent">Credentials Sent</button>
+        <button type="button" class="pill" data-filter="Setup In Progress">Setup In Progress</button>
+        <button type="button" class="pill" data-filter="Completed">Completed</button>
+        <button type="button" class="pill" data-filter="Follow Up Needed">Follow Up Needed</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header"><div class="section-label">Snapshot</div><h2>Orders Overview</h2></div>
+    <div class="content">
+      <div class="stats">
+        <div class="stat-card"><div class="stat-label">Total Orders</div><div class="stat-value" id="statTotal">0</div></div>
+        <div class="stat-card"><div class="stat-label">Awaiting Fulfillment</div><div class="stat-value" id="statAwaiting">0</div></div>
+        <div class="stat-card"><div class="stat-label">Setup In Progress</div><div class="stat-value" id="statInProgress">0</div></div>
+        <div class="stat-card"><div class="stat-label">Completed</div><div class="stat-value" id="statCompleted">0</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="card">
+      <div class="header"><div class="section-label">Order Queue</div><h2>Orders Table</h2><div class="sub">Click a row to open the full detail panel.</div></div>
+      <div class="content table-wrap">
+        <table id="ordersTable">
+          <thead><tr><th>Name</th><th>Email</th><th>Service</th><th>Amount</th><th>Status</th><th>Update Status</th></tr></thead>
+          <tbody><tr><td colspan="6">No data loaded yet.</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="details-panel">
+      <h3 style="margin-top:0;">Order Details</h3>
+      <div id="detailsContent" class="empty-note">Click an order row to view details.</div>
+    </div>
+  </div>
+
+  <div class="footer-strip"><strong>4MyIPTV Service • Admin Orders</strong><div class="version">Version 2.0 • Last Updated: March 2026</div></div>
 </div>
 
 <script>
@@ -442,15 +239,9 @@
 
   function updateStats(orders) {
     document.getElementById('statTotal').textContent = orders.length;
-    document.getElementById('statAwaiting').textContent = orders.filter(o =>
-      String(getField(o, ['Status', 'status'])) === 'Paid - Awaiting Fulfillment'
-    ).length;
-    document.getElementById('statInProgress').textContent = orders.filter(o =>
-      String(getField(o, ['Status', 'status'])) === 'Setup In Progress'
-    ).length;
-    document.getElementById('statCompleted').textContent = orders.filter(o =>
-      String(getField(o, ['Status', 'status'])) === 'Completed'
-    ).length;
+    document.getElementById('statAwaiting').textContent = orders.filter(o => String(getField(o, ['Status', 'status'])) === 'Paid - Awaiting Fulfillment').length;
+    document.getElementById('statInProgress').textContent = orders.filter(o => String(getField(o, ['Status', 'status'])) === 'Setup In Progress').length;
+    document.getElementById('statCompleted').textContent = orders.filter(o => String(getField(o, ['Status', 'status'])) === 'Completed').length;
   }
 
   function syncQuickFiltersFromDropdown() {
@@ -458,9 +249,7 @@
     const buttons = Array.from(document.querySelectorAll('#quickFilters .pill'));
     buttons.forEach(btn => btn.classList.remove('active'));
     const match = buttons.find(btn => btn.dataset.filter === current);
-    if (match) {
-      match.classList.add('active');
-    }
+    if (match) match.classList.add('active');
   }
 
   function getSelectedOrder() {
@@ -469,17 +258,13 @@
   }
 
   function setSelectedOrder(order) {
-    if (!order) {
-      selectedOrderId = null;
-      return;
-    }
+    if (!order) { selectedOrderId = null; return; }
     selectedOrderId = getRowId(order) || null;
   }
 
   function getFilteredOrders() {
     const searchText = searchInput.value.toLowerCase().trim();
     const currentStatusFilter = statusFilter.value;
-
     let filtered = allOrders.slice().reverse();
 
     if (searchText) {
@@ -492,10 +277,7 @@
     }
 
     if (currentStatusFilter) {
-      filtered = filtered.filter(order => {
-        const status = String(getField(order, ['Status', 'status']));
-        return status === currentStatusFilter;
-      });
+      filtered = filtered.filter(order => String(getField(order, ['Status', 'status'])) === currentStatusFilter);
     }
 
     return filtered;
@@ -503,35 +285,18 @@
 
   async function updateStatus(rowNumber, newStatus, buttonEl = null) {
     const url = getEffectiveApiUrl();
-
-    if (!url) {
-      showMessage('API URL is missing. Paste it into the field first.', 'error');
-      return;
-    }
-
-    if (!rowNumber) {
-      showMessage('This order is missing its row number, so status cannot be updated.', 'error');
-      return;
-    }
+    if (!url) { showMessage('API URL is missing. Paste it into the field first.', 'error'); return; }
+    if (!rowNumber) { showMessage('This order is missing its row number, so status cannot be updated.', 'error'); return; }
 
     let originalText = '';
-    if (buttonEl) {
-      originalText = buttonEl.textContent;
-      buttonEl.disabled = true;
-      buttonEl.textContent = 'Saving...';
-    }
+    if (buttonEl) { originalText = buttonEl.textContent; buttonEl.disabled = true; buttonEl.textContent = 'Saving...'; }
 
     try {
       const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({
-          action: 'updateStatus',
-          rowNumber: rowNumber,
-          status: newStatus
-        })
+        body: JSON.stringify({ action: 'updateStatus', rowNumber: rowNumber, status: newStatus })
       });
-
       const result = await response.json();
 
       if (result.success) {
@@ -544,32 +309,19 @@
       console.error(error);
       showMessage('Error updating status: ' + error.message, 'error');
     } finally {
-      if (buttonEl) {
-        buttonEl.disabled = false;
-        buttonEl.textContent = originalText;
-      }
+      if (buttonEl) { buttonEl.disabled = false; buttonEl.textContent = originalText; }
     }
   }
 
   async function updateOrderFields() {
     const selectedOrder = getSelectedOrder();
-
-    if (!selectedOrder) {
-      showMessage('Select an order first.', 'error');
-      return;
-    }
+    if (!selectedOrder) { showMessage('Select an order first.', 'error'); return; }
 
     const url = getEffectiveApiUrl();
-    if (!url) {
-      showMessage('API URL is missing. Paste it into the field first.', 'error');
-      return;
-    }
+    if (!url) { showMessage('API URL is missing. Paste it into the field first.', 'error'); return; }
 
     const rowNumber = getField(selectedOrder, ['RowNumber', 'rowNumber', 'row_number']);
-    if (!rowNumber) {
-      showMessage('This order is missing its row number, so details cannot be updated.', 'error');
-      return;
-    }
+    if (!rowNumber) { showMessage('This order is missing its row number, so details cannot be updated.', 'error'); return; }
 
     const orderShippedEl = document.getElementById('detailOrderShipped');
     const trackingNumberEl = document.getElementById('detailTrackingNumber');
@@ -581,10 +333,6 @@
       return;
     }
 
-    const orderShipped = orderShippedEl.value;
-    const trackingNumber = trackingNumberEl.value.trim();
-    const notes = notesEl.value.trim();
-
     saveBtn.disabled = true;
     saveBtn.textContent = 'Saving...';
 
@@ -595,9 +343,9 @@
         body: JSON.stringify({
           action: 'updateOrderFields',
           rowNumber: rowNumber,
-          orderShipped: orderShipped,
-          trackingNumber: trackingNumber,
-          notes: notes
+          orderShipped: orderShippedEl.value,
+          trackingNumber: trackingNumberEl.value.trim(),
+          notes: notesEl.value.trim()
         })
       });
 
@@ -691,10 +439,7 @@ ${BRAND_NAME}`;
   }
 
   function renderDetails(order) {
-    if (!order) {
-      detailsContent.innerHTML = 'Click an order row to view details.';
-      return;
-    }
+    if (!order) { detailsContent.innerHTML = 'Click an order row to view details.'; return; }
 
     const fullName = getField(order, ['FullName', 'fullName', 'Name', 'name']);
     const email = getField(order, ['Email', 'email']);
@@ -714,36 +459,14 @@ ${BRAND_NAME}`;
     const rowNumber = getField(order, ['RowNumber', 'rowNumber', 'row_number']);
 
     detailsContent.innerHTML = `
-      <div class="detail-row">
-        <div class="detail-label">Full Name</div>
-        <div class="detail-value">${displayValue(fullName)}</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Email</div>
-        <div class="detail-value">${displayValue(email)}</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Phone</div>
-        <div class="detail-value">${displayValue(phone)}</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Address</div>
-        <div class="detail-value">${displayValue(address)}</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Service</div>
-        <div class="detail-value">${displayValue(service)}</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Amount</div>
-        <div class="detail-value">${String(amount).trim() ? '$' + escapeHtml(amount) : '<span class="muted">Not provided</span>'}</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Status</div>
-        <div class="detail-value">${displayValue(status)}</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Order Shipped</div>
+      <div class="detail-row"><div class="detail-label">Full Name</div><div class="detail-value">${displayValue(fullName)}</div></div>
+      <div class="detail-row"><div class="detail-label">Email</div><div class="detail-value">${displayValue(email)}</div></div>
+      <div class="detail-row"><div class="detail-label">Phone</div><div class="detail-value">${displayValue(phone)}</div></div>
+      <div class="detail-row"><div class="detail-label">Address</div><div class="detail-value">${displayValue(address)}</div></div>
+      <div class="detail-row"><div class="detail-label">Service</div><div class="detail-value">${displayValue(service)}</div></div>
+      <div class="detail-row"><div class="detail-label">Amount</div><div class="detail-value">${String(amount).trim() ? '$' + escapeHtml(amount) : '<span class="muted">Not provided</span>'}</div></div>
+      <div class="detail-row"><div class="detail-label">Status</div><div class="detail-value">${displayValue(status)}</div></div>
+      <div class="detail-row"><div class="detail-label">Order Shipped</div>
         <select id="detailOrderShipped" class="detail-select">
           <option value="" ${orderShipped === '' ? 'selected' : ''}>Blank</option>
           <option value="No" ${String(orderShipped) === 'No' ? 'selected' : ''}>No</option>
@@ -751,42 +474,19 @@ ${BRAND_NAME}`;
           <option value="Not Shipped" ${String(orderShipped) === 'Not Shipped' ? 'selected' : ''}>Not Shipped</option>
         </select>
       </div>
-      <div class="detail-row">
-        <div class="detail-label">Tracking Number</div>
-        <input id="detailTrackingNumber" class="detail-input" value="${escapeHtml(trackingNumber)}" placeholder="Enter tracking number" />
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Device Type</div>
-        <div class="detail-value">${displayValue(deviceType)}</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Device Nickname</div>
-        <div class="detail-value">${displayValue(deviceNickname)}</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Notes</div>
-        <textarea id="detailNotes" class="detail-textarea" placeholder="Add internal notes here">${escapeHtml(notes)}</textarea>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Payment Type</div>
-        <div class="detail-value">${displayValue(paymentType)}</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">PayPal ID</div>
-        <div class="detail-value">${displayValue(paypalId)}</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Timestamp</div>
-        <div class="detail-value">${displayValue(timestamp)}</div>
-      </div>
-
+      <div class="detail-row"><div class="detail-label">Tracking Number</div><input id="detailTrackingNumber" class="detail-input" value="${escapeHtml(trackingNumber)}" placeholder="Enter tracking number" /></div>
+      <div class="detail-row"><div class="detail-label">Device Type</div><div class="detail-value">${displayValue(deviceType)}</div></div>
+      <div class="detail-row"><div class="detail-label">Device Nickname</div><div class="detail-value">${displayValue(deviceNickname)}</div></div>
+      <div class="detail-row"><div class="detail-label">Notes</div><textarea id="detailNotes" class="detail-textarea" placeholder="Add internal notes here">${escapeHtml(notes)}</textarea></div>
+      <div class="detail-row"><div class="detail-label">Payment Type</div><div class="detail-value">${displayValue(paymentType)}</div></div>
+      <div class="detail-row"><div class="detail-label">PayPal ID</div><div class="detail-value">${displayValue(paypalId)}</div></div>
+      <div class="detail-row"><div class="detail-label">Timestamp</div><div class="detail-value">${displayValue(timestamp)}</div></div>
       <div class="detail-actions">
         <button type="button" id="saveDetailFieldsBtn" class="success-btn">Save Shipping / Tracking / Notes</button>
         <button type="button" id="copySetupMsgBtn" class="info-btn">Copy Setup Message</button>
         <button type="button" id="copySupportMsgBtn" class="purple-btn">Copy Support Message</button>
         <button type="button" id="copyPaymentMsgBtn" class="warning-btn">Copy Payment Confirmation</button>
       </div>
-
       <div class="quick-status-actions">
         <button type="button" id="markCredentialsSentBtn" class="info-btn">Mark Credentials Sent</button>
         <button type="button" id="markSetupInProgressBtn" class="warning-btn">Mark Setup In Progress</button>
@@ -795,35 +495,16 @@ ${BRAND_NAME}`;
     `;
 
     document.getElementById('saveDetailFieldsBtn').addEventListener('click', updateOrderFields);
-
-    document.getElementById('copySetupMsgBtn').addEventListener('click', () => {
-      copyToClipboard(buildSetupMessage(order), 'Setup message copied.');
-    });
-
-    document.getElementById('copySupportMsgBtn').addEventListener('click', () => {
-      copyToClipboard(buildSupportMessage(order), 'Support message copied.');
-    });
-
-    document.getElementById('copyPaymentMsgBtn').addEventListener('click', () => {
-      copyToClipboard(buildPaymentConfirmationMessage(order), 'Payment confirmation copied.');
-    });
-
-    document.getElementById('markCredentialsSentBtn').addEventListener('click', async (e) => {
-      await updateStatus(rowNumber, 'Credentials Sent', e.currentTarget);
-    });
-
-    document.getElementById('markSetupInProgressBtn').addEventListener('click', async (e) => {
-      await updateStatus(rowNumber, 'Setup In Progress', e.currentTarget);
-    });
-
-    document.getElementById('markCompletedBtn').addEventListener('click', async (e) => {
-      await updateStatus(rowNumber, 'Completed', e.currentTarget);
-    });
+    document.getElementById('copySetupMsgBtn').addEventListener('click', () => copyToClipboard(buildSetupMessage(order), 'Setup message copied.'));
+    document.getElementById('copySupportMsgBtn').addEventListener('click', () => copyToClipboard(buildSupportMessage(order), 'Support message copied.'));
+    document.getElementById('copyPaymentMsgBtn').addEventListener('click', () => copyToClipboard(buildPaymentConfirmationMessage(order), 'Payment confirmation copied.'));
+    document.getElementById('markCredentialsSentBtn').addEventListener('click', async (e) => { await updateStatus(rowNumber, 'Credentials Sent', e.currentTarget); });
+    document.getElementById('markSetupInProgressBtn').addEventListener('click', async (e) => { await updateStatus(rowNumber, 'Setup In Progress', e.currentTarget); });
+    document.getElementById('markCompletedBtn').addEventListener('click', async (e) => { await updateStatus(rowNumber, 'Completed', e.currentTarget); });
   }
 
   function renderOrders() {
     const filtered = getFilteredOrders();
-
     updateStats(allOrders);
     ordersTableBody.innerHTML = '';
 
@@ -834,15 +515,8 @@ ${BRAND_NAME}`;
     }
 
     let displaySelectedOrder = null;
-
-    if (selectedOrderId) {
-      displaySelectedOrder = filtered.find(order => getRowId(order) === selectedOrderId) || null;
-    }
-
-    if (!displaySelectedOrder) {
-      displaySelectedOrder = filtered[0];
-      setSelectedOrder(displaySelectedOrder);
-    }
+    if (selectedOrderId) displaySelectedOrder = filtered.find(order => getRowId(order) === selectedOrderId) || null;
+    if (!displaySelectedOrder) { displaySelectedOrder = filtered[0]; setSelectedOrder(displaySelectedOrder); }
 
     filtered.forEach(order => {
       const rowNumber = getField(order, ['RowNumber', 'rowNumber', 'row_number']);
@@ -863,23 +537,14 @@ ${BRAND_NAME}`;
       row.className = 'clickable' + (isSelected ? ' selected-row' : '');
       row.dataset.rowNumber = rowNumber;
       row.dataset.rowId = rowId;
-
       row.innerHTML = `
         <td>${escapeHtml(fullName)}</td>
         <td>${escapeHtml(email)}</td>
         <td>${escapeHtml(planName)}</td>
         <td>$${escapeHtml(amount)}</td>
         <td>${escapeHtml(status)}</td>
-        <td class="status-actions-cell">
-          <div class="status-cell">
-            <select class="row-status-select" data-row-number="${escapeHtml(rowNumber)}">
-              ${statusOptionsHtml}
-            </select>
-            <button type="button" class="row-status-save-btn" data-row-number="${escapeHtml(rowNumber)}">Save</button>
-          </div>
-        </td>
+        <td class="status-actions-cell"><div class="status-cell"><select class="row-status-select" data-row-number="${escapeHtml(rowNumber)}">${statusOptionsHtml}</select><button type="button" class="row-status-save-btn" data-row-number="${escapeHtml(rowNumber)}">Save</button></div></td>
       `;
-
       ordersTableBody.appendChild(row);
     });
 
@@ -888,15 +553,8 @@ ${BRAND_NAME}`;
 
   async function loadOrders(silent = false, preferredSelectedId = null) {
     const url = getEffectiveApiUrl();
-
-    if (!url) {
-      showMessage('Enter or paste your API URL first.', 'error');
-      return;
-    }
-
-    if (preferredSelectedId) {
-      selectedOrderId = preferredSelectedId;
-    }
+    if (!url) { showMessage('Enter or paste your API URL first.', 'error'); return; }
+    if (preferredSelectedId) selectedOrderId = preferredSelectedId;
 
     loadOrdersBtn.disabled = true;
     loadOrdersBtn.textContent = 'Loading...';
@@ -911,19 +569,13 @@ ${BRAND_NAME}`;
       }
 
       allOrders = data;
-
       if (selectedOrderId) {
         const stillExists = allOrders.find(order => getRowId(order) === selectedOrderId);
-        if (!stillExists) {
-          selectedOrderId = null;
-        }
+        if (!stillExists) selectedOrderId = null;
       }
 
       renderOrders();
-
-      if (!silent) {
-        showMessage('Orders loaded successfully.', 'success');
-      }
+      if (!silent) showMessage('Orders loaded successfully.', 'success');
     } catch (err) {
       console.error(err);
       showMessage('Error loading orders. Check the API URL and Apps Script response.', 'error');
@@ -935,14 +587,8 @@ ${BRAND_NAME}`;
 
   saveUrlBtn.addEventListener('click', saveUrl);
   loadOrdersBtn.addEventListener('click', () => loadOrders());
-
   searchInput.addEventListener('input', renderOrders);
-
-  statusFilter.addEventListener('change', () => {
-    syncQuickFiltersFromDropdown();
-    renderOrders();
-  });
-
+  statusFilter.addEventListener('change', () => { syncQuickFiltersFromDropdown(); renderOrders(); });
   quickFilters.addEventListener('click', (e) => {
     const btn = e.target.closest('.pill');
     if (!btn) return;
@@ -959,50 +605,30 @@ ${BRAND_NAME}`;
 
     if (saveBtn) {
       e.stopPropagation();
-
       const rowNumber = saveBtn.dataset.rowNumber;
       const parentRow = saveBtn.closest('tr.clickable');
       const statusSelect = parentRow ? parentRow.querySelector('.row-status-select') : null;
-
-      if (!statusSelect) {
-        showMessage('Status selector not found.', 'error');
-        return;
-      }
-
+      if (!statusSelect) { showMessage('Status selector not found.', 'error'); return; }
       if (parentRow) {
         const clickedOrder = allOrders.find(order => getRowId(order) === parentRow.dataset.rowId);
-        if (clickedOrder) {
-          setSelectedOrder(clickedOrder);
-          renderOrders();
-        }
+        if (clickedOrder) { setSelectedOrder(clickedOrder); renderOrders(); }
       }
-
       await updateStatus(rowNumber, statusSelect.value, saveBtn);
       return;
     }
 
-    if (selectEl || statusCell) {
-      e.stopPropagation();
-      return;
-    }
-
+    if (selectEl || statusCell) { e.stopPropagation(); return; }
     if (row) {
       const clickedOrder = allOrders.find(order => getRowId(order) === row.dataset.rowId);
-      if (clickedOrder) {
-        setSelectedOrder(clickedOrder);
-        renderOrders();
-      }
+      if (clickedOrder) { setSelectedOrder(clickedOrder); renderOrders(); }
     }
   });
 
   window.onload = () => {
     const saved = localStorage.getItem('apiUrl');
-    if (saved) {
-      apiUrlInput.value = saved;
-    }
+    if (saved) apiUrlInput.value = saved;
     syncQuickFiltersFromDropdown();
   };
 </script>
-
 </body>
 </html>
