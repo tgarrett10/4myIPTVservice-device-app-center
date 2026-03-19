@@ -3,479 +3,91 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>4MyIPTV Service Resource Center</title>
+<title>4MyIPTV Service Admin Resource Center</title>
 <style>
 :root{
-  --bg:#08111f;
-  --panel:#101827;
-  --panel-alt:#0b1220;
-  --text:#f8fafc;
-  --muted:#94a3b8;
-  --green:#22c55e;
-  --blue:#3b82f6;
-  --gold:#f59e0b;
-  --purple:#9333ea;
-  --border:#1f2937;
+  --bg:#08111f; --panel:#101827; --panel-alt:#0b1220; --text:#f8fafc; --muted:#94a3b8;
+  --green:#22c55e; --blue:#3b82f6; --gold:#f59e0b; --purple:#9333ea; --border:#1f2937;
 }
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:linear-gradient(180deg,#08111f,#0f172a);
-  color:var(--text);
-}
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-}
-.card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:18px;
-  margin-bottom:14px;
-  overflow:hidden;
-  box-shadow:0 12px 28px rgba(0,0,0,.28);
-}
-.hero{
-  padding:22px;
-  text-align:center;
-}
-h1{
-  margin:0 0 8px;
-  color:#86efac;
-  font-size:2rem;
-}
-h2{
-  margin-top:0;
-}
-.tagline-banner{
-  margin:10px auto 14px auto;
-  max-width:760px;
-  padding:10px 14px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.04);
-  text-align:center;
-  font-weight:600;
-  font-size:16px;
-  letter-spacing:.08em;
-  color:#e2e8f0;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.18);
-}
-.sub{
-  color:var(--muted);
-  line-height:1.5;
-}
-.notice{
-  background:rgba(59,130,246,.10);
-  border:1px solid rgba(59,130,246,.24);
-  color:#dbeafe;
-  border-radius:14px;
-  padding:12px 14px;
-  margin-top:14px;
-  line-height:1.5;
-  text-align:left;
-}
-.btnrow{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:center;
-  margin-top:14px;
-}
-.btn{
-  padding:10px 14px;
-  border-radius:999px;
-  text-decoration:none;
-  font-weight:bold;
-  text-align:center;
-  display:inline-block;
-  border:none;
-  cursor:pointer;
-  font-size:13px;
-  color:#fff;
-}
-.adminbtn{background:var(--purple)}
-.playbtn{background:var(--blue)}
-.linkbtn{background:#475569;color:#fff}
-.section{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:14px;
-  box-shadow:0 12px 28px rgba(0,0,0,.28);
-}
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-.cardbox{
-  background:var(--panel-alt);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:14px;
-}
-.cardbox strong{
-  display:block;
-  margin-bottom:6px;
-}
-ul{
-  padding-left:18px;
-  margin:0;
-}
-li{
-  margin-bottom:8px;
-  line-height:1.45;
-}
-a{
-  color:#38bdf8;
-  text-decoration:none;
-}
-a:hover{
-  text-decoration:underline;
-}
-.footer-strip{
-  margin-top:18px;
-  padding:16px 10px;
-  border-top:1px solid #243044;
-  text-align:center;
-  color:#cbd5e1;
-  font-size:.9rem;
-}
-.footer-strip .version{
-  margin-top:6px;
-  color:#94a3b8;
-  font-size:.82rem;
-}
-@media(max-width:800px){
-  .grid{
-    grid-template-columns:1fr;
-  }
-}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#08111f,#0f172a);color:var(--text)}
+.container{max-width:1100px;margin:auto;padding:20px}
+.card,.section{background:var(--panel);border:1px solid var(--border);border-radius:18px;margin-bottom:14px;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.28)}
+.hero{padding:22px;text-align:center}
+h1{margin:0 0 8px;color:#86efac;font-size:2rem}
+h2{margin-top:0}
+.tagline-banner{margin:10px auto 14px auto;max-width:760px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);text-align:center;font-weight:600;font-size:16px;letter-spacing:.08em;color:#e2e8f0;box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.18)}
+.sub{color:var(--muted);line-height:1.5}
+.notice{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe;border-radius:14px;padding:12px 14px;margin-top:14px;line-height:1.5;text-align:left}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.btn{padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:bold;text-align:center;display:inline-block;border:none;cursor:pointer;font-size:13px;color:#fff}
+.adminbtn{background:var(--purple)} .playbtn{background:var(--blue)} .linkbtn{background:#475569;color:#fff}
+.section{padding:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cardbox{background:var(--panel-alt);border:1px solid var(--border);border-radius:12px;padding:14px}
+.cardbox strong{display:block;margin-bottom:6px}
+ul{padding-left:18px;margin:0}
+li{margin-bottom:8px;line-height:1.45}
+a{color:#38bdf8;text-decoration:none} a:hover{text-decoration:underline}
+.footer-strip{margin-top:18px;padding:16px 10px;border-top:1px solid #243044;text-align:center;color:#cbd5e1;font-size:.9rem}
+.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="container">
-
   <div class="card hero">
-    <h1>4MyIPTV Service Resource Center</h1>
+    <h1>4MyIPTV Service Admin Resource Center</h1>
     <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
     <div class="sub">Internal reference hub for setup guidance, sales support, maintenance workflow, and business tools.</div>
-
-    <div class="btnrow">
-      <a class="btn adminbtn" href="dashboard.html">Back to Installer Dashboard</a>
-    </div>
-
-    <div class="notice">
-      <strong>Internal Use</strong><br/>
-      This page is intended for internal reference and workflow support. Use it to keep sales, setup, maintenance, and support resources organized in one place.
-    </div>
+    <div class="btnrow"><a class="btn adminbtn" href="admin-dashboard.html">Back to Installer Dashboard</a></div>
+    <div class="notice"><strong>Internal Use</strong><br/>This page is intended for internal reference and workflow support. Use it to keep sales, setup, maintenance, and support resources organized in one place.</div>
   </div>
 
-  <div class="section">
-    <h2>Internal Maintenance Tools</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Update Checker</strong>
-        Use this page during your monthly maintenance review to test live links, check current app versions, and mark items as verified.
-        <ul>
-          <li><a href="update-checker.html">Open Update Checker</a></li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>APK Version Tracker Spreadsheet</strong>
-        Keep this spreadsheet as the source of truth for versions, dates verified, device compatibility, and notes before updating any page.
-        <ul>
-          <li>Recommended file: <strong>IPTV_APK_Version_Tracker.xlsx</strong></li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>APK Library Review Workflow</strong>
-        Follow this order every month:
-        <ul>
-          <li>Open Update Checker</li>
-          <li>Test APK links from apk-library.html</li>
-          <li>Mark failures and replacements in the spreadsheet</li>
-          <li>Update apk-library.html first, then dashboard.html if needed</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Link Audit Notes</strong>
-        When you test links, record:
-        <ul>
-          <li>App name</li>
-          <li>Link works or fails</li>
-          <li>Error message</li>
-          <li>Replacement URL if found</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <div class="section"><h2>Internal Maintenance Tools</h2><div class="grid">
+    <div class="cardbox"><strong>Update Checker</strong>Use this page during your monthly maintenance review to test live links, check current app versions, and mark items as verified.<ul><li><a href="admin-update-checker.html">Open Update Checker</a></li></ul></div>
+    <div class="cardbox"><strong>APK Version Tracker Spreadsheet</strong>Keep this spreadsheet as the source of truth for versions, dates verified, device compatibility, and notes before updating any page.<ul><li>Recommended file: <strong>IPTV_APK_Version_Tracker.xlsx</strong></li></ul></div>
+    <div class="cardbox"><strong>APK Library Review Workflow</strong>Follow this order every month:<ul><li>Open Update Checker</li><li>Test APK links from admin-apk-library.html</li><li>Mark failures and replacements in the spreadsheet</li><li>Update admin-apk-library.html first, then admin-dashboard.html if needed</li></ul></div>
+    <div class="cardbox"><strong>Link Audit Notes</strong>When you test links, record:<ul><li>App name</li><li>Link works or fails</li><li>Error message</li><li>Replacement URL if found</li></ul></div>
+  </div></div>
 
-  <div class="section">
-    <h2>Sales Materials</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Customer Sales Flyer</strong>
-        Explain the service benefits clearly:
-        <ul>
-          <li>Stream More • Pay Less • Watch Anywhere</li>
-          <li>Access to live TV, movies, series, sports, and PPV</li>
-          <li>Works on Android TV and streaming devices</li>
-          <li>Plug-and-play setup</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Pricing Sheet</strong>
-        <ul>
-          <li>$15 Monthly</li>
-          <li>$120 Annual</li>
-          <li>$200 Two-Year</li>
-          <li>Device purchase optional</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Comparison vs Cable</strong>
-        <ul>
-          <li>Lower monthly cost</li>
-          <li>No contracts</li>
-          <li>Portable between locations</li>
-          <li>Access to global content</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Marketing Resources</strong>
-        <ul>
-          <li><a href="https://www.canva.com/" target="_blank">Create Flyers (Canva)</a></li>
-          <li><a href="https://unsplash.com/" target="_blank">Free Marketing Images</a></li>
-          <li><a href="https://pexels.com/" target="_blank">Free Video Content</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <div class="section"><h2>Sales Materials</h2><div class="grid">
+    <div class="cardbox"><strong>Customer Sales Flyer</strong>Explain the service benefits clearly:<ul><li>Stream More • Pay Less • Watch Anywhere</li><li>Access to live TV, movies, series, sports, and PPV</li><li>Works on Android TV and streaming devices</li><li>Plug-and-play setup</li></ul></div>
+    <div class="cardbox"><strong>Pricing Sheet</strong><ul><li>$15 Monthly</li><li>$70 6 Months</li><li>$120 1 Year</li><li>$200 2 Years</li><li>Optional ONN device support available</li></ul></div>
+    <div class="cardbox"><strong>Comparison vs Cable</strong><ul><li>Lower monthly cost</li><li>No contracts</li><li>Portable between locations</li><li>Access to global content</li></ul></div>
+    <div class="cardbox"><strong>Marketing Resources</strong><ul><li><a href="https://www.canva.com/" target="_blank">Create Flyers (Canva)</a></li><li><a href="https://unsplash.com/" target="_blank">Free Marketing Images</a></li><li><a href="https://pexels.com/" target="_blank">Free Video Content</a></li></ul></div>
+  </div></div>
 
-  <div class="section">
-    <h2>Setup Procedures</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>ONN Device Setup</strong>
-        <ul>
-          <li>Connect device to TV and power</li>
-          <li>Connect to WiFi</li>
-          <li>Install Downloader or IPTV Smarters</li>
-          <li>Enter Xtream Codes login credentials</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Downloader Installation</strong>
-        <ul>
-          <li>Open Play Store</li>
-          <li>Search Downloader</li>
-          <li>Install application</li>
-          <li>Use installer codes for APK downloads</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>IPTV Smarters Login</strong>
-        <ul>
-          <li>Select Xtream Codes API</li>
-          <li>Enter Name (any name)</li>
-          <li>Enter Username and Password exactly</li>
-          <li>Enter Server URL</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Helpful Tutorials</strong>
-        <ul>
-          <li><a href="https://www.youtube.com/results?search_query=onn+4k+setup" target="_blank">ONN Setup Videos</a></li>
-          <li><a href="https://www.youtube.com/results?search_query=iptv+smarters+setup" target="_blank">IPTV Smarters Setup</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <div class="section"><h2>Setup Procedures</h2><div class="grid">
+    <div class="cardbox"><strong>ONN Device Setup</strong><ul><li>Connect device to TV and power</li><li>Connect to WiFi</li><li>Install Downloader or IPTV Smarters</li><li>Enter Xtream Codes login credentials</li></ul></div>
+    <div class="cardbox"><strong>Downloader Installation</strong><ul><li>Open Play Store</li><li>Search Downloader</li><li>Install application</li><li>Use installer codes for APK downloads</li></ul></div>
+    <div class="cardbox"><strong>IPTV Smarters Login</strong><ul><li>Select Xtream Codes API</li><li>Enter Name (any name)</li><li>Enter Username and Password exactly</li><li>Enter Server URL</li></ul></div>
+    <div class="cardbox"><strong>Helpful Tutorials</strong><ul><li><a href="https://www.youtube.com/results?search_query=onn+4k+setup" target="_blank">ONN Setup Videos</a></li><li><a href="https://www.youtube.com/results?search_query=iptv+smarters+setup" target="_blank">IPTV Smarters Setup</a></li></ul></div>
+  </div></div>
 
-  <div class="section">
-    <h2>Support Materials</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Buffering Checklist</strong>
-        <ul>
-          <li>Check internet speed</li>
-          <li>Restart device</li>
-          <li>Ensure credentials are not shared</li>
-          <li>Close background apps</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Login Issues</strong>
-        <ul>
-          <li>Verify username/password</li>
-          <li>Check server URL</li>
-          <li>Confirm subscription status</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Device Fixes</strong>
-        <ul>
-          <li>Clear app cache</li>
-          <li>Restart streaming device</li>
-          <li>Reconnect WiFi</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Support Tools</strong>
-        <ul>
-          <li><a href="https://fast.com/" target="_blank">Internet Speed Test</a></li>
-          <li><a href="https://downdetector.com/" target="_blank">Service Status Check</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <div class="section"><h2>Support Materials</h2><div class="grid">
+    <div class="cardbox"><strong>Buffering Checklist</strong><ul><li>Check internet speed</li><li>Restart device</li><li>Ensure credentials are not shared</li><li>Close background apps</li></ul></div>
+    <div class="cardbox"><strong>Login Issues</strong><ul><li>Verify username/password</li><li>Check server URL</li><li>Confirm subscription status</li></ul></div>
+    <div class="cardbox"><strong>Device Fixes</strong><ul><li>Clear app cache</li><li>Restart streaming device</li><li>Reconnect WiFi</li></ul></div>
+    <div class="cardbox"><strong>Support Tools</strong><ul><li><a href="https://fast.com/" target="_blank">Internet Speed Test</a></li><li><a href="https://downdetector.com/" target="_blank">Service Status Check</a></li></ul></div>
+  </div></div>
 
-  <div class="section">
-    <h2>APK Version Tracking</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Recommended Tracking Method</strong>
-        Use one internal master tracker as the source of truth for:
-        <ul>
-          <li>App name</li>
-          <li>Category</li>
-          <li>Current version installed</li>
-          <li>Current download link</li>
-          <li>Last verified date</li>
-          <li>Update needed status</li>
-          <li>Notes / change details</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Best Monthly Check Order</strong>
-        Check these first when verifying updates:
-        <ul>
-          <li>IPTV Smarters Pro</li>
-          <li>FlixVision</li>
-          <li>SportsFire</li>
-          <li>StreamFire</li>
-          <li>Downloader-related apps</li>
-          <li>Utility apps and VPN tools</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Internal Tracking Table</strong>
-        <table style="width:100%;border-collapse:collapse;font-size:13px;">
-          <tr>
-            <th style="border:1px solid #334155;padding:6px;background:#172554;">App</th>
-            <th style="border:1px solid #334155;padding:6px;background:#172554;">Version</th>
-            <th style="border:1px solid #334155;padding:6px;background:#172554;">Last Verified</th>
-            <th style="border:1px solid #334155;padding:6px;background:#172554;">Update Needed</th>
-          </tr>
-          <tr><td style="border:1px solid #334155;padding:6px;">IPTV Smarters Pro</td><td style="border:1px solid #334155;padding:6px;">5.0</td><td style="border:1px solid #334155;padding:6px;">03/2026</td><td style="border:1px solid #334155;padding:6px;">No</td></tr>
-          <tr><td style="border:1px solid #334155;padding:6px;">FlixVision</td><td style="border:1px solid #334155;padding:6px;">3.4.0</td><td style="border:1px solid #334155;padding:6px;">03/2026</td><td style="border:1px solid #334155;padding:6px;">No</td></tr>
-          <tr><td style="border:1px solid #334155;padding:6px;">SportsFire</td><td style="border:1px solid #334155;padding:6px;">2.0.8</td><td style="border:1px solid #334155;padding:6px;">03/2026</td><td style="border:1px solid #334155;padding:6px;">No</td></tr>
-        </table>
-      </div>
-      <div class="cardbox">
-        <strong>Recommended Workflow</strong>
-        <ul>
-          <li>Update the internal tracker first</li>
-          <li>Verify the direct link still works</li>
-          <li>Confirm the version number</li>
-          <li>Then update apk-library.html and dashboard.html only if needed</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <div class="section"><h2>APK Version Tracking</h2><div class="grid">
+    <div class="cardbox"><strong>Recommended Tracking Method</strong>Use one internal master tracker as the source of truth for:<ul><li>App name</li><li>Category</li><li>Current version installed</li><li>Current download link</li><li>Last verified date</li><li>Update needed status</li><li>Notes / change details</li></ul></div>
+    <div class="cardbox"><strong>Best Monthly Check Order</strong>Check these first when verifying updates:<ul><li>IPTV Smarters Pro</li><li>FlixVision</li><li>SportsFire</li><li>StreamFire</li><li>Downloader-related apps</li><li>Utility apps and VPN tools</li></ul></div>
+    <div class="cardbox"><strong>Internal Tracking Table</strong><table style="width:100%;border-collapse:collapse;font-size:13px;"><tr><th style="border:1px solid #334155;padding:6px;background:#172554;">App</th><th style="border:1px solid #334155;padding:6px;background:#172554;">Version</th><th style="border:1px solid #334155;padding:6px;background:#172554;">Last Verified</th><th style="border:1px solid #334155;padding:6px;background:#172554;">Update Needed</th></tr><tr><td style="border:1px solid #334155;padding:6px;">IPTV Smarters Pro</td><td style="border:1px solid #334155;padding:6px;">5.0</td><td style="border:1px solid #334155;padding:6px;">03/2026</td><td style="border:1px solid #334155;padding:6px;">No</td></tr><tr><td style="border:1px solid #334155;padding:6px;">FlixVision</td><td style="border:1px solid #334155;padding:6px;">3.4.0</td><td style="border:1px solid #334155;padding:6px;">03/2026</td><td style="border:1px solid #334155;padding:6px;">No</td></tr><tr><td style="border:1px solid #334155;padding:6px;">SportsFire</td><td style="border:1px solid #334155;padding:6px;">2.0.8</td><td style="border:1px solid #334155;padding:6px;">03/2026</td><td style="border:1px solid #334155;padding:6px;">No</td></tr></table></div>
+    <div class="cardbox"><strong>Recommended Workflow</strong><ul><li>Update the internal tracker first</li><li>Verify the direct link still works</li><li>Confirm the version number</li><li>Then update admin-apk-library.html and admin-dashboard.html only if needed</li></ul></div>
+  </div></div>
 
-  <div class="section">
-    <h2>Device Families & Procedures</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>ONN / Google Android Devices</strong>
-        <ul>
-          <li>ONN 4K Streaming Box</li>
-          <li>ONN 4K Pro / Plus models</li>
-          <li>Android TV and Google TV devices</li>
-          <li>Main support workflow and dashboard setup standard</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Amazon Fire TV / Fire Stick</strong>
-        <ul>
-          <li>Fire TV Stick Lite</li>
-          <li>Fire TV Stick HD / 4K / 4K Max</li>
-          <li>Downloader install and unknown apps process</li>
-          <li>Separate guidance should be maintained because menus differ from ONN</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Other Android Streaming Devices</strong>
-        <ul>
-          <li>Chromecast with Google TV</li>
-          <li>NVIDIA Shield TV</li>
-          <li>Generic Android TV boxes</li>
-          <li>Projectivy / launcher-based devices as needed</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Reference Links</strong>
-        <ul>
-          <li><a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=G3JQBSW7P58C2M98" target="_blank">Amazon Fire TV Help</a></li>
-          <li><a href="https://support.google.com/androidtv/" target="_blank">Android TV Help</a></li>
-          <li><a href="https://play.google.com/store/apps/details?id=com.esaba.downloader" target="_blank">Downloader App Listing</a></li>
-          <li><a href="https://support.google.com/googleplay/answer/2812853" target="_blank">Google Play Device App Help</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <div class="section"><h2>Business Tools</h2><div class="grid">
+    <div class="cardbox"><strong>Customer Management</strong><ul><li>Track subscription renewals</li><li>Record device type</li><li>Store login credentials securely</li></ul></div>
+    <div class="cardbox"><strong>Communication Tools</strong><ul><li><a href="https://t.me/myiptvservice_support_bot?start=help" target="_blank">Telegram Support</a></li><li><a href="https://gmail.com/" target="_blank">Customer Email Support</a></li></ul></div>
+    <div class="cardbox"><strong>Payment Handling</strong><ul><li>Track renewal dates</li><li>Send reminders</li><li>Confirm activation after payment</li></ul></div>
+    <div class="cardbox"><strong>Productivity Tools</strong><ul><li><a href="https://trello.com/" target="_blank">Task Tracking</a></li><li><a href="https://notion.so/" target="_blank">Customer Notes</a></li></ul></div>
+  </div></div>
 
-  <div class="section">
-    <h2>Business Tools</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Customer Management</strong>
-        <ul>
-          <li>Track subscription renewals</li>
-          <li>Record device type</li>
-          <li>Store login credentials securely</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Communication Tools</strong>
-        <ul>
-          <li><a href="https://t.me/myiptvservice_support_bot?start=help" target="_blank">Telegram Support</a></li>
-          <li><a href="https://gmail.com/" target="_blank">Customer Email Support</a></li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Payment Handling</strong>
-        <ul>
-          <li>Track renewal dates</li>
-          <li>Send reminders</li>
-          <li>Confirm activation after payment</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Productivity Tools</strong>
-        <ul>
-          <li><a href="https://trello.com/" target="_blank">Task Tracking</a></li>
-          <li><a href="https://notion.so/" target="_blank">Customer Notes</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="btnrow">
-    <a class="btn adminbtn" href="dashboard.html">Back to Installer Dashboard</a>
-  </div>
-
-  <div class="footer-strip">
-    <strong>4MyIPTV Service • Resource Center</strong>
-    <div class="version">Version 1.0 • Last Updated: March 2026</div>
-  </div>
-
+  <div class="btnrow"><a class="btn adminbtn" href="admin-dashboard.html">Back to Installer Dashboard</a></div>
+  <div class="footer-strip"><strong>4MyIPTV Service • Admin Resource Center</strong><div class="version">Version 1.1 • Last Updated: March 2026</div></div>
 </div>
 </body>
 </html>
