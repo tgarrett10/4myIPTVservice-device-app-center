@@ -1,104 +1,666 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Admin Orders</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>4MyIPTV Service Admin Orders</title>
 <style>
-body { font-family: Arial; background:#08111f; color:white; margin:0; }
-.container { padding:20px; }
-.card { background:#101827; padding:15px; margin-bottom:15px; border-radius:8px; }
-button { padding:8px 12px; margin:5px; border:none; border-radius:6px; cursor:pointer; }
-.green { background:#22c55e; }
-.blue { background:#3b82f6; }
-.gold { background:#f59e0b; }
-.red { background:#ef4444; }
+:root{
+  --bg:#08111f;
+  --panel:#101827;
+  --panel-2:#0f172a;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --green:#22c55e;
+  --blue:#3b82f6;
+  --gold:#f59e0b;
+  --purple:#9333ea;
+  --red:#ef4444;
+  --border:#1f2937;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(180deg,#08111f,#0f172a);
+  color:var(--text);
+}
+.wrap{max-width:1440px;margin:auto;padding:18px}
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  margin-bottom:14px;
+  overflow:hidden;
+  box-shadow:0 12px 28px rgba(0,0,0,.28);
+}
+.hero{padding:18px}
+h1{margin:0 0 8px;color:#86efac;font-size:2rem;text-align:center}
+.tagline-banner{
+  margin:10px auto 12px auto;
+  max-width:760px;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  text-align:center;
+  font-weight:600;
+  font-size:16px;
+  letter-spacing:.08em;
+  color:#e2e8f0;
+}
+.sub{color:var(--muted);line-height:1.5}
+.notice{
+  background:rgba(59,130,246,.10);
+  border:1px solid rgba(59,130,246,.24);
+  color:#dbeafe;
+  border-radius:14px;
+  padding:12px 14px;
+  margin-top:12px;
+  line-height:1.45;
+}
+.header{
+  padding:14px 16px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));
+}
+.header h2,.header h3{margin:0}
+.header .sub{margin-top:6px;font-size:.92rem}
+.content{padding:12px 16px}
+.section-label{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#94a3b8;
+  margin:0 0 8px 0;
+}
+.top-bar,.pill-row,.detail-actions,.quick-status-actions,.message-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+input, select, button, textarea{
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid #334155;
+  font-size:14px;
+  font-family:Arial,Helvetica,sans-serif;
+}
+input,textarea,select{background:#0b1220;color:#fff}
+button{cursor:pointer}
+button:hover{opacity:.92}
+button:disabled{cursor:not-allowed;opacity:.65}
+.primary-btn{background:#2563eb;color:#fff}
+.success-btn{background:#166534;color:#fff}
+.warning-btn{background:#a16207;color:#fff}
+.info-btn{background:#1d4ed8;color:#fff}
+.purple-btn{background:#7e22ce;color:#fff}
+.linkbtn{background:#475569;color:#fff}
+.adminbtn{
+  background:var(--purple);
+  color:#fff;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:10px;
+  display:inline-block;
+}
+.gray-btn{background:#475569;color:#fff}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+  margin:0;
+}
+.stat-card{
+  background:#0f172a;
+  border:1px solid #243044;
+  border-radius:14px;
+  padding:16px;
+}
+.stat-label{color:#94a3b8;font-size:13px;margin-bottom:8px}
+.stat-value{font-size:28px;font-weight:bold}
+.message{margin-top:10px;font-weight:bold;min-height:22px}
+.success{color:#86efac}
+.error{color:#fca5a5}
+.layout{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:20px;
+  align-items:start;
+}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;background:#0f172a}
+th,td{
+  padding:10px;
+  border:1px solid #243044;
+  font-size:14px;
+  vertical-align:top;
+}
+th{background:#172033;text-align:left}
+tr.clickable{cursor:pointer}
+tr.clickable:hover{background:#111a2d}
+tr.selected-row{background:#1e3a5f}
+tr.new-request-row{background:rgba(34,197,94,.08)}
+tr.new-request-row:hover{background:rgba(34,197,94,.14)}
+.details-panel{
+  background:#0f172a;
+  border:1px solid #243044;
+  border-radius:14px;
+  padding:16px;
+  position:sticky;
+  top:20px;
+}
+.detail-row{
+  margin-bottom:12px;
+  padding-bottom:10px;
+  border-bottom:1px solid #243044;
+}
+.detail-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.detail-label{
+  color:#94a3b8;
+  font-size:12px;
+  margin-bottom:4px;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.detail-value{
+  font-size:14px;
+  word-break:break-word;
+  line-height:1.45;
+}
+.detail-input,.detail-select,.detail-textarea{width:100%;margin-top:6px}
+.detail-textarea{min-height:90px;resize:vertical}
+.empty-note{color:#94a3b8;font-size:14px;line-height:1.5}
+.pill{
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:13px;
+  border:1px solid #334155;
+  background:#111827;
+  color:white;
+  cursor:pointer;
+}
+.pill.active{background:#2563eb;border-color:#3b82f6}
+.muted{color:#94a3b8;font-size:13px}
+.status-badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  border:1px solid #334155;
+  background:#111827;
+}
+.status-new{background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.35);color:#bbf7d0}
+.status-contacted{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.35);color:#bfdbfe}
+.status-payment{background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.35);color:#fde68a}
+.status-paid{background:rgba(147,51,234,.15);border-color:rgba(147,51,234,.35);color:#e9d5ff}
+.status-completed{background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.35);color:#dcfce7}
+.footer-strip{
+  margin-top:18px;
+  padding:16px 10px;
+  border-top:1px solid #243044;
+  text-align:center;
+  color:#cbd5e1;
+  font-size:.9rem;
+}
+.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
+@media (max-width:1100px){
+  .layout{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .details-panel{position:static}
+}
+@media (max-width:700px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  input{width:100%}
+}
+@media (max-width:500px){
+  .stats{grid-template-columns:1fr}
+}
 </style>
 </head>
-
 <body>
-<div class="container">
+<div class="wrap">
 
-<h2>Admin Orders</h2>
+  <div class="card hero">
+    <h1>4MyIPTV Service Admin Orders</h1>
+    <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
+    <div class="sub">Manage new requests, follow-up status, payment collection, and completed customer delivery from one internal page.</div>
+    <div class="notice"><strong>Internal Use</strong><br/>This page is aligned to the request-first workflow. New customers should enter as requests first, then move through contact, payment, and completion.</div>
+  </div>
 
-<div id="orders"></div>
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Connection</div>
+      <h2>Orders Data Source</h2>
+      <div class="sub">This page is now wired to your live Apps Script endpoint.</div>
+    </div>
+    <div class="content">
+      <div class="top-bar">
+        <input id="apiUrl" style="min-width:320px;flex:1;" readonly />
+        <button id="loadOrdersBtn" type="button" class="primary-btn">Load Orders</button>
+        <a class="adminbtn" href="admin-dashboard.html">Back to Dashboard</a>
+        <a class="adminbtn" href="https://t.me/+d3y9ny-g131mYTY0" target="_blank" rel="noopener noreferrer">Open Telegram Updates Channel</a>
+      </div>
+      <div id="message" class="message"></div>
+    </div>
+  </div>
 
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Filters</div>
+      <h2>Search & Order Filters</h2>
+    </div>
+    <div class="content">
+      <div class="top-bar" style="margin-bottom:12px;">
+        <input id="searchInput" placeholder="Search name, email, phone, plan, or payment" style="min-width:260px;flex:1;"/>
+        <select id="statusFilter" style="min-width:220px;"></select>
+      </div>
+
+      <div class="pill-row" id="quickFilters">
+        <button type="button" class="pill active" data-filter="">All</button>
+        <button type="button" class="pill" data-filter="NEW REQUEST">New Requests</button>
+        <button type="button" class="pill" data-filter="CONTACTED">Contacted</button>
+        <button type="button" class="pill" data-filter="PAYMENT SENT">Payment Sent</button>
+        <button type="button" class="pill" data-filter="PAID">Paid</button>
+        <button type="button" class="pill" data-filter="COMPLETED">Completed</button>
+      </div>
+      <div class="sub" style="margin-top:10px;">New requests are lightly highlighted so you can prioritize them quickly.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Snapshot</div>
+      <h2>Orders Overview</h2>
+    </div>
+    <div class="content">
+      <div class="stats">
+        <div class="stat-card"><div class="stat-label">Total Orders</div><div class="stat-value" id="statTotal">0</div></div>
+        <div class="stat-card"><div class="stat-label">New Requests</div><div class="stat-value" id="statNew">0</div></div>
+        <div class="stat-card"><div class="stat-label">Contacted</div><div class="stat-value" id="statContacted">0</div></div>
+        <div class="stat-card"><div class="stat-label">Payment Sent / Paid</div><div class="stat-value" id="statMoney">0</div></div>
+        <div class="stat-card"><div class="stat-label">Completed</div><div class="stat-value" id="statCompleted">0</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="card">
+      <div class="header">
+        <div class="section-label">Order Queue</div>
+        <h2>Orders Table</h2>
+        <div class="sub">Click a row to open the full detail panel.</div>
+      </div>
+      <div class="content table-wrap">
+        <table id="ordersTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Plan</th>
+              <th>Payment</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="6">No data loaded yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="details-panel">
+      <h3 style="margin-top:0;">Order Details</h3>
+      <div id="detailsContent" class="empty-note">Click an order row to view details.</div>
+    </div>
+  </div>
+
+  <div class="footer-strip">
+    <strong>4MyIPTV Service • Admin Orders</strong>
+    <div class="version">Version 4.0 • Request Workflow + Crypto Support</div>
+  </div>
 </div>
 
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbwYlz8KSViNMIGFnTLMDlYSv578tMcYrdyyIkDgi9LAfqIkQygTWTpH2RjZoDDM77L33w/exec";
+const SETUP_PAGE = "https://tgarrett10.github.io/4myIPTVservice-device-app-center/device-setup.html";
+const SUPPORT_PAGE = "https://tgarrett10.github.io/4myIPTVservice-device-app-center/support.html";
+
+let allOrders = [];
+let filteredOrders = [];
+let selectedOrderId = null;
+
+const STATUS_OPTIONS = ["NEW REQUEST","CONTACTED","PAYMENT SENT","PAID","COMPLETED"];
+
+const apiUrlInput = document.getElementById("apiUrl");
+const searchInput = document.getElementById("searchInput");
+const statusFilter = document.getElementById("statusFilter");
+const quickFilters = document.getElementById("quickFilters");
+const ordersTableBody = document.querySelector("#ordersTable tbody");
+const detailsContent = document.getElementById("detailsContent");
+const loadOrdersBtn = document.getElementById("loadOrdersBtn");
+
+apiUrlInput.value = API_URL;
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function showMessage(text, type) {
+  const message = document.getElementById("message");
+  message.className = "message " + type;
+  message.textContent = text;
+}
+
+function initializeStatusFilter() {
+  statusFilter.innerHTML =
+    '<option value="">All Statuses</option>' +
+    STATUS_OPTIONS.map(status => `<option value="${escapeHtml(status)}">${escapeHtml(status)}</option>`).join("");
+}
+
+function normalizeStatus(rawStatus) {
+  const clean = String(rawStatus || "").trim().toUpperCase();
+  if (!clean) return "NEW REQUEST";
+  if (clean === "NEW LEAD") return "NEW REQUEST";
+  return clean;
+}
+
+function planAmount(plan) {
+  const clean = String(plan || "").toLowerCase();
+  if (clean.includes("monthly")) return "15";
+  if (clean.includes("6 months")) return "70";
+  if (clean.includes("1 year")) return "120";
+  if (clean.includes("2 years")) return "200";
+  return "";
+}
+
+function statusBadge(status) {
+  const clean = normalizeStatus(status);
+  let cls = "";
+  if (clean === "NEW REQUEST") cls = "status-new";
+  else if (clean === "CONTACTED") cls = "status-contacted";
+  else if (clean === "PAYMENT SENT") cls = "status-payment";
+  else if (clean === "PAID") cls = "status-paid";
+  else if (clean === "COMPLETED") cls = "status-completed";
+  return `<span class="status-badge ${cls}">${escapeHtml(clean)}</span>`;
+}
+
+function copyText(text, label) {
+  navigator.clipboard.writeText(text).then(() => {
+    showMessage(label + " copied.", "success");
+  }).catch(() => {
+    showMessage("Could not copy message.", "error");
+  });
+}
+
+function buildCashAppMessage(order) {
+  return `Hi ${order.name}, your total is $${order.amount} for ${order.plan} service.
+
+Please send via Cash App.
+Reply once completed and I’ll activate your service.`;
+}
+
+function buildZelleMessage(order) {
+  return `Hi ${order.name}, your total is $${order.amount} for ${order.plan} service.
+
+Please send via Zelle.
+Reply once completed and I’ll activate your service.`;
+}
+
+function buildPayPalMessage(order) {
+  return `Hi ${order.name}, your total is $${order.amount} for ${order.plan} service.
+
+I’ll send your PayPal payment instructions next.
+Once payment is completed, I’ll activate your service.`;
+}
+
+function buildCryptoMessage(order) {
+  return `Hi ${order.name}, your total is $${order.amount} for ${order.plan} service.
+
+I accept crypto for this order. Let me know when you're ready and I’ll send the wallet details.
+
+Once payment is confirmed, I’ll activate your service.`;
+}
+
+function buildSetupMessage(order) {
+  return `Hi ${order.name},
+
+Your payment has been confirmed.
+
+Go here to complete setup:
+${SETUP_PAGE}
+
+If you need help, use the support page:
+${SUPPORT_PAGE}`;
+}
 
 async function loadOrders() {
-  const res = await fetch(API_URL);
-  const data = await res.json();
+  showMessage("Loading orders...", "success");
+  loadOrdersBtn.disabled = true;
 
-  let html = "";
+  try {
+    const response = await fetch(API_URL);
+    const data = await response.json();
 
-  data.forEach(order => {
-    html += `
-      <div class="card">
-        <b>${order.name}</b><br>
-        ${order.email}<br>
-        ${order.plan}<br>
-        Status: ${order.status}<br><br>
+    allOrders = (Array.isArray(data) ? data : []).map(row => ({
+      id: String(row.id || "").trim(),
+      name: String(row.name || "").trim(),
+      email: String(row.email || "").trim(),
+      phone: String(row.phone || "").trim(),
+      plan: String(row.plan || "").trim(),
+      payment: String(row.payment || "").trim(),
+      notes: String(row.notes || "").trim(),
+      status: normalizeStatus(row.status || ""),
+      amount: planAmount(row.plan || "")
+    }));
 
-        <button class="blue" onclick="updateStatus('${order.id}','CONTACTED')">Contacted</button>
-        <button class="gold" onclick="updateStatus('${order.id}','PAYMENT SENT')">Payment Sent</button>
-        <button class="green" onclick="updateStatus('${order.id}','PAID')">Paid</button>
-        <button class="green" onclick="updateStatus('${order.id}','COMPLETED')">Completed</button>
+    applyFilters();
+    updateStats();
+    showMessage("Orders loaded successfully.", "success");
+  } catch (error) {
+    console.error(error);
+    showMessage("Could not load orders.", "error");
+  } finally {
+    loadOrdersBtn.disabled = false;
+  }
+}
 
-        <br><br>
+function applyFilters() {
+  const searchValue = searchInput.value.trim().toLowerCase();
+  const statusValue = statusFilter.value.trim();
 
-        <button onclick="copyCash('${order.name}', '${order.plan}')">Cash App</button>
-        <button onclick="copyZelle('${order.name}', '${order.plan}')">Zelle</button>
-        <button onclick="copyPayPal('${order.name}', '${order.plan}')">PayPal</button>
-        <button onclick="copySetup()">Setup</button>
-      </div>
-    `;
+  filteredOrders = allOrders.filter(order => {
+    const haystack = [
+      order.name,
+      order.email,
+      order.phone,
+      order.plan,
+      order.payment,
+      order.notes,
+      order.status
+    ].join(" ").toLowerCase();
+
+    const matchesSearch = !searchValue || haystack.includes(searchValue);
+    const matchesStatus = !statusValue || order.status === statusValue;
+
+    return matchesSearch && matchesStatus;
   });
 
-  document.getElementById("orders").innerHTML = html;
+  renderTable();
+  renderDetails();
+}
+
+function updateStats() {
+  document.getElementById("statTotal").textContent = allOrders.length;
+  document.getElementById("statNew").textContent = allOrders.filter(o => o.status === "NEW REQUEST").length;
+  document.getElementById("statContacted").textContent = allOrders.filter(o => o.status === "CONTACTED").length;
+  document.getElementById("statMoney").textContent = allOrders.filter(o => o.status === "PAYMENT SENT" || o.status === "PAID").length;
+  document.getElementById("statCompleted").textContent = allOrders.filter(o => o.status === "COMPLETED").length;
+}
+
+function renderTable() {
+  if (!filteredOrders.length) {
+    ordersTableBody.innerHTML = '<tr><td colspan="6">No matching orders found.</td></tr>';
+    return;
+  }
+
+  ordersTableBody.innerHTML = filteredOrders.map(order => {
+    const selectedClass = selectedOrderId === order.id ? "selected-row" : "";
+    const newRequestClass = order.status === "NEW REQUEST" ? "new-request-row" : "";
+    return `
+      <tr class="clickable ${selectedClass} ${newRequestClass}" data-id="${escapeHtml(order.id)}">
+        <td>${escapeHtml(order.name || "Not provided")}</td>
+        <td>${escapeHtml(order.email || "Not provided")}</td>
+        <td>${escapeHtml(order.plan || "Not provided")}</td>
+        <td>${escapeHtml(order.payment || "Not provided")}</td>
+        <td>${order.amount ? "$" + escapeHtml(order.amount) : "-"}</td>
+        <td>${statusBadge(order.status)}</td>
+      </tr>
+    `;
+  }).join("");
+
+  Array.from(document.querySelectorAll("tr.clickable")).forEach(row => {
+    row.addEventListener("click", () => {
+      selectedOrderId = row.getAttribute("data-id");
+      renderTable();
+      renderDetails();
+    });
+  });
+}
+
+function renderDetails() {
+  const order = filteredOrders.find(o => o.id === selectedOrderId) || allOrders.find(o => o.id === selectedOrderId);
+
+  if (!order) {
+    detailsContent.className = "empty-note";
+    detailsContent.innerHTML = "Click an order row to view details.";
+    return;
+  }
+
+  detailsContent.className = "";
+  detailsContent.innerHTML = `
+    <div class="detail-row">
+      <div class="detail-label">Name</div>
+      <div class="detail-value">${escapeHtml(order.name || "Not provided")}</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Email</div>
+      <div class="detail-value">${escapeHtml(order.email || "Not provided")}</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Phone</div>
+      <div class="detail-value">${escapeHtml(order.phone || "Not provided")}</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Plan</div>
+      <div class="detail-value">${escapeHtml(order.plan || "Not provided")}</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Payment Method</div>
+      <div class="detail-value">${escapeHtml(order.payment || "Not provided")}</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Amount</div>
+      <div class="detail-value">${order.amount ? "$" + escapeHtml(order.amount) : "Not provided"}</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Status</div>
+      <div class="detail-value">${statusBadge(order.status)}</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Notes</div>
+      <div class="detail-value">${escapeHtml(order.notes || "No notes")}</div>
+    </div>
+
+    <div class="detail-row">
+      <div class="detail-label">Quick Status Actions</div>
+      <div class="quick-status-actions">
+        <button class="info-btn" onclick="updateStatus('${escapeHtml(order.id)}','CONTACTED')">Mark Contacted</button>
+        <button class="warning-btn" onclick="updateStatus('${escapeHtml(order.id)}','PAYMENT SENT')">Mark Payment Sent</button>
+        <button class="purple-btn" onclick="updateStatus('${escapeHtml(order.id)}','PAID')">Mark Paid</button>
+        <button class="success-btn" onclick="updateStatus('${escapeHtml(order.id)}','COMPLETED')">Mark Completed</button>
+      </div>
+    </div>
+
+    <div class="detail-row">
+      <div class="detail-label">Payment & Support Messages</div>
+      <div class="message-actions">
+        <button class="gray-btn" onclick='copyText(${JSON.stringify(buildCashAppMessage(order))}, "Cash App message")'>Cash App</button>
+        <button class="gray-btn" onclick='copyText(${JSON.stringify(buildZelleMessage(order))}, "Zelle message")'>Zelle</button>
+        <button class="gray-btn" onclick='copyText(${JSON.stringify(buildPayPalMessage(order))}, "PayPal message")'>PayPal</button>
+        <button class="gray-btn" onclick='copyText(${JSON.stringify(buildCryptoMessage(order))}, "Crypto message")'>Crypto</button>
+        <button class="gray-btn" onclick='copyText(${JSON.stringify(buildSetupMessage(order))}, "Setup message")'>Setup</button>
+      </div>
+    </div>
+  `;
 }
 
 async function updateStatus(id, status) {
-  await fetch(API_URL, {
-    method: "POST",
-    body: JSON.stringify({
-      action: "update",
-      id,
-      status
-    })
+  try {
+    showMessage("Updating status...", "success");
+
+    const response = await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify({
+        action: "update",
+        id,
+        status
+      })
+    });
+
+    const result = await response.json();
+
+    if (!result.success) {
+      showMessage(result.message || "Status update failed.", "error");
+      return;
+    }
+
+    const target = allOrders.find(order => order.id === String(id));
+    if (target) target.status = normalizeStatus(status);
+
+    applyFilters();
+    updateStats();
+    showMessage("Status updated successfully.", "success");
+  } catch (error) {
+    console.error(error);
+    showMessage("Could not update status.", "error");
+  }
+}
+
+searchInput.addEventListener("input", applyFilters);
+statusFilter.addEventListener("change", () => {
+  syncQuickFilterFromSelect();
+  applyFilters();
+});
+
+quickFilters.addEventListener("click", event => {
+  const btn = event.target.closest(".pill");
+  if (!btn) return;
+
+  Array.from(quickFilters.querySelectorAll(".pill")).forEach(pill => pill.classList.remove("active"));
+  btn.classList.add("active");
+  statusFilter.value = btn.getAttribute("data-filter") || "";
+  applyFilters();
+});
+
+function syncQuickFilterFromSelect() {
+  Array.from(quickFilters.querySelectorAll(".pill")).forEach(pill => {
+    pill.classList.toggle("active", (pill.getAttribute("data-filter") || "") === statusFilter.value);
   });
-  loadOrders();
 }
 
-function copyCash(name, plan) {
-  const msg = `Hi ${name}, your total is for ${plan}. Send via Cash App.`;
-  navigator.clipboard.writeText(msg);
-  alert("Copied");
-}
+loadOrdersBtn.addEventListener("click", loadOrders);
 
-function copyZelle(name, plan) {
-  const msg = `Hi ${name}, send payment for ${plan} via Zelle.`;
-  navigator.clipboard.writeText(msg);
-  alert("Copied");
-}
-
-function copyPayPal(name, plan) {
-  const msg = `Hi ${name}, I will send your PayPal link for ${plan}.`;
-  navigator.clipboard.writeText(msg);
-  alert("Copied");
-}
-
-function copySetup() {
-  const msg = `Go here to setup: https://tgarrett10.github.io/4myIPTVservice-device-app-center/device-setup.html`;
-  navigator.clipboard.writeText(msg);
-  alert("Copied");
-}
-
+initializeStatusFilter();
 loadOrders();
 </script>
-
 </body>
 </html>
