@@ -13,6 +13,8 @@
   --green:#22c55e;
   --blue:#3b82f6;
   --purple:#9333ea;
+  --gold:#f59e0b;
+  --red:#ef4444;
   --border:#1f2937;
 }
 *{box-sizing:border-box}
@@ -31,6 +33,7 @@ body{
   margin-bottom:20px;
 }
 h1{margin:0 0 10px;color:#86efac;text-align:center}
+h2{margin:0 0 8px}
 .tagline{
   text-align:center;
   margin-bottom:20px;
@@ -57,11 +60,84 @@ h1{margin:0 0 10px;color:#86efac;text-align:center}
 .green{background:#166534}
 .purple{background:#7e22ce}
 .gray{background:#475569}
+.status-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:14px;
+}
+.status-box{
+  background:#0b1220;
+  border:1px solid #243044;
+  border-radius:12px;
+  padding:14px;
+}
+.status-label{
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+.status-value{
+  font-size:16px;
+  font-weight:bold;
+  color:var(--text);
+}
+.status-note{
+  margin-top:12px;
+  color:var(--muted);
+  line-height:1.45;
+  font-size:14px;
+}
+.status-pill{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:bold;
+  font-size:13px;
+  border:1px solid transparent;
+}
+.status-ok{
+  background:rgba(34,197,94,.12);
+  color:#bbf7d0;
+  border-color:rgba(34,197,94,.25);
+}
+.status-soon{
+  background:rgba(245,158,11,.12);
+  color:#fde68a;
+  border-color:rgba(245,158,11,.28);
+}
+.status-overdue{
+  background:rgba(239,68,68,.12);
+  color:#fecaca;
+  border-color:rgba(239,68,68,.28);
+}
+.action-row{
+  margin-top:16px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.action-btn{
+  background:var(--green);
+  color:#052e16;
+  border:none;
+  border-radius:12px;
+  padding:14px 16px;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:14px;
+}
+.action-btn:hover{opacity:.92}
 .footer{
   text-align:center;
   color:#94a3b8;
   margin-top:20px;
   font-size:13px;
+}
+@media(max-width:900px){
+  .status-grid{grid-template-columns:1fr}
 }
 @media(max-width:700px){
   .grid{grid-template-columns:1fr}
@@ -76,14 +152,42 @@ h1{margin:0 0 10px;color:#86efac;text-align:center}
     <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
   </div>
 
+  <div class="card">
+    <h2>App Check Status</h2>
+    <div class="status-note">
+      This tracker resets whenever you build a device. If no device is built for 30 days, it reminds you to manually check the app library.
+    </div>
+
+    <div class="status-grid">
+      <div class="status-box">
+        <div class="status-label">Last Device Built</div>
+        <div class="status-value" id="lastBuilt">Not set</div>
+      </div>
+
+      <div class="status-box">
+        <div class="status-label">Next Check Needed</div>
+        <div class="status-value" id="nextCheck">Not set</div>
+      </div>
+
+      <div class="status-box">
+        <div class="status-label">Current Status</div>
+        <div id="statusPill" class="status-pill status-overdue">Not set</div>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button id="markBuiltBtn" class="action-btn">Built a Device Today</button>
+    </div>
+  </div>
+
   <div class="grid">
 
     <a href="admin-orders.html" class="btn blue">
       Manage Orders
     </a>
 
-    <a href="admin-apk-library.html" class="btn purple">
-      APK Library
+    <a href="app-library.html" class="btn purple">
+      Open App Library
     </a>
 
     <a href="admin-resource-center.html" class="btn green">
@@ -101,5 +205,93 @@ h1{margin:0 0 10px;color:#86efac;text-align:center}
   </div>
 
 </div>
+
+<script>
+(function () {
+  const STORAGE_KEY = "iptv_last_device_built";
+  const DAYS_ALLOWED = 30;
+  const WARNING_DAYS = 10;
+
+  const lastBuiltEl = document.getElementById("lastBuilt");
+  const nextCheckEl = document.getElementById("nextCheck");
+  const statusPillEl = document.getElementById("statusPill");
+  const markBuiltBtn = document.getElementById("markBuiltBtn");
+
+  function formatDate(date) {
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+  }
+
+  function startOfToday() {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  }
+
+  function addDays(date, days) {
+    const copy = new Date(date);
+    copy.setDate(copy.getDate() + days);
+    return copy;
+  }
+
+  function diffInDays(fromDate, toDate) {
+    const msPerDay = 1000 * 60 * 60 * 24;
+    return Math.floor((toDate - fromDate) / msPerDay);
+  }
+
+  function loadStoredDate() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = new Date(raw);
+    return isNaN(parsed.getTime()) ? null : parsed;
+  }
+
+  function saveTodayAsBuilt() {
+    const today = startOfToday();
+    localStorage.setItem(STORAGE_KEY, today.toISOString());
+    render();
+  }
+
+  function render() {
+    const lastBuilt = loadStoredDate();
+
+    if (!lastBuilt) {
+      lastBuiltEl.textContent = "Not set";
+      nextCheckEl.textContent = "Set after first build";
+      statusPillEl.textContent = "No build logged";
+      statusPillEl.className = "status-pill status-overdue";
+      return;
+    }
+
+    const today = startOfToday();
+    const nextCheck = addDays(lastBuilt, DAYS_ALLOWED);
+    const daysRemaining = diffInDays(today, nextCheck);
+
+    lastBuiltEl.textContent = formatDate(lastBuilt);
+    nextCheckEl.textContent = formatDate(nextCheck);
+
+    if (daysRemaining > WARNING_DAYS) {
+      statusPillEl.textContent = "On Track • " + daysRemaining + " days remaining";
+      statusPillEl.className = "status-pill status-ok";
+    } else if (daysRemaining >= 0) {
+      if (daysRemaining === 0) {
+        statusPillEl.textContent = "Check apps today";
+      } else {
+        statusPillEl.textContent = "Due Soon • " + daysRemaining + " days remaining";
+      }
+      statusPillEl.className = "status-pill status-soon";
+    } else {
+      const overdueDays = Math.abs(daysRemaining);
+      statusPillEl.textContent = "Overdue • " + overdueDays + " day" + (overdueDays === 1 ? "" : "s");
+      statusPillEl.className = "status-pill status-overdue";
+    }
+  }
+
+  markBuiltBtn.addEventListener("click", saveTodayAsBuilt);
+  render();
+})();
+</script>
 </body>
 </html>
