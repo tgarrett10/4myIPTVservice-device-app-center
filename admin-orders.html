@@ -74,7 +74,7 @@ h1{margin:0 0 8px;color:#86efac;font-size:2rem;text-align:center}
   color:#94a3b8;
   margin:0 0 8px 0;
 }
-.top-bar,.pill-row,.detail-actions,.quick-status-actions,.message-actions,.utility-links{
+.top-bar,.pill-row,.detail-actions,.quick-status-actions,.message-actions{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
@@ -105,16 +105,16 @@ button:disabled{cursor:not-allowed;opacity:.65}
   border-radius:10px;
   display:inline-block;
 }
-.gray-btn{background:#475569;color:#fff}
-.utility-btn{
-  background:#334155;
-  color:#fff;
+.gold-link{
+  background:var(--gold);
+  color:#3b2400;
   text-decoration:none;
   padding:10px 14px;
   border-radius:10px;
   display:inline-block;
-  border:1px solid #475569;
+  font-weight:bold;
 }
+.gray-btn{background:#475569;color:#fff}
 .stats{
   display:grid;
   grid-template-columns:repeat(5,1fr);
@@ -249,6 +249,7 @@ tr.new-request-row:hover{background:rgba(34,197,94,.14)}
       <div class="top-bar">
         <input id="apiUrl" style="min-width:320px;flex:1;" readonly />
         <button id="loadOrdersBtn" type="button" class="primary-btn">Load Orders</button>
+        <a class="gold-link" href="https://www.tvpluspanel.net/login" target="_blank" rel="noopener noreferrer">Open TV Panel</a>
         <a class="adminbtn" href="admin-dashboard.html">Back to Dashboard</a>
       </div>
       <div id="message" class="message"></div>
@@ -326,23 +327,9 @@ tr.new-request-row:hover{background:rgba(34,197,94,.14)}
     </div>
   </div>
 
-  <div class="card">
-    <div class="header">
-      <div class="section-label">Utilities</div>
-      <h2>Utility Links</h2>
-      <div class="sub">Secondary tools for operational use only.</div>
-    </div>
-    <div class="content">
-      <div class="utility-links">
-        <a class="utility-btn" href="https://www.tvpluspanel.net/login" target="_blank" rel="noopener noreferrer">Open TV Panel</a>
-        <a class="utility-btn" href="https://t.me/+d3y9ny-g131mYTY0" target="_blank" rel="noopener noreferrer">Open Telegram Updates Channel</a>
-      </div>
-    </div>
-  </div>
-
   <div class="footer-strip">
     <strong>4MyIPTV Service • Admin Orders</strong>
-    <div class="version">Version 4.1 • Request Workflow + Crypto Support + Utility Links</div>
+    <div class="version">Version 4.2 • Request Workflow + Crypto Support + TV Panel Priority Access</div>
   </div>
 </div>
 
