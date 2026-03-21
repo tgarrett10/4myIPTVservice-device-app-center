@@ -5,41 +5,190 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>4MyIPTV Service Overview</title>
 <style>
-:root{--bg:#08111f;--panel:#101827;--text:#f8fafc;--muted:#94a3b8;--green:#22c55e;--blue:#3b82f6;--gold:#f59e0b;--purple:#9333ea;--border:#1f2937}
+:root{
+  --bg:#08111f;
+  --panel:#101827;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --green:#22c55e;
+  --blue:#3b82f6;
+  --gold:#f59e0b;
+  --purple:#9333ea;
+  --border:#1f2937;
+  --panel-soft:#0b1220
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#08111f,#0f172a);color:var(--text)}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(180deg,#08111f,#0f172a);
+  color:var(--text)
+}
 .wrap{max-width:1100px;margin:auto;padding:20px}
-.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;margin-bottom:16px;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.28)}
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  margin-bottom:16px;
+  overflow:hidden;
+  box-shadow:0 12px 28px rgba(0,0,0,.28)
+}
 .hero{padding:24px;text-align:center}
 h1{margin:0 0 8px;color:#86efac;font-size:2rem}
 h2{margin:0}
-.tagline{margin:10px auto 14px auto;max-width:760px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);font-weight:600;font-size:16px;letter-spacing:.08em;color:#e2e8f0}
+.tagline{
+  margin:10px auto 14px auto;
+  max-width:760px;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  font-weight:600;
+  font-size:16px;
+  letter-spacing:.08em;
+  color:#e2e8f0
+}
 .sub{color:var(--muted);line-height:1.6;max-width:860px;margin:0 auto}
-.notice,.tip,.warning{border-radius:14px;padding:12px 14px;margin-top:14px;line-height:1.5}
+.notice,.tip,.warning{
+  border-radius:14px;
+  padding:12px 14px;
+  margin-top:14px;
+  line-height:1.5
+}
 .notice{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe}
 .tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a}
 .warning{background:rgba(239,68,68,.10);border:1px solid rgba(239,68,68,.24);color:#fecaca}
-.header{padding:14px 16px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0))}
+.header{
+  padding:14px 16px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0))
+}
 .content{padding:16px}
-.section-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;margin:0 0 8px 0}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media (max-width:900px){.grid2{grid-template-columns:1fr}}
-.btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.btn{padding:11px 14px;border-radius:999px;text-decoration:none;font-weight:bold;text-align:center;display:inline-block;border:none;cursor:pointer;font-size:14px;color:#fff}
+.section-label{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#94a3b8;
+  margin:0 0 8px 0
+}
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px
+}
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px
+}
+@media (max-width:900px){
+  .grid2,.grid3{grid-template-columns:1fr}
+}
+.btnrow{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center
+}
+.btn{
+  padding:11px 14px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:bold;
+  text-align:center;
+  display:inline-block;
+  border:none;
+  cursor:pointer;
+  font-size:14px;
+  color:#fff
+}
 .blue{background:var(--blue)}
 .green{background:var(--green);color:#052e16}
 .gold{background:var(--gold);color:#3b2400}
 .purple{background:var(--purple)}
-.table{width:100%;border-collapse:collapse}
-.table th,.table td{border:1px solid #243044;padding:10px;text-align:left}
+.table{
+  width:100%;
+  border-collapse:collapse
+}
+.table th,.table td{
+  border:1px solid #243044;
+  padding:10px;
+  text-align:left
+}
 .table th{background:#0f172a}
 ul{margin:0;padding-left:18px}
 li{margin:0 0 8px;line-height:1.5}
-.footer-strip{margin-top:18px;padding:16px 10px;border-top:1px solid #243044;text-align:center;color:#cbd5e1;font-size:.9rem}
-.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
-.cta-stack{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px}
-.cta-helper{text-align:center;color:#94a3b8;margin-top:10px;font-size:13px}
-.mini-callout{margin-top:12px;padding:12px 14px;border-radius:12px;background:#0b1220;border:1px solid #243044;color:#cbd5e1;line-height:1.45}
+.footer-strip{
+  margin-top:18px;
+  padding:16px 10px;
+  border-top:1px solid #243044;
+  text-align:center;
+  color:#cbd5e1;
+  font-size:.9rem
+}
+.footer-strip .version{
+  margin-top:6px;
+  color:#94a3b8;
+  font-size:.82rem
+}
+.cta-stack{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:16px
+}
+.cta-helper{
+  text-align:center;
+  color:#94a3b8;
+  margin-top:10px;
+  font-size:13px
+}
+.feature-box{
+  background:var(--panel-soft);
+  border:1px solid #243044;
+  border-radius:14px;
+  padding:16px;
+  height:100%
+}
+.feature-box h3{
+  margin:0 0 8px 0;
+  color:#86efac
+}
+.feature-box p,
+.feature-box li{
+  color:#cbd5e1;
+  line-height:1.5;
+  font-size:14px
+}
+.price{
+  font-weight:bold;
+  color:#fde68a;
+  margin-bottom:8px
+}
+.spec-list{
+  margin:0;
+  padding-left:18px
+}
+.spec-list li{margin-bottom:6px}
+.note-strip{
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:rgba(59,130,246,.10);
+  border:1px solid rgba(59,130,246,.24);
+  color:#dbeafe;
+  line-height:1.5
+}
+.mini-callout{
+  margin-top:12px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:var(--panel-soft);
+  border:1px solid #243044;
+  color:#cbd5e1;
+  line-height:1.45
+}
 .mini-callout strong{color:#86efac}
 </style>
 </head>
@@ -50,7 +199,7 @@ li{margin:0 0 8px;line-height:1.5}
     <h1>4MyIPTV Service Overview</h1>
     <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
     <div class="sub">
-      4MyIPTV Service provides flexible streaming plans and optional ready-to-go device support designed to keep setup simple, affordable, and convenient.
+      4MyIPTV Service provides flexible streaming plans and optional device setup support designed to keep ordering simple, setup easier, and support more manageable.
     </div>
 
     <div class="btnrow" style="margin-top:18px;">
@@ -59,8 +208,8 @@ li{margin:0 0 8px;line-height:1.5}
     </div>
 
     <div class="notice">
-      <strong>What you are getting</strong><br>
-      We provide IPTV service plans and optional setup support for compatible streaming devices. Our goal is to make access straightforward while keeping ordering simple and support easy to follow.
+      <strong>How this works</strong><br>
+      Choose your service plan, let us know if you already have a device or need one prepared, and we will guide you through the next steps.
     </div>
   </div>
 
@@ -78,30 +227,27 @@ li{margin:0 0 8px;line-height:1.5}
           <tr><td>1 Year</td><td>$120</td></tr>
           <tr><td>2 Years</td><td>$200</td></tr>
         </table>
-        <div style="margin-top:12px;color:#94a3b8;">Internet service is required and sold separately.</div>
+        <div class="tip">
+          Internet service is required and sold separately.
+        </div>
       </div>
     </div>
 
     <div class="card">
       <div class="header">
-        <div class="section-label">Devices</div>
-        <h2>Popular ONN Device Options</h2>
+        <div class="section-label">Order Guidance</div>
+        <h2>Start With Request Service</h2>
       </div>
       <div class="content">
-        <table class="table">
-          <tr><th>Device</th><th>Fully Set Up Price</th></tr>
-          <tr><td>ONN 4K Stick</td><td>$35</td></tr>
-          <tr><td>ONN 4K Streaming Device</td><td>$55</td></tr>
-          <tr><td>ONN 4K Plus Streaming Device</td><td>$65</td></tr>
-        </table>
-
-        <div class="mini-callout">
-          <strong>Save more when setting up multiple devices</strong><br>
-          Ask about bundle pricing for multi-device setups.
+        <div class="notice">
+          <strong>Recommended path:</strong> Submit a service request first so we can confirm your plan, device needs, and preferred payment method before sending final payment instructions.
         </div>
-
-        <div class="tip" style="margin-top:12px;">
-          Contact us for pricing and availability of other devices and accessories.
+        <div class="cta-stack">
+          <a class="btn green" href="request-service.html">Request Service</a>
+          <a class="btn blue" href="index.html">Back to Start Page</a>
+        </div>
+        <div class="cta-helper">
+          This keeps pricing, device needs, and next steps clear before payment is sent.
         </div>
       </div>
     </div>
@@ -109,19 +255,78 @@ li{margin:0 0 8px;line-height:1.5}
 
   <div class="card">
     <div class="header">
-      <div class="section-label">How To Order</div>
-      <h2>Request Service First</h2>
+      <div class="section-label">Devices & Setup</div>
+      <h2>Device Options &amp; Setup Services</h2>
     </div>
     <div class="content">
-      <div class="notice">
-        <strong>Recommended path:</strong> Submit a service request first so we can confirm your plan, device needs, and preferred payment method before sending final payment instructions.
+      <div class="sub" style="text-align:left;max-width:none;margin:0 0 14px 0;">
+        Already have a device? We can set it up for you. Need one? We offer fully prepared options below.
       </div>
-      <div class="cta-stack">
-        <a class="btn green" href="request-service.html">Request Service</a>
-        <a class="btn blue" href="index.html">Back to Start Page</a>
+
+      <div class="grid3">
+        <div class="feature-box">
+          <h3>Onn 4K Pro</h3>
+          <div class="price">$100</div>
+          <ul class="spec-list">
+            <li>3 GB RAM</li>
+            <li>32 GB storage</li>
+            <li>Wired Ethernet option available for more stable performance</li>
+            <li>Great value for most setups</li>
+          </ul>
+        </div>
+
+        <div class="feature-box">
+          <h3>Google TV Streamer 4K</h3>
+          <div class="price">$150</div>
+          <ul class="spec-list">
+            <li>4 GB RAM</li>
+            <li>32 GB storage</li>
+            <li>Wired Ethernet option available for more stable performance</li>
+            <li>Faster performance and more room for apps</li>
+          </ul>
+        </div>
+
+        <div class="feature-box">
+          <h3>NVIDIA Shield TV Pro</h3>
+          <div class="price">$300</div>
+          <ul class="spec-list">
+            <li>3 GB RAM</li>
+            <li>16 GB storage</li>
+            <li>Wired Ethernet option available for more stable performance</li>
+            <li>Premium performance device</li>
+          </ul>
+        </div>
       </div>
-      <div class="cta-helper">
-        Start with Request Service so pricing, device needs, and next steps can be confirmed clearly.
+
+      <div class="note-strip">
+        Device pricing covers setup and preparation only. Streaming service is separate and not included.
+      </div>
+
+      <div class="mini-callout">
+        <strong>Need help deciding?</strong><br>
+        We’ll recommend the best option based on your setup, budget, and performance needs.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Optional Accessories</div>
+      <h2>Ethernet Adapter Options</h2>
+    </div>
+    <div class="content">
+      <div class="grid2">
+        <div class="feature-box">
+          <h3>USB-C Ethernet Adapter</h3>
+          <div class="price">$30</div>
+          <p>Provides a direct wired connection instead of Wi-Fi for improved stability when your device is close enough to the router.</p>
+        </div>
+
+        <div class="feature-box">
+          <h3>Micro USB Ethernet Adapter</h3>
+          <div class="price">$30</div>
+          <p>Provides a direct wired connection instead of Wi-Fi for improved stability when your device is close enough to the router.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -135,13 +340,13 @@ li{margin:0 0 8px;line-height:1.5}
       <div class="grid2">
         <ul>
           <li>Lower monthly cost than many traditional cable packages.</li>
-          <li>Simple setup options designed to keep the process easy to follow.</li>
-          <li>One service can bring together live TV, movies, series, sports, and specialty content in one place.</li>
+          <li>Simple setup options designed to keep the process easier to follow.</li>
+          <li>One service can bring together live TV, movies, series, sports, and more in one place.</li>
           <li>Portable streaming experience for home, travel, and hotel use where internet is available.</li>
         </ul>
         <ul>
           <li>Support options through Telegram, email, and setup guidance when needed.</li>
-          <li>Popular ONN device options offer a simple Android-based streaming environment.</li>
+          <li>Multiple device options available depending on your performance and storage needs.</li>
           <li>Service plans are flexible with monthly and longer-term options.</li>
           <li>Customer-facing pages are designed to keep ordering and follow-up easier to manage.</li>
         </ul>
@@ -156,7 +361,7 @@ li{margin:0 0 8px;line-height:1.5}
     </div>
     <div class="content">
       <div class="notice">
-        Sideloaded apps are apps installed from sources outside of the Google Play Store or Amazon Appstore. Some devices may require security or installer permissions to be adjusted before these apps can be installed.
+        Sideloaded apps are apps installed from sources outside of the Google Play Store or Amazon Appstore. Some devices may require installer permissions to be adjusted before these apps can be installed.
       </div>
       <div class="tip">
         Included sideloaded apps can be verified as working at the time of setup or delivery. Over time, app behavior and availability may change based on the third-party developer.
@@ -169,7 +374,7 @@ li{margin:0 0 8px;line-height:1.5}
 
   <div class="footer-strip">
     <strong>4MyIPTV Service • Service Overview</strong>
-    <div class="version">Version 1.5 • Last Updated: March 2026</div>
+    <div class="version">Version 1.6 • Last Updated: March 2026</div>
   </div>
 
 </div>
