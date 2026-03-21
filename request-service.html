@@ -25,7 +25,7 @@ body{
 }
 a{text-decoration:none}
 .container{
-  max-width:980px;
+  max-width:1040px;
   margin:0 auto;
   padding:24px;
 }
@@ -81,9 +81,27 @@ a{text-decoration:none}
   line-height:1.6;
   max-width:780px;
 }
+.hero-points{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+.hero-point{
+  border:1px solid var(--border);
+  background:rgba(59,130,246,.08);
+  border-radius:10px;
+  padding:14px;
+  color:var(--text);
+  font-size:14px;
+}
+.hero-point strong{
+  display:block;
+  margin-bottom:4px;
+}
 .grid{
   display:grid;
-  grid-template-columns:1.4fr .9fr;
+  grid-template-columns:1.35fr .85fr;
   gap:22px;
   margin-top:24px;
 }
@@ -100,6 +118,14 @@ a{text-decoration:none}
 .panel p{
   color:var(--muted);
   line-height:1.6;
+}
+.form-intro{
+  margin-bottom:18px;
+}
+.field-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
 }
 label{
   display:block;
@@ -118,6 +144,21 @@ input, select, textarea{
 textarea{
   min-height:120px;
   resize:vertical;
+}
+.helper{
+  margin-top:6px;
+  font-size:13px;
+  color:var(--muted);
+}
+.request-note{
+  margin:0 0 18px;
+  padding:14px 16px;
+  border-radius:10px;
+  border:1px solid rgba(59,130,246,.35);
+  background:rgba(59,130,246,.08);
+  color:#dbeafe;
+  font-size:14px;
+  line-height:1.6;
 }
 .actions{
   display:flex;
@@ -141,10 +182,6 @@ textarea{
   background:transparent;
   color:var(--text);
   border:1px solid var(--border);
-}
-.btn-green{
-  background:var(--green);
-  color:#08111f;
 }
 .note-list{
   display:grid;
@@ -193,6 +230,10 @@ textarea{
     flex-direction:column;
     align-items:flex-start;
   }
+  .field-grid,
+  .hero-points{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -219,48 +260,81 @@ textarea{
     <div class="hero-card">
       <h1>Request Service</h1>
       <p>
-        Complete the form below and I will review your request, confirm the right plan and device needs,
-        and follow up with payment instructions. This is the primary service path.
+        Submit your request below and I will review your details, confirm the right plan, and follow up with next steps.
+        This form is the easiest way to get started.
       </p>
+      <div class="hero-points">
+        <div class="hero-point">
+          <strong>Simple request process</strong>
+          No payment is required on this form.
+        </div>
+        <div class="hero-point">
+          <strong>Plan and device review</strong>
+          I will help confirm what you need before activation.
+        </div>
+        <div class="hero-point">
+          <strong>Setup help available</strong>
+          Support is available if you need help getting started.
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="grid">
     <div class="panel">
       <h2>Service Request Form</h2>
-      <p>Please enter your details below. Once submitted, your request will be reviewed and added to the order system.</p>
+      <p class="form-intro">Complete the form below so I can review your request and follow up with the right next step.</p>
+
+      <div class="request-note">
+        This request form is for new service interest, renewals, and customers who need help choosing the right option.
+        After you submit, I will review your request and send the next step directly.
+      </div>
 
       <form id="requestForm">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-
-        <label for="phone">Phone Number</label>
-        <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+        <div class="field-grid">
+          <div>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" autocomplete="name" required>
+          </div>
+          <div>
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Best number to reach you" autocomplete="tel" required>
+            <div class="helper">Used in case a faster reply is needed.</div>
+          </div>
+        </div>
 
         <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" autocomplete="email" required>
+        <div class="helper">Payment instructions or follow-up details can be sent here.</div>
 
-        <label for="plan">Service Plan Interest</label>
-        <select id="plan" name="plan" required>
-          <option value="">Select a plan</option>
-          <option value="Monthly">Monthly - $15</option>
-          <option value="6 Months">6 Months - $70</option>
-          <option value="1 Year">1 Year - $120</option>
-          <option value="2 Years">2 Years - $200</option>
-        </select>
-
-        <label for="payment">Preferred Payment Method</label>
-        <select id="payment" name="payment" required>
-          <option value="">Select payment method</option>
-          <option value="Cash App">Cash App</option>
-          <option value="Zelle">Zelle</option>
-          <option value="PayPal">PayPal</option>
-          <option value="Crypto">Crypto</option>
-          <option value="Not Sure">Not Sure</option>
-        </select>
+        <div class="field-grid">
+          <div>
+            <label for="plan">Service Plan Interest</label>
+            <select id="plan" name="plan" required>
+              <option value="">Select a plan</option>
+              <option value="Monthly">Monthly - $15</option>
+              <option value="6 Months">6 Months - $70</option>
+              <option value="1 Year">1 Year - $120</option>
+              <option value="2 Years">2 Years - $200</option>
+            </select>
+          </div>
+          <div>
+            <label for="payment">Preferred Payment Method</label>
+            <select id="payment" name="payment" required>
+              <option value="">Select payment method</option>
+              <option value="Cash App">Cash App</option>
+              <option value="Zelle">Zelle</option>
+              <option value="PayPal">PayPal</option>
+              <option value="Crypto">Crypto</option>
+              <option value="Not Sure">Not Sure</option>
+            </select>
+            <div class="helper">Not sure is fine. You can confirm this later.</div>
+          </div>
+        </div>
 
         <label for="notes">Additional Notes</label>
-        <textarea id="notes" name="notes" placeholder="Tell me if you need a device, setup help, support, or anything else."></textarea>
+        <textarea id="notes" name="notes" placeholder="Tell me if you need a device, setup help, renewal support, or anything else I should know."></textarea>
+        <div class="helper">Optional, but helpful if you already know what you need.</div>
 
         <div class="actions">
           <button type="submit" class="btn btn-primary">Submit Request</button>
@@ -268,7 +342,7 @@ textarea{
         </div>
 
         <div id="successMessage" class="success">
-          Your request was submitted successfully. I will review it and follow up with next steps.
+          Your request was submitted successfully. Redirecting you to the confirmation page now.
         </div>
 
         <div id="errorMessage" class="error">
@@ -282,28 +356,25 @@ textarea{
       <div class="note-list">
         <div class="note">
           <strong>1. Your request is reviewed</strong>
-          I review your service request and confirm the right plan, device needs, and support requirements.
+          I review your request and confirm the right plan, device needs, and any setup support needed.
         </div>
         <div class="note">
-          <strong>2. You receive payment instructions</strong>
-          You will receive payment instructions based on your preferred payment method.
+          <strong>2. You receive next steps</strong>
+          You will receive payment instructions or follow-up questions based on the details you submitted.
         </div>
         <div class="note">
           <strong>3. Service is activated</strong>
-          Once payment is confirmed, your service is activated and you can begin setup.
+          Once your request is completed and payment is confirmed, service can be activated and setup can begin.
         </div>
         <div class="note">
-          <strong>Service Updates Channel</strong>
-          Stay informed about updates, outages, and important service notices.
-          <div class="actions">
-            <a class="btn btn-green" href="https://t.me/+d3y9ny-g131mYTY0" target="_blank" rel="noopener noreferrer">Join Service Updates Channel</a>
-          </div>
+          <strong>Need help before submitting?</strong>
+          Visit the Support page for setup or troubleshooting help, or review the Device Setup guide if you are already getting started.
         </div>
       </div>
 
       <p class="small" style="margin-top:18px;">
-        Need setup help right away? Visit the <a href="support.html" style="color:#93c5fd;">Support</a> page
-        or review the <a href="device-setup.html" style="color:#93c5fd;">Device Setup</a> guide.
+        Looking for app recovery? Visit the <a href="app-library.html" style="color:#93c5fd;">App Library</a> for the original side-loaded apps installed during setup.
+        Apps not shown there should be downloaded from the Play Store. Support is only provided for the apps listed in the App Library.
       </p>
     </aside>
   </section>
@@ -351,9 +422,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const result = await response.json();
 
       if (result.success) {
-        form.reset();
         successMessage.style.display = "block";
         window.scrollTo({ top: 0, behavior: "smooth" });
+        setTimeout(function () {
+          window.location.href = "success.html";
+        }, 900);
       } else {
         errorMessage.textContent = "Submission failed: " + (result.message || "Unknown error");
         errorMessage.style.display = "block";
