@@ -1,179 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>4MyIPTV Service Admin Resource Center</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resource Center - 4MyIPTV Service</title>
+
 <style>
-:root{--bg:#08111f;--panel:#101827;--panel-alt:#0f172a;--text:#f8fafc;--muted:#94a3b8;--green:#22c55e;--blue:#3b82f6;--gold:#f59e0b;--purple:#9333ea;--border:#1f2937}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#08111f,#0f172a);color:var(--text)}
-.container{max-width:1280px;margin:auto;padding:18px}
-.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;margin-bottom:14px;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.28)}
-.hero{padding:22px;text-align:center}
-h1{margin:0 0 8px;color:#86efac;font-size:2rem}
-h2{margin-top:0}
-.tagline-banner{margin:10px auto 14px auto;max-width:760px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);text-align:center;font-weight:600;font-size:16px;letter-spacing:.08em;color:#e2e8f0;box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.18)}
-.sub{color:var(--muted);line-height:1.5}
-.notice{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe;border-radius:14px;padding:12px 14px;margin-top:14px;line-height:1.5;text-align:left}
-.btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
-.btn{padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:bold;text-align:center;display:inline-block;border:none;cursor:pointer;font-size:13px;color:#fff}
-.adminbtn{background:var(--purple)}
-.playbtn{background:var(--blue)}
-.linkbtn{background:#475569;color:#fff}
-.section{padding:18px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.cardbox{background:var(--panel-alt);border:1px solid var(--border);border-radius:12px;padding:14px}
-.cardbox strong{display:block;margin-bottom:6px}
-ul{padding-left:18px;margin:0}
-li{margin-bottom:8px;line-height:1.45}
-a{color:#38bdf8;text-decoration:none}a:hover{text-decoration:underline}
-.footer-strip{margin-top:18px;padding:16px 10px;border-top:1px solid #243044;text-align:center;color:#cbd5e1;font-size:.9rem}
-.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
-@media(max-width:800px){.grid{grid-template-columns:1fr}}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #08111f;
+  color: #f8fafc;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section {
+  background: #101827;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  margin-top: 0;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+.note {
+  margin-top: 10px;
+  color: #94a3b8;
+}
+
+.warning {
+  background: #1f2937;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+  color: #facc15;
+}
 </style>
 </head>
+
 <body>
+
 <div class="container">
-  <div class="card hero">
-    <h1>4MyIPTV Service Admin Resource Center</h1>
-    <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
-    <div class="sub">Internal action hub for order follow-up, setup delivery, support handling, and maintenance checks.</div>
-    <div class="btnrow">
-      <a class="btn adminbtn" href="admin-dashboard.html">Back to Installer Dashboard</a>
-      <a class="btn playbtn" href="admin-orders.html">Open Admin Orders</a>
-      <a class="btn linkbtn" href="admin-update-checker.html">Open Update Checker</a>
-    </div>
-    <div class="notice"><strong>Internal Use</strong><br/>This page has been cleaned down to actionable tools only. Use it as a working reference, not a storage page for general ideas.</div>
-  </div>
 
-  <div class="section">
-    <h2>Order Workflow</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Primary Status Flow</strong>
-        <ul>
-          <li>NEW REQUEST</li>
-          <li>CONTACTED</li>
-          <li>PAYMENT SENT</li>
-          <li>PAID</li>
-          <li>COMPLETED</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Daily Operating Routine</strong>
-        <ul>
-          <li>Load Admin Orders</li>
-          <li>Work all NEW REQUEST rows first</li>
-          <li>Send payment instructions from the detail panel</li>
-          <li>Mark PAID only after payment is confirmed</li>
-          <li>Mark COMPLETED after setup or delivery is finished</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<h1>Resource Center</h1>
 
-  <div class="section">
-    <h2>Internal Pages</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Admin Orders</strong>
-        Main place to manage requests, copy payment messages, update status, and record notes.
-        <ul><li><a href="admin-orders.html">Open Admin Orders</a></li></ul>
-      </div>
-      <div class="cardbox">
-        <strong>Admin Dashboard</strong>
-        Internal system hub for operational access across the private page group.
-        <ul><li><a href="admin-dashboard.html">Open Admin Dashboard</a></li></ul>
-      </div>
-      <div class="cardbox">
-        <strong>Admin APK Library</strong>
-        Use when you need the current internal app links or installer tool references.
-        <ul><li><a href="admin-apk-library.html">Open Admin APK Library</a></li></ul>
-      </div>
-      <div class="cardbox">
-        <strong>Admin Update Checker</strong>
-        Use this during maintenance reviews to test links and confirm live resources still work.
-        <ul><li><a href="admin-update-checker.html">Open Admin Update Checker</a></li></ul>
-      </div>
-    </div>
-  </div>
+<div class="section">
+<h2>Android 14 4K Developer Options (FYI)</h2>
 
-  <div class="section">
-    <h2>Customer Delivery Links</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Setup Links You Will Send</strong>
-        <ul>
-          <li><a href="device-setup.html">Device Setup Page</a></li>
-          <li><a href="support.html">Support Page</a></li>
-          <li><a href="success.html">Success Page</a></li>
-          <li><a href="https://t.me/+d3y9ny-g131mYTY0" target="_blank" rel="noopener noreferrer">Service Updates Channel</a></li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Customer Intake Links</strong>
-        <ul>
-          <li><a href="index.html">Customer Landing Page</a></li>
-          <li><a href="sell-sheet.html">Services and Pricing</a></li>
-          <li><a href="request-service.html">Request Service Page</a></li>
-          <li><a href="checkout.html">Existing Quote Checkout</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<p>
+This section is provided for general awareness and troubleshooting reference.
+Most users do NOT need to change Developer Options during normal use.
+</p>
 
-  <div class="section">
-    <h2>Support and Troubleshooting</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Basic Support Checklist</strong>
-        <ul>
-          <li>Confirm the customer is on the correct setup page</li>
-          <li>Verify username, password, and server URL exactly</li>
-          <li>Restart the device and reopen the app</li>
-          <li>Clear app cache if the app is acting unstable</li>
-          <li>Use the support page before deeper troubleshooting</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>External Tools</strong>
-        <ul>
-          <li><a href="https://fast.com/" target="_blank" rel="noopener noreferrer">Internet Speed Test</a></li>
-          <li><a href="https://downdetector.com/" target="_blank" rel="noopener noreferrer">Service Status Check</a></li>
-          <li><a href="https://gmail.com/" target="_blank" rel="noopener noreferrer">Customer Email Access</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Maintenance</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Monthly Maintenance Pass</strong>
-        <ul>
-          <li>Open Admin Update Checker</li>
-          <li>Test internal APK links</li>
-          <li>Log any failures before changing customer pages</li>
-          <li>Update admin pages first, then public references if needed</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>What to Record</strong>
-        <ul>
-          <li>App or link name</li>
-          <li>Working or broken</li>
-          <li>Replacement source</li>
-          <li>Date verified</li>
-          <li>Any follow-up needed</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="btnrow"><a class="btn adminbtn" href="admin-dashboard.html">Back to Installer Dashboard</a></div>
-  <div class="footer-strip"><strong>4MyIPTV Service • Admin Resource Center</strong><div class="version">Version 2.0 • Last Updated: March 2026</div></div>
+<div class="warning">
+Developer Options are intended for advanced settings. Only adjust these if instructed or if you are comfortable making changes.
 </div>
+
+<h3>How to Enable Developer Options</h3>
+<ul>
+<li>Go to <strong>Settings</strong></li>
+<li>Select <strong>About</strong></li>
+<li>Scroll to <strong>Build</strong></li>
+<li>Click <strong>Build</strong> multiple times until you see "You are now a developer"</li>
+</ul>
+
+<h3>Recommended Settings (Optional)</h3>
+<ul>
+<li><strong>Window animation scale:</strong> 0.5x</li>
+<li><strong>Transition animation scale:</strong> 0.5x</li>
+<li><strong>USB debugging:</strong> OFF (only enable if troubleshooting)</li>
+<li><strong>Stay awake:</strong> OFF</li>
+<li><strong>Logger storage / debugging logs:</strong> OFF</li>
+</ul>
+
+<p class="note">
+Lower animation settings can make the device feel faster and more responsive.
+</p>
+
+<h3>Leave These Settings Unchanged</h3>
+<ul>
+<li>Pointer location</li>
+<li>Show layout bounds</li>
+<li>Mock location app</li>
+<li>GPU debug settings</li>
+<li>Color space settings</li>
+<li>Force RTL layout</li>
+<li>Demo mode</li>
+</ul>
+
+<p class="note">
+These are advanced development tools and are not required for normal device use.
+</p>
+
+<h3>Best Practice</h3>
+<ul>
+<li>Only enable Developer Options when needed</li>
+<li>Do not change unfamiliar settings</li>
+<li>Turn off debugging features after troubleshooting is complete</li>
+</ul>
+
+</div>
+
+</div>
+
 </body>
 </html>
