@@ -12,12 +12,13 @@ body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(
 .card{background:var(--panel);border:1px solid var(--border);border-radius:18px;margin-bottom:14px;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.28)}
 .hero{padding:22px;text-align:center}
 h1{margin:0 0 8px;color:#86efac;font-size:2rem}
-h2{margin-top:0;margin-bottom:12px}
-h3{margin:14px 0 8px;font-size:1rem}
-.tagline-banner{margin:10px auto 14px auto;max-width:760px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);text-align:center;font-weight:600;font-size:16px;letter-spacing:.08em;color:#e2e8f0;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 6px 18px rgba(0,0,0,.18)}
+h2{margin-top:0}
+h3{margin:14px 0 10px 0;color:#e2e8f0}
+.tagline-banner{margin:10px auto 14px auto;max-width:760px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);text-align:center;font-weight:600;font-size:16px;letter-spacing:.08em;color:#e2e8f0;box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.18)}
 .sub{color:var(--muted);line-height:1.5}
 .notice{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe;border-radius:14px;padding:12px 14px;margin-top:14px;line-height:1.5;text-align:left}
-.warning{background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.24);color:#fde68a;border-radius:14px;padding:12px 14px;margin-top:12px;line-height:1.5}
+.info{background:rgba(34,197,94,.10);border:1px solid rgba(34,197,94,.20);color:#dcfce7;border-radius:14px;padding:12px 14px;margin-top:14px;line-height:1.5}
+.warn{background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.24);color:#fde68a;border-radius:14px;padding:12px 14px;margin-top:14px;line-height:1.5}
 .btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
 .btn{padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:bold;text-align:center;display:inline-block;border:none;cursor:pointer;font-size:13px;color:#fff}
 .adminbtn{background:var(--purple)}
@@ -27,11 +28,9 @@ h3{margin:14px 0 8px;font-size:1rem}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .cardbox{background:var(--panel-alt);border:1px solid var(--border);border-radius:12px;padding:14px}
 .cardbox strong{display:block;margin-bottom:6px}
-.muted{color:var(--muted)}
 ul{padding-left:18px;margin:0}
 li{margin-bottom:8px;line-height:1.45}
-a{color:#38bdf8;text-decoration:none}
-a:hover{text-decoration:underline}
+a{color:#38bdf8;text-decoration:none}a:hover{text-decoration:underline}
 .footer-strip{margin-top:18px;padding:16px 10px;border-top:1px solid #243044;text-align:center;color:#cbd5e1;font-size:.9rem}
 .footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
 @media(max-width:800px){.grid{grid-template-columns:1fr}}
@@ -42,13 +41,13 @@ a:hover{text-decoration:underline}
   <div class="card hero">
     <h1>4MyIPTV Service Admin Resource Center</h1>
     <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
-    <div class="sub">Internal action hub for order follow-up, setup delivery, support handling, troubleshooting reference, and maintenance checks.</div>
+    <div class="sub">Internal action hub for order follow-up, setup delivery, support handling, maintenance checks, and future support resource buildout.</div>
     <div class="btnrow">
       <a class="btn adminbtn" href="admin-dashboard.html">Back to Installer Dashboard</a>
       <a class="btn playbtn" href="admin-orders.html">Open Admin Orders</a>
       <a class="btn linkbtn" href="admin-update-checker.html">Open Update Checker</a>
     </div>
-    <div class="notice"><strong>Internal Use</strong><br/>Use this page as a working reference. Keep public pages simple. Put deeper process, troubleshooting, and advanced guidance here instead of customer-facing pages.</div>
+    <div class="notice"><strong>Internal Use</strong><br/>Use this page as a working reference hub. Keep core links, operating notes, and future resource placeholders here so the page stays practical and expandable.</div>
   </div>
 
   <div class="section">
@@ -112,7 +111,7 @@ a:hover{text-decoration:underline}
           <li><a href="device-setup.html">Device Setup Page</a></li>
           <li><a href="support.html">Support Page</a></li>
           <li><a href="success.html">Success Page</a></li>
-          <li><a href="https://t.me/+d3y9ny-g131mYTY0" target="_blank" rel="noopener noreferrer">Live Telegram Support</a></li>
+          <li><a href="https://t.me/+d3y9ny-g131mYTY0" target="_blank" rel="noopener noreferrer">Service Updates Channel</a></li>
         </ul>
       </div>
       <div class="cardbox">
@@ -155,27 +154,30 @@ a:hover{text-decoration:underline}
     <h2>Android 14 4K Developer Options (FYI)</h2>
     <div class="grid">
       <div class="cardbox">
-        <strong>Use This as an Advanced Reference</strong>
-        <div class="muted">Most users do not need Developer Options. Keep this for awareness, performance tweaks, and troubleshooting only.</div>
-        <div class="warning"><strong>Important:</strong> Do not turn Developer Options into a normal customer setup step. Use only when needed.</div>
+        <strong>What This Section Is For</strong>
+        <p style="margin:0 0 12px 0;line-height:1.55;color:#cbd5e1">Use this as a read-through for advanced troubleshooting only. This is not part of normal customer setup and should not be presented as a required step.</p>
+        <div class="warn"><strong>Use with care</strong><br/>Most users should leave Developer Options alone unless you specifically need a performance tweak or guided troubleshooting step.</div>
         <h3>How to Enable Developer Options</h3>
         <ul>
-          <li>Open <strong>Settings</strong></li>
-          <li>Go to <strong>About</strong></li>
+          <li>Go to <strong>Settings</strong></li>
+          <li>Open <strong>About</strong></li>
           <li>Scroll to <strong>Build</strong></li>
-          <li>Press <strong>Build</strong> multiple times until developer mode is enabled</li>
+          <li>Select <strong>Build</strong> multiple times until the device confirms developer access</li>
         </ul>
       </div>
       <div class="cardbox">
-        <strong>Recommended Settings</strong>
+        <strong>Recommended Optional Settings</strong>
         <ul>
           <li><strong>Window animation scale:</strong> 0.5x</li>
           <li><strong>Transition animation scale:</strong> 0.5x</li>
-          <li><strong>USB debugging:</strong> OFF unless actively troubleshooting</li>
+          <li><strong>USB debugging:</strong> OFF unless active troubleshooting requires it</li>
           <li><strong>Stay awake:</strong> OFF</li>
           <li><strong>Logger storage / debug logs:</strong> OFF</li>
         </ul>
-        <h3>Leave Unchanged</h3>
+        <div class="info"><strong>Performance note</strong><br/>Lower animation settings can make compatible Android 14 4K devices feel quicker and more responsive during navigation.</div>
+      </div>
+      <div class="cardbox">
+        <strong>Leave These Settings Unchanged</strong>
         <ul>
           <li>Pointer location</li>
           <li>Show layout bounds</li>
@@ -186,101 +188,51 @@ a:hover{text-decoration:underline}
           <li>Demo mode</li>
         </ul>
       </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Performance Tips</h2>
-    <div class="grid">
       <div class="cardbox">
-        <strong>Quick Performance Improvements</strong>
+        <strong>Best Practice</strong>
         <ul>
-          <li>Restart the device after major app installs or updates</li>
-          <li>Keep only the apps you actually use</li>
-          <li>Clear cache on apps that feel slow or unstable</li>
-          <li>Check available storage before assuming the device is failing</li>
-          <li>Use the 0.5x animation settings if the interface feels sluggish</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>When Performance Drops</strong>
-        <ul>
-          <li>Test internet speed first</li>
-          <li>Restart the modem/router and device</li>
-          <li>Confirm the app is current if updates are required</li>
-          <li>Clear cache before uninstalling</li>
-          <li>Only move to reinstall or reset after basic checks fail</li>
+          <li>Only use Developer Options when needed</li>
+          <li>Do not change unfamiliar settings</li>
+          <li>Turn off debugging features after troubleshooting is complete</li>
+          <li>Use this section as internal guidance, not as a public setup checklist</li>
         </ul>
       </div>
     </div>
   </div>
 
   <div class="section">
-    <h2>Common Fixes</h2>
+    <h2>Critical Resource Placeholders</h2>
     <div class="grid">
       <div class="cardbox">
-        <strong>If the App Will Not Open</strong>
+        <strong>Future Build: Performance Tips</strong>
         <ul>
-          <li>Force close the app</li>
-          <li>Reopen it after 10 to 15 seconds</li>
-          <li>Restart the device</li>
-          <li>Clear app cache</li>
-          <li>Reinstall only if the issue continues</li>
+          <li>Placeholder for approved device optimization tips</li>
+          <li>Placeholder for Wi-Fi performance best practices</li>
+          <li>Placeholder for storage cleanup guidance</li>
         </ul>
       </div>
       <div class="cardbox">
-        <strong>If Buffering or Playback Issues Happen</strong>
+        <strong>Future Build: Common Fixes Library</strong>
         <ul>
-          <li>Run a speed test</li>
-          <li>Confirm the customer is on stable Wi-Fi or Ethernet</li>
-          <li>Try another stream to isolate whether it is device-wide or stream-specific</li>
-          <li>Restart the app and device</li>
-          <li>Escalate only after the basic checks are completed</li>
+          <li>Placeholder for app crash troubleshooting</li>
+          <li>Placeholder for buffering and playback guidance</li>
+          <li>Placeholder for login and credential issue workflow</li>
         </ul>
       </div>
       <div class="cardbox">
-        <strong>If Login Fails</strong>
+        <strong>Future Build: Device Reset Guide</strong>
         <ul>
-          <li>Recheck username exactly as provided</li>
-          <li>Recheck password exactly as provided</li>
-          <li>Recheck server / portal URL exactly as provided</li>
-          <li>Watch for extra spaces or wrong capitalization</li>
-          <li>Do not assume the service is down until credentials are verified</li>
+          <li>Placeholder for soft reset steps</li>
+          <li>Placeholder for app reset sequence</li>
+          <li>Placeholder for full device reset notes</li>
         </ul>
       </div>
       <div class="cardbox">
-        <strong>If the Device Feels Full or Slow</strong>
+        <strong>Future Build: Customer Messaging Templates</strong>
         <ul>
-          <li>Review installed apps and remove unused ones</li>
-          <li>Clear cache on large apps</li>
-          <li>Restart the device after cleanup</li>
-          <li>Avoid piling on unnecessary side-loaded apps</li>
-          <li>Use reset only when cleanup and reinstall steps fail</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Device Reset Guide</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Before a Reset</strong>
-        <ul>
-          <li>Confirm basic troubleshooting was already attempted</li>
-          <li>Document the apps and credentials that will need to be re-entered</li>
-          <li>Make sure the customer understands a reset removes installed apps and settings</li>
-          <li>Use reset as a last resort, not a first response</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>After a Reset</strong>
-        <ul>
-          <li>Reconnect the device to Wi-Fi or Ethernet</li>
-          <li>Complete the basic Google device setup</li>
-          <li>Return only to the approved setup flow</li>
-          <li>Reinstall only the needed apps</li>
-          <li>Retest before marking the case complete</li>
+          <li>Placeholder for post-payment setup message</li>
+          <li>Placeholder for support follow-up script</li>
+          <li>Placeholder for outage/update communication</li>
         </ul>
       </div>
     </div>
@@ -312,7 +264,7 @@ a:hover{text-decoration:underline}
   </div>
 
   <div class="btnrow"><a class="btn adminbtn" href="admin-dashboard.html">Back to Installer Dashboard</a></div>
-  <div class="footer-strip"><strong>4MyIPTV Service • Admin Resource Center</strong><div class="version">Version 3.0 • Last Updated: March 2026</div></div>
+  <div class="footer-strip"><strong>4MyIPTV Service • Admin Resource Center</strong><div class="version">Version 2.1 • Last Updated: March 2026</div></div>
 </div>
 </body>
 </html>
