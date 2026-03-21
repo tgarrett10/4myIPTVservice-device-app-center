@@ -159,6 +159,33 @@ h2{text-align:center;margin-top:0}
 .video-frame{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;border:1px solid #243044;background:#000;box-shadow:0 12px 28px rgba(0,0,0,.28)}
 .video-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
 .video-note{text-align:center;color:#94a3b8;margin-top:12px;font-size:14px;line-height:1.5}
+
+.faq-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px
+}
+@media(max-width:900px){
+  .faq-grid{grid-template-columns:1fr}
+}
+.faq-item{
+  background:#0b1220;
+  border:1px solid #243044;
+  border-radius:12px;
+  padding:16px
+}
+.faq-item h3{
+  margin:0 0 8px 0;
+  color:#86efac;
+  font-size:17px
+}
+.faq-item p{
+  margin:0;
+  color:#cbd5e1;
+  font-size:14px;
+  line-height:1.55
+}
+
 .footer-strip{
   margin-top:18px;
   padding:16px 10px;
@@ -269,6 +296,32 @@ h2{text-align:center;margin-top:0}
       <div class="feature">
         <h3>Everyday Viewers</h3>
         <p>Enjoy a simple, reliable entertainment setup that feels easy to use.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <h2>Quick Questions</h2>
+    <div class="sub">
+      A few common questions before you get started.
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>Is setup help available?</h3>
+        <p>Yes. Setup guidance and support are available for compatible devices if you need help getting started.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What device do I need?</h3>
+        <p>You will need a compatible streaming device and a reliable internet connection. If you are unsure, request service first and ask before purchasing anything new.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Where do I get additional apps?</h3>
+        <p>The App Library includes the original side-loaded apps installed during setup. Other apps should be downloaded from the Play Store on your device.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What support do you provide?</h3>
+        <p>We provide help with setup, troubleshooting, and the apps listed in the App Library. Support is not provided for third-party apps installed from the Play Store or any other outside source.</p>
       </div>
     </div>
   </div>
