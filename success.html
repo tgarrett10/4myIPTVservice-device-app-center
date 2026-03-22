@@ -3,45 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payment Successful - 4MyIPTV Service</title>
+<title>Order Confirmed - 4MyIPTV Service</title>
 <style>
 :root{--bg:#08111f;--panel:#101827;--text:#f8fafc;--muted:#94a3b8;--green:#22c55e;--blue:#3b82f6;--purple:#9333ea;--border:#1f2937}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#08111f,#0f172a);color:var(--text)}
-.container{max-width:900px;margin:auto;padding:30px 20px}.card{background:#111827;border:1px solid #334155;border-radius:18px;padding:24px;margin-bottom:20px;box-shadow:0 12px 28px rgba(0,0,0,.28)}
-h1{color:#86efac;margin-bottom:10px;text-align:center}.tagline-banner{margin:10px auto 14px auto;max-width:760px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);text-align:center;font-weight:600;font-size:16px;letter-spacing:.08em;color:#e2e8f0}
-.note{color:#94a3b8;margin-top:10px;font-size:14px;line-height:1.5;text-align:center}.btn{display:inline-block;padding:12px 16px;margin:6px;border-radius:999px;font-weight:bold;text-decoration:none;color:#fff}.primary{background:#22c55e;color:#052e16}.secondary{background:#3b82f6}.third{background:#9333ea}
-.video-wrap{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#020617;border:1px solid #334155}.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
-.footer-strip{margin-top:18px;padding:16px 10px;border-top:1px solid #243044;text-align:center;color:#cbd5e1;font-size:.9rem}.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#08111f,#0f172a);color:var(--text)}
+.container{max-width:920px;margin:auto;padding:30px 20px}
+.card{background:#111827;border:1px solid #334155;border-radius:18px;padding:24px;margin-bottom:20px;box-shadow:0 12px 28px rgba(0,0,0,.28)}
+h1,h2,h3{margin-top:0}
+h1{color:#86efac;margin-bottom:10px;text-align:center}
+h2{color:#f8fafc;font-size:24px;margin-bottom:12px}
+h3{color:#f8fafc;font-size:20px;margin-bottom:10px}
+p{margin:0 0 12px 0;line-height:1.6;color:#e5e7eb}
+.tagline-banner{margin:10px auto 14px auto;max-width:760px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);text-align:center;font-weight:600;font-size:16px;letter-spacing:.08em;color:#e2e8f0}
+.note{color:#94a3b8;margin-top:10px;font-size:14px;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:16px}
+.mini-card{background:#0b1220;border:1px solid #243244;border-radius:14px;padding:16px}
+.btn{display:inline-block;padding:12px 16px;margin:6px;border-radius:999px;font-weight:bold;text-decoration:none;color:#fff}
+.primary{background:#22c55e;color:#052e16}
+.secondary{background:#3b82f6}
+.third{background:#9333ea}
+.center{text-align:center}
+.steps{margin:0;padding-left:20px;color:#e5e7eb;line-height:1.7}
+.steps li{margin-bottom:10px}
+.footer-strip{margin-top:18px;padding:16px 10px;border-top:1px solid #243044;text-align:center;color:#cbd5e1;font-size:.9rem}
+.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
+@media (max-width:640px){.container{padding:20px 14px}.card{padding:18px}.btn{display:block;width:100%;margin:8px 0;text-align:center}}
 </style>
 </head>
 <body>
 <div class="container">
   <div class="card">
-    <h1>Payment Successful</h1>
+    <h1>Order Confirmed</h1>
     <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
-    <div class="note">Your order has been received and is being processed.</div>
-    <div style="color:#86efac;font-weight:bold;text-align:center;margin-top:8px;">Setup takes less than 5 minutes</div>
-    <div class="note">Follow the steps below to get started immediately.</div>
+    <p class="center" style="font-size:18px;color:#d1fae5;font-weight:bold;">Thank you for choosing 4MyIPTV Service.</p>
+    <p class="center">Your payment has been received and your order is now being processed.</p>
   </div>
 
   <div class="card">
-    <h2 style="text-align:center;">Start Here</h2>
-    <div style="text-align:center;">
-      <a href="device-setup.html" class="btn primary">Go to Setup Guide</a>
-      <a href="support.html" class="btn secondary">Get Support</a>
-      <a href="sell-sheet.html" class="btn third">Service Overview</a>
+    <h2 class="center">We Handle the Setup for You</h2>
+    <p class="center">If you ordered a device from us, your device will be prepared, configured, and sent ready to use. Most customers will not need to complete any app setup on their own.</p>
+    <div class="grid">
+      <div class="mini-card">
+        <h3>Device Orders</h3>
+        <p>Your device will be set up before shipment so your experience is simple and ready to go when it arrives.</p>
+      </div>
+      <div class="mini-card">
+        <h3>Shipping</h3>
+        <p>Devices can be shipped anywhere in the continental U.S. Two-day express shipping is typically $20 or less per device.</p>
+      </div>
+      <div class="mini-card">
+        <h3>Need Status Help?</h3>
+        <p>If you have a question about your order, setup, or timing, contact support and we will assist you directly.</p>
+      </div>
     </div>
-    <div class="note">Use your login details provided to complete setup.</div>
   </div>
 
-  <div class="card"><h2 style="text-align:center;">Welcome Video</h2><div class="video-wrap"><iframe title="4MyIPTV Service Success Video Placeholder" allowfullscreen srcdoc="<!DOCTYPE html><html><head><meta charset='UTF-8'><style>body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#020617;color:#f8fafc;display:flex;align-items:center;justify-content:center;height:100vh;text-align:center;padding:24px} .box{max-width:760px} .eyebrow{color:#86efac;font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px} h3{margin:0 0 12px 0;font-size:28px} p{margin:0;color:#cbd5e1;line-height:1.55;font-size:16px}</style></head><body><div class='box'><div class='eyebrow'>Success Video Script Ready</div><h3>Your order has been received.</h3><p>You're just a few steps away from streaming. Go to the setup guide and follow the steps. Support is available if you need help. Welcome to 4MyIPTV Service.</p></div></body></html>"></iframe></div><div class="note">This section is aligned to your approved success video script and is ready for your final hosted video URL.</div></div>
+  <div class="card">
+    <h2>Personalize Your Device (Optional)</h2>
+    <p><strong>Your device will be sent fully set up and ready to use out of the box.</strong></p>
+    <p>We configure each device using a service profile to make your experience plug-and-play.</p>
+    <p><strong>For the best long-term experience, we recommend updating the device profile to your own Google account.</strong></p>
+    <p>This allows you to access your personal Google services.</p>
+    <p class="note">This step is optional and can be done at any time.</p>
+  </div>
 
-  
-  <div class="card"><h3 style="text-align:center;">Stay Connected</h3><div class="note">Get service updates, outage notices, and important announcements.</div><div style="text-align:center;"><a href="https://t.me/+d3y9ny-g131mYTY0" target="_blank" rel="noopener noreferrer" class="btn secondary">Join our Telegram Updates Channel</a></div></div>
+  <div class="card">
+    <h2>Your Next Steps</h2>
+    <ol class="steps">
+      <li>If you ordered a device from us, wait for your configured device to arrive.</li>
+      <li>Watch the Telegram updates channel for service notices and important updates.</li>
+      <li>If you are using your own device and need help, contact support for assistance.</li>
+    </ol>
+    <p class="note">For customers using their own device: support can assist with downloading IPTV Smarters and you will receive your username, password, and server link through the support process.</p>
+    <div class="center" style="margin-top:16px;">
+      <a href="https://t.me/+d3y9ny-g131mYTY0" target="_blank" rel="noopener noreferrer" class="btn secondary">Join Telegram Updates</a>
+      <a href="support.html" class="btn primary">Contact Support</a>
+      <a href="sell-sheet.html" class="btn third">View Service Overview</a>
+    </div>
+  </div>
 
-  <div class="card"><h3 style="text-align:center;">Need Help?</h3><div class="note">Support is available if you need assistance at any step.</div><div style="text-align:center;"><a href="support.html" class="btn secondary">Contact Support</a></div></div>
-
-  <div class="footer-strip"><strong>4MyIPTV Service • Payment Success</strong><div class="version">Version 1.1 • Last Updated: March 2026</div></div>
+  <div class="footer-strip"><strong>4MyIPTV Service • Order Confirmation</strong><div class="version">Version 3.0 • Personalization Update</div></div>
 </div>
 </body>
 </html>
