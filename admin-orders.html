@@ -1,977 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>4MyIPTV Service Admin Orders</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Orders - 4MyIPTV Service</title>
+
 <style>
 :root{
   --bg:#08111f;
   --panel:#101827;
-  --panel-2:#0f172a;
+  --panel2:#0f172a;
+  --border:#1f2937;
   --text:#f8fafc;
   --muted:#94a3b8;
-  --green:#22c55e;
   --blue:#3b82f6;
-  --gold:#f59e0b;
-  --purple:#9333ea;
+  --green:#22c55e;
   --red:#ef4444;
-  --border:#1f2937;
 }
-*{box-sizing:border-box}
+
+*{box-sizing:border-box;}
+
 body{
   margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(180deg,#08111f,#0f172a);
+  font-family:Arial, sans-serif;
+  background:var(--bg);
   color:var(--text);
 }
-.wrap{max-width:1500px;margin:auto;padding:18px}
+
+.wrap{
+  max-width:1300px;
+  margin:auto;
+  padding:20px;
+}
+
+h1{
+  margin:0 0 10px;
+}
+
+.sub{
+  color:var(--muted);
+  margin-bottom:20px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:350px 1fr;
+  gap:20px;
+}
+
 .card{
   background:var(--panel);
   border:1px solid var(--border);
-  border-radius:18px;
-  margin-bottom:14px;
-  overflow:hidden;
-  box-shadow:0 12px 28px rgba(0,0,0,.28);
+  border-radius:12px;
+  padding:20px;
 }
-.hero{padding:18px}
-h1{margin:0 0 8px;color:#86efac;font-size:2rem;text-align:center}
-h2,h3{margin:0}
-.tagline-banner{
-  margin:10px auto 12px auto;
-  max-width:760px;
-  padding:10px 14px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.04);
-  text-align:center;
-  font-weight:600;
-  font-size:16px;
-  letter-spacing:.08em;
-  color:#e2e8f0;
+
+input, select, textarea{
+  width:100%;
+  padding:10px;
+  margin-top:5px;
+  margin-bottom:10px;
+  background:var(--panel2);
+  border:1px solid var(--border);
+  color:var(--text);
+  border-radius:8px;
 }
-.sub{color:var(--muted);line-height:1.5}
-.notice{
-  background:rgba(59,130,246,.10);
-  border:1px solid rgba(59,130,246,.24);
-  color:#dbeafe;
-  border-radius:14px;
-  padding:12px 14px;
-  margin-top:12px;
-  line-height:1.45;
-}
-.header{
-  padding:14px 16px;
-  border-bottom:1px solid var(--border);
-  background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));
-}
-.header .sub{margin-top:6px;font-size:.92rem}
-.content{padding:12px 16px}
-.section-label{
-  font-size:11px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:#94a3b8;
-  margin:0 0 8px 0;
-}
-.top-bar,.filter-row,.detail-actions,.message-actions,.nav-actions,.status-actions,.field-actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:center;
-}
-input,select,button,textarea{
-  padding:10px 14px;
-  border-radius:10px;
-  border:1px solid #334155;
-  font-size:14px;
-  font-family:Arial,Helvetica,sans-serif;
-}
-input,textarea,select{
-  background:#0b1220;
-  color:#fff;
-}
-textarea{resize:vertical}
-button{cursor:pointer}
-button:hover{opacity:.92}
-button:disabled{cursor:not-allowed;opacity:.65}
-.primary-btn{background:#2563eb;color:#fff}
-.success-btn{background:#166534;color:#fff}
-.warning-btn{background:#a16207;color:#fff}
-.info-btn{background:#1d4ed8;color:#fff}
-.purple-btn{background:#7e22ce;color:#fff}
-.gray-btn{background:#475569;color:#fff}
-.red-btn{background:#991b1b;color:#fff}
-.adminbtn{
-  background:var(--purple);
-  color:#fff;
-  text-decoration:none;
-  padding:10px 14px;
-  border-radius:10px;
-  display:inline-block;
-}
-.gold-link{
-  background:var(--gold);
-  color:#3b2400;
-  text-decoration:none;
-  padding:10px 14px;
-  border-radius:10px;
-  display:inline-block;
+
+button{
+  padding:10px 15px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
   font-weight:bold;
 }
-.stats{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:12px;
-  margin:0;
+
+.btn{
+  background:var(--blue);
+  color:white;
 }
-.stat-card{
-  background:#0f172a;
-  border:1px solid #243044;
-  border-radius:14px;
-  padding:16px;
+
+.msg{
+  margin-top:10px;
+  padding:10px;
+  border-radius:8px;
+  display:none;
 }
-.stat-label{color:#94a3b8;font-size:13px;margin-bottom:8px}
-.stat-value{font-size:28px;font-weight:bold}
-.message{margin-top:10px;font-weight:bold;min-height:22px}
-.success{color:#86efac}
-.error{color:#fca5a5}
-.layout{
-  display:grid;
-  grid-template-columns:2fr 1fr;
-  gap:20px;
-  align-items:start;
+
+.success{
+  background:#065f46;
+  display:block;
 }
-.table-wrap{overflow:auto}
+
+.error{
+  background:#7f1d1d;
+  display:block;
+}
+
+.table-wrap{
+  overflow:auto;
+}
+
 table{
   width:100%;
   border-collapse:collapse;
-  background:#0f172a;
 }
-th,td{
+
+th, td{
   padding:10px;
-  border:1px solid #243044;
-  font-size:14px;
-  vertical-align:top;
-}
-th{
-  background:#172033;
+  border-bottom:1px solid var(--border);
   text-align:left;
-  white-space:nowrap;
 }
-tr.clickable{cursor:pointer}
-tr.clickable:hover{background:#111a2d}
-tr.selected-row{background:#1e3a5f}
-tr.attention-row{background:rgba(245,158,11,.08)}
-tr.attention-row:hover{background:rgba(245,158,11,.14)}
-.details-panel{
-  background:#0f172a;
-  border:1px solid #243044;
-  border-radius:14px;
-  padding:16px;
-  position:sticky;
-  top:20px;
-}
-.detail-row{
-  margin-bottom:12px;
-  padding-bottom:10px;
-  border-bottom:1px solid #243044;
-}
-.detail-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.detail-label{
-  color:#94a3b8;
+
+th{
+  background:var(--panel2);
   font-size:12px;
-  margin-bottom:4px;
-  text-transform:uppercase;
-  letter-spacing:.06em;
 }
-.detail-value{
-  font-size:14px;
-  word-break:break-word;
-  line-height:1.45;
-}
-.detail-input,.detail-select,.detail-textarea{width:100%;margin-top:6px}
-.detail-textarea{min-height:90px}
-.empty-note{color:#94a3b8;font-size:14px;line-height:1.5}
-.status-badge{
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:700;
-  border:1px solid #334155;
-  background:#111827;
-  white-space:nowrap;
-}
-.badge-blue{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.35);color:#bfdbfe}
-.badge-green{background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.35);color:#bbf7d0}
-.badge-gold{background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.35);color:#fde68a}
-.badge-purple{background:rgba(147,51,234,.15);border-color:rgba(147,51,234,.35);color:#e9d5ff}
-.badge-red{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.35);color:#fecaca}
-.badge-gray{background:rgba(148,163,184,.15);border-color:rgba(148,163,184,.35);color:#e2e8f0}
-.inline-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-.footer-strip{
-  margin-top:18px;
-  padding:16px 10px;
-  border-top:1px solid #243044;
-  text-align:center;
-  color:#cbd5e1;
-  font-size:.9rem;
-}
-.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
-.small-note{
-  color:#94a3b8;
-  font-size:12px;
-  margin-top:8px;
-  line-height:1.45;
-}
-@media (max-width:1200px){
-  .layout{grid-template-columns:1fr}
-  .details-panel{position:static}
-}
-@media (max-width:900px){
-  .stats{grid-template-columns:repeat(3,1fr)}
-}
-@media (max-width:700px){
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .inline-grid{grid-template-columns:1fr}
-}
-@media (max-width:500px){
-  .stats{grid-template-columns:1fr}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
+
 <body>
+
 <div class="wrap">
+  <h1>Admin Orders</h1>
+  <div class="sub">4MyIPTV Service • Stream More • Pay Less • Watch Anywhere</div>
 
-  <div class="card hero">
-    <h1>4MyIPTV Service Admin Orders</h1>
-    <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
-    <div class="sub">Manage inquiries, classify customer type, track fulfillment, control support routing, and copy the right customer message from one internal page.</div>
-    <div class="notice"><strong>Internal Use</strong><br/>This page supports the semi-automated admin workflow. The system recommends the next step, but all customer-facing actions remain manual.</div>
-  </div>
+  <div class="grid">
 
-  <div class="card">
-    <div class="header">
-      <div class="section-label">Connection</div>
-      <h2>Orders Data Source</h2>
-      <div class="sub">This page is wired to your live Apps Script endpoint.</div>
-    </div>
-    <div class="content">
-      <div class="top-bar">
-        <input id="apiUrl" style="min-width:320px;flex:1;" readonly />
-        <button id="loadOrdersBtn" type="button" class="primary-btn">Load Orders</button>
-        <a class="gold-link" href="https://www.tvpluspanel.net/login" target="_blank" rel="noopener noreferrer">Open TV Panel</a>
-        <a class="adminbtn" href="admin-dashboard.html">Back to Dashboard</a>
-      </div>
-      <div id="message" class="message"></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="header">
-      <div class="section-label">Filters</div>
-      <h2>Search & Order Filters</h2>
-    </div>
-    <div class="content">
-      <div class="filter-row">
-        <input id="searchInput" placeholder="Search by name, phone, email, or order ID" style="min-width:260px;flex:1;"/>
-        <select id="customerTypeFilter" style="min-width:220px;"></select>
-        <select id="orderStatusFilter" style="min-width:220px;"></select>
-        <select id="paymentStatusFilter" style="min-width:220px;"></select>
-      </div>
-      <div class="small-note">Use filters to narrow the queue. Paid - Review Needed, Ready for Delivery, and Support Needed should usually be your highest attention areas.</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="header">
-      <div class="section-label">Snapshot</div>
-      <h2>Orders Overview</h2>
-    </div>
-    <div class="content">
-      <div class="stats">
-        <div class="stat-card"><div class="stat-label">New Inquiry</div><div class="stat-value" id="statNewInquiry">0</div></div>
-        <div class="stat-card"><div class="stat-label">Quote Sent</div><div class="stat-value" id="statQuoteSent">0</div></div>
-        <div class="stat-card"><div class="stat-label">Paid - Review Needed</div><div class="stat-value" id="statPaidReview">0</div></div>
-        <div class="stat-card"><div class="stat-label">Ready for Delivery</div><div class="stat-value" id="statReadyDelivery">0</div></div>
-        <div class="stat-card"><div class="stat-label">Support Needed</div><div class="stat-value" id="statSupportNeeded">0</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="layout">
+    <!-- FORM -->
     <div class="card">
-      <div class="header">
-        <div class="section-label">Order Queue</div>
-        <h2>Orders Table</h2>
-        <div class="sub">Click a row to open the detail panel and work the order.</div>
-      </div>
-      <div class="content table-wrap">
-        <table id="ordersTable">
+      <h2>Add Order</h2>
+
+      <form id="orderForm">
+
+        <label>Customer Name</label>
+        <input id="customerName" required>
+
+        <label>Email</label>
+        <input id="emailAddress">
+
+        <label>Phone</label>
+        <input id="phoneNumber">
+
+        <label>Customer Type</label>
+        <select id="customerType">
+          <option value="">Select</option>
+          <option>Online Only</option>
+          <option>Device Customer</option>
+          <option>Existing Customer</option>
+        </select>
+
+        <label>Fulfillment Type</label>
+        <select id="fulfillmentType">
+          <option>Cash App</option>
+          <option>Zelle</option>
+          <option>Local Pickup / Meetup</option>
+        </select>
+
+        <label>Device</label>
+        <input id="deviceSelected">
+
+        <label>Status</label>
+        <select id="orderStatus">
+          <option>NEW REQUEST</option>
+          <option>PAYMENT SENT</option>
+          <option>Paid - Review Needed</option>
+        </select>
+
+        <label>Notes</label>
+        <textarea id="notes"></textarea>
+
+        <button class="btn" type="submit">Save Order</button>
+
+      </form>
+
+      <div id="msg" class="msg"></div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="card">
+      <h2>Orders</h2>
+
+      <input id="search" placeholder="Search...">
+
+      <div class="table-wrap">
+        <table>
           <thead>
             <tr>
-              <th>Order ID</th>
-              <th>Customer Name</th>
-              <th>Customer Type</th>
-              <th>Device / Service</th>
-              <th>Order Status</th>
-              <th>Payment Status</th>
-              <th>Support Route</th>
-              <th>Recommended Next Action</th>
-              <th>Last Action Date</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Device</th>
+              <th>Status</th>
+              <th>Payment</th>
             </tr>
           </thead>
-          <tbody>
-            <tr><td colspan="9">No data loaded yet.</td></tr>
-          </tbody>
+          <tbody id="tableBody"></tbody>
         </table>
       </div>
+
     </div>
 
-    <div class="details-panel">
-      <h3 style="margin-top:0;">Order Details</h3>
-      <div id="detailsContent" class="empty-note">Click an order row to view details.</div>
-    </div>
-  </div>
-
-  <div class="footer-strip">
-    <strong>4MyIPTV Service • Admin Orders</strong>
-    <div class="version">Version 5.0 • Semi-Automated Workflow + Customer Type Routing + Message Control</div>
   </div>
 </div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbyZjLTiV4BJLLl9i58I0e5KG2eFuGOyK7_a_eK_nDT4JsOkKygwYqpayRl3nlQ9YUaKgg/exec";
-const SUPPORT_PAGE_BASE = "https://tgarrett10.github.io/4myIPTVservice-device-app-center/";
-const SUPPORT_PAGE_DEVICE = SUPPORT_PAGE_BASE + "support.html";
-const SUPPORT_PAGE_ONLINE = SUPPORT_PAGE_BASE + "online-support.html";
 
-const CUSTOMER_TYPES = [
-  "",
-  "Online Only",
-  "Device Customer",
-  "Existing Customer Support",
-  "Custom / Special Case"
-];
+const URL = "https://script.google.com/macros/s/AKfycbw43Nl96gj81hdLjsfYf4K7NVluuo75olmL1NPzOQSt1EKkjoeObmdGOEjq910yTmkToQ/exec";
 
-const FULFILLMENT_TYPES = [
-  "",
-  "Online",
-  "Local Pickup / Meetup",
-  "Shipped",
-  "Existing Support"
-];
+const form = document.getElementById("orderForm");
+const msg = document.getElementById("msg");
+const tableBody = document.getElementById("tableBody");
+const search = document.getElementById("search");
 
-const DEVICE_OPTIONS = [
-  "",
-  "Online Service Only",
-  "onn 4K",
-  "onn 4K Plus",
-  "onn 4K Pro",
-  "Google TV Streamer 4K",
-  "NVIDIA Shield TV Pro",
-  "Custom Device",
-  "Renewal / Support Only"
-];
+let data = [];
 
-const ORDER_STATUSES = [
-  "",
-  "New Inquiry",
-  "Quote Sent",
-  "Payment Pending",
-  "Paid - Review Needed",
-  "Ready for Delivery",
-  "Delivered / Sent",
-  "Setup In Progress",
-  "Active",
-  "Support Needed",
-  "Closed",
-  "On Hold",
-  "Cancelled",
-  "Refunded"
-];
-
-const PAYMENT_STATUSES = [
-  "",
-  "Not Paid",
-  "Pending",
-  "Paid",
-  "Refunded"
-];
-
-const DELIVERY_STATUSES = [
-  "",
-  "Not Started",
-  "Preparing",
-  "Ready",
-  "Sent / Delivered"
-];
-
-const TEMPLATE_OPTIONS = [
-  "",
-  "Inquiry Reply",
-  "Quote Message",
-  "Payment Confirmation",
-  "Device Delivery",
-  "Online Delivery",
-  "Support Follow-Up",
-  "Existing Customer Message",
-  "Manual Review"
-];
-
-let allOrders = [];
-let filteredOrders = [];
-let selectedOrderId = null;
-
-const apiUrlInput = document.getElementById("apiUrl");
-const loadOrdersBtn = document.getElementById("loadOrdersBtn");
-const searchInput = document.getElementById("searchInput");
-const customerTypeFilter = document.getElementById("customerTypeFilter");
-const orderStatusFilter = document.getElementById("orderStatusFilter");
-const paymentStatusFilter = document.getElementById("paymentStatusFilter");
-const ordersTableBody = document.querySelector("#ordersTable tbody");
-const detailsContent = document.getElementById("detailsContent");
-
-apiUrlInput.value = API_URL;
-
-function escapeHtml(value) {
-  return String(value || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
+function showMsg(type, text){
+  msg.className = "msg " + type;
+  msg.innerText = text;
 }
 
-function showMessage(text, type) {
-  const message = document.getElementById("message");
-  message.className = "message " + type;
-  message.textContent = text;
-}
-
-function buildOptions(values, label) {
-  return `<option value="">${label}</option>` + values.filter(Boolean).map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join("");
-}
-
-function initializeFilters() {
-  customerTypeFilter.innerHTML = buildOptions(CUSTOMER_TYPES, "All Customer Types");
-  orderStatusFilter.innerHTML = buildOptions(ORDER_STATUSES, "All Order Statuses");
-  paymentStatusFilter.innerHTML = buildOptions(PAYMENT_STATUSES, "All Payment Statuses");
-}
-
-function badgeClass(value, type) {
-  const clean = String(value || "").trim();
-
-  if (type === "order") {
-    if (clean === "New Inquiry") return "badge-green";
-    if (clean === "Quote Sent") return "badge-blue";
-    if (clean === "Payment Pending") return "badge-gold";
-    if (clean === "Paid - Review Needed") return "badge-purple";
-    if (clean === "Ready for Delivery") return "badge-gold";
-    if (clean === "Delivered / Sent" || clean === "Active" || clean === "Closed") return "badge-green";
-    if (clean === "Support Needed" || clean === "On Hold" || clean === "Cancelled" || clean === "Refunded") return "badge-red";
-    if (clean === "Setup In Progress") return "badge-blue";
-  }
-
-  if (type === "payment") {
-    if (clean === "Paid") return "badge-green";
-    if (clean === "Pending") return "badge-gold";
-    if (clean === "Refunded") return "badge-red";
-    return "badge-gray";
-  }
-
-  if (type === "delivery") {
-    if (clean === "Sent / Delivered") return "badge-green";
-    if (clean === "Ready" || clean === "Preparing") return "badge-gold";
-    return "badge-gray";
-  }
-
-  return "badge-gray";
-}
-
-function statusBadge(value, type) {
-  return `<span class="status-badge ${badgeClass(value, type)}">${escapeHtml(value || "Not set")}</span>`;
-}
-
-function deriveDeviceServiceLabel(order) {
-  return order.deviceSelected || order.fulfillmentType || "Not set";
-}
-
-function isAttentionRow(order) {
-  return [
-    "Paid - Review Needed",
-    "Ready for Delivery",
-    "Support Needed"
-  ].includes(order.orderStatus);
-}
-
-function getSelectedOrder() {
-  return filteredOrders.find(o => o.id === selectedOrderId) || allOrders.find(o => o.id === selectedOrderId) || null;
-}
-
-async function loadOrders() {
-  showMessage("Loading orders...", "success");
-  loadOrdersBtn.disabled = true;
-
-  try {
-    const response = await fetch(API_URL);
-    const data = await response.json();
-
-    if (!Array.isArray(data)) {
-      throw new Error("Unexpected data returned.");
-    }
-
-    allOrders = data.map(row => ({
-      id: String(row.id || "").trim(),
-      customerName: String(row.customerName || "").trim(),
-      phoneNumber: String(row.phoneNumber || "").trim(),
-      emailAddress: String(row.emailAddress || "").trim(),
-      customerType: String(row.customerType || "").trim(),
-      fulfillmentType: String(row.fulfillmentType || "").trim(),
-      deviceSelected: String(row.deviceSelected || "").trim(),
-      orderStatus: String(row.orderStatus || "").trim(),
-      paymentStatus: String(row.paymentStatus || "").trim(),
-      deliveryStatus: String(row.deliveryStatus || "").trim(),
-      supportRoute: String(row.supportRoute || "").trim(),
-      recommendedNextTemplate: String(row.recommendedNextTemplate || "").trim(),
-      lastTemplateSent: String(row.lastTemplateSent || "").trim(),
-      lastActionDate: String(row.lastActionDate || "").trim(),
-      lastMessageDate: String(row.lastMessageDate || "").trim(),
-      notes: String(row.notes || "").trim(),
-      recommendedNextAction: String(row.recommendedNextAction || "Review manually").trim()
-    }));
-
-    applyFilters();
-    updateStats();
-
-    if (!selectedOrderId && filteredOrders.length) {
-      selectedOrderId = filteredOrders[0].id;
-      renderTable();
-      renderDetails();
-    }
-
-    showMessage("Orders loaded successfully.", "success");
-  } catch (error) {
-    console.error(error);
-    showMessage("Could not load orders.", "error");
-  } finally {
-    loadOrdersBtn.disabled = false;
-  }
-}
-
-function applyFilters() {
-  const searchValue = searchInput.value.trim().toLowerCase();
-  const customerTypeValue = customerTypeFilter.value.trim();
-  const orderStatusValue = orderStatusFilter.value.trim();
-  const paymentStatusValue = paymentStatusFilter.value.trim();
-
-  filteredOrders = allOrders.filter(order => {
-    const haystack = [
-      order.id,
-      order.customerName,
-      order.phoneNumber,
-      order.emailAddress,
-      order.customerType,
-      order.fulfillmentType,
-      order.deviceSelected,
-      order.orderStatus,
-      order.paymentStatus,
-      order.notes
-    ].join(" ").toLowerCase();
-
-    const matchesSearch = !searchValue || haystack.includes(searchValue);
-    const matchesCustomerType = !customerTypeValue || order.customerType === customerTypeValue;
-    const matchesOrderStatus = !orderStatusValue || order.orderStatus === orderStatusValue;
-    const matchesPaymentStatus = !paymentStatusValue || order.paymentStatus === paymentStatusValue;
-
-    return matchesSearch && matchesCustomerType && matchesOrderStatus && matchesPaymentStatus;
-  });
-
-  renderTable();
-  renderDetails();
-}
-
-function updateStats() {
-  document.getElementById("statNewInquiry").textContent = allOrders.filter(o => o.orderStatus === "New Inquiry").length;
-  document.getElementById("statQuoteSent").textContent = allOrders.filter(o => o.orderStatus === "Quote Sent").length;
-  document.getElementById("statPaidReview").textContent = allOrders.filter(o => o.orderStatus === "Paid - Review Needed").length;
-  document.getElementById("statReadyDelivery").textContent = allOrders.filter(o => o.orderStatus === "Ready for Delivery").length;
-  document.getElementById("statSupportNeeded").textContent = allOrders.filter(o => o.orderStatus === "Support Needed").length;
-}
-
-function renderTable() {
-  if (!filteredOrders.length) {
-    ordersTableBody.innerHTML = '<tr><td colspan="9">No matching orders found.</td></tr>';
-    return;
-  }
-
-  ordersTableBody.innerHTML = filteredOrders.map(order => {
-    const selectedClass = selectedOrderId === order.id ? "selected-row" : "";
-    const attentionClass = isAttentionRow(order) ? "attention-row" : "";
-
-    return `
-      <tr class="clickable ${selectedClass} ${attentionClass}" data-id="${escapeHtml(order.id)}">
-        <td>${escapeHtml(order.id || "Not set")}</td>
-        <td>${escapeHtml(order.customerName || "Not set")}</td>
-        <td>${escapeHtml(order.customerType || "Not set")}</td>
-        <td>${escapeHtml(deriveDeviceServiceLabel(order))}</td>
-        <td>${statusBadge(order.orderStatus, "order")}</td>
-        <td>${statusBadge(order.paymentStatus, "payment")}</td>
-        <td>${escapeHtml(order.supportRoute || "Not set")}</td>
-        <td>${escapeHtml(order.recommendedNextAction || "Review manually")}</td>
-        <td>${escapeHtml(order.lastActionDate || "Not set")}</td>
-      </tr>
-    `;
-  }).join("");
-
-  Array.from(document.querySelectorAll("tr.clickable")).forEach(row => {
-    row.addEventListener("click", () => {
-      selectedOrderId = row.getAttribute("data-id");
-      renderTable();
-      renderDetails();
-    });
+function loadOrders(){
+  fetch(URL)
+  .then(r=>r.json())
+  .then(res=>{
+    data = res;
+    render();
   });
 }
 
-function buildSelect(options, currentValue, id) {
-  return `
-    <select id="${id}" class="detail-select">
-      ${options.map(option => {
-        const selected = option === currentValue ? "selected" : "";
-        return `<option value="${escapeHtml(option)}" ${selected}>${escapeHtml(option || "Select")}</option>`;
-      }).join("")}
-    </select>
-  `;
+function render(){
+  const term = search.value.toLowerCase();
+
+  const filtered = data.filter(o =>
+    JSON.stringify(o).toLowerCase().includes(term)
+  );
+
+  tableBody.innerHTML = filtered.map(o=>`
+    <tr>
+      <td>${o.id || ""}</td>
+      <td>${o.customerName || ""}</td>
+      <td>${o.emailAddress || ""}</td>
+      <td>${o.deviceSelected || ""}</td>
+      <td>${o.orderStatus || ""}</td>
+      <td>${o.fulfillmentType || ""}</td>
+    </tr>
+  `).join("");
 }
 
-function getSupportUrl(route) {
-  if (route === "support.html") return SUPPORT_PAGE_DEVICE;
-  if (route === "online-support.html") return SUPPORT_PAGE_ONLINE;
-  return "";
-}
+form.addEventListener("submit", async e=>{
+  e.preventDefault();
 
-function copyText(text, label) {
-  navigator.clipboard.writeText(text).then(() => {
-    showMessage(label + " copied.", "success");
-  }).catch(() => {
-    showMessage("Could not copy message.", "error");
-  });
-}
+  const payload = {
+    customerName: document.getElementById("customerName").value,
+    emailAddress: document.getElementById("emailAddress").value,
+    phoneNumber: document.getElementById("phoneNumber").value,
+    customerType: document.getElementById("customerType").value,
+    fulfillmentType: document.getElementById("fulfillmentType").value,
+    deviceSelected: document.getElementById("deviceSelected").value,
+    orderStatus: document.getElementById("orderStatus").value,
+    notes: document.getElementById("notes").value
+  };
 
-function buildInquiryReply(order) {
-  return `Thanks for reaching out.
-
-I received your request and will review the details to make sure I recommend the best setup for you.
-
-I’ll follow up shortly with next steps and pricing options.`;
-}
-
-function buildQuoteMessage(order) {
-  return `Here are the details based on your request:
-
-[Insert service or device details]
-[Insert price]
-
-Once payment is completed, I will prepare everything for you and send the next steps.
-
-Let me know if you have any questions before moving forward.`;
-}
-
-function buildPaymentConfirmation(order) {
-  return `Payment received — thank you.
-
-I’m now preparing your setup and will follow up shortly with your next steps.`;
-}
-
-function buildDeviceDelivery(order) {
-  return `Your device comes fully set up and ready to use, including your service login.
-
-No downloads or setup steps are required to get started.
-
-You can begin using your device right away as-is.
-
-When convenient, we recommend signing into your own Google account on the device. This allows you to access the Google Play Store, manage apps, and receive updates tied to your account.
-
-If you need any help, please visit:
-${SUPPORT_PAGE_DEVICE}`;
-}
-
-function buildOnlineDelivery(order) {
-  return `Your service is ready.
-
-We highly recommend using IPTV Smarters Pro for setup.
-
-There are multiple versions available, so please follow our guide to install the correct one.
-
-Full setup instructions:
-${SUPPORT_PAGE_ONLINE}
-
-If you need help at any point, feel free to reach out.`;
-}
-
-function buildSupportFollowUp(order) {
-  return `Let me know what step you’re on or what issue you’re running into, and I’ll help you get it resolved.
-
-If possible, include a screenshot or a quick description so I can guide you faster.`;
-}
-
-function buildExistingCustomerMessage(order) {
-  return `Good to hear from you.
-
-Let me know what you need — whether it’s a renewal, support, or any updates — and I’ll take care of it for you.`;
-}
-
-function getTemplateText(order, templateName) {
-  if (templateName === "Inquiry Reply") return buildInquiryReply(order);
-  if (templateName === "Quote Message") return buildQuoteMessage(order);
-  if (templateName === "Payment Confirmation") return buildPaymentConfirmation(order);
-  if (templateName === "Device Delivery") return buildDeviceDelivery(order);
-  if (templateName === "Online Delivery") return buildOnlineDelivery(order);
-  if (templateName === "Support Follow-Up") return buildSupportFollowUp(order);
-  if (templateName === "Existing Customer Message") return buildExistingCustomerMessage(order);
-  return "Manual review required before sending a customer message.";
-}
-
-function renderDetails() {
-  const order = getSelectedOrder();
-
-  if (!order) {
-    detailsContent.className = "empty-note";
-    detailsContent.innerHTML = "Click an order row to view details.";
-    return;
-  }
-
-  const supportUrl = getSupportUrl(order.supportRoute);
-
-  detailsContent.className = "";
-  detailsContent.innerHTML = `
-    <div class="detail-row">
-      <div class="detail-label">Customer Info</div>
-      <div class="detail-value"><strong>${escapeHtml(order.customerName || "Not set")}</strong></div>
-      <div class="detail-value">${escapeHtml(order.emailAddress || "No email")}</div>
-      <div class="detail-value">${escapeHtml(order.phoneNumber || "No phone")}</div>
-      <div class="detail-value" style="margin-top:6px;">Order ID: ${escapeHtml(order.id || "Not set")}</div>
-    </div>
-
-    <div class="detail-row">
-      <div class="detail-label">Classification</div>
-      <div class="inline-grid">
-        <div>
-          <div class="detail-value">Customer Type</div>
-          ${buildSelect(CUSTOMER_TYPES, order.customerType, "customerTypeSelect")}
-        </div>
-        <div>
-          <div class="detail-value">Fulfillment Type</div>
-          ${buildSelect(FULFILLMENT_TYPES, order.fulfillmentType, "fulfillmentTypeSelect")}
-        </div>
-        <div>
-          <div class="detail-value">Device Selected</div>
-          ${buildSelect(DEVICE_OPTIONS, order.deviceSelected, "deviceSelectedSelect")}
-        </div>
-        <div>
-          <div class="detail-value">Support Route</div>
-          <div style="margin-top:6px;">${escapeHtml(order.supportRoute || "Not set")}</div>
-        </div>
-      </div>
-      <div class="field-actions" style="margin-top:10px;">
-        <button class="primary-btn" id="saveClassificationBtn">Save Classification</button>
-      </div>
-    </div>
-
-    <div class="detail-row">
-      <div class="detail-label">Status Control</div>
-      <div class="inline-grid">
-        <div>
-          <div class="detail-value">Order Status</div>
-          ${buildSelect(ORDER_STATUSES, order.orderStatus, "orderStatusSelect")}
-        </div>
-        <div>
-          <div class="detail-value">Payment Status</div>
-          ${buildSelect(PAYMENT_STATUSES, order.paymentStatus, "paymentStatusSelect")}
-        </div>
-        <div>
-          <div class="detail-value">Delivery Status</div>
-          ${buildSelect(DELIVERY_STATUSES, order.deliveryStatus, "deliveryStatusSelect")}
-        </div>
-        <div>
-          <div class="detail-value">Recommended Next Template</div>
-          <div style="margin-top:6px;">${escapeHtml(order.recommendedNextTemplate || "Not set")}</div>
-        </div>
-      </div>
-
-      <div class="status-actions" style="margin-top:10px;">
-        <button class="info-btn" data-order-status="Quote Sent">Mark Quote Sent</button>
-        <button class="warning-btn" data-order-status="Paid - Review Needed">Mark Paid - Review Needed</button>
-        <button class="purple-btn" data-order-status="Ready for Delivery">Mark Ready for Delivery</button>
-        <button class="success-btn" data-order-status="Delivered / Sent">Mark Delivered</button>
-        <button class="gray-btn" data-order-status="Support Needed">Mark Support Needed</button>
-        <button class="gray-btn" data-order-status="Active">Mark Active</button>
-        <button class="red-btn" data-order-status="Closed">Mark Closed</button>
-      </div>
-
-      <div class="field-actions" style="margin-top:10px;">
-        <button class="primary-btn" id="saveStatusBtn">Save Status Fields</button>
-      </div>
-    </div>
-
-    <div class="detail-row">
-      <div class="detail-label">Notes</div>
-      <textarea id="notesTextarea" class="detail-textarea">${escapeHtml(order.notes || "")}</textarea>
-      <div class="field-actions" style="margin-top:10px;">
-        <button class="primary-btn" id="saveNotesBtn">Save Notes</button>
-      </div>
-    </div>
-
-    <div class="detail-row">
-      <div class="detail-label">Message System</div>
-      <div class="detail-value">Recommended Next Action</div>
-      <div class="detail-value" style="margin-top:4px;"><strong>${escapeHtml(order.recommendedNextAction || "Review manually")}</strong></div>
-
-      <div class="detail-value" style="margin-top:10px;">Recommended Next Template</div>
-      <div class="detail-value" style="margin-top:4px;">${escapeHtml(order.recommendedNextTemplate || "Not set")}</div>
-
-      <div class="detail-value" style="margin-top:10px;">Last Template Sent</div>
-      <div class="detail-value" style="margin-top:4px;">${escapeHtml(order.lastTemplateSent || "Not set")}</div>
-
-      <div class="detail-value" style="margin-top:10px;">Last Action Date</div>
-      <div class="detail-value" style="margin-top:4px;">${escapeHtml(order.lastActionDate || "Not set")}</div>
-
-      <div class="detail-value" style="margin-top:10px;">Last Message Date</div>
-      <div class="detail-value" style="margin-top:4px;">${escapeHtml(order.lastMessageDate || "Not set")}</div>
-
-      <div class="message-actions" style="margin-top:12px;">
-        <button class="gray-btn" data-template="Inquiry Reply">Copy Inquiry Reply</button>
-        <button class="gray-btn" data-template="Quote Message">Copy Quote Message</button>
-        <button class="gray-btn" data-template="Payment Confirmation">Copy Payment Confirmation</button>
-        <button class="gray-btn" data-template="Device Delivery">Copy Device Delivery</button>
-        <button class="gray-btn" data-template="Online Delivery">Copy Online Delivery</button>
-        <button class="gray-btn" data-template="Support Follow-Up">Copy Support Message</button>
-        <button class="gray-btn" data-template="Existing Customer Message">Copy Existing Customer Message</button>
-      </div>
-      <div class="small-note">Copying a message also records the selected template as the last template sent.</div>
-    </div>
-
-    <div class="detail-row">
-      <div class="detail-label">Support Navigation</div>
-      <div class="nav-actions">
-        <button class="gray-btn" id="openDeviceSupportBtn">Open support.html</button>
-        <button class="gray-btn" id="openOnlineSupportBtn">Open online-support.html</button>
-        <button class="gray-btn" id="openAssignedSupportBtn">Open Assigned Support Route</button>
-      </div>
-      <div class="small-note">${supportUrl ? "Assigned support route: " + supportUrl : "Assigned support route is not set to a direct page yet."}</div>
-    </div>
-  `;
-
-  document.getElementById("saveClassificationBtn").addEventListener("click", async () => {
-    await updateOrder(order.id, {
-      customerType: document.getElementById("customerTypeSelect").value,
-      fulfillmentType: document.getElementById("fulfillmentTypeSelect").value,
-      deviceSelected: document.getElementById("deviceSelectedSelect").value
-    }, "Classification saved.");
-  });
-
-  document.getElementById("saveStatusBtn").addEventListener("click", async () => {
-    await updateOrder(order.id, {
-      orderStatus: document.getElementById("orderStatusSelect").value,
-      paymentStatus: document.getElementById("paymentStatusSelect").value,
-      deliveryStatus: document.getElementById("deliveryStatusSelect").value
-    }, "Status fields saved.");
-  });
-
-  document.getElementById("saveNotesBtn").addEventListener("click", async () => {
-    await updateOrder(order.id, {
-      notes: document.getElementById("notesTextarea").value
-    }, "Notes saved.");
-  });
-
-  Array.from(document.querySelectorAll("[data-order-status]")).forEach(btn => {
-    btn.addEventListener("click", async () => {
-      const nextStatus = btn.getAttribute("data-order-status");
-      await updateOrder(order.id, { orderStatus: nextStatus }, "Order status updated.");
-    });
-  });
-
-  Array.from(document.querySelectorAll("[data-template]")).forEach(btn => {
-    btn.addEventListener("click", async () => {
-      const templateName = btn.getAttribute("data-template");
-      copyText(getTemplateText(order, templateName), templateName);
-      await updateOrder(order.id, { lastTemplateSent: templateName }, "Template usage recorded.", false);
-    });
-  });
-
-  document.getElementById("openDeviceSupportBtn").addEventListener("click", () => {
-    window.open(SUPPORT_PAGE_DEVICE, "_blank", "noopener,noreferrer");
-  });
-
-  document.getElementById("openOnlineSupportBtn").addEventListener("click", () => {
-    window.open(SUPPORT_PAGE_ONLINE, "_blank", "noopener,noreferrer");
-  });
-
-  document.getElementById("openAssignedSupportBtn").addEventListener("click", () => {
-    const url = getSupportUrl(order.supportRoute);
-    if (!url) {
-      showMessage("Assigned support route is not a direct page yet.", "error");
-      return;
-    }
-    window.open(url, "_blank", "noopener,noreferrer");
-  });
-}
-
-async function updateOrder(id, updates, successMessage, reloadAfter = true) {
-  try {
-    showMessage("Saving changes...", "success");
-
-    const response = await fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        action: "update",
-        id: id,
-        ...updates
-      })
+  try{
+    await fetch(URL, {
+      method:"POST",
+      body: JSON.stringify(payload)
     });
 
-    const result = await response.json();
+    showMsg("success","Order Saved");
+    form.reset();
+    loadOrders();
 
-    if (!result.success) {
-      showMessage(result.message || "Update failed.", "error");
-      return;
-    }
-
-    showMessage(successMessage || "Update successful.", "success");
-
-    if (reloadAfter) {
-      await loadOrders();
-      selectedOrderId = id;
-      renderTable();
-      renderDetails();
-    } else {
-      await loadOrders();
-      selectedOrderId = id;
-      renderTable();
-      renderDetails();
-    }
-  } catch (error) {
-    console.error(error);
-    showMessage("Could not update the order.", "error");
+  }catch(err){
+    showMsg("error","Error saving order");
   }
-}
+});
 
-searchInput.addEventListener("input", applyFilters);
-customerTypeFilter.addEventListener("change", applyFilters);
-orderStatusFilter.addEventListener("change", applyFilters);
-paymentStatusFilter.addEventListener("change", applyFilters);
-loadOrdersBtn.addEventListener("click", loadOrders);
+search.addEventListener("input", render);
 
-initializeFilters();
 loadOrders();
+
 </script>
+
 </body>
 </html>
