@@ -5,6 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4MyIPTV Service | Admin Orders</title>
   <style>
+    :root {
+      --bg: #08111f;
+      --panel: #101827;
+      --panel-soft: #0b1220;
+      --panel-2: #0f172a;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --line: #1f2937;
+      --line-soft: #243044;
+      --blue: #3b82f6;
+      --green: #22c55e;
+      --gold: #f59e0b;
+      --purple: #9333ea;
+      --red: #ef4444;
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -12,46 +28,76 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #f4f6fb;
-      color: #1f2937;
+      background: linear-gradient(180deg, #08111f, #0f172a);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     .topbar {
-      background: #111827;
-      color: #ffffff;
-      padding: 18px 24px;
-      border-bottom: 4px solid #6d28d9;
+      background: #0b1220;
+      border-bottom: 1px solid var(--line-soft);
+      padding: 22px 24px;
     }
 
     .topbar h1 {
       margin: 0;
-      font-size: 26px;
+      font-size: 28px;
       line-height: 1.2;
+      color: #ffffff;
     }
 
     .topbar p {
-      margin: 6px 0 0;
+      margin: 8px 0 0;
+      color: #cbd5e1;
       font-size: 14px;
-      color: #d1d5db;
     }
 
     .page-wrap {
-      max-width: 1400px;
+      max-width: 1500px;
       margin: 0 auto;
-      padding: 24px;
+      padding: 22px;
     }
 
-    .panel {
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      padding: 20px;
-      margin-bottom: 20px;
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+      margin-bottom: 18px;
+    }
+
+    .card-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 8px 0;
+    }
+
+    .card-header h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #ffffff;
+    }
+
+    .card-content {
+      padding: 16px;
     }
 
     .controls {
       display: grid;
-      grid-template-columns: 1fr 220px 220px 160px;
+      grid-template-columns: minmax(240px, 1fr) 220px 220px auto;
       gap: 12px;
       align-items: end;
     }
@@ -61,46 +107,23 @@
       font-size: 13px;
       font-weight: 700;
       margin-bottom: 6px;
-      color: #374151;
+      color: #cbd5e1;
     }
 
     .field-group input,
     .field-group select {
       width: 100%;
       padding: 11px 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
+      border: 1px solid var(--line-soft);
+      border-radius: 10px;
       font-size: 14px;
-      background: #ffffff;
+      background: #0b1220;
+      color: #f8fafc;
+      outline: none;
     }
 
-    .btn {
-      display: inline-block;
-      border: none;
-      border-radius: 8px;
-      padding: 11px 16px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .btn-primary {
-      background: #6d28d9;
-      color: #ffffff;
-    }
-
-    .btn-primary:hover {
-      background: #5b21b6;
-    }
-
-    .btn-secondary {
-      background: #e5e7eb;
-      color: #111827;
-    }
-
-    .btn-secondary:hover {
-      background: #d1d5db;
+    .field-group input::placeholder {
+      color: #7c8aa0;
     }
 
     .button-row {
@@ -109,16 +132,49 @@
       flex-wrap: wrap;
     }
 
+    .btn {
+      display: inline-block;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      background: #1f2937;
+      color: #ffffff;
+      border: 1px solid #334155;
+    }
+
+    .btn-secondary:hover {
+      background: #273449;
+    }
+
     .status-row {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 14px;
+      margin-bottom: 18px;
     }
 
     .stat-card {
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
       padding: 18px;
     }
 
@@ -126,28 +182,51 @@
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: #6b7280;
+      letter-spacing: 0.05em;
+      color: var(--muted);
       margin-bottom: 10px;
     }
 
     .stat-value {
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 800;
-      color: #111827;
+      color: #ffffff;
+    }
+
+    .message {
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      min-height: 20px;
+    }
+
+    .message.ok {
+      color: #86efac;
+    }
+
+    .message.error {
+      color: #fca5a5;
+    }
+
+    .endpoint-note {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      word-break: break-all;
     }
 
     .table-wrap {
       overflow-x: auto;
-      border: 1px solid #e5e7eb;
-      border-radius: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #0b1220;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 1300px;
-      background: #ffffff;
+      min-width: 1500px;
+      background: #0b1220;
     }
 
     thead {
@@ -159,24 +238,28 @@
     td {
       text-align: left;
       padding: 12px 10px;
-      border-bottom: 1px solid #e5e7eb;
+      border-bottom: 1px solid #1f2937;
       vertical-align: top;
       font-size: 14px;
     }
 
     th {
-      font-size: 13px;
+      font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.05em;
+      color: #dbeafe;
+      position: sticky;
+      top: 0;
+      z-index: 1;
     }
 
     tbody tr:hover {
-      background: #f9fafb;
+      background: rgba(255, 255, 255, 0.03);
     }
 
     .pill {
       display: inline-block;
-      padding: 5px 10px;
+      padding: 6px 10px;
       border-radius: 999px;
       font-size: 12px;
       font-weight: 700;
@@ -184,61 +267,73 @@
     }
 
     .pill-new {
-      background: #dbeafe;
-      color: #1d4ed8;
+      background: rgba(59,130,246,.18);
+      color: #bfdbfe;
+      border: 1px solid rgba(59,130,246,.35);
     }
 
     .pill-payment-sent {
-      background: #fef3c7;
-      color: #92400e;
+      background: rgba(245,158,11,.16);
+      color: #fde68a;
+      border: 1px solid rgba(245,158,11,.30);
     }
 
     .pill-complete {
-      background: #dcfce7;
-      color: #166534;
+      background: rgba(34,197,94,.16);
+      color: #bbf7d0;
+      border: 1px solid rgba(34,197,94,.30);
     }
 
     .pill-other {
-      background: #e5e7eb;
-      color: #374151;
+      background: rgba(148,163,184,.15);
+      color: #e2e8f0;
+      border: 1px solid rgba(148,163,184,.25);
     }
 
     .muted {
-      color: #6b7280;
+      color: var(--muted);
     }
 
     .small {
       font-size: 12px;
-    }
-
-    .message {
-      margin-top: 12px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .message.ok {
-      color: #166534;
-    }
-
-    .message.error {
-      color: #b91c1c;
+      color: var(--muted);
     }
 
     .empty-state {
       text-align: center;
-      padding: 36px 16px;
-      color: #6b7280;
+      padding: 40px 16px;
+      color: var(--muted);
       font-size: 15px;
     }
 
-    .footer-note {
-      margin-top: 10px;
-      font-size: 12px;
-      color: #6b7280;
+    .id-cell {
+      font-weight: 700;
+      color: #c4b5fd;
     }
 
-    @media (max-width: 1100px) {
+    .note-cell,
+    .route-cell {
+      max-width: 240px;
+      white-space: normal;
+      line-height: 1.45;
+    }
+
+    .footer-strip {
+      margin-top: 18px;
+      padding: 16px 10px 24px;
+      border-top: 1px solid var(--line-soft);
+      text-align: center;
+      color: #cbd5e1;
+      font-size: 0.92rem;
+    }
+
+    .footer-strip .version {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 1180px) {
       .controls {
         grid-template-columns: 1fr 1fr;
       }
@@ -248,7 +343,7 @@
       }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 720px) {
       .controls {
         grid-template-columns: 1fr;
       }
@@ -258,7 +353,11 @@
       }
 
       .topbar h1 {
-        font-size: 22px;
+        font-size: 24px;
+      }
+
+      .page-wrap {
+        padding: 14px;
       }
     }
   </style>
@@ -270,44 +369,50 @@
   </div>
 
   <div class="page-wrap">
-    <div class="panel">
-      <div class="controls">
-        <div class="field-group">
-          <label for="searchInput">Search Orders</label>
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Search by name, email, device, phone, status..."
-          />
-        </div>
-
-        <div class="field-group">
-          <label for="statusFilter">Status Filter</label>
-          <select id="statusFilter">
-            <option value="">All Statuses</option>
-            <option value="NEW">New</option>
-            <option value="PAYMENT SENT">Payment Sent</option>
-            <option value="COMPLETE">Complete</option>
-          </select>
-        </div>
-
-        <div class="field-group">
-          <label for="sortFilter">Sort</label>
-          <select id="sortFilter">
-            <option value="newest">Newest First</option>
-            <option value="oldest">Oldest First</option>
-            <option value="name">Name A-Z</option>
-          </select>
-        </div>
-
-        <div class="button-row">
-          <button class="btn btn-primary" id="refreshBtn">Refresh Orders</button>
-          <button class="btn btn-secondary" id="clearBtn">Clear Filters</button>
-        </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="section-label">Admin Controls</div>
+        <h2>Order Search and Filters</h2>
       </div>
+      <div class="card-content">
+        <div class="controls">
+          <div class="field-group">
+            <label for="searchInput">Search Orders</label>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search by name, email, phone, device, order type, status..."
+            />
+          </div>
 
-      <div id="message" class="message"></div>
-      <div class="footer-note" id="endpointNote"></div>
+          <div class="field-group">
+            <label for="statusFilter">Status Filter</label>
+            <select id="statusFilter">
+              <option value="">All Statuses</option>
+              <option value="NEW">New</option>
+              <option value="PAYMENT SENT">Payment Sent</option>
+              <option value="COMPLETE">Complete</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="sortFilter">Sort</label>
+            <select id="sortFilter">
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="name">Name A-Z</option>
+            </select>
+          </div>
+
+          <div class="button-row">
+            <button class="btn btn-primary" id="refreshBtn">Refresh Orders</button>
+            <button class="btn btn-secondary" id="clearBtn">Clear Filters</button>
+          </div>
+        </div>
+
+        <div id="message" class="message"></div>
+        <div id="endpointNote" class="endpoint-note"></div>
+      </div>
     </div>
 
     <div class="status-row">
@@ -337,44 +442,54 @@
       </div>
     </div>
 
-    <div class="panel">
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Created At</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Customer Type</th>
-              <th>Order Type</th>
-              <th>Device</th>
-              <th>Fulfillment</th>
-              <th>Status</th>
-              <th>Payment</th>
-              <th>Delivery</th>
-              <th>Support Route</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody id="ordersTableBody">
-            <tr>
-              <td colspan="14" class="empty-state">Loading orders...</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="card">
+      <div class="card-header">
+        <div class="section-label">Order Data</div>
+        <h2>Current Orders</h2>
       </div>
+      <div class="card-content">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Created At</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Customer Type</th>
+                <th>Order Type</th>
+                <th>Device</th>
+                <th>Fulfillment</th>
+                <th>Status</th>
+                <th>Payment</th>
+                <th>Delivery</th>
+                <th>Support Route</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <tr>
+                <td colspan="14" class="empty-state">Loading orders...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="small" style="margin-top: 10px;">
+          If data looks incomplete, that usually means the Apps Script payload and the sheet column mapping do not fully match yet.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-strip">
+      <strong>4MyIPTV Service • Admin Orders</strong>
+      <div class="version">Version 2.0 • Last Updated: March 2026</div>
     </div>
   </div>
 
   <script>
-    /*
-      IMPORTANT:
-      This is the Apps Script URL currently inserted from your recent chat.
-      If your active web app URL is different, replace it here.
-    */
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzWO65X3uTAbWldiacxCD7ItLu5zpfZe1fDTWUlMGJyIPJXWcXaOsDXWHMQV-3-Ch7IcQ/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyZjLTiV4BJLLl9i58I0e5KG2eFuGOyK7_a_eK_nDT4JsOkKygwYqpayRl3nlQ9YUaKgg/exec";
 
     let allOrders = [];
 
@@ -404,15 +519,30 @@
       }
     }
 
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function safeRaw(value) {
+      if (value === null || value === undefined) return "";
+      return String(value).trim();
+    }
+
     function safeValue(value) {
-      if (value === null || value === undefined || value === "") {
+      const raw = safeRaw(value);
+      if (!raw) {
         return '<span class="muted">—</span>';
       }
-      return escapeHtml(String(value));
+      return escapeHtml(raw);
     }
 
     function normalizeStatus(status) {
-      return String(status || "").trim().toUpperCase();
+      return safeRaw(status).toUpperCase();
     }
 
     function getStatusPill(status) {
@@ -427,34 +557,97 @@
         className = "pill pill-complete";
       }
 
-      return '<span class="' + className + '">' + (escapeHtml(status || "—")) + "</span>";
+      return '<span class="' + className + '">' + (safeRaw(status) ? escapeHtml(status) : "—") + "</span>";
     }
 
-    function escapeHtml(text) {
-      return text
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+    function firstNonEmpty(values) {
+      for (const value of values) {
+        if (value !== null && value !== undefined && String(value).trim() !== "") {
+          return value;
+        }
+      }
+      return "";
     }
 
     function normalizeOrder(row) {
       return {
-        id: row.id || row.ID || "",
-        createdAt: row.createdAt || row["Created At"] || row.timestamp || row.date || "",
-        customerName: row.customerName || row.name || row.customer || row["Customer Name"] || "",
-        emailAddress: row.emailAddress || row.email || row["Email Address"] || "",
-        phoneNumber: row.phoneNumber || row.phone || row["Phone Number"] || "",
-        customerType: row.customerType || row["Customer Type"] || "",
-        orderType: row.orderType || row["Order Type"] || "",
-        deviceSelected: row.deviceSelected || row.device || row["Device Selected"] || "",
-        fulfillmentType: row.fulfillmentType || row.fulfillment || row["Fulfillment Type"] || "",
-        orderStatus: row.orderStatus || row.status || row["Order Status"] || "",
-        paymentStatus: row.paymentStatus || row["Payment Status"] || "",
-        deliveryStatus: row.deliveryStatus || row["Delivery Status"] || "",
-        supportRoute: row.supportRoute || row["Support Route"] || "",
-        notes: row.notes || row["Notes"] || row.test || ""
+        id: firstNonEmpty([
+          row.id,
+          row.ID,
+          row.orderId,
+          row["Order ID"]
+        ]),
+        createdAt: firstNonEmpty([
+          row.createdAt,
+          row["Created At"],
+          row.timestamp,
+          row.date,
+          row.created,
+          row["Timestamp"]
+        ]),
+        customerName: firstNonEmpty([
+          row.customerName,
+          row.name,
+          row.customer,
+          row["Customer Name"],
+          row["Name"]
+        ]),
+        emailAddress: firstNonEmpty([
+          row.emailAddress,
+          row.email,
+          row["Email Address"],
+          row["Email"]
+        ]),
+        phoneNumber: firstNonEmpty([
+          row.phoneNumber,
+          row.phone,
+          row["Phone Number"],
+          row["Phone"]
+        ]),
+        customerType: firstNonEmpty([
+          row.customerType,
+          row["Customer Type"]
+        ]),
+        orderType: firstNonEmpty([
+          row.orderType,
+          row["Order Type"]
+        ]),
+        deviceSelected: firstNonEmpty([
+          row.deviceSelected,
+          row.device,
+          row["Device Selected"],
+          row["Device"]
+        ]),
+        fulfillmentType: firstNonEmpty([
+          row.fulfillmentType,
+          row.fulfillment,
+          row["Fulfillment Type"],
+          row["Fulfillment"]
+        ]),
+        orderStatus: firstNonEmpty([
+          row.orderStatus,
+          row.status,
+          row["Order Status"],
+          row["Status"]
+        ]),
+        paymentStatus: firstNonEmpty([
+          row.paymentStatus,
+          row["Payment Status"]
+        ]),
+        deliveryStatus: firstNonEmpty([
+          row.deliveryStatus,
+          row["Delivery Status"]
+        ]),
+        supportRoute: firstNonEmpty([
+          row.supportRoute,
+          row["Support Route"]
+        ]),
+        notes: firstNonEmpty([
+          row.notes,
+          row["Notes"],
+          row.test,
+          row["Test"]
+        ])
       };
     }
 
@@ -468,20 +661,19 @@
 
     function sortOrders(orders) {
       const sortValue = sortFilter.value;
-
       const sorted = [...orders];
 
       if (sortValue === "name") {
-        sorted.sort((a, b) => String(a.customerName || "").localeCompare(String(b.customerName || "")));
+        sorted.sort((a, b) => safeRaw(a.customerName).localeCompare(safeRaw(b.customerName)));
         return sorted;
       }
 
       if (sortValue === "oldest") {
-        sorted.sort((a, b) => String(a.createdAt || "").localeCompare(String(b.createdAt || "")));
+        sorted.sort((a, b) => safeRaw(a.createdAt).localeCompare(safeRaw(b.createdAt)));
         return sorted;
       }
 
-      sorted.sort((a, b) => String(b.createdAt || "").localeCompare(String(a.createdAt || "")));
+      sorted.sort((a, b) => safeRaw(b.createdAt).localeCompare(safeRaw(a.createdAt)));
       return sorted;
     }
 
@@ -536,7 +728,7 @@
 
       ordersTableBody.innerHTML = filtered.map(order => `
         <tr>
-          <td>${safeValue(order.id)}</td>
+          <td class="id-cell">${safeValue(order.id)}</td>
           <td>${safeValue(order.createdAt)}</td>
           <td>${safeValue(order.customerName)}</td>
           <td>${safeValue(order.emailAddress)}</td>
@@ -548,8 +740,8 @@
           <td>${getStatusPill(order.orderStatus)}</td>
           <td>${safeValue(order.paymentStatus)}</td>
           <td>${safeValue(order.deliveryStatus)}</td>
-          <td>${safeValue(order.supportRoute)}</td>
-          <td>${safeValue(order.notes)}</td>
+          <td class="route-cell">${safeValue(order.supportRoute)}</td>
+          <td class="note-cell">${safeValue(order.notes)}</td>
         </tr>
       `).join("");
     }
