@@ -340,12 +340,12 @@ textarea{min-height:110px;resize:vertical}
 
   <div class="footer-strip">
     <strong>4MyIPTV Service • Request Service</strong>
-    <div class="version">Version 1.3 • Last Updated: March 2026</div>
+    <div class="version">Version 1.4 • Last Updated: March 2026</div>
   </div>
 </div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbwYlz8KSViNMIGFnTLMDlYSv578tMcYrdyyIkDgi9LAfqIkQygTWTpH2RjZoDDM77L33w/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzWO65X3uTAbWldiacxCD7ItLu5zpfZe1fDTWUlMGJyIPJXWcXaOsDXWHMQV-3-Ch7IcQ/exec";
 const form = document.getElementById("requestForm");
 const serviceType = document.getElementById("serviceType");
 const deviceFieldWrap = document.getElementById("deviceFieldWrap");
@@ -386,25 +386,39 @@ function deriveNeedDeviceValue() {
 
 function buildPayload() {
   return {
-    action: "request_quote",
-    sourcePage: "request-service.html",
-    requestType: "Quote Request",
-    status: "New",
-    submittedAt: new Date().toISOString(),
+    timestamp: new Date().toISOString(),
+    orderType: document.getElementById("planInterest").value || "Quote Request",
     fullName: document.getElementById("fullName").value.trim(),
-    phone: document.getElementById("phone").value.trim(),
     email: document.getElementById("email").value.trim(),
-    preferredContact: document.getElementById("preferredContact").value,
-    serviceType: document.getElementById("serviceType").value,
-    planInterest: document.getElementById("planInterest").value,
-    needDevice: deriveNeedDeviceValue(),
-    preferredDevice: document.getElementById("preferredDevice").value || "",
-    tvCount: document.getElementById("tvCount").value,
-    preferredReplyTime: document.getElementById("preferredReplyTime").value || "",
-    paymentPreference: document.getElementById("paymentPreference").value || "",
-    notes: document.getElementById("notes").value.trim(),
-    quoteAcknowledgement: quoteAcknowledgement.checked ? "Yes" : "No",
-    followupAcknowledgement: followupAcknowledgement.checked ? "Yes" : "No"
+    phone: document.getElementById("phone").value.trim(),
+    customer: "Customer",
+    customerType: "Customer",
+    deviceType: document.getElementById("preferredDevice").value || deriveNeedDeviceValue(),
+    deviceSelected: document.getElementById("preferredDevice").value || deriveNeedDeviceValue(),
+    fulfillmentType: "Quote Request",
+    notes: [
+      "Source Page: request-service.html",
+      "Setup Choice: " + document.getElementById("serviceType").value,
+      "Plan Interest: " + document.getElementById("planInterest").value,
+      "Need Device: " + deriveNeedDeviceValue(),
+      "TV Count: " + document.getElementById("tvCount").value,
+      document.getElementById("preferredReplyTime").value ? "Best Time: " + document.getElementById("preferredReplyTime").value : "",
+      document.getElementById("preferredContact").value ? "Preferred Contact: " + document.getElementById("preferredContact").value : "",
+      document.getElementById("paymentPreference").value ? "Payment Preference: " + document.getElementById("paymentPreference").value : "",
+      quoteAcknowledgement.checked ? "Quote Acknowledged: Yes" : "",
+      followupAcknowledgement.checked ? "Follow-Up Acknowledged: Yes" : "",
+      document.getElementById("notes").value.trim() ? "Customer Notes: " + document.getElementById("notes").value.trim() : ""
+    ].filter(Boolean).join(" | "),
+    status: "NEW",
+    orderStatus: "NEW",
+    paymentStatus: "QUOTE PENDING",
+    paymentType: "",
+    amount: "",
+    planName: document.getElementById("planInterest").value || "",
+    paypalSubscriptionId: "",
+    address: "",
+    orderShipped: "",
+    trackingNumber: ""
   };
 }
 
