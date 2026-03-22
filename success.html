@@ -1,87 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Confirmed - 4MyIPTV Service</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #08111f;
-    color: #f8fafc;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-  }
-  .container {
-    max-width: 800px;
-    margin: auto;
-    padding: 40px 20px;
-  }
-  h1 { margin-bottom: 10px; }
-  p { color: #94a3b8; line-height: 1.6; }
-  .card {
-    background: #101827;
-    border-radius: 12px;
-    padding: 25px;
-    margin-top: 25px;
-  }
-  .button {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 20px;
-    background-color: #3b82f6;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-  }
-  .button.secondary {
-    background-color: #7c3aed;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request Received | 4MyIPTV Service</title>
+  <style>
+    :root{
+      --bg:#08111f;
+      --panel:#101827;
+      --panel-2:#0f172a;
+      --text:#f8fafc;
+      --muted:#94a3b8;
+      --border:#1f2937;
+      --green:#22c55e;
+      --blue:#3b82f6;
+      --gold:#f59e0b;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(180deg,#08111f 0%,#0b1220 100%);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    .wrap{
+      max-width:900px;
+      margin:0 auto;
+      padding:32px 20px 48px;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:24px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+
+    .tagline{
+      color:var(--muted);
+      font-size:14px;
+      margin-top:6px;
+    }
+
+    .card{
+      background:rgba(16,24,39,.96);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:34px 28px;
+      box-shadow:0 14px 40px rgba(0,0,0,.28);
+    }
+
+    .status{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(34,197,94,.12);
+      border:1px solid rgba(34,197,94,.35);
+      color:#d1fae5;
+      font-weight:700;
+      font-size:14px;
+      margin-bottom:20px;
+    }
+
+    .status-dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 0 4px rgba(34,197,94,.16);
+    }
+
+    h1{
+      margin:0 0 14px;
+      font-size:38px;
+      line-height:1.1;
+    }
+
+    .lead{
+      margin:0 0 16px;
+      color:#e2e8f0;
+      font-size:18px;
+      line-height:1.7;
+    }
+
+    .highlight{
+      margin:22px 0 0;
+      background:var(--panel-2);
+      border:1px solid var(--border);
+      border-left:4px solid var(--gold);
+      border-radius:14px;
+      padding:18px 18px 18px 16px;
+    }
+
+    .highlight p{
+      margin:0;
+      line-height:1.7;
+      color:#e5e7eb;
+    }
+
+    .contact-block{
+      margin-top:24px;
+      padding:22px 20px;
+      background:var(--panel-2);
+      border:1px solid var(--border);
+      border-radius:14px;
+    }
+
+    .contact-title{
+      margin:0 0 10px;
+      font-size:20px;
+      font-weight:700;
+    }
+
+    .contact-copy{
+      margin:0 0 18px;
+      color:#dbe4ee;
+      line-height:1.7;
+    }
+
+    .actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:13px 20px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid transparent;
+      transition:transform .12s ease, opacity .12s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      opacity:.96;
+    }
+
+    .btn-primary{
+      background:var(--blue);
+      color:#fff;
+    }
+
+    .footer{
+      margin-top:22px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    @media (max-width: 640px){
+      .brand{font-size:24px}
+      h1{font-size:31px}
+      .lead{font-size:17px}
+      .card{padding:26px 20px}
+    }
+  </style>
 </head>
 <body>
+  <div class="wrap">
+    <div class="topbar">
+      <div>
+        <div class="brand">4MyIPTV Service</div>
+        <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
+      </div>
+    </div>
 
-<div class="container">
+    <div class="card">
+      <div class="status">
+        <span class="status-dot"></span>
+        Request Successfully Received
+      </div>
 
-  <h1>Thank You</h1>
-  <p>Your order has been successfully received.</p>
+      <h1>Thank You for Your Request</h1>
 
-  <div class="card">
-    <h2>Your Device Is Being Prepared</h2>
-    <p>Your device will be sent fully set up and ready to use out of the box.</p>
-    <p>We configure each device using a service profile to make your experience plug-and-play.</p>
-    <p>Your order is now in the fulfillment process. We will take care of the setup before it ships.</p>
+      <p class="lead">
+        Your request has been submitted successfully. We will review your order details and contact you with next steps.
+      </p>
+
+      <p class="lead">
+        We review requests during normal business hours and typically respond within a few hours. Please allow up to 24 hours for a response during business hours, Eastern Time.
+      </p>
+
+      <div class="highlight">
+        <p><strong>Payment instructions will be provided only after your request has been reviewed and confirmed.</strong></p>
+      </div>
+
+      <div class="highlight">
+        <p>You will receive a message from us with your order summary and payment instructions once your request has been reviewed.</p>
+      </div>
+
+      <div class="contact-block">
+        <div class="contact-title">Questions after submitting your request?</div>
+        <p class="contact-copy">
+          Use the Telegram contact button below and include the same name, phone number, or email address used on your request so we can match your message quickly.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://t.me/your_live_telegram_link" target="_blank" rel="noopener noreferrer">Contact Us on Telegram</a>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div>4MyIPTV Service • Request Confirmation</div>
+        <div>Version 1.2 • March 2026</div>
+      </div>
+    </div>
   </div>
-
-  <div class="card">
-    <h2>Using Your Own Device</h2>
-    <p>If you already have your own device, you can contact support for assistance getting started.</p>
-    <p>You will receive your username, password, and server link after purchase.</p>
-  </div>
-
-  <div class="card">
-    <h2>Personalize Your Device (Recommended)</h2>
-    <p>Your device will be sent fully set up and ready to use out of the box.</p>
-    <p>We configure each device using a service profile to make your experience plug-and-play.</p>
-    <p>For the best long-term experience, we recommend updating the device profile to your own Google account.</p>
-    <p>This allows you to access your personal Google services.</p>
-    <p>This step can be completed at any time.</p>
-  </div>
-
-  <div class="card">
-    <h2>Stay Updated</h2>
-    <p>Join our Telegram channel for service updates and announcements.</p>
-    <a class="button secondary" href="https://t.me/+d3y9ny-g131mYTY0" target="_blank">Join Telegram Updates</a>
-  </div>
-
-  <div class="card">
-    <h2>Need Help?</h2>
-    <p>Use the support page saved on your device if you ever need app access, setup help, or recovery tools.</p>
-    <a class="button" href="support.html">Contact Support</a>
-  </div>
-
-</div>
-
 </body>
 </html>
