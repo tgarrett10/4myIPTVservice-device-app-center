@@ -8,7 +8,7 @@
     :root{
       --bg:#08111f;
       --panel:#101827;
-      --panel-2:#0f172a;
+      --panel2:#0f172a;
       --text:#f8fafc;
       --muted:#94a3b8;
       --border:#1f2937;
@@ -16,9 +16,12 @@
       --green:#22c55e;
       --gold:#f59e0b;
       --red:#ef4444;
+      --purple:#8b5cf6;
     }
 
-    *{box-sizing:border-box}
+    *{
+      box-sizing:border-box;
+    }
 
     body{
       margin:0;
@@ -27,49 +30,61 @@
       color:var(--text);
     }
 
-    .wrap{
-      max-width:1400px;
+    .page{
+      max-width:1500px;
       margin:0 auto;
       padding:24px;
     }
 
     .topbar{
       display:flex;
-      flex-wrap:wrap;
       justify-content:space-between;
-      align-items:center;
+      align-items:flex-start;
       gap:16px;
+      flex-wrap:wrap;
       margin-bottom:20px;
     }
 
-    .title-block h1{
+    .title-wrap h1{
       margin:0 0 6px;
-      font-size:28px;
+      font-size:30px;
+      line-height:1.1;
     }
 
-    .title-block p{
+    .title-wrap p{
       margin:0;
       color:var(--muted);
       font-size:14px;
     }
 
-    .actions{
+    .top-actions{
       display:flex;
-      flex-wrap:wrap;
       gap:10px;
+      flex-wrap:wrap;
     }
 
-    button{
+    .btn{
       border:none;
       border-radius:10px;
       padding:10px 14px;
       font-weight:700;
       cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
     }
 
-    .btn-primary{background:var(--blue); color:white;}
-    .btn-secondary{background:var(--panel); color:var(--text); border:1px solid var(--border);}
-    .btn-success{background:var(--green); color:#08111f;}
+    .btn-primary{
+      background:var(--blue);
+      color:#fff;
+    }
+
+    .btn-secondary{
+      background:var(--panel2);
+      color:var(--text);
+      border:1px solid var(--border);
+    }
 
     .panel{
       background:var(--panel);
@@ -83,15 +98,16 @@
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
       gap:12px;
-      margin-bottom:18px;
     }
 
     .field label{
       display:block;
       margin-bottom:6px;
-      font-size:12px;
       color:var(--muted);
+      font-size:12px;
       font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.04em;
     }
 
     .field input,
@@ -101,7 +117,7 @@
       padding:10px 12px;
       border-radius:10px;
       border:1px solid var(--border);
-      background:var(--panel-2);
+      background:var(--panel2);
       color:var(--text);
       font-size:14px;
     }
@@ -113,23 +129,24 @@
       margin-bottom:18px;
     }
 
-    .stat{
+    .stat-card{
       background:var(--panel);
       border:1px solid var(--border);
       border-radius:14px;
       padding:16px;
     }
 
-    .stat .label{
+    .stat-label{
       color:var(--muted);
       font-size:12px;
-      margin-bottom:8px;
       text-transform:uppercase;
       letter-spacing:.04em;
+      margin-bottom:8px;
+      font-weight:700;
     }
 
-    .stat .value{
-      font-size:26px;
+    .stat-value{
+      font-size:28px;
       font-weight:800;
     }
 
@@ -141,8 +158,8 @@
 
     table{
       width:100%;
+      min-width:1300px;
       border-collapse:collapse;
-      min-width:1200px;
       background:var(--panel);
     }
 
@@ -157,12 +174,12 @@
     th{
       position:sticky;
       top:0;
+      z-index:1;
       background:#0b1320;
       color:#cbd5e1;
       font-size:12px;
       text-transform:uppercase;
       letter-spacing:.04em;
-      z-index:1;
     }
 
     tr:hover td{
@@ -178,13 +195,43 @@
       white-space:nowrap;
     }
 
-    .badge-blue{background:rgba(59,130,246,.16); color:#93c5fd;}
-    .badge-green{background:rgba(34,197,94,.16); color:#86efac;}
-    .badge-gold{background:rgba(245,158,11,.16); color:#fcd34d;}
-    .badge-red{background:rgba(239,68,68,.16); color:#fca5a5;}
-    .badge-gray{background:rgba(148,163,184,.16); color:#cbd5e1;}
+    .badge-blue{
+      background:rgba(59,130,246,.16);
+      color:#93c5fd;
+    }
 
-    .details{
+    .badge-green{
+      background:rgba(34,197,94,.16);
+      color:#86efac;
+    }
+
+    .badge-gold{
+      background:rgba(245,158,11,.16);
+      color:#fcd34d;
+    }
+
+    .badge-red{
+      background:rgba(239,68,68,.16);
+      color:#fca5a5;
+    }
+
+    .badge-purple{
+      background:rgba(139,92,246,.16);
+      color:#c4b5fd;
+    }
+
+    .badge-gray{
+      background:rgba(148,163,184,.16);
+      color:#cbd5e1;
+    }
+
+    .row-actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .details-layout{
       display:grid;
       grid-template-columns:2fr 1fr;
       gap:18px;
@@ -198,65 +245,64 @@
     }
 
     .detail-item{
-      background:var(--panel-2);
+      background:var(--panel2);
       border:1px solid var(--border);
       border-radius:12px;
       padding:12px;
     }
 
-    .detail-item .k{
+    .detail-key{
       color:var(--muted);
       font-size:12px;
-      margin-bottom:6px;
       font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      margin-bottom:6px;
     }
 
-    .detail-item .v{
+    .detail-value{
       font-size:14px;
       word-break:break-word;
+      white-space:pre-wrap;
     }
 
     .notes-box{
+      margin-top:12px;
       min-height:180px;
     }
 
     .empty{
-      padding:30px;
+      padding:28px;
       text-align:center;
       color:var(--muted);
     }
 
-    .row-actions{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .row-actions button{
-      padding:8px 10px;
+    .small-muted{
+      color:var(--muted);
       font-size:12px;
     }
 
-    .footer-links{
+    .link-list{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      margin-top:18px;
     }
 
-    .footer-links a{
-      display:inline-block;
+    .link-list a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       padding:10px 14px;
-      background:var(--panel);
       border:1px solid var(--border);
       border-radius:10px;
+      background:var(--panel2);
       color:var(--text);
       text-decoration:none;
       font-weight:700;
     }
 
-    @media (max-width: 960px){
-      .details{
+    @media (max-width: 980px){
+      .details-layout{
         grid-template-columns:1fr;
       }
 
@@ -267,15 +313,16 @@
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="page">
     <div class="topbar">
-      <div class="title-block">
+      <div class="title-wrap">
         <h1>Admin Orders</h1>
         <p>4MyIPTV Service • Stream More • Pay Less • Watch Anywhere</p>
       </div>
-      <div class="actions">
-        <button class="btn-primary" onclick="loadOrders()">Refresh Orders</button>
-        <button class="btn-secondary" onclick="clearFilters()">Clear Filters</button>
+
+      <div class="top-actions">
+        <button class="btn btn-primary" onclick="loadOrders()">Refresh Orders</button>
+        <button class="btn btn-secondary" onclick="clearFilters()">Clear Filters</button>
       </div>
     </div>
 
@@ -283,40 +330,7 @@
       <div class="filters">
         <div class="field">
           <label for="searchBox">Search</label>
-          <input id="searchBox" type="text" placeholder="Search name, email, phone, device..." oninput="applyFilters()" />
-        </div>
-
-        <div class="field">
-          <label for="statusFilter">Order Status</label>
-          <select id="statusFilter" onchange="applyFilters()">
-            <option value="">All</option>
-            <option value="NEW">NEW</option>
-            <option value="PAYMENT SENT">PAYMENT SENT</option>
-            <option value="IN PROGRESS">IN PROGRESS</option>
-            <option value="COMPLETED">COMPLETED</option>
-            <option value="CANCELLED">CANCELLED</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="paymentFilter">Payment Status</label>
-          <select id="paymentFilter" onchange="applyFilters()">
-            <option value="">All</option>
-            <option value="Pending">Pending</option>
-            <option value="Paid">Paid</option>
-            <option value="Partial">Partial</option>
-            <option value="Failed">Failed</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="deliveryFilter">Delivery Status</label>
-          <select id="deliveryFilter" onchange="applyFilters()">
-            <option value="">All</option>
-            <option value="Not Sent">Not Sent</option>
-            <option value="Sent">Sent</option>
-            <option value="Delivered">Delivered</option>
-          </select>
+          <input id="searchBox" type="text" placeholder="Search by name, email, phone, order ID, device..." oninput="applyFilters()" />
         </div>
 
         <div class="field">
@@ -329,25 +343,77 @@
             <option value="Online Only">Online Only</option>
           </select>
         </div>
+
+        <div class="field">
+          <label for="paymentMethodFilter">Payment Method</label>
+          <select id="paymentMethodFilter" onchange="applyFilters()">
+            <option value="">All</option>
+            <option value="Cash App">Cash App</option>
+            <option value="Zelle">Zelle</option>
+            <option value="PayPal">PayPal</option>
+            <option value="Crypto">Crypto</option>
+            <option value="Cash">Cash</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="orderStatusFilter">Order Status</label>
+          <select id="orderStatusFilter" onchange="applyFilters()">
+            <option value="">All</option>
+            <option value="NEW">NEW</option>
+            <option value="QUOTE SENT">QUOTE SENT</option>
+            <option value="PAYMENT RECEIVED">PAYMENT RECEIVED</option>
+            <option value="IN PROGRESS">IN PROGRESS</option>
+            <option value="COMPLETED">COMPLETED</option>
+            <option value="CANCELLED">CANCELLED</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="paymentStatusFilter">Payment Status</label>
+          <select id="paymentStatusFilter" onchange="applyFilters()">
+            <option value="">All</option>
+            <option value="Not Paid">Not Paid</option>
+            <option value="Pending">Pending</option>
+            <option value="Paid">Paid</option>
+            <option value="Refunded">Refunded</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="deliveryStatusFilter">Delivery Status</label>
+          <select id="deliveryStatusFilter" onchange="applyFilters()">
+            <option value="">All</option>
+            <option value="Not Started">Not Started</option>
+            <option value="Preparing">Preparing</option>
+            <option value="Ready">Ready</option>
+            <option value="Sent">Sent</option>
+            <option value="Delivered">Delivered</option>
+          </select>
+        </div>
       </div>
     </div>
 
-    <div class="stats" id="statsRow">
-      <div class="stat">
-        <div class="label">Total Orders</div>
-        <div class="value" id="statTotal">0</div>
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-label">Total Orders</div>
+        <div class="stat-value" id="statTotal">0</div>
       </div>
-      <div class="stat">
-        <div class="label">Payment Sent</div>
-        <div class="value" id="statPaymentSent">0</div>
+      <div class="stat-card">
+        <div class="stat-label">New</div>
+        <div class="stat-value" id="statNew">0</div>
       </div>
-      <div class="stat">
-        <div class="label">Paid</div>
-        <div class="value" id="statPaid">0</div>
+      <div class="stat-card">
+        <div class="stat-label">Payment Received</div>
+        <div class="stat-value" id="statPaymentReceived">0</div>
       </div>
-      <div class="stat">
-        <div class="label">Completed</div>
-        <div class="value" id="statCompleted">0</div>
+      <div class="stat-card">
+        <div class="stat-label">Completed</div>
+        <div class="stat-value" id="statCompleted">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Paid</div>
+        <div class="stat-value" id="statPaid">0</div>
       </div>
     </div>
 
@@ -357,7 +423,7 @@
           <thead>
             <tr>
               <th>Order ID</th>
-              <th>Date</th>
+              <th>Created At</th>
               <th>Customer</th>
               <th>Customer Type</th>
               <th>Payment Method</th>
@@ -365,7 +431,7 @@
               <th>Order Status</th>
               <th>Payment Status</th>
               <th>Delivery Status</th>
-              <th>Actions</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody id="ordersTableBody">
@@ -377,17 +443,15 @@
       </div>
     </div>
 
-    <div class="details">
+    <div class="details-layout">
       <div class="panel">
         <h2 style="margin-top:0;">Selected Order Details</h2>
-        <div id="detailPanel">
-          <div class="empty">Select an order to view details.</div>
-        </div>
+        <div id="detailPanel" class="empty">Select an order to view details.</div>
       </div>
 
       <div class="panel">
         <h2 style="margin-top:0;">Quick Links</h2>
-        <div class="footer-links">
+        <div class="link-list">
           <a href="admin-dashboard.html">Admin Dashboard</a>
           <a href="admin-apk-library.html">APK Library</a>
           <a href="admin-resource-center.html">Resource Center</a>
@@ -399,19 +463,19 @@
   </div>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbw43Nl96gj81hdLjsfYf4K7NVluuo75olmL1NPzOQSt1EKkjoeObmdGOEjq910yTmkToQ/exec";
+    const API_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
 
     let allOrders = [];
     let filteredOrders = [];
-    let selectedOrder = null;
+    let selectedOrderId = "";
 
     function normalizeOrder(raw) {
       return {
         orderId: raw["Order ID"] || "",
-        date: raw["Date"] || "",
+        createdAt: raw["Created At"] || "",
         customerName: raw["Customer Name"] || "",
+        email: raw["Email"] || "",
         phoneNumber: raw["Phone Number"] || "",
-        emailAddress: raw["Email Address"] || "",
         customerType: raw["Customer Type"] || "",
         paymentMethod: raw["Payment Method"] || "",
         deviceSelected: raw["Device Selected"] || "",
@@ -425,26 +489,31 @@
       };
     }
 
-    function badgeClass(value, type) {
+    function getBadgeClass(value, type) {
       const v = String(value || "").toUpperCase();
 
       if (type === "order") {
-        if (v === "COMPLETED") return "badge badge-green";
-        if (v === "PAYMENT SENT") return "badge badge-blue";
+        if (v === "NEW") return "badge badge-blue";
+        if (v === "QUOTE SENT") return "badge badge-gold";
+        if (v === "PAYMENT RECEIVED") return "badge badge-purple";
         if (v === "IN PROGRESS") return "badge badge-gold";
+        if (v === "COMPLETED") return "badge badge-green";
         if (v === "CANCELLED") return "badge badge-red";
       }
 
       if (type === "payment") {
         if (v === "PAID") return "badge badge-green";
         if (v === "PENDING") return "badge badge-gold";
-        if (v === "FAILED") return "badge badge-red";
+        if (v === "NOT PAID") return "badge badge-gray";
+        if (v === "REFUNDED") return "badge badge-red";
       }
 
       if (type === "delivery") {
         if (v === "DELIVERED") return "badge badge-green";
         if (v === "SENT") return "badge badge-blue";
-        if (v === "NOT SENT") return "badge badge-gray";
+        if (v === "READY") return "badge badge-purple";
+        if (v === "PREPARING") return "badge badge-gold";
+        if (v === "NOT STARTED") return "badge badge-gray";
       }
 
       return "badge badge-gray";
@@ -465,23 +534,24 @@
         allOrders = (data.orders || []).map(normalizeOrder).reverse();
         applyFilters();
       } catch (error) {
-        tbody.innerHTML = `<tr><td colspan="10" class="empty">Error loading orders: ${escapeHtml(error.message)}</td></tr>`;
+        tbody.innerHTML = '<tr><td colspan="10" class="empty">Error loading orders: ' + escapeHtml(error.message) + '</td></tr>';
       }
     }
 
     function applyFilters() {
       const search = document.getElementById("searchBox").value.trim().toLowerCase();
-      const status = document.getElementById("statusFilter").value;
-      const payment = document.getElementById("paymentFilter").value;
-      const delivery = document.getElementById("deliveryFilter").value;
       const customerType = document.getElementById("customerTypeFilter").value;
+      const paymentMethod = document.getElementById("paymentMethodFilter").value;
+      const orderStatus = document.getElementById("orderStatusFilter").value;
+      const paymentStatus = document.getElementById("paymentStatusFilter").value;
+      const deliveryStatus = document.getElementById("deliveryStatusFilter").value;
 
       filteredOrders = allOrders.filter(order => {
         const haystack = [
           order.orderId,
           order.customerName,
+          order.email,
           order.phoneNumber,
-          order.emailAddress,
           order.customerType,
           order.paymentMethod,
           order.deviceSelected,
@@ -492,23 +562,33 @@
         ].join(" ").toLowerCase();
 
         const matchesSearch = !search || haystack.includes(search);
-        const matchesStatus = !status || order.orderStatus === status;
-        const matchesPayment = !payment || order.paymentStatus === payment;
-        const matchesDelivery = !delivery || order.deliveryStatus === delivery;
         const matchesCustomerType = !customerType || order.customerType === customerType;
+        const matchesPaymentMethod = !paymentMethod || order.paymentMethod === paymentMethod;
+        const matchesOrderStatus = !orderStatus || order.orderStatus === orderStatus;
+        const matchesPaymentStatus = !paymentStatus || order.paymentStatus === paymentStatus;
+        const matchesDeliveryStatus = !deliveryStatus || order.deliveryStatus === deliveryStatus;
 
-        return matchesSearch && matchesStatus && matchesPayment && matchesDelivery && matchesCustomerType;
+        return (
+          matchesSearch &&
+          matchesCustomerType &&
+          matchesPaymentMethod &&
+          matchesOrderStatus &&
+          matchesPaymentStatus &&
+          matchesDeliveryStatus
+        );
       });
 
       renderStats();
       renderTable();
+      renderDetails();
     }
 
     function renderStats() {
       document.getElementById("statTotal").textContent = filteredOrders.length;
-      document.getElementById("statPaymentSent").textContent = filteredOrders.filter(o => o.orderStatus === "PAYMENT SENT").length;
-      document.getElementById("statPaid").textContent = filteredOrders.filter(o => o.paymentStatus === "Paid").length;
-      document.getElementById("statCompleted").textContent = filteredOrders.filter(o => o.orderStatus === "COMPLETED").length;
+      document.getElementById("statNew").textContent = filteredOrders.filter(x => x.orderStatus === "NEW").length;
+      document.getElementById("statPaymentReceived").textContent = filteredOrders.filter(x => x.orderStatus === "PAYMENT RECEIVED").length;
+      document.getElementById("statCompleted").textContent = filteredOrders.filter(x => x.orderStatus === "COMPLETED").length;
+      document.getElementById("statPaid").textContent = filteredOrders.filter(x => x.paymentStatus === "Paid").length;
     }
 
     function renderTable() {
@@ -522,21 +602,21 @@
       tbody.innerHTML = filteredOrders.map(order => `
         <tr>
           <td>${escapeHtml(order.orderId)}</td>
-          <td>${formatDate(order.date)}</td>
+          <td>${escapeHtml(formatDate(order.createdAt))}</td>
           <td>
             <strong>${escapeHtml(order.customerName)}</strong><br>
-            <span style="color:#94a3b8;">${escapeHtml(order.emailAddress)}</span><br>
-            <span style="color:#94a3b8;">${escapeHtml(order.phoneNumber)}</span>
+            <span class="small-muted">${escapeHtml(order.email)}</span><br>
+            <span class="small-muted">${escapeHtml(order.phoneNumber)}</span>
           </td>
           <td>${escapeHtml(order.customerType)}</td>
           <td>${escapeHtml(order.paymentMethod)}</td>
           <td>${escapeHtml(order.deviceSelected)}</td>
-          <td><span class="${badgeClass(order.orderStatus, 'order')}">${escapeHtml(order.orderStatus || "—")}</span></td>
-          <td><span class="${badgeClass(order.paymentStatus, 'payment')}">${escapeHtml(order.paymentStatus || "—")}</span></td>
-          <td><span class="${badgeClass(order.deliveryStatus, 'delivery')}">${escapeHtml(order.deliveryStatus || "—")}</span></td>
+          <td><span class="${getBadgeClass(order.orderStatus, 'order')}">${escapeHtml(order.orderStatus || "—")}</span></td>
+          <td><span class="${getBadgeClass(order.paymentStatus, 'payment')}">${escapeHtml(order.paymentStatus || "—")}</span></td>
+          <td><span class="${getBadgeClass(order.deliveryStatus, 'delivery')}">${escapeHtml(order.deliveryStatus || "—")}</span></td>
           <td>
             <div class="row-actions">
-              <button class="btn-secondary" onclick="selectOrder('${encodeURIComponent(order.orderId)}')">View</button>
+              <button class="btn btn-secondary" onclick="selectOrder('${encodeURIComponent(order.orderId)}')">View</button>
             </div>
           </td>
         </tr>
@@ -544,62 +624,128 @@
     }
 
     function selectOrder(encodedOrderId) {
-      const orderId = decodeURIComponent(encodedOrderId);
-      selectedOrder = filteredOrders.find(order => order.orderId === orderId) || allOrders.find(order => order.orderId === orderId);
+      selectedOrderId = decodeURIComponent(encodedOrderId);
       renderDetails();
     }
 
     function renderDetails() {
-      const panel = document.getElementById("detailPanel");
+      const detailPanel = document.getElementById("detailPanel");
 
-      if (!selectedOrder) {
-        panel.innerHTML = '<div class="empty">Select an order to view details.</div>';
+      if (!selectedOrderId) {
+        detailPanel.innerHTML = '<div class="empty">Select an order to view details.</div>';
         return;
       }
 
-      panel.innerHTML = `
+      const order = allOrders.find(item => item.orderId === selectedOrderId);
+
+      if (!order) {
+        detailPanel.innerHTML = '<div class="empty">Selected order not found.</div>';
+        return;
+      }
+
+      detailPanel.innerHTML = `
         <div class="detail-grid">
-          <div class="detail-item"><div class="k">Order ID</div><div class="v">${escapeHtml(selectedOrder.orderId)}</div></div>
-          <div class="detail-item"><div class="k">Date</div><div class="v">${formatDate(selectedOrder.date, true)}</div></div>
-          <div class="detail-item"><div class="k">Customer Name</div><div class="v">${escapeHtml(selectedOrder.customerName)}</div></div>
-          <div class="detail-item"><div class="k">Phone Number</div><div class="v">${escapeHtml(selectedOrder.phoneNumber)}</div></div>
-          <div class="detail-item"><div class="k">Email Address</div><div class="v">${escapeHtml(selectedOrder.emailAddress)}</div></div>
-          <div class="detail-item"><div class="k">Customer Type</div><div class="v">${escapeHtml(selectedOrder.customerType)}</div></div>
-          <div class="detail-item"><div class="k">Payment Method</div><div class="v">${escapeHtml(selectedOrder.paymentMethod)}</div></div>
-          <div class="detail-item"><div class="k">Device Selected</div><div class="v">${escapeHtml(selectedOrder.deviceSelected)}</div></div>
-          <div class="detail-item"><div class="k">Order Status</div><div class="v">${escapeHtml(selectedOrder.orderStatus)}</div></div>
-          <div class="detail-item"><div class="k">Payment Status</div><div class="v">${escapeHtml(selectedOrder.paymentStatus)}</div></div>
-          <div class="detail-item"><div class="k">Delivery Status</div><div class="v">${escapeHtml(selectedOrder.deliveryStatus)}</div></div>
-          <div class="detail-item"><div class="k">Last Template Sent</div><div class="v">${escapeHtml(selectedOrder.lastTemplateSent)}</div></div>
-          <div class="detail-item"><div class="k">Last Action Date</div><div class="v">${escapeHtml(selectedOrder.lastActionDate)}</div></div>
-          <div class="detail-item"><div class="k">Last Message Date</div><div class="v">${escapeHtml(selectedOrder.lastMessageDate)}</div></div>
+          <div class="detail-item">
+            <div class="detail-key">Order ID</div>
+            <div class="detail-value">${escapeHtml(order.orderId)}</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-key">Created At</div>
+            <div class="detail-value">${escapeHtml(formatDate(order.createdAt, true))}</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-key">Customer Name</div>
+            <div class="detail-value">${escapeHtml(order.customerName)}</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-key">Email</div>
+            <div class="detail-value">${escapeHtml(order.email)}</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-key">Phone Number</div>
+            <div class="detail-value">${escapeHtml(order.phoneNumber)}</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-key">Customer Type</div>
+            <div class="detail-value">${escapeHtml(order.customerType)}</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-key">Payment Method</div>
+            <div class="detail-value">${escapeHtml(order.paymentMethod)}</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-key">Device Selected</div>
+            <div class="detail-value">${escapeHtml(order.deviceSelected)}</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-key">Order Status</div>
+            <div class="detail-value">${escapeHtml(order.orderStatus)}</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-key">Payment Status</div>
+            <div class="detail-value">${escapeHtml(order.paymentStatus)}</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-key">Delivery Status</div>
+            <div class="detail-value">${escapeHtml(order.deliveryStatus)}</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-key">Last Template Sent</div>
+            <div class="detail-value">${escapeHtml(order.lastTemplateSent)}</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-key">Last Action Date</div>
+            <div class="detail-value">${escapeHtml(order.lastActionDate)}</div>
+          </div>
+
+          <div class="detail-item">
+            <div class="detail-key">Last Message Date</div>
+            <div class="detail-value">${escapeHtml(order.lastMessageDate)}</div>
+          </div>
         </div>
 
-        <div class="detail-item notes-box" style="margin-top:12px;">
-          <div class="k">Notes</div>
-          <div class="v">${escapeHtml(selectedOrder.notes)}</div>
+        <div class="detail-item notes-box">
+          <div class="detail-key">Notes</div>
+          <div class="detail-value">${escapeHtml(order.notes)}</div>
         </div>
       `;
     }
 
     function clearFilters() {
       document.getElementById("searchBox").value = "";
-      document.getElementById("statusFilter").value = "";
-      document.getElementById("paymentFilter").value = "";
-      document.getElementById("deliveryFilter").value = "";
       document.getElementById("customerTypeFilter").value = "";
-      applyFilters();
+      document.getElementById("paymentMethodFilter").value = "";
+      document.getElementById("orderStatusFilter").value = "";
+      document.getElementById("paymentStatusFilter").value = "";
+      document.getElementById("deliveryStatusFilter").value = "";
+
+      filteredOrders = [...allOrders];
+      renderStats();
+      renderTable();
+      renderDetails();
     }
 
-    function formatDate(value, longFormat = false) {
+    function formatDate(value, includeTime = false) {
       if (!value) return "—";
 
       const date = new Date(value);
       if (Number.isNaN(date.getTime())) {
-        return escapeHtml(String(value));
+        return String(value);
       }
 
-      if (longFormat) {
+      if (includeTime) {
         return date.toLocaleString();
       }
 
