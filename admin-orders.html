@@ -57,7 +57,7 @@
     }
 
     .page-wrap {
-      max-width: 1500px;
+      max-width: 1700px;
       margin: 0 auto;
       padding: 22px;
     }
@@ -97,7 +97,7 @@
 
     .controls {
       display: grid;
-      grid-template-columns: minmax(240px, 1fr) 220px 220px auto;
+      grid-template-columns: minmax(260px, 1fr) 220px 220px auto;
       gap: 12px;
       align-items: end;
     }
@@ -111,9 +111,12 @@
     }
 
     .field-group input,
-    .field-group select {
+    .field-group select,
+    .inline-input,
+    .inline-select,
+    .inline-textarea {
       width: 100%;
-      padding: 11px 12px;
+      padding: 10px 12px;
       border: 1px solid var(--line-soft);
       border-radius: 10px;
       font-size: 14px;
@@ -122,7 +125,9 @@
       outline: none;
     }
 
-    .field-group input::placeholder {
+    .field-group input::placeholder,
+    .inline-input::placeholder,
+    .inline-textarea::placeholder {
       color: #7c8aa0;
     }
 
@@ -161,6 +166,27 @@
 
     .btn-secondary:hover {
       background: #273449;
+    }
+
+    .btn-save {
+      background: var(--green);
+      color: #052e16;
+      width: 100%;
+    }
+
+    .btn-save:hover {
+      filter: brightness(1.03);
+    }
+
+    .btn-link {
+      background: var(--purple);
+      color: #ffffff;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn-link:hover {
+      filter: brightness(1.05);
     }
 
     .status-row {
@@ -225,7 +251,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 1500px;
+      min-width: 2550px;
       background: #0b1220;
     }
 
@@ -309,13 +335,74 @@
     .id-cell {
       font-weight: 700;
       color: #c4b5fd;
+      min-width: 80px;
     }
 
-    .note-cell,
-    .route-cell {
-      max-width: 240px;
-      white-space: normal;
+    .notes-box {
+      min-width: 260px;
+    }
+
+    .actions-box {
+      min-width: 180px;
+    }
+
+    .readonly-box {
+      min-width: 160px;
       line-height: 1.45;
+    }
+
+    .stack {
+      display: grid;
+      gap: 8px;
+    }
+
+    .internal-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 16px;
+    }
+
+    .internal-box {
+      background: var(--panel-soft);
+      border: 1px solid var(--line-soft);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .internal-box h3 {
+      margin: 0 0 10px 0;
+      color: #ffffff;
+      font-size: 18px;
+    }
+
+    .internal-box ol,
+    .internal-box ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .save-status {
+      margin-top: 8px;
+      font-size: 12px;
+      line-height: 1.4;
+      min-height: 18px;
+    }
+
+    .save-status.ok {
+      color: #86efac;
+    }
+
+    .save-status.error {
+      color: #fca5a5;
     }
 
     .footer-strip {
@@ -333,13 +420,17 @@
       font-size: 0.82rem;
     }
 
-    @media (max-width: 1180px) {
+    @media (max-width: 1280px) {
       .controls {
         grid-template-columns: 1fr 1fr;
       }
 
       .status-row {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .internal-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -349,6 +440,10 @@
       }
 
       .status-row {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-links {
         grid-template-columns: 1fr;
       }
 
@@ -365,7 +460,7 @@
 <body>
   <div class="topbar">
     <h1>4MyIPTV Service Admin Orders</h1>
-    <p>Stream More • Pay Less • Watch Anywhere</p>
+    <p>Internal order management and workflow control</p>
   </div>
 
   <div class="page-wrap">
@@ -381,7 +476,7 @@
             <input
               type="text"
               id="searchInput"
-              placeholder="Search by name, email, phone, device, order type, status..."
+              placeholder="Search by name, email, phone, device, notes, status..."
             />
           </div>
 
@@ -444,8 +539,8 @@
 
     <div class="card">
       <div class="card-header">
-        <div class="section-label">Order Data</div>
-        <h2>Current Orders</h2>
+        <div class="section-label">Editable Order Table</div>
+        <h2>Review and Update Orders</h2>
       </div>
       <div class="card-content">
         <div class="table-wrap">
@@ -457,34 +552,75 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>Customer Type</th>
                 <th>Order Type</th>
                 <th>Device</th>
+                <th>Customer Type</th>
+                <th>Preferred Contact</th>
+                <th>Preferred Reply Time</th>
+                <th>Plan Interest</th>
+                <th>TV Count</th>
                 <th>Fulfillment</th>
-                <th>Status</th>
-                <th>Payment</th>
-                <th>Delivery</th>
+                <th>Order Status</th>
+                <th>Payment Status</th>
+                <th>Delivery Status</th>
                 <th>Support Route</th>
-                <th>Notes</th>
+                <th>Customer Notes / Internal Notes</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="ordersTableBody">
               <tr>
-                <td colspan="14" class="empty-state">Loading orders...</td>
+                <td colspan="19" class="empty-state">Loading orders...</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <div class="small" style="margin-top: 10px;">
-          If data looks incomplete, that usually means the Apps Script payload and the sheet column mapping do not fully match yet.
+          Internal note: if some values still appear blank after this rewrite, the remaining issue is likely the Apps Script response structure rather than the page layout.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="section-label">Internal Workflow</div>
+        <h2>Next Steps After an Order Is Received</h2>
+      </div>
+      <div class="card-content">
+        <div class="internal-grid">
+          <div class="internal-box">
+            <h3>Do these steps in order</h3>
+            <ol>
+              <li>Confirm the customer name, phone, email, requested device, and notes are readable.</li>
+              <li>Review the requested setup and identify whether any clarification is needed before payment is sent.</li>
+              <li>Set fulfillment type and update order status to reflect where the order stands.</li>
+              <li>Generate and send the correct payment or checkout link.</li>
+              <li>Update payment status once payment is sent and again once payment is received.</li>
+              <li>Track delivery or setup progress so nothing gets lost after payment.</li>
+              <li>Move completed jobs to COMPLETE only after the order is fully closed out.</li>
+            </ol>
+          </div>
+
+          <div class="internal-box">
+            <h3>Quick Admin Links</h3>
+            <div class="quick-links">
+              <a class="btn btn-link" href="admin-dashboard.html">Open Admin Dashboard</a>
+              <a class="btn btn-link" href="admin-checkout-link-generator.html">Open Checkout Link Generator</a>
+              <a class="btn btn-link" href="admin-resource-center.html">Open Resource Center</a>
+              <a class="btn btn-link" href="admin-update-checker.html">Open Update Checker</a>
+            </div>
+            <div class="small" style="margin-top: 12px;">
+              Internal reminder: this page is for order review and updates. The dashboard should become the broader workflow command center after this page is stable.
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="footer-strip">
       <strong>4MyIPTV Service • Admin Orders</strong>
-      <div class="version">Version 2.0 • Last Updated: March 2026</div>
+      <div class="version">Version 2.1 • Last Updated: March 2026</div>
     </div>
   </div>
 
@@ -533,7 +669,7 @@
       return String(value).trim();
     }
 
-    function safeValue(value) {
+    function displayValue(value) {
       const raw = safeRaw(value);
       if (!raw) {
         return '<span class="muted">—</span>';
@@ -570,6 +706,17 @@
     }
 
     function normalizeOrder(row) {
+      const notesCombined = firstNonEmpty([
+        row.notes,
+        row["Notes"],
+        row.customerNotes,
+        row["Customer Notes"],
+        row.internalNotes,
+        row["Internal Notes"],
+        row.test,
+        row["Test"]
+      ]);
+
       return {
         id: firstNonEmpty([
           row.id,
@@ -581,53 +728,78 @@
           row.createdAt,
           row["Created At"],
           row.timestamp,
-          row.date,
+          row["Timestamp"],
           row.created,
-          row["Timestamp"]
+          row.date,
+          row["Date"]
         ]),
         customerName: firstNonEmpty([
           row.customerName,
-          row.name,
-          row.customer,
           row["Customer Name"],
-          row["Name"]
+          row.fullName,
+          row["Full Name"],
+          row.name,
+          row["Name"],
+          row.customer
         ]),
         emailAddress: firstNonEmpty([
           row.emailAddress,
-          row.email,
           row["Email Address"],
+          row.email,
           row["Email"]
         ]),
         phoneNumber: firstNonEmpty([
           row.phoneNumber,
-          row.phone,
           row["Phone Number"],
+          row.phone,
           row["Phone"]
+        ]),
+        orderType: firstNonEmpty([
+          row.orderType,
+          row["Order Type"],
+          row.serviceType,
+          row["Service Type"]
+        ]),
+        deviceSelected: firstNonEmpty([
+          row.deviceSelected,
+          row["Device Selected"],
+          row.device,
+          row["Device"],
+          row.preferredDevice,
+          row["Preferred Device"]
         ]),
         customerType: firstNonEmpty([
           row.customerType,
           row["Customer Type"]
         ]),
-        orderType: firstNonEmpty([
-          row.orderType,
-          row["Order Type"]
+        preferredContact: firstNonEmpty([
+          row.preferredContact,
+          row["Preferred Contact"]
         ]),
-        deviceSelected: firstNonEmpty([
-          row.deviceSelected,
-          row.device,
-          row["Device Selected"],
-          row["Device"]
+        preferredReplyTime: firstNonEmpty([
+          row.preferredReplyTime,
+          row["Preferred Reply Time"]
+        ]),
+        planInterest: firstNonEmpty([
+          row.planInterest,
+          row["Plan Interest"]
+        ]),
+        tvCount: firstNonEmpty([
+          row.tvCount,
+          row["TV Count"]
         ]),
         fulfillmentType: firstNonEmpty([
           row.fulfillmentType,
-          row.fulfillment,
           row["Fulfillment Type"],
-          row["Fulfillment"]
+          row.fulfillment,
+          row["Fulfillment"],
+          row.paymentPreference,
+          row["Payment Preference"]
         ]),
         orderStatus: firstNonEmpty([
           row.orderStatus,
-          row.status,
           row["Order Status"],
+          row.status,
           row["Status"]
         ]),
         paymentStatus: firstNonEmpty([
@@ -642,12 +814,7 @@
           row.supportRoute,
           row["Support Route"]
         ]),
-        notes: firstNonEmpty([
-          row.notes,
-          row["Notes"],
-          row.test,
-          row["Test"]
-        ])
+        notes: notesCombined
       };
     }
 
@@ -695,9 +862,13 @@
             order.customerName,
             order.emailAddress,
             order.phoneNumber,
-            order.customerType,
             order.orderType,
             order.deviceSelected,
+            order.customerType,
+            order.preferredContact,
+            order.preferredReplyTime,
+            order.planInterest,
+            order.tvCount,
             order.fulfillmentType,
             order.orderStatus,
             order.paymentStatus,
@@ -713,6 +884,16 @@
       return sortOrders(filtered);
     }
 
+    function buildSelectOptions(currentValue, options) {
+      const current = safeRaw(currentValue);
+      const allOptions = [...new Set([current, ...options].filter(v => String(v).trim() !== ""))];
+
+      return allOptions.map(option => {
+        const selected = option === current ? "selected" : "";
+        return `<option value="${escapeHtml(option)}" ${selected}>${escapeHtml(option)}</option>`;
+      }).join("");
+    }
+
     function renderOrders() {
       const filtered = getFilteredOrders();
       updateStats(allOrders, filtered);
@@ -720,37 +901,106 @@
       if (!filtered.length) {
         ordersTableBody.innerHTML = `
           <tr>
-            <td colspan="14" class="empty-state">No orders found for the current filter.</td>
+            <td colspan="19" class="empty-state">No orders found for the current filter.</td>
           </tr>
         `;
         return;
       }
 
       ordersTableBody.innerHTML = filtered.map(order => `
-        <tr>
-          <td class="id-cell">${safeValue(order.id)}</td>
-          <td>${safeValue(order.createdAt)}</td>
-          <td>${safeValue(order.customerName)}</td>
-          <td>${safeValue(order.emailAddress)}</td>
-          <td>${safeValue(order.phoneNumber)}</td>
-          <td>${safeValue(order.customerType)}</td>
-          <td>${safeValue(order.orderType)}</td>
-          <td>${safeValue(order.deviceSelected)}</td>
-          <td>${safeValue(order.fulfillmentType)}</td>
-          <td>${getStatusPill(order.orderStatus)}</td>
-          <td>${safeValue(order.paymentStatus)}</td>
-          <td>${safeValue(order.deliveryStatus)}</td>
-          <td class="route-cell">${safeValue(order.supportRoute)}</td>
-          <td class="note-cell">${safeValue(order.notes)}</td>
+        <tr data-order-id="${escapeHtml(order.id)}">
+          <td class="id-cell">${displayValue(order.id)}</td>
+          <td class="readonly-box">${displayValue(order.createdAt)}</td>
+          <td class="readonly-box">${displayValue(order.customerName)}</td>
+          <td class="readonly-box">${displayValue(order.emailAddress)}</td>
+          <td class="readonly-box">${displayValue(order.phoneNumber)}</td>
+          <td class="readonly-box">${displayValue(order.orderType)}</td>
+          <td class="readonly-box">${displayValue(order.deviceSelected)}</td>
+          <td class="readonly-box">${displayValue(order.customerType)}</td>
+          <td class="readonly-box">${displayValue(order.preferredContact)}</td>
+          <td class="readonly-box">${displayValue(order.preferredReplyTime)}</td>
+          <td class="readonly-box">${displayValue(order.planInterest)}</td>
+          <td class="readonly-box">${displayValue(order.tvCount)}</td>
+
+          <td>
+            <select class="inline-select field-fulfillment">
+              ${buildSelectOptions(order.fulfillmentType, [
+                "Cash App",
+                "PayPal",
+                "Zelle",
+                "Crypto",
+                "In Person",
+                "Pending"
+              ])}
+            </select>
+          </td>
+
+          <td>
+            <div class="stack">
+              ${getStatusPill(order.orderStatus)}
+              <select class="inline-select field-order-status">
+                ${buildSelectOptions(order.orderStatus, [
+                  "NEW",
+                  "PAYMENT SENT",
+                  "PAID",
+                  "IN PROGRESS",
+                  "READY FOR DELIVERY",
+                  "COMPLETE",
+                  "ON HOLD"
+                ])}
+              </select>
+            </div>
+          </td>
+
+          <td>
+            <select class="inline-select field-payment-status">
+              ${buildSelectOptions(order.paymentStatus, [
+                "Not Sent",
+                "Sent",
+                "Pending",
+                "Paid",
+                "Failed"
+              ])}
+            </select>
+          </td>
+
+          <td>
+            <select class="inline-select field-delivery-status">
+              ${buildSelectOptions(order.deliveryStatus, [
+                "Not Started",
+                "Pending",
+                "Ready",
+                "Delivered",
+                "Completed"
+              ])}
+            </select>
+          </td>
+
+          <td>
+            <input class="inline-input field-support-route" type="text" value="${escapeHtml(safeRaw(order.supportRoute))}" placeholder="Support route" />
+          </td>
+
+          <td class="notes-box">
+            <textarea class="inline-textarea field-notes" rows="5" placeholder="Notes">${escapeHtml(safeRaw(order.notes))}</textarea>
+          </td>
+
+          <td class="actions-box">
+            <div class="stack">
+              <button class="btn btn-save save-row-btn">Save Update</button>
+              <div class="save-status"></div>
+            </div>
+          </td>
         </tr>
       `).join("");
+
+      attachRowSaveHandlers();
     }
 
     async function loadOrders() {
       setMessage("Loading orders...", "");
       ordersTableBody.innerHTML = `
         <tr>
-          <td colspan="14" class="empty-state">Loading orders...</td>
+          <td colspan="19" class="empty-state">Loading orders...</td>
         </tr>
       `;
 
@@ -789,7 +1039,7 @@
         setMessage("Unable to load orders. " + error.message, "error");
         ordersTableBody.innerHTML = `
           <tr>
-            <td colspan="14" class="empty-state">
+            <td colspan="19" class="empty-state">
               Unable to load orders.<br />
               <span class="small">Check the Apps Script URL and confirm the Web App is deployed correctly.</span>
             </td>
@@ -797,6 +1047,71 @@
         `;
         updateStats([], []);
       }
+    }
+
+    function attachRowSaveHandlers() {
+      document.querySelectorAll(".save-row-btn").forEach(button => {
+        button.addEventListener("click", async () => {
+          const row = button.closest("tr");
+          const saveStatus = row.querySelector(".save-status");
+          const orderId = row.getAttribute("data-order-id");
+
+          const payload = {
+            action: "updateOrder",
+            id: orderId,
+            fulfillmentType: row.querySelector(".field-fulfillment").value.trim(),
+            orderStatus: row.querySelector(".field-order-status").value.trim(),
+            paymentStatus: row.querySelector(".field-payment-status").value.trim(),
+            deliveryStatus: row.querySelector(".field-delivery-status").value.trim(),
+            supportRoute: row.querySelector(".field-support-route").value.trim(),
+            notes: row.querySelector(".field-notes").value.trim()
+          };
+
+          button.disabled = true;
+          button.textContent = "Saving...";
+          saveStatus.textContent = "Sending update...";
+          saveStatus.className = "save-status";
+
+          try {
+            const response = await fetch(APPS_SCRIPT_URL, {
+              method: "POST",
+              headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+              },
+              body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+              throw new Error("HTTP " + response.status + " returned from Apps Script.");
+            }
+
+            let result = {};
+            try {
+              result = await response.json();
+            } catch (jsonError) {
+              result = { success: true };
+            }
+
+            if (result.success === false) {
+              throw new Error(result.message || "Save failed.");
+            }
+
+            saveStatus.textContent = "Update saved. Refreshing view...";
+            saveStatus.className = "save-status ok";
+            setMessage("Order update submitted successfully.", "ok");
+
+            await loadOrders();
+          } catch (error) {
+            console.error("Save Order Error:", error);
+            saveStatus.textContent = "Save failed. The page is ready, but Apps Script may not support updates yet. " + error.message;
+            saveStatus.className = "save-status error";
+            setMessage("Save failed. " + error.message, "error");
+          } finally {
+            button.disabled = false;
+            button.textContent = "Save Update";
+          }
+        });
+      });
     }
 
     refreshBtn.addEventListener("click", loadOrders);
