@@ -19,6 +19,9 @@
       --gold: #f59e0b;
       --purple: #9333ea;
       --red: #ef4444;
+      --sticky-id-width: 90px;
+      --sticky-name-width: 190px;
+      --sticky-left-name: 90px;
     }
 
     * {
@@ -57,7 +60,7 @@
     }
 
     .page-wrap {
-      max-width: 1700px;
+      max-width: 1720px;
       margin: 0 auto;
       padding: 22px;
     }
@@ -250,8 +253,9 @@
 
     table {
       width: 100%;
-      border-collapse: collapse;
-      min-width: 2550px;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 2360px;
       background: #0b1220;
     }
 
@@ -263,25 +267,82 @@
     th,
     td {
       text-align: left;
-      padding: 12px 10px;
+      padding: 10px 9px;
       border-bottom: 1px solid #1f2937;
       vertical-align: top;
-      font-size: 14px;
+      font-size: 13px;
+      background: #0b1220;
     }
 
     th {
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: #dbeafe;
       position: sticky;
       top: 0;
-      z-index: 1;
+      z-index: 6;
+      background: #111827;
     }
 
-    tbody tr:hover {
+    tbody tr:hover td {
       background: rgba(255, 255, 255, 0.03);
     }
+
+    .sticky-id {
+      position: sticky;
+      left: 0;
+      z-index: 5;
+      width: var(--sticky-id-width);
+      min-width: var(--sticky-id-width);
+      max-width: var(--sticky-id-width);
+      background: #0b1220;
+      box-shadow: 1px 0 0 #1f2937;
+    }
+
+    th.sticky-id {
+      z-index: 8;
+      background: #111827;
+    }
+
+    .sticky-name {
+      position: sticky;
+      left: var(--sticky-left-name);
+      z-index: 5;
+      width: var(--sticky-name-width);
+      min-width: var(--sticky-name-width);
+      max-width: var(--sticky-name-width);
+      background: #0b1220;
+      box-shadow: 1px 0 0 #1f2937;
+    }
+
+    th.sticky-name {
+      z-index: 8;
+      background: #111827;
+    }
+
+    tbody tr:hover td.sticky-id,
+    tbody tr:hover td.sticky-name {
+      background: #132033;
+    }
+
+    .col-created { min-width: 140px; }
+    .col-email { min-width: 210px; max-width: 210px; word-break: break-word; }
+    .col-phone { min-width: 130px; }
+    .col-order-type { min-width: 130px; }
+    .col-device { min-width: 160px; max-width: 160px; }
+    .col-customer-type { min-width: 120px; }
+    .col-pref-contact { min-width: 130px; }
+    .col-pref-reply { min-width: 140px; }
+    .col-plan { min-width: 130px; }
+    .col-tv { min-width: 90px; }
+    .col-fulfillment { min-width: 150px; }
+    .col-order-status { min-width: 170px; }
+    .col-payment { min-width: 140px; }
+    .col-delivery { min-width: 140px; }
+    .col-support { min-width: 150px; }
+    .col-notes { min-width: 220px; max-width: 220px; }
+    .col-actions { min-width: 160px; }
 
     .pill {
       display: inline-block;
@@ -335,20 +396,25 @@
     .id-cell {
       font-weight: 700;
       color: #c4b5fd;
-      min-width: 80px;
     }
 
-    .notes-box {
-      min-width: 260px;
-    }
-
-    .actions-box {
-      min-width: 180px;
+    .name-cell {
+      font-weight: 700;
+      color: #ffffff;
+      word-break: break-word;
     }
 
     .readonly-box {
-      min-width: 160px;
-      line-height: 1.45;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    .notes-box {
+      width: 100%;
+    }
+
+    .actions-box {
+      width: 100%;
     }
 
     .stack {
@@ -547,25 +613,25 @@
           <table>
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Created At</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Order Type</th>
-                <th>Device</th>
-                <th>Customer Type</th>
-                <th>Preferred Contact</th>
-                <th>Preferred Reply Time</th>
-                <th>Plan Interest</th>
-                <th>TV Count</th>
-                <th>Fulfillment</th>
-                <th>Order Status</th>
-                <th>Payment Status</th>
-                <th>Delivery Status</th>
-                <th>Support Route</th>
-                <th>Customer Notes / Internal Notes</th>
-                <th>Actions</th>
+                <th class="sticky-id">ID</th>
+                <th class="sticky-name">Name</th>
+                <th class="col-created">Created At</th>
+                <th class="col-email">Email</th>
+                <th class="col-phone">Phone</th>
+                <th class="col-order-type">Order Type</th>
+                <th class="col-device">Device</th>
+                <th class="col-customer-type">Customer Type</th>
+                <th class="col-pref-contact">Preferred Contact</th>
+                <th class="col-pref-reply">Preferred Reply Time</th>
+                <th class="col-plan">Plan Interest</th>
+                <th class="col-tv">TV Count</th>
+                <th class="col-fulfillment">Fulfillment</th>
+                <th class="col-order-status">Order Status</th>
+                <th class="col-payment">Payment Status</th>
+                <th class="col-delivery">Delivery Status</th>
+                <th class="col-support">Support Route</th>
+                <th class="col-notes">Customer Notes / Internal Notes</th>
+                <th class="col-actions">Actions</th>
               </tr>
             </thead>
             <tbody id="ordersTableBody">
@@ -577,7 +643,7 @@
         </div>
 
         <div class="small" style="margin-top: 10px;">
-          Internal note: if some values still appear blank after this rewrite, the remaining issue is likely the Apps Script response structure rather than the page layout.
+          Internal note: sticky ID and Name are now locked for horizontal scrolling. Missing fields from the order payload still point to Apps Script read mapping.
         </div>
       </div>
     </div>
@@ -611,7 +677,7 @@
               <a class="btn btn-link" href="admin-update-checker.html">Open Update Checker</a>
             </div>
             <div class="small" style="margin-top: 12px;">
-              Internal reminder: this page is for order review and updates. The dashboard should become the broader workflow command center after this page is stable.
+              Internal reminder: this page is for order review and updates. The dashboard becomes the broader workflow command center after backend mapping is stable.
             </div>
           </div>
         </div>
@@ -620,7 +686,7 @@
 
     <div class="footer-strip">
       <strong>4MyIPTV Service • Admin Orders</strong>
-      <div class="version">Version 2.1 • Last Updated: March 2026</div>
+      <div class="version">Version 2.2 • Last Updated: March 2026</div>
     </div>
   </div>
 
@@ -858,8 +924,8 @@
         filtered = filtered.filter(order => {
           const combined = [
             order.id,
-            order.createdAt,
             order.customerName,
+            order.createdAt,
             order.emailAddress,
             order.phoneNumber,
             order.orderType,
@@ -909,20 +975,20 @@
 
       ordersTableBody.innerHTML = filtered.map(order => `
         <tr data-order-id="${escapeHtml(order.id)}">
-          <td class="id-cell">${displayValue(order.id)}</td>
-          <td class="readonly-box">${displayValue(order.createdAt)}</td>
-          <td class="readonly-box">${displayValue(order.customerName)}</td>
-          <td class="readonly-box">${displayValue(order.emailAddress)}</td>
-          <td class="readonly-box">${displayValue(order.phoneNumber)}</td>
-          <td class="readonly-box">${displayValue(order.orderType)}</td>
-          <td class="readonly-box">${displayValue(order.deviceSelected)}</td>
-          <td class="readonly-box">${displayValue(order.customerType)}</td>
-          <td class="readonly-box">${displayValue(order.preferredContact)}</td>
-          <td class="readonly-box">${displayValue(order.preferredReplyTime)}</td>
-          <td class="readonly-box">${displayValue(order.planInterest)}</td>
-          <td class="readonly-box">${displayValue(order.tvCount)}</td>
+          <td class="sticky-id id-cell">${displayValue(order.id)}</td>
+          <td class="sticky-name name-cell">${displayValue(order.customerName)}</td>
+          <td class="readonly-box col-created">${displayValue(order.createdAt)}</td>
+          <td class="readonly-box col-email">${displayValue(order.emailAddress)}</td>
+          <td class="readonly-box col-phone">${displayValue(order.phoneNumber)}</td>
+          <td class="readonly-box col-order-type">${displayValue(order.orderType)}</td>
+          <td class="readonly-box col-device">${displayValue(order.deviceSelected)}</td>
+          <td class="readonly-box col-customer-type">${displayValue(order.customerType)}</td>
+          <td class="readonly-box col-pref-contact">${displayValue(order.preferredContact)}</td>
+          <td class="readonly-box col-pref-reply">${displayValue(order.preferredReplyTime)}</td>
+          <td class="readonly-box col-plan">${displayValue(order.planInterest)}</td>
+          <td class="readonly-box col-tv">${displayValue(order.tvCount)}</td>
 
-          <td>
+          <td class="col-fulfillment">
             <select class="inline-select field-fulfillment">
               ${buildSelectOptions(order.fulfillmentType, [
                 "Cash App",
@@ -935,7 +1001,7 @@
             </select>
           </td>
 
-          <td>
+          <td class="col-order-status">
             <div class="stack">
               ${getStatusPill(order.orderStatus)}
               <select class="inline-select field-order-status">
@@ -952,7 +1018,7 @@
             </div>
           </td>
 
-          <td>
+          <td class="col-payment">
             <select class="inline-select field-payment-status">
               ${buildSelectOptions(order.paymentStatus, [
                 "Not Sent",
@@ -964,7 +1030,7 @@
             </select>
           </td>
 
-          <td>
+          <td class="col-delivery">
             <select class="inline-select field-delivery-status">
               ${buildSelectOptions(order.deliveryStatus, [
                 "Not Started",
@@ -976,15 +1042,15 @@
             </select>
           </td>
 
-          <td>
+          <td class="col-support">
             <input class="inline-input field-support-route" type="text" value="${escapeHtml(safeRaw(order.supportRoute))}" placeholder="Support route" />
           </td>
 
-          <td class="notes-box">
-            <textarea class="inline-textarea field-notes" rows="5" placeholder="Notes">${escapeHtml(safeRaw(order.notes))}</textarea>
+          <td class="notes-box col-notes">
+            <textarea class="inline-textarea field-notes" rows="4" placeholder="Notes">${escapeHtml(safeRaw(order.notes))}</textarea>
           </td>
 
-          <td class="actions-box">
+          <td class="actions-box col-actions">
             <div class="stack">
               <button class="btn btn-save save-row-btn">Save Update</button>
               <div class="save-status"></div>
