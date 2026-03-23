@@ -613,7 +613,7 @@
           <table>
             <thead>
               <tr>
-                <th class="sticky-id">ID</th>
+                <th class="sticky-id">ROW</th>
                 <th class="sticky-name">Name</th>
                 <th class="col-created">Created At</th>
                 <th class="col-email">Email</th>
@@ -643,7 +643,7 @@
         </div>
 
         <div class="small" style="margin-top: 10px;">
-          Internal note: sticky ID and Name are now locked for horizontal scrolling. Missing fields from the order payload still point to Apps Script read mapping.
+          Internal note: this page now reads and updates using the current live Apps Script deployment.
         </div>
       </div>
     </div>
@@ -686,12 +686,12 @@
 
     <div class="footer-strip">
       <strong>4MyIPTV Service • Admin Orders</strong>
-      <div class="version">Version 2.2 • Last Updated: March 2026</div>
+      <div class="version">Version 2.3 • Last Updated: March 2026</div>
     </div>
   </div>
 
   <script>
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyZjLTiV4BJLLl9i58I0e5KG2eFuGOyK7_a_eK_nDT4JsOkKygwYqpayRl3nlQ9YUaKgg/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzWO65X3uTAbWldiacxCD7ItLu5zpfZe1fDTWUlMGJyIPJXWcXaOsDXWHMQV-3-Ch7IcQ/exec";
 
     let allOrders = [];
 
@@ -762,128 +762,6 @@
       return '<span class="' + className + '">' + (safeRaw(status) ? escapeHtml(status) : "—") + "</span>";
     }
 
-    function firstNonEmpty(values) {
-      for (const value of values) {
-        if (value !== null && value !== undefined && String(value).trim() !== "") {
-          return value;
-        }
-      }
-      return "";
-    }
-
-    function normalizeOrder(row) {
-      const notesCombined = firstNonEmpty([
-        row.notes,
-        row["Notes"],
-        row.customerNotes,
-        row["Customer Notes"],
-        row.internalNotes,
-        row["Internal Notes"],
-        row.test,
-        row["Test"]
-      ]);
-
-      return {
-        id: firstNonEmpty([
-          row.id,
-          row.ID,
-          row.orderId,
-          row["Order ID"]
-        ]),
-        createdAt: firstNonEmpty([
-          row.createdAt,
-          row["Created At"],
-          row.timestamp,
-          row["Timestamp"],
-          row.created,
-          row.date,
-          row["Date"]
-        ]),
-        customerName: firstNonEmpty([
-          row.customerName,
-          row["Customer Name"],
-          row.fullName,
-          row["Full Name"],
-          row.name,
-          row["Name"],
-          row.customer
-        ]),
-        emailAddress: firstNonEmpty([
-          row.emailAddress,
-          row["Email Address"],
-          row.email,
-          row["Email"]
-        ]),
-        phoneNumber: firstNonEmpty([
-          row.phoneNumber,
-          row["Phone Number"],
-          row.phone,
-          row["Phone"]
-        ]),
-        orderType: firstNonEmpty([
-          row.orderType,
-          row["Order Type"],
-          row.serviceType,
-          row["Service Type"]
-        ]),
-        deviceSelected: firstNonEmpty([
-          row.deviceSelected,
-          row["Device Selected"],
-          row.device,
-          row["Device"],
-          row.preferredDevice,
-          row["Preferred Device"]
-        ]),
-        customerType: firstNonEmpty([
-          row.customerType,
-          row["Customer Type"]
-        ]),
-        preferredContact: firstNonEmpty([
-          row.preferredContact,
-          row["Preferred Contact"]
-        ]),
-        preferredReplyTime: firstNonEmpty([
-          row.preferredReplyTime,
-          row["Preferred Reply Time"]
-        ]),
-        planInterest: firstNonEmpty([
-          row.planInterest,
-          row["Plan Interest"]
-        ]),
-        tvCount: firstNonEmpty([
-          row.tvCount,
-          row["TV Count"]
-        ]),
-        fulfillmentType: firstNonEmpty([
-          row.fulfillmentType,
-          row["Fulfillment Type"],
-          row.fulfillment,
-          row["Fulfillment"],
-          row.paymentPreference,
-          row["Payment Preference"]
-        ]),
-        orderStatus: firstNonEmpty([
-          row.orderStatus,
-          row["Order Status"],
-          row.status,
-          row["Status"]
-        ]),
-        paymentStatus: firstNonEmpty([
-          row.paymentStatus,
-          row["Payment Status"]
-        ]),
-        deliveryStatus: firstNonEmpty([
-          row.deliveryStatus,
-          row["Delivery Status"]
-        ]),
-        supportRoute: firstNonEmpty([
-          row.supportRoute,
-          row["Support Route"]
-        ]),
-        notes: notesCombined
-      };
-    }
-
     function updateStats(sourceOrders, filteredOrders) {
       totalOrdersEl.textContent = sourceOrders.length;
       newOrdersEl.textContent = sourceOrders.filter(o => normalizeStatus(o.orderStatus) === "NEW").length;
@@ -923,7 +801,7 @@
       if (searchText) {
         filtered = filtered.filter(order => {
           const combined = [
-            order.id,
+            order.rowNumber,
             order.customerName,
             order.createdAt,
             order.emailAddress,
@@ -974,8 +852,8 @@
       }
 
       ordersTableBody.innerHTML = filtered.map(order => `
-        <tr data-order-id="${escapeHtml(order.id)}">
-          <td class="sticky-id id-cell">${displayValue(order.id)}</td>
+        <tr data-row-number="${escapeHtml(order.rowNumber)}">
+          <td class="sticky-id id-cell">${displayValue(order.rowNumber)}</td>
           <td class="sticky-name name-cell">${displayValue(order.customerName)}</td>
           <td class="readonly-box col-created">${displayValue(order.createdAt)}</td>
           <td class="readonly-box col-email">${displayValue(order.emailAddress)}</td>
@@ -996,7 +874,8 @@
                 "Zelle",
                 "Crypto",
                 "In Person",
-                "Pending"
+                "Pending",
+                "Quote Request"
               ])}
             </select>
           </td>
@@ -1021,6 +900,7 @@
           <td class="col-payment">
             <select class="inline-select field-payment-status">
               ${buildSelectOptions(order.paymentStatus, [
+                "QUOTE PENDING",
                 "Not Sent",
                 "Sent",
                 "Pending",
@@ -1071,7 +951,7 @@
       `;
 
       try {
-        const response = await fetch(APPS_SCRIPT_URL, {
+        const response = await fetch(APPS_SCRIPT_URL + "?action=getOrders", {
           method: "GET",
           redirect: "follow"
         });
@@ -1082,21 +962,11 @@
 
         const data = await response.json();
 
-        let orders = [];
-
-        if (Array.isArray(data)) {
-          orders = data;
-        } else if (Array.isArray(data.orders)) {
-          orders = data.orders;
-        } else if (Array.isArray(data.data)) {
-          orders = data.data;
-        } else if (data.success && Array.isArray(data.rows)) {
-          orders = data.rows;
-        } else {
-          throw new Error("Response format was received, but no order array was found.");
+        if (!data.success || !Array.isArray(data.orders)) {
+          throw new Error(data.message || "No orders array was returned.");
         }
 
-        allOrders = orders.map(normalizeOrder);
+        allOrders = data.orders;
 
         setMessage("Orders loaded successfully.", "ok");
         renderOrders();
@@ -1120,11 +990,11 @@
         button.addEventListener("click", async () => {
           const row = button.closest("tr");
           const saveStatus = row.querySelector(".save-status");
-          const orderId = row.getAttribute("data-order-id");
+          const rowNumber = Number(row.getAttribute("data-row-number"));
 
           const payload = {
             action: "updateOrder",
-            id: orderId,
+            rowNumber: rowNumber,
             fulfillmentType: row.querySelector(".field-fulfillment").value.trim(),
             orderStatus: row.querySelector(".field-order-status").value.trim(),
             paymentStatus: row.querySelector(".field-payment-status").value.trim(),
@@ -1151,12 +1021,7 @@
               throw new Error("HTTP " + response.status + " returned from Apps Script.");
             }
 
-            let result = {};
-            try {
-              result = await response.json();
-            } catch (jsonError) {
-              result = { success: true };
-            }
+            const result = await response.json();
 
             if (result.success === false) {
               throw new Error(result.message || "Save failed.");
@@ -1169,7 +1034,7 @@
             await loadOrders();
           } catch (error) {
             console.error("Save Order Error:", error);
-            saveStatus.textContent = "Save failed. The page is ready, but Apps Script may not support updates yet. " + error.message;
+            saveStatus.textContent = "Save failed. " + error.message;
             saveStatus.className = "save-status error";
             setMessage("Save failed. " + error.message, "error");
           } finally {
