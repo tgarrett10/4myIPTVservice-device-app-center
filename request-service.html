@@ -340,7 +340,7 @@ textarea{min-height:110px;resize:vertical}
 
   <div class="footer-strip">
     <strong>4MyIPTV Service • Request Service</strong>
-    <div class="version">Version 1.4 • Last Updated: March 2026</div>
+    <div class="version">Version 1.5 • Last Updated: March 2026</div>
   </div>
 </div>
 
@@ -386,39 +386,38 @@ function deriveNeedDeviceValue() {
 
 function buildPayload() {
   return {
-    timestamp: new Date().toISOString(),
-    orderType: document.getElementById("planInterest").value || "Quote Request",
+    createdAt: new Date().toISOString(),
+    orderType: document.getElementById("serviceType").value || "Quote Request",
+    customerName: document.getElementById("fullName").value.trim(),
     fullName: document.getElementById("fullName").value.trim(),
+    emailAddress: document.getElementById("email").value.trim(),
     email: document.getElementById("email").value.trim(),
+    phoneNumber: document.getElementById("phone").value.trim(),
     phone: document.getElementById("phone").value.trim(),
-    customer: "Customer",
     customerType: "Customer",
-    deviceType: document.getElementById("preferredDevice").value || deriveNeedDeviceValue(),
+    fulfillmentType: document.getElementById("paymentPreference").value || "Quote Request",
     deviceSelected: document.getElementById("preferredDevice").value || deriveNeedDeviceValue(),
-    fulfillmentType: "Quote Request",
+    preferredContact: document.getElementById("preferredContact").value || "",
+    preferredReplyTime: document.getElementById("preferredReplyTime").value || "",
+    planInterest: document.getElementById("planInterest").value || "",
+    tvCount: document.getElementById("tvCount").value || "",
+    paymentStatus: "QUOTE PENDING",
+    orderStatus: "NEW",
+    deliveryStatus: "Not Started",
+    supportRoute: "",
     notes: [
       "Source Page: request-service.html",
-      "Setup Choice: " + document.getElementById("serviceType").value,
-      "Plan Interest: " + document.getElementById("planInterest").value,
+      "Setup Choice: " + (document.getElementById("serviceType").value || ""),
+      "Plan Interest: " + (document.getElementById("planInterest").value || ""),
       "Need Device: " + deriveNeedDeviceValue(),
-      "TV Count: " + document.getElementById("tvCount").value,
+      "TV Count: " + (document.getElementById("tvCount").value || ""),
       document.getElementById("preferredReplyTime").value ? "Best Time: " + document.getElementById("preferredReplyTime").value : "",
       document.getElementById("preferredContact").value ? "Preferred Contact: " + document.getElementById("preferredContact").value : "",
       document.getElementById("paymentPreference").value ? "Payment Preference: " + document.getElementById("paymentPreference").value : "",
       quoteAcknowledgement.checked ? "Quote Acknowledged: Yes" : "",
       followupAcknowledgement.checked ? "Follow-Up Acknowledged: Yes" : "",
       document.getElementById("notes").value.trim() ? "Customer Notes: " + document.getElementById("notes").value.trim() : ""
-    ].filter(Boolean).join(" | "),
-    status: "NEW",
-    orderStatus: "NEW",
-    paymentStatus: "QUOTE PENDING",
-    paymentType: "",
-    amount: "",
-    planName: document.getElementById("planInterest").value || "",
-    paypalSubscriptionId: "",
-    address: "",
-    orderShipped: "",
-    trackingNumber: ""
+    ].filter(Boolean).join(" | ")
   };
 }
 
@@ -467,6 +466,10 @@ form.addEventListener("submit", async function (event) {
       },
       body: JSON.stringify(buildPayload())
     });
+
+    if (!response.ok) {
+      throw new Error("HTTP " + response.status);
+    }
 
     const result = await response.json();
 
