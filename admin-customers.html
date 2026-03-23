@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>4MyIPTV Service - Admin Customers</title>
+  <style>
+    :root{
+      --bg:#08111f;
+      --panel:#101827;
+      --panel-2:#0b1220;
+      --text:#f8fafc;
+      --muted:#94a3b8;
+      --green:#22c55e;
+      --blue:#3b82f6;
+      --purple:#9333ea;
+      --gold:#f59e0b;
+      --red:#ef4444;
+      --border:#1f2937;
+      --border-soft:#243044;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:linear-gradient(180deg,#08111f,#0f172a);
+      color:var(--text);
+    }
+
+    .wrap{
+      max-width:1400px;
+      margin:auto;
+      padding:20px;
+    }
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:20px;
+      margin-bottom:20px;
+    }
+
+    h1{
+      margin:0 0 8px;
+      color:#86efac;
+      text-align:center;
+      font-size:30px;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:22px;
+    }
+
+    h3{
+      margin:0 0 10px;
+      font-size:18px;
+    }
+
+    .tagline{
+      text-align:center;
+      color:#cbd5e1;
+      font-weight:600;
+      margin-bottom:6px;
+    }
+
+    .subnote{
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .top-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-block;
+      text-decoration:none;
+      border:none;
+      cursor:pointer;
+      border-radius:12px;
+      padding:12px 16px;
+      font-weight:bold;
+      color:#fff;
+      font-size:14px;
+      border:1px solid #334155;
+    }
+
+    .btn-blue{background:#1d4ed8}
+    .btn-green{background:#166534}
+    .btn-purple{background:#7e22ce}
+    .btn-gray{background:#475569}
+    .btn-gold{background:#b45309}
+    .btn-red{background:#b91c1c}
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+
+    .stat-box{
+      background:var(--panel-2);
+      border:1px solid var(--border-soft);
+      border-radius:12px;
+      padding:16px;
+    }
+
+    .stat-label{
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+
+    .stat-value{
+      font-size:24px;
+      font-weight:bold;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:20px;
+    }
+
+    .toolbar{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr 1fr auto;
+      gap:12px;
+      margin-bottom:16px;
+    }
+
+    input, select{
+      width:100%;
+      background:#0b1220;
+      color:var(--text);
+      border:1px solid var(--border-soft);
+      border-radius:12px;
+      padding:12px 14px;
+      font-size:14px;
+      outline:none;
+    }
+
+    input::placeholder{
+      color:#94a3b8;
+    }
+
+    .table-wrap{
+      overflow:auto;
+      border:1px solid var(--border-soft);
+      border-radius:14px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:1000px;
+      background:#0b1220;
+    }
+
+    th, td{
+      padding:12px 14px;
+      border-bottom:1px solid #1e293b;
+      text-align:left;
+      font-size:14px;
+      vertical-align:top;
+    }
+
+    th{
+      color:#cbd5e1;
+      background:#111827;
+      position:sticky;
+      top:0;
+      z-index:1;
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
+
+    tr:hover{
+      background:#111827;
+      cursor:pointer;
+    }
+
+    .pill{
+      display:inline-block;
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:bold;
+      border:1px solid transparent;
+      white-space:nowrap;
+    }
+
+    .pill-active{
+      background:rgba(34,197,94,.12);
+      color:#bbf7d0;
+      border-color:rgba(34,197,94,.28);
+    }
+
+    .pill-inactive{
+      background:rgba(239,68,68,.12);
+      color:#fecaca;
+      border-color:rgba(239,68,68,.28);
+    }
+
+    .pill-other{
+      background:rgba(59,130,246,.12);
+      color:#bfdbfe;
+      border-color:rgba(59,130,246,.28);
+    }
+
+    .detail-panel{
+      background:var(--panel-2);
+      border:1px solid var(--border-soft);
+      border-radius:14px;
+      padding:18px;
+      min-height:560px;
+    }
+
+    .detail-empty{
+      color:var(--muted);
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .detail-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .detail-row{
+      border:1px solid #1e293b;
+      border-radius:12px;
+      padding:12px;
+      background:#0f172a;
+    }
+
+    .detail-label{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+      margin-bottom:6px;
+    }
+
+    .detail-value{
+      font-size:14px;
+      color:var(--text);
+      line-height:1.5;
+      word-break:break-word;
+    }
+
+    .message{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:12px;
+      font-size:14px;
+      line-height:1.5;
+      display:none;
+    }
+
+    .message.show{
+      display:block;
+    }
+
+    .message.info{
+      background:rgba(59,130,246,.12);
+      border:1px solid rgba(59,130,246,.28);
+      color:#bfdbfe;
+    }
+
+    .message.error{
+      background:rgba(239,68,68,.12);
+      border:1px solid rgba(239,68,68,.28);
+      color:#fecaca;
+    }
+
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      margin-top:20px;
+      font-size:13px;
+    }
+
+    @media(max-width:1200px){
+      .layout{
+        grid-template-columns:1fr;
+      }
+
+      .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .toolbar{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media(max-width:700px){
+      .stats-grid{
+        grid-template-columns:1fr;
+      }
+
+      .toolbar{
+        grid-template-columns:1fr;
+      }
+
+      h1{
+        font-size:26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="card">
+      <h1>Master Customer Database</h1>
+      <div class="tagline">4MyIPTV Service</div>
+      <div class="subnote">Customer relationship hub for contact history, service count, and activity tracking.</div>
+
+      <div class="top-actions">
+        <a class="btn btn-blue" href="dashboard.html">Back to Dashboard</a>
+        <a class="btn btn-purple" href="admin-orders.html">Open Orders</a>
+        <a class="btn btn-green" href="admin-services.html">Open Services</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Customer Snapshot</h2>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-label">Total Customers</div>
+          <div class="stat-value" id="totalCustomers">0</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-label">Active Customers</div>
+          <div class="stat-value" id="activeCustomers">0</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-label">Inactive Customers</div>
+          <div class="stat-value" id="inactiveCustomers">0</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-label">Showing</div>
+          <div class="stat-value" id="showingCustomers">0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layout">
+      <div class="card">
+        <h2>Customer List</h2>
+
+        <div class="toolbar">
+          <input id="searchInput" type="text" placeholder="Search by name, phone, email, notes, or customer ID" />
+          
+          <select id="statusFilter">
+            <option value="all">All Statuses</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+
+          <select id="sortFilter">
+            <option value="name-asc">Sort: Name A-Z</option>
+            <option value="name-desc">Sort: Name Z-A</option>
+            <option value="activity-desc">Sort: Newest Activity</option>
+            <option value="activity-asc">Sort: Oldest Activity</option>
+            <option value="created-desc">Sort: Newest Created</option>
+            <option value="created-asc">Sort: Oldest Created</option>
+          </select>
+
+          <select id="pageSize">
+            <option value="10">10 Rows</option>
+            <option value="25" selected>25 Rows</option>
+            <option value="50">50 Rows</option>
+            <option value="100">100 Rows</option>
+          </select>
+
+          <button class="btn btn-gray" id="refreshBtn" type="button">Refresh</button>
+        </div>
+
+        <div id="infoMessage" class="message info"></div>
+        <div id="errorMessage" class="message error"></div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Total Orders</th>
+                <th>Total Services</th>
+                <th>Last Activity</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="customerTableBody">
+              <tr>
+                <td colspan="8">Loading customers...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Customer Detail</h2>
+        <div class="detail-panel" id="detailPanel">
+          <div class="detail-empty">
+            Select a customer row to view their details here.
+            <br /><br />
+            This page is for the master customer record only.
+            <br />
+            Service usernames, passwords, portals, and expirations should live in the separate Services page.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Internal customer management page • Built for 4MyIPTV Service
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // IMPORTANT:
+      // Replace this with your live Apps Script endpoint when ready.
+      const API_URL = "PASTE_YOUR_APPS_SCRIPT_URL_HERE?action=getCustomers";
+
+      let allCustomers = [];
+      let filteredCustomers = [];
+
+      const totalCustomersEl = document.getElementById("totalCustomers");
+      const activeCustomersEl = document.getElementById("activeCustomers");
+      const inactiveCustomersEl = document.getElementById("inactiveCustomers");
+      const showingCustomersEl = document.getElementById("showingCustomers");
+
+      const searchInput = document.getElementById("searchInput");
+      const statusFilter = document.getElementById("statusFilter");
+      const sortFilter = document.getElementById("sortFilter");
+      const pageSizeSelect = document.getElementById("pageSize");
+      const refreshBtn = document.getElementById("refreshBtn");
+
+      const tableBody = document.getElementById("customerTableBody");
+      const detailPanel = document.getElementById("detailPanel");
+
+      const infoMessage = document.getElementById("infoMessage");
+      const errorMessage = document.getElementById("errorMessage");
+
+      function showInfo(message) {
+        infoMessage.textContent = message;
+        infoMessage.classList.add("show");
+      }
+
+      function clearInfo() {
+        infoMessage.textContent = "";
+        infoMessage.classList.remove("show");
+      }
+
+      function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.add("show");
+      }
+
+      function clearError() {
+        errorMessage.textContent = "";
+        errorMessage.classList.remove("show");
+      }
+
+      function safeText(value) {
+        return (value || "").toString().trim();
+      }
+
+      function normalizeCustomer(raw) {
+        return {
+          customerId: safeText(raw.customerId || raw["Customer ID"]),
+          fullName: safeText(raw.fullName || raw["Full Name"]),
+          phone: safeText(raw.phone || raw["Phone"]),
+          email: safeText(raw.email || raw["Email"]),
+          address: safeText(raw.address || raw["Address"]),
+          referralSource: safeText(raw.referralSource || raw["Referral Source"]),
+          notes: safeText(raw.notes || raw["Notes"]),
+          createdDate: safeText(raw.createdDate || raw["Created Date"]),
+          lastActivityDate: safeText(raw.lastActivityDate || raw["Last Activity Date"]),
+          totalOrders: safeText(raw.totalOrders || raw["Total Orders"]) || "0",
+          totalServices: safeText(raw.totalServices || raw["Total Services"]) || "0",
+          customerStatus: safeText(raw.customerStatus || raw["Customer Status"]) || "Active"
+        };
+      }
+
+      function parseDateValue(value) {
+        if (!value) return null;
+        const parsed = new Date(value);
+        return isNaN(parsed.getTime()) ? null : parsed;
+      }
+
+      function formatDate(value) {
+        const parsed = parseDateValue(value);
+        if (!parsed) return value || "-";
+        return parsed.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric"
+        });
+      }
+
+      function statusClass(status) {
+        const normalized = (status || "").toLowerCase();
+        if (normalized === "active") return "pill pill-active";
+        if (normalized === "inactive") return "pill pill-inactive";
+        return "pill pill-other";
+      }
+
+      function updateStats(customersToShow) {
+        const activeCount = allCustomers.filter(c => c.customerStatus.toLowerCase() === "active").length;
+        const inactiveCount = allCustomers.filter(c => c.customerStatus.toLowerCase() === "inactive").length;
+
+        totalCustomersEl.textContent = allCustomers.length;
+        activeCustomersEl.textContent = activeCount;
+        inactiveCustomersEl.textContent = inactiveCount;
+        showingCustomersEl.textContent = customersToShow.length;
+      }
+
+      function sortCustomers(customers) {
+        const mode = sortFilter.value;
+
+        customers.sort((a, b) => {
+          if (mode === "name-asc") {
+            return a.fullName.localeCompare(b.fullName);
+          }
+
+          if (mode === "name-desc") {
+            return b.fullName.localeCompare(a.fullName);
+          }
+
+          if (mode === "activity-desc") {
+            const aDate = parseDateValue(a.lastActivityDate);
+            const bDate = parseDateValue(b.lastActivityDate);
+            return (bDate ? bDate.getTime() : 0) - (aDate ? aDate.getTime() : 0);
+          }
+
+          if (mode === "activity-asc") {
+            const aDate = parseDateValue(a.lastActivityDate);
+            const bDate = parseDateValue(b.lastActivityDate);
+            return (aDate ? aDate.getTime() : 0) - (bDate ? bDate.getTime() : 0);
+          }
+
+          if (mode === "created-desc") {
+            const aDate = parseDateValue(a.createdDate);
+            const bDate = parseDateValue(b.createdDate);
+            return (bDate ? bDate.getTime() : 0) - (aDate ? aDate.getTime() : 0);
+          }
+
+          if (mode === "created-asc") {
+            const aDate = parseDateValue(a.createdDate);
+            const bDate = parseDateValue(b.createdDate);
+            return (aDate ? aDate.getTime() : 0) - (bDate ? bDate.getTime() : 0);
+          }
+
+          return 0;
+        });
+
+        return customers;
+      }
+
+      function applyFilters() {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        const statusValue = statusFilter.value;
+        const pageSize = Number(pageSizeSelect.value);
+
+        let results = allCustomers.filter(customer => {
+          const matchesSearch = !searchTerm || [
+            customer.customerId,
+            customer.fullName,
+            customer.phone,
+            customer.email,
+            customer.notes,
+            customer.address,
+            customer.referralSource
+          ].join(" ").toLowerCase().includes(searchTerm);
+
+          const matchesStatus =
+            statusValue === "all" ||
+            customer.customerStatus.toLowerCase() === statusValue;
+
+          return matchesSearch && matchesStatus;
+        });
+
+        results = sortCustomers(results);
+
+        filteredCustomers = results;
+        updateStats(filteredCustomers);
+        renderTable(filteredCustomers.slice(0, pageSize));
+      }
+
+      function renderTable(customers) {
+        if (!customers.length) {
+          tableBody.innerHTML = '<tr><td colspan="8">No customers found.</td></tr>';
+          return;
+        }
+
+        tableBody.innerHTML = customers.map(customer => `
+          <tr data-customer-id="${escapeHtml(customer.customerId)}">
+            <td>${escapeHtml(customer.customerId || "-")}</td>
+            <td>${escapeHtml(customer.fullName || "-")}</td>
+            <td>${escapeHtml(customer.phone || "-")}</td>
+            <td>${escapeHtml(customer.email || "-")}</td>
+            <td>${escapeHtml(customer.totalOrders || "0")}</td>
+            <td>${escapeHtml(customer.totalServices || "0")}</td>
+            <td>${escapeHtml(formatDate(customer.lastActivityDate) || "-")}</td>
+            <td><span class="${statusClass(customer.customerStatus)}">${escapeHtml(customer.customerStatus || "Unknown")}</span></td>
+          </tr>
+        `).join("");
+
+        const rows = tableBody.querySelectorAll("tr[data-customer-id]");
+        rows.forEach(row => {
+          row.addEventListener("click", function () {
+            const customerId = this.getAttribute("data-customer-id");
+            const customer = filteredCustomers.find(item => item.customerId === customerId) ||
+                             allCustomers.find(item => item.customerId === customerId);
+            renderDetail(customer);
+          });
+        });
+      }
+
+      function renderDetail(customer) {
+        if (!customer) {
+          detailPanel.innerHTML = '<div class="detail-empty">Customer details could not be loaded.</div>';
+          return;
+        }
+
+        detailPanel.innerHTML = `
+          <h3>${escapeHtml(customer.fullName || "Unnamed Customer")}</h3>
+          <div class="detail-grid">
+            ${detailItem("Customer ID", customer.customerId)}
+            ${detailItem("Phone", customer.phone)}
+            ${detailItem("Email", customer.email)}
+            ${detailItem("Address", customer.address)}
+            ${detailItem("Referral Source", customer.referralSource)}
+            ${detailItem("Created Date", formatDate(customer.createdDate))}
+            ${detailItem("Last Activity Date", formatDate(customer.lastActivityDate))}
+            ${detailItem("Total Orders", customer.totalOrders)}
+            ${detailItem("Total Services", customer.totalServices)}
+            ${detailItem("Customer Status", `<span class="${statusClass(customer.customerStatus)}">${escapeHtml(customer.customerStatus || "Unknown")}</span>`, true)}
+            ${detailItem("Notes", customer.notes)}
+          </div>
+        `;
+      }
+
+      function detailItem(label, value, isHtml) {
+        const safeValue = value ? value : "-";
+        return `
+          <div class="detail-row">
+            <div class="detail-label">${escapeHtml(label)}</div>
+            <div class="detail-value">${isHtml ? safeValue : escapeHtml(safeValue)}</div>
+          </div>
+        `;
+      }
+
+      function escapeHtml(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      async function loadCustomers() {
+        clearInfo();
+        clearError();
+        showInfo("Loading customers...");
+
+        tableBody.innerHTML = '<tr><td colspan="8">Loading customers...</td></tr>';
+
+        if (!API_URL || API_URL.indexOf("PASTE_YOUR_APPS_SCRIPT_URL_HERE") !== -1) {
+          clearInfo();
+          showError("Add your Apps Script URL in the API_URL constant before testing live data.");
+          tableBody.innerHTML = '<tr><td colspan="8">Apps Script URL not configured yet.</td></tr>';
+          updateStats([]);
+          return;
+        }
+
+        try {
+          const response = await fetch(API_URL, { method: "GET" });
+          if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+          }
+
+          const data = await response.json();
+
+          if (!Array.isArray(data)) {
+            throw new Error("Customer response is not an array.");
+          }
+
+          allCustomers = data.map(normalizeCustomer);
+          clearInfo();
+          showInfo("Customers loaded successfully.");
+          applyFilters();
+        } catch (error) {
+          clearInfo();
+          showError("Unable to load customers. Check your Apps Script deployment and response shape.");
+          tableBody.innerHTML = '<tr><td colspan="8">Failed to load customer data.</td></tr>';
+          updateStats([]);
+          console.error(error);
+        }
+      }
+
+      searchInput.addEventListener("input", applyFilters);
+      statusFilter.addEventListener("change", applyFilters);
+      sortFilter.addEventListener("change", applyFilters);
+      pageSizeSelect.addEventListener("change", applyFilters);
+      refreshBtn.addEventListener("click", loadCustomers);
+
+      loadCustomers();
+    })();
+  </script>
+</body>
+</html>
