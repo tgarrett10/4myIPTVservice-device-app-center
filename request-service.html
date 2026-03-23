@@ -386,6 +386,7 @@ function deriveNeedDeviceValue() {
 
 function buildPayload() {
   return {
+    action: "createOrder",
     createdAt: new Date().toISOString(),
     orderType: document.getElementById("serviceType").value || "Quote Request",
     customerName: document.getElementById("fullName").value.trim(),
@@ -420,7 +421,6 @@ function buildPayload() {
     ].filter(Boolean).join(" | ")
   };
 }
-
 function showError(message) {
   errorMessage.textContent = message;
   errorMessage.style.display = "block";
