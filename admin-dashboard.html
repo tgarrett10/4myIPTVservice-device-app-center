@@ -8,14 +8,18 @@
 :root{
   --bg:#08111f;
   --panel:#101827;
+  --panel-soft:#0b1220;
   --text:#f8fafc;
   --muted:#94a3b8;
-  --green:#22c55e;
-  --blue:#3b82f6;
-  --purple:#9333ea;
-  --gold:#f59e0b;
-  --red:#ef4444;
   --border:#1f2937;
+  --line:#243044;
+  --panel-primary:#22c55e;
+  --panel-secondary:#f59e0b;
+  --admin-btn:#1d4ed8;
+  --customer-btn:#475569;
+  --danger:#ef4444;
+  --warn:#f59e0b;
+  --ok:#22c55e;
 }
 *{box-sizing:border-box}
 body{
@@ -24,54 +28,110 @@ body{
   background:linear-gradient(180deg,#08111f,#0f172a);
   color:var(--text);
 }
-.wrap{max-width:1200px;margin:auto;padding:20px}
+.wrap{max-width:1240px;margin:auto;padding:20px}
 .card{
   background:var(--panel);
   border:1px solid var(--border);
-  border-radius:16px;
-  padding:20px;
+  border-radius:18px;
+  padding:22px;
   margin-bottom:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
 }
 h1{margin:0 0 10px;color:#86efac;text-align:center}
-h2{margin:0 0 8px}
+h2{margin:0 0 8px;font-size:24px}
+h3{margin:0 0 8px;font-size:18px}
+p{margin:0}
 .tagline{
   text-align:center;
-  margin-bottom:20px;
+  margin-bottom:8px;
   color:#cbd5f5;
   font-weight:600;
 }
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:20px;
-}
-.btn{
-  display:block;
+.intro{
   text-align:center;
-  padding:16px;
-  border-radius:12px;
-  text-decoration:none;
-  color:white;
-  font-weight:bold;
-  border:1px solid #334155;
+  color:var(--muted);
+  max-width:820px;
+  margin:0 auto;
+  line-height:1.55;
 }
-.btn:hover{opacity:.9}
-.blue{background:#1d4ed8}
-.green{background:#166534}
-.purple{background:#7e22ce}
-.gray{background:#475569}
-.gold{background:#b45309}
-.status-grid{
+.panel-grid,
+.info-grid,
+.workflow-grid,
+.status-grid,
+.access-grid,
+.two-col{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  margin-top:14px;
+  gap:16px;
 }
-.status-box{
-  background:#0b1220;
-  border:1px solid #243044;
-  border-radius:12px;
-  padding:14px;
+.panel-grid{grid-template-columns:2fr 1.25fr}
+.info-grid{grid-template-columns:repeat(3,1fr)}
+.workflow-grid{grid-template-columns:repeat(2,1fr)}
+.status-grid{grid-template-columns:repeat(3,1fr)}
+.two-col{grid-template-columns:repeat(2,1fr)}
+.access-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.btn,
+.panel-btn,
+.pill-link,
+.action-btn,
+.mini-btn{
+  text-decoration:none;
+  border-radius:14px;
+  font-weight:bold;
+}
+.panel-box{
+  background:linear-gradient(180deg,#0f172a,#111827);
+  border:1px solid #263246;
+  border-radius:18px;
+  padding:22px;
+}
+.panel-box.primary{
+  border-color:rgba(34,197,94,.35);
+  box-shadow:0 0 0 1px rgba(34,197,94,.08) inset;
+}
+.panel-box.secondary{
+  border-color:rgba(245,158,11,.30);
+}
+.panel-label{
+  color:#bbf7d0;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.panel-box.secondary .panel-label{color:#fde68a}
+.panel-title{font-size:28px;margin-bottom:8px}
+.panel-sub{color:var(--muted);line-height:1.5;margin-bottom:18px}
+.panel-btn{
+  display:inline-block;
+  padding:16px 20px;
+  color:#052e16;
+  background:var(--panel-primary);
+  border:1px solid rgba(255,255,255,.08);
+}
+.panel-box.secondary .panel-btn{
+  color:#422006;
+  background:var(--panel-secondary);
+}
+.section-sub{
+  color:var(--muted);
+  line-height:1.5;
+  margin-bottom:16px;
+  font-size:14px;
+}
+.section-note{
+  color:var(--muted);
+  line-height:1.45;
+  font-size:13px;
+  margin-top:10px;
+}
+.status-box,
+.info-box,
+.workflow-step,
+.access-group{
+  background:var(--panel-soft);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:16px;
 }
 .status-label{
   font-size:12px;
@@ -80,17 +140,8 @@ h2{margin:0 0 8px}
   color:var(--muted);
   margin-bottom:6px;
 }
-.status-value{
-  font-size:16px;
-  font-weight:bold;
-  color:var(--text);
-}
-.status-note{
-  margin-top:12px;
-  color:var(--muted);
-  line-height:1.45;
-  font-size:14px;
-}
+.status-value{font-size:16px;font-weight:bold;color:var(--text)}
+.status-note{margin-top:12px;color:var(--muted);line-height:1.45;font-size:14px}
 .status-pill{
   display:inline-block;
   padding:8px 12px;
@@ -99,55 +150,80 @@ h2{margin:0 0 8px}
   font-size:13px;
   border:1px solid transparent;
 }
-.status-ok{
-  background:rgba(34,197,94,.12);
-  color:#bbf7d0;
-  border-color:rgba(34,197,94,.25);
-}
-.status-soon{
-  background:rgba(245,158,11,.12);
-  color:#fde68a;
-  border-color:rgba(245,158,11,.28);
-}
-.status-overdue{
-  background:rgba(239,68,68,.12);
-  color:#fecaca;
-  border-color:rgba(239,68,68,.28);
-}
-.action-row{
-  margin-top:16px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-}
+.status-ok{background:rgba(34,197,94,.12);color:#bbf7d0;border-color:rgba(34,197,94,.25)}
+.status-soon{background:rgba(245,158,11,.12);color:#fde68a;border-color:rgba(245,158,11,.28)}
+.status-overdue{background:rgba(239,68,68,.12);color:#fecaca;border-color:rgba(239,68,68,.28)}
+.action-row{margin-top:16px;display:flex;flex-wrap:wrap;gap:12px}
 .action-btn{
-  background:var(--green);
+  display:inline-block;
+  background:var(--panel-primary);
   color:#052e16;
   border:none;
-  border-radius:12px;
   padding:14px 16px;
-  font-weight:bold;
   cursor:pointer;
   font-size:14px;
 }
-.action-btn:hover{opacity:.92}
-.section-sub{
-  color:var(--muted);
-  line-height:1.45;
-  margin-bottom:16px;
-  font-size:14px;
+.info-box h3{margin-bottom:6px}
+.info-box p{color:var(--muted);line-height:1.45;font-size:14px}
+.workflow-step .step-label{
+  color:#86efac;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:8px;
 }
-.footer{
-  text-align:center;
-  color:#94a3b8;
-  margin-top:20px;
+.workflow-step h3{font-size:18px;margin-bottom:8px}
+.workflow-step p{color:var(--muted);line-height:1.5;font-size:14px;margin-bottom:12px}
+.pill-row{display:flex;flex-wrap:wrap;gap:10px}
+.pill-link{
+  display:inline-block;
+  padding:9px 12px;
+  color:#e2e8f0;
+  background:#1e293b;
+  border:1px solid #334155;
   font-size:13px;
 }
+.priority-list{margin:0;padding-left:18px;color:var(--muted);line-height:1.6}
+.priority-list li{margin-bottom:6px}
+.legend-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.legend-pill{
+  display:inline-block;
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:12px;
+  font-weight:bold;
+  border:1px solid rgba(255,255,255,.08);
+}
+.legend-admin{background:var(--admin-btn);color:#fff}
+.legend-customer{background:var(--customer-btn);color:#fff}
+.legend-panel{background:var(--panel-primary);color:#052e16}
+.access-group h3{margin-bottom:6px}
+.access-group p{color:var(--muted);font-size:13px;line-height:1.45;margin-bottom:12px}
+.mini-btn{
+  display:block;
+  text-align:center;
+  padding:11px 10px;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.08);
+  font-size:13px;
+}
+.mini-btn.admin{background:var(--admin-btn)}
+.mini-btn.customer{background:var(--customer-btn)}
+.footer{text-align:center;color:#94a3b8;margin-top:20px;font-size:13px}
+.panel-btn:hover,.pill-link:hover,.action-btn:hover,.mini-btn:hover{opacity:.93}
+@media(max-width:1100px){
+  .info-grid{grid-template-columns:1fr}
+  .access-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
 @media(max-width:900px){
-  .status-grid{grid-template-columns:1fr}
+  .panel-grid,.workflow-grid,.status-grid,.two-col{grid-template-columns:1fr}
+  .access-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:700px){
-  .grid{grid-template-columns:1fr}
+  .wrap{padding:16px}
+  .card{padding:18px}
+  .panel-title{font-size:24px}
+  .access-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -155,14 +231,66 @@ h2{margin:0 0 8px}
 <div class="wrap">
 
   <div class="card">
-    <h1>4MyIPTV Service Admin</h1>
+    <h1>4MyIPTV Service Admin Dashboard</h1>
     <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
+    <div class="intro">
+      Daily execution hub for customer management, device setup, service activation, renewal follow-up, and internal page access.
+      The TV Panel is the primary control point for live service management.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Service Control Panels</h2>
+    <div class="section-sub">
+      These are the most important operational tools in the system. Use the TV Panel for primary service activation and management. Use the backup panel only when the primary panel is unavailable.
+    </div>
+    <div class="legend-row">
+      <span class="legend-pill legend-panel">Panels = service execution</span>
+      <span class="legend-pill legend-admin">Blue = admin pages</span>
+      <span class="legend-pill legend-customer">Gray = customer pages</span>
+    </div>
+    <div class="panel-grid" style="margin-top:16px;">
+      <div class="panel-box primary">
+        <div class="panel-label">Primary System</div>
+        <div class="panel-title">TV Panel</div>
+        <div class="panel-sub">
+          Create and manage active services, confirm plan details, and handle the core activation work that drives the customer lifecycle.
+        </div>
+        <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="panel-btn">Open TV Panel</a>
+      </div>
+      <div class="panel-box secondary">
+        <div class="panel-label">Failover System</div>
+        <div class="panel-title">Backup Panel</div>
+        <div class="panel-sub">
+          Secondary access point for continuity when the main panel is unavailable or unstable.
+        </div>
+        <a href="https://backup.tvpluspanel.ru" target="_blank" rel="noopener noreferrer" class="panel-btn">Open Backup Panel</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Dashboard Priorities</h2>
+    <div class="info-grid">
+      <div class="info-box">
+        <h3>1. Work New and Active Customers</h3>
+        <p>Review orders, update customer records, confirm fulfillment path, and make sure each customer is moved to the correct next step.</p>
+      </div>
+      <div class="info-box">
+        <h3>2. Execute in the Panel</h3>
+        <p>Activate or manage service through the TV Panel, then prepare the customer handoff with the right setup or support path.</p>
+      </div>
+      <div class="info-box">
+        <h3>3. Protect Renewals</h3>
+        <p>Check expiration timing, make contact before service lapses, and route the customer back into payment and reactivation.</p>
+      </div>
+    </div>
   </div>
 
   <div class="card">
     <h2>App Check Status</h2>
     <div class="status-note">
-      This tracker resets whenever you build a device. If no device is built for 30 days, it reminds you to manually check the app library.
+      This tracker resets whenever you build a device. If no device is built for 30 days, it reminds you to manually review the app library and device setup path.
     </div>
 
     <div class="status-grid">
@@ -184,75 +312,160 @@ h2{margin:0 0 8px}
 
     <div class="action-row">
       <button id="markBuiltBtn" class="action-btn">Built a Device Today</button>
+      <a href="app-library.html" class="action-btn" style="text-decoration:none;">Open App Library</a>
+      <a href="device-setup.html" class="action-btn" style="text-decoration:none;">Open Device Setup</a>
     </div>
-  </div>
-
-  <div class="grid">
-
-    <a href="admin-orders.html" class="btn blue">
-      Manage Orders
-    </a>
-
-    <a href="app-library.html" class="btn purple">
-      Open App Library
-    </a>
-
-    <a href="admin-resource-center.html" class="btn green">
-      Resource Center
-    </a>
-
-    <a href="admin-update-checker.html" class="btn gray">
-      System Updates
-    </a>
-
-    <a href="https://docs.google.com/spreadsheets/d/1rQlVe8TGrnKTELc5_9hT2yrrQ_5G5KzKCh7h-A30A8o/edit?gid=0#gid=0"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="btn gold">
-      Customer Records
-    </a>
-
-    <a href="calls-dashboard.html" class="btn gold">
-      Calls Dashboard
-    </a>
-
   </div>
 
   <div class="card">
-    <h2>Customer-Facing Pages</h2>
+    <h2>Core Workflow Snapshot</h2>
     <div class="section-sub">
-      Quick access to the primary customer pages so you can review navigation, visibility, and overall customer experience without leaving the admin environment.
+      This is the short execution view of the full system. Use it to move quickly without losing the customer lifecycle.
+    </div>
+    <div class="workflow-grid">
+      <div class="workflow-step">
+        <div class="step-label">Step 1</div>
+        <h3>Review and Qualify</h3>
+        <p>Check incoming requests, confirm customer information, and determine whether the need is online service, in-person support, or device preparation.</p>
+        <div class="pill-row">
+          <a href="admin-orders.html" class="pill-link">Manage Orders</a>
+          <a href="request-service.html" class="pill-link">Request Service</a>
+          <a href="sell-sheet.html" class="pill-link">Sell Sheet</a>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 2</div>
+        <h3>Collect Payment</h3>
+        <p>Route the customer into the checkout process after the service path is confirmed and expectations are clear.</p>
+        <div class="pill-row">
+          <a href="checkout.html" class="pill-link">Checkout Page</a>
+          <a href="success.html" class="pill-link">Success Page</a>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 3</div>
+        <h3>Prepare the Device Path</h3>
+        <p>Use the downloader portal, device setup page, and app library as the true setup environment. Do not route this work through admin pages.</p>
+        <div class="pill-row">
+          <a href="downloader-portal.html" class="pill-link">Downloader Portal</a>
+          <a href="device-setup.html" class="pill-link">Device Setup</a>
+          <a href="app-library.html" class="pill-link">App Library</a>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 4</div>
+        <h3>Activate the Service</h3>
+        <p>Execute the core service work in the TV Panel. Confirm the customer plan, create or manage the service, and use the backup panel only when needed.</p>
+        <div class="pill-row">
+          <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="pill-link">TV Panel</a>
+          <a href="https://backup.tvpluspanel.ru" target="_blank" rel="noopener noreferrer" class="pill-link">Backup Panel</a>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 5</div>
+        <h3>Hand Off and Support</h3>
+        <p>Send the customer to the correct support experience based on whether this is an online-only service or a device customer.</p>
+        <div class="pill-row">
+          <a href="online-support.html" class="pill-link">Online Support</a>
+          <a href="support.html" class="pill-link">Support Page</a>
+          <a href="device-setup.html" class="pill-link">Device Setup</a>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 6</div>
+        <h3>Track Expiration and Renew</h3>
+        <p>Monitor customer status before expiration, make contact, collect renewal payment, and reactivate through the panel so the customer stays active.</p>
+        <div class="pill-row">
+          <a href="admin-customers.html" class="pill-link">Admin Customers</a>
+          <a href="checkout.html" class="pill-link">Checkout Page</a>
+          <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="pill-link">TV Panel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <h2>Customer-Facing Pages</h2>
+      <div class="section-sub">
+        Review the live customer journey without leaving the admin environment.
+      </div>
+      <div class="access-grid" style="grid-template-columns:repeat(2,minmax(0,1fr));">
+        <a href="index.html" class="mini-btn customer">Customer Start Page</a>
+        <a href="sell-sheet.html" class="mini-btn customer">Service Overview</a>
+        <a href="request-service.html" class="mini-btn customer">Request Service</a>
+        <a href="checkout.html" class="mini-btn customer">Checkout</a>
+        <a href="success.html" class="mini-btn customer">Success Page</a>
+        <a href="online-support.html" class="mini-btn customer">Online Support</a>
+        <a href="support.html" class="mini-btn customer">Support Page</a>
+        <a href="device-setup.html" class="mini-btn customer">Device Setup</a>
+      </div>
     </div>
 
-    <div class="grid">
-      <a href="index.html" class="btn blue">
-        Customer Start Page
-      </a>
+    <div class="card">
+      <h2>Daily Operating Reminders</h2>
+      <div class="section-sub">
+        Use this page as a daily control point, not just a link page.
+      </div>
+      <ul class="priority-list">
+        <li>Start with new requests and active customers that need a next action.</li>
+        <li>Use the TV Panel first for live service management.</li>
+        <li>Keep the setup path clean: Downloader Portal, Device Setup, App Library.</li>
+        <li>Check customer records for expiration risk before service lapses.</li>
+        <li>Route the customer back into payment and activation for renewals.</li>
+        <li>Use the Resource Center when you need the full process view or communication guidance.</li>
+      </ul>
+      <div class="action-row">
+        <a href="admin-resource-center.html" class="action-btn" style="text-decoration:none;">Open Resource Center</a>
+        <a href="admin-customers.html" class="action-btn" style="text-decoration:none;">Open Admin Customers</a>
+      </div>
+    </div>
+  </div>
 
-      <a href="sell-sheet.html" class="btn gold">
-        Service Overview
-      </a>
+  <div class="card">
+    <h2>All Access Buttons</h2>
+    <div class="section-sub">
+      This is the full button panel for system navigation. Blue buttons are administrative pages. Gray buttons are customer-facing pages and support flow pages.
+    </div>
 
-      <a href="app-library.html" class="btn purple">
-        App Library
-      </a>
+    <div class="two-col">
+      <div class="access-group">
+        <h3>Administrative Pages</h3>
+        <p>Internal control pages for orders, customer records, admin tools, and operational support.</p>
+        <div class="access-grid">
+          <a href="admin-orders.html" class="mini-btn admin">Manage Orders</a>
+          <a href="admin-customers.html" class="mini-btn admin">Admin Customers</a>
+          <a href="admin-resource-center.html" class="mini-btn admin">Resource Center</a>
+          <a href="admin-update-checker.html" class="mini-btn admin">System Updates</a>
+          <a href="calls-dashboard.html" class="mini-btn admin">Calls Dashboard</a>
+          <a href="https://docs.google.com/spreadsheets/d/1rQlVe8TGrnKTELc5_9hT2yrrQ_5G5KzKCh7h-A30A8o/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" class="mini-btn admin">Customer Records Sheet</a>
+        </div>
+      </div>
 
-      <a href="device-setup.html" class="btn green">
-        Device Setup
-      </a>
-
-      <a href="support.html" class="btn gray">
-        Support Page
-      </a>
-
-      <a href="request-service.html" class="btn blue">
-        Request Service
-      </a>
+      <div class="access-group">
+        <h3>Customer and Support Pages</h3>
+        <p>Customer journey, setup pages, support pages, and public-facing service flow pages.</p>
+        <div class="access-grid">
+          <a href="index.html" class="mini-btn customer">Customer Start Page</a>
+          <a href="sell-sheet.html" class="mini-btn customer">Sell Sheet</a>
+          <a href="request-service.html" class="mini-btn customer">Request Service</a>
+          <a href="checkout.html" class="mini-btn customer">Checkout Page</a>
+          <a href="success.html" class="mini-btn customer">Success Page</a>
+          <a href="support.html" class="mini-btn customer">Support Page</a>
+          <a href="online-support.html" class="mini-btn customer">Online Support</a>
+          <a href="device-setup.html" class="mini-btn customer">Device Setup</a>
+          <a href="downloader-portal.html" class="mini-btn customer">Downloader Portal</a>
+          <a href="app-library.html" class="mini-btn customer">Open App Library</a>
+        </div>
+      </div>
+    </div>
+    <div class="section-note">
+      TV Panel and Backup Panel stay above as dedicated execution tools rather than being grouped into the general button panel.
     </div>
   </div>
 
   <div class="footer">
-    Internal System Dashboard • All customer data managed through Admin Orders and Customer Records
+    Version 2.1 | Last Updated: March 30, 2026 | Internal System Dashboard
   </div>
 
 </div>
