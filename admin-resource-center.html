@@ -8,17 +8,16 @@
 :root{
   --bg:#08111f;
   --panel:#101827;
+  --panel-soft:#0b1220;
   --text:#f8fafc;
   --muted:#94a3b8;
-  --green:#22c55e;
-  --blue:#3b82f6;
-  --purple:#9333ea;
-  --gold:#f59e0b;
-  --red:#ef4444;
-  --gray:#475569;
   --border:#1f2937;
-  --soft:#0b1220;
-  --softline:#243044;
+  --line:#243044;
+  --panel-primary:#22c55e;
+  --panel-secondary:#f59e0b;
+  --admin-btn:#1d4ed8;
+  --customer-btn:#475569;
+  --soft-pill:#1e293b;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -28,153 +27,169 @@ body{
   background:linear-gradient(180deg,#08111f,#0f172a);
   color:var(--text);
 }
-.wrap{max-width:1200px;margin:auto;padding:20px}
+.wrap{max-width:1240px;margin:auto;padding:20px}
 .card{
   background:var(--panel);
   border:1px solid var(--border);
-  border-radius:16px;
-  padding:20px;
+  border-radius:18px;
+  padding:22px;
   margin-bottom:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
 }
 h1{margin:0 0 10px;color:#86efac;text-align:center}
-h2{margin:0 0 8px}
+h2{margin:0 0 8px;font-size:24px}
 h3{margin:0 0 8px;font-size:18px}
+p{margin:0}
 .tagline{
   text-align:center;
   margin-bottom:8px;
   color:#cbd5f5;
   font-weight:600;
 }
-.hero-note{
+.intro{
   text-align:center;
   color:var(--muted);
-  line-height:1.55;
   max-width:900px;
   margin:0 auto;
-  font-size:14px;
+  line-height:1.55;
 }
 .section-sub{
   color:var(--muted);
-  line-height:1.45;
+  line-height:1.5;
   margin-bottom:16px;
   font-size:14px;
 }
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.link-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.panel-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
-.box{
-  background:var(--soft);
-  border:1px solid var(--softline);
-  border-radius:12px;
-  padding:14px;
+.section-note{
+  color:var(--muted);
+  line-height:1.45;
+  font-size:13px;
+  margin-top:10px;
 }
-.box p{margin:0;color:var(--muted);line-height:1.45;font-size:14px}
-.btn{
-  display:block;
-  text-align:center;
-  padding:16px;
-  border-radius:12px;
+.legend-row,.pill-row,.action-row,.stat-row{display:flex;flex-wrap:wrap;gap:10px}
+.legend-pill,
+.stat-pill,
+.anchor-pill,
+.pill-link,
+.mini-btn,
+.panel-btn,
+.action-btn{
   text-decoration:none;
-  color:white;
+  border-radius:999px;
   font-weight:bold;
-  border:1px solid #334155;
 }
-.btn:hover,.mini-btn:hover{opacity:.92}
-.blue{background:#1d4ed8}
-.green{background:#166534}
-.purple{background:#7e22ce}
-.gray{background:#475569}
-.gold{background:#b45309}
-.red{background:#b91c1c}
-.panel-main{
-  background:linear-gradient(135deg,#14532d,#166534 60%,#15803d);
-  min-height:88px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
-}
-.panel-secondary{
-  background:linear-gradient(135deg,#1e293b,#334155 65%,#475569);
-  min-height:88px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:17px;
-}
-.badge-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.badge{
+.legend-pill{
   display:inline-block;
   padding:8px 12px;
-  border-radius:999px;
   font-size:12px;
-  font-weight:bold;
-  letter-spacing:.02em;
-  border:1px solid transparent;
+  border:1px solid rgba(255,255,255,.08);
 }
-.badge-green{background:rgba(34,197,94,.12);color:#bbf7d0;border-color:rgba(34,197,94,.24)}
-.badge-gold{background:rgba(245,158,11,.12);color:#fde68a;border-color:rgba(245,158,11,.24)}
-.badge-blue{background:rgba(59,130,246,.12);color:#bfdbfe;border-color:rgba(59,130,246,.24)}
-.badge-red{background:rgba(239,68,68,.12);color:#fecaca;border-color:rgba(239,68,68,.24)}
-.note{margin-top:12px;color:var(--muted);line-height:1.45;font-size:13px}
-.mini-list{margin:0;padding-left:18px;color:#cbd5e1;line-height:1.55;font-size:14px}
-.step-list{display:grid;grid-template-columns:1fr;gap:14px}
-.step-card{
-  background:var(--soft);
-  border:1px solid var(--softline);
+.legend-admin{background:var(--admin-btn);color:#fff}
+.legend-customer{background:var(--customer-btn);color:#fff}
+.legend-panel{background:var(--panel-primary);color:#052e16}
+.grid-2,.grid-3,.panel-grid,.workflow-grid,.ops-grid,.button-panels{display:grid;gap:16px}
+.grid-2,.ops-grid,.button-panels{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.panel-grid{grid-template-columns:2fr 1.25fr}
+.workflow-grid{grid-template-columns:repeat(2,1fr)}
+.panel-box,
+.info-box,
+.workflow-step,
+.template-box,
+.access-group,
+.stat-box{
+  background:var(--panel-soft);
+  border:1px solid var(--line);
   border-radius:14px;
   padding:16px;
 }
-.step-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:8px}
-.step-num{
-  min-width:86px;
-  text-align:center;
-  padding:8px 10px;
-  border-radius:999px;
-  background:rgba(59,130,246,.14);
-  border:1px solid rgba(59,130,246,.24);
-  color:#bfdbfe;
-  font-weight:bold;
+.panel-box{padding:22px;border-radius:18px;background:linear-gradient(180deg,#0f172a,#111827)}
+.panel-box.primary{border-color:rgba(34,197,94,.35);box-shadow:0 0 0 1px rgba(34,197,94,.08) inset}
+.panel-box.secondary{border-color:rgba(245,158,11,.30)}
+.panel-label{
   font-size:12px;
-  letter-spacing:.04em;
+  letter-spacing:.08em;
   text-transform:uppercase;
+  margin-bottom:10px;
+  color:#bbf7d0;
 }
-.step-title{font-size:18px;font-weight:bold;margin:0 0 6px}
-.step-copy{color:var(--muted);line-height:1.5;font-size:14px}
-.pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-.mini-btn{
+.panel-box.secondary .panel-label{color:#fde68a}
+.panel-title{font-size:28px;margin-bottom:8px}
+.panel-sub{color:var(--muted);line-height:1.5;margin-bottom:18px}
+.panel-btn{
   display:inline-block;
-  padding:9px 13px;
-  border-radius:999px;
-  text-decoration:none;
-  color:#e2e8f0;
-  font-weight:bold;
-  font-size:13px;
-  border:1px solid #334155;
-  background:#162033;
+  padding:16px 20px;
+  color:#052e16;
+  background:var(--panel-primary);
+  border:1px solid rgba(255,255,255,.08);
 }
-.mini-btn.green{background:rgba(22,101,52,.45);color:#dcfce7}
-.mini-btn.blue{background:rgba(29,78,216,.45);color:#dbeafe}
-.mini-btn.purple{background:rgba(126,34,206,.45);color:#f3e8ff}
-.mini-btn.gold{background:rgba(180,83,9,.45);color:#fef3c7}
-.mini-btn.gray{background:rgba(71,85,105,.45);color:#e2e8f0}
+.panel-box.secondary .panel-btn{background:var(--panel-secondary);color:#422006}
+.info-box p,.template-box p,.access-group p,.workflow-step p,.stat-box p{color:var(--muted);line-height:1.5;font-size:14px}
+.info-box ul,.template-box ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.6;font-size:14px}
+.info-box li,.template-box li{margin-bottom:6px}
+.workflow-step .step-label{
+  color:#86efac;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.workflow-step h3{font-size:19px;margin-bottom:8px}
+.workflow-step p{margin-bottom:12px}
+.pill-link,
+.anchor-pill{
+  display:inline-block;
+  padding:9px 12px;
+  color:#e2e8f0;
+  background:var(--soft-pill);
+  border:1px solid #334155;
+  font-size:13px;
+}
 .callout{
   margin-top:12px;
   padding:12px 14px;
   border-radius:12px;
-  border:1px solid rgba(239,68,68,.20);
-  background:rgba(15,23,42,.65);
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(15,23,42,.7);
   color:#cbd5e1;
   font-size:13px;
   line-height:1.5;
 }
-.footer{text-align:center;color:#cbd5e1;margin-top:8px;font-size:13px}
-.version{text-align:center;color:#94a3b8;margin-top:8px;font-size:12px}
-@media(max-width:1000px){.quick-grid{grid-template-columns:repeat(2,1fr)}.panel-grid{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}}
-@media(max-width:900px){.grid,.link-grid{grid-template-columns:1fr}}
-@media(max-width:700px){.quick-grid{grid-template-columns:1fr}.step-top{flex-direction:column}.step-num{min-width:0;width:max-content}}
+.stat-box h3{margin-bottom:6px}
+.stat-pill{display:inline-block;padding:8px 12px;font-size:12px;border:1px solid rgba(255,255,255,.08)}
+.stat-pill.panel{background:rgba(34,197,94,.12);color:#bbf7d0}
+.stat-pill.admin{background:rgba(29,78,216,.18);color:#dbeafe}
+.stat-pill.customer{background:rgba(71,85,105,.28);color:#e2e8f0}
+.template-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.action-btn{
+  display:inline-block;
+  padding:12px 16px;
+  background:var(--panel-primary);
+  color:#052e16;
+  border:1px solid rgba(255,255,255,.08);
+}
+.mini-btn{
+  display:block;
+  text-align:center;
+  padding:11px 10px;
+  color:#fff;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+  font-size:13px;
+}
+.mini-btn.admin{background:var(--admin-btn)}
+.mini-btn.customer{background:var(--customer-btn)}
+.footer{text-align:center;color:#94a3b8;margin-top:20px;font-size:13px}
+.panel-btn:hover,.pill-link:hover,.anchor-pill:hover,.mini-btn:hover,.action-btn:hover{opacity:.93}
+@media(max-width:1100px){
+  .grid-3,.template-links{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  .wrap{padding:16px}
+  .card{padding:18px}
+  .panel-grid,.grid-2,.grid-3,.workflow-grid,.ops-grid,.button-panels{grid-template-columns:1fr}
+  .template-links{grid-template-columns:1fr}
+  .panel-title{font-size:24px}
+}
 </style>
 </head>
 <body>
@@ -183,242 +198,175 @@ h3{margin:0 0 8px;font-size:18px}
   <div class="card">
     <h1>4MyIPTV Service Admin Resource Center</h1>
     <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
-    <div class="hero-note">
-      Internal command center for service management, workflow reference, customer support routing, renewal follow-up, and growth tools.
-      This page is built to help you run the full system, not just reference it.
+    <div class="intro">
+      Full operating guide for service management, customer flow, setup routing, support handoff, renewal follow-up, and growth resources.
+      This page is meant to teach the process and support execution without competing with the live dashboard.
     </div>
   </div>
 
   <div class="card">
     <h2>Service Control Panels</h2>
     <div class="section-sub">
-      These are the primary tools for activation, service changes, and renewal execution. The TV Panel is the main operating system. The Backup Panel is failover support if the main panel is unavailable.
+      These stay at the top because they are the execution layer of the system. Use the TV Panel for primary activation, account changes, and renewal work. Use the backup panel only when the primary panel is unavailable.
     </div>
-
-    <div class="panel-grid">
-      <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="btn panel-main">Open TV Panel</a>
-      <a href="https://backup.tvpluspanel.ru" target="_blank" rel="noopener noreferrer" class="btn panel-secondary">Open Backup Panel</a>
+    <div class="legend-row">
+      <span class="legend-pill legend-panel">Panels = service execution</span>
+      <span class="legend-pill legend-admin">Blue = admin pages</span>
+      <span class="legend-pill legend-customer">Gray = customer pages</span>
     </div>
-
-    <div class="badge-row">
-      <span class="badge badge-green">Primary Service Management</span>
-      <span class="badge badge-gold">Activation and Renewal</span>
-      <span class="badge badge-blue">Customer Access Control</span>
-      <span class="badge badge-red">Backup Failover Access</span>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Quick Access Tools</h2>
-    <div class="section-sub">
-      Fast navigation to the internal pages and public workflow pages that support the real operating flow.
-    </div>
-
-    <div class="quick-grid">
-      <a href="admin-dashboard.html" class="btn blue">Admin Dashboard</a>
-      <a href="admin-orders.html" class="btn gold">Admin Orders</a>
-      <a href="admin-customers.html" class="btn green">Admin Customers</a>
-      <a href="admin-apk-library.html" class="btn purple">Admin APK Library</a>
-      <a href="admin-update-checker.html" class="btn gray">Update Checker</a>
-      <a href="admin-checkout-link-generator.html" class="btn gold">Checkout Link Generator</a>
-      <a href="index.html" class="btn blue">Index Page</a>
-      <a href="sell-sheet.html" class="btn gold">Sell Sheet</a>
-      <a href="request-service.html" class="btn purple">Request Service</a>
-      <a href="checkout.html" class="btn green">Checkout Page</a>
-      <a href="success.html" class="btn gray">Success Page</a>
-      <a href="downloader-portal.html" class="btn gold">Downloader Portal</a>
-      <a href="device-setup.html" class="btn gray">Device Setup</a>
-      <a href="app-library.html" class="btn purple">App Library</a>
-      <a href="online-support.html" class="btn blue">Online Support</a>
-      <a href="support.html" class="btn green">Support Page</a>
+    <div class="panel-grid" style="margin-top:16px;">
+      <div class="panel-box primary">
+        <div class="panel-label">Primary System</div>
+        <div class="panel-title">TV Panel</div>
+        <div class="panel-sub">
+          Main service management system for activations, plan assignment, service corrections, and renewals. This is the fastest path to live execution.
+        </div>
+        <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="panel-btn">Open TV Panel</a>
+      </div>
+      <div class="panel-box secondary">
+        <div class="panel-label">Failover System</div>
+        <div class="panel-title">Backup Panel</div>
+        <div class="panel-sub">
+          Secondary access point when the main panel is not available. Keep it visible, but clearly subordinate to the primary system.
+        </div>
+        <a href="https://backup.tvpluspanel.ru" target="_blank" rel="noopener noreferrer" class="panel-btn">Open Backup Panel</a>
+      </div>
     </div>
   </div>
 
   <div class="card">
     <h2>Full Customer and Service Workflow</h2>
     <div class="section-sub">
-      Use this as the real operating guide. The workflow links below are intentionally small and fast so the page stays clean while still being actionable.
+      This is the process map for the whole lifecycle. The links inside each step are compact on purpose so the page stays instructional without turning into a giant button wall.
     </div>
 
-    <div class="step-list">
-      <div class="step-card">
-        <div class="step-top">
-          <div>
-            <div class="step-title">Customer Entry</div>
-            <div class="step-copy">Customer starts on the public homepage and sees the value proposition, brand positioning, and general direction for the service.</div>
-          </div>
-          <div class="step-num">Step 1</div>
-        </div>
+    <div class="workflow-grid">
+      <div class="workflow-step">
+        <div class="step-label">Step 1</div>
+        <h3>Customer Entry</h3>
+        <p>Customer starts on the public homepage and sees the service overview, positioning, and direction into the selling flow.</p>
         <div class="pill-row">
-          <a href="index.html" class="mini-btn blue">Index Page</a>
+          <a href="index.html" class="pill-link">Index Page</a>
         </div>
       </div>
 
-      <div class="step-card">
-        <div class="step-top">
-          <div>
-            <div class="step-title">Sales Review</div>
-            <div class="step-copy">Customer reviews plans, device options, and the core offer before moving into the request stage.</div>
-          </div>
-          <div class="step-num">Step 2</div>
-        </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 2</div>
+        <h3>Sales Review</h3>
+        <p>Customer reviews plans, pricing, and device options before moving into the request stage.</p>
         <div class="pill-row">
-          <a href="sell-sheet.html" class="mini-btn gold">Sell Sheet</a>
+          <a href="sell-sheet.html" class="pill-link">Sell Sheet</a>
         </div>
       </div>
 
-      <div class="step-card">
-        <div class="step-top">
-          <div>
-            <div class="step-title">Request Submission</div>
-            <div class="step-copy">Customer submits service and contact details. This starts the internal review path.</div>
-          </div>
-          <div class="step-num">Step 3</div>
-        </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 3</div>
+        <h3>Request Submission</h3>
+        <p>Customer submits service details and contact information, which opens the internal review path.</p>
         <div class="pill-row">
-          <a href="request-service.html" class="mini-btn purple">Request Service</a>
+          <a href="request-service.html" class="pill-link">Request Service</a>
         </div>
       </div>
 
-      <div class="step-card">
-        <div class="step-top">
-          <div>
-            <div class="step-title">Confirmation</div>
-            <div class="step-copy">Customer lands on the success page and sees the expected response timing and follow-up path.</div>
-          </div>
-          <div class="step-num">Step 4</div>
-        </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 4</div>
+        <h3>Confirmation</h3>
+        <p>Customer lands on the success page and sees response expectations and the next-step message path.</p>
         <div class="pill-row">
-          <a href="success.html" class="mini-btn green">Success Page</a>
+          <a href="success.html" class="pill-link">Success Page</a>
         </div>
       </div>
 
-      <div class="step-card">
-        <div class="step-top">
-          <div>
-            <div class="step-title">Internal Review</div>
-            <div class="step-copy">Review request details, determine the service path, confirm whether the order is online or device-based, and prepare the next action.</div>
-          </div>
-          <div class="step-num">Step 5</div>
-        </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 5</div>
+        <h3>Internal Review</h3>
+        <p>Review the request, determine the service path, confirm whether this is online-only or device-based, and set the next action.</p>
         <div class="pill-row">
-          <a href="admin-dashboard.html" class="mini-btn blue">Admin Dashboard</a>
-          <a href="admin-orders.html" class="mini-btn gold">Admin Orders</a>
-          <a href="admin-customers.html" class="mini-btn green">Admin Customers</a>
+          <a href="admin-dashboard.html" class="pill-link">Admin Dashboard</a>
+          <a href="admin-orders.html" class="pill-link">Admin Orders</a>
+          <a href="admin-customers.html" class="pill-link">Admin Customers</a>
         </div>
       </div>
 
-      <div class="step-card">
-        <div class="step-top">
-          <div>
-            <div class="step-title">Payment Process</div>
-            <div class="step-copy">Send the checkout path or payment link and confirm that payment has been completed before moving to fulfillment.</div>
-          </div>
-          <div class="step-num">Step 6</div>
-        </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 6</div>
+        <h3>Payment Process</h3>
+        <p>Send the checkout path or generate a payment link, then confirm payment before moving into fulfillment.</p>
         <div class="pill-row">
-          <a href="admin-checkout-link-generator.html" class="mini-btn gold">Checkout Link Generator</a>
-          <a href="checkout.html" class="mini-btn green">Checkout Page</a>
+          <a href="admin-checkout-link-generator.html" class="pill-link">Checkout Link Generator</a>
+          <a href="checkout.html" class="pill-link">Checkout Page</a>
         </div>
       </div>
 
-      <div class="step-card">
-        <div class="step-top">
-          <div>
-            <div class="step-title">Fulfillment Decision</div>
-            <div class="step-copy">Decide whether the customer is receiving online service only, an in-person setup, or a prepared device that needs to be configured and handed off.</div>
-          </div>
-          <div class="step-num">Step 7</div>
+      <div class="workflow-step">
+        <div class="step-label">Step 7</div>
+        <h3>Fulfillment Decision</h3>
+        <p>Identify whether the customer needs online service only, in-person help, or a prepared device that must be configured and handed off.</p>
+      </div>
+
+      <div class="workflow-step">
+        <div class="step-label">Step 8</div>
+        <h3>Device Preparation</h3>
+        <p>Use the downloader path and setup tools for device work. This stays outside the admin environment.</p>
+        <div class="pill-row">
+          <a href="downloader-portal.html" class="pill-link">Downloader Portal</a>
+          <a href="device-setup.html" class="pill-link">Device Setup</a>
+          <a href="app-library.html" class="pill-link">App Library</a>
+        </div>
+        <div class="callout">Correct setup route: Downloader Portal → Device Setup → App Library. Admin pages are not part of the device preparation environment.</div>
+      </div>
+
+      <div class="workflow-step">
+        <div class="step-label">Step 9</div>
+        <h3>Service Activation</h3>
+        <p>Use the TV Panel to create or manage service, assign the plan, verify the activation, and complete the core execution work.</p>
+        <div class="pill-row">
+          <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="pill-link">TV Panel</a>
+          <a href="https://backup.tvpluspanel.ru" target="_blank" rel="noopener noreferrer" class="pill-link">Backup Panel</a>
         </div>
       </div>
 
-      <div class="step-card">
-        <div class="step-top">
-          <div>
-            <div class="step-title">Device Preparation</div>
-            <div class="step-copy">This is the correct setup environment for devices. Use the downloader and setup pages with the app library as the installation source.</div>
-          </div>
-          <div class="step-num">Step 8</div>
-        </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 10</div>
+        <h3>Delivery and Customer Handoff</h3>
+        <p>Provide login details, confirm the customer’s next-step instructions, and route them to the correct support destination.</p>
         <div class="pill-row">
-          <a href="downloader-portal.html" class="mini-btn gold">Downloader Portal</a>
-          <a href="device-setup.html" class="mini-btn gray">Device Setup</a>
-          <a href="app-library.html" class="mini-btn purple">App Library</a>
-        </div>
-        <div class="callout">Admin pages are not used inside the downloader environment. The actual device preparation path is Downloader Portal → Device Setup → App Library.</div>
-      </div>
-
-      <div class="step-card">
-        <div class="step-top">
-          <div>
-            <div class="step-title">Service Activation</div>
-            <div class="step-copy">Create or manage the customer service, assign the plan, verify activation, and use the panel as the core execution layer.</div>
-          </div>
-          <div class="step-num">Step 9</div>
-        </div>
-        <div class="pill-row">
-          <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="mini-btn green">TV Panel</a>
-          <a href="https://backup.tvpluspanel.ru" target="_blank" rel="noopener noreferrer" class="mini-btn gray">Backup Panel</a>
+          <a href="online-support.html" class="pill-link">Online Support</a>
+          <a href="support.html" class="pill-link">Support Page</a>
         </div>
       </div>
 
-      <div class="step-card">
-        <div class="step-top">
-          <div>
-            <div class="step-title">Delivery and Customer Handoff</div>
-            <div class="step-copy">Provide login details, confirm the correct next-step instructions, and route the customer to the appropriate support destination.</div>
-          </div>
-          <div class="step-num">Step 10</div>
-        </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 11</div>
+        <h3>Support Routing</h3>
+        <p>Online customers route to online support. Device customers route to support, setup, and app guidance as needed.</p>
         <div class="pill-row">
-          <a href="online-support.html" class="mini-btn blue">Online Support</a>
-          <a href="support.html" class="mini-btn green">Support Page</a>
+          <a href="online-support.html" class="pill-link">Online Support</a>
+          <a href="support.html" class="pill-link">Support Page</a>
+          <a href="device-setup.html" class="pill-link">Device Setup</a>
+          <a href="app-library.html" class="pill-link">App Library</a>
         </div>
       </div>
 
-      <div class="step-card">
-        <div class="step-top">
-          <div>
-            <div class="step-title">Support Routing</div>
-            <div class="step-copy">Online customers route to online support. Device customers route to the support page and setup tools when troubleshooting or reinstall guidance is needed.</div>
-          </div>
-          <div class="step-num">Step 11</div>
-        </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 12</div>
+        <h3>Expiration Tracking</h3>
+        <p>Review records and customer history, identify upcoming expirations, and prepare outreach before service lapses.</p>
         <div class="pill-row">
-          <a href="online-support.html" class="mini-btn blue">Online Support</a>
-          <a href="support.html" class="mini-btn green">Support Page</a>
-          <a href="device-setup.html" class="mini-btn gray">Device Setup</a>
-          <a href="app-library.html" class="mini-btn purple">App Library</a>
+          <a href="admin-dashboard.html" class="pill-link">Admin Dashboard</a>
+          <a href="admin-orders.html" class="pill-link">Admin Orders</a>
+          <a href="admin-customers.html" class="pill-link">Admin Customers</a>
         </div>
       </div>
 
-      <div class="step-card">
-        <div class="step-top">
-          <div>
-            <div class="step-title">Expiration Tracking</div>
-            <div class="step-copy">Review customer records, monitor upcoming expirations, and identify services that need outreach before the customer loses access.</div>
-          </div>
-          <div class="step-num">Step 12</div>
-        </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 13</div>
+        <h3>Renewal and Retention Loop</h3>
+        <p>Contact the customer before expiration, recommend the renewal option, route them back into payment, and reactivate service through the panel.</p>
         <div class="pill-row">
-          <a href="admin-dashboard.html" class="mini-btn blue">Admin Dashboard</a>
-          <a href="admin-orders.html" class="mini-btn gold">Admin Orders</a>
-          <a href="admin-customers.html" class="mini-btn green">Admin Customers</a>
-        </div>
-      </div>
-
-      <div class="step-card">
-        <div class="step-top">
-          <div>
-            <div class="step-title">Renewal and Retention Loop</div>
-            <div class="step-copy">Contact the customer before expiration, recommend the renewal option, send the payment path, and reactivate service through the panel. This completes the operating loop.</div>
-          </div>
-          <div class="step-num">Step 13</div>
-        </div>
-        <div class="pill-row">
-          <a href="checkout.html" class="mini-btn gold">Checkout Page</a>
-          <a href="admin-checkout-link-generator.html" class="mini-btn gold">Checkout Link Generator</a>
-          <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="mini-btn green">TV Panel</a>
+          <a href="checkout.html" class="pill-link">Checkout Page</a>
+          <a href="admin-checkout-link-generator.html" class="pill-link">Checkout Link Generator</a>
+          <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="pill-link">TV Panel</a>
         </div>
       </div>
     </div>
@@ -427,273 +375,175 @@ h3{margin:0 0 8px;font-size:18px}
   <div class="card">
     <h2>Operations and Daily Use</h2>
     <div class="section-sub">
-      Practical day-to-day reminders for running the system without losing the real workflow.
+      Practical reminders for running the system without losing the full process view.
     </div>
-
-    <div class="grid">
-      <div class="box">
+    <div class="ops-grid">
+      <div class="info-box">
         <h3>Daily Operating Focus</h3>
-        <ul class="mini-list">
-          <li>Review new requests and confirm next actions.</li>
-          <li>Check order status and payment progress.</li>
-          <li>Use the panel for activations and service changes.</li>
-          <li>Keep device setup inside the correct setup path.</li>
-          <li>Monitor expirations and renewals before they lapse.</li>
+        <ul>
+          <li>Review new requests and confirm the next action.</li>
+          <li>Check order status and payment progress before activating service.</li>
+          <li>Use the TV Panel first for activations, corrections, and renewals.</li>
+          <li>Keep device work inside the downloader/setup/app path.</li>
+          <li>Watch expirations before they turn into lost renewals.</li>
         </ul>
       </div>
-
-      <div class="box">
+      <div class="info-box">
         <h3>Tool Roles</h3>
-        <ul class="mini-list">
-          <li>Admin Dashboard = fast command overview</li>
-          <li>Admin Orders = order progress and updates</li>
-          <li>Admin Customers = customer tracking and outreach base</li>
-          <li>Admin APK Library = controlled internal install source</li>
-          <li>Update Checker = periodic app review</li>
-          <li>Resource Center = workflow, templates, growth, and retention reference</li>
+        <ul>
+          <li>Admin Dashboard = daily command view</li>
+          <li>Admin Orders = request and order progress</li>
+          <li>Admin Customers = tracking and outreach base</li>
+          <li>Admin APK Library = internal install reference</li>
+          <li>Update Checker = app review and maintenance</li>
+          <li>Resource Center = process, templates, and growth reference</li>
         </ul>
       </div>
     </div>
   </div>
 
   <div class="card">
-    <h2>Customer Communication</h2>
+    <h2>Communication Templates</h2>
     <div class="section-sub">
-      Quick response templates and communication lanes to keep customer messaging consistent.
+      Use these anchor links for quick message guidance without turning this section into another large button wall.
     </div>
-
-    <div class="grid3">
-      <a href="#new-inquiry" class="btn blue">New Inquiry Message</a>
-      <a href="#quote-follow-up" class="btn gold">Quote Follow-Up</a>
-      <a href="#payment-received" class="btn green">Payment Received</a>
-      <a href="#device-ready" class="btn purple">Device Ready or Shipped</a>
-      <a href="#online-setup" class="btn gray">Online Setup Message</a>
-      <a href="#referral-message" class="btn blue">Referral Message</a>
+    <div class="template-links">
+      <a href="#new-inquiry" class="anchor-pill">New Inquiry</a>
+      <a href="#quote-follow-up" class="anchor-pill">Quote Follow-Up</a>
+      <a href="#payment-received" class="anchor-pill">Payment Received</a>
+      <a href="#device-ready" class="anchor-pill">Device Ready or Shipped</a>
+      <a href="#online-setup" class="anchor-pill">Online Setup</a>
+      <a href="#referral-message" class="anchor-pill">Referral Message</a>
     </div>
   </div>
 
-  <div class="card" id="new-inquiry">
-    <h2>New Inquiry Message</h2>
-    <div class="box">
+  <div class="grid-2">
+    <div class="card template-box" id="new-inquiry">
+      <h2>New Inquiry Message</h2>
       <p>Thanks for reaching out to 4MyIPTV Service. I received your request and will review your details shortly. I usually reply within a few hours and no later than 24 hours during normal business hours.</p>
     </div>
-  </div>
-
-  <div class="card" id="quote-follow-up">
-    <h2>Quote Follow-Up</h2>
-    <div class="box">
+    <div class="card template-box" id="quote-follow-up">
+      <h2>Quote Follow-Up</h2>
       <p>Checking back on your request. I wanted to see if you are ready to move forward. If so, I can send the next step based on the service or device option that works best for you.</p>
     </div>
-  </div>
-
-  <div class="card" id="payment-received">
-    <h2>Payment Received Message</h2>
-    <div class="box">
-      <p>Payment received. I will begin the next step for your setup and send you the correct instructions shortly. Thank you.</p>
+    <div class="card template-box" id="payment-received">
+      <h2>Payment Received</h2>
+      <p>Payment received. I am moving your order into the next stage now. I will follow up with setup details, service information, or delivery updates as soon as everything is ready.</p>
     </div>
-  </div>
-
-  <div class="card" id="device-ready">
-    <h2>Device Ready or Shipped Message</h2>
-    <div class="box">
-      <p>Your device is ready. If shipping applies, I will provide tracking once available. If this is a local handoff, I will coordinate the next step directly with you.</p>
+    <div class="card template-box" id="device-ready">
+      <h2>Device Ready or Shipped</h2>
+      <p>Your device is prepared and ready for the next step. If this is a pickup or in-person setup, I will confirm timing with you. If this is shipping, I will send your update once it is on the way.</p>
     </div>
-  </div>
-
-  <div class="card" id="online-setup">
-    <h2>Online Setup Message</h2>
-    <div class="box">
-      <p>Please install IPTV Smarters Pro and enter your login details exactly as provided. If you need help, use the Online Support page for the correct setup steps.</p>
-      <div class="note" style="margin-top:12px;">
-        Support link: <a href="online-support.html" style="color:#93c5fd;text-decoration:underline;">online-support.html</a>
-      </div>
+    <div class="card template-box" id="online-setup">
+      <h2>Online Setup Message</h2>
+      <p>Your service is ready. Use the setup instructions and support pages if you need help completing the device process. If you run into an issue, message me and I will help you through the next step.</p>
     </div>
-  </div>
-
-  <div class="card" id="referral-message">
-    <h2>Referral Message</h2>
-    <div class="box">
-      <p>Refer a customer who signs up for a 1-year plan and receive 1 month of service free. Reach out when you are ready and I will handle the next step.</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Growth and Strategy</h2>
-    <div class="section-sub">
-      Keep growth assets organized without drifting away from the current operations build. This stays practical and expandable.
-    </div>
-
-    <div class="grid">
-      <a href="#printable-materials" class="btn gold">Printable Handouts and Flyers</a>
-      <a href="#posts-with-pricing" class="btn blue">Social Posts With Pricing</a>
-      <a href="#posts-without-pricing" class="btn purple">Social Posts Without Pricing</a>
-      <a href="#local-promotion" class="btn green">Local Promotion Tips</a>
-    </div>
-  </div>
-
-  <div class="card" id="printable-materials">
-    <h2>Printable Handouts and Flyers</h2>
-    <div class="grid">
-      <div class="box">
-        <h3>Planned Assets</h3>
-        <ul class="mini-list">
-          <li>Service overview handout</li>
-          <li>Pricing flyer</li>
-          <li>Device recommendation sheet</li>
-          <li>Referral handout</li>
-          <li>How it works one-pager</li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>Use Case</h3>
-        <p>These should support in-person conversations, local handouts, and simple follow-up material without overloading the customer with technical information.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" id="posts-with-pricing">
-    <h2>Social Posts With Pricing</h2>
-    <div class="grid">
-      <div class="box">
-        <h3>Best Use</h3>
-        <p>Use pricing in direct-response environments such as Facebook Marketplace, local buy and sell groups, or posts where the goal is immediate inquiry.</p>
-      </div>
-      <div class="box">
-        <h3>Priority Channels</h3>
-        <ul class="mini-list">
-          <li>Facebook Marketplace</li>
-          <li>Facebook local groups</li>
-          <li>Nextdoor</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" id="posts-without-pricing">
-    <h2>Social Posts Without Pricing</h2>
-    <div class="grid">
-      <div class="box">
-        <h3>Best Use</h3>
-        <p>Use non-pricing posts when you want curiosity, engagement, or cleaner brand positioning before moving the conversation private.</p>
-      </div>
-      <div class="box">
-        <h3>Priority Channels</h3>
-        <ul class="mini-list">
-          <li>Facebook posts</li>
-          <li>Reddit local communities</li>
-          <li>TikTok captions</li>
-          <li>Snapchat blurbs</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" id="local-promotion">
-    <h2>Local Promotion Tips</h2>
-    <div class="box">
-      <ul class="mini-list">
-        <li>Lead with local channels first.</li>
-        <li>Use Facebook Marketplace and Nextdoor as primary lanes.</li>
-        <li>Rotate posts instead of repeating the same wording too often.</li>
-        <li>Use pricing selectively based on the page and audience.</li>
-        <li>Keep language simple and value-based.</li>
-      </ul>
+    <div class="card template-box" id="referral-message">
+      <h2>Referral Message</h2>
+      <p>If you know anyone looking for a better TV service option, feel free to send them my way. I appreciate referrals and can help them find the setup that fits what they need.</p>
     </div>
   </div>
 
   <div class="card">
     <h2>Device and App Guidance</h2>
     <div class="section-sub">
-      Keep setup recommendations tied directly to the actual support and preparation path.
+      Keep the setup path clear and avoid mixing the admin environment with the device preparation environment.
     </div>
-
-    <div class="grid">
-      <div class="box">
-        <h3>Recommended Devices</h3>
-        <ul class="mini-list">
-          <li>Onn 4K Plus</li>
-          <li>Onn 4K Pro</li>
-          <li>Google TV Streamer</li>
-          <li>NVIDIA Shield TV Pro</li>
-        </ul>
+    <div class="grid-3">
+      <div class="stat-box">
+        <h3>Correct Setup Path</h3>
+        <p>Use Downloader Portal, Device Setup, and App Library as the setup sequence for device work.</p>
+        <div class="stat-row" style="margin-top:12px;">
+          <span class="stat-pill customer">Downloader Portal</span>
+          <span class="stat-pill customer">Device Setup</span>
+          <span class="stat-pill customer">App Library</span>
+        </div>
       </div>
-
-      <div class="box">
-        <h3>App Guidance</h3>
-        <ul class="mini-list">
-          <li>Primary app: IPTV Smarters Pro</li>
-          <li>Use exact login details</li>
-          <li>Route setup help to support pages</li>
-          <li>Use Admin APK Library for internal installs</li>
-        </ul>
+      <div class="stat-box">
+        <h3>Admin Boundary</h3>
+        <p>Admin pages are for tracking, review, and management. They are not part of the downloader environment used while preparing the device.</p>
+        <div class="stat-row" style="margin-top:12px;">
+          <span class="stat-pill admin">Review</span>
+          <span class="stat-pill admin">Orders</span>
+          <span class="stat-pill admin">Customers</span>
+        </div>
       </div>
-    </div>
-
-    <div class="grid" style="margin-top:20px;">
-      <a href="admin-apk-library.html" class="btn purple">Open Admin APK Library</a>
-      <a href="device-setup.html" class="btn green">Open Device Setup</a>
-      <a href="support.html" class="btn gray">Open Device Support</a>
-      <a href="online-support.html" class="btn blue">Open Online Support</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Renewal and Retention</h2>
-    <div class="section-sub">
-      Use this section to support expiration follow-up, renewals, and retention messaging alongside the main workflow loop.
-    </div>
-
-    <div class="grid">
-      <div class="box">
-        <h3>Renewal Process</h3>
-        <ol class="mini-list">
-          <li>Track upcoming expiration.</li>
-          <li>Contact the customer before expiration.</li>
-          <li>Confirm renewal payment.</li>
-          <li>Restore or extend service through the panel.</li>
-        </ol>
-      </div>
-
-      <div class="box">
-        <h3>Retention Messages</h3>
-        <ul class="mini-list">
-          <li>Email reminder</li>
-          <li>Text reminder</li>
-          <li>Late renewal follow-up</li>
-          <li>Win-back message</li>
-          <li>Referral reminder</li>
-        </ul>
+      <div class="stat-box">
+        <h3>Support Routing</h3>
+        <p>Online customers should route to online support. Device customers can use support, device setup, and app guidance when needed.</p>
+        <div class="stat-row" style="margin-top:12px;">
+          <span class="stat-pill customer">Online Support</span>
+          <span class="stat-pill customer">Support</span>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="card">
-    <h2>Brand and Messaging Rules</h2>
+    <h2>Growth and Strategy</h2>
     <div class="section-sub">
-      Keep public-facing language consistent and controlled.
+      Keep this section available for expansion without letting it overpower the operating flow.
     </div>
-
-    <div class="grid">
-      <div class="box">
-        <h3>Brand Standard</h3>
-        <p><strong>4MyIPTV Service</strong><br/>Stream More • Pay Less • Watch Anywhere</p>
+    <div class="grid-3">
+      <div class="info-box">
+        <h3>Printable Materials</h3>
+        <p>Keep room here for flyers, handouts, and simple offline materials that support local outreach.</p>
       </div>
-
-      <div class="box">
-        <h3>Messaging Rules</h3>
-        <ul class="mini-list">
-          <li>Do not overpromise.</li>
-          <li>Keep wording simple.</li>
-          <li>Avoid technical overload.</li>
-          <li>Focus on value and clarity.</li>
-          <li>Keep public pages clean and safe.</li>
-        </ul>
+      <div class="info-box">
+        <h3>Social and Referral Ideas</h3>
+        <p>Reserve this block for social post drafts, referral messaging, and easy customer-sharing ideas.</p>
+      </div>
+      <div class="info-box">
+        <h3>Local Promotion Notes</h3>
+        <p>Use this area for neighborhood outreach, local ad ideas, and practical growth reminders.</p>
       </div>
     </div>
   </div>
 
-  <div class="footer">4MyIPTV Service • Internal Resource Center</div>
-  <div class="version">Version 3.0 • Last Updated: March 30, 2026</div>
+  <div class="card">
+    <h2>All Access Buttons</h2>
+    <div class="section-sub">
+      This is the full button panel for page access. Blue buttons are administrative pages. Gray buttons are customer-facing pages and support flow pages.
+    </div>
+    <div class="button-panels">
+      <div class="access-group">
+        <h3>Administrative Pages</h3>
+        <p>Internal control pages for orders, customers, admin tools, dashboard access, and operating support.</p>
+        <div class="grid-3">
+          <a href="admin-dashboard.html" class="mini-btn admin">Admin Dashboard</a>
+          <a href="admin-orders.html" class="mini-btn admin">Admin Orders</a>
+          <a href="admin-customers.html" class="mini-btn admin">Admin Customers</a>
+          <a href="admin-apk-library.html" class="mini-btn admin">Admin APK Library</a>
+          <a href="admin-resource-center.html" class="mini-btn admin">Resource Center</a>
+          <a href="admin-update-checker.html" class="mini-btn admin">Update Checker</a>
+          <a href="admin-checkout-link-generator.html" class="mini-btn admin">Checkout Link Generator</a>
+          <a href="calls-dashboard.html" class="mini-btn admin">Calls Dashboard</a>
+        </div>
+      </div>
+
+      <div class="access-group">
+        <h3>Customer and Support Pages</h3>
+        <p>Public journey pages, support destinations, and device setup flow pages.</p>
+        <div class="grid-3">
+          <a href="index.html" class="mini-btn customer">Index Page</a>
+          <a href="sell-sheet.html" class="mini-btn customer">Sell Sheet</a>
+          <a href="request-service.html" class="mini-btn customer">Request Service</a>
+          <a href="checkout.html" class="mini-btn customer">Checkout Page</a>
+          <a href="success.html" class="mini-btn customer">Success Page</a>
+          <a href="downloader-portal.html" class="mini-btn customer">Downloader Portal</a>
+          <a href="device-setup.html" class="mini-btn customer">Device Setup</a>
+          <a href="app-library.html" class="mini-btn customer">App Library</a>
+          <a href="online-support.html" class="mini-btn customer">Online Support</a>
+          <a href="support.html" class="mini-btn customer">Support Page</a>
+        </div>
+      </div>
+    </div>
+    <div class="section-note">
+      TV Panel and Backup Panel stay above as dedicated execution tools instead of being grouped into the general page-access panel.
+    </div>
+  </div>
+
+  <div class="footer">Version 3.1 | Last Updated: March 30, 2026 | Internal Resource Center</div>
 
 </div>
 </body>
