@@ -1,175 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Resource Center | 4MyIPTV Service</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Admin Resource Center | 4MyIPTV Service</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background-color: #0d1117;
-    color: white;
-    margin: 0;
-    padding: 0;
-}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f172a;
+      color: #e5e7eb;
+      margin: 0;
+      padding: 0;
+    }
 
-.header {
-    padding: 20px;
-    text-align: center;
-    background: #161b22;
-    font-size: 24px;
-}
+    header {
+      padding: 20px;
+      background-color: #111827;
+      border-bottom: 1px solid #1f2937;
+    }
 
-.container {
-    padding: 20px;
-    display: grid;
-    gap: 20px;
-}
+    h1 {
+      margin: 0;
+      font-size: 22px;
+    }
 
-.card {
-    background: #161b22;
-    padding: 20px;
-    border-radius: 12px;
-}
+    .subtitle {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
 
-.card h2 {
-    margin-top: 0;
-}
+    .container {
+      padding: 20px;
+    }
 
-.button {
-    display: block;
-    margin-top: 10px;
-    padding: 10px;
-    background: #238636;
-    text-align: center;
-    border-radius: 6px;
-    text-decoration: none;
-    color: white;
-}
+    .quick-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      margin-bottom: 25px;
+    }
 
-.button.secondary {
-    background: #30363d;
-}
+    .quick-btn {
+      background-color: #1f2937;
+      padding: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: #e5e7eb;
+      font-size: 13px;
+      border: 1px solid #374151;
+    }
 
-.section-title {
-    margin-top: 30px;
-    font-size: 20px;
-    border-bottom: 1px solid #30363d;
-    padding-bottom: 5px;
-}
-</style>
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #374151;
+      padding-bottom: 5px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background-color: #1f2937;
+      padding: 12px;
+      border: 1px solid #374151;
+      font-size: 13px;
+    }
+
+    .card h3 {
+      margin: 0 0 6px 0;
+      font-size: 14px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #9ca3af;
+      line-height: 1.4;
+    }
+
+    footer {
+      padding: 15px;
+      text-align: center;
+      font-size: 12px;
+      color: #6b7280;
+      border-top: 1px solid #1f2937;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="header">
-4MyIPTV Service Resource Center
-</div>
+<header>
+  <h1>Admin Resource Center</h1>
+  <div class="subtitle">Operations • Communication • Growth • Retention</div>
+</header>
 
 <div class="container">
 
-<!-- CORE WORKFLOW -->
-<div class="section-title">Core Customer Workflow</div>
+  <!-- QUICK ACTION BAR -->
+  <div class="quick-bar">
+    <a class="quick-btn" href="admin-dashboard.html">Admin Dashboard</a>
+    <a class="quick-btn" href="admin-orders.html">Admin Orders</a>
+    <a class="quick-btn" href="admin-apk-library.html">APK Library</a>
+    <a class="quick-btn" href="admin-update-checker.html">Update Checker</a>
+    <a class="quick-btn" href="device-setup.html">Device Setup</a>
+    <a class="quick-btn" href="online-support.html">Online Support</a>
+  </div>
 
-<div class="card">
-<h2>Step 1: Customer Request</h2>
-<p>Customer submits request for service.</p>
-<p><strong>What to do:</strong> Monitor for new requests and respond quickly.</p>
-<a href="https://tgarrett10.github.io/4myIPTVservice-device-app-center/request-service.html" class="button">Go to Request Page</a>
+  <!-- CORE OPERATIONS -->
+  <div class="section">
+    <div class="section-title">Core Operations</div>
+    <div class="grid">
+
+      <div class="card">
+        <h3>Customer Flow</h3>
+        <p>Index → Sell Sheet → Request → Success → Manual Follow-Up → Payment → Support Routing</p>
+      </div>
+
+      <div class="card">
+        <h3>Order Workflow</h3>
+        <p>Receive request → Review → Send quote → Receive payment → Assign fulfillment → Route support</p>
+      </div>
+
+      <div class="card">
+        <h3>Fulfillment Types</h3>
+        <p>Online customer • Device customer • Manual/exception handling</p>
+      </div>
+
+      <div class="card">
+        <h3>Support Routing</h3>
+        <p>Online → online-support.html<br>Device → support.html</p>
+      </div>
+
+      <div class="card">
+        <h3>Internal Page Guide</h3>
+        <p>Dashboard = hub • Orders = tracking • APK = installs • Resource = ops • Update = versions</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CUSTOMER COMMUNICATION -->
+  <div class="section">
+    <div class="section-title">Customer Communication</div>
+    <div class="grid">
+
+      <div class="card">
+        <h3>New Inquiry</h3>
+        <p>Thanks for your request. I will review and follow up within a few hours.</p>
+      </div>
+
+      <div class="card">
+        <h3>Quote Follow-Up</h3>
+        <p>Checking in on your request. Let me know if you are ready to move forward.</p>
+      </div>
+
+      <div class="card">
+        <h3>Payment Received</h3>
+        <p>Payment received. I will begin setup and send next steps shortly.</p>
+      </div>
+
+      <div class="card">
+        <h3>Device Ready</h3>
+        <p>Your device is ready/shipped. Setup instructions will be provided.</p>
+      </div>
+
+      <div class="card">
+        <h3>Online Setup</h3>
+        <p>Download IPTV Smarters Pro and enter your login credentials exactly.</p>
+      </div>
+
+      <div class="card">
+        <h3>Referral Message</h3>
+        <p>Refer a 1-year customer and receive 1 month of service free.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MARKETING & GROWTH -->
+  <div class="section">
+    <div class="section-title">Marketing & Growth</div>
+    <div class="grid">
+
+      <div class="card">
+        <h3>Printable Materials</h3>
+        <p>Service handout • Pricing flyer • Device guide • Referral flyer • How-it-works sheet</p>
+      </div>
+
+      <div class="card">
+        <h3>Social Posts (With Pricing)</h3>
+        <p>Best for Marketplace, direct selling, and local ads</p>
+      </div>
+
+      <div class="card">
+        <h3>Social Posts (No Pricing)</h3>
+        <p>Best for engagement, curiosity, and organic reach</p>
+      </div>
+
+      <div class="card">
+        <h3>Local Promotion Strategy</h3>
+        <p>Focus on Facebook Marketplace and Nextdoor. Rotate weekly. Avoid spam behavior.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DEVICE & APP GUIDANCE -->
+  <div class="section">
+    <div class="section-title">Device & App Guidance</div>
+    <div class="grid">
+
+      <div class="card">
+        <h3>Recommended Devices</h3>
+        <p>Onn 4K Plus • Onn 4K Pro • Google Streamer • NVIDIA Shield</p>
+      </div>
+
+      <div class="card">
+        <h3>Device Comparison</h3>
+        <p>Compare RAM, storage, and Ethernet capability for best fit</p>
+      </div>
+
+      <div class="card">
+        <h3>IPTV Apps</h3>
+        <p>Primary: IPTV Smarters Pro • Alternatives available</p>
+      </div>
+
+      <div class="card">
+        <h3>Setup Flow</h3>
+        <p>Install app → Enter Xtream Codes → Verify login</p>
+      </div>
+
+      <div class="card">
+        <h3>Downloader Codes</h3>
+        <p>Internal reference for installs and updates</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RENEWAL & RETENTION -->
+  <div class="section">
+    <div class="section-title">Renewal & Retention</div>
+    <div class="grid">
+
+      <div class="card">
+        <h3>Renewal Process</h3>
+        <p>Track expiration → Contact → Confirm renewal</p>
+      </div>
+
+      <div class="card">
+        <h3>Email Reminder</h3>
+        <p>Your service is expiring soon. Renew now to avoid interruption.</p>
+      </div>
+
+      <div class="card">
+        <h3>Text Reminder</h3>
+        <p>Reminder: your service is about to expire. Let me know if you want to renew.</p>
+      </div>
+
+      <div class="card">
+        <h3>Late Follow-Up</h3>
+        <p>Your service has expired. I can restore it quickly when ready.</p>
+      </div>
+
+      <div class="card">
+        <h3>Win-Back</h3>
+        <p>We’d love to have you back. Reach out anytime to restart service.</p>
+      </div>
+
+      <div class="card">
+        <h3>Referral Offer</h3>
+        <p>1 free month for every 1-year referral</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BRAND -->
+  <div class="section">
+    <div class="section-title">Brand & Messaging</div>
+    <div class="grid">
+
+      <div class="card">
+        <h3>Brand</h3>
+        <p>4MyIPTV Service</p>
+      </div>
+
+      <div class="card">
+        <h3>Tagline</h3>
+        <p>Stream More • Pay Less • Watch Anywhere</p>
+      </div>
+
+      <div class="card">
+        <h3>Messaging Rules</h3>
+        <p>Keep simple • Do not overpromise • Focus on value</p>
+      </div>
+
+      <div class="card">
+        <h3>Public Page Rules</h3>
+        <p>No APK language • No sideloading references • Keep content clean</p>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 
-<div class="card">
-<h2>Step 2: Send Payment Link</h2>
-<p>Create and send payment link manually.</p>
-<p><strong>Critical:</strong> Do not allow changes after sending payment.</p>
-<a href="admin-dashboard.html" class="button">Go to Admin Dashboard</a>
-</div>
-
-<div class="card">
-<h2>Step 3: Payment Received</h2>
-<p>Once payment is confirmed, move order forward.</p>
-<p><strong>What to do:</strong> Update status and prepare fulfillment.</p>
-</div>
-
-<div class="card">
-<h2>Step 4: Fulfillment</h2>
-<p>Deliver service or prepare device.</p>
-<p><strong>Paths:</strong></p>
-<ul>
-<li>Online → Send login details</li>
-<li>Device → Load apps + credentials</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>Step 5: Customer Setup</h2>
-<p>Guide customer to correct support page.</p>
-<a href="support.html" class="button">Device Support</a>
-<a href="online-support.html" class="button secondary">Online Support</a>
-</div>
-
-<div class="card">
-<h2>Step 6: Track Customer</h2>
-<p>All customers must be logged.</p>
-<p><strong>Critical fields:</strong> Username, Password, Expiration Date</p>
-<a href="https://docs.google.com/spreadsheets/d/1rQlVe8TGrnKTELc5_9hT2yrrQ_5G5KzKCh7h-A30A8o" class="button">Open Customer Records</a>
-</div>
-
-<div class="card">
-<h2>Step 7: Renewal Process</h2>
-<p>Monitor expiring customers and follow up.</p>
-<p><strong>Target:</strong> Reach out BEFORE expiration.</p>
-<a href="calls-dashboard.html" class="button">Open Calls Dashboard</a>
-</div>
-
-<!-- TOOLS -->
-<div class="section-title">Core Tools</div>
-
-<div class="card">
-<h2>Admin Dashboard</h2>
-<a href="admin-dashboard.html" class="button">Open Dashboard</a>
-</div>
-
-<div class="card">
-<h2>TV Panel (Primary)</h2>
-<a href="YOUR_TV_PANEL_LINK" class="button">Open TV Panel</a>
-<a href="YOUR_TV_PANEL_BACKUP" class="button secondary">Backup Panel</a>
-</div>
-
-<div class="card">
-<h2>APK Library</h2>
-<a href="admin-apk-library.html" class="button">Open App Library</a>
-</div>
-
-<!-- QUICK ACTIONS -->
-<div class="section-title">Quick Setup Tools</div>
-
-<div class="card">
-<h2>Downloader Shortcuts</h2>
-<p>Use these for fast installs.</p>
-<ul>
-<li>4204657 - Installer Dashboard</li>
-<li>730116 - APK Library</li>
-<li>6234188 - IPTV Smarters</li>
-</ul>
-</div>
-
-<!-- BUSINESS GROWTH -->
-<div class="section-title">Growth & Strategy</div>
-
-<div class="card">
-<h2>Marketing Materials</h2>
-<p>Use sell sheet and messaging.</p>
-<a href="sell-sheet.html" class="button">Open Sell Sheet</a>
-</div>
-
-<div class="card">
-<h2>Referral Strategy</h2>
-<p>Offer 1 month free for every 1-year referral.</p>
-</div>
-
-</div>
+<footer>
+  4MyIPTV Service • Internal Resource Center
+</footer>
 
 </body>
 </html>
