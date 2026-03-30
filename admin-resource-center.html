@@ -1,253 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>4MyIPTV Service Admin Resource Center</title>
+<meta charset="UTF-8">
+<title>Resource Center | 4MyIPTV Service</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-:root{--bg:#08111f;--panel:#101827;--panel-alt:#0f172a;--text:#f8fafc;--muted:#94a3b8;--green:#22c55e;--blue:#3b82f6;--gold:#f59e0b;--purple:#9333ea;--border:#1f2937}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#08111f,#0f172a);color:var(--text)}
-.container{max-width:1280px;margin:auto;padding:18px}
-.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;margin-bottom:14px;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.28)}
-.hero{padding:22px;text-align:center}
-h1{margin:0 0 8px;color:#86efac;font-size:2rem}
-h2{margin-top:0}
-h3{margin:0 0 10px 0}
-.tagline-banner{margin:10px auto 14px auto;max-width:760px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);text-align:center;font-weight:600;font-size:16px;letter-spacing:.08em;color:#e2e8f0;box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.18)}
-.sub{color:var(--muted);line-height:1.5}
-.notice{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe;border-radius:14px;padding:12px 14px;margin-top:14px;line-height:1.5;text-align:left}
-.tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a;border-radius:14px;padding:12px 14px;margin-top:14px;line-height:1.5;text-align:left}
-.btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
-.btn{padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:bold;text-align:center;display:inline-block;border:none;cursor:pointer;font-size:13px;color:#fff}
-.adminbtn{background:var(--purple)}
-.playbtn{background:var(--blue)}
-.linkbtn{background:#475569;color:#fff}
-.section{padding:18px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
-.cardbox{background:var(--panel-alt);border:1px solid var(--border);border-radius:12px;padding:14px}
-.cardbox strong{display:block;margin-bottom:6px}
-ul{padding-left:18px;margin:0}
-li{margin-bottom:8px;line-height:1.45}
-a{color:#38bdf8;text-decoration:none}a:hover{text-decoration:underline}
-.muted{color:var(--muted)}
-.footer-strip{margin-top:18px;padding:16px 10px;border-top:1px solid #243044;text-align:center;color:#cbd5e1;font-size:.9rem}
-.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
-@media(max-width:980px){.grid,.grid3{grid-template-columns:1fr}}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0d1117;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    padding: 20px;
+    text-align: center;
+    background: #161b22;
+    font-size: 24px;
+}
+
+.container {
+    padding: 20px;
+    display: grid;
+    gap: 20px;
+}
+
+.card {
+    background: #161b22;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.button {
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    background: #238636;
+    text-align: center;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+}
+
+.button.secondary {
+    background: #30363d;
+}
+
+.section-title {
+    margin-top: 30px;
+    font-size: 20px;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 5px;
+}
 </style>
 </head>
+
 <body>
-<div class="container">
-  <div class="card hero">
-    <h1>4MyIPTV Service Admin Resource Center</h1>
-    <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
-    <div class="sub">Internal action hub for order follow-up, setup delivery, support handling, maintenance checks, and future resource development.</div>
-    <div class="btnrow">
-      <a class="btn adminbtn" href="admin-dashboard.html">Back to Installer Dashboard</a>
-      <a class="btn playbtn" href="admin-orders.html">Open Admin Orders</a>
-      <a class="btn linkbtn" href="admin-update-checker.html">Open Update Checker</a>
-    </div>
-    <div class="notice"><strong>Internal Use</strong><br/>This page should stay practical. Keep live links, working references, and placeholders for high-value resources you plan to build next.</div>
-  </div>
 
-  <div class="section">
-    <h2>Order Workflow and Daily Use</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Primary Status Flow</strong>
-        <ul>
-          <li>NEW REQUEST</li>
-          <li>CONTACTED</li>
-          <li>PAYMENT SENT</li>
-          <li>PAID</li>
-          <li>COMPLETED</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Daily Operating Routine</strong>
-        <ul>
-          <li>Load Admin Orders</li>
-          <li>Work all NEW REQUEST rows first</li>
-          <li>Send payment instructions from the detail panel</li>
-          <li>Mark PAID only after payment is confirmed</li>
-          <li>Mark COMPLETED after setup or delivery is finished</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Core Admin Pages</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Admin Orders</strong>
-        Main place to manage requests, copy payment messages, update status, and record notes.
-        <ul><li><a href="admin-orders.html">Open Admin Orders</a></li></ul>
-      </div>
-      <div class="cardbox">
-        <strong>Admin Dashboard</strong>
-        Internal system hub for operational access across the private page group.
-        <ul><li><a href="admin-dashboard.html">Open Admin Dashboard</a></li></ul>
-      </div>
-      <div class="cardbox">
-        <strong>Admin APK Library</strong>
-        Use when you need the current internal app links or installer tool references.
-        <ul><li><a href="admin-apk-library.html">Open Admin APK Library</a></li></ul>
-      </div>
-      <div class="cardbox">
-        <strong>Admin Update Checker</strong>
-        Use this during maintenance reviews to test links and confirm live resources still work.
-        <ul><li><a href="admin-update-checker.html">Open Admin Update Checker</a></li></ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Customer-Facing Delivery and Intake Links</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Customer Delivery Links</strong>
-        <ul>
-          <li><a href="device-setup.html">Device Setup Page</a></li>
-          <li><a href="support.html">Support Page</a></li>
-          <li><a href="success.html">Success Page</a></li>
-          <li><a href="https://t.me/+d3y9ny-g131mYTY0" target="_blank" rel="noopener noreferrer">Service Updates Channel</a></li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Pre-Sale and Intake Links</strong>
-        <ul>
-          <li><a href="index.html">Customer Landing Page</a></li>
-          <li><a href="sell-sheet.html">Services and Pricing</a></li>
-          <li><a href="request-service.html">Request Service Page</a></li>
-          <li><a href="checkout.html">Existing Quote Checkout</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Support Tools and Troubleshooting</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Basic Support Checklist</strong>
-        <ul>
-          <li>Confirm the customer is on the correct setup page</li>
-          <li>Verify username, password, and server URL exactly</li>
-          <li>Restart the device and reopen the app</li>
-          <li>Clear app cache if the app is acting unstable</li>
-          <li>Use the support page before deeper troubleshooting</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>External Tools</strong>
-        <ul>
-          <li><a href="https://fast.com/" target="_blank" rel="noopener noreferrer">Internet Speed Test</a></li>
-          <li><a href="https://downdetector.com/" target="_blank" rel="noopener noreferrer">Service Status Check</a></li>
-          <li><a href="https://gmail.com/" target="_blank" rel="noopener noreferrer">Customer Email Access</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Android 14 4K Developer Options (FYI)</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>How to Open Developer Options</strong>
-        <ul>
-          <li>Open <strong>Settings</strong></li>
-          <li>Select <strong>About</strong></li>
-          <li>Scroll to <strong>Build</strong></li>
-          <li>Click <strong>Build</strong> multiple times until developer access is enabled</li>
-        </ul>
-        <div class="tip"><strong>Use only when needed.</strong> This is advanced reference material, not a standard setup step for every customer.</div>
-      </div>
-      <div class="cardbox">
-        <strong>Recommended Settings</strong>
-        <ul>
-          <li><strong>Window animation scale:</strong> 0.5x</li>
-          <li><strong>Transition animation scale:</strong> 0.5x</li>
-          <li><strong>USB debugging:</strong> Off unless troubleshooting</li>
-          <li><strong>Stay awake:</strong> Off</li>
-          <li><strong>Logger storage / debug logs:</strong> Off</li>
-        </ul>
-        <div class="muted" style="margin-top:10px;">Leave advanced graphics, layout, pointer, mock location, and demo settings unchanged unless you have a specific reason to use them.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Recommended Play Store Apps (Optional)</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Why These Apps Matter</strong>
-        <div class="muted" style="margin-bottom:10px;">These are optional add-ons from the Google Play Store that can give customers extra free content on top of their regular setup. They are updated through the Play Store and can be added later if the device has room.</div>
-        <ul>
-          <li>Good for extra movies, TV shows, news, and live channels</li>
-          <li>Helpful for customers who want more familiar free app options</li>
-          <li>Not required for the original installed setup to work</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>Recommended Free Apps</strong>
-        <ul>
-          <li><strong>Pluto TV</strong> - free live channels and on-demand content</li>
-          <li><strong>Tubi</strong> - free movies and TV shows</li>
-          <li><strong>NewsON</strong> - local news in many markets</li>
-          <li><strong>Xumo Play</strong> - free streaming channels and entertainment</li>
-        </ul>
-        <div class="notice" style="margin-top:12px;"><strong>Important:</strong> These apps are optional Play Store additions. They are separate from the original side-loaded apps and are best presented as extra free content rather than part of the core paid setup.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Maintenance and Link Review</h2>
-    <div class="grid">
-      <div class="cardbox">
-        <strong>Monthly Maintenance Pass</strong>
-        <ul>
-          <li>Open Admin Update Checker</li>
-          <li>Test internal APK links</li>
-          <li>Log any failures before changing customer pages</li>
-          <li>Update admin pages first, then public references if needed</li>
-        </ul>
-      </div>
-      <div class="cardbox">
-        <strong>What to Record</strong>
-        <ul>
-          <li>App or link name</li>
-          <li>Working or broken</li>
-          <li>Replacement source</li>
-          <li>Date verified</li>
-          <li>Any follow-up needed</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Future Critical Resource Placeholders</h2>
-    <div class="grid3">
-      <div class="cardbox">
-        <strong>Customer Welcome / Delivery Script</strong>
-        Placeholder for your post-payment message flow, including setup delivery, what to expect, and support boundaries.
-      </div>
-      <div class="cardbox">
-        <strong>Reset and Recovery Guide</strong>
-        Placeholder for a step-by-step recovery guide when a device needs a clean reinstall or reset.
-      </div>
-      <div class="cardbox">
-        <strong>Renewal and Follow-Up Playbook</strong>
-        Placeholder for renewal timing, customer reminders, and reactivation workflow.
-      </div>
-    </div>
-  </div>
-
-  <div class="btnrow"><a class="btn adminbtn" href="admin-dashboard.html">Back to Installer Dashboard</a></div>
-  <div class="footer-strip"><strong>4MyIPTV Service • Admin Resource Center</strong><div class="version">Version 2.1 • Last Updated: March 2026</div></div>
+<div class="header">
+4MyIPTV Service Resource Center
 </div>
+
+<div class="container">
+
+<!-- CORE WORKFLOW -->
+<div class="section-title">Core Customer Workflow</div>
+
+<div class="card">
+<h2>Step 1: Customer Request</h2>
+<p>Customer submits request for service.</p>
+<p><strong>What to do:</strong> Monitor for new requests and respond quickly.</p>
+<a href="https://tgarrett10.github.io/4myIPTVservice-device-app-center/request-service.html" class="button">Go to Request Page</a>
+</div>
+
+<div class="card">
+<h2>Step 2: Send Payment Link</h2>
+<p>Create and send payment link manually.</p>
+<p><strong>Critical:</strong> Do not allow changes after sending payment.</p>
+<a href="admin-dashboard.html" class="button">Go to Admin Dashboard</a>
+</div>
+
+<div class="card">
+<h2>Step 3: Payment Received</h2>
+<p>Once payment is confirmed, move order forward.</p>
+<p><strong>What to do:</strong> Update status and prepare fulfillment.</p>
+</div>
+
+<div class="card">
+<h2>Step 4: Fulfillment</h2>
+<p>Deliver service or prepare device.</p>
+<p><strong>Paths:</strong></p>
+<ul>
+<li>Online → Send login details</li>
+<li>Device → Load apps + credentials</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Step 5: Customer Setup</h2>
+<p>Guide customer to correct support page.</p>
+<a href="support.html" class="button">Device Support</a>
+<a href="online-support.html" class="button secondary">Online Support</a>
+</div>
+
+<div class="card">
+<h2>Step 6: Track Customer</h2>
+<p>All customers must be logged.</p>
+<p><strong>Critical fields:</strong> Username, Password, Expiration Date</p>
+<a href="https://docs.google.com/spreadsheets/d/1rQlVe8TGrnKTELc5_9hT2yrrQ_5G5KzKCh7h-A30A8o" class="button">Open Customer Records</a>
+</div>
+
+<div class="card">
+<h2>Step 7: Renewal Process</h2>
+<p>Monitor expiring customers and follow up.</p>
+<p><strong>Target:</strong> Reach out BEFORE expiration.</p>
+<a href="calls-dashboard.html" class="button">Open Calls Dashboard</a>
+</div>
+
+<!-- TOOLS -->
+<div class="section-title">Core Tools</div>
+
+<div class="card">
+<h2>Admin Dashboard</h2>
+<a href="admin-dashboard.html" class="button">Open Dashboard</a>
+</div>
+
+<div class="card">
+<h2>TV Panel (Primary)</h2>
+<a href="YOUR_TV_PANEL_LINK" class="button">Open TV Panel</a>
+<a href="YOUR_TV_PANEL_BACKUP" class="button secondary">Backup Panel</a>
+</div>
+
+<div class="card">
+<h2>APK Library</h2>
+<a href="admin-apk-library.html" class="button">Open App Library</a>
+</div>
+
+<!-- QUICK ACTIONS -->
+<div class="section-title">Quick Setup Tools</div>
+
+<div class="card">
+<h2>Downloader Shortcuts</h2>
+<p>Use these for fast installs.</p>
+<ul>
+<li>4204657 - Installer Dashboard</li>
+<li>730116 - APK Library</li>
+<li>6234188 - IPTV Smarters</li>
+</ul>
+</div>
+
+<!-- BUSINESS GROWTH -->
+<div class="section-title">Growth & Strategy</div>
+
+<div class="card">
+<h2>Marketing Materials</h2>
+<p>Use sell sheet and messaging.</p>
+<a href="sell-sheet.html" class="button">Open Sell Sheet</a>
+</div>
+
+<div class="card">
+<h2>Referral Strategy</h2>
+<p>Offer 1 month free for every 1-year referral.</p>
+</div>
+
+</div>
+
 </body>
 </html>
