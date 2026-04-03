@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>4MyIPTV Service Admin Message Templates</title>
+<style>
+:root{
+  --bg:#08111f;
+  --panel:#101827;
+  --panel-soft:#0b1220;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --border:#1f2937;
+  --line:#243044;
+  --green:#22c55e;
+  --blue:#3b82f6;
+  --gold:#f59e0b;
+  --admin-btn:#1d4ed8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(180deg,#08111f,#0f172a);
+  color:var(--text);
+}
+.wrap{max-width:1240px;margin:auto;padding:20px}
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+}
+h1{margin:0 0 10px;color:#86efac;text-align:center}
+h2{margin:0 0 8px;font-size:24px}
+h3{margin:0 0 10px;font-size:18px;color:#86efac}
+p{margin:0}
+.tagline{
+  text-align:center;
+  margin-bottom:8px;
+  color:#cbd5f5;
+  font-weight:600;
+}
+.intro{
+  text-align:center;
+  color:var(--muted);
+  max-width:920px;
+  margin:0 auto;
+  line-height:1.55;
+}
+.section-sub{
+  color:var(--muted);
+  line-height:1.5;
+  margin-bottom:16px;
+  font-size:14px;
+}
+.grid-2,.grid-3{
+  display:grid;
+  gap:16px;
+}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:980px){
+  .grid-2,.grid-3{grid-template-columns:1fr}
+}
+.pill-row,.action-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.anchor-pill,.action-btn{
+  text-decoration:none;
+  border-radius:999px;
+  font-weight:bold;
+}
+.anchor-pill{
+  display:inline-block;
+  padding:8px 12px;
+  background:#1e293b;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.08);
+  font-size:12px;
+}
+.action-btn{
+  display:inline-block;
+  padding:11px 14px;
+  background:var(--admin-btn);
+  color:#fff;
+  font-size:14px;
+}
+.template-box,.info-box{
+  background:var(--panel-soft);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:18px;
+  height:100%;
+}
+.template-box p,.info-box p,.template-box li,.info-box li{
+  color:#cbd5e1;
+  line-height:1.55;
+  font-size:14px;
+}
+.template-copy{
+  margin-top:12px;
+  padding:14px;
+  border-radius:14px;
+  background:#0f172a;
+  border:1px solid var(--line);
+  color:#e2e8f0;
+  white-space:pre-line;
+  line-height:1.55;
+  font-size:14px;
+}
+.note{
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:rgba(59,130,246,.10);
+  border:1px solid rgba(59,130,246,.24);
+  color:#dbeafe;
+  line-height:1.5;
+}
+.footer-strip{
+  margin-top:18px;
+  padding:16px 10px;
+  border-top:1px solid #243044;
+  text-align:center;
+  color:#cbd5e1;
+  font-size:.9rem;
+}
+.footer-strip .version{
+  margin-top:6px;
+  color:#94a3b8;
+  font-size:.82rem;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="card">
+    <h1>Admin Message Templates</h1>
+    <div class="tagline">4MyIPTV Service Internal Use</div>
+    <div class="intro">
+      Use this page as the standardized quote-to-payment message reference for customer communication.
+      Keep the flow clean: quote, approval, payment, confirmation, fulfillment, and support.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Quick Jump</h2>
+    <div class="section-sub">
+      Use these anchors to move quickly to the message you need without rewriting the process each time.
+    </div>
+    <div class="pill-row">
+      <a href="#quote-template" class="anchor-pill">Quote</a>
+      <a href="#approval-clarification" class="anchor-pill">Approval Clarification</a>
+      <a href="#payment-instructions" class="anchor-pill">Payment Instructions</a>
+      <a href="#payment-received" class="anchor-pill">Payment Received</a>
+      <a href="#service-only" class="anchor-pill">Service Only</a>
+      <a href="#device-prep" class="anchor-pill">Device Prep</a>
+      <a href="#shipping-confirmation" class="anchor-pill">Shipping</a>
+      <a href="#pickup-delivery" class="anchor-pill">Pickup or Delivery</a>
+      <a href="#support-handoff" class="anchor-pill">Support Handoff</a>
+      <a href="#renewal-quote" class="anchor-pill">Renewal Quote</a>
+      <a href="#renewal-payment" class="anchor-pill">Renewal Payment</a>
+      <a href="#renewal-complete" class="anchor-pill">Renewal Complete</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Standard Operating Rules</h2>
+    <div class="section-sub">
+      These are the control rules that keep the message flow clean and consistent.
+    </div>
+    <div class="grid-3">
+      <div class="info-box">
+        <h3>Approval Rule</h3>
+        <p>Always request an explicit approval reply before sending payment instructions. Preferred approval word: Approved.</p>
+      </div>
+      <div class="info-box">
+        <h3>Pricing Rule</h3>
+        <p>Always show service term, device if applicable, shipping if applicable, and the total amount in the quote and payment messages.</p>
+      </div>
+      <div class="info-box">
+        <h3>Sequence Rule</h3>
+        <p>Do not overload one message. Keep the sequence as quote, approval, payment, payment received, fulfillment, and support.</p>
+      </div>
+    </div>
+    <div class="note">
+      Best practice: keep service-only orders and device orders clearly separated in the message path so the customer always knows what happens next.
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card template-box" id="quote-template">
+      <h2>Quote Template</h2>
+      <div class="template-copy">Hi [Customer Name],
+
+Thank you for your request. I reviewed your information and prepared your quote below.
+
+Service term: [Monthly / 6 Months / 1 Year / 2 Years]
+Service price: [$X]
+
+Device: [None / Device Name]
+Device price: [$X]
+
+Shipping: [$X / Not Applicable]
+
+Total: [$X]
+
+What is included:
+- [Service term]
+- [Device, if applicable]
+- [Setup preparation, if applicable]
+- [Other included item, if applicable]
+
+If this looks good, please reply:
+
+Approved
+
+Once approved, I will send your payment instructions and next steps.
+
+Thank you,
+Timothy
+4MyIPTV Service</div>
+    </div>
+
+    <div class="card template-box" id="approval-clarification">
+      <h2>Approval Clarification</h2>
+      <div class="template-copy">Hi [Customer Name],
+
+Thank you. To keep your order moving correctly, please reply with:
+
+Approved
+
+Once I receive that, I will send your payment instructions and next steps.
+
+Thank you,
+Timothy
+4MyIPTV Service</div>
+    </div>
+
+    <div class="card template-box" id="payment-instructions">
+      <h2>Payment Instructions</h2>
+      <div class="template-copy">Hi [Customer Name],
+
+Thank you. Your order has been approved and is ready for payment.
+
+Order summary:
+- Service term: [X]
+- Device: [X / None]
+- Shipping: [X / Not Applicable]
+- Total due: [$X]
+
+Payment link:
+[Insert payment link]
+
+After payment is completed, I will follow up with your next steps for [service activation / device preparation / shipping / setup support].
+
+Please reply here after payment is submitted so I can confirm receipt quickly.
+
+Thank you,
+Timothy
+4MyIPTV Service</div>
+    </div>
+
+    <div class="card template-box" id="payment-received">
+      <h2>Payment Received</h2>
+      <div class="template-copy">Hi [Customer Name],
+
+Payment received. Thank you.
+
+Your order is now moving to the next step.
+
+Next:
+- [Service-only: I will prepare your service access details]
+- [Device order: I will prepare your device order and next update]
+- [Shipped order: I will follow up with your shipping update once ready]
+
+You can expect the next update [later today / within a few hours / by tomorrow].
+
+Thank you,
+Timothy
+4MyIPTV Service</div>
+    </div>
+
+    <div class="card template-box" id="service-only">
+      <h2>Service-Only Fulfillment</h2>
+      <div class="template-copy">Hi [Customer Name],
+
+Your service details are ready.
+
+Login details:
+- Username: [X]
+- Password: [X]
+- Server URL: [X]
+
+Next steps:
+- Install the recommended player if needed
+- Enter the login details exactly as shown
+- Use one stream per device unless otherwise discussed
+
+If you need setup help, use this support link:
+[Insert support link]
+
+Thank you,
+Timothy
+4MyIPTV Service</div>
+    </div>
+
+    <div class="card template-box" id="device-prep">
+      <h2>Device Preparation</h2>
+      <div class="template-copy">Hi [Customer Name],
+
+Your order is now being prepared.
+
+Order summary:
+- Service term: [X]
+- Device: [X]
+
+Next steps:
+- Your device will be prepared with the requested setup
+- I will follow up with your next update once preparation is complete
+- If shipping applies, I will send your shipping update separately
+
+Thank you,
+Timothy
+4MyIPTV Service</div>
+    </div>
+
+    <div class="card template-box" id="shipping-confirmation">
+      <h2>Shipping Confirmation</h2>
+      <div class="template-copy">Hi [Customer Name],
+
+Your order has shipped.
+
+Shipping details:
+- Carrier: [X]
+- Tracking number: [X]
+
+Your device has been prepared for your requested setup. If you need help after delivery, use this support link:
+[Insert support link]
+
+Thank you,
+Timothy
+4MyIPTV Service</div>
+    </div>
+
+    <div class="card template-box" id="pickup-delivery">
+      <h2>Pickup or Delivery Coordination</h2>
+      <div class="template-copy">Hi [Customer Name],
+
+Your order is being prepared now.
+
+Once it is ready, I will follow up with your pickup or delivery details.
+
+Order summary:
+- Service term: [X]
+- Device: [X]
+
+If anything changes before handoff, I will update you directly.
+
+Thank you,
+Timothy
+4MyIPTV Service</div>
+    </div>
+
+    <div class="card template-box" id="support-handoff">
+      <h2>Support Handoff</h2>
+      <div class="template-copy">Hi [Customer Name],
+
+If you need help with setup or support, use the link below:
+
+[Insert support link]
+
+Please include the same name, email, or phone number used with your order so your request can be matched quickly.
+
+Thank you,
+Timothy
+4MyIPTV Service</div>
+    </div>
+
+    <div class="card template-box" id="renewal-quote">
+      <h2>Renewal Quote</h2>
+      <div class="template-copy">Hi [Customer Name],
+
+Your service renewal quote is below.
+
+Service term: [Monthly / 6 Months / 1 Year / 2 Years]
+Renewal price: [$X]
+
+Total: [$X]
+
+If this looks good, please reply:
+
+Approved
+
+Once approved, I will send your payment instructions.
+
+Thank you,
+Timothy
+4MyIPTV Service</div>
+    </div>
+
+    <div class="card template-box" id="renewal-payment">
+      <h2>Renewal Payment</h2>
+      <div class="template-copy">Hi [Customer Name],
+
+Thank you. Your renewal is approved and ready for payment.
+
+Renewal summary:
+- Service term: [X]
+- Total due: [$X]
+
+Payment link:
+[Insert payment link]
+
+After payment is completed, I will confirm receipt and follow up with your renewal completion update.
+
+Thank you,
+Timothy
+4MyIPTV Service</div>
+    </div>
+
+    <div class="card template-box" id="renewal-complete">
+      <h2>Renewal Complete</h2>
+      <div class="template-copy">Hi [Customer Name],
+
+Payment received. Thank you.
+
+Your renewal has been completed.
+
+Updated service term:
+- [X]
+
+If you need support, use this link:
+[Insert support link]
+
+Thank you,
+Timothy
+4MyIPTV Service</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Related Internal Pages</h2>
+    <div class="section-sub">
+      Use these pages alongside the templates to manage the full customer flow.
+    </div>
+    <div class="action-row">
+      <a href="admin-resource-center.html" class="action-btn">Resource Center</a>
+      <a href="admin-dashboard.html" class="action-btn">Admin Dashboard</a>
+      <a href="admin-orders.html" class="action-btn">Admin Orders</a>
+      <a href="admin-customers.html" class="action-btn">Admin Customers</a>
+      <a href="admin-checkout-link-generator.html" class="action-btn">Checkout Link Generator</a>
+    </div>
+  </div>
+
+  <div class="footer-strip">
+    <strong>4MyIPTV Service • Admin Message Templates</strong>
+    <div class="version">Version 1.0 • Last Updated: April 3, 2026</div>
+  </div>
+
+</div>
+</body>
+</html>
