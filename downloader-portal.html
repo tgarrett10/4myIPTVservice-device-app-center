@@ -3,7 +3,17 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>4MyIPTV Service Downloader Portal</title>
+<title>4MyIPTV Service Customer Support Center</title>
+<!--
+Version: 2.0
+Last Updated: April 20, 2026
+Change Notes:
+- Repositioned the page as a customer support welcome page for device customers
+- Removed duplicate button groups that pointed to the same destinations
+- Simplified the layout to one primary action row
+- Added courtesy support messaging for post-purchase support
+- Tightened getting-started guidance and support reminders
+-->
 <style>
 :root{
   --bg:#08111f;
@@ -65,7 +75,7 @@ h2{margin:0 0 6px}
   border-radius:14px;
   padding:12px 14px;
   margin-top:12px;
-  line-height:1.45;
+  line-height:1.5;
 }
 .notice{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe}
 .tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a}
@@ -84,16 +94,11 @@ h2{margin:0 0 6px}
 }
 .quicknav{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:10px;
   margin-top:16px;
 }
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media (max-width:980px){
-  .grid2{grid-template-columns:1fr}
-  .quicknav{grid-template-columns:1fr 1fr}
-}
-@media (max-width:640px){
+@media (max-width:900px){
   .quicknav{grid-template-columns:1fr}
 }
 .btn{
@@ -112,10 +117,8 @@ h2{margin:0 0 6px}
 .playbtn{background:var(--blue)}
 .directbtn{background:var(--green);color:#052e16}
 .goldbtn{background:var(--gold);color:#3b2400}
-.adminbtn{background:var(--purple)}
-.actiongrid{display:grid;gap:10px}
 .linklist{margin:0;padding-left:18px}
-.linklist li{margin:0 0 8px;line-height:1.5;color:#e2e8f0}
+.linklist li{margin:0 0 10px;line-height:1.55;color:#e2e8f0}
 .footer-strip{
   margin-top:18px;
   padding:16px 10px;
@@ -125,82 +128,64 @@ h2{margin:0 0 6px}
   font-size:.9rem;
 }
 .footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
+.support-note{
+  margin-top:14px;
+  text-align:center;
+  color:#cbd5e1;
+  font-size:.95rem;
+  line-height:1.5;
+}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <div class="card hero">
-    <h1>4MyIPTV Service Downloader Portal</h1>
+    <h1>Welcome to 4MyIPTV Service Support</h1>
     <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
-    <div class="sub">This page is optimized for opening inside Downloader. Use it as a fast and simple portal to reach the primary app, setup guidance, support resources, and service information.</div>
-
-    <div class="quicknav">
-      <a class="btn playbtn" href="index.html">Customer Start Page</a>
-      <a class="btn goldbtn" href="device-setup.html">Device Setup</a>
-      <a class="btn adminbtn" href="support.html">Support / Tips</a>
-      <a class="btn directbtn" href="sell-sheet.html">Service Overview</a>
-    </div>
+    <div class="sub">This support page is provided as a courtesy for customers who purchased a device from 4MyIPTV Service. Use the tools below for app access, setup help, and common support guidance after purchase.</div>
 
     <div class="notice">
-      <strong>Before you begin</strong><br />
-      Make sure your device is connected to the internet. Downloader is especially useful for Firestick and sideloading workflows. Android TV and Google TV users may also use direct install links when available.
+      <strong>Courtesy Support Notice</strong><br />
+      This page is included for device customers as a post-purchase support resource. It is intended to help with setup, app access, and common support needs so you can get back up and running quickly.
     </div>
 
     <div class="tip">
-      <strong>Recommended order</strong><br />
-      1. Open Device Setup Center<br />
-      2. Install IPTV Smarters Pro<br />
-      3. Enter your credentials exactly as provided<br />
+      <strong>Getting Started</strong><br />
+      1. Open Device Setup<br />
+      2. Install or reopen IPTV Smarters<br />
+      3. Enter your login details exactly as provided<br />
       4. Open Support / Tips if you need help
     </div>
-  </div>
 
-  <div class="grid2">
-    <div class="card">
-      <div class="header">
-        <div class="section-label">Install</div>
-        <h2>Main Install Actions</h2>
-      </div>
-      <div class="content actiongrid">
-        <a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank" rel="noopener noreferrer">Install IPTV Smarters</a>
-        <a class="btn playbtn" href="device-setup.html">Open Device Setup Center</a>
-        <a class="btn adminbtn" href="support.html">Open Support / Tips</a>
-      </div>
+    <div class="quicknav">
+      <a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank" rel="noopener noreferrer">Install IPTV Smarters</a>
+      <a class="btn playbtn" href="device-setup.html">Open Device Setup</a>
+      <a class="btn directbtn" href="support.html">Open Support / Tips</a>
     </div>
 
-    <div class="card">
-      <div class="header">
-        <div class="section-label">Help</div>
-        <h2>Support Actions</h2>
-      </div>
-      <div class="content actiongrid">
-        <a class="btn adminbtn" href="support.html">Open Support / Tips</a>
-        <a class="btn playbtn" href="sell-sheet.html">Open Service Overview</a>
-        <a class="btn goldbtn" href="index.html">Open Customer Start Page</a>
-      </div>
-    </div>
+    <div class="support-note">These are the main tools most customers need after purchase. Start here first before looking elsewhere.</div>
   </div>
 
   <div class="card">
     <div class="header">
-      <div class="section-label">Quick Notes</div>
-      <h2>Important Reminders</h2>
+      <div class="section-label">Important Notes</div>
+      <h2>Important Support Reminders</h2>
     </div>
     <div class="content">
       <ul class="linklist">
-        <li>Use IPTV Smarters Pro as the primary customer app.</li>
-        <li>Credentials must be entered exactly as provided.</li>
-        <li>Do not share login credentials. Shared access can cause buffering or service interruption.</li>
-        <li>If a direct install link fails, use the Device Setup Center or Support / Tips page for the next best step.</li>
-        <li>For support, use the Support / Tips page and setup resources linked above.</li>
+        <li>Use IPTV Smarters Pro as your primary customer app.</li>
+        <li>Enter your login details exactly as provided.</li>
+        <li>Do not share your login credentials.</li>
+        <li>If an install link fails, use Device Setup or Support / Tips for the next best step.</li>
+        <li>This page is your main courtesy support resource for common device help.</li>
       </ul>
     </div>
   </div>
 
   <div class="footer-strip">
-    <strong>4MyIPTV Service • Downloader Portal</strong>
-    <div class="version">Version 1.9 • Last Updated: March 2026</div>
+    <strong>4MyIPTV Service • Customer Support Center</strong>
+    <div class="version">Version 2.0 • Last Updated: April 20, 2026</div>
   </div>
 </div>
 </body>
