@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>4MyIPTV Service Admin APK Library</title>
-<!-- Version 2.6 update: Fixed FalconCast 4.2 APK URL encoding and moved StreamFire from Sports into Core IPTV as a Live TV app. -->
+<!-- Version 2.7 update: Replaced FalconCast broken direct APK link with falconcastapp.org instructions and added unsupported app guidance for Cinema HQ and other creator-disabled apps. -->
 <style>
 :root{--bg:#08111f;--panel:#101827;--text:#f8fafc;--muted:#94a3b8;--green:#22c55e;--blue:#3b82f6;--gold:#f59e0b;--purple:#9333ea;--border:#1f2937}
 *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#08111f,#0f172a);color:var(--text)}
@@ -46,7 +46,7 @@
       <a class="btn adminbtn" href="#utilities">Utility Apps</a>
     </div>
     <div class="info"><strong>How to use this page</strong><br />Open this page from the installer dashboard, choose the category you need, and use the direct download buttons below. Version and last-updated details are shown on every card for quick maintenance checks.</div>
-    <div class="tip"><strong>Maintenance Rule:</strong> Keep your spreadsheet as the master list. Update APK URLs there first, then update this page so the installer dashboard always points to a controlled internal library.</div>
+    <div class="tip"><strong>Maintenance Rule:</strong> Keep your spreadsheet as the master list. Update APK URLs there first, then update this page so the installer dashboard always points to a controlled internal library.</div><div class="tip"><strong>Unsupported App Notice:</strong> If an app is not working, it may no longer be supported by the creator. If the app no longer opens, downloads, or functions correctly, uninstall it from the device. Check back here in the future to see if the app comes back online or if a replacement option is added.</div>
   </div>
 
   <div class="card">
@@ -67,7 +67,7 @@
         <div class="approw app-row"><div class="order core">C8</div><div><div class="appname">StreamFire</div><div class="small">Live TV app.</div><div class="small meta">Version 1.2.3 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/EM6TZXCh" target="_blank" rel="noopener noreferrer">Download</a></div></div>
       </div></div>
       <div class="card" id="sports"><div class="header"><div class="section-label">Sports</div><h2>Sports APK Apps</h2><div class="sub">Sports-focused viewing applications.</div></div><div class="appgrid">
-        <div class="approw app-row"><div class="order sports">S1</div><div><div class="appname">FalconCast</div><div class="small">Sports app.</div><div class="small meta">Version 4.2 - Updated April 25, 2026</div></div><div class="actions"><a class="btn goldbtn" href="https://raw.githubusercontent.com/falconcasthoster/latestrelease/refs/heads/main/Falcon_%28V4.2%29.apk" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+        <div class="approw app-row"><div class="order sports">S1</div><div><div class="appname">FalconCast</div><div class="small">Live TV and sports app.</div><div class="small meta">Version 4.2 - Updated April 25, 2026</div><div class="small note">Direct APK host is currently returning an error. Open the FalconCast site and use their Download section for the updated version.</div></div><div class="actions"><a class="btn goldbtn" href="https://falconcastapp.org/" target="_blank" rel="noopener noreferrer">Open FalconCast Site</a></div></div>
         <div class="approw app-row"><div class="order sports">S2</div><div><div class="appname">Playfy TV</div><div class="small">Sports app.</div><div class="small meta">Version 1.5 - Updated March 27, 2026</div></div><div class="actions"><a class="btn goldbtn" href="https://www.mediafire.com/file/tfdwts9y73jpdrp/PLAYFy_TV_1.5.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
         <div class="approw app-row"><div class="order sports">S3</div><div><div class="appname">SportsFire</div><div class="small">Sports app.</div><div class="small meta">Version 2.0.8 - Updated March 27, 2026</div></div><div class="actions"><a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/bJgTC1aw" target="_blank" rel="noopener noreferrer">Download</a></div></div>
       </div></div>
@@ -75,7 +75,7 @@
     <div>
       <div class="card" id="movies"><div class="header"><div class="section-label">Movies / TV</div><h2>Movie / TV APK Apps</h2><div class="sub">Streaming and on-demand video applications.</div></div><div class="appgrid">
         <div class="approw app-row"><div class="order movie">M1</div><div><div class="appname">FlixVision</div><div class="small">Movie / TV app using direct APK link.</div><div class="small meta">Direct APK link refreshed - Updated April 13, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://fileroy.com/5pVzNoNVG7wv/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
-        <div class="approw app-row"><div class="order movie">M2</div><div><div class="appname">Cinema HQ</div><div class="small">Movie / TV app.</div><div class="small meta">Version 6.1 - Updated April 13, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/i7a0p6s4tjqzw2a/Cinema+HQ+(6.1).apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+        <div class="approw app-row"><div class="order movie">M2</div><div><div class="appname">Cinema HQ</div><div class="small">Movie / TV app.</div><div class="small meta">Version 6.1 - Updated April 13, 2026</div><div class="small note">Cinema HQ appears to be disabled by the host or no longer supported by the creator. If it does not work, uninstall it and check back here later for updates.</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/i7a0p6s4tjqzw2a/Cinema+HQ+(6.1).apk/file" target="_blank" rel="noopener noreferrer">Check Host</a></div></div>
         <div class="approw app-row"><div class="order movie">M3</div><div><div class="appname">FilmPlus</div><div class="small">Movie / TV app.</div><div class="small meta">Version 2.2.8 - Updated March 27, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/sxwa97zmes7jey6/FilmPlus_-_v2.2.8r_%25281%2529.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
         <div class="approw app-row"><div class="order movie">M4</div><div><div class="appname">BeeTV</div><div class="small">Movie / TV app. NVPlayer recommended for playback support.</div><div class="small meta">Version 4.5.9 - Updated March 27, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/5khvjyoz26umm0v/BeeTV_4.5.9_2459_06421d.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
         <div class="approw app-row"><div class="order movie">M5</div><div><div class="appname">OnStream</div><div class="small">Movie / TV app.</div><div class="small meta">Version 1.0.0 - Updated March 27, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/226ail3nl8b8s1g/onstream-fireTV.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
@@ -90,7 +90,7 @@
     </div>
   </div>
   <div class="bottom-actions"><a class="btn adminbtn" href="admin-dashboard.html">Back to Installer Dashboard</a><a class="btn playbtn" href="app-library.html">Open Public App Library</a></div>
-  <div class="footer-strip"><strong>4MyIPTV Service Admin APK Library - Controlled Internal Download Page</strong><div class="version">Version 2.6 - Last Updated: April 25, 2026</div></div>
+  <div class="footer-strip"><strong>4MyIPTV Service Admin APK Library - Controlled Internal Download Page</strong><div class="version">Version 2.7 - Last Updated: April 25, 2026</div></div>
 </div>
 <script>
 const searchBox = document.getElementById('searchBox');
