@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- GOOGLE ANALYTICS START -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TN6LYCC0DS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TN6LYCC0DS');
+</script>
+<!-- GOOGLE ANALYTICS END -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Request Service | 4MyIPTV Service</title>
@@ -524,6 +535,13 @@ form.addEventListener("submit", async function (event) {
     const result = await response.json();
 
     if (result.success) {
+      if (typeof window.trackServiceEvent === "function") {
+        window.trackServiceEvent("request_submit_success", {
+          campaign_source: getCampaignSource() || "standard",
+          service_type: document.getElementById("serviceType").value || "",
+          plan_interest: document.getElementById("planInterest").value || ""
+        });
+      }
       showSuccess("Your request was submitted successfully. Redirecting you to the confirmation page now.");
       window.scrollTo({ top: 0, behavior: "smooth" });
       setTimeout(function () {
@@ -541,5 +559,48 @@ form.addEventListener("submit", async function (event) {
   }
 });
 </script>
+<!-- CUSTOMER ANALYTICS EVENT TRACKING START -->
+<script>
+(function(){
+  function sendCustomerEvent(eventName, params){
+    if (typeof gtag !== "function") return;
+    gtag("event", eventName, params || {});
+  }
+
+  window.trackServiceEvent = sendCustomerEvent;
+
+  document.addEventListener("DOMContentLoaded", function(){
+    document.querySelectorAll("a[href]").forEach(function(link){
+      link.addEventListener("click", function(){
+        var href = link.getAttribute("href") || "";
+        var text = (link.textContent || "").replace(/\s+/g, " ").trim().slice(0, 100);
+        var eventName = "site_link_click";
+
+        if (href.indexOf("request-service.html?promo=memorial-day-2026") !== -1) {
+          eventName = "promo_offer_click";
+        } else if (href.indexOf("request-service.html") !== -1) {
+          eventName = "request_service_click";
+        } else if (href.indexOf("t.me/myiptvservice4") !== -1) {
+          eventName = "telegram_click";
+        } else if (href.indexOf("sell-sheet.html") !== -1) {
+          eventName = "sell_sheet_click";
+        } else if (href.indexOf("checkout.html") !== -1 || href.indexOf("paypal.com") !== -1) {
+          eventName = "checkout_click";
+        } else if (href.indexOf("app-library.html") !== -1 || href.indexOf("downloader-portal.html") !== -1 || href.indexOf("support.html") !== -1 || href.indexOf("online-support.html") !== -1 || href.indexOf("device-setup.html") !== -1) {
+          eventName = "support_resource_click";
+        }
+
+        sendCustomerEvent(eventName, {
+          link_text: text,
+          link_url: href,
+          page_path: window.location.pathname
+        });
+      });
+    });
+  });
+})();
+</script>
+<!-- CUSTOMER ANALYTICS EVENT TRACKING END -->
+
 </body>
 </html>
