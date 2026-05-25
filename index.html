@@ -85,10 +85,19 @@ a{color:inherit}
 .brand-logo{
   display:block;
   margin:0 auto 18px auto;
-  max-width:430px;
+  max-width:620px;
   width:100%;
   height:auto;
-  filter:drop-shadow(0 12px 24px rgba(0,0,0,.28));
+  filter:drop-shadow(0 16px 30px rgba(0,0,0,.34)) drop-shadow(0 0 18px rgba(59,130,246,.18));
+}
+.logo-stage{
+  max-width:720px;
+  margin:0 auto 22px auto;
+  padding:12px 18px;
+  border-radius:24px;
+  background:linear-gradient(135deg,rgba(255,255,255,.09),rgba(59,130,246,.10),rgba(34,197,94,.08));
+  border:1px solid rgba(148,163,184,.24);
+  box-shadow:0 16px 34px rgba(0,0,0,.22);
 }
 .logo-fallback{
   display:none;
@@ -216,6 +225,9 @@ h1{
 .price-main{font-size:42px;font-weight:900;color:#fff;line-height:1;margin:8px 0 4px}
 .price-main span{color:#86efac}
 .price-note{color:#d4dee9;font-size:14px;line-height:1.45}
+.service-only-card{background:linear-gradient(160deg,rgba(59,130,246,.16),rgba(245,158,11,.10));border-color:rgba(59,130,246,.32)}
+.small-price{font-size:32px}
+.mini-cta{margin-top:12px;width:100%;font-size:13px;min-height:40px;padding:10px 12px}
 .quick-contact{
   border-radius:16px;
   border:1px solid rgba(59,130,246,.30);
@@ -349,16 +361,18 @@ h2{
     <!-- MEMORIAL DAY PROMO START: remove after holiday weekend -->
     <section class="promo-strip" aria-label="Limited time offer">
       <div>
-        <strong>Memorial Day Weekend Special: 1 Year of Service for $100</strong>
-        <p>Regular price is $15 per month. Limited time only. Message directly for faster service or submit a request online.</p>
+        <strong>Memorial Day Weekend Special: Onn 4K Device + 1 Year Service for $140</strong>
+        <p>Fully loaded and ready to go. Free 2-day shipping anywhere in the U.S. Already have a compatible Android 14 streaming device? Ask about service-only for $100/year.</p>
       </div>
-      <a class="btn gold" href="request-service.html?promo=memorial-day-2026&source=homepage-promo" data-event="promo_offer_click">Claim Offer</a>
+      <a class="btn gold" href="request-service.html?promo=memorial-day-2026&source=homepage-promo" data-event="promo_offer_click">Claim $140 Bundle</a>
     </section>
     <!-- MEMORIAL DAY PROMO END -->
 
     <section class="card hero">
-      <img class="brand-logo" src="4My%20IPTV%20Service%20logo.png" alt="4MyIPTV Service logo" onerror="this.style.display='none';document.querySelector('.logo-fallback').style.display='block';" />
-      <div class="logo-fallback">4MyIPTV Service</div>
+      <div class="logo-stage">
+        <img class="brand-logo" src="4myiptv-logo-transparent-cropped.png" alt="4MyIPTV Service logo" onerror="this.style.display='none';document.querySelector('.logo-fallback').style.display='block';" />
+        <div class="logo-fallback">4MyIPTV Service</div>
+      </div>
       <div class="hero-inner">
         <div>
           <div class="eyebrow">Guided setup • Direct support • Flexible service options</div>
@@ -367,9 +381,9 @@ h2{
           <div class="hero-proof">
             <span>Support Available</span>
             <span>Multiple Language Channel Options</span>
-            <span>Ready-to-Go Devices Available</span>
+            <span>Fully Loaded Onn 4K Bundle Available</span>
             <span>Local Drop-Off Where Available</span>
-            <span>Shipping Available</span>
+            <span>Free 2-Day Shipping on Promo Bundle</span>
           </div>
           <div class="cta">
             <a class="btn primary" href="request-service.html?source=homepage-main-cta" data-event="request_service_click">Request Service</a>
@@ -379,9 +393,15 @@ h2{
         </div>
         <aside class="hero-side" aria-label="Limited time service offer">
           <div class="price-card">
-            <div class="price-label">Limited-Time Service Offer</div>
-            <div class="price-main"><span>$100</span> / year</div>
-            <div class="price-note">Regular service price is $15 per month. This limited-time offer is available through Memorial Day weekend.</div>
+            <div class="price-label">Memorial Day Ready-to-Go Bundle</div>
+            <div class="price-main"><span>$140</span></div>
+            <div class="price-note">Includes an Onn 4K streaming device plus 1 year of IPTV service. Device is fully loaded, ready to go, and includes free 2-day shipping anywhere in the U.S.</div>
+          </div>
+          <div class="price-card service-only-card">
+            <div class="price-label">Already Have a Device?</div>
+            <div class="price-main small-price"><span>$100</span> / year</div>
+            <div class="price-note">Service-only option for customers who already have a compatible Android 14 streaming device.</div>
+            <a class="btn outline mini-cta" href="request-service.html?promo=memorial-day-service-only&source=homepage-service-only" data-event="promo_offer_click">Request Service Only</a>
           </div>
           <div class="quick-contact">
             <strong>Want faster service?</strong>
@@ -408,7 +428,7 @@ h2{
         <div class="feature">
           <div class="icon">GO</div>
           <h3>Ready-to-Go Device Options</h3>
-          <p>Choose service only or ask about a prepared streaming device. Local drop-off and shipping options may be available depending on your order.</p>
+          <p>Choose service only if you already have a compatible device, or choose the ready-to-go Onn 4K bundle if you want the device included and prepared for you.</p>
         </div>
       </div>
     </section>
