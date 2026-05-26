@@ -318,19 +318,6 @@ h2{
 .footer-strip .version{margin-top:6px;color:#b6c2d2;font-size:.82rem}
 .disclaimer{color:#9aa9ba;font-size:12px;line-height:1.5;text-align:center;max-width:860px;margin:12px auto 0}
 
-/* MEMORIAL DAY FIREWORKS START */
-#memorialFireworksCanvas{
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  z-index:9999;
-  opacity:1;
-  transition:opacity .8s ease;
-}
-#memorialFireworksCanvas.fireworks-fade{opacity:0}
-/* MEMORIAL DAY FIREWORKS END */
 
 @media(max-width:900px){
   .hero-inner,.split{grid-template-columns:1fr}
@@ -358,15 +345,15 @@ h2{
   </div>
 
   <main class="wrap">
-    <!-- MEMORIAL DAY PROMO START: remove after holiday weekend -->
+    <!-- LIMITED-TIME OFFER START -->
     <section class="promo-strip" aria-label="Limited time offer">
       <div>
-        <strong>Memorial Day Weekend Special: Onn 4K Device + 1 Year Service for $140</strong>
-        <p>Fully loaded and ready to go. Free 2-day shipping anywhere in the U.S. Already have a compatible Android 14 streaming device? Ask about service-only for $100/year.</p>
+        <strong>Limited-Time Special: Onn 4K Device + 1 Year Service for $140</strong>
+        <p>Fully loaded and ready to go, with free 2-day shipping anywhere in the U.S. For many households, that is less than the yearly cost of renting a cable box alone. Already have a compatible Android 14 streaming device? Ask about service-only for $100/year.</p>
       </div>
-      <a class="btn gold" href="request-service.html?promo=memorial-day-2026&source=homepage-promo" data-event="promo_offer_click">Claim $140 Bundle</a>
+      <a class="btn gold" href="request-service.html?promo=limited-time-bundle&source=homepage-promo" data-event="promo_offer_click">Claim Limited-Time Bundle</a>
     </section>
-    <!-- MEMORIAL DAY PROMO END -->
+    <!-- LIMITED-TIME OFFER END -->
 
     <section class="card hero">
       <div class="logo-stage">
@@ -376,14 +363,14 @@ h2{
       <div class="hero-inner">
         <div>
           <div class="eyebrow">Guided setup • Direct support • Flexible service options</div>
-          <h1>Affordable IPTV service that is <span class="highlight">easy to start</span>.</h1>
-          <p class="sub">Get help choosing the right service option, setting up a compatible device, and staying supported after purchase. Built for customers who want a lower-cost streaming option without trying to figure everything out alone.</p>
+          <h1>Cut the cable and start streaming for <span class="highlight">less</span>.</h1>
+          <p class="sub">Get a fully loaded Onn 4K streaming device plus one year of IPTV service for one limited-time price. Setup help, direct support, and service-only options are available if you already have a compatible device.</p>
           <div class="hero-proof">
             <span>Support Available</span>
             <span>Multiple Language Channel Options</span>
-            <span>Fully Loaded Onn 4K Bundle Available</span>
+            <span>Fully Loaded Onn 4K Bundle</span>
             <span>Local Drop-Off Where Available</span>
-            <span>Free 2-Day Shipping on Promo Bundle</span>
+            <span>Free 2-Day Shipping on Bundle</span>
           </div>
           <div class="cta">
             <a class="btn primary" href="request-service.html?source=homepage-main-cta" data-event="request_service_click">Request Service</a>
@@ -393,15 +380,15 @@ h2{
         </div>
         <aside class="hero-side" aria-label="Limited time service offer">
           <div class="price-card">
-            <div class="price-label">Memorial Day Ready-to-Go Bundle</div>
+            <div class="price-label">Limited-Time Ready-to-Go Bundle</div>
             <div class="price-main"><span>$140</span></div>
-            <div class="price-note">Includes an Onn 4K streaming device plus 1 year of IPTV service. Device is fully loaded, ready to go, and includes free 2-day shipping anywhere in the U.S.</div>
+            <div class="price-note">Includes an Onn 4K streaming device plus 1 year of IPTV service. Device is fully loaded, ready to go, and includes free 2-day shipping anywhere in the U.S. Cut the cable and start saving.</div>
           </div>
           <div class="price-card service-only-card">
             <div class="price-label">Already Have a Device?</div>
             <div class="price-main small-price"><span>$100</span> / year</div>
             <div class="price-note">Service-only option for customers who already have a compatible Android 14 streaming device.</div>
-            <a class="btn outline mini-cta" href="request-service.html?promo=memorial-day-service-only&source=homepage-service-only" data-event="promo_offer_click">Request Service Only</a>
+            <a class="btn outline mini-cta" href="request-service.html?promo=limited-time-service-only&source=homepage-service-only" data-event="promo_offer_click">Request Service Only</a>
           </div>
           <div class="quick-contact">
             <strong>Want faster service?</strong>
@@ -560,7 +547,7 @@ h2{
 
     <div class="footer-strip">
       <strong>4MyIPTV Service</strong>
-      <div class="version">Homepage v2.4 • Memorial Day Conversion Version • May 24, 2026</div>
+      <div class="version">Homepage v2.6 • Limited-Time Offer Version • May 26, 2026</div>
     </div>
   </main>
 
@@ -583,119 +570,6 @@ h2{
 })();
 </script>
 
-<!-- MEMORIAL DAY FIREWORKS START -->
-<script>
-(function(){
-  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const alreadyShown = sessionStorage.getItem('memorialDayFireworksShown') === 'true';
-  if (reduceMotion || alreadyShown) return;
-  sessionStorage.setItem('memorialDayFireworksShown','true');
-
-  const canvas = document.createElement('canvas');
-  canvas.id = 'memorialFireworksCanvas';
-  canvas.setAttribute('aria-hidden','true');
-  document.body.appendChild(canvas);
-
-  const ctx = canvas.getContext('2d');
-  let width = 0;
-  let height = 0;
-  let particles = [];
-  let rockets = [];
-  let running = true;
-  const colors = ['#ff3b3b','#ffffff','#3b82f6','#fbbf24','#22c55e'];
-
-  function resize(){
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  function launchRocket(){
-    rockets.push({
-      x: Math.random() * width,
-      y: height + 10,
-      targetY: height * (0.16 + Math.random() * 0.34),
-      vx: (Math.random() - 0.5) * 2,
-      vy: -(8 + Math.random() * 4),
-      color: colors[Math.floor(Math.random() * colors.length)]
-    });
-  }
-
-  function burst(x, y, color){
-    const count = 42 + Math.floor(Math.random() * 28);
-    for(let i=0;i<count;i++){
-      const angle = Math.random() * Math.PI * 2;
-      const speed = 1.5 + Math.random() * 5.5;
-      particles.push({
-        x, y,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        life: 58 + Math.random() * 30,
-        age: 0,
-        size: 1.4 + Math.random() * 2.2,
-        color: Math.random() > .18 ? color : colors[Math.floor(Math.random() * colors.length)]
-      });
-    }
-  }
-
-  function draw(){
-    if(!running) return;
-    ctx.clearRect(0,0,width,height);
-    ctx.globalCompositeOperation = 'lighter';
-
-    rockets.forEach((r, i) => {
-      r.x += r.vx;
-      r.y += r.vy;
-      r.vy += 0.04;
-      ctx.beginPath();
-      ctx.arc(r.x, r.y, 2.4, 0, Math.PI * 2);
-      ctx.fillStyle = r.color;
-      ctx.fill();
-      if(r.y <= r.targetY || r.vy >= -1.2){
-        burst(r.x, r.y, r.color);
-        rockets.splice(i,1);
-      }
-    });
-
-    particles.forEach((p, i) => {
-      p.age++;
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vy += 0.035;
-      p.vx *= 0.985;
-      p.vy *= 0.985;
-      const alpha = Math.max(0, 1 - p.age / p.life);
-      ctx.globalAlpha = alpha;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = p.color;
-      ctx.fill();
-      if(p.age >= p.life) particles.splice(i,1);
-    });
-
-    ctx.globalAlpha = 1;
-    requestAnimationFrame(draw);
-  }
-
-  const launchTimer = setInterval(launchRocket, 350);
-  launchRocket();
-  setTimeout(launchRocket, 180);
-  setTimeout(launchRocket, 520);
-  draw();
-
-  setTimeout(function(){
-    clearInterval(launchTimer);
-    canvas.classList.add('fireworks-fade');
-    setTimeout(function(){
-      running = false;
-      window.removeEventListener('resize', resize);
-      canvas.remove();
-    }, 1200);
-  }, 6000);
-})();
-</script>
-<!-- MEMORIAL DAY FIREWORKS END -->
 
 </body>
 </html>
