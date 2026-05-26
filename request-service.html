@@ -209,7 +209,7 @@ textarea{min-height:110px;resize:vertical}
         Complete the form below so I can review what you need, confirm the right service or device option, and send you a quote for approval before payment is requested.
       </div>
       <div class="notice" style="margin-bottom:14px;background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.35);color:#fef3c7;">
-        Memorial Day Special: Choose the $140 ready-to-go bundle with an Onn 4K streaming device plus 1 year of IPTV service and free 2-day shipping anywhere in the U.S. If you already have a compatible Android 14 streaming device, you can request service-only for $100/year.
+        Limited-Time Special: Choose the $140 ready-to-go bundle with an Onn 4K streaming device plus 1 year of IPTV service and free 2-day shipping anywhere in the U.S. Cut the cable and start saving. If you already have a compatible Android 14 streaming device, you can request service-only for $100/year.
       </div>
   <section class="card">
     <h2>Getting Started Is Simple</h2>
@@ -262,8 +262,8 @@ textarea{min-height:110px;resize:vertical}
             <label for="serviceType">Select Your Setup</label>
             <select id="serviceType" name="serviceType" required>
               <option value="">Select an option</option>
-              <option value="Memorial Day Special - Onn 4K Device + 1 Year IPTV Service - $140 - Free 2-Day Shipping">Memorial Day Special - Onn 4K Device + 1 Year IPTV Service - $140 - Free 2-Day Shipping</option>
-              <option value="Memorial Day Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device">Memorial Day Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device</option>
+              <option value="Limited-Time Special - Onn 4K Device + 1 Year IPTV Service - $140 - Free 2-Day Shipping">Limited-Time Special - Onn 4K Device + 1 Year IPTV Service - $140 - Free 2-Day Shipping</option>
+              <option value="Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device">Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device</option>
               <option value="IPTV Service Only">IPTV Service Only</option>
               <option value="IPTV Service + Device">IPTV Service + Device</option>
               <option value="Renewal or Existing Customer Help">Renewal or Existing Customer Help</option>
@@ -274,8 +274,8 @@ textarea{min-height:110px;resize:vertical}
             <label for="planInterest">Plan Interest</label>
             <select id="planInterest" name="planInterest" required>
               <option value="">Select a plan</option>
-              <option value="Memorial Day Special - 1 Year IPTV Service + Onn 4K Device - $140">Memorial Day Special - 1 Year IPTV Service + Onn 4K Device - $140</option>
-              <option value="Memorial Day Service Only - 1 Year IPTV Service - $100">Memorial Day Service Only - 1 Year IPTV Service - $100</option>
+              <option value="Limited-Time Bundle - 1 Year IPTV Service + Onn 4K Device - $140">Limited-Time Bundle - 1 Year IPTV Service + Onn 4K Device - $140</option>
+              <option value="Limited-Time Service Only - 1 Year IPTV Service - $100">Limited-Time Service Only - 1 Year IPTV Service - $100</option>
               <option value="Monthly - $15">Monthly - $15</option>
               <option value="6 Months - $70">6 Months - $70</option>
               <option value="1 Year - $120">1 Year - $120</option>
@@ -389,20 +389,20 @@ const followupAcknowledgement = document.getElementById("followupAcknowledgement
 const submitButton = document.getElementById("submitButton");
 const successMessage = document.getElementById("successMessage");
 const errorMessage = document.getElementById("errorMessage");
-const MEMORIAL_DAY_PROMO_VALUE = "Memorial Day Special - Onn 4K Device + 1 Year IPTV Service - $140 - Free 2-Day Shipping";
-const MEMORIAL_DAY_PLAN_VALUE = "Memorial Day Special - 1 Year IPTV Service + Onn 4K Device - $140";
-const MEMORIAL_DAY_SERVICE_ONLY_VALUE = "Memorial Day Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device";
-const MEMORIAL_DAY_SERVICE_ONLY_PLAN_VALUE = "Memorial Day Service Only - 1 Year IPTV Service - $100";
-const MEMORIAL_DAY_SOURCE = "Memorial Day Facebook Offer - May 24/25, 2026";
-const MEMORIAL_DAY_SERVICE_ONLY_SOURCE = "Memorial Day Service Only Offer - May 24/25, 2026";
-const MEMORIAL_DAY_QUERY = "memorial-day-2026";
-const MEMORIAL_DAY_SERVICE_ONLY_QUERY = "memorial-day-service-only";
+const LIMITED_TIME_BUNDLE_VALUE = "Limited-Time Special - Onn 4K Device + 1 Year IPTV Service - $140 - Free 2-Day Shipping";
+const LIMITED_TIME_BUNDLE_PLAN_VALUE = "Limited-Time Bundle - 1 Year IPTV Service + Onn 4K Device - $140";
+const LIMITED_TIME_SERVICE_ONLY_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device";
+const LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100";
+const LIMITED_TIME_BUNDLE_SOURCE = "Limited-Time Onn 4K Bundle Offer";
+const LIMITED_TIME_SERVICE_ONLY_SOURCE = "Limited-Time Service Only Offer";
+const LIMITED_TIME_BUNDLE_QUERY = "limited-time-bundle";
+const LIMITED_TIME_SERVICE_ONLY_QUERY = "limited-time-service-only";
 
 function toggleDeviceField() {
   const needsDeviceChoice =
     serviceType.value === "IPTV Service + Device" ||
     serviceType.value === "Not Sure - Help Me Choose" ||
-    serviceType.value === MEMORIAL_DAY_PROMO_VALUE;
+    serviceType.value === LIMITED_TIME_BUNDLE_VALUE;
 
   deviceFieldWrap.classList.toggle("hidden", !needsDeviceChoice);
   preferredDevice.required = needsDeviceChoice;
@@ -418,8 +418,8 @@ function updateSubmitState() {
 }
 
 function deriveNeedDeviceValue() {
-  if (serviceType.value === MEMORIAL_DAY_PROMO_VALUE) {
-    return "Yes - Memorial Day Onn 4K Device Included";
+  if (serviceType.value === LIMITED_TIME_BUNDLE_VALUE) {
+    return "Yes - Limited-Time Onn 4K Device Included";
   }
   if (serviceType.value === "IPTV Service + Device") {
     return "Yes - I need a device";
@@ -434,23 +434,23 @@ function getCampaignSource() {
   const params = new URLSearchParams(window.location.search);
   const promoParam = params.get("promo");
   const planInterest = document.getElementById("planInterest").value;
-  const bundleSelected = serviceType.value === MEMORIAL_DAY_PROMO_VALUE || planInterest === MEMORIAL_DAY_PLAN_VALUE;
-  const serviceOnlySelected = serviceType.value === MEMORIAL_DAY_SERVICE_ONLY_VALUE || planInterest === MEMORIAL_DAY_SERVICE_ONLY_PLAN_VALUE;
-  if (promoParam === MEMORIAL_DAY_SERVICE_ONLY_QUERY || serviceOnlySelected) return MEMORIAL_DAY_SERVICE_ONLY_SOURCE;
-  if (promoParam === MEMORIAL_DAY_QUERY || bundleSelected) return MEMORIAL_DAY_SOURCE;
+  const bundleSelected = serviceType.value === LIMITED_TIME_BUNDLE_VALUE || planInterest === LIMITED_TIME_BUNDLE_PLAN_VALUE;
+  const serviceOnlySelected = serviceType.value === LIMITED_TIME_SERVICE_ONLY_VALUE || planInterest === LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE;
+  if (promoParam === LIMITED_TIME_SERVICE_ONLY_QUERY || serviceOnlySelected) return LIMITED_TIME_SERVICE_ONLY_SOURCE;
+  if (promoParam === LIMITED_TIME_BUNDLE_QUERY || bundleSelected) return LIMITED_TIME_BUNDLE_SOURCE;
   return "";
 }
 
 function applyPromoFromUrl() {
   const params = new URLSearchParams(window.location.search);
-  if (params.get("promo") === MEMORIAL_DAY_SERVICE_ONLY_QUERY) {
-    serviceType.value = MEMORIAL_DAY_SERVICE_ONLY_VALUE;
-    document.getElementById("planInterest").value = MEMORIAL_DAY_SERVICE_ONLY_PLAN_VALUE;
+  if (params.get("promo") === LIMITED_TIME_SERVICE_ONLY_QUERY) {
+    serviceType.value = LIMITED_TIME_SERVICE_ONLY_VALUE;
+    document.getElementById("planInterest").value = LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE;
     preferredDevice.value = "";
     toggleDeviceField();
-  } else if (params.get("promo") === MEMORIAL_DAY_QUERY) {
-    serviceType.value = MEMORIAL_DAY_PROMO_VALUE;
-    document.getElementById("planInterest").value = MEMORIAL_DAY_PLAN_VALUE;
+  } else if (params.get("promo") === LIMITED_TIME_BUNDLE_QUERY) {
+    serviceType.value = LIMITED_TIME_BUNDLE_VALUE;
+    document.getElementById("planInterest").value = LIMITED_TIME_BUNDLE_PLAN_VALUE;
     preferredDevice.value = "onn. 4K Streaming Device - $55";
     toggleDeviceField();
   }
@@ -475,7 +475,7 @@ function buildPayload() {
     planInterest: document.getElementById("planInterest").value || "",
     tvCount: document.getElementById("tvCount").value || "",
     campaignSource: getCampaignSource(),
-    promoCode: getCampaignSource() === MEMORIAL_DAY_SERVICE_ONLY_SOURCE ? MEMORIAL_DAY_SERVICE_ONLY_QUERY : (getCampaignSource() ? MEMORIAL_DAY_QUERY : ""),
+    promoCode: getCampaignSource() === LIMITED_TIME_SERVICE_ONLY_SOURCE ? LIMITED_TIME_SERVICE_ONLY_QUERY : (getCampaignSource() ? LIMITED_TIME_BUNDLE_QUERY : ""),
     paymentStatus: "QUOTE PENDING",
     orderStatus: "NEW",
     deliveryStatus: "Not Started",
@@ -591,7 +591,7 @@ form.addEventListener("submit", async function (event) {
         var text = (link.textContent || "").replace(/\s+/g, " ").trim().slice(0, 100);
         var eventName = "site_link_click";
 
-        if (href.indexOf("request-service.html?promo=memorial-day-2026") !== -1) {
+        if (href.indexOf("request-service.html?promo=limited-time-bundle") !== -1) {
           eventName = "promo_offer_click";
         } else if (href.indexOf("request-service.html") !== -1) {
           eventName = "request_service_click";
