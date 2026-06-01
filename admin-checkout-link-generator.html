@@ -245,6 +245,52 @@
       margin-top: 8px;
     }
 
+
+
+    .quote-request-panel {
+      background: rgba(34, 197, 94, 0.06);
+      border: 1px solid rgba(34, 197, 94, 0.22);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 18px;
+    }
+
+    .quote-request-controls {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    @media (max-width: 720px) {
+      .quote-request-controls {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .quote-request-status {
+      margin-top: 10px;
+      color: #bbf7d0;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .quote-request-status.error {
+      color: #fecaca;
+    }
+
+    .selected-request-summary {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(2, 6, 23, 0.55);
+      color: #cbd5e1;
+      font-size: 13px;
+      line-height: 1.5;
+      display: none;
+    }
+
     .footer-note {
       text-align: center;
       color: #94a3b8;
@@ -295,6 +341,21 @@
           <p class="subhead">
             Enter the final approved values only. These become the locked checkout details.
           </p>
+
+          <div class="quote-request-panel">
+            <label for="quoteRequestSelect">Select Online Quote Request</label>
+            <div class="quote-request-controls">
+              <select id="quoteRequestSelect">
+                <option value="">Loading online quote requests...</option>
+              </select>
+              <button class="btn-secondary" id="refreshQuoteRequestsBtn" type="button">Refresh Requests</button>
+            </div>
+            <div id="quoteRequestStatus" class="quote-request-status">Pulling recent quote requests from Admin Orders.</div>
+            <div id="selectedRequestSummary" class="selected-request-summary"></div>
+            <div class="note">
+              Select a customer request to auto-fill the quote fields. Review the amount, fulfillment, and address before sending the checkout link.
+            </div>
+          </div>
 
           <div class="field-row">
             <div class="field">
@@ -487,6 +548,9 @@
 
   <script>
     const checkoutBaseUrl = "https://tgarrett10.github.io/4myIPTVservice-device-app-center/checkout.html";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzWO65X3uTAbWldiacxCD7ItLu5zpfZe1fDTWUlMGJyIPJXWcXaOsDXWHMQV-3-Ch7IcQ/exec";
+
+    let onlineQuoteRequests = [];
 
     const ids = [
       "customerName",
@@ -507,6 +571,11 @@
       return document.getElementById(id);
     }
 
+    function safeRaw(value) {
+      if (value === null || value === undefined) return "";
+      return String(value).trim();
+    }
+
     function valueOrDash(value) {
       return value && String(value).trim() ? String(value).trim() : "-";
     }
@@ -525,6 +594,22 @@
       const box = byId("statusMessage");
       box.className = "status";
       box.textContent = "";
+    }
+
+    function setQuoteRequestStatus(message, isError) {
+      const box = byId("quoteRequestStatus");
+      if (!box) return;
+      box.textContent = message;
+      box.className = isError ? "quote-request-status error" : "quote-request-status";
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
     }
 
     function getFormData() {
@@ -647,10 +732,303 @@
         }
       });
 
+      const quoteSelect = byId("quoteRequestSelect");
+      if (quoteSelect) quoteSelect.value = "";
+
+      const summary = byId("selectedRequestSummary");
+      if (summary) {
+        summary.style.display = "none";
+        summary.innerHTML = "";
+      }
+
       byId("status").value = "Pending";
       byId("generatedUrl").value = "";
       clearMessage();
       updatePreview();
+    }
+
+    function normalizeStatus(status) {
+      return safeRaw(status).toUpperCase();
+    }
+
+    function formatDateForDropdown(value) {
+      const raw = safeRaw(value);
+      if (!raw) return "No date";
+
+      const date = new Date(raw);
+      if (Number.isNaN(date.getTime())) return raw;
+
+      return date.toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+      });
+    }
+
+    function getCombinedOrderText(order) {
+      return [
+        order.orderType,
+        order.deviceSelected,
+        order.customerType,
+        order.preferredContact,
+        order.preferredReplyTime,
+        order.planInterest,
+        order.tvCount,
+        order.fulfillmentType,
+        order.orderStatus,
+        order.paymentStatus,
+        order.deliveryStatus,
+        order.supportRoute,
+        order.campaignSource,
+        order.promoCode,
+        order.notes
+      ].map(safeRaw).join(" | ");
+    }
+
+    function isLikelyOpenQuoteRequest(order) {
+      const status = normalizeStatus(order.orderStatus);
+      const paymentStatus = normalizeStatus(order.paymentStatus);
+      const deliveryStatus = normalizeStatus(order.deliveryStatus);
+      const text = getCombinedOrderText(order).toLowerCase();
+
+      if (status === "COMPLETE" || paymentStatus === "PAID" || deliveryStatus === "COMPLETED") {
+        return false;
+      }
+
+      return (
+        paymentStatus.includes("QUOTE") ||
+        status === "NEW" ||
+        text.includes("quote") ||
+        text.includes("limited-time") ||
+        text.includes("request-service.html")
+      );
+    }
+
+    function buildQuoteDropdownLabel(order) {
+      const name = safeRaw(order.customerName || order.fullName) || "Unnamed Customer";
+      const date = formatDateForDropdown(order.createdAt);
+      const plan = safeRaw(order.planInterest || order.orderType || order.deviceSelected || "Quote Request");
+      const status = safeRaw(order.paymentStatus || order.orderStatus || "Quote Pending");
+      return name + " | " + plan + " | " + status + " | " + date;
+    }
+
+    function renderQuoteRequestOptions() {
+      const select = byId("quoteRequestSelect");
+      if (!select) return;
+
+      select.innerHTML = "";
+
+      const placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.textContent = onlineQuoteRequests.length ? "Select a recent online quote request" : "No open quote requests found";
+      select.appendChild(placeholder);
+
+      onlineQuoteRequests.forEach(function(order, index) {
+        const option = document.createElement("option");
+        option.value = String(index);
+        option.textContent = buildQuoteDropdownLabel(order);
+        select.appendChild(option);
+      });
+    }
+
+    async function loadQuoteRequests() {
+      const select = byId("quoteRequestSelect");
+      if (!select) return;
+
+      select.innerHTML = '<option value="">Loading online quote requests...</option>';
+      setQuoteRequestStatus("Pulling recent quote requests from Admin Orders.", false);
+
+      try {
+        const response = await fetch(APPS_SCRIPT_URL + "?action=getOrders", {
+          method: "GET",
+          redirect: "follow"
+        });
+
+        if (!response.ok) {
+          throw new Error("HTTP " + response.status + " returned from Apps Script.");
+        }
+
+        const data = await response.json();
+
+        if (!data.success || !Array.isArray(data.orders)) {
+          throw new Error(data.message || "No orders array was returned.");
+        }
+
+        onlineQuoteRequests = data.orders
+          .filter(isLikelyOpenQuoteRequest)
+          .sort(function(a, b) {
+            return safeRaw(b.createdAt).localeCompare(safeRaw(a.createdAt));
+          })
+          .slice(0, 75);
+
+        renderQuoteRequestOptions();
+        setQuoteRequestStatus(onlineQuoteRequests.length + " open quote request(s) loaded. Select one to auto-fill this form.", false);
+      } catch (error) {
+        console.error("Quote Request Load Error:", error);
+        onlineQuoteRequests = [];
+        renderQuoteRequestOptions();
+        setQuoteRequestStatus("Unable to load quote requests. You can still manually enter the approved order details. " + error.message, true);
+      }
+    }
+
+    function parseDollarAmountFromText(text) {
+      const raw = safeRaw(text);
+      if (!raw) return "";
+
+      const matches = [...raw.matchAll(/\$\s*([0-9]+(?:\.[0-9]{1,2})?)/g)];
+      if (!matches.length) return "";
+
+      const amounts = matches
+        .map(match => Number(match[1]))
+        .filter(amount => !Number.isNaN(amount) && amount > 0);
+
+      if (!amounts.length) return "";
+      return String(Math.max(...amounts).toFixed(2));
+    }
+
+    function inferApprovedAmount(order) {
+      const text = getCombinedOrderText(order).toLowerCase();
+
+      if (text.includes("limited-time service only") || text.includes("service only - 1 year") || text.includes("service-only")) {
+        return "100.00";
+      }
+
+      if (text.includes("limited-time") && (text.includes("bundle") || text.includes("device + 1 year") || text.includes("1 year iptv service + onn"))) {
+        return "140.00";
+      }
+
+      return parseDollarAmountFromText(getCombinedOrderText(order));
+    }
+
+    function inferCategory(order) {
+      const text = getCombinedOrderText(order).toLowerCase();
+
+      if (text.includes("renewal")) return "Renewal";
+      if (text.includes("support")) return "Support";
+      if (text.includes("service only") || text.includes("customer has compatible")) return "Service Only";
+      if (text.includes("device") || text.includes("onn") || text.includes("streamer") || text.includes("shield")) return "Device + Service";
+      return "Custom Quote";
+    }
+
+    function inferDevice(order) {
+      const text = getCombinedOrderText(order).toLowerCase();
+
+      if (text.includes("onn") && text.includes("pro")) return "Onn 4K Pro";
+      if (text.includes("onn") && text.includes("plus")) return "Onn 4K Plus";
+      if (text.includes("onn")) return "Onn 4K";
+      if (text.includes("google tv streamer")) return "Google TV Streamer 4K";
+      if (text.includes("shield")) return "NVIDIA Shield TV Pro";
+      if (text.includes("device")) return "Other / Custom";
+      return "";
+    }
+
+    function inferFulfillment(order) {
+      const raw = safeRaw(order.fulfillmentType);
+      const text = getCombinedOrderText(order).toLowerCase();
+      const known = ["Shipping", "Local Delivery", "Digital Setup", "Cash App", "PayPal", "Crypto"];
+
+      const matchedKnown = known.find(option => raw.toLowerCase() === option.toLowerCase());
+      if (matchedKnown) return matchedKnown;
+
+      if (text.includes("ship") || text.includes("free 2-day")) return "Shipping";
+      if (text.includes("local") || text.includes("drop off") || text.includes("delivery")) return "Local Delivery";
+      if (text.includes("cash app") || text.includes("cashapp")) return "Cash App";
+      if (text.includes("paypal")) return "PayPal";
+      if (text.includes("crypto")) return "Crypto";
+      if (inferCategory(order) === "Service Only") return "Digital Setup";
+      return "";
+    }
+
+    function inferService(order) {
+      const planInterest = safeRaw(order.planInterest);
+      const orderType = safeRaw(order.orderType);
+
+      if (planInterest) return planInterest;
+      if (orderType) return orderType;
+      return "Custom IPTV Quote";
+    }
+
+    function buildDescriptionFromOrder(order) {
+      const service = inferService(order);
+      const category = inferCategory(order);
+      const device = inferDevice(order);
+      const tvCount = safeRaw(order.tvCount);
+      const pieces = [service];
+
+      if (category) pieces.push("Category: " + category);
+      if (device) pieces.push("Device: " + device);
+      if (tvCount) pieces.push("TV Count: " + tvCount);
+
+      return pieces.join(" | ");
+    }
+
+    function buildNotesFromOrder(order) {
+      const pieces = [];
+
+      if (safeRaw(order.rowNumber)) pieces.push("Order Row: " + safeRaw(order.rowNumber));
+      if (safeRaw(order.createdAt)) pieces.push("Request Date: " + safeRaw(order.createdAt));
+      if (safeRaw(order.preferredContact)) pieces.push("Preferred Contact: " + safeRaw(order.preferredContact));
+      if (safeRaw(order.preferredReplyTime)) pieces.push("Best Time: " + safeRaw(order.preferredReplyTime));
+      if (safeRaw(order.tvCount)) pieces.push("TV Count: " + safeRaw(order.tvCount));
+      if (safeRaw(order.notes)) pieces.push("Original Notes: " + safeRaw(order.notes));
+
+      return pieces.join(" | ");
+    }
+
+    function showSelectedRequestSummary(order) {
+      const summary = byId("selectedRequestSummary");
+      if (!summary) return;
+
+      summary.style.display = "block";
+      summary.innerHTML = [
+        "<strong>Selected Request</strong>",
+        "Name: " + escapeHtml(safeRaw(order.customerName || order.fullName) || "-"),
+        "Email: " + escapeHtml(safeRaw(order.emailAddress || order.email) || "-"),
+        "Phone: " + escapeHtml(safeRaw(order.phoneNumber || order.phone) || "-"),
+        "Requested: " + escapeHtml(inferService(order)),
+        "Payment Status: " + escapeHtml(safeRaw(order.paymentStatus) || "-"),
+        "Order Status: " + escapeHtml(safeRaw(order.orderStatus) || "-")
+      ].join("<br>");
+    }
+
+    function autofillFromQuoteRequest(order) {
+      byId("customerName").value = safeRaw(order.customerName || order.fullName);
+      byId("customerEmail").value = safeRaw(order.emailAddress || order.email);
+      byId("customerPhone").value = safeRaw(order.phoneNumber || order.phone);
+      byId("customerAddress").value = safeRaw(order.customerAddress || order.address || order.shippingAddress);
+      byId("service").value = inferService(order);
+      byId("category").value = inferCategory(order);
+      byId("device").value = inferDevice(order);
+      byId("fulfillment").value = inferFulfillment(order);
+      byId("amount").value = inferApprovedAmount(order);
+      byId("status").value = "Pending";
+      byId("description").value = buildDescriptionFromOrder(order);
+      byId("notes").value = buildNotesFromOrder(order);
+      byId("generatedUrl").value = "";
+
+      clearMessage();
+      updatePreview();
+      showSelectedRequestSummary(order);
+      showMessage("Customer request loaded. Review amount, fulfillment, and address before generating the checkout link.", "success");
+    }
+
+    function handleQuoteRequestSelection() {
+      const select = byId("quoteRequestSelect");
+      const selectedIndex = Number(select.value);
+
+      if (select.value === "" || Number.isNaN(selectedIndex)) {
+        const summary = byId("selectedRequestSummary");
+        if (summary) {
+          summary.style.display = "none";
+          summary.innerHTML = "";
+        }
+        return;
+      }
+
+      const order = onlineQuoteRequests[selectedIndex];
+      if (!order) return;
+
+      autofillFromQuoteRequest(order);
     }
 
     ids.forEach(function(id) {
@@ -662,10 +1040,13 @@
     byId("copyBtn").addEventListener("click", copyLink);
     byId("openBtn").addEventListener("click", openLink);
     byId("resetBtn").addEventListener("click", resetForm);
+    byId("quoteRequestSelect").addEventListener("change", handleQuoteRequestSelection);
+    byId("refreshQuoteRequestsBtn").addEventListener("click", loadQuoteRequests);
 
     updatePreview();
+    loadQuoteRequests();
   </script>
 
-  <div style="max-width:1100px;margin:24px auto 12px auto;padding:0 16px;text-align:center;font-size:12px;opacity:0.75;">Version 1.0 • April 2026 • 4MyIPTV Service | Checkout Link Generator</div>
+  <div style="max-width:1100px;margin:24px auto 12px auto;padding:0 16px;text-align:center;font-size:12px;opacity:0.75;">Version 1.1 • June 2026 • 4MyIPTV Service | Checkout Link Generator</div>
 </body>
 </html>
