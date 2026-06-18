@@ -280,6 +280,10 @@ h3{margin:0 0 10px 0}
   </div>
 
   
+  <div class="notice" style="margin-top:14px;">
+    If you selected a limited Onn device bundle, your device option is reserved after payment is confirmed. Specials are available while supplies last.
+  </div>
+
   <div class="helper-text">
     Your request is in progress. The next message you receive should guide you through quote approval, payment, and the next setup step.
   </div>
@@ -307,7 +311,7 @@ h3{margin:0 0 10px 0}
         var text = (link.textContent || "").replace(/\s+/g, " ").trim().slice(0, 100);
         var eventName = "site_link_click";
 
-        if (href.indexOf("request-service.html?promo=memorial-day-2026") !== -1) {
+        if (href.indexOf("request-service.html?promo=memorial-day-2026") !== -1 || href.indexOf("request-service.html?promo=summer-streaming-special") !== -1 || href.indexOf("request-service.html?promo=firestick-upgrade-bundle") !== -1 || href.indexOf("request-service.html?promo=4k-streaming-bundle") !== -1 || href.indexOf("request-service.html?promo=4k-plus-upgrade-bundle") !== -1) {
           eventName = "promo_offer_click";
         } else if (href.indexOf("request-service.html") !== -1) {
           eventName = "request_service_click";
