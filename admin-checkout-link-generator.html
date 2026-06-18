@@ -405,6 +405,7 @@
               <label for="device">Approved Device</label>
               <select id="device">
                 <option value="">Select device</option>
+                <option value="Onn Full HD">Onn Full HD</option>
                 <option value="Onn 4K">Onn 4K</option>
                 <option value="Onn 4K Plus">Onn 4K Plus</option>
                 <option value="Onn 4K Pro">Onn 4K Pro</option>
@@ -893,7 +894,10 @@
         return "100.00";
       }
 
-      if (text.includes("limited-time") && (text.includes("bundle") || text.includes("device + 1 year") || text.includes("1 year iptv service + onn"))) {
+      if (text.includes("4k plus upgrade bundle") || (text.includes("onn 4k plus") && text.includes("180"))) return "180.00";
+      if (text.includes("4k streaming bundle") || (text.includes("onn 4k") && text.includes("160"))) return "160.00";
+      if (text.includes("firestick upgrade bundle") || text.includes("onn full hd") || (text.includes("summer streaming special") && text.includes("140"))) return "140.00";
+      if ((text.includes("limited-time") || text.includes("summer streaming special")) && (text.includes("bundle") || text.includes("device + 1 year") || text.includes("1 year iptv service + onn"))) {
         return "140.00";
       }
 
@@ -915,6 +919,7 @@
 
       if (text.includes("onn") && text.includes("pro")) return "Onn 4K Pro";
       if (text.includes("onn") && text.includes("plus")) return "Onn 4K Plus";
+      if (text.includes("full hd") || text.includes("firestick upgrade")) return "Onn Full HD";
       if (text.includes("onn")) return "Onn 4K";
       if (text.includes("google tv streamer")) return "Google TV Streamer 4K";
       if (text.includes("shield")) return "NVIDIA Shield TV Pro";
