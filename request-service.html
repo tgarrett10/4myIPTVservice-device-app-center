@@ -209,7 +209,7 @@ textarea{min-height:110px;resize:vertical}
         Complete the form below so I can review what you need, confirm the right service or device option, and send you a quote for approval before payment is requested.
       </div>
       <div class="notice" style="margin-bottom:14px;background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.35);color:#fef3c7;">
-        Limited-Time Special: Choose the $140 ready-to-go bundle with an Onn 4K streaming device plus 1 year of IPTV service and free 2-day shipping anywhere in the U.S. Cut the cable and start saving. If you already have a compatible Android 14 streaming device, you can request service-only for $100/year.
+        Summer Streaming Special: Limited Onn device bundles are available while supplies last. Great Father’s Day or graduation gift for dads, grads, and sports fans. Choose the Firestick Upgrade Bundle for $140, the 4K Streaming Bundle for $160, or the 4K Plus Upgrade Bundle for $180. If you already have a compatible Android 14 streaming device, you can request service-only for $100/year.
       </div>
   <section class="card">
     <h2>Getting Started Is Simple</h2>
@@ -262,8 +262,10 @@ textarea{min-height:110px;resize:vertical}
             <label for="serviceType">Select Your Setup</label>
             <select id="serviceType" name="serviceType" required>
               <option value="">Select an option</option>
-              <option value="Limited-Time Special - Onn 4K Device + 1 Year IPTV Service - $140 - Free 2-Day Shipping">Limited-Time Special - Onn 4K Device + 1 Year IPTV Service - $140 - Free 2-Day Shipping</option>
-              <option value="Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device">Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device</option>
+              <option value="Summer Streaming Special - Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140">Summer Streaming Special - Firestick Upgrade Bundle - $140</option>
+              <option value="Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited">Summer Streaming Special - 4K Streaming Bundle - $160 - Very Limited</option>
+              <option value="Summer Streaming Special - 4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180">Summer Streaming Special - 4K Plus Upgrade Bundle - $180</option>
+              <option value="Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device">Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device</option>
               <option value="IPTV Service Only">IPTV Service Only</option>
               <option value="IPTV Service + Device">IPTV Service + Device</option>
               <option value="Renewal or Existing Customer Help">Renewal or Existing Customer Help</option>
@@ -274,8 +276,10 @@ textarea{min-height:110px;resize:vertical}
             <label for="planInterest">Plan Interest</label>
             <select id="planInterest" name="planInterest" required>
               <option value="">Select a plan</option>
-              <option value="Limited-Time Bundle - 1 Year IPTV Service + Onn 4K Device - $140">Limited-Time Bundle - 1 Year IPTV Service + Onn 4K Device - $140</option>
-              <option value="Limited-Time Service Only - 1 Year IPTV Service - $100">Limited-Time Service Only - 1 Year IPTV Service - $100</option>
+              <option value="Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140">Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140</option>
+              <option value="4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited">4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited</option>
+              <option value="4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180">4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180</option>
+              <option value="Limited-Time Service Only - 1 Year IPTV Service - $100">Service Only - 1 Year IPTV Service - $100</option>
               <option value="Monthly - $15">Monthly - $15</option>
               <option value="6 Months - $70">6 Months - $70</option>
               <option value="1 Year - $120">1 Year - $120</option>
@@ -290,13 +294,10 @@ textarea{min-height:110px;resize:vertical}
             <label for="preferredDevice">Preferred Device</label>
             <select id="preferredDevice" name="preferredDevice">
               <option value="">Select a device</option>
-              <option value="onn. Full HD Streaming Device - $35">onn. Full HD Streaming Device - $35</option>
-              <option value="onn. 4K Streaming Device - $55">onn. 4K Streaming Device - $55</option>
-              <option value="onn. 4K Plus - $65 - Our Recommendation">onn. 4K Plus - $65 - Our Recommendation</option>
-              <option value="onn. 4K Pro - $85">onn. 4K Pro - $85</option>
-              <option value="Android TV Box with IPTV Setup - $89">Android TV Box with IPTV Setup - $89</option>
-              <option value="Google TV Streamer 4K - $150 - Our Premium Recommendation">Google TV Streamer 4K - $150 - Our Premium Recommendation</option>
-              <option value="NVIDIA SHIELD TV Pro - $300">NVIDIA SHIELD TV Pro - $300</option>
+              <option value="Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140">Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140</option>
+              <option value="Onn 4K Streaming Device - 4K Streaming Bundle - $160 - Very Limited">Onn 4K Streaming Device - 4K Streaming Bundle - $160 - Very Limited</option>
+              <option value="Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180">Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180</option>
+              <option value="Other Device Option - Custom Quote">Other Device Option - Custom Quote</option>
               <option value="Not Sure - Help Me Choose">Not Sure - Help Me Choose</option>
             </select>
             <div class="note">Choose a device if you already know what you want. Otherwise select the help option.</div>
@@ -389,20 +390,35 @@ const followupAcknowledgement = document.getElementById("followupAcknowledgement
 const submitButton = document.getElementById("submitButton");
 const successMessage = document.getElementById("successMessage");
 const errorMessage = document.getElementById("errorMessage");
-const LIMITED_TIME_BUNDLE_VALUE = "Limited-Time Special - Onn 4K Device + 1 Year IPTV Service - $140 - Free 2-Day Shipping";
-const LIMITED_TIME_BUNDLE_PLAN_VALUE = "Limited-Time Bundle - 1 Year IPTV Service + Onn 4K Device - $140";
+const FIRESTICK_UPGRADE_VALUE = "Summer Streaming Special - Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140";
+const FOUR_K_BUNDLE_VALUE = "Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited";
+const FOUR_K_PLUS_BUNDLE_VALUE = "Summer Streaming Special - 4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180";
 const LIMITED_TIME_SERVICE_ONLY_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device";
+const FIRESTICK_UPGRADE_PLAN_VALUE = "Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140";
+const FOUR_K_BUNDLE_PLAN_VALUE = "4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited";
+const FOUR_K_PLUS_BUNDLE_PLAN_VALUE = "4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180";
 const LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100";
-const LIMITED_TIME_BUNDLE_SOURCE = "Limited-Time Onn 4K Bundle Offer";
 const LIMITED_TIME_SERVICE_ONLY_SOURCE = "Limited-Time Service Only Offer";
-const LIMITED_TIME_BUNDLE_QUERY = "limited-time-bundle";
+const SUMMER_SPECIAL_SOURCE = "Summer Streaming Special - Limited Onn Device Bundles";
 const LIMITED_TIME_SERVICE_ONLY_QUERY = "limited-time-service-only";
+const SUMMER_SPECIAL_QUERY = "summer-streaming-special";
+const FIRESTICK_UPGRADE_QUERY = "firestick-upgrade-bundle";
+const FOUR_K_BUNDLE_QUERY = "4k-streaming-bundle";
+const FOUR_K_PLUS_BUNDLE_QUERY = "4k-plus-upgrade-bundle";
+const BUNDLE_OPTIONS = {
+  [FIRESTICK_UPGRADE_VALUE]: { plan: FIRESTICK_UPGRADE_PLAN_VALUE, device: "Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140" },
+  [FOUR_K_BUNDLE_VALUE]: { plan: FOUR_K_BUNDLE_PLAN_VALUE, device: "Onn 4K Streaming Device - 4K Streaming Bundle - $160 - Very Limited" },
+  [FOUR_K_PLUS_BUNDLE_VALUE]: { plan: FOUR_K_PLUS_BUNDLE_PLAN_VALUE, device: "Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180" }
+};
+const BUNDLE_PLAN_VALUES = [FIRESTICK_UPGRADE_PLAN_VALUE, FOUR_K_BUNDLE_PLAN_VALUE, FOUR_K_PLUS_BUNDLE_PLAN_VALUE];
+function isBundleValue(value) { return Object.prototype.hasOwnProperty.call(BUNDLE_OPTIONS, value); }
+function isBundlePlanValue(value) { return BUNDLE_PLAN_VALUES.includes(value); }
 
 function toggleDeviceField() {
   const needsDeviceChoice =
     serviceType.value === "IPTV Service + Device" ||
     serviceType.value === "Not Sure - Help Me Choose" ||
-    serviceType.value === LIMITED_TIME_BUNDLE_VALUE;
+    isBundleValue(serviceType.value);
 
   deviceFieldWrap.classList.toggle("hidden", !needsDeviceChoice);
   preferredDevice.required = needsDeviceChoice;
@@ -418,8 +434,8 @@ function updateSubmitState() {
 }
 
 function deriveNeedDeviceValue() {
-  if (serviceType.value === LIMITED_TIME_BUNDLE_VALUE) {
-    return "Yes - Limited-Time Onn 4K Device Included";
+  if (isBundleValue(serviceType.value)) {
+    return "Yes - Limited Onn Device Bundle Selected";
   }
   if (serviceType.value === "IPTV Service + Device") {
     return "Yes - I need a device";
@@ -434,24 +450,40 @@ function getCampaignSource() {
   const params = new URLSearchParams(window.location.search);
   const promoParam = params.get("promo");
   const planInterest = document.getElementById("planInterest").value;
-  const bundleSelected = serviceType.value === LIMITED_TIME_BUNDLE_VALUE || planInterest === LIMITED_TIME_BUNDLE_PLAN_VALUE;
+  const bundleSelected = isBundleValue(serviceType.value) || isBundlePlanValue(planInterest);
   const serviceOnlySelected = serviceType.value === LIMITED_TIME_SERVICE_ONLY_VALUE || planInterest === LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE;
   if (promoParam === LIMITED_TIME_SERVICE_ONLY_QUERY || serviceOnlySelected) return LIMITED_TIME_SERVICE_ONLY_SOURCE;
-  if (promoParam === LIMITED_TIME_BUNDLE_QUERY || bundleSelected) return LIMITED_TIME_BUNDLE_SOURCE;
+  if (promoParam === SUMMER_SPECIAL_QUERY || promoParam === FIRESTICK_UPGRADE_QUERY || promoParam === FOUR_K_BUNDLE_QUERY || promoParam === FOUR_K_PLUS_BUNDLE_QUERY || bundleSelected) return SUMMER_SPECIAL_SOURCE;
   return "";
+}
+
+function syncBundleSelections() {
+  if (isBundleValue(serviceType.value)) {
+    const selected = BUNDLE_OPTIONS[serviceType.value];
+    document.getElementById("planInterest").value = selected.plan;
+    preferredDevice.value = selected.device;
+  }
 }
 
 function applyPromoFromUrl() {
   const params = new URLSearchParams(window.location.search);
-  if (params.get("promo") === LIMITED_TIME_SERVICE_ONLY_QUERY) {
+  const promo = params.get("promo");
+  if (promo === LIMITED_TIME_SERVICE_ONLY_QUERY) {
     serviceType.value = LIMITED_TIME_SERVICE_ONLY_VALUE;
     document.getElementById("planInterest").value = LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE;
     preferredDevice.value = "";
     toggleDeviceField();
-  } else if (params.get("promo") === LIMITED_TIME_BUNDLE_QUERY) {
-    serviceType.value = LIMITED_TIME_BUNDLE_VALUE;
-    document.getElementById("planInterest").value = LIMITED_TIME_BUNDLE_PLAN_VALUE;
-    preferredDevice.value = "onn. 4K Streaming Device - $55";
+  } else if (promo === FOUR_K_BUNDLE_QUERY) {
+    serviceType.value = FOUR_K_BUNDLE_VALUE;
+    syncBundleSelections();
+    toggleDeviceField();
+  } else if (promo === FOUR_K_PLUS_BUNDLE_QUERY) {
+    serviceType.value = FOUR_K_PLUS_BUNDLE_VALUE;
+    syncBundleSelections();
+    toggleDeviceField();
+  } else if (promo === SUMMER_SPECIAL_QUERY || promo === FIRESTICK_UPGRADE_QUERY) {
+    serviceType.value = FIRESTICK_UPGRADE_VALUE;
+    syncBundleSelections();
     toggleDeviceField();
   }
 }
@@ -475,7 +507,7 @@ function buildPayload() {
     planInterest: document.getElementById("planInterest").value || "",
     tvCount: document.getElementById("tvCount").value || "",
     campaignSource: getCampaignSource(),
-    promoCode: getCampaignSource() === LIMITED_TIME_SERVICE_ONLY_SOURCE ? LIMITED_TIME_SERVICE_ONLY_QUERY : (getCampaignSource() ? LIMITED_TIME_BUNDLE_QUERY : ""),
+    promoCode: getCampaignSource() === LIMITED_TIME_SERVICE_ONLY_SOURCE ? LIMITED_TIME_SERVICE_ONLY_QUERY : (getCampaignSource() ? SUMMER_SPECIAL_QUERY : ""),
     paymentStatus: "QUOTE PENDING",
     orderStatus: "NEW",
     deliveryStatus: "Not Started",
@@ -508,7 +540,10 @@ function showSuccess(message) {
   errorMessage.style.display = "none";
 }
 
-serviceType.addEventListener("change", toggleDeviceField);
+serviceType.addEventListener("change", function () {
+  syncBundleSelections();
+  toggleDeviceField();
+});
 quoteAcknowledgement.addEventListener("change", updateSubmitState);
 followupAcknowledgement.addEventListener("change", updateSubmitState);
 
@@ -591,7 +626,7 @@ form.addEventListener("submit", async function (event) {
         var text = (link.textContent || "").replace(/\s+/g, " ").trim().slice(0, 100);
         var eventName = "site_link_click";
 
-        if (href.indexOf("request-service.html?promo=limited-time-bundle") !== -1) {
+        if (href.indexOf("request-service.html?promo=summer-streaming-special") !== -1 || href.indexOf("request-service.html?promo=firestick-upgrade-bundle") !== -1 || href.indexOf("request-service.html?promo=4k-streaming-bundle") !== -1 || href.indexOf("request-service.html?promo=4k-plus-upgrade-bundle") !== -1) {
           eventName = "promo_offer_click";
         } else if (href.indexOf("request-service.html") !== -1) {
           eventName = "request_service_click";
