@@ -188,6 +188,36 @@ a{color:inherit}
   100%{opacity:0;transform:scale(1.18)}
 }
 
+
+.fireworks-canvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:1;
+  opacity:.98;
+}
+.hero-inner{
+  z-index:2;
+}
+.fireworks-control{
+  cursor:pointer;
+  background:linear-gradient(135deg,#f59e0b,#ef4444,#9333ea);
+  color:#fff;
+}
+.sound-toggle{
+  cursor:pointer;
+  background:rgba(255,255,255,.08);
+  color:#f8fafc;
+  border:1px solid rgba(251,191,36,.45);
+  box-shadow:none;
+}
+@media (prefers-reduced-motion: reduce){
+  .fireworks-canvas,
+  .firework{display:none}
+}
+
 .hero-inner{
   position:relative;
   display:grid;
@@ -424,10 +454,13 @@ h2{
             <a class="btn primary" href="request-service.html?promo=summer-streaming-special&source=homepage-main-cta" data-event="request_service_click">Request Summer Special</a>
             <a class="btn secondary" href="request-service.html?promo=48-hour-trial&source=homepage-main-cta" data-event="promo_offer_click">Start 48-Hour Trial</a>
             <a class="btn secondary" href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer" data-event="telegram_click">Message Me Directly</a>
+            <button class="btn fireworks-control" type="button" id="launchFireworksBtn">Launch Fireworks</button>
+            <button class="btn sound-toggle" type="button" id="toggleFireworksSoundBtn">Sound: On</button>
             <a class="btn outline" href="sell-sheet.html" data-event="sell_sheet_click">View Plans & Devices</a>
           </div>
         </div>
         <div class="fireworks-overlay" aria-hidden="true"><div class="firework one"></div><div class="firework two"></div><div class="firework three"></div></div>
+        <canvas id="summerFireworksCanvas" class="fireworks-canvas" aria-hidden="true"></canvas>
         <aside class="hero-side" aria-label="Limited Onn device specials">
           <div class="price-card">
             <div class="price-label">Firestick Upgrade Bundle</div>
@@ -607,9 +640,182 @@ h2{
 
     <div class="footer-strip">
       <strong>4MyIPTV Service</strong>
-      <div class="version">Homepage v2.8 • Summer Fireworks + 4K Sold Out Update • July 4, 2026</div>
+      <div class="version">Homepage v2.9 • Interactive Fireworks + Sound Update • July 4, 2026</div>
     </div>
   </main>
+
+
+<script>
+(function(){
+  const canvas = document.getElementById("summerFireworksCanvas");
+  const launchBtn = document.getElementById("launchFireworksBtn");
+  const soundBtn = document.getElementById("toggleFireworksSoundBtn");
+  const hero = document.querySelector(".hero");
+  if(!canvas || !launchBtn || !hero) return;
+
+  const ctx = canvas.getContext("2d");
+  let particles = [];
+  let animationStarted = false;
+  let soundEnabled = true;
+  let audioCtx = null;
+  const colors = ["#fbbf24","#22c55e","#3b82f6","#ef4444","#a855f7","#ec4899","#ffffff"];
+
+  function resizeCanvas(){
+    const rect = hero.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+    canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+    canvas.style.width = rect.width + "px";
+    canvas.style.height = rect.height + "px";
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+
+  function getAudioCtx(){
+    if(!soundEnabled) return null;
+    if(!audioCtx){
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if(AudioContext) audioCtx = new AudioContext();
+    }
+    if(audioCtx && audioCtx.state === "suspended"){
+      audioCtx.resume();
+    }
+    return audioCtx;
+  }
+
+  function playLaunchSound(){
+    const ac = getAudioCtx();
+    if(!ac) return;
+    const osc = ac.createOscillator();
+    const gain = ac.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(240, ac.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(880, ac.currentTime + .22);
+    gain.gain.setValueAtTime(.0001, ac.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.08, ac.currentTime + .04);
+    gain.gain.exponentialRampToValueAtTime(.0001, ac.currentTime + .28);
+    osc.connect(gain);
+    gain.connect(ac.destination);
+    osc.start();
+    osc.stop(ac.currentTime + .3);
+  }
+
+  function playBurstSound(){
+    const ac = getAudioCtx();
+    if(!ac) return;
+
+    const duration = .26;
+    const bufferSize = ac.sampleRate * duration;
+    const buffer = ac.createBuffer(1, bufferSize, ac.sampleRate);
+    const output = buffer.getChannelData(0);
+    for(let i=0;i<bufferSize;i++){
+      output[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufferSize, 2);
+    }
+
+    const noise = ac.createBufferSource();
+    const filter = ac.createBiquadFilter();
+    const gain = ac.createGain();
+    noise.buffer = buffer;
+    filter.type = "bandpass";
+    filter.frequency.setValueAtTime(900, ac.currentTime);
+    filter.frequency.exponentialRampToValueAtTime(160, ac.currentTime + duration);
+    gain.gain.setValueAtTime(.13, ac.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.0001, ac.currentTime + duration);
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(ac.destination);
+    noise.start();
+
+    const sparkle = ac.createOscillator();
+    const sparkleGain = ac.createGain();
+    sparkle.type = "triangle";
+    sparkle.frequency.setValueAtTime(1280 + Math.random()*520, ac.currentTime);
+    sparkleGain.gain.setValueAtTime(.0001, ac.currentTime);
+    sparkleGain.gain.exponentialRampToValueAtTime(.05, ac.currentTime + .02);
+    sparkleGain.gain.exponentialRampToValueAtTime(.0001, ac.currentTime + .18);
+    sparkle.connect(sparkleGain);
+    sparkleGain.connect(ac.destination);
+    sparkle.start();
+    sparkle.stop(ac.currentTime + .2);
+  }
+
+  function createBurst(x, y, count){
+    for(let i=0;i<count;i++){
+      const angle = Math.PI * 2 * (i / count) + (Math.random() * .25);
+      const speed = 1.6 + Math.random() * 4.4;
+      particles.push({
+        x,y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life: 70 + Math.random() * 32,
+        age: 0,
+        size: 2 + Math.random() * 3,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
+    }
+    playBurstSound();
+  }
+
+  function launchFirework(){
+    resizeCanvas();
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    const x = width * (.22 + Math.random() * .64);
+    const y = height * (.16 + Math.random() * .38);
+    playLaunchSound();
+    setTimeout(function(){ createBurst(x, y, 54 + Math.floor(Math.random() * 28)); }, 210);
+  }
+
+  function animate(){
+    animationStarted = true;
+    ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
+    particles = particles.filter(function(p){ return p.age < p.life; });
+    particles.forEach(function(p){
+      p.age++;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += .045;
+      p.vx *= .992;
+      const alpha = Math.max(0, 1 - p.age / p.life);
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = p.color;
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = 12;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size * alpha, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    });
+    requestAnimationFrame(animate);
+  }
+
+  launchBtn.addEventListener("click", function(){
+    if(!animationStarted) animate();
+    launchFirework();
+    setTimeout(launchFirework, 380);
+    setTimeout(launchFirework, 760);
+  });
+
+  if(soundBtn){
+    soundBtn.addEventListener("click", function(){
+      soundEnabled = !soundEnabled;
+      soundBtn.textContent = soundEnabled ? "Sound: On" : "Sound: Off";
+    });
+  }
+
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+
+  // Give the hero a visible no-sound sparkle on page load, then let the customer launch sound with a click.
+  setTimeout(function(){
+    if(!animationStarted) animate();
+    const previousSound = soundEnabled;
+    soundEnabled = false;
+    createBurst(canvas.clientWidth * .72, canvas.clientHeight * .18, 42);
+    soundEnabled = previousSound;
+  }, 900);
+})();
+</script>
 
 <script>
 (function(){
