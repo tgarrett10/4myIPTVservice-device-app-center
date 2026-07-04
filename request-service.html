@@ -209,7 +209,7 @@ textarea{min-height:110px;resize:vertical}
         Complete the form below so I can review what you need, confirm the right service or device option, and send you a quote for approval before payment is requested.
       </div>
       <div class="notice" style="margin-bottom:14px;background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.35);color:#fef3c7;">
-        Summer Streaming Special: device bundles are available while supplies last through Labor Day. Choose the Firestick Upgrade Bundle for $140, the 4K Streaming Bundle for $160, or the 4K Plus Upgrade Bundle for $180. Every paid summer bundle includes setup support and one free 48-hour trial you can share with a friend. Service-only is available for $100/year when you already have a compatible Android TV / Google TV device or approved Android 14 streaming device.
+        Summer Streaming Special: Firestick Upgrade Bundles are available for $140, the Onn 4K bundle is currently sold out and now taking restock requests at $160, and the 4K Plus Upgrade Bundle is available for $180. Every paid summer bundle includes setup support and one free 48-hour trial you can share with a friend. Service-only is available for $100/year when you already have a compatible Android TV / Google TV device or approved Android 14 streaming device.
       </div>
   <section class="card">
     <h2>Getting Started Is Simple</h2>
@@ -263,7 +263,7 @@ textarea{min-height:110px;resize:vertical}
             <select id="serviceType" name="serviceType" required>
               <option value="">Select an option</option>
               <option value="Summer Streaming Special - Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140">Summer Streaming Special - Firestick Upgrade Bundle - $140</option>
-              <option value="Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited">Summer Streaming Special - 4K Streaming Bundle - $160 - Very Limited</option>
+              <option value="Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - SOLD OUT / Join Restock List">Summer Streaming Special - 4K Streaming Bundle - $160 - SOLD OUT / Join Restock List</option>
               <option value="Summer Streaming Special - 4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180">Summer Streaming Special - 4K Plus Upgrade Bundle - $180</option>
               <option value="Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device">Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Device</option>
               <option value="48-Hour Free Trial Request">48-Hour Free Trial Request</option>
@@ -278,7 +278,7 @@ textarea{min-height:110px;resize:vertical}
             <select id="planInterest" name="planInterest" required>
               <option value="">Select a plan</option>
               <option value="Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140">Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140</option>
-              <option value="4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited">4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited</option>
+              <option value="4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - SOLD OUT / Join Restock List">4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - SOLD OUT / Join Restock List</option>
               <option value="4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180">4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180</option>
               <option value="Limited-Time Service Only - 1 Year IPTV Service - $100">Service Only - 1 Year IPTV Service - $100</option>
               <option value="48-Hour Free Trial - Free">48-Hour Free Trial - Free</option>
@@ -297,7 +297,7 @@ textarea{min-height:110px;resize:vertical}
             <select id="preferredDevice" name="preferredDevice">
               <option value="">Select a device</option>
               <option value="Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140">Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140</option>
-              <option value="Onn 4K Streaming Device - 4K Streaming Bundle - $160 - Very Limited">Onn 4K Streaming Device - 4K Streaming Bundle - $160 - Very Limited</option>
+              <option value="Onn 4K Streaming Device - 4K Streaming Bundle - $160 - SOLD OUT / Join Restock List">Onn 4K Streaming Device - 4K Streaming Bundle - $160 - SOLD OUT / Join Restock List</option>
               <option value="Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180">Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180</option>
               <option value="Other Device Option - Custom Quote">Other Device Option - Custom Quote</option>
               <option value="Not Sure - Help Me Choose">Not Sure - Help Me Choose</option>
@@ -406,7 +406,7 @@ textarea{min-height:110px;resize:vertical}
 
   <div class="footer-strip">
     <strong>4MyIPTV Service • Request Service</strong>
-    <div class="version">Version 1.8 • Notification + Summer Trial Version • July 4, 2026</div>
+    <div class="version">Version 1.9 • 4K Sold Out + Restock Update • July 4, 2026</div>
   </div>
 </div>
 
@@ -422,17 +422,17 @@ const submitButton = document.getElementById("submitButton");
 const successMessage = document.getElementById("successMessage");
 const errorMessage = document.getElementById("errorMessage");
 const FIRESTICK_UPGRADE_VALUE = "Summer Streaming Special - Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140";
-const FOUR_K_BUNDLE_VALUE = "Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited";
+const FOUR_K_BUNDLE_VALUE = "Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - SOLD OUT / Join Restock List";
 const FOUR_K_PLUS_BUNDLE_VALUE = "Summer Streaming Special - 4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180";
 const LIMITED_TIME_SERVICE_ONLY_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device";
 const FREE_TRIAL_VALUE = "48-Hour Free Trial Request";
 const FIRESTICK_UPGRADE_PLAN_VALUE = "Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140";
-const FOUR_K_BUNDLE_PLAN_VALUE = "4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited";
+const FOUR_K_BUNDLE_PLAN_VALUE = "4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - SOLD OUT / Join Restock List";
 const FOUR_K_PLUS_BUNDLE_PLAN_VALUE = "4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180";
 const LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100";
 const FREE_TRIAL_PLAN_VALUE = "48-Hour Free Trial - Free";
 const LIMITED_TIME_SERVICE_ONLY_SOURCE = "Limited-Time Service Only Offer";
-const SUMMER_SPECIAL_SOURCE = "Summer Streaming Special - Limited Onn Device Bundles";
+const SUMMER_SPECIAL_SOURCE = "Summer Streaming Special - Firestick / 4K Plus Offers + 4K Restock List";
 const FREE_TRIAL_SOURCE = "48-Hour Free Trial";
 const LIMITED_TIME_SERVICE_ONLY_QUERY = "limited-time-service-only";
 const SUMMER_SPECIAL_QUERY = "summer-streaming-special";
@@ -442,7 +442,7 @@ const FOUR_K_PLUS_BUNDLE_QUERY = "4k-plus-upgrade-bundle";
 const FREE_TRIAL_QUERY = "48-hour-trial";
 const BUNDLE_OPTIONS = {
   [FIRESTICK_UPGRADE_VALUE]: { plan: FIRESTICK_UPGRADE_PLAN_VALUE, device: "Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140" },
-  [FOUR_K_BUNDLE_VALUE]: { plan: FOUR_K_BUNDLE_PLAN_VALUE, device: "Onn 4K Streaming Device - 4K Streaming Bundle - $160 - Very Limited" },
+  [FOUR_K_BUNDLE_VALUE]: { plan: FOUR_K_BUNDLE_PLAN_VALUE, device: "Onn 4K Streaming Device - 4K Streaming Bundle - $160 - SOLD OUT / Join Restock List" },
   [FOUR_K_PLUS_BUNDLE_VALUE]: { plan: FOUR_K_PLUS_BUNDLE_PLAN_VALUE, device: "Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180" }
 };
 const BUNDLE_PLAN_VALUES = [FIRESTICK_UPGRADE_PLAN_VALUE, FOUR_K_BUNDLE_PLAN_VALUE, FOUR_K_PLUS_BUNDLE_PLAN_VALUE];
@@ -470,7 +470,7 @@ function updateSubmitState() {
 
 function deriveNeedDeviceValue() {
   if (isBundleValue(serviceType.value)) {
-    return "Yes - Limited Onn Device Bundle Selected";
+    return serviceType.value === FOUR_K_BUNDLE_VALUE ? "Yes - Onn 4K Restock Request" : "Yes - Limited Onn Device Bundle Selected";
   }
   if (serviceType.value === "IPTV Service + Device") {
     return "Yes - I need a device";
