@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>4MyIPTV Service Calls Dashboard</title>
+<!-- GOOGLE ANALYTICS START -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TN6LYCC0DS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TN6LYCC0DS');
+</script>
+<!-- GOOGLE ANALYTICS END -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>4MyIPTV Service App Library</title>
+<!-- Version 3.2 update: Added Cinema HQ v6.8, MovieBox, and Reezn; moved OnStream to currently unavailable status with customer guidance. -->
 <style>
 :root{
   --bg:#08111f;
@@ -12,325 +24,255 @@
   --muted:#94a3b8;
   --green:#22c55e;
   --blue:#3b82f6;
-  --purple:#9333ea;
   --gold:#f59e0b;
-  --red:#ef4444;
+  --purple:#9333ea;
   --border:#1f2937;
 }
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(180deg,#08111f,#0f172a);
-  color:var(--text);
-}
-.wrap{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
-}
-.card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:20px;
-  margin-bottom:20px;
-}
-h1{
-  margin:0 0 10px;
-  color:#86efac;
-  text-align:center;
-}
-h2{
-  margin:0 0 8px;
-}
-h3{
-  margin:0 0 8px;
-}
-.tagline{
-  text-align:center;
-  margin-bottom:20px;
-  color:#cbd5f5;
-  font-weight:600;
-}
-.section-sub{
-  color:var(--muted);
-  line-height:1.5;
-  margin-bottom:16px;
-  font-size:14px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:20px;
-}
-.grid-3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-.btn{
-  display:block;
-  text-align:center;
-  padding:16px;
-  border-radius:12px;
-  text-decoration:none;
-  color:white;
-  font-weight:bold;
-  border:1px solid #334155;
-}
-.btn:hover{
-  opacity:.92;
-}
-.blue{background:#1d4ed8}
-.green{background:#166534}
-.purple{background:#7e22ce}
-.gray{background:#475569}
-.gold{background:#b45309}
-.red{background:#991b1b}
-.mini-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:16px;
-}
-.status-box{
-  background:#0b1220;
-  border:1px solid #243044;
-  border-radius:12px;
-  padding:14px;
-}
-.status-label{
-  font-size:12px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:6px;
-}
-.status-value{
-  font-size:16px;
-  font-weight:bold;
-  color:var(--text);
-}
-.status-pill{
-  display:inline-block;
-  padding:8px 12px;
-  border-radius:999px;
-  font-weight:bold;
-  font-size:13px;
-  border:1px solid transparent;
-}
-.status-not-called{
-  background:rgba(59,130,246,.12);
-  color:#bfdbfe;
-  border-color:rgba(59,130,246,.28);
-}
-.status-attempted{
-  background:rgba(245,158,11,.12);
-  color:#fde68a;
-  border-color:rgba(245,158,11,.28);
-}
-.status-contacted{
-  background:rgba(34,197,94,.12);
-  color:#bbf7d0;
-  border-color:rgba(34,197,94,.25);
-}
-.status-closed{
-  background:rgba(148,163,184,.12);
-  color:#e2e8f0;
-  border-color:rgba(148,163,184,.28);
-}
-.checklist{
-  margin:0;
-  padding-left:18px;
-  color:var(--text);
-  line-height:1.7;
-}
-.checklist li{
-  margin-bottom:6px;
-}
-.note-box{
-  background:#0b1220;
-  border:1px solid #243044;
-  border-radius:12px;
-  padding:16px;
-  color:#cbd5e1;
-  line-height:1.6;
-  font-size:14px;
-}
-.template-box{
-  background:#0b1220;
-  border:1px solid #243044;
-  border-radius:12px;
-  padding:16px;
-}
-.template-title{
-  font-size:13px;
-  font-weight:bold;
-  color:#93c5fd;
-  text-transform:uppercase;
-  letter-spacing:.06em;
-  margin-bottom:10px;
-}
-.template-text{
-  white-space:pre-wrap;
-  line-height:1.6;
-  color:#e2e8f0;
-  font-size:14px;
-}
-.footer{
-  text-align:center;
-  color:#94a3b8;
-  margin-top:20px;
-  font-size:13px;
-}
-@media(max-width:900px){
-  .grid,
-  .grid-3,
-  .mini-grid{
-    grid-template-columns:1fr;
-  }
-}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#08111f,#0f172a);color:var(--text)}
+.wrap{max-width:1200px;margin:auto;padding:18px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;margin-bottom:14px;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.28)}
+.hero{padding:18px}
+h1{margin:0 0 8px;text-align:center;color:#86efac;font-size:2rem}
+h2{margin:0 0 6px}
+.tagline-banner{margin:10px auto 12px auto;max-width:760px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);text-align:center;font-weight:600;font-size:16px;letter-spacing:.08em;color:#e2e8f0;box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.18)}
+.sub{color:var(--muted);line-height:1.5}
+.info,.tip,.helpbox{border-radius:14px;padding:12px 14px;margin-top:12px;line-height:1.45}
+.info{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe}
+.tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a}
+.helpbox{background:rgba(34,197,94,.10);border:1px solid rgba(34,197,94,.24);color:#dcfce7}
+.jumpbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.topnav{margin-bottom:12px}
+.categorynav{margin-top:12px}
+.btn{padding:9px 12px;border-radius:999px;text-decoration:none;font-weight:bold;text-align:center;display:inline-block;border:none;cursor:pointer;font-size:13px;color:#fff;min-width:170px}
+.playbtn{background:var(--blue)}
+.directbtn{background:var(--green);color:#052e16}
+.goldbtn{background:var(--gold);color:#3b2400}
+.adminbtn{background:var(--purple)}
+.linkbtn{background:#475569;color:#fff}
+.header{padding:14px 16px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0))}
+.content{padding:12px 16px}
+.section-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;margin:0 0 8px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:980px){.grid2{grid-template-columns:1fr}}
+.search{width:100%;background:#0b1220;border:1px solid #243044;border-radius:12px;color:#e2e8f0;padding:12px 14px;font-size:14px;outline:none}
+.appgrid{padding:8px 14px 10px}
+.approw{display:grid;grid-template-columns:52px 1fr 230px;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #1f2937}
+.approw:last-child{border-bottom:none}
+.order{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:bold;background:#1f2937}
+.order.core{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.25);color:#bbf7d0}
+.order.movie{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.25);color:#bfdbfe}
+.order.sports{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.22);color:#fde68a}
+.order.util{background:rgba(147,51,234,.15);border:1px solid rgba(147,51,234,.22);color:#f3e8ff}
+.appname{font-weight:bold}
+.small{font-size:.86rem;color:var(--muted);line-height:1.4}
+.meta{margin-top:2px}
+.note{margin-top:4px;color:#dbeafe}
+.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.footer-strip{margin-top:18px;padding:16px 10px;border-top:1px solid #243044;text-align:center;color:#cbd5e1;font-size:.9rem}
+.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
+.bottom-actions{margin-top:14px;display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+.bottom-actions .btn{min-width:170px}
+ul.clean{margin:8px 0 0 18px;padding:0}
+ul.clean li{margin:0 0 6px}
+@media (max-width:980px){.approw{grid-template-columns:52px 1fr}.actions{grid-column:2;justify-content:flex-start}}
+@media (max-width:640px){.btn{min-width:220px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-
-  <div class="card">
-    <h1>4MyIPTV Service Calls Dashboard</h1>
-    <div class="tagline">Internal follow-up hub for renewal calls and customer contact activity</div>
-  </div>
-
-  <div class="card">
-    <h2>Quick Access</h2>
-    <div class="section-sub">
-      Use these links to open your live tracking tools. This page is your call workflow hub, while Customer Records remains the source of truth.
+  <div class="card hero">
+    <h1>4MyIPTV Service App Library</h1>
+    <div class="tagline-banner">Stream More - Pay Less - Watch Anywhere</div>
+    <div class="info">
+      <strong>App Library</strong><br />
+      This support page is intended for active 4MyIPTV Service customers only. Use the category buttons below to locate supported apps, verify current versions, and install the update that matches your device and service setup.
     </div>
-
-    <div class="grid">
-      <a href="https://docs.google.com/spreadsheets/d/1rQlVe8TGrnKTELc5_9hT2yrrQ_5G5KzKCh7h-A30A8o/edit?gid=0#gid=0"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="btn blue">
-        Open Customer Records
-      </a>
-
-      <a href="admin-dashboard.html" class="btn gray">
-        Back to Admin Dashboard
-      </a>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Call Workflow</h2>
-    <div class="section-sub">
-      Keep the process simple. Work from Customer Records, update RenewalStatus as you go, and let the sheet handle LastContactDate automatically.
-    </div>
-
-    <div class="grid-3">
-      <div class="status-box">
-        <div class="status-label">Step 1</div>
-        <div class="status-value">Open Renewal View or Customer Records</div>
+    <div class="card" style="margin-top:12px;">
+      <div class="header">
+        <div class="section-label">Support Updates</div>
+        <h2>Help Keep the Library Updated</h2>
+        <div class="sub">Your optional support helps keep app versions current, links working, and updates posted for customers.</div>
       </div>
-      <div class="status-box">
-        <div class="status-label">Step 2</div>
-        <div class="status-value">Call or message the customer</div>
-      </div>
-      <div class="status-box">
-        <div class="status-label">Step 3</div>
-        <div class="status-value">Update RenewalStatus and notes</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Call Status Guide</h2>
-    <div class="section-sub">
-      Use these statuses consistently in Customer Records so your tracking stays clean and reliable.
-    </div>
-
-    <div class="grid-3">
-      <div class="status-box">
-        <div class="status-label">Status</div>
-        <div class="status-pill status-not-called">Not Called</div>
-        <div class="section-sub" style="margin-top:10px;margin-bottom:0;">
-          Customer has not been contacted yet.
-        </div>
-      </div>
-
-      <div class="status-box">
-        <div class="status-label">Status</div>
-        <div class="status-pill status-attempted">Attempted</div>
-        <div class="section-sub" style="margin-top:10px;margin-bottom:0;">
-          You tried to reach the customer but did not complete the conversation.
-        </div>
-      </div>
-
-      <div class="status-box">
-        <div class="status-label">Status</div>
-        <div class="status-pill status-contacted">Contacted</div>
-        <div class="section-sub" style="margin-top:10px;margin-bottom:0;">
-          You reached the customer and had contact.
+      <div class="content" style="padding-top:4px; padding-bottom:10px;">
+        <div class="bottom-actions">
+          <a class="btn goldbtn" href="https://www.paypal.com/ncp/payment/VSS7HZSB5FD2E" target="_blank" rel="noopener noreferrer">Support Updates with PayPal</a>
         </div>
       </div>
     </div>
-
-    <div class="status-box" style="margin-top:16px;">
-      <div class="status-label">Status</div>
-      <div class="status-pill status-closed">Closed</div>
-      <div class="section-sub" style="margin-top:10px;margin-bottom:0;">
-        The renewal follow-up is finished for now.
-      </div>
+    <div class="jumpbar categorynav">
+      <a class="btn directbtn" href="#core">IPTV Core Apps</a>
+      <a class="btn playbtn" href="#movies">Movies & TV</a>
+      <a class="btn goldbtn" href="#sports">Live Sports</a>
+      <a class="btn adminbtn" href="#utilities">Tools & Utilities</a>
+    </div>
+    <div class="helpbox">
+      <strong>How to Update Apps</strong>
+      <ul class="clean">
+        <li>Install the new version over your current app first.</li>
+        <li>If the install fails, delete the old version and then install the new one.</li>
+        <li>Restart the device if the app still does not open correctly.</li>
+        <li>If you still need help, use the Support page.</li>
+      </ul>
+    </div>
+    <div class="tip">
+      <strong>Quick Note:</strong> Each app card now shows both the version and the last library update so you can check changes at a glance before downloading.
+    </div>
+    <div class="tip">
+      <strong>Unsupported App Notice:</strong> If an app is not working, it may no longer be supported by the creator. If the app no longer opens, downloads, or functions correctly, uninstall it from your device. Check back here in the future to see if the app comes back online or if a replacement option is added.
     </div>
   </div>
 
   <div class="card">
-    <h2>Recommended Daily Process</h2>
-    <div class="section-sub">
-      This is the cleanest way to operate without overbuilding your system.
+    <div class="header">
+      <div class="section-label">Library Search</div>
+      <h2>Find an App Quickly</h2>
+      <div class="sub">Type any part of an app name to filter the page.</div>
     </div>
-
-    <ul class="checklist">
-      <li>Open Customer Records.</li>
-      <li>Review customers with ServiceStatus of Expiring Soon or Expired.</li>
-      <li>Prioritize the most urgent based on DaysRemaining.</li>
-      <li>Call or message the customer.</li>
-      <li>Update RenewalStatus immediately after contact.</li>
-      <li>Add notes when needed so you know the next step.</li>
-    </ul>
+    <div class="content">
+      <input id="searchBox" class="search" type="text" placeholder="Search apps like Smarters, Flix Vision, Sportsfire, TV Bro..." />
+    </div>
   </div>
 
-  <div class="card">
-    <h2>Renewal Message Templates</h2>
-    <div class="section-sub">
-      Use these as a starting point for quick outreach. Keep them short and direct.
-    </div>
-
-    <div class="mini-grid">
-      <div class="template-box">
-        <div class="template-title">Text Message</div>
-        <div class="template-text">Hi, this is 4MyIPTV Service. Your service is coming up for renewal soon. Reach back out when ready and I can help you get renewed quickly.</div>
+  <div class="grid2">
+    <div>
+      <div class="card" id="core">
+        <div class="header">
+          <div class="section-label">Core IPTV</div>
+          <h2>IPTV Core Apps</h2>
+          <div class="sub">Primary IPTV and media player applications.</div>
+        </div>
+        <div class="appgrid">
+          <div class="approw app-row"><div class="order core">C1</div><div><div class="appname">IPTV Smarters Pro</div><div class="small">Core IPTV app.</div><div class="small meta">Version 5.0 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order core">C2</div><div><div class="appname">AMPlayer</div><div class="small">Alternate IPTV / media player.</div><div class="small meta">Version 3.0.2 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/J99DWABk" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order core">C3</div><div><div class="appname">Bear Player</div><div class="small">Alternate IPTV / media player.</div><div class="small meta">Version 2.20.24 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/m35yb9lekyxldlw/Bear+Player_v2.20.24_MOD_modded-1.com.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order core">C4</div><div><div class="appname">BPlayer</div><div class="small">Alternate IPTV / media player.</div><div class="small meta">Version 1.3.2 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/TKHUxRbj" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order core">C5</div><div><div class="appname">VLC Media Player</div><div class="small">Media playback utility.</div><div class="small meta">Version 3.3.4 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/iacQyjir" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order core">C6</div><div><div class="appname">MX Player</div><div class="small">External media player for additional playback support.</div><div class="small meta">Latest version - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://f.mxplayer.j2inter.com/download?id=mxplayer&type=arm" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order core">C7</div><div><div class="appname">NVPlayer</div><div class="small">Recommended external player for apps like BeeTV.</div><div class="small meta">Version 1.1.2 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file_premium/juor2m522tuhjog/NV_Video_Player_%2528v1.1.2%2529.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order core">C8</div><div><div class="appname">StreamFire</div><div class="small">Live TV app.</div><div class="small meta">Version 1.2.3 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/EM6TZXCh" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+        </div>
       </div>
 
-      <div class="template-box">
-        <div class="template-title">Follow-Up Message</div>
-        <div class="template-text">Hi, just following up on your service renewal. Let me know if you want to renew and I can help you get it taken care of.</div>
+      <div class="card" id="sports">
+        <div class="header">
+          <div class="section-label">Sports</div>
+          <h2>Live Sports APK Apps</h2>
+          <div class="sub">Sports-focused viewing applications.</div>
+        </div>
+        <div class="appgrid">
+          <div class="approw app-row"><div class="order sports">S1</div><div><div class="appname">FalconCast</div><div class="small">Live TV and Sports.</div><div class="small meta">Version 4.2 - Updated April 25, 2026</div><div class="small note">The direct APK host is currently returning an error. Open the FalconCast site and use their Download section for the updated version.</div></div><div class="actions"><a class="btn goldbtn" href="https://falconcastapp.org/" target="_blank" rel="noopener noreferrer">Open FalconCast Site</a></div></div>
+          <div class="approw app-row"><div class="order sports">S2</div><div><div class="appname">Playfy TV</div><div class="small">Live TV and Sports.</div><div class="small meta">Version 1.5 - Updated March 27, 2026</div></div><div class="actions"><a class="btn goldbtn" href="https://www.mediafire.com/file/tfdwts9y73jpdrp/PLAYFy_TV_1.5.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order sports">S3</div><div><div class="appname">Sportsfire</div><div class="small">Live TV and Sports.</div><div class="small meta">Version 2.0.8 - Updated March 27, 2026</div></div><div class="actions"><a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/bJgTC1aw" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" id="movies">
+        <div class="header">
+          <div class="section-label">Movies / TV</div>
+          <h2>Movies & TV APK Apps</h2>
+          <div class="sub">Streaming and on-demand video applications.</div>
+        </div>
+        <div class="appgrid">
+          <div class="tip">
+            <strong>Primary App Reminder:</strong> Your main service app should still be the <strong>IPTV Smarters App</strong>. Always try searching inside IPTV Smarters first for movies, series, live TV, sports, and other available content. These Movie / TV apps are optional extras and may change, stop working, or require updated versions.
+          </div>
+          <div class="tip">
+            <strong>OnStream Status Update:</strong> OnStream currently appears to no longer be working consistently. You can delete it or leave it installed and try it again over the next few weeks to see if it comes back online organically. If a reliable working version is found, this page will be updated.
+          </div>
+          <div class="approw app-row"><div class="order movie">M1</div><div><div class="appname">Flix Vision</div><div class="small">Movie / TV app using direct APK link.</div><div class="small meta">Direct APK link refreshed - Updated April 13, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://fileroy.com/5pVzNoNVG7wv/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order movie">M2</div><div><div class="appname">Cinema HQ</div><div class="small">Optional Movie / TV app.</div><div class="small meta">Version 6.8 - Updated June 28, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/ppx4cqzw3nik99m/Cinema+HQ+v6.8.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order movie">M3</div><div><div class="appname">MovieBox</div><div class="small">Optional Movie / TV app.</div><div class="small meta">Version 3.0.12.0430.02 - Updated June 28, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/aupcq8ygzcndeis/MovieBox_v3.0.12.0430.02.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order movie">M4</div><div><div class="appname">Reezn</div><div class="small">Optional Movie / TV app.</div><div class="small meta">Version 2.0.14 - Updated June 28, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/b51hgc5c625iss0/Reezn+(v2.0.14).apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order movie">M5</div><div><div class="appname">FilmPlus</div><div class="small">Movie / TV app.</div><div class="small meta">Version 2.2.8 - Updated March 27, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/sxwa97zmes7jey6/FilmPlus_-_v2.2.8r_%25281%2529.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order movie">M6</div><div><div class="appname">BeeTV</div><div class="small">Movie / TV app. NVPlayer recommended for playback support.</div><div class="small meta">Version 4.5.9 - Updated March 27, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/5khvjyoz26umm0v/BeeTV_4.5.9_2459_06421d.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order movie">M7</div><div><div class="appname">OnStream</div><div class="small">Movie / TV app.</div><div class="small meta">Currently not working consistently - Updated June 28, 2026</div><div class="small note">OnStream appears to no longer be working consistently. You can delete it or leave it installed and try it again over the next few weeks. If a reliable working version is found, this page will be updated.</div></div><div class="actions"><span class="btn playbtn">Currently Unavailable</span></div></div>
+          <div class="approw app-row"><div class="order movie">M8</div><div><div class="appname">Movie HD</div><div class="small">Movie / TV app.</div><div class="small meta">Currently inactive - Updated May 9, 2026</div><div class="small note">Movie HD is no longer active. I am actively looking to see if a replacement download is available. Check back here in the future for updates.</div></div><div class="actions"><span class="btn playbtn">Currently Inactive</span></div></div>
+        </div>
+      </div>
+
+      <div class="card" id="utilities">
+        <div class="header">
+          <div class="section-label">Utilities</div>
+          <h2>Tools & Utilities APK Apps</h2>
+          <div class="sub">Support and maintenance tools.</div>
+        </div>
+        <div class="appgrid">
+          <div class="approw app-row"><div class="order util">U1</div><div><div class="appname">Background Apps &amp; Process List</div><div class="small">Utility tool for closing background apps.</div><div class="small meta">Latest version - Updated March 27, 2026</div></div><div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/fyzsjrY4" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order util">U2</div><div><div class="appname">Proton VPN</div><div class="small">VPN utility.</div><div class="small meta">Google Play Store link - Updated May 9, 2026</div><div class="small note">Install or update Proton VPN from the official Google Play Store listing.</div></div><div class="actions"><a class="btn adminbtn" href="https://play.google.com/store/apps/details?id=ch.protonvpn.android&hl=en_US" target="_blank" rel="noopener noreferrer">Open Play Store</a></div></div>
+          <div class="approw app-row"><div class="order util">U3</div><div><div class="appname">TV Bro</div><div class="small">TV browser utility.</div><div class="small meta">Version 2.01 - Updated March 27, 2026</div></div><div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/9arAt3iT" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order util">U4</div><div><div class="appname">Wolf Launcher</div><div class="small">Launcher utility.</div><div class="small meta">Version 0.1.9 - Updated March 27, 2026</div></div><div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/51fCaZup" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <h2>Call Notes Guidance</h2>
-    <div class="note-box">
-      Keep notes short and useful. Focus on what happened, what the customer said, and what the next action should be. Example: "No answer, left message, follow up in 2 days" or "Customer wants to renew Friday after payday."
-    </div>
+  <div class="bottom-actions">
+    <a class="btn playbtn" href="support.html">Open Support</a>
+    <a class="btn adminbtn" href="index.html">Back to Home</a>
   </div>
 
-  <div class="footer">
-    Internal Calls Dashboard • Customer Records remains the source of truth
+  <!-- Change Log: Version 3.2 adds Cinema HQ v6.8, MovieBox, and Reezn; updates OnStream status to currently unavailable. -->
+  <div class="footer-strip">
+    <strong>4MyIPTV Service App Library</strong>
+    <div class="version">Version 3.2 - Last Updated: June 28, 2026</div>
   </div>
-
 </div>
+<script>
+const searchBox = document.getElementById('searchBox');
+const rows = Array.from(document.querySelectorAll('.app-row'));
+searchBox.addEventListener('input', function () {
+  const term = this.value.toLowerCase().trim();
+  rows.forEach(row => {
+    const text = row.innerText.toLowerCase();
+    row.style.display = text.includes(term) ? 'grid' : 'none';
+  });
+});
+</script>
+<!-- CUSTOMER ANALYTICS EVENT TRACKING START -->
+<script>
+(function(){
+  function sendCustomerEvent(eventName, params){
+    if (typeof gtag !== "function") return;
+    gtag("event", eventName, params || {});
+  }
 
-  <div style="max-width:1100px;margin:24px auto 12px auto;padding:0 16px;text-align:center;font-size:12px;opacity:0.75;">Version 1.0 • April 2026 • 4MyIPTV Service Calls Dashboard</div>
+  window.trackServiceEvent = sendCustomerEvent;
+
+  document.addEventListener("DOMContentLoaded", function(){
+    document.querySelectorAll("a[href]").forEach(function(link){
+      link.addEventListener("click", function(){
+        var href = link.getAttribute("href") || "";
+        var text = (link.textContent || "").replace(/\s+/g, " ").trim().slice(0, 100);
+        var eventName = "site_link_click";
+
+        if (href.indexOf("request-service.html?promo=memorial-day-2026") !== -1 || href.indexOf("request-service.html?promo=summer-streaming-special") !== -1 || href.indexOf("request-service.html?promo=firestick-upgrade-bundle") !== -1 || href.indexOf("request-service.html?promo=4k-streaming-bundle") !== -1 || href.indexOf("request-service.html?promo=4k-plus-upgrade-bundle") !== -1) {
+          eventName = "promo_offer_click";
+        } else if (href.indexOf("request-service.html") !== -1) {
+          eventName = "request_service_click";
+        } else if (href.indexOf("t.me/myiptvservice4") !== -1) {
+          eventName = "telegram_click";
+        } else if (href.indexOf("sell-sheet.html") !== -1) {
+          eventName = "sell_sheet_click";
+        } else if (href.indexOf("checkout.html") !== -1 || href.indexOf("paypal.com") !== -1) {
+          eventName = "checkout_click";
+        } else if (href.indexOf("app-library.html") !== -1 || href.indexOf("downloader-portal.html") !== -1 || href.indexOf("support.html") !== -1 || href.indexOf("online-support.html") !== -1 || href.indexOf("device-setup.html") !== -1) {
+          eventName = "support_resource_click";
+        }
+
+        sendCustomerEvent(eventName, {
+          link_text: text,
+          link_url: href,
+          page_path: window.location.pathname
+        });
+      });
+    });
+  });
+})();
+</script>
+<!-- CUSTOMER ANALYTICS EVENT TRACKING END -->
+
 </body>
 </html>

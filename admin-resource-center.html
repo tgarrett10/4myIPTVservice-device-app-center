@@ -1,559 +1,1311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>4MyIPTV Service Admin Resource Center</title>
-<style>
-:root{
-  --bg:#08111f;
-  --panel:#101827;
-  --panel-soft:#0b1220;
-  --text:#f8fafc;
-  --muted:#94a3b8;
-  --border:#1f2937;
-  --line:#243044;
-  --panel-primary:#22c55e;
-  --panel-secondary:#f59e0b;
-  --admin-btn:#1d4ed8;
-  --customer-btn:#475569;
-  --soft-pill:#1e293b;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(180deg,#08111f,#0f172a);
-  color:var(--text);
-}
-.wrap{max-width:1240px;margin:auto;padding:20px}
-.card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:22px;
-  margin-bottom:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,.18);
-}
-h1{margin:0 0 10px;color:#86efac;text-align:center}
-h2{margin:0 0 8px;font-size:24px}
-h3{margin:0 0 8px;font-size:18px}
-p{margin:0}
-.tagline{
-  text-align:center;
-  margin-bottom:8px;
-  color:#cbd5f5;
-  font-weight:600;
-}
-.intro{
-  text-align:center;
-  color:var(--muted);
-  max-width:900px;
-  margin:0 auto;
-  line-height:1.55;
-}
-.section-sub{
-  color:var(--muted);
-  line-height:1.5;
-  margin-bottom:16px;
-  font-size:14px;
-}
-.section-note{
-  color:var(--muted);
-  line-height:1.45;
-  font-size:13px;
-  margin-top:10px;
-}
-.legend-row,.pill-row,.action-row,.stat-row{display:flex;flex-wrap:wrap;gap:10px}
-.legend-pill,
-.stat-pill,
-.anchor-pill,
-.pill-link,
-.mini-btn,
-.panel-btn,
-.action-btn{
-  text-decoration:none;
-  border-radius:999px;
-  font-weight:bold;
-}
-.legend-pill{
-  display:inline-block;
-  padding:8px 12px;
-  font-size:12px;
-  border:1px solid rgba(255,255,255,.08);
-}
-.legend-admin{background:var(--admin-btn);color:#fff}
-.legend-customer{background:var(--customer-btn);color:#fff}
-.legend-panel{background:var(--panel-primary);color:#052e16}
-.grid-2,.grid-3,.panel-grid,.workflow-grid,.ops-grid,.button-panels{display:grid;gap:16px}
-.grid-2,.ops-grid,.button-panels{grid-template-columns:repeat(2,1fr)}
-.grid-3{grid-template-columns:repeat(3,1fr)}
-.panel-grid{grid-template-columns:2fr 1.25fr}
-.workflow-grid{grid-template-columns:repeat(2,1fr)}
-.panel-box,
-.info-box,
-.workflow-step,
-.template-box,
-.access-group,
-.stat-box{
-  background:var(--panel-soft);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:16px;
-}
-.panel-box{padding:22px;border-radius:18px;background:linear-gradient(180deg,#0f172a,#111827)}
-.panel-box.primary{border-color:rgba(34,197,94,.35);box-shadow:0 0 0 1px rgba(34,197,94,.08) inset}
-.panel-box.secondary{border-color:rgba(245,158,11,.30)}
-.panel-label{
-  font-size:12px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  margin-bottom:10px;
-  color:#bbf7d0;
-}
-.panel-box.secondary .panel-label{color:#fde68a}
-.panel-title{font-size:28px;margin-bottom:8px}
-.panel-sub{color:var(--muted);line-height:1.5;margin-bottom:18px}
-.panel-btn{
-  display:inline-block;
-  padding:16px 20px;
-  color:#052e16;
-  background:var(--panel-primary);
-  border:1px solid rgba(255,255,255,.08);
-}
-.panel-box.secondary .panel-btn{background:var(--panel-secondary);color:#422006}
-.info-box p,.template-box p,.access-group p,.workflow-step p,.stat-box p{color:var(--muted);line-height:1.5;font-size:14px}
-.info-box ul,.template-box ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.6;font-size:14px}
-.info-box li,.template-box li{margin-bottom:6px}
-.workflow-step .step-label{
-  color:#86efac;
-  font-size:12px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  margin-bottom:8px;
-}
-.workflow-step h3{font-size:19px;margin-bottom:8px}
-.workflow-step p{margin-bottom:12px}
-.pill-link,
-.anchor-pill{
-  display:inline-block;
-  padding:9px 12px;
-  color:#e2e8f0;
-  background:var(--soft-pill);
-  border:1px solid #334155;
-  font-size:13px;
-}
-.callout{
-  margin-top:12px;
-  padding:12px 14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(15,23,42,.7);
-  color:#cbd5e1;
-  font-size:13px;
-  line-height:1.5;
-}
-.stat-box h3{margin-bottom:6px}
-.stat-pill{display:inline-block;padding:8px 12px;font-size:12px;border:1px solid rgba(255,255,255,.08)}
-.stat-pill.panel{background:rgba(34,197,94,.12);color:#bbf7d0}
-.stat-pill.admin{background:rgba(29,78,216,.18);color:#dbeafe}
-.stat-pill.customer{background:rgba(71,85,105,.28);color:#e2e8f0}
-.template-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.action-btn{
-  display:inline-block;
-  padding:12px 16px;
-  background:var(--panel-primary);
-  color:#052e16;
-  border:1px solid rgba(255,255,255,.08);
-}
-.mini-btn{
-  display:block;
-  text-align:center;
-  padding:11px 10px;
-  color:#fff;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
-  font-size:13px;
-}
-.mini-btn.admin{background:var(--admin-btn)}
-.mini-btn.customer{background:var(--customer-btn)}
-.footer{text-align:center;color:#94a3b8;margin-top:20px;font-size:13px}
-.panel-btn:hover,.pill-link:hover,.anchor-pill:hover,.mini-btn:hover,.action-btn:hover{opacity:.93}
-@media(max-width:1100px){
-  .grid-3,.template-links{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media(max-width:900px){
-  .wrap{padding:16px}
-  .card{padding:18px}
-  .panel-grid,.grid-2,.grid-3,.workflow-grid,.ops-grid,.button-panels{grid-template-columns:1fr}
-  .template-links{grid-template-columns:1fr}
-  .panel-title{font-size:24px}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4MyIPTV Service | Admin Orders</title>
+  <style>
+    :root {
+      --bg: #08111f;
+      --panel: #101827;
+      --panel-soft: #0b1220;
+      --panel-2: #0f172a;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --line: #1f2937;
+      --line-soft: #243044;
+      --blue: #3b82f6;
+      --green: #22c55e;
+      --gold: #f59e0b;
+      --purple: #9333ea;
+      --red: #ef4444;
+      --sticky-id-width: 90px;
+      --sticky-name-width: 190px;
+      --sticky-left-name: 90px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #08111f, #0f172a);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      background: #0b1220;
+      border-bottom: 1px solid var(--line-soft);
+      padding: 22px 24px;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.2;
+      color: #ffffff;
+    }
+
+    .topbar p {
+      margin: 8px 0 0;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    .page-wrap {
+      max-width: 1720px;
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+      margin-bottom: 18px;
+    }
+
+    .card-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 8px 0;
+    }
+
+    .card-header h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #ffffff;
+    }
+
+    .card-content {
+      padding: 16px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) 220px 220px auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #cbd5e1;
+    }
+
+    .field-group input,
+    .field-group select,
+    .inline-input,
+    .inline-select,
+    .inline-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--line-soft);
+      border-radius: 10px;
+      font-size: 14px;
+      background: #0b1220;
+      color: #f8fafc;
+      outline: none;
+    }
+
+    .field-group input::placeholder,
+    .inline-input::placeholder,
+    .inline-textarea::placeholder {
+      color: #7c8aa0;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      background: #1f2937;
+      color: #ffffff;
+      border: 1px solid #334155;
+    }
+
+    .btn-secondary:hover {
+      background: #273449;
+    }
+
+    .btn-save {
+      background: var(--green);
+      color: #052e16;
+      width: 100%;
+    }
+
+    .btn-save:hover {
+      filter: brightness(1.03);
+    }
+
+    .btn-link {
+      background: var(--purple);
+      color: #ffffff;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn-link:hover {
+      filter: brightness(1.05);
+    }
+
+    .status-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .stat-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+      padding: 18px;
+    }
+
+    .stat-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .stat-value {
+      font-size: 30px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .message {
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      min-height: 20px;
+    }
+
+    .message.ok {
+      color: #86efac;
+    }
+
+    .message.error {
+      color: #fca5a5;
+    }
+
+    .endpoint-note {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      word-break: break-all;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #0b1220;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 2360px;
+      background: #0b1220;
+    }
+
+    thead {
+      background: #111827;
+      color: #ffffff;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 10px 9px;
+      border-bottom: 1px solid #1f2937;
+      vertical-align: top;
+      font-size: 13px;
+      background: #0b1220;
+    }
+
+    th {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #dbeafe;
+      position: sticky;
+      top: 0;
+      z-index: 6;
+      background: #111827;
+    }
+
+    tbody tr:hover td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .sticky-id {
+      position: sticky;
+      left: 0;
+      z-index: 5;
+      width: var(--sticky-id-width);
+      min-width: var(--sticky-id-width);
+      max-width: var(--sticky-id-width);
+      background: #0b1220;
+      box-shadow: 1px 0 0 #1f2937;
+    }
+
+    th.sticky-id {
+      z-index: 8;
+      background: #111827;
+    }
+
+    .sticky-name {
+      position: sticky;
+      left: var(--sticky-left-name);
+      z-index: 5;
+      width: var(--sticky-name-width);
+      min-width: var(--sticky-name-width);
+      max-width: var(--sticky-name-width);
+      background: #0b1220;
+      box-shadow: 1px 0 0 #1f2937;
+    }
+
+    th.sticky-name {
+      z-index: 8;
+      background: #111827;
+    }
+
+    tbody tr:hover td.sticky-id,
+    tbody tr:hover td.sticky-name {
+      background: #132033;
+    }
+
+    .col-created { min-width: 140px; }
+    .col-email { min-width: 210px; max-width: 210px; word-break: break-word; }
+    .col-phone { min-width: 130px; }
+    .col-order-type { min-width: 130px; }
+    .col-device { min-width: 160px; max-width: 160px; }
+    .col-customer-type { min-width: 120px; }
+    .col-pref-contact { min-width: 130px; }
+    .col-pref-reply { min-width: 140px; }
+    .col-plan { min-width: 130px; }
+    .col-tv { min-width: 90px; }
+    .col-fulfillment { min-width: 150px; }
+    .col-order-status { min-width: 170px; }
+    .col-payment { min-width: 140px; }
+    .col-delivery { min-width: 140px; }
+    .col-support { min-width: 150px; }
+    .col-notes { min-width: 220px; max-width: 220px; }
+    .col-actions { min-width: 160px; }
+
+    .pill {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .pill-new {
+      background: rgba(59,130,246,.18);
+      color: #bfdbfe;
+      border: 1px solid rgba(59,130,246,.35);
+    }
+
+    .pill-payment-sent {
+      background: rgba(245,158,11,.16);
+      color: #fde68a;
+      border: 1px solid rgba(245,158,11,.30);
+    }
+
+    .pill-complete {
+      background: rgba(34,197,94,.16);
+      color: #bbf7d0;
+      border: 1px solid rgba(34,197,94,.30);
+    }
+
+    .pill-other {
+      background: rgba(148,163,184,.15);
+      color: #e2e8f0;
+      border: 1px solid rgba(148,163,184,.25);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .small {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 16px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .id-cell {
+      font-weight: 700;
+      color: #c4b5fd;
+    }
+
+    .name-cell {
+      font-weight: 700;
+      color: #ffffff;
+      word-break: break-word;
+    }
+
+    .readonly-box {
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    .notes-box {
+      width: 100%;
+    }
+
+    .actions-box {
+      width: 100%;
+    }
+
+    .stack {
+      display: grid;
+      gap: 8px;
+    }
+
+    .internal-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 16px;
+    }
+
+    .internal-box {
+      background: var(--panel-soft);
+      border: 1px solid var(--line-soft);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .internal-box h3 {
+      margin: 0 0 10px 0;
+      color: #ffffff;
+      font-size: 18px;
+    }
+
+    .internal-box ol,
+    .internal-box ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .save-status {
+      margin-top: 8px;
+      font-size: 12px;
+      line-height: 1.4;
+      min-height: 18px;
+    }
+
+    .save-status.ok {
+      color: #86efac;
+    }
+
+    .save-status.error {
+      color: #fca5a5;
+    }
+
+
+
+    .live-alert-panel {
+      border: 1px solid rgba(34,197,94,.32);
+      background: linear-gradient(135deg, rgba(34,197,94,.13), rgba(59,130,246,.10));
+    }
+
+    .live-alert-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .live-alert-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #bbf7d0;
+      margin-bottom: 6px;
+    }
+
+    .live-alert-copy {
+      color: #cbd5e1;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .live-alert-status {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-top: 10px;
+      border: 1px solid rgba(148,163,184,.24);
+      color: #e2e8f0;
+      background: rgba(15,23,42,.78);
+    }
+
+    .live-alert-status.on {
+      border-color: rgba(34,197,94,.32);
+      color: #bbf7d0;
+      background: rgba(34,197,94,.12);
+    }
+
+    .new-order-banner {
+      display: none;
+      margin-top: 12px;
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: #fef3c7;
+      background: rgba(245,158,11,.14);
+      border: 1px solid rgba(245,158,11,.30);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .new-order-banner.show {
+      display: block;
+    }
+
+    .quick-action-mini {
+      display: inline-block;
+      margin: 2px 4px 2px 0;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: #1f2937;
+      border: 1px solid #334155;
+      color: #e2e8f0;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .footer-strip {
+      margin-top: 18px;
+      padding: 16px 10px 24px;
+      border-top: 1px solid var(--line-soft);
+      text-align: center;
+      color: #cbd5e1;
+      font-size: 0.92rem;
+    }
+
+    .footer-strip .version {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 1280px) {
+      .controls {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .status-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .internal-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .controls {
+        grid-template-columns: 1fr;
+      }
+
+      .status-row {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-links,
+      .live-alert-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar h1 {
+        font-size: 24px;
+      }
+
+      .page-wrap {
+        padding: 14px;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
+  <div class="topbar">
+    <h1>4MyIPTV Service Admin Orders</h1>
+    <p>Internal order management and workflow control</p>
+  </div>
 
-  <div class="card">
-    <h1>4MyIPTV Service Admin Resource Center</h1>
-    <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
-    <div class="intro">
-      Full operating guide for service management, customer flow, setup routing, support handoff, renewal follow-up, and growth resources.
-      This page is meant to teach the process and support execution without competing with the live dashboard.
+  <div class="page-wrap">
+
+    <div class="card live-alert-panel">
+      <div class="card-content">
+        <div class="live-alert-grid">
+          <div>
+            <div class="live-alert-title">Live Order Monitor</div>
+            <div class="live-alert-copy">
+              Keep this page open while working. It will check for new orders automatically, show a banner, and play a short alert sound after live alerts are enabled.
+            </div>
+            <span id="liveAlertStatus" class="live-alert-status">Live alerts off</span>
+            <div id="newOrderBanner" class="new-order-banner"></div>
+          </div>
+          <div class="button-row" style="justify-content:flex-end;">
+            <button class="btn btn-primary" id="enableLiveAlertsBtn">Enable Live Alerts</button>
+            <button class="btn btn-secondary" id="pauseLiveAlertsBtn">Pause Alerts</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="section-label">Admin Controls</div>
+        <h2>Order Search and Filters</h2>
+      </div>
+      <div class="card-content">
+        <div class="controls">
+          <div class="field-group">
+            <label for="searchInput">Search Orders</label>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search by name, email, phone, device, notes, status..."
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="statusFilter">Status Filter</label>
+            <select id="statusFilter">
+              <option value="">All Statuses</option>
+              <option value="NEW">New</option>
+              <option value="PAYMENT SENT">Payment Sent</option>
+              <option value="COMPLETE">Complete</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="sortFilter">Sort</label>
+            <select id="sortFilter">
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="name">Name A-Z</option>
+            </select>
+          </div>
+
+          <div class="button-row">
+            <button class="btn btn-primary" id="refreshBtn">Refresh Orders</button>
+            <button class="btn btn-secondary" id="clearBtn">Clear Filters</button>
+          </div>
+        </div>
+
+        <div id="message" class="message"></div>
+        <div id="endpointNote" class="endpoint-note"></div>
+      </div>
+    </div>
+
+    <div class="status-row">
+      <div class="stat-card">
+        <div class="stat-title">Total Orders</div>
+        <div class="stat-value" id="totalOrders">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">New</div>
+        <div class="stat-value" id="newOrders">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">Payment Sent</div>
+        <div class="stat-value" id="paymentSentOrders">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">Complete</div>
+        <div class="stat-value" id="completeOrders">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">Filtered View</div>
+        <div class="stat-value" id="filteredOrders">0</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="section-label">Editable Order Table</div>
+        <h2>Review and Update Orders</h2>
+      </div>
+      <div class="card-content">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th class="sticky-id">ROW</th>
+                <th class="sticky-name">Name</th>
+                <th class="col-created">Created At</th>
+                <th class="col-email">Email</th>
+                <th class="col-phone">Phone</th>
+                <th class="col-order-type">Order Type</th>
+                <th class="col-device">Device</th>
+                <th class="col-customer-type">Customer Type</th>
+                <th class="col-pref-contact">Preferred Contact</th>
+                <th class="col-pref-reply">Preferred Reply Time</th>
+                <th class="col-plan">Plan Interest</th>
+                <th class="col-tv">TV Count</th>
+                <th class="col-fulfillment">Fulfillment</th>
+                <th class="col-order-status">Order Status</th>
+                <th class="col-payment">Payment Status</th>
+                <th class="col-delivery">Delivery Status</th>
+                <th class="col-support">Support Route</th>
+                <th class="col-notes">Customer Notes / Internal Notes</th>
+                <th class="col-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <tr>
+                <td colspan="19" class="empty-state">Loading orders...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="small" style="margin-top: 10px;">
+          Internal note: this page now reads and updates using the current live Apps Script deployment.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="section-label">Internal Workflow</div>
+        <h2>Next Steps After an Order Is Received</h2>
+      </div>
+      <div class="card-content">
+        <div class="internal-grid">
+          <div class="internal-box">
+            <h3>Do these steps in order</h3>
+            <ol>
+              <li>Confirm the customer name, phone, email, requested device, and notes are readable.</li>
+              <li>Review the requested setup and identify whether any clarification is needed before payment is sent.</li>
+              <li>Set fulfillment type and update order status to reflect where the order stands.</li>
+              <li>Generate and send the correct payment or checkout link.</li>
+              <li>Update payment status once payment is sent and again once payment is received.</li>
+              <li>Track delivery or setup progress so nothing gets lost after payment.</li>
+              <li>Move completed jobs to COMPLETE only after the order is fully closed out.</li>
+            </ol>
+          </div>
+
+          <div class="internal-box">
+            <h3>Quick Admin Links</h3>
+            <div class="quick-links">
+              <a class="btn btn-link" href="admin-dashboard.html">Open Admin Dashboard</a>
+              <a class="btn btn-link" href="admin-checkout-link-generator.html">Open Checkout Link Generator</a>
+              <a class="btn btn-link" href="admin-resource-center.html">Open Resource Center</a>
+              <a class="btn btn-link" href="admin-update-checker.html">Open Update Checker</a>
+            </div>
+            <div class="small" style="margin-top: 12px;">
+              Internal reminder: this page is for order review and updates. The dashboard becomes the broader workflow command center after backend mapping is stable.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-strip">
+      <strong>4MyIPTV Service • Admin Orders</strong>
+      <div class="version">Version 2.4 • Live Order Alert Version • July 4, 2026</div>
     </div>
   </div>
 
-  <div class="card">
-    <h2>Service Control Panels</h2>
-    <div class="section-sub">
-      These stay at the top because they are the execution layer of the system. Use the TV Panel for primary activation, account changes, and renewal work. Use the backup panel only when the primary panel is unavailable.
-    </div>
-    <div class="legend-row">
-      <span class="legend-pill legend-panel">Panels = service execution</span>
-      <span class="legend-pill legend-admin">Blue = admin pages</span>
-      <span class="legend-pill legend-customer">Gray = customer pages</span>
-    </div>
-    <div class="panel-grid" style="margin-top:16px;">
-      <div class="panel-box primary">
-        <div class="panel-label">Primary System</div>
-        <div class="panel-title">TV Panel</div>
-        <div class="panel-sub">
-          Main service management system for activations, plan assignment, service corrections, and renewals. This is the fastest path to live execution.
+  <script>
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzWO65X3uTAbWldiacxCD7ItLu5zpfZe1fDTWUlMGJyIPJXWcXaOsDXWHMQV-3-Ch7IcQ/exec";
+
+    let allOrders = [];
+
+    const messageEl = document.getElementById("message");
+    const endpointNoteEl = document.getElementById("endpointNote");
+    const ordersTableBody = document.getElementById("ordersTableBody");
+
+    const searchInput = document.getElementById("searchInput");
+    const statusFilter = document.getElementById("statusFilter");
+    const sortFilter = document.getElementById("sortFilter");
+    const refreshBtn = document.getElementById("refreshBtn");
+    const clearBtn = document.getElementById("clearBtn");
+
+    const totalOrdersEl = document.getElementById("totalOrders");
+    const newOrdersEl = document.getElementById("newOrders");
+    const paymentSentOrdersEl = document.getElementById("paymentSentOrders");
+    const completeOrdersEl = document.getElementById("completeOrders");
+    const filteredOrdersEl = document.getElementById("filteredOrders");
+
+    const enableLiveAlertsBtn = document.getElementById("enableLiveAlertsBtn");
+    const pauseLiveAlertsBtn = document.getElementById("pauseLiveAlertsBtn");
+    const liveAlertStatusEl = document.getElementById("liveAlertStatus");
+    const newOrderBannerEl = document.getElementById("newOrderBanner");
+
+    let liveAlertsEnabled = false;
+    let hasLoadedInitialOrders = false;
+    let knownOrderKeys = new Set();
+    let liveAlertTimer = null;
+
+    endpointNoteEl.textContent = "Connected endpoint: " + APPS_SCRIPT_URL;
+
+    function setMessage(text, type = "") {
+      messageEl.textContent = text;
+      messageEl.className = "message";
+      if (type) {
+        messageEl.classList.add(type);
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function safeRaw(value) {
+      if (value === null || value === undefined) return "";
+      return String(value).trim();
+    }
+
+    function displayValue(value) {
+      const raw = safeRaw(value);
+      if (!raw) {
+        return '<span class="muted">—</span>';
+      }
+      return escapeHtml(raw);
+    }
+
+    function normalizeStatus(status) {
+      return safeRaw(status).toUpperCase();
+    }
+
+    function getStatusPill(status) {
+      const normalized = normalizeStatus(status);
+      let className = "pill pill-other";
+
+      if (normalized === "NEW") {
+        className = "pill pill-new";
+      } else if (normalized === "PAYMENT SENT") {
+        className = "pill pill-payment-sent";
+      } else if (normalized === "COMPLETE") {
+        className = "pill pill-complete";
+      }
+
+      return '<span class="' + className + '">' + (safeRaw(status) ? escapeHtml(status) : "—") + "</span>";
+    }
+
+
+
+    function getOrderKey(order) {
+      return [
+        safeRaw(order.rowNumber),
+        safeRaw(order.createdAt),
+        safeRaw(order.customerName),
+        safeRaw(order.phoneNumber)
+      ].join("|");
+    }
+
+    function setKnownOrderKeys(orders) {
+      knownOrderKeys = new Set((orders || []).map(getOrderKey));
+    }
+
+    function getNewOrders(orders) {
+      return (orders || []).filter(order => !knownOrderKeys.has(getOrderKey(order)));
+    }
+
+    function formatOrderForAlert(order) {
+      const name = safeRaw(order.customerName) || "New customer";
+      const phone = safeRaw(order.phoneNumber) || "No phone listed";
+      const type = safeRaw(order.orderType) || safeRaw(order.planInterest) || "Order request";
+      return name + " • " + phone + " • " + type;
+    }
+
+    function playOrderAlertSound() {
+      if (!liveAlertsEnabled) return;
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const audioCtx = new AudioContext();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.18, audioCtx.currentTime + 0.02);
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.45);
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.5);
+      } catch (error) {
+        console.warn("Audio alert unavailable", error);
+      }
+    }
+
+    function showNewOrderAlert(newOrders) {
+      if (!newOrders.length) return;
+      const countText = newOrders.length === 1 ? "1 new order" : newOrders.length + " new orders";
+      const detailText = newOrders.slice(0, 3).map(formatOrderForAlert).join("\n");
+      newOrderBannerEl.innerHTML = "<strong>" + escapeHtml(countText + " received.") + "</strong><br>" + escapeHtml(detailText).replaceAll("\n", "<br>");
+      newOrderBannerEl.classList.add("show");
+      setMessage(countText + " received. Review the top of the order list.", "ok");
+      playOrderAlertSound();
+    }
+
+    function setLiveAlertUi() {
+      if (liveAlertsEnabled) {
+        liveAlertStatusEl.textContent = "Live alerts on • checking every 60 seconds";
+        liveAlertStatusEl.className = "live-alert-status on";
+      } else {
+        liveAlertStatusEl.textContent = "Live alerts paused";
+        liveAlertStatusEl.className = "live-alert-status";
+      }
+    }
+
+    function startLiveAlertTimer() {
+      if (liveAlertTimer) clearInterval(liveAlertTimer);
+      liveAlertTimer = setInterval(function () {
+        if (liveAlertsEnabled) {
+          loadOrders({ silent: true });
+        }
+      }, 60000);
+    }
+
+    function buildPhoneLinks(order) {
+      const rawPhone = safeRaw(order.phoneNumber);
+      const digits = rawPhone.replace(/\D/g, "");
+      if (!digits) return "";
+      const normalized = digits.length === 10 ? "1" + digits : digits;
+      return `
+        <div>
+          <a class="quick-action-mini" href="tel:${escapeHtml(digits)}">Call</a>
+          <a class="quick-action-mini" href="sms:${escapeHtml(digits)}">Text</a>
+          <a class="quick-action-mini" href="https://wa.me/${escapeHtml(normalized)}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
-        <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="panel-btn">Open TV Panel</a>
-      </div>
-      <div class="panel-box secondary">
-        <div class="panel-label">Failover System</div>
-        <div class="panel-title">Backup Panel</div>
-        <div class="panel-sub">
-          Secondary access point when the main panel is not available. Keep it visible, but clearly subordinate to the primary system.
-        </div>
-        <a href="https://backup.tvpluspanel.ru" target="_blank" rel="noopener noreferrer" class="panel-btn">Open Backup Panel</a>
-      </div>
-    </div>
-  </div>
+      `;
+    }
 
-  <div class="card">
-    <h2>Full Customer and Service Workflow</h2>
-    <div class="section-sub">
-      This is the process map for the whole lifecycle. The links inside each step are compact on purpose so the page stays instructional without turning into a giant button wall.
-    </div>
+    function updateStats(sourceOrders, filteredOrders) {
+      totalOrdersEl.textContent = sourceOrders.length;
+      newOrdersEl.textContent = sourceOrders.filter(o => normalizeStatus(o.orderStatus) === "NEW").length;
+      paymentSentOrdersEl.textContent = sourceOrders.filter(o => normalizeStatus(o.orderStatus) === "PAYMENT SENT").length;
+      completeOrdersEl.textContent = sourceOrders.filter(o => normalizeStatus(o.orderStatus) === "COMPLETE").length;
+      filteredOrdersEl.textContent = filteredOrders.length;
+    }
 
-    <div class="workflow-grid">
-      <div class="workflow-step">
-        <div class="step-label">Step 1</div>
-        <h3>Customer Entry</h3>
-        <p>Customer starts on the public homepage and sees the service overview, positioning, and direction into the selling flow.</p>
-        <div class="pill-row">
-          <a href="index.html" class="pill-link">Index Page</a>
-        </div>
-      </div>
+    function sortOrders(orders) {
+      const sortValue = sortFilter.value;
+      const sorted = [...orders];
 
-      <div class="workflow-step">
-        <div class="step-label">Step 2</div>
-        <h3>Sales Review</h3>
-        <p>Customer reviews plans, pricing, and device options before moving into the request stage.</p>
-        <div class="pill-row">
-          <a href="sell-sheet.html" class="pill-link">Sell Sheet</a>
-        </div>
-      </div>
+      if (sortValue === "name") {
+        sorted.sort((a, b) => safeRaw(a.customerName).localeCompare(safeRaw(b.customerName)));
+        return sorted;
+      }
 
-      <div class="workflow-step">
-        <div class="step-label">Step 3</div>
-        <h3>Request Submission</h3>
-        <p>Customer submits service details and contact information, which opens the internal review path.</p>
-        <div class="pill-row">
-          <a href="request-service.html" class="pill-link">Request Service</a>
-        </div>
-      </div>
+      if (sortValue === "oldest") {
+        sorted.sort((a, b) => safeRaw(a.createdAt).localeCompare(safeRaw(b.createdAt)));
+        return sorted;
+      }
 
-      <div class="workflow-step">
-        <div class="step-label">Step 4</div>
-        <h3>Confirmation</h3>
-        <p>Customer lands on the success page and sees response expectations and the next-step message path.</p>
-        <div class="pill-row">
-          <a href="success.html" class="pill-link">Success Page</a>
-        </div>
-      </div>
+      sorted.sort((a, b) => safeRaw(b.createdAt).localeCompare(safeRaw(a.createdAt)));
+      return sorted;
+    }
 
-      <div class="workflow-step">
-        <div class="step-label">Step 5</div>
-        <h3>Internal Review</h3>
-        <p>Review the request, determine the service path, confirm whether this is online-only or device-based, and set the next action.</p>
-        <div class="pill-row">
-          <a href="admin-dashboard.html" class="pill-link">Admin Dashboard</a>
-          <a href="admin-orders.html" class="pill-link">Admin Orders</a>
-          <a href="admin-customers.html" class="pill-link">Admin Customers</a>
-        </div>
-      </div>
+    function getFilteredOrders() {
+      const searchText = searchInput.value.trim().toLowerCase();
+      const selectedStatus = statusFilter.value.trim().toUpperCase();
 
-      <div class="workflow-step">
-        <div class="step-label">Step 6</div>
-        <h3>Payment Process</h3>
-        <p>Send the checkout path or generate a payment link, then confirm payment before moving into fulfillment.</p>
-        <div class="pill-row">
-          <a href="admin-checkout-link-generator.html" class="pill-link">Checkout Link Generator</a>
-          <a href="checkout.html" class="pill-link">Checkout Page</a>
-        </div>
-      </div>
+      let filtered = [...allOrders];
 
-      <div class="workflow-step">
-        <div class="step-label">Step 7</div>
-        <h3>Fulfillment Decision</h3>
-        <p>Identify whether the customer needs online service only, in-person help, or a prepared device that must be configured and handed off.</p>
-      </div>
+      if (selectedStatus) {
+        filtered = filtered.filter(order => normalizeStatus(order.orderStatus) === selectedStatus);
+      }
 
-      <div class="workflow-step">
-        <div class="step-label">Step 8</div>
-        <h3>Device Preparation</h3>
-        <p>Use the downloader path and setup tools for device work. This stays outside the admin environment.</p>
-        <div class="pill-row">
-          <a href="downloader-portal.html" class="pill-link">Downloader Portal</a>
-          <a href="device-setup.html" class="pill-link">Device Setup</a>
-          <a href="app-library.html" class="pill-link">App Library</a>
-        </div>
-        <div class="callout">Correct setup route: Downloader Portal → Device Setup → App Library. Admin pages are not part of the device preparation environment.</div>
-      </div>
+      if (searchText) {
+        filtered = filtered.filter(order => {
+          const combined = [
+            order.rowNumber,
+            order.customerName,
+            order.createdAt,
+            order.emailAddress,
+            order.phoneNumber,
+            order.orderType,
+            order.deviceSelected,
+            order.customerType,
+            order.preferredContact,
+            order.preferredReplyTime,
+            order.planInterest,
+            order.tvCount,
+            order.campaignSource,
+            order.referralSource,
+            order.friendTrial,
+            order.fulfillmentType,
+            order.orderStatus,
+            order.paymentStatus,
+            order.deliveryStatus,
+            order.supportRoute,
+            order.notes
+          ].join(" ").toLowerCase();
 
-      <div class="workflow-step">
-        <div class="step-label">Step 9</div>
-        <h3>Service Activation</h3>
-        <p>Use the TV Panel to create or manage service, assign the plan, verify the activation, and complete the core execution work.</p>
-        <div class="pill-row">
-          <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="pill-link">TV Panel</a>
-          <a href="https://backup.tvpluspanel.ru" target="_blank" rel="noopener noreferrer" class="pill-link">Backup Panel</a>
-        </div>
-      </div>
+          return combined.includes(searchText);
+        });
+      }
 
-      <div class="workflow-step">
-        <div class="step-label">Step 10</div>
-        <h3>Delivery and Customer Handoff</h3>
-        <p>Provide login details, confirm the customer’s next-step instructions, and route them to the correct support destination.</p>
-        <div class="pill-row">
-          <a href="online-support.html" class="pill-link">Online Support</a>
-          <a href="support.html" class="pill-link">Support Page</a>
-        </div>
-      </div>
+      return sortOrders(filtered);
+    }
 
-      <div class="workflow-step">
-        <div class="step-label">Step 11</div>
-        <h3>Support Routing</h3>
-        <p>Online customers route to online support. Device customers route to support, setup, and app guidance as needed.</p>
-        <div class="pill-row">
-          <a href="online-support.html" class="pill-link">Online Support</a>
-          <a href="support.html" class="pill-link">Support Page</a>
-          <a href="device-setup.html" class="pill-link">Device Setup</a>
-          <a href="app-library.html" class="pill-link">App Library</a>
-        </div>
-      </div>
+    function buildSelectOptions(currentValue, options) {
+      const current = safeRaw(currentValue);
+      const allOptions = [...new Set([current, ...options].filter(v => String(v).trim() !== ""))];
 
-      <div class="workflow-step">
-        <div class="step-label">Step 12</div>
-        <h3>Expiration Tracking</h3>
-        <p>Review records and customer history, identify upcoming expirations, and prepare outreach before service lapses.</p>
-        <div class="pill-row">
-          <a href="admin-dashboard.html" class="pill-link">Admin Dashboard</a>
-          <a href="admin-orders.html" class="pill-link">Admin Orders</a>
-          <a href="admin-customers.html" class="pill-link">Admin Customers</a>
-        </div>
-      </div>
+      return allOptions.map(option => {
+        const selected = option === current ? "selected" : "";
+        return `<option value="${escapeHtml(option)}" ${selected}>${escapeHtml(option)}</option>`;
+      }).join("");
+    }
 
-      <div class="workflow-step">
-        <div class="step-label">Step 13</div>
-        <h3>Renewal and Retention Loop</h3>
-        <p>Contact the customer before expiration, recommend the renewal option, route them back into payment, and reactivate service through the panel.</p>
-        <div class="pill-row">
-          <a href="checkout.html" class="pill-link">Checkout Page</a>
-          <a href="admin-checkout-link-generator.html" class="pill-link">Checkout Link Generator</a>
-          <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="pill-link">TV Panel</a>
-        </div>
-      </div>
-    </div>
-  </div>
+    function renderOrders() {
+      const filtered = getFilteredOrders();
+      updateStats(allOrders, filtered);
 
-  <div class="card">
-    <h2>Operations and Daily Use</h2>
-    <div class="section-sub">
-      Practical reminders for running the system without losing the full process view.
-    </div>
-    <div class="ops-grid">
-      <div class="info-box">
-        <h3>Daily Operating Focus</h3>
-        <ul>
-          <li>Review new requests and confirm the next action.</li>
-          <li>Check order status and payment progress before activating service.</li>
-          <li>Use the TV Panel first for activations, corrections, and renewals.</li>
-          <li>Keep device work inside the downloader/setup/app path.</li>
-          <li>Watch expirations before they turn into lost renewals.</li>
-        </ul>
-      </div>
-      <div class="info-box">
-        <h3>Tool Roles</h3>
-        <ul>
-          <li>Admin Dashboard = daily command view</li>
-          <li>Admin Orders = request and order progress</li>
-          <li>Admin Customers = tracking and outreach base</li>
-          <li>Admin APK Library = internal install reference</li>
-          <li>Update Checker = app review and maintenance</li>
-          <li>Resource Center = process, templates, and growth reference</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+      if (!filtered.length) {
+        ordersTableBody.innerHTML = `
+          <tr>
+            <td colspan="19" class="empty-state">No orders found for the current filter.</td>
+          </tr>
+        `;
+        return;
+      }
 
-  <div class="card">
-    <h2>Communication Templates</h2>
-    <div class="section-sub">
-      Use these anchor links for quick message guidance without turning this section into another large button wall.
-    </div>
-    <div class="pill-row" style="margin-bottom:14px;">
-      <a href="admin-message-templates.html" class="panel-btn">Full Message Template Page</a>
-    </div>
-    <div class="template-links">
-      <a href="#new-inquiry" class="anchor-pill">New Inquiry</a>
-      <a href="#quote-follow-up" class="anchor-pill">Quote Follow-Up</a>
-      <a href="#payment-received" class="anchor-pill">Payment Received</a>
-      <a href="#device-ready" class="anchor-pill">Device Ready or Shipped</a>
-      <a href="#online-setup" class="anchor-pill">Online Setup</a>
-      <a href="#app-library-update" class="anchor-pill">App Library Update</a>
-      <a href="#referral-message" class="anchor-pill">Referral Message</a>
-    </div>
-  </div>
+      ordersTableBody.innerHTML = filtered.map(order => `
+        <tr data-row-number="${escapeHtml(order.rowNumber)}">
+          <td class="sticky-id id-cell">${displayValue(order.rowNumber)}</td>
+          <td class="sticky-name name-cell">${displayValue(order.customerName)}</td>
+          <td class="readonly-box col-created">${displayValue(order.createdAt)}</td>
+          <td class="readonly-box col-email">${displayValue(order.emailAddress)}</td>
+          <td class="readonly-box col-phone">${displayValue(order.phoneNumber)}</td>
+          <td class="readonly-box col-order-type">${displayValue(order.orderType)}</td>
+          <td class="readonly-box col-device">${displayValue(order.deviceSelected)}</td>
+          <td class="readonly-box col-customer-type">${displayValue(order.customerType)}</td>
+          <td class="readonly-box col-pref-contact">${displayValue(order.preferredContact)}</td>
+          <td class="readonly-box col-pref-reply">${displayValue(order.preferredReplyTime)}</td>
+          <td class="readonly-box col-plan">${displayValue(order.planInterest)}</td>
+          <td class="readonly-box col-tv">${displayValue(order.tvCount)}</td>
 
-  <div class="grid-2">
-    <div class="card template-box" id="new-inquiry">
-      <h2>New Inquiry Message</h2>
-      <p>Thanks for reaching out to 4MyIPTV Service. I received your request and will review your details shortly. I usually reply within a few hours and no later than 24 hours during normal business hours.</p>
-    </div>
-    <div class="card template-box" id="quote-follow-up">
-      <h2>Quote Follow-Up</h2>
-      <p>Checking back on your request. I wanted to see if you are ready to move forward. If so, I can send the next step based on the service or device option that works best for you.</p>
-    </div>
-    <div class="card template-box" id="payment-received">
-      <h2>Payment Received</h2>
-      <p>Payment received. I am moving your order into the next stage now. I will follow up with setup details, service information, or delivery updates as soon as everything is ready.</p>
-    </div>
-    <div class="card template-box" id="device-ready">
-      <h2>Device Ready or Shipped</h2>
-      <p>Your device is prepared and ready for the next step. If this is a pickup or in-person setup, I will confirm timing with you. If this is shipping, I will send your update once it is on the way.</p>
-    </div>
-    <div class="card template-box" id="online-setup">
-      <h2>Online Setup Message</h2>
-      <p>Your service is ready. Use the setup instructions and support pages if you need help completing the device process. If you run into an issue, message me and I will help you through the next step.</p>
-    </div>
-    <div class="card template-box" id="app-library-update">
-      <h2>App Library Update</h2>
-      <p>OnStream appears to no longer be working consistently. Customers can delete it or keep trying it over the next few weeks. Cinema HQ, MovieBox, and Reezn have been added to the App Library / Download Page as optional Movie &amp; TV Series apps. Remind customers that IPTV Smarters App remains the main app and should be searched first.</p>
-    </div>
-    <div class="card template-box" id="referral-message">
-      <h2>Referral Message</h2>
-      <p>If you know anyone looking for a better TV service option, feel free to send them my way. I appreciate referrals and can help them find the setup that fits what they need.</p>
-    </div>
-  </div>
+          <td class="col-fulfillment">
+            <select class="inline-select field-fulfillment">
+              ${buildSelectOptions(order.fulfillmentType, [
+                "Cash App",
+                "PayPal",
+                "Zelle",
+                "Crypto",
+                "In Person",
+                "Pending",
+                "Quote Request"
+              ])}
+            </select>
+          </td>
 
-  <div class="card">
-    <h2>Device and App Guidance</h2>
-    <div class="section-sub">
-      Keep the setup path clear and avoid mixing the admin environment with the device preparation environment.
-    </div>
-    <div class="grid-3">
-      <div class="stat-box">
-        <h3>Correct Setup Path</h3>
-        <p>Use Downloader Portal, Device Setup, and App Library as the setup sequence for device work.</p>
-        <div class="stat-row" style="margin-top:12px;">
-          <span class="stat-pill customer">Downloader Portal</span>
-          <span class="stat-pill customer">Device Setup</span>
-          <span class="stat-pill customer">App Library</span>
-        </div>
-      </div>
-      <div class="stat-box">
-        <h3>Admin Boundary</h3>
-        <p>Admin pages are for tracking, review, and management. They are not part of the downloader environment used while preparing the device.</p>
-        <div class="stat-row" style="margin-top:12px;">
-          <span class="stat-pill admin">Review</span>
-          <span class="stat-pill admin">Orders</span>
-          <span class="stat-pill admin">Customers</span>
-        </div>
-      </div>
-      <div class="stat-box">
-        <h3>Support Routing</h3>
-        <p>Online customers should route to online support. Device customers can use support, device setup, and app guidance when needed.</p>
-        <div class="stat-row" style="margin-top:12px;">
-          <span class="stat-pill customer">Online Support</span>
-          <span class="stat-pill customer">Support</span>
-        </div>
-      </div>
-    </div>
-  </div>
+          <td class="col-order-status">
+            <div class="stack">
+              ${getStatusPill(order.orderStatus)}
+              <select class="inline-select field-order-status">
+                ${buildSelectOptions(order.orderStatus, [
+                  "NEW",
+                  "PAYMENT SENT",
+                  "AWAITING PAYMENT",
+                  "PAID",
+                  "TRIAL STARTED",
+                  "TRIAL FOLLOW-UP",
+                  "IN PROGRESS",
+                  "READY FOR DELIVERY",
+                  "ACTIVATED",
+                  "COMPLETE",
+                  "ON HOLD"
+                ])}
+              </select>
+            </div>
+          </td>
 
-  <div class="card">
-    <h2>Growth and Strategy</h2>
-    <div class="section-sub">
-      Keep this section available for expansion without letting it overpower the operating flow.
-    </div>
-    <div class="grid-3">
-      <div class="info-box">
-        <h3>Printable Materials</h3>
-        <p>Keep room here for flyers, handouts, and simple offline materials that support local outreach.</p>
-      </div>
-      <div class="info-box">
-        <h3>Social and Referral Ideas</h3>
-        <p>Reserve this block for social post drafts, referral messaging, and easy customer-sharing ideas.</p>
-      </div>
-      <div class="info-box">
-        <h3>Local Promotion Notes</h3>
-        <p>Use this area for neighborhood outreach, local ad ideas, and practical growth reminders.</p>
-      </div>
-    </div>
-  </div>
+          <td class="col-payment">
+            <select class="inline-select field-payment-status">
+              ${buildSelectOptions(order.paymentStatus, [
+                "QUOTE PENDING",
+                "TRIAL",
+                "AWAITING PAYMENT",
+                "Not Sent",
+                "Sent",
+                "Pending",
+                "Paid",
+                "Failed"
+              ])}
+            </select>
+          </td>
 
-  <div class="card">
-    <h2>All Access Buttons</h2>
-    <div class="section-sub">
-      This is the full button panel for page access. Blue buttons are administrative pages. Gray buttons are customer-facing pages and support flow pages.
-    </div>
-    <div class="button-panels">
-      <div class="access-group">
-        <h3>Administrative Pages</h3>
-        <p>Internal control pages for orders, customers, admin tools, dashboard access, and operating support.</p>
-        <div class="grid-3">
-          <a href="admin-dashboard.html" class="mini-btn admin">Admin Dashboard</a>
-          <a href="admin-orders.html" class="mini-btn admin">Admin Orders</a>
-          <a href="admin-customers.html" class="mini-btn admin">Admin Customers</a>
-          <a href="admin-apk-library.html" class="mini-btn admin">Admin APK Library</a>
-          <a href="admin-resource-center.html" class="mini-btn admin">Resource Center</a>
-          <a href="admin-message-templates.html" class="mini-btn admin">Message Templates</a>
-          <a href="admin-update-checker.html" class="mini-btn admin">Update Checker</a>
-          <a href="admin-checkout-link-generator.html" class="mini-btn admin">Checkout Link Generator</a>
-          <a href="calls-dashboard.html" class="mini-btn admin">Calls Dashboard</a>
-        </div>
-      </div>
+          <td class="col-delivery">
+            <select class="inline-select field-delivery-status">
+              ${buildSelectOptions(order.deliveryStatus, [
+                "Not Started",
+                "Pending",
+                "Ready",
+                "Delivered",
+                "Completed"
+              ])}
+            </select>
+          </td>
 
-      <div class="access-group">
-        <h3>Customer and Support Pages</h3>
-        <p>Public journey pages, support destinations, and device setup flow pages.</p>
-        <div class="grid-3">
-          <a href="index.html" class="mini-btn customer">Index Page</a>
-          <a href="sell-sheet.html" class="mini-btn customer">Sell Sheet</a>
-          <a href="request-service.html" class="mini-btn customer">Request Service</a>
-          <a href="checkout.html" class="mini-btn customer">Checkout Page</a>
-          <a href="success.html" class="mini-btn customer">Success Page</a>
-          <a href="downloader-portal.html" class="mini-btn customer">Downloader Portal</a>
-          <a href="device-setup.html" class="mini-btn customer">Device Setup</a>
-          <a href="app-library.html" class="mini-btn customer">App Library</a>
-          <a href="online-support.html" class="mini-btn customer">Online Support</a>
-          <a href="support.html" class="mini-btn customer">Support Page</a>
-        </div>
-      </div>
-    </div>
-    <div class="section-note">
-      TV Panel and Backup Panel stay above as dedicated execution tools instead of being grouped into the general page-access panel.
-    </div>
-  </div>
+          <td class="col-support">
+            <input class="inline-input field-support-route" type="text" value="${escapeHtml(safeRaw(order.supportRoute))}" placeholder="Support route" />
+          </td>
 
-  <div class="footer">Version 3.2 | Last Updated: June 28, 2026 | Internal Resource Center</div>
+          <td class="notes-box col-notes">
+            <textarea class="inline-textarea field-notes" rows="4" placeholder="Notes">${escapeHtml(safeRaw(order.notes))}</textarea>
+          </td>
 
-</div>
+          <td class="actions-box col-actions">
+            <div class="stack">
+              ${buildPhoneLinks(order)}
+              <button class="btn btn-save save-row-btn">Save Update</button>
+              <div class="save-status"></div>
+            </div>
+          </td>
+        </tr>
+      `).join("");
+
+      attachRowSaveHandlers();
+    }
+
+    async function loadOrders(options = {}) {
+      const silent = !!options.silent;
+      if (!silent) {
+        setMessage("Loading orders...", "");
+      }
+      if (!silent) {
+        ordersTableBody.innerHTML = `
+          <tr>
+            <td colspan="19" class="empty-state">Loading orders...</td>
+          </tr>
+        `;
+      }
+
+      try {
+        const response = await fetch(APPS_SCRIPT_URL + "?action=getOrders", {
+          method: "GET",
+          redirect: "follow"
+        });
+
+        if (!response.ok) {
+          throw new Error("HTTP " + response.status + " returned from Apps Script.");
+        }
+
+        const data = await response.json();
+
+        if (!data.success || !Array.isArray(data.orders)) {
+          throw new Error(data.message || "No orders array was returned.");
+        }
+
+        const incomingOrders = data.orders;
+
+        if (!hasLoadedInitialOrders) {
+          setKnownOrderKeys(incomingOrders);
+          hasLoadedInitialOrders = true;
+        } else {
+          const newOrders = getNewOrders(incomingOrders);
+          if (newOrders.length) {
+            showNewOrderAlert(newOrders);
+          }
+          setKnownOrderKeys(incomingOrders);
+        }
+
+        allOrders = incomingOrders;
+
+        if (!silent) {
+          setMessage("Orders loaded successfully.", "ok");
+        }
+        renderOrders();
+      } catch (error) {
+        console.error("Admin Orders Load Error:", error);
+        if (!silent) {
+          setMessage("Unable to load orders. " + error.message, "error");
+          ordersTableBody.innerHTML = `
+          <tr>
+            <td colspan="19" class="empty-state">
+              Unable to load orders.<br />
+              <span class="small">Check the Apps Script URL and confirm the Web App is deployed correctly.</span>
+            </td>
+          </tr>
+        `;
+          updateStats([], []);
+        } else {
+          setMessage("Live alert check failed. " + error.message, "error");
+        }
+      }
+    }
+
+    function attachRowSaveHandlers() {
+      document.querySelectorAll(".save-row-btn").forEach(button => {
+        button.addEventListener("click", async () => {
+          const row = button.closest("tr");
+          const saveStatus = row.querySelector(".save-status");
+          const rowNumber = Number(row.getAttribute("data-row-number"));
+
+          const payload = {
+            action: "updateOrder",
+            rowNumber: rowNumber,
+            fulfillmentType: row.querySelector(".field-fulfillment").value.trim(),
+            orderStatus: row.querySelector(".field-order-status").value.trim(),
+            paymentStatus: row.querySelector(".field-payment-status").value.trim(),
+            deliveryStatus: row.querySelector(".field-delivery-status").value.trim(),
+            supportRoute: row.querySelector(".field-support-route").value.trim(),
+            notes: row.querySelector(".field-notes").value.trim()
+          };
+
+          button.disabled = true;
+          button.textContent = "Saving...";
+          saveStatus.textContent = "Sending update...";
+          saveStatus.className = "save-status";
+
+          try {
+            const response = await fetch(APPS_SCRIPT_URL, {
+              method: "POST",
+              headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+              },
+              body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+              throw new Error("HTTP " + response.status + " returned from Apps Script.");
+            }
+
+            const result = await response.json();
+
+            if (result.success === false) {
+              throw new Error(result.message || "Save failed.");
+            }
+
+            saveStatus.textContent = "Update saved. Refreshing view...";
+            saveStatus.className = "save-status ok";
+            setMessage("Order update submitted successfully.", "ok");
+
+            await loadOrders();
+          } catch (error) {
+            console.error("Save Order Error:", error);
+            saveStatus.textContent = "Save failed. " + error.message;
+            saveStatus.className = "save-status error";
+            setMessage("Save failed. " + error.message, "error");
+          } finally {
+            button.disabled = false;
+            button.textContent = "Save Update";
+          }
+        });
+      });
+    }
+
+    enableLiveAlertsBtn.addEventListener("click", function () {
+      liveAlertsEnabled = true;
+      newOrderBannerEl.classList.remove("show");
+      setLiveAlertUi();
+      startLiveAlertTimer();
+      loadOrders({ silent: true });
+    });
+
+    pauseLiveAlertsBtn.addEventListener("click", function () {
+      liveAlertsEnabled = false;
+      setLiveAlertUi();
+    });
+
+    refreshBtn.addEventListener("click", function () {
+      loadOrders();
+    });
+
+    clearBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      statusFilter.value = "";
+      sortFilter.value = "newest";
+      renderOrders();
+      setMessage("Filters cleared.", "ok");
+    });
+
+    searchInput.addEventListener("input", renderOrders);
+    statusFilter.addEventListener("change", renderOrders);
+    sortFilter.addEventListener("change", renderOrders);
+
+    setLiveAlertUi();
+    loadOrders();
+    startLiveAlertTimer();
+  </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- GOOGLE ANALYTICS START -->
+  <!-- GOOGLE ANALYTICS START -->
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-TN6LYCC0DS"></script>
 <script>
@@ -12,345 +12,628 @@
   gtag('config', 'G-TN6LYCC0DS');
 </script>
 <!-- GOOGLE ANALYTICS END -->
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>4MyIPTV Service Device Setup Center</title>
-<!--
-Version: 2.4
-Last Updated: April 20, 2026
-Change Notes:
-- Replaced top-row Start Page button with Apps & Updates linking to app-library.html
-- Removed duplicate App Library button from Still Need Help section
-- Updated customer-facing wording from App Library to Apps & Updates
-- All other layout, styling, and page content intentionally left unchanged
--->
-<style>
-:root{
-  --bg:#08111f;
-  --panel:#101827;
-  --text:#f8fafc;
-  --muted:#94a3b8;
-  --green:#22c55e;
-  --blue:#3b82f6;
-  --gold:#f59e0b;
-  --purple:#9333ea;
-  --border:#1f2937;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(180deg,#08111f,#0f172a);
-  color:var(--text);
-}
-.wrap{max-width:1200px;margin:auto;padding:18px}
-.card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:18px;
-  margin-bottom:14px;
-  overflow:hidden;
-  box-shadow:0 12px 28px rgba(0,0,0,.28);
-}
-.hero{padding:22px;text-align:center}
-h1{margin:0 0 8px;color:#86efac;font-size:2rem}
-h2{margin:0}
-.tagline-banner{
-  margin:10px auto 14px auto;
-  max-width:760px;
-  padding:10px 14px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.04);
-  text-align:center;
-  font-weight:600;
-  font-size:16px;
-  letter-spacing:.08em;
-  color:#e2e8f0;
-}
-.sub{color:var(--muted);line-height:1.5}
-.notice,.tip,.warning,.success-note{
-  border-radius:14px;
-  padding:12px 14px;
-  margin-top:14px;
-  line-height:1.5;
-  text-align:left;
-}
-.notice{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe}
-.tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a}
-.warning{background:rgba(239,68,68,.10);border:1px solid rgba(239,68,68,.24);color:#fecaca}
-.success-note{background:rgba(34,197,94,.10);border:1px solid rgba(34,197,94,.24);color:#bbf7d0}
-.header{
-  padding:14px 16px;
-  border-bottom:1px solid var(--border);
-  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
-}
-.content{padding:14px 16px}
-.section-label{
-  font-size:11px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:#94a3b8;
-  margin:0 0 8px 0;
-}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-@media (max-width:980px){.grid2,.grid3{grid-template-columns:1fr}}
-.btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.btn{
-  padding:11px 14px;
-  border-radius:999px;
-  text-decoration:none;
-  font-weight:bold;
-  text-align:center;
-  display:inline-block;
-  border:none;
-  cursor:pointer;
-  font-size:14px;
-  color:#fff;
-}
-.playbtn{background:var(--blue)}
-.directbtn{background:var(--green);color:#052e16}
-.goldbtn{background:var(--gold);color:#3b2400}
-.adminbtn{background:var(--purple)}
-.tile{
-  background:#0f172a;
-  border:1px solid #243044;
-  border-radius:14px;
-  padding:14px;
-}
-.tile strong{display:block;margin-bottom:8px}
-.list{margin:0;padding-left:18px}
-.list li{margin:0 0 8px;line-height:1.45}
-.video-wrap{
-  position:relative;
-  width:100%;
-  aspect-ratio:16/9;
-  background:#020617;
-  border:1px solid #243044;
-  border-radius:12px;
-  overflow:hidden;
-}
-.video-wrap iframe{
-  width:100%;
-  height:100%;
-  border:0;
-}
-.status-strip{
-  margin-top:12px;
-  padding:10px 12px;
-  border:1px solid rgba(59,130,246,.22);
-  background:rgba(59,130,246,.08);
-  border-radius:12px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  align-items:center;
-  justify-content:center;
-}
-.status-label{
-  font-size:11px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:#93c5fd;
-  font-weight:bold;
-}
-.status-pill{
-  display:inline-flex;
-  align-items:center;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:bold;
-  background:#0f172a;
-  border:1px solid #243044;
-  color:#dbeafe;
-}
-.footer-strip{
-  margin-top:18px;
-  padding:16px 10px;
-  border-top:1px solid #243044;
-  text-align:center;
-  color:#cbd5e1;
-  font-size:.9rem;
-}
-.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
-.center-note{
-  text-align:center;
-  color:#86efac;
-  font-weight:bold;
-  margin-top:12px;
-}
-.muted-center{
-  text-align:center;
-  color:#94a3b8;
-  margin-top:8px;
-}
-</style>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4MyIPTV Service Checkout</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      margin: 0 0 8px;
+      color: #86efac;
+      font-size: 30px;
+    }
+
+    .tagline-banner {
+      margin: 10px auto 14px auto;
+      max-width: 760px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      text-align: center;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      color: #e2e8f0;
+    }
+
+    .header p {
+      margin: 0;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      color: #f8fafc;
+      font-size: 22px;
+    }
+
+    .subhead {
+      margin: -4px 0 14px 0;
+      color: #94a3b8;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 700px) {
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #cbd5e1;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      background: #020617;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+    }
+
+    textarea {
+      min-height: 92px;
+      resize: vertical;
+    }
+
+    input[readonly], textarea[readonly] {
+      background: #0b1220;
+      color: #e2e8f0;
+      cursor: not-allowed;
+    }
+
+    .lock-note {
+      margin-top: 4px;
+      color: #94a3b8;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .locked-panel {
+      background: #020617;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .locked-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 700px) {
+      .locked-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .locked-item {
+      padding: 10px 12px;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      background: #0b1220;
+    }
+
+    .locked-label {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+    }
+
+    .locked-value {
+      color: #f8fafc;
+      font-size: 15px;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .summary {
+      background: #020617;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .row:last-child {
+      margin-bottom: 0;
+    }
+
+    .summary-value {
+      text-align: right;
+    }
+
+    .total {
+      font-weight: bold;
+      color: #86efac;
+      border-top: 1px solid #334155;
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .pill {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(134, 239, 172, 0.08);
+      border: 1px solid rgba(134, 239, 172, 0.18);
+      color: #bbf7d0;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .status {
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 10px;
+      display: none;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .success {
+      display: block;
+      background: #052e16;
+      border: 1px solid #166534;
+      color: #bbf7d0;
+    }
+
+    .error {
+      display: block;
+      background: #450a0a;
+      border: 1px solid #991b1b;
+      color: #fecaca;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: #94a3b8;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .small-note {
+      color: #94a3b8;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
-
-  <div class="card hero">
-    <h1>4MyIPTV Service Device Setup Center</h1>
-    <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
-    <div class="sub">Use this page for first-time setup on your own compatible streaming device. If your device was already set up for you, you usually do not need this page unless you are reinstalling from scratch.</div>
-    <div class="center-note">Most first-time setups can be completed in just a few minutes</div>
-    <div class="muted-center">No technical experience needed. Just follow the steps below.</div>
-
-    <div class="status-strip">
-      <span class="status-label">Setup Status</span>
-      <span class="status-pill">Internet Required</span>
-      <span class="status-pill">First-Time Setup</span>
-      <span class="status-pill">Support Available</span>
-    </div>
-
-    <div class="btnrow" style="margin-top:16px">
-      <a class="btn playbtn" href="app-library.html">Apps &amp; Updates</a>
-      <a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank" rel="noopener noreferrer">Install IPTV Smarters</a>
-      <a class="btn adminbtn" href="support.html">Support</a>
-    </div>
-
-    <div class="notice"><strong>Before you begin</strong><br/>You need a stable internet connection, a supported Android-based streaming device, and the login credentials provided by your installer.</div>
-
-    <div class="tip"><strong>Recommended order</strong><br/>1. Prepare your device settings<br/>2. Install IPTV Smarters Pro<br/>3. Enter your credentials exactly as provided<br/>4. Add optional Play Store apps later only if you want extra free content and your device has the space</div>
-  </div>
-
-  <div class="card">
+  <div class="container">
     <div class="header">
-      <div class="section-label">Quick Start</div>
-      <h2>What You Need Before You Start</h2>
+      <h1>4MyIPTV Service Checkout</h1>
+      <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
+      <p>
+        This page is for approved orders only. Review the details below, confirm your contact information,
+        and complete payment securely.
+      </p>
     </div>
-    <div class="content">
-      <div class="grid3">
-        <div class="tile">
-          <strong>1. Your Device</strong>
-          Make sure your ONN device, Firestick, or Android-based streaming device is connected to your TV and powered on.
+
+    <div class="grid">
+      <div>
+        <div class="card">
+          <h2>Approved Order Details</h2>
+          <p class="subhead">
+            These order details were approved before checkout and are locked on this page.
+          </p>
+
+          <div class="locked-panel">
+            <div class="locked-grid">
+              <div class="locked-item">
+                <div class="locked-label">Service</div>
+                <div class="locked-value" id="displayService">-</div>
+              </div>
+
+              <div class="locked-item">
+                <div class="locked-label">Category</div>
+                <div class="locked-value" id="displayCategory">-</div>
+              </div>
+
+              <div class="locked-item">
+                <div class="locked-label">Device</div>
+                <div class="locked-value" id="displayDevice">-</div>
+              </div>
+
+              <div class="locked-item">
+                <div class="locked-label">Fulfillment</div>
+                <div class="locked-value" id="displayFulfillment">-</div>
+              </div>
+
+              <div class="locked-item">
+                <div class="locked-label">Approved Amount</div>
+                <div class="locked-value" id="displayAmount">$0.00</div>
+              </div>
+
+              <div class="locked-item">
+                <div class="locked-label">Status</div>
+                <div class="locked-value" id="displayStatus">Pending</div>
+              </div>
+            </div>
+
+            <div class="field" style="margin-top:14px;">
+              <label for="serviceDescription">Approved Description</label>
+              <textarea id="serviceDescription" readonly></textarea>
+              <div class="lock-note">Locked from the approved quote review.</div>
+            </div>
+
+            <div class="field" style="margin-bottom:0;">
+              <label for="approvedNotes">Approved Notes</label>
+              <textarea id="approvedNotes" readonly></textarea>
+              <div class="lock-note">Locked from the approved quote review.</div>
+            </div>
+          </div>
         </div>
-        <div class="tile">
-          <strong>2. Internet Connection</strong>
-          Your device must be connected to Wi-Fi or another stable internet source before the app will work.
+
+        <div class="card">
+          <h2>Confirm Customer Information</h2>
+          <p class="subhead">
+            Confirm the customer contact details tied to this approved order.
+          </p>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="fullName">Full Name</label>
+              <input id="fullName" type="text" placeholder="Customer name" />
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="name@example.com" />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" type="tel" placeholder="555-123-4567" />
+            </div>
+
+            <div class="field">
+              <label for="address">Address</label>
+              <input id="address" type="text" placeholder="Shipping or service address" />
+            </div>
+          </div>
+
+          <div class="small-note">
+            Customers should not be changing service scope here. This page is only for payment and basic confirmation.
+          </div>
         </div>
-        <div class="tile">
-          <strong>3. Login Details</strong>
-          Keep your username, password, and server URL nearby so you can enter them exactly as provided.
+      </div>
+
+      <div>
+        <div class="card">
+          <h2>Payment Summary</h2>
+
+          <div class="pill-row">
+            <div class="pill">Approved Order</div>
+            <div class="pill">Locked Checkout</div>
+            <div class="pill">Admin Synced</div>
+          </div>
+
+          <div class="summary">
+            <div class="row">
+              <span>Service</span>
+              <span class="summary-value" id="sumService">-</span>
+            </div>
+            <div class="row">
+              <span>Category</span>
+              <span class="summary-value" id="sumCategory">-</span>
+            </div>
+            <div class="row">
+              <span>Device</span>
+              <span class="summary-value" id="sumDevice">-</span>
+            </div>
+            <div class="row">
+              <span>Fulfillment</span>
+              <span class="summary-value" id="sumFulfillment">-</span>
+            </div>
+            <div class="row total">
+              <span>Total</span>
+              <span class="summary-value" id="sumTotal">$0.00</span>
+            </div>
+          </div>
+
+          <div id="paypal-button-container" style="margin-top:14px;"></div>
+          <div id="status" class="status"></div>
+        </div>
+
+        <div class="footer-note">
+          4MyIPTV Service Checkout • Approved payment page only
         </div>
       </div>
     </div>
   </div>
 
-  <div class="grid2">
-    <div class="card">
-      <div class="header">
-        <div class="section-label">Step 1</div>
-        <h2>Prepare Your Device</h2>
-      </div>
-      <div class="content">
-        <ul class="list">
-          <li>Connect the device to your TV and power.</li>
-          <li>Connect to Wi-Fi during first setup.</li>
-          <li>Open Settings and complete your ONN device preparation steps.</li>
-          <li>Turn off any Play Protect or harmful app scanning settings if your device requires it.</li>
-        </ul>
-        <div class="video-wrap" style="margin-top:12px;">
-          <iframe allowfullscreen="" loading="lazy" src="https://www.youtube-nocookie.com/embed/zcAS26bd7lw" title="ONN 4K setup video"></iframe>
-        </div>
-      </div>
-    </div>
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzWO65X3uTAbWldiacxCD7ItLu5zpfZe1fDTWUlMGJyIPJXWcXaOsDXWHMQV-3-Ch7IcQ/exec";
 
-    <div class="card">
-      <div class="header">
-        <div class="section-label">Step 2</div>
-        <h2>Install Downloader</h2>
-      </div>
-      <div class="content">
-        <ul class="list">
-          <li>Open the Play Store on your Android streaming device.</li>
-          <li>Search for <strong>Downloader</strong>.</li>
-          <li>Install the app.</li>
-          <li>Downloader is useful for alternate installs and future app recovery if needed.</li>
-        </ul>
-        <div class="video-wrap" style="margin-top:12px;">
-          <iframe allowfullscreen="" loading="lazy" src="https://www.youtube-nocookie.com/embed/MCy4vFD_FQk" title="Downloader install video"></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
+    const approved = {
+      service: "",
+      category: "",
+      description: "",
+      amount: 0,
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      device: "",
+      fulfillment: "",
+      notes: "",
+      status: "Pending"
+    };
 
-  <div class="card">
-    <div class="header">
-      <div class="section-label">Step 3</div>
-      <h2>Log Into IPTV Smarters Pro</h2>
-    </div>
-    <div class="content">
-      <ul class="list">
-        <li>Select <strong>Login with Xtream Codes API</strong>.</li>
-        <li><strong>Name</strong> can be anything, such as IPTV.</li>
-        <li><strong>Username</strong>, <strong>Password</strong>, and <strong>Server URL</strong> must match exactly as provided.</li>
-        <li>Do not share your credentials. Shared logins can cause buffering or service interruption.</li>
-      </ul>
-      <div class="video-wrap" style="margin-top:12px;">
-        <iframe allowfullscreen="" loading="lazy" src="https://www.youtube-nocookie.com/embed/ApwZjqpP9fs" title="Xtream Codes login video"></iframe>
-      </div>
+    function getParams() {
+      const params = new URLSearchParams(window.location.search);
 
-      <div class="success-note" style="margin-top:12px;">
-        <strong>After setup:</strong> If an app ever stops working later, use Apps &amp; Updates to reinstall or update it.
-      </div>
-    </div>
-  </div>
+      approved.service = params.get("service") || "";
+      approved.category = params.get("category") || "";
+      approved.description = params.get("description") || "";
+      approved.amount = Number(params.get("amount") || 0);
+      approved.name = params.get("name") || "";
+      approved.email = params.get("email") || "";
+      approved.phone = params.get("phone") || "";
+      approved.address = params.get("address") || "";
+      approved.device = params.get("device") || "";
+      approved.fulfillment = params.get("fulfillment") || "";
+      approved.notes = params.get("notes") || "";
+      approved.status = params.get("status") || "Pending";
+    }
 
-  <div class="card">
-    <div class="header">
-      <div class="section-label">Optional Add-Ons</div>
-      <h2>Recommended Play Store Apps</h2>
-    </div>
-    <div class="content">
-      <div class="grid2">
-        <div class="tile">
-          <strong>Extra Free Content</strong>
-          <ul class="list">
-            <li><strong>Pluto TV</strong> for free live channels and on-demand content</li>
-            <li><strong>Tubi</strong> for free movies and TV shows</li>
-            <li><strong>NewsON</strong> for local news in many markets</li>
-            <li><strong>Xumo Play</strong> for free channels and entertainment</li>
-          </ul>
-        </div>
-        <div class="tile">
-          <strong>Good to Know</strong>
-          <ul class="list">
-            <li>These apps come from the Google Play Store and are updated there.</li>
-            <li>They are optional and can be added later if your device has enough room.</li>
-            <li>They give customers extra free content on top of the regular setup.</li>
-            <li>They are not required for your main service to work.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="notice" style="margin-top:12px;"><strong>Recommendation:</strong> Keep your main setup simple first. Once everything is working, you can add any of these Play Store apps later for additional free viewing options.</div>
-    </div>
-  </div>
+    function money(value) {
+      return "$" + Number(value || 0).toFixed(2);
+    }
 
-  <div class="card">
-    <div class="header">
-      <div class="section-label">Need Help</div>
-      <h2>Still Need Help?</h2>
-    </div>
-    <div class="content">
-      <div class="btnrow">
-        <a class="btn adminbtn" href="support.html">Support</a>
-      </div>
+    function showStatus(msg, type) {
+      const box = document.getElementById("status");
+      box.className = "status " + type;
+      box.textContent = msg;
+    }
 
-      <div class="notice" style="margin-top:12px;">
-        Use Apps &amp; Updates for app reinstalls and updates. Use Support if you have account questions, setup trouble, renewals, or issues that continue after reinstalling.
-      </div>
-    </div>
-  </div>
+    function applyApprovedValues() {
+      document.getElementById("displayService").textContent = approved.service || "-";
+      document.getElementById("displayCategory").textContent = approved.category || "-";
+      document.getElementById("displayDevice").textContent = approved.device || "-";
+      document.getElementById("displayFulfillment").textContent = approved.fulfillment || "-";
+      document.getElementById("displayAmount").textContent = money(approved.amount);
+      document.getElementById("displayStatus").textContent = approved.status || "Pending";
+      document.getElementById("serviceDescription").value = approved.description || "";
+      document.getElementById("approvedNotes").value = approved.notes || "";
 
-  <div class="footer-strip">
-    <strong>4MyIPTV Service • Device Setup Center</strong>
-    <div class="version">Version 2.4 • Last Updated: April 2026</div>
-  </div>
+      document.getElementById("sumService").textContent = approved.service || "-";
+      document.getElementById("sumCategory").textContent = approved.category || "-";
+      document.getElementById("sumDevice").textContent = approved.device || "-";
+      document.getElementById("sumFulfillment").textContent = approved.fulfillment || "-";
+      document.getElementById("sumTotal").textContent = money(approved.amount);
 
-</div>
+      document.getElementById("fullName").value = approved.name || "";
+      document.getElementById("email").value = approved.email || "";
+      document.getElementById("phone").value = approved.phone || "";
+      document.getElementById("address").value = approved.address || "";
+    }
+
+    function validateApprovedOrder() {
+      if (!approved.service || approved.amount <= 0) {
+        showStatus("This checkout link is incomplete. Approved service and amount are required.", "error");
+        return false;
+      }
+      return true;
+    }
+
+    function validateCustomerInfo() {
+      const fullName = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+
+      if (!fullName || !email || !phone) {
+        showStatus("Please confirm Full Name, Email, and Phone before payment.", "error");
+        return false;
+      }
+
+      return true;
+    }
+
+    async function saveOrder(orderData) {
+      const response = await fetch(scriptURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(orderData)
+      });
+
+      return await response.json();
+    }
+
+    function buildOrderData(paymentId) {
+      const fullName = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const address = document.getElementById("address").value.trim();
+
+      const combinedNotes = [
+        approved.notes,
+        approved.description ? "Approved Description: " + approved.description : "",
+        address ? "Address: " + address : ""
+      ].filter(Boolean).join(" | ");
+
+      return {
+        timestamp: new Date().toISOString(),
+        orderType: approved.service,
+        fullName: fullName,
+        email: email,
+        phone: phone,
+        customer: "Customer",
+        customerType: "Customer",
+        deviceType: approved.device,
+        deviceSelected: approved.device,
+        fulfillmentType: approved.fulfillment,
+        notes: combinedNotes,
+        status: approved.status || "Pending",
+        orderStatus: approved.status || "Pending",
+        paymentStatus: "PAYMENT RECEIVED",
+        paymentType: "PayPal One-Time Payment",
+        amount: Number(approved.amount).toFixed(2),
+        planName: approved.service,
+        paypalSubscriptionId: paymentId || "",
+        address: address,
+        orderShipped: "Not Shipped",
+        trackingNumber: ""
+      };
+    }
+
+    function renderPayPal() {
+      const container = document.getElementById("paypal-button-container");
+      container.innerHTML = "";
+
+      if (!validateApprovedOrder()) {
+        return;
+      }
+
+      if (!window.paypal) {
+        showStatus("PayPal failed to load. Please check your client ID.", "error");
+        return;
+      }
+
+      paypal.Buttons({
+        createOrder: function(data, actions) {
+          if (!validateCustomerInfo()) {
+            return Promise.reject(new Error("Validation failed"));
+          }
+
+          return actions.order.create({
+            purchase_units: [
+              {
+                description: approved.service,
+                amount: {
+                  currency_code: "USD",
+                  value: Number(approved.amount).toFixed(2)
+                }
+              }
+            ]
+          });
+        },
+
+        onApprove: async function(data, actions) {
+          try {
+            const details = await actions.order.capture();
+            const orderData = buildOrderData(details.id || "");
+
+            const result = await saveOrder(orderData);
+
+            if (result.success) {
+              showStatus("Payment completed and order saved successfully. Redirecting...", "success");
+              setTimeout(function() {
+                window.location.href = "success.html";
+              }, 1200);
+            } else {
+              showStatus("Payment succeeded, but saving the order failed. Please check your Google Sheet.", "error");
+            }
+          } catch (error) {
+            console.error(error);
+            showStatus("Payment completed, but there was an error saving your order details.", "error");
+          }
+        },
+
+        onError: function(err) {
+          console.error("PayPal error:", err);
+          showStatus("PayPal error. Please try again.", "error");
+        }
+      }).render("#paypal-button-container");
+    }
+
+    getParams();
+    applyApprovedValues();
+  </script>
+
+  <script src="https://www.paypal.com/sdk/js?client-id=AWGNEkU-dS6LJz4eaNHNB93LP5SxnRc377VvcdF7BIVE8jYXiK2Banltv9Cr85F9jMQLp33GoOplY5yu&currency=USD"></script>
+  <script>
+    renderPayPal();
+  </script>
+
+  <div style="max-width:1100px;margin:24px auto 12px auto;padding:0 16px;text-align:center;font-size:12px;opacity:0.75;">Version 1.0 • April 2026 • 4MyIPTV Service Checkout</div>
 <!-- CUSTOMER ANALYTICS EVENT TRACKING START -->
 <script>
 (function(){

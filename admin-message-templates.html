@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>4MyIPTV Service Admin Message Templates</title>
+<title>4MyIPTV Service Admin Dashboard</title>
 <style>
 :root{
   --bg:#08111f;
@@ -13,10 +13,13 @@
   --muted:#94a3b8;
   --border:#1f2937;
   --line:#243044;
-  --green:#22c55e;
-  --blue:#3b82f6;
-  --gold:#f59e0b;
+  --panel-primary:#22c55e;
+  --panel-secondary:#f59e0b;
   --admin-btn:#1d4ed8;
+  --customer-btn:#475569;
+  --danger:#ef4444;
+  --warn:#f59e0b;
+  --ok:#22c55e;
 }
 *{box-sizing:border-box}
 body{
@@ -36,7 +39,7 @@ body{
 }
 h1{margin:0 0 10px;color:#86efac;text-align:center}
 h2{margin:0 0 8px;font-size:24px}
-h3{margin:0 0 10px;font-size:18px;color:#86efac}
+h3{margin:0 0 8px;font-size:18px}
 p{margin:0}
 .tagline{
   text-align:center;
@@ -47,9 +50,67 @@ p{margin:0}
 .intro{
   text-align:center;
   color:var(--muted);
-  max-width:920px;
+  max-width:820px;
   margin:0 auto;
   line-height:1.55;
+}
+.panel-grid,
+.info-grid,
+.workflow-grid,
+.status-grid,
+.access-grid,
+.two-col{
+  display:grid;
+  gap:16px;
+}
+.panel-grid{grid-template-columns:2fr 1.25fr}
+.info-grid{grid-template-columns:repeat(3,1fr)}
+.workflow-grid{grid-template-columns:repeat(2,1fr)}
+.status-grid{grid-template-columns:repeat(3,1fr)}
+.two-col{grid-template-columns:repeat(2,1fr)}
+.access-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.btn,
+.panel-btn,
+.pill-link,
+.action-btn,
+.mini-btn{
+  text-decoration:none;
+  border-radius:14px;
+  font-weight:bold;
+}
+.panel-box{
+  background:linear-gradient(180deg,#0f172a,#111827);
+  border:1px solid #263246;
+  border-radius:18px;
+  padding:22px;
+}
+.panel-box.primary{
+  border-color:rgba(34,197,94,.35);
+  box-shadow:0 0 0 1px rgba(34,197,94,.08) inset;
+}
+.panel-box.secondary{
+  border-color:rgba(245,158,11,.30);
+}
+.panel-label{
+  color:#bbf7d0;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.panel-box.secondary .panel-label{color:#fde68a}
+.panel-title{font-size:28px;margin-bottom:8px}
+.panel-sub{color:var(--muted);line-height:1.5;margin-bottom:18px}
+.panel-btn{
+  display:inline-block;
+  padding:16px 20px;
+  color:#052e16;
+  background:var(--panel-primary);
+  border:1px solid rgba(255,255,255,.08);
+}
+.panel-box.secondary .panel-btn{
+  color:#422006;
+  background:var(--panel-secondary);
 }
 .section-sub{
   color:var(--muted);
@@ -57,84 +118,112 @@ p{margin:0}
   margin-bottom:16px;
   font-size:14px;
 }
-.grid-2,.grid-3{
-  display:grid;
-  gap:16px;
+.section-note{
+  color:var(--muted);
+  line-height:1.45;
+  font-size:13px;
+  margin-top:10px;
 }
-.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media (max-width:980px){
-  .grid-2,.grid-3{grid-template-columns:1fr}
-}
-.pill-row,.action-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-.anchor-pill,.action-btn{
-  text-decoration:none;
-  border-radius:999px;
-  font-weight:bold;
-}
-.anchor-pill{
-  display:inline-block;
-  padding:8px 12px;
-  background:#1e293b;
-  color:#fff;
-  border:1px solid rgba(255,255,255,.08);
-  font-size:12px;
-}
-.action-btn{
-  display:inline-block;
-  padding:11px 14px;
-  background:var(--admin-btn);
-  color:#fff;
-  font-size:14px;
-}
-.template-box,.info-box{
+.status-box,
+.info-box,
+.workflow-step,
+.access-group{
   background:var(--panel-soft);
   border:1px solid var(--line);
-  border-radius:16px;
-  padding:18px;
-  height:100%;
-}
-.template-box p,.info-box p,.template-box li,.info-box li{
-  color:#cbd5e1;
-  line-height:1.55;
-  font-size:14px;
-}
-.template-copy{
-  margin-top:12px;
-  padding:14px;
   border-radius:14px;
-  background:#0f172a;
-  border:1px solid var(--line);
-  color:#e2e8f0;
-  white-space:pre-line;
-  line-height:1.55;
+  padding:16px;
+}
+.status-label{
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+.status-value{font-size:16px;font-weight:bold;color:var(--text)}
+.status-note{margin-top:12px;color:var(--muted);line-height:1.45;font-size:14px}
+.status-pill{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:bold;
+  font-size:13px;
+  border:1px solid transparent;
+}
+.status-ok{background:rgba(34,197,94,.12);color:#bbf7d0;border-color:rgba(34,197,94,.25)}
+.status-soon{background:rgba(245,158,11,.12);color:#fde68a;border-color:rgba(245,158,11,.28)}
+.status-overdue{background:rgba(239,68,68,.12);color:#fecaca;border-color:rgba(239,68,68,.28)}
+.action-row{margin-top:16px;display:flex;flex-wrap:wrap;gap:12px}
+.action-btn{
+  display:inline-block;
+  background:var(--panel-primary);
+  color:#052e16;
+  border:none;
+  padding:14px 16px;
+  cursor:pointer;
   font-size:14px;
 }
-.note{
-  margin-top:14px;
-  padding:12px 14px;
-  border-radius:12px;
-  background:rgba(59,130,246,.10);
-  border:1px solid rgba(59,130,246,.24);
-  color:#dbeafe;
-  line-height:1.5;
+.info-box h3{margin-bottom:6px}
+.info-box p{color:var(--muted);line-height:1.45;font-size:14px}
+.workflow-step .step-label{
+  color:#86efac;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:8px;
 }
-.footer-strip{
-  margin-top:18px;
-  padding:16px 10px;
-  border-top:1px solid #243044;
+.workflow-step h3{font-size:18px;margin-bottom:8px}
+.workflow-step p{color:var(--muted);line-height:1.5;font-size:14px;margin-bottom:12px}
+.pill-row{display:flex;flex-wrap:wrap;gap:10px}
+.pill-link{
+  display:inline-block;
+  padding:9px 12px;
+  color:#e2e8f0;
+  background:#1e293b;
+  border:1px solid #334155;
+  font-size:13px;
+}
+.priority-list{margin:0;padding-left:18px;color:var(--muted);line-height:1.6}
+.priority-list li{margin-bottom:6px}
+.legend-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.legend-pill{
+  display:inline-block;
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:12px;
+  font-weight:bold;
+  border:1px solid rgba(255,255,255,.08);
+}
+.legend-admin{background:var(--admin-btn);color:#fff}
+.legend-customer{background:var(--customer-btn);color:#fff}
+.legend-panel{background:var(--panel-primary);color:#052e16}
+.access-group h3{margin-bottom:6px}
+.access-group p{color:var(--muted);font-size:13px;line-height:1.45;margin-bottom:12px}
+.mini-btn{
+  display:block;
   text-align:center;
-  color:#cbd5e1;
-  font-size:.9rem;
+  padding:11px 10px;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.08);
+  font-size:13px;
 }
-.footer-strip .version{
-  margin-top:6px;
-  color:#94a3b8;
-  font-size:.82rem;
+.mini-btn.admin{background:var(--admin-btn)}
+.mini-btn.customer{background:var(--customer-btn)}
+.footer{text-align:center;color:#94a3b8;margin-top:20px;font-size:13px}
+.panel-btn:hover,.pill-link:hover,.action-btn:hover,.mini-btn:hover{opacity:.93}
+@media(max-width:1100px){
+  .info-grid{grid-template-columns:1fr}
+  .access-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  .panel-grid,.workflow-grid,.status-grid,.two-col{grid-template-columns:1fr}
+  .access-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .wrap{padding:16px}
+  .card{padding:18px}
+  .panel-title{font-size:24px}
+  .access-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -142,356 +231,371 @@ p{margin:0}
 <div class="wrap">
 
   <div class="card">
-    <h1>Admin Message Templates</h1>
-    <div class="tagline">4MyIPTV Service Internal Use</div>
+    <h1>4MyIPTV Service Admin Dashboard</h1>
+    <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
     <div class="intro">
-      Use this page as the standardized quote-to-payment message reference for customer communication.
-      Keep the flow clean: quote, approval, payment, confirmation, fulfillment, and support.
+      Daily execution hub for customer management, device setup, service activation, renewal follow-up, and internal page access.
+      The TV Panel is the primary control point for live service management.
+    </div>
+    <div class="action-row" style="justify-content:center;margin-top:16px;">
+      <a href="admin-orders.html" class="action-btn" style="text-decoration:none;">Manage Orders</a>
+      <a href="paid-customer-guide.html" class="action-btn" style="text-decoration:none;">Paid Customer Guide</a>
+    </div>
+  </div>
+
+
+
+  <div class="card">
+    <h2>Version 2.0 Upgrade Sprint</h2>
+    <div class="section-sub">
+      Current focus: faster customer response, cleaner order handling, summer campaign tracking, and safer notification setup.
+    </div>
+    <div class="info-grid">
+      <div class="info-box">
+        <h3>1. Live Order Alerts</h3>
+        <p>Open Admin Orders and enable live alerts while working. New requests will trigger a page banner and alert sound.</p>
+        <div class="action-row">
+          <a href="admin-orders.html" class="action-btn" style="text-decoration:none;">Open Live Orders</a>
+        </div>
+      </div>
+      <div class="info-box">
+        <h3>2. Telegram Backend</h3>
+        <p>Telegram and email notifications are designed to run from Google Apps Script so the bot token is not exposed on the public website.</p>
+        <div class="action-row">
+          <a href="GOOGLE_APPS_SCRIPT_NOTIFICATION_SETUP.md" class="action-btn" style="text-decoration:none;">Open Setup Guide</a>
+        </div>
+      </div>
+      <div class="info-box">
+        <h3>3. Summer Special</h3>
+        <p>The customer flow now supports summer bundle tracking, referral source capture, and 48-hour free trial requests.</p>
+        <div class="action-row">
+          <a href="request-service.html?promo=summer-streaming-special&source=admin-dashboard" class="action-btn" style="text-decoration:none;">View Offer Flow</a>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="card">
-    <h2>Quick Jump</h2>
+    <h2>Service Control Panels</h2>
     <div class="section-sub">
-      Use these anchors to move quickly to the message you need without rewriting the process each time.
+      These are the most important operational tools in the system. Use the TV Panel for primary service activation and management. Use the backup panel only when the primary panel is unavailable.
     </div>
-    <div class="pill-row">
-      <a href="#quote-template" class="anchor-pill">Quote</a>
-      <a href="#approval-clarification" class="anchor-pill">Approval Clarification</a>
-      <a href="#payment-instructions" class="anchor-pill">Payment Instructions</a>
-      <a href="#payment-received" class="anchor-pill">Payment Received</a>
-      <a href="#service-only" class="anchor-pill">Service Only</a>
-      <a href="#device-prep" class="anchor-pill">Device Prep</a>
-      <a href="#shipping-confirmation" class="anchor-pill">Shipping</a>
-      <a href="#pickup-delivery" class="anchor-pill">Pickup or Delivery</a>
-      <a href="#support-handoff" class="anchor-pill">Support Handoff</a>
-      <a href="#app-library-update" class="anchor-pill">App Library Update</a>
-      <a href="#renewal-quote" class="anchor-pill">Renewal Quote</a>
-      <a href="#renewal-payment" class="anchor-pill">Renewal Payment</a>
-      <a href="#renewal-complete" class="anchor-pill">Renewal Complete</a>
+    <div class="legend-row">
+      <span class="legend-pill legend-panel">Panels = service execution</span>
+      <span class="legend-pill legend-admin">Blue = admin pages</span>
+      <span class="legend-pill legend-customer">Gray = customer pages</span>
+    </div>
+    <div class="panel-grid" style="margin-top:16px;">
+      <div class="panel-box primary">
+        <div class="panel-label">Primary System</div>
+        <div class="panel-title">TV Panel</div>
+        <div class="panel-sub">
+          Create and manage active services, confirm plan details, and handle the core activation work that drives the customer lifecycle.
+        </div>
+        <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="panel-btn">Open TV Panel</a>
+      </div>
+      <div class="panel-box secondary">
+        <div class="panel-label">Failover System</div>
+        <div class="panel-title">Backup Panel</div>
+        <div class="panel-sub">
+          Secondary access point for continuity when the main panel is unavailable or unstable.
+        </div>
+        <a href="https://backup.tvpluspanel.ru" target="_blank" rel="noopener noreferrer" class="panel-btn">Open Backup Panel</a>
+      </div>
     </div>
   </div>
 
   <div class="card">
-    <h2>Standard Operating Rules</h2>
-    <div class="section-sub">
-      These are the control rules that keep the message flow clean and consistent.
-    </div>
-    <div class="grid-3">
+    <h2>Dashboard Priorities</h2>
+    <div class="info-grid">
       <div class="info-box">
-        <h3>Approval Rule</h3>
-        <p>Always request an explicit approval reply before sending payment instructions. Preferred approval word: Approved.</p>
+        <h3>1. Work New and Active Customers</h3>
+        <p>Review orders, update customer records, confirm fulfillment path, and make sure each customer is moved to the correct next step.</p>
       </div>
       <div class="info-box">
-        <h3>Pricing Rule</h3>
-        <p>Always show service term, device if applicable, shipping if applicable, and the total amount in the quote and payment messages.</p>
+        <h3>2. Execute in the Panel</h3>
+        <p>Activate or manage service through the TV Panel, then prepare the customer handoff with the right setup or support path.</p>
       </div>
       <div class="info-box">
-        <h3>Sequence Rule</h3>
-        <p>Do not overload one message. Keep the sequence as quote, approval, payment, payment received, fulfillment, and support.</p>
+        <h3>3. Protect Renewals</h3>
+        <p>Check expiration timing, make contact before service lapses, and route the customer back into payment and reactivation.</p>
       </div>
-    </div>
-    <div class="note">
-      Best practice: keep service-only orders and device orders clearly separated in the message path so the customer always knows what happens next.
-    </div>
-  </div>
-
-  <div class="grid-2">
-    <div class="card template-box" id="quote-template">
-      <h2>Quote Template</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Thank you for your request. I reviewed your information and prepared your quote below.
-
-Service term: [Monthly / 6 Months / 1 Year / 2 Years]
-Service price: [$X]
-
-Device: [None / Device Name]
-Device price: [$X]
-
-Shipping: [$X / Not Applicable]
-
-Total: [$X]
-
-What is included:
-- [Service term]
-- [Device, if applicable]
-- [Setup preparation, if applicable]
-- [Other included item, if applicable]
-
-If this looks good, please reply:
-
-Approved
-
-Once approved, I will send your payment instructions and next steps.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="approval-clarification">
-      <h2>Approval Clarification</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Thank you. To keep your order moving correctly, please reply with:
-
-Approved
-
-Once I receive that, I will send your payment instructions and next steps.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="payment-instructions">
-      <h2>Payment Instructions</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Thank you. Your order has been approved and is ready for payment.
-
-Order summary:
-- Service term: [X]
-- Device: [X / None]
-- Shipping: [X / Not Applicable]
-- Total due: [$X]
-
-Payment link:
-[Insert payment link]
-
-After payment is completed, I will follow up with your next steps for [service activation / device preparation / shipping / setup support].
-
-Please reply here after payment is submitted so I can confirm receipt quickly.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="payment-received">
-      <h2>Payment Received</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Payment received. Thank you.
-
-Your order is now moving to the next step.
-
-Next:
-- [Service-only: I will prepare your service access details]
-- [Device order: I will prepare your device order and next update]
-- [Shipped order: I will follow up with your shipping update once ready]
-
-You can expect the next update [later today / within a few hours / by tomorrow].
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="service-only">
-      <h2>Service-Only Fulfillment</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Your service details are ready.
-
-Login details:
-- Username: [X]
-- Password: [X]
-- Server URL: [X]
-
-Next steps:
-- Install the recommended player if needed
-- Enter the login details exactly as shown
-- Use one stream per device unless otherwise discussed
-
-If you need setup help, use this support link:
-[Insert support link]
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="device-prep">
-      <h2>Device Preparation</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Your order is now being prepared.
-
-Order summary:
-- Service term: [X]
-- Device: [X]
-
-Next steps:
-- Your device will be prepared with the requested setup
-- I will follow up with your next update once preparation is complete
-- If shipping applies, I will send your shipping update separately
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="shipping-confirmation">
-      <h2>Shipping Confirmation</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Your order has shipped.
-
-Shipping details:
-- Carrier: [X]
-- Tracking number: [X]
-
-Your device has been prepared for your requested setup. If you need help after delivery, use this support link:
-[Insert support link]
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="pickup-delivery">
-      <h2>Pickup or Delivery Coordination</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Your order is being prepared now.
-
-Once it is ready, I will follow up with your pickup or delivery details.
-
-Order summary:
-- Service term: [X]
-- Device: [X]
-
-If anything changes before handoff, I will update you directly.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="support-handoff">
-      <h2>Support Handoff</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-If you need help with setup or support, use the link below:
-
-[Insert support link]
-
-Please include the same name, email, or phone number used with your order so your request can be matched quickly.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-
-    <div class="card template-box" id="app-library-update">
-      <h2>Post-Sale App Library Update</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Quick app update: one of our favorite side-loaded apps, OnStream, appears to no longer be working consistently. I will continue to keep a close eye on it, and if I find a reliable working version, I will update my support/download page.
-
-In the meantime, you can either delete OnStream or continue trying it over the next few weeks to see if it comes back online organically.
-
-I also added three optional Movie &amp; TV Series apps to the App Library / Download Page:
-- Cinema HQ
-- MovieBox
-- Reezn
-
-Your main app should still be the IPTV Smarters App. You should always try searching inside IPTV Smarters first for movies, series, live TV, sports, and other available content.
-
-App Library / Download Page:
-https://tgarrett10.github.io/4myIPTVservice-device-app-center/app-library.html
-
-Thank you again, and referrals are always appreciated.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="renewal-quote">
-      <h2>Renewal Quote</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Your service renewal quote is below.
-
-Service term: [Monthly / 6 Months / 1 Year / 2 Years]
-Renewal price: [$X]
-
-Total: [$X]
-
-If this looks good, please reply:
-
-Approved
-
-Once approved, I will send your payment instructions.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="renewal-payment">
-      <h2>Renewal Payment</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Thank you. Your renewal is approved and ready for payment.
-
-Renewal summary:
-- Service term: [X]
-- Total due: [$X]
-
-Payment link:
-[Insert payment link]
-
-After payment is completed, I will confirm receipt and follow up with your renewal completion update.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="renewal-complete">
-      <h2>Renewal Complete</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Payment received. Thank you.
-
-Your renewal has been completed.
-
-Updated service term:
-- [X]
-
-If you need support, use this link:
-[Insert support link]
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
     </div>
   </div>
 
   <div class="card">
-    <h2>Related Internal Pages</h2>
-    <div class="section-sub">
-      Use these pages alongside the templates to manage the full customer flow.
+    <h2>App Check Status</h2>
+    <div class="status-note">
+      This tracker resets whenever you build a device. If no device is built for 30 days, it reminds you to manually review the app library and device setup path.
     </div>
+
+    <div class="status-grid">
+      <div class="status-box">
+        <div class="status-label">Last Device Built</div>
+        <div class="status-value" id="lastBuilt">Not set</div>
+      </div>
+
+      <div class="status-box">
+        <div class="status-label">Next Check Needed</div>
+        <div class="status-value" id="nextCheck">Not set</div>
+      </div>
+
+      <div class="status-box">
+        <div class="status-label">Current Status</div>
+        <div id="statusPill" class="status-pill status-overdue">Not set</div>
+      </div>
+    </div>
+
     <div class="action-row">
-      <a href="admin-resource-center.html" class="action-btn">Resource Center</a>
-      <a href="admin-dashboard.html" class="action-btn">Admin Dashboard</a>
-      <a href="admin-orders.html" class="action-btn">Admin Orders</a>
-      <a href="admin-customers.html" class="action-btn">Admin Customers</a>
-      <a href="admin-checkout-link-generator.html" class="action-btn">Checkout Link Generator</a>
+      <button id="markBuiltBtn" class="action-btn">Built a Device Today</button>
+      <a href="app-library.html" class="action-btn" style="text-decoration:none;">Open App Library</a>
+      <a href="device-setup.html" class="action-btn" style="text-decoration:none;">Open Device Setup</a>
     </div>
   </div>
 
-  <div class="footer-strip">
-    <strong>4MyIPTV Service • Admin Message Templates</strong>
-    <div class="version">Version 1.1 • Last Updated: June 28, 2026</div>
+  <div class="card">
+    <h2>Core Workflow Snapshot</h2>
+    <div class="section-sub">
+      This is the short execution view of the full system. Use it to move quickly without losing the customer lifecycle.
+    </div>
+    <div class="workflow-grid">
+      <div class="workflow-step">
+        <div class="step-label">Step 1</div>
+        <h3>Review and Qualify</h3>
+        <p>Check incoming requests, confirm customer information, and determine whether the need is online service, in-person support, or device preparation.</p>
+        <div class="pill-row">
+          <a href="admin-orders.html" class="pill-link">Manage Orders</a>
+          <a href="request-service.html" class="pill-link">Request Service</a>
+          <a href="sell-sheet.html" class="pill-link">Sell Sheet</a>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 2</div>
+        <h3>Collect Payment</h3>
+        <p>Route the customer into the checkout process after the service path is confirmed and expectations are clear.</p>
+        <div class="pill-row">
+          <a href="checkout.html" class="pill-link">Checkout Page</a>
+          <a href="success.html" class="pill-link">Success Page</a>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 3</div>
+        <h3>Prepare the Device Path</h3>
+        <p>Use the downloader portal, device setup page, and app library as the true setup environment. Do not route this work through admin pages.</p>
+        <div class="pill-row">
+          <a href="downloader-portal.html" class="pill-link">Downloader Portal</a>
+          <a href="device-setup.html" class="pill-link">Device Setup</a>
+          <a href="app-library.html" class="pill-link">App Library</a>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 4</div>
+        <h3>Activate the Service</h3>
+        <p>Execute the core service work in the TV Panel. Confirm the customer plan, create or manage the service, and use the backup panel only when needed.</p>
+        <div class="pill-row">
+          <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="pill-link">TV Panel</a>
+          <a href="https://backup.tvpluspanel.ru" target="_blank" rel="noopener noreferrer" class="pill-link">Backup Panel</a>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 5</div>
+        <h3>Hand Off and Support</h3>
+        <p>Send the customer to the correct support experience based on whether this is an online-only service or a device customer.</p>
+        <div class="pill-row">
+          <a href="online-support.html" class="pill-link">Online Support</a>
+          <a href="support.html" class="pill-link">Support Page</a>
+          <a href="device-setup.html" class="pill-link">Device Setup</a>
+          <a href="paid-customer-guide.html" class="pill-link">Paid Customer Guide</a>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-label">Step 6</div>
+        <h3>Track Expiration and Renew</h3>
+        <p>Monitor customer status before expiration, make contact, collect renewal payment, and reactivate through the panel so the customer stays active.</p>
+        <div class="pill-row">
+          <a href="admin-customers.html" class="pill-link">Admin Customers</a>
+          <a href="checkout.html" class="pill-link">Checkout Page</a>
+          <a href="https://tvpluspanel.ru/login" target="_blank" rel="noopener noreferrer" class="pill-link">TV Panel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <h2>Customer-Facing Pages</h2>
+      <div class="section-sub">
+        Review the live customer journey without leaving the admin environment.
+      </div>
+      <div class="access-grid" style="grid-template-columns:repeat(2,minmax(0,1fr));">
+        <a href="index.html" class="mini-btn customer">Customer Start Page</a>
+        <a href="sell-sheet.html" class="mini-btn customer">Service Overview</a>
+        <a href="request-service.html" class="mini-btn customer">Request Service</a>
+        <a href="checkout.html" class="mini-btn customer">Checkout</a>
+        <a href="success.html" class="mini-btn customer">Success Page</a>
+        <a href="paid-customer-guide.html" class="mini-btn customer">Paid Customer Guide</a>
+        <a href="online-support.html" class="mini-btn customer">Online Support</a>
+        <a href="support.html" class="mini-btn customer">Support Page</a>
+        <a href="device-setup.html" class="mini-btn customer">Device Setup</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Daily Operating Reminders</h2>
+      <div class="section-sub">
+        Use this page as a daily control point, not just a link page.
+      </div>
+      <ul class="priority-list">
+        <li>Start with new requests and active customers that need a next action.</li>
+        <li>Use the TV Panel first for live service management.</li>
+        <li>Keep the setup path clean: Downloader Portal, Device Setup, App Library.</li>
+        <li>Check customer records for expiration risk before service lapses.</li>
+        <li>Route the customer back into payment and activation for renewals.</li>
+        <li>Send the Paid Customer Guide only after payment is confirmed.</li>
+        <li>Use the Resource Center when you need the full process view or communication guidance.</li>
+      </ul>
+      <div class="action-row">
+        <a href="admin-resource-center.html" class="action-btn" style="text-decoration:none;">Open Resource Center</a>
+        <a href="admin-customers.html" class="action-btn" style="text-decoration:none;">Open Admin Customers</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>All Access Buttons</h2>
+    <div class="section-sub">
+      This is the full button panel for system navigation. Blue buttons are administrative pages. Gray buttons are customer-facing pages and support flow pages.
+    </div>
+
+    <div class="two-col">
+      <div class="access-group">
+        <h3>Administrative Pages</h3>
+        <p>Internal control pages for orders, customer records, admin tools, and operational support.</p>
+        <div class="access-grid">
+          <a href="admin-orders.html" class="mini-btn admin">Manage Orders</a>
+          <a href="admin-customers.html" class="mini-btn admin">Admin Customers</a>
+          <a href="admin-resource-center.html" class="mini-btn admin">Resource Center</a>
+          <a href="admin-update-checker.html" class="mini-btn admin">System Updates</a>
+          <a href="calls-dashboard.html" class="mini-btn admin">Calls Dashboard</a>
+          <a href="https://docs.google.com/spreadsheets/d/1rQlVe8TGrnKTELc5_9hT2yrrQ_5G5KzKCh7h-A30A8o/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" class="mini-btn admin">Customer Records Sheet</a>
+        </div>
+      </div>
+
+      <div class="access-group">
+        <h3>Customer and Support Pages</h3>
+        <p>Customer journey, setup pages, support pages, and public-facing service flow pages.</p>
+        <div class="access-grid">
+          <a href="index.html" class="mini-btn customer">Customer Start Page</a>
+          <a href="sell-sheet.html" class="mini-btn customer">Sell Sheet</a>
+          <a href="request-service.html" class="mini-btn customer">Request Service</a>
+          <a href="checkout.html" class="mini-btn customer">Checkout Page</a>
+          <a href="success.html" class="mini-btn customer">Success Page</a>
+          <a href="paid-customer-guide.html" class="mini-btn customer">Paid Customer Guide</a>
+          <a href="support.html" class="mini-btn customer">Support Page</a>
+          <a href="online-support.html" class="mini-btn customer">Online Support</a>
+          <a href="device-setup.html" class="mini-btn customer">Device Setup</a>
+          <a href="downloader-portal.html" class="mini-btn customer">Downloader Portal</a>
+          <a href="app-library.html" class="mini-btn customer">Open App Library</a>
+        </div>
+      </div>
+    </div>
+    <div class="section-note">
+      TV Panel and Backup Panel stay above as dedicated execution tools rather than being grouped into the general button panel.
+    </div>
+  </div>
+
+  <div class="footer">
+    Version 2.3 | Last Updated: July 4, 2026 | Internal System Dashboard
   </div>
 
 </div>
+
+<script>
+(function () {
+  const STORAGE_KEY = "iptv_last_device_built";
+  const DAYS_ALLOWED = 30;
+  const WARNING_DAYS = 10;
+
+  const lastBuiltEl = document.getElementById("lastBuilt");
+  const nextCheckEl = document.getElementById("nextCheck");
+  const statusPillEl = document.getElementById("statusPill");
+  const markBuiltBtn = document.getElementById("markBuiltBtn");
+
+  function formatDate(date) {
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+  }
+
+  function startOfToday() {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  }
+
+  function addDays(date, days) {
+    const copy = new Date(date);
+    copy.setDate(copy.getDate() + days);
+    return copy;
+  }
+
+  function diffInDays(fromDate, toDate) {
+    const msPerDay = 1000 * 60 * 60 * 24;
+    return Math.floor((toDate - fromDate) / msPerDay);
+  }
+
+  function loadStoredDate() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = new Date(raw);
+    return isNaN(parsed.getTime()) ? null : parsed;
+  }
+
+  function saveTodayAsBuilt() {
+    const today = startOfToday();
+    localStorage.setItem(STORAGE_KEY, today.toISOString());
+    render();
+  }
+
+  function render() {
+    const lastBuilt = loadStoredDate();
+
+    if (!lastBuilt) {
+      lastBuiltEl.textContent = "Not set";
+      nextCheckEl.textContent = "Set after first build";
+      statusPillEl.textContent = "No build logged";
+      statusPillEl.className = "status-pill status-overdue";
+      return;
+    }
+
+    const today = startOfToday();
+    const nextCheck = addDays(lastBuilt, DAYS_ALLOWED);
+    const daysRemaining = diffInDays(today, nextCheck);
+
+    lastBuiltEl.textContent = formatDate(lastBuilt);
+    nextCheckEl.textContent = formatDate(nextCheck);
+
+    if (daysRemaining > WARNING_DAYS) {
+      statusPillEl.textContent = "On Track • " + daysRemaining + " days remaining";
+      statusPillEl.className = "status-pill status-ok";
+    } else if (daysRemaining >= 0) {
+      if (daysRemaining === 0) {
+        statusPillEl.textContent = "Check apps today";
+      } else {
+        statusPillEl.textContent = "Due Soon • " + daysRemaining + " days remaining";
+      }
+      statusPillEl.className = "status-pill status-soon";
+    } else {
+      const overdueDays = Math.abs(daysRemaining);
+      statusPillEl.textContent = "Overdue • " + overdueDays + " day" + (overdueDays === 1 ? "" : "s");
+      statusPillEl.className = "status-pill status-overdue";
+    }
+  }
+
+  markBuiltBtn.addEventListener("click", saveTodayAsBuilt);
+  render();
+})();
+</script>
 </body>
 </html>
