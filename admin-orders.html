@@ -1,497 +1,1065 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>4MyIPTV Service Admin Message Templates</title>
-<style>
-:root{
-  --bg:#08111f;
-  --panel:#101827;
-  --panel-soft:#0b1220;
-  --text:#f8fafc;
-  --muted:#94a3b8;
-  --border:#1f2937;
-  --line:#243044;
-  --green:#22c55e;
-  --blue:#3b82f6;
-  --gold:#f59e0b;
-  --admin-btn:#1d4ed8;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(180deg,#08111f,#0f172a);
-  color:var(--text);
-}
-.wrap{max-width:1240px;margin:auto;padding:20px}
-.card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:22px;
-  margin-bottom:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,.18);
-}
-h1{margin:0 0 10px;color:#86efac;text-align:center}
-h2{margin:0 0 8px;font-size:24px}
-h3{margin:0 0 10px;font-size:18px;color:#86efac}
-p{margin:0}
-.tagline{
-  text-align:center;
-  margin-bottom:8px;
-  color:#cbd5f5;
-  font-weight:600;
-}
-.intro{
-  text-align:center;
-  color:var(--muted);
-  max-width:920px;
-  margin:0 auto;
-  line-height:1.55;
-}
-.section-sub{
-  color:var(--muted);
-  line-height:1.5;
-  margin-bottom:16px;
-  font-size:14px;
-}
-.grid-2,.grid-3{
-  display:grid;
-  gap:16px;
-}
-.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media (max-width:980px){
-  .grid-2,.grid-3{grid-template-columns:1fr}
-}
-.pill-row,.action-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-.anchor-pill,.action-btn{
-  text-decoration:none;
-  border-radius:999px;
-  font-weight:bold;
-}
-.anchor-pill{
-  display:inline-block;
-  padding:8px 12px;
-  background:#1e293b;
-  color:#fff;
-  border:1px solid rgba(255,255,255,.08);
-  font-size:12px;
-}
-.action-btn{
-  display:inline-block;
-  padding:11px 14px;
-  background:var(--admin-btn);
-  color:#fff;
-  font-size:14px;
-}
-.template-box,.info-box{
-  background:var(--panel-soft);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:18px;
-  height:100%;
-}
-.template-box p,.info-box p,.template-box li,.info-box li{
-  color:#cbd5e1;
-  line-height:1.55;
-  font-size:14px;
-}
-.template-copy{
-  margin-top:12px;
-  padding:14px;
-  border-radius:14px;
-  background:#0f172a;
-  border:1px solid var(--line);
-  color:#e2e8f0;
-  white-space:pre-line;
-  line-height:1.55;
-  font-size:14px;
-}
-.note{
-  margin-top:14px;
-  padding:12px 14px;
-  border-radius:12px;
-  background:rgba(59,130,246,.10);
-  border:1px solid rgba(59,130,246,.24);
-  color:#dbeafe;
-  line-height:1.5;
-}
-.footer-strip{
-  margin-top:18px;
-  padding:16px 10px;
-  border-top:1px solid #243044;
-  text-align:center;
-  color:#cbd5e1;
-  font-size:.9rem;
-}
-.footer-strip .version{
-  margin-top:6px;
-  color:#94a3b8;
-  font-size:.82rem;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4MyIPTV Service | Admin Orders</title>
+  <style>
+    :root {
+      --bg: #08111f;
+      --panel: #101827;
+      --panel-soft: #0b1220;
+      --panel-2: #0f172a;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --line: #1f2937;
+      --line-soft: #243044;
+      --blue: #3b82f6;
+      --green: #22c55e;
+      --gold: #f59e0b;
+      --purple: #9333ea;
+      --red: #ef4444;
+      --sticky-id-width: 90px;
+      --sticky-name-width: 190px;
+      --sticky-left-name: 90px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #08111f, #0f172a);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      background: #0b1220;
+      border-bottom: 1px solid var(--line-soft);
+      padding: 22px 24px;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.2;
+      color: #ffffff;
+    }
+
+    .topbar p {
+      margin: 8px 0 0;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    .page-wrap {
+      max-width: 1720px;
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+      margin-bottom: 18px;
+    }
+
+    .card-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 8px 0;
+    }
+
+    .card-header h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #ffffff;
+    }
+
+    .card-content {
+      padding: 16px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) 220px 220px auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #cbd5e1;
+    }
+
+    .field-group input,
+    .field-group select,
+    .inline-input,
+    .inline-select,
+    .inline-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--line-soft);
+      border-radius: 10px;
+      font-size: 14px;
+      background: #0b1220;
+      color: #f8fafc;
+      outline: none;
+    }
+
+    .field-group input::placeholder,
+    .inline-input::placeholder,
+    .inline-textarea::placeholder {
+      color: #7c8aa0;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      background: #1f2937;
+      color: #ffffff;
+      border: 1px solid #334155;
+    }
+
+    .btn-secondary:hover {
+      background: #273449;
+    }
+
+    .btn-save {
+      background: var(--green);
+      color: #052e16;
+      width: 100%;
+    }
+
+    .btn-save:hover {
+      filter: brightness(1.03);
+    }
+
+    .btn-link {
+      background: var(--purple);
+      color: #ffffff;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn-link:hover {
+      filter: brightness(1.05);
+    }
+
+    .status-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .stat-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+      padding: 18px;
+    }
+
+    .stat-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .stat-value {
+      font-size: 30px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .message {
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      min-height: 20px;
+    }
+
+    .message.ok {
+      color: #86efac;
+    }
+
+    .message.error {
+      color: #fca5a5;
+    }
+
+    .endpoint-note {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      word-break: break-all;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #0b1220;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 2360px;
+      background: #0b1220;
+    }
+
+    thead {
+      background: #111827;
+      color: #ffffff;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 10px 9px;
+      border-bottom: 1px solid #1f2937;
+      vertical-align: top;
+      font-size: 13px;
+      background: #0b1220;
+    }
+
+    th {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #dbeafe;
+      position: sticky;
+      top: 0;
+      z-index: 6;
+      background: #111827;
+    }
+
+    tbody tr:hover td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .sticky-id {
+      position: sticky;
+      left: 0;
+      z-index: 5;
+      width: var(--sticky-id-width);
+      min-width: var(--sticky-id-width);
+      max-width: var(--sticky-id-width);
+      background: #0b1220;
+      box-shadow: 1px 0 0 #1f2937;
+    }
+
+    th.sticky-id {
+      z-index: 8;
+      background: #111827;
+    }
+
+    .sticky-name {
+      position: sticky;
+      left: var(--sticky-left-name);
+      z-index: 5;
+      width: var(--sticky-name-width);
+      min-width: var(--sticky-name-width);
+      max-width: var(--sticky-name-width);
+      background: #0b1220;
+      box-shadow: 1px 0 0 #1f2937;
+    }
+
+    th.sticky-name {
+      z-index: 8;
+      background: #111827;
+    }
+
+    tbody tr:hover td.sticky-id,
+    tbody tr:hover td.sticky-name {
+      background: #132033;
+    }
+
+    .col-created { min-width: 140px; }
+    .col-email { min-width: 210px; max-width: 210px; word-break: break-word; }
+    .col-phone { min-width: 130px; }
+    .col-order-type { min-width: 130px; }
+    .col-device { min-width: 160px; max-width: 160px; }
+    .col-customer-type { min-width: 120px; }
+    .col-pref-contact { min-width: 130px; }
+    .col-pref-reply { min-width: 140px; }
+    .col-plan { min-width: 130px; }
+    .col-tv { min-width: 90px; }
+    .col-fulfillment { min-width: 150px; }
+    .col-order-status { min-width: 170px; }
+    .col-payment { min-width: 140px; }
+    .col-delivery { min-width: 140px; }
+    .col-support { min-width: 150px; }
+    .col-notes { min-width: 220px; max-width: 220px; }
+    .col-actions { min-width: 160px; }
+
+    .pill {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .pill-new {
+      background: rgba(59,130,246,.18);
+      color: #bfdbfe;
+      border: 1px solid rgba(59,130,246,.35);
+    }
+
+    .pill-payment-sent {
+      background: rgba(245,158,11,.16);
+      color: #fde68a;
+      border: 1px solid rgba(245,158,11,.30);
+    }
+
+    .pill-complete {
+      background: rgba(34,197,94,.16);
+      color: #bbf7d0;
+      border: 1px solid rgba(34,197,94,.30);
+    }
+
+    .pill-other {
+      background: rgba(148,163,184,.15);
+      color: #e2e8f0;
+      border: 1px solid rgba(148,163,184,.25);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .small {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 16px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .id-cell {
+      font-weight: 700;
+      color: #c4b5fd;
+    }
+
+    .name-cell {
+      font-weight: 700;
+      color: #ffffff;
+      word-break: break-word;
+    }
+
+    .readonly-box {
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    .notes-box {
+      width: 100%;
+    }
+
+    .actions-box {
+      width: 100%;
+    }
+
+    .stack {
+      display: grid;
+      gap: 8px;
+    }
+
+    .internal-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 16px;
+    }
+
+    .internal-box {
+      background: var(--panel-soft);
+      border: 1px solid var(--line-soft);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .internal-box h3 {
+      margin: 0 0 10px 0;
+      color: #ffffff;
+      font-size: 18px;
+    }
+
+    .internal-box ol,
+    .internal-box ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .save-status {
+      margin-top: 8px;
+      font-size: 12px;
+      line-height: 1.4;
+      min-height: 18px;
+    }
+
+    .save-status.ok {
+      color: #86efac;
+    }
+
+    .save-status.error {
+      color: #fca5a5;
+    }
+
+    .footer-strip {
+      margin-top: 18px;
+      padding: 16px 10px 24px;
+      border-top: 1px solid var(--line-soft);
+      text-align: center;
+      color: #cbd5e1;
+      font-size: 0.92rem;
+    }
+
+    .footer-strip .version {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 1280px) {
+      .controls {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .status-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .internal-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .controls {
+        grid-template-columns: 1fr;
+      }
+
+      .status-row {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-links {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar h1 {
+        font-size: 24px;
+      }
+
+      .page-wrap {
+        padding: 14px;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
-
-  <div class="card">
-    <h1>Admin Message Templates</h1>
-    <div class="tagline">4MyIPTV Service Internal Use</div>
-    <div class="intro">
-      Use this page as the standardized quote-to-payment message reference for customer communication.
-      Keep the flow clean: quote, approval, payment, confirmation, fulfillment, and support.
-    </div>
+  <div class="topbar">
+    <h1>4MyIPTV Service Admin Orders</h1>
+    <p>Internal order management and workflow control</p>
   </div>
 
-  <div class="card">
-    <h2>Quick Jump</h2>
-    <div class="section-sub">
-      Use these anchors to move quickly to the message you need without rewriting the process each time.
-    </div>
-    <div class="pill-row">
-      <a href="#quote-template" class="anchor-pill">Quote</a>
-      <a href="#approval-clarification" class="anchor-pill">Approval Clarification</a>
-      <a href="#payment-instructions" class="anchor-pill">Payment Instructions</a>
-      <a href="#payment-received" class="anchor-pill">Payment Received</a>
-      <a href="#service-only" class="anchor-pill">Service Only</a>
-      <a href="#device-prep" class="anchor-pill">Device Prep</a>
-      <a href="#shipping-confirmation" class="anchor-pill">Shipping</a>
-      <a href="#pickup-delivery" class="anchor-pill">Pickup or Delivery</a>
-      <a href="#support-handoff" class="anchor-pill">Support Handoff</a>
-      <a href="#app-library-update" class="anchor-pill">App Library Update</a>
-      <a href="#renewal-quote" class="anchor-pill">Renewal Quote</a>
-      <a href="#renewal-payment" class="anchor-pill">Renewal Payment</a>
-      <a href="#renewal-complete" class="anchor-pill">Renewal Complete</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Standard Operating Rules</h2>
-    <div class="section-sub">
-      These are the control rules that keep the message flow clean and consistent.
-    </div>
-    <div class="grid-3">
-      <div class="info-box">
-        <h3>Approval Rule</h3>
-        <p>Always request an explicit approval reply before sending payment instructions. Preferred approval word: Approved.</p>
+  <div class="page-wrap">
+    <div class="card">
+      <div class="card-header">
+        <div class="section-label">Admin Controls</div>
+        <h2>Order Search and Filters</h2>
       </div>
-      <div class="info-box">
-        <h3>Pricing Rule</h3>
-        <p>Always show service term, device if applicable, shipping if applicable, and the total amount in the quote and payment messages.</p>
+      <div class="card-content">
+        <div class="controls">
+          <div class="field-group">
+            <label for="searchInput">Search Orders</label>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search by name, email, phone, device, notes, status..."
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="statusFilter">Status Filter</label>
+            <select id="statusFilter">
+              <option value="">All Statuses</option>
+              <option value="NEW">New</option>
+              <option value="PAYMENT SENT">Payment Sent</option>
+              <option value="COMPLETE">Complete</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="sortFilter">Sort</label>
+            <select id="sortFilter">
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="name">Name A-Z</option>
+            </select>
+          </div>
+
+          <div class="button-row">
+            <button class="btn btn-primary" id="refreshBtn">Refresh Orders</button>
+            <button class="btn btn-secondary" id="clearBtn">Clear Filters</button>
+          </div>
+        </div>
+
+        <div id="message" class="message"></div>
+        <div id="endpointNote" class="endpoint-note"></div>
       </div>
-      <div class="info-box">
-        <h3>Sequence Rule</h3>
-        <p>Do not overload one message. Keep the sequence as quote, approval, payment, payment received, fulfillment, and support.</p>
+    </div>
+
+    <div class="status-row">
+      <div class="stat-card">
+        <div class="stat-title">Total Orders</div>
+        <div class="stat-value" id="totalOrders">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">New</div>
+        <div class="stat-value" id="newOrders">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">Payment Sent</div>
+        <div class="stat-value" id="paymentSentOrders">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">Complete</div>
+        <div class="stat-value" id="completeOrders">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">Filtered View</div>
+        <div class="stat-value" id="filteredOrders">0</div>
       </div>
     </div>
-    <div class="note">
-      Best practice: keep service-only orders and device orders clearly separated in the message path so the customer always knows what happens next.
+
+    <div class="card">
+      <div class="card-header">
+        <div class="section-label">Editable Order Table</div>
+        <h2>Review and Update Orders</h2>
+      </div>
+      <div class="card-content">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th class="sticky-id">ROW</th>
+                <th class="sticky-name">Name</th>
+                <th class="col-created">Created At</th>
+                <th class="col-email">Email</th>
+                <th class="col-phone">Phone</th>
+                <th class="col-order-type">Order Type</th>
+                <th class="col-device">Device</th>
+                <th class="col-customer-type">Customer Type</th>
+                <th class="col-pref-contact">Preferred Contact</th>
+                <th class="col-pref-reply">Preferred Reply Time</th>
+                <th class="col-plan">Plan Interest</th>
+                <th class="col-tv">TV Count</th>
+                <th class="col-fulfillment">Fulfillment</th>
+                <th class="col-order-status">Order Status</th>
+                <th class="col-payment">Payment Status</th>
+                <th class="col-delivery">Delivery Status</th>
+                <th class="col-support">Support Route</th>
+                <th class="col-notes">Customer Notes / Internal Notes</th>
+                <th class="col-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <tr>
+                <td colspan="19" class="empty-state">Loading orders...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="small" style="margin-top: 10px;">
+          Internal note: this page now reads and updates using the current live Apps Script deployment.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="section-label">Internal Workflow</div>
+        <h2>Next Steps After an Order Is Received</h2>
+      </div>
+      <div class="card-content">
+        <div class="internal-grid">
+          <div class="internal-box">
+            <h3>Do these steps in order</h3>
+            <ol>
+              <li>Confirm the customer name, phone, email, requested device, and notes are readable.</li>
+              <li>Review the requested setup and identify whether any clarification is needed before payment is sent.</li>
+              <li>Set fulfillment type and update order status to reflect where the order stands.</li>
+              <li>Generate and send the correct payment or checkout link.</li>
+              <li>Update payment status once payment is sent and again once payment is received.</li>
+              <li>Track delivery or setup progress so nothing gets lost after payment.</li>
+              <li>Move completed jobs to COMPLETE only after the order is fully closed out.</li>
+            </ol>
+          </div>
+
+          <div class="internal-box">
+            <h3>Quick Admin Links</h3>
+            <div class="quick-links">
+              <a class="btn btn-link" href="admin-dashboard.html">Open Admin Dashboard</a>
+              <a class="btn btn-link" href="admin-checkout-link-generator.html">Open Checkout Link Generator</a>
+              <a class="btn btn-link" href="admin-resource-center.html">Open Resource Center</a>
+              <a class="btn btn-link" href="admin-update-checker.html">Open Update Checker</a>
+            </div>
+            <div class="small" style="margin-top: 12px;">
+              Internal reminder: this page is for order review and updates. The dashboard becomes the broader workflow command center after backend mapping is stable.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-strip">
+      <strong>4MyIPTV Service • Admin Orders</strong>
+      <div class="version">Version 2.3 • Last Updated: March 2026</div>
     </div>
   </div>
 
-  <div class="grid-2">
-    <div class="card template-box" id="quote-template">
-      <h2>Quote Template</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Thank you for your request. I reviewed your information and prepared your quote below.
-
-Service term: [Monthly / 6 Months / 1 Year / 2 Years]
-Service price: [$X]
-
-Device: [None / Device Name]
-Device price: [$X]
-
-Shipping: [$X / Not Applicable]
-
-Total: [$X]
-
-What is included:
-- [Service term]
-- [Device, if applicable]
-- [Setup preparation, if applicable]
-- [Other included item, if applicable]
-
-If this looks good, please reply:
-
-Approved
-
-Once approved, I will send your payment instructions and next steps.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="approval-clarification">
-      <h2>Approval Clarification</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Thank you. To keep your order moving correctly, please reply with:
-
-Approved
-
-Once I receive that, I will send your payment instructions and next steps.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="payment-instructions">
-      <h2>Payment Instructions</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Thank you. Your order has been approved and is ready for payment.
-
-Order summary:
-- Service term: [X]
-- Device: [X / None]
-- Shipping: [X / Not Applicable]
-- Total due: [$X]
-
-Payment link:
-[Insert payment link]
-
-After payment is completed, I will follow up with your next steps for [service activation / device preparation / shipping / setup support].
-
-Please reply here after payment is submitted so I can confirm receipt quickly.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="payment-received">
-      <h2>Payment Received</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Payment received. Thank you.
-
-Your order is now moving to the next step.
-
-Next:
-- [Service-only: I will prepare your service access details]
-- [Device order: I will prepare your device order and next update]
-- [Shipped order: I will follow up with your shipping update once ready]
-
-You can expect the next update [later today / within a few hours / by tomorrow].
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="service-only">
-      <h2>Service-Only Fulfillment</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Your service details are ready.
-
-Login details:
-- Username: [X]
-- Password: [X]
-- Server URL: [X]
-
-Next steps:
-- Install the recommended player if needed
-- Enter the login details exactly as shown
-- Use one stream per device unless otherwise discussed
-
-If you need setup help, use this support link:
-[Insert support link]
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="device-prep">
-      <h2>Device Preparation</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Your order is now being prepared.
-
-Order summary:
-- Service term: [X]
-- Device: [X]
-
-Next steps:
-- Your device will be prepared with the requested setup
-- I will follow up with your next update once preparation is complete
-- If shipping applies, I will send your shipping update separately
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="shipping-confirmation">
-      <h2>Shipping Confirmation</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Your order has shipped.
-
-Shipping details:
-- Carrier: [X]
-- Tracking number: [X]
-
-Your device has been prepared for your requested setup. If you need help after delivery, use this support link:
-[Insert support link]
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="pickup-delivery">
-      <h2>Pickup or Delivery Coordination</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Your order is being prepared now.
-
-Once it is ready, I will follow up with your pickup or delivery details.
-
-Order summary:
-- Service term: [X]
-- Device: [X]
-
-If anything changes before handoff, I will update you directly.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="support-handoff">
-      <h2>Support Handoff</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-If you need help with setup or support, use the link below:
-
-[Insert support link]
-
-Please include the same name, email, or phone number used with your order so your request can be matched quickly.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-
-    <div class="card template-box" id="app-library-update">
-      <h2>Post-Sale App Library Update</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Quick app update: one of our favorite side-loaded apps, OnStream, appears to no longer be working consistently. I will continue to keep a close eye on it, and if I find a reliable working version, I will update my support/download page.
-
-In the meantime, you can either delete OnStream or continue trying it over the next few weeks to see if it comes back online organically.
-
-I also added three optional Movie &amp; TV Series apps to the App Library / Download Page:
-- Cinema HQ
-- MovieBox
-- Reezn
-
-Your main app should still be the IPTV Smarters App. You should always try searching inside IPTV Smarters first for movies, series, live TV, sports, and other available content.
-
-App Library / Download Page:
-https://tgarrett10.github.io/4myIPTVservice-device-app-center/app-library.html
-
-Thank you again, and referrals are always appreciated.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="renewal-quote">
-      <h2>Renewal Quote</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Your service renewal quote is below.
-
-Service term: [Monthly / 6 Months / 1 Year / 2 Years]
-Renewal price: [$X]
-
-Total: [$X]
-
-If this looks good, please reply:
-
-Approved
-
-Once approved, I will send your payment instructions.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="renewal-payment">
-      <h2>Renewal Payment</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Thank you. Your renewal is approved and ready for payment.
-
-Renewal summary:
-- Service term: [X]
-- Total due: [$X]
-
-Payment link:
-[Insert payment link]
-
-After payment is completed, I will confirm receipt and follow up with your renewal completion update.
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-
-    <div class="card template-box" id="renewal-complete">
-      <h2>Renewal Complete</h2>
-      <div class="template-copy">Hi [Customer Name],
-
-Payment received. Thank you.
-
-Your renewal has been completed.
-
-Updated service term:
-- [X]
-
-If you need support, use this link:
-[Insert support link]
-
-Thank you,
-Timothy
-4MyIPTV Service</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Related Internal Pages</h2>
-    <div class="section-sub">
-      Use these pages alongside the templates to manage the full customer flow.
-    </div>
-    <div class="action-row">
-      <a href="admin-resource-center.html" class="action-btn">Resource Center</a>
-      <a href="admin-dashboard.html" class="action-btn">Admin Dashboard</a>
-      <a href="admin-orders.html" class="action-btn">Admin Orders</a>
-      <a href="admin-customers.html" class="action-btn">Admin Customers</a>
-      <a href="admin-checkout-link-generator.html" class="action-btn">Checkout Link Generator</a>
-    </div>
-  </div>
-
-  <div class="footer-strip">
-    <strong>4MyIPTV Service • Admin Message Templates</strong>
-    <div class="version">Version 1.1 • Last Updated: June 28, 2026</div>
-  </div>
-
-</div>
+  <script>
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzWO65X3uTAbWldiacxCD7ItLu5zpfZe1fDTWUlMGJyIPJXWcXaOsDXWHMQV-3-Ch7IcQ/exec";
+
+    let allOrders = [];
+
+    const messageEl = document.getElementById("message");
+    const endpointNoteEl = document.getElementById("endpointNote");
+    const ordersTableBody = document.getElementById("ordersTableBody");
+
+    const searchInput = document.getElementById("searchInput");
+    const statusFilter = document.getElementById("statusFilter");
+    const sortFilter = document.getElementById("sortFilter");
+    const refreshBtn = document.getElementById("refreshBtn");
+    const clearBtn = document.getElementById("clearBtn");
+
+    const totalOrdersEl = document.getElementById("totalOrders");
+    const newOrdersEl = document.getElementById("newOrders");
+    const paymentSentOrdersEl = document.getElementById("paymentSentOrders");
+    const completeOrdersEl = document.getElementById("completeOrders");
+    const filteredOrdersEl = document.getElementById("filteredOrders");
+
+    endpointNoteEl.textContent = "Connected endpoint: " + APPS_SCRIPT_URL;
+
+    function setMessage(text, type = "") {
+      messageEl.textContent = text;
+      messageEl.className = "message";
+      if (type) {
+        messageEl.classList.add(type);
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function safeRaw(value) {
+      if (value === null || value === undefined) return "";
+      return String(value).trim();
+    }
+
+    function displayValue(value) {
+      const raw = safeRaw(value);
+      if (!raw) {
+        return '<span class="muted">—</span>';
+      }
+      return escapeHtml(raw);
+    }
+
+    function normalizeStatus(status) {
+      return safeRaw(status).toUpperCase();
+    }
+
+    function getStatusPill(status) {
+      const normalized = normalizeStatus(status);
+      let className = "pill pill-other";
+
+      if (normalized === "NEW") {
+        className = "pill pill-new";
+      } else if (normalized === "PAYMENT SENT") {
+        className = "pill pill-payment-sent";
+      } else if (normalized === "COMPLETE") {
+        className = "pill pill-complete";
+      }
+
+      return '<span class="' + className + '">' + (safeRaw(status) ? escapeHtml(status) : "—") + "</span>";
+    }
+
+    function updateStats(sourceOrders, filteredOrders) {
+      totalOrdersEl.textContent = sourceOrders.length;
+      newOrdersEl.textContent = sourceOrders.filter(o => normalizeStatus(o.orderStatus) === "NEW").length;
+      paymentSentOrdersEl.textContent = sourceOrders.filter(o => normalizeStatus(o.orderStatus) === "PAYMENT SENT").length;
+      completeOrdersEl.textContent = sourceOrders.filter(o => normalizeStatus(o.orderStatus) === "COMPLETE").length;
+      filteredOrdersEl.textContent = filteredOrders.length;
+    }
+
+    function sortOrders(orders) {
+      const sortValue = sortFilter.value;
+      const sorted = [...orders];
+
+      if (sortValue === "name") {
+        sorted.sort((a, b) => safeRaw(a.customerName).localeCompare(safeRaw(b.customerName)));
+        return sorted;
+      }
+
+      if (sortValue === "oldest") {
+        sorted.sort((a, b) => safeRaw(a.createdAt).localeCompare(safeRaw(b.createdAt)));
+        return sorted;
+      }
+
+      sorted.sort((a, b) => safeRaw(b.createdAt).localeCompare(safeRaw(a.createdAt)));
+      return sorted;
+    }
+
+    function getFilteredOrders() {
+      const searchText = searchInput.value.trim().toLowerCase();
+      const selectedStatus = statusFilter.value.trim().toUpperCase();
+
+      let filtered = [...allOrders];
+
+      if (selectedStatus) {
+        filtered = filtered.filter(order => normalizeStatus(order.orderStatus) === selectedStatus);
+      }
+
+      if (searchText) {
+        filtered = filtered.filter(order => {
+          const combined = [
+            order.rowNumber,
+            order.customerName,
+            order.createdAt,
+            order.emailAddress,
+            order.phoneNumber,
+            order.orderType,
+            order.deviceSelected,
+            order.customerType,
+            order.preferredContact,
+            order.preferredReplyTime,
+            order.planInterest,
+            order.tvCount,
+            order.fulfillmentType,
+            order.orderStatus,
+            order.paymentStatus,
+            order.deliveryStatus,
+            order.supportRoute,
+            order.notes
+          ].join(" ").toLowerCase();
+
+          return combined.includes(searchText);
+        });
+      }
+
+      return sortOrders(filtered);
+    }
+
+    function buildSelectOptions(currentValue, options) {
+      const current = safeRaw(currentValue);
+      const allOptions = [...new Set([current, ...options].filter(v => String(v).trim() !== ""))];
+
+      return allOptions.map(option => {
+        const selected = option === current ? "selected" : "";
+        return `<option value="${escapeHtml(option)}" ${selected}>${escapeHtml(option)}</option>`;
+      }).join("");
+    }
+
+    function renderOrders() {
+      const filtered = getFilteredOrders();
+      updateStats(allOrders, filtered);
+
+      if (!filtered.length) {
+        ordersTableBody.innerHTML = `
+          <tr>
+            <td colspan="19" class="empty-state">No orders found for the current filter.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      ordersTableBody.innerHTML = filtered.map(order => `
+        <tr data-row-number="${escapeHtml(order.rowNumber)}">
+          <td class="sticky-id id-cell">${displayValue(order.rowNumber)}</td>
+          <td class="sticky-name name-cell">${displayValue(order.customerName)}</td>
+          <td class="readonly-box col-created">${displayValue(order.createdAt)}</td>
+          <td class="readonly-box col-email">${displayValue(order.emailAddress)}</td>
+          <td class="readonly-box col-phone">${displayValue(order.phoneNumber)}</td>
+          <td class="readonly-box col-order-type">${displayValue(order.orderType)}</td>
+          <td class="readonly-box col-device">${displayValue(order.deviceSelected)}</td>
+          <td class="readonly-box col-customer-type">${displayValue(order.customerType)}</td>
+          <td class="readonly-box col-pref-contact">${displayValue(order.preferredContact)}</td>
+          <td class="readonly-box col-pref-reply">${displayValue(order.preferredReplyTime)}</td>
+          <td class="readonly-box col-plan">${displayValue(order.planInterest)}</td>
+          <td class="readonly-box col-tv">${displayValue(order.tvCount)}</td>
+
+          <td class="col-fulfillment">
+            <select class="inline-select field-fulfillment">
+              ${buildSelectOptions(order.fulfillmentType, [
+                "Cash App",
+                "PayPal",
+                "Zelle",
+                "Crypto",
+                "In Person",
+                "Pending",
+                "Quote Request"
+              ])}
+            </select>
+          </td>
+
+          <td class="col-order-status">
+            <div class="stack">
+              ${getStatusPill(order.orderStatus)}
+              <select class="inline-select field-order-status">
+                ${buildSelectOptions(order.orderStatus, [
+                  "NEW",
+                  "PAYMENT SENT",
+                  "PAID",
+                  "IN PROGRESS",
+                  "READY FOR DELIVERY",
+                  "COMPLETE",
+                  "ON HOLD"
+                ])}
+              </select>
+            </div>
+          </td>
+
+          <td class="col-payment">
+            <select class="inline-select field-payment-status">
+              ${buildSelectOptions(order.paymentStatus, [
+                "QUOTE PENDING",
+                "Not Sent",
+                "Sent",
+                "Pending",
+                "Paid",
+                "Failed"
+              ])}
+            </select>
+          </td>
+
+          <td class="col-delivery">
+            <select class="inline-select field-delivery-status">
+              ${buildSelectOptions(order.deliveryStatus, [
+                "Not Started",
+                "Pending",
+                "Ready",
+                "Delivered",
+                "Completed"
+              ])}
+            </select>
+          </td>
+
+          <td class="col-support">
+            <input class="inline-input field-support-route" type="text" value="${escapeHtml(safeRaw(order.supportRoute))}" placeholder="Support route" />
+          </td>
+
+          <td class="notes-box col-notes">
+            <textarea class="inline-textarea field-notes" rows="4" placeholder="Notes">${escapeHtml(safeRaw(order.notes))}</textarea>
+          </td>
+
+          <td class="actions-box col-actions">
+            <div class="stack">
+              <button class="btn btn-save save-row-btn">Save Update</button>
+              <div class="save-status"></div>
+            </div>
+          </td>
+        </tr>
+      `).join("");
+
+      attachRowSaveHandlers();
+    }
+
+    async function loadOrders() {
+      setMessage("Loading orders...", "");
+      ordersTableBody.innerHTML = `
+        <tr>
+          <td colspan="19" class="empty-state">Loading orders...</td>
+        </tr>
+      `;
+
+      try {
+        const response = await fetch(APPS_SCRIPT_URL + "?action=getOrders", {
+          method: "GET",
+          redirect: "follow"
+        });
+
+        if (!response.ok) {
+          throw new Error("HTTP " + response.status + " returned from Apps Script.");
+        }
+
+        const data = await response.json();
+
+        if (!data.success || !Array.isArray(data.orders)) {
+          throw new Error(data.message || "No orders array was returned.");
+        }
+
+        allOrders = data.orders;
+
+        setMessage("Orders loaded successfully.", "ok");
+        renderOrders();
+      } catch (error) {
+        console.error("Admin Orders Load Error:", error);
+        setMessage("Unable to load orders. " + error.message, "error");
+        ordersTableBody.innerHTML = `
+          <tr>
+            <td colspan="19" class="empty-state">
+              Unable to load orders.<br />
+              <span class="small">Check the Apps Script URL and confirm the Web App is deployed correctly.</span>
+            </td>
+          </tr>
+        `;
+        updateStats([], []);
+      }
+    }
+
+    function attachRowSaveHandlers() {
+      document.querySelectorAll(".save-row-btn").forEach(button => {
+        button.addEventListener("click", async () => {
+          const row = button.closest("tr");
+          const saveStatus = row.querySelector(".save-status");
+          const rowNumber = Number(row.getAttribute("data-row-number"));
+
+          const payload = {
+            action: "updateOrder",
+            rowNumber: rowNumber,
+            fulfillmentType: row.querySelector(".field-fulfillment").value.trim(),
+            orderStatus: row.querySelector(".field-order-status").value.trim(),
+            paymentStatus: row.querySelector(".field-payment-status").value.trim(),
+            deliveryStatus: row.querySelector(".field-delivery-status").value.trim(),
+            supportRoute: row.querySelector(".field-support-route").value.trim(),
+            notes: row.querySelector(".field-notes").value.trim()
+          };
+
+          button.disabled = true;
+          button.textContent = "Saving...";
+          saveStatus.textContent = "Sending update...";
+          saveStatus.className = "save-status";
+
+          try {
+            const response = await fetch(APPS_SCRIPT_URL, {
+              method: "POST",
+              headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+              },
+              body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+              throw new Error("HTTP " + response.status + " returned from Apps Script.");
+            }
+
+            const result = await response.json();
+
+            if (result.success === false) {
+              throw new Error(result.message || "Save failed.");
+            }
+
+            saveStatus.textContent = "Update saved. Refreshing view...";
+            saveStatus.className = "save-status ok";
+            setMessage("Order update submitted successfully.", "ok");
+
+            await loadOrders();
+          } catch (error) {
+            console.error("Save Order Error:", error);
+            saveStatus.textContent = "Save failed. " + error.message;
+            saveStatus.className = "save-status error";
+            setMessage("Save failed. " + error.message, "error");
+          } finally {
+            button.disabled = false;
+            button.textContent = "Save Update";
+          }
+        });
+      });
+    }
+
+    refreshBtn.addEventListener("click", loadOrders);
+
+    clearBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      statusFilter.value = "";
+      sortFilter.value = "newest";
+      renderOrders();
+      setMessage("Filters cleared.", "ok");
+    });
+
+    searchInput.addEventListener("input", renderOrders);
+    statusFilter.addEventListener("change", renderOrders);
+    sortFilter.addEventListener("change", renderOrders);
+
+    loadOrders();
+  </script>
 </body>
 </html>
