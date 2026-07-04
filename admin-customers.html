@@ -1,847 +1,779 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4MyIPTV Service | Checkout Link Generator</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>4MyIPTV Service - Admin Customers</title>
   <style>
-    * {
-      box-sizing: border-box;
+    :root{
+      --bg:#08111f;
+      --panel:#101827;
+      --panel-2:#0b1220;
+      --text:#f8fafc;
+      --muted:#94a3b8;
+      --green:#22c55e;
+      --blue:#3b82f6;
+      --purple:#9333ea;
+      --gold:#f59e0b;
+      --red:#ef4444;
+      --border:#1f2937;
+      --border-soft:#243044;
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:linear-gradient(180deg,#08111f,#0f172a);
+      color:var(--text);
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 24px;
+    .wrap{
+      max-width:1400px;
+      margin:auto;
+      padding:20px;
     }
 
-    .header {
-      text-align: center;
-      margin-bottom: 22px;
+    .card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:20px;
+      margin-bottom:20px;
     }
 
-    .header h1 {
-      margin: 0 0 8px;
-      color: #86efac;
-      font-size: 30px;
+    h1{
+      margin:0 0 8px;
+      color:#86efac;
+      text-align:center;
+      font-size:30px;
     }
 
-    .tagline-banner {
-      margin: 10px auto 14px auto;
-      max-width: 760px;
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
-      text-align: center;
-      font-weight: 600;
-      font-size: 16px;
-      letter-spacing: 0.08em;
-      color: #e2e8f0;
+    h2{
+      margin:0 0 10px;
+      font-size:22px;
     }
 
-    .header p {
-      margin: 0;
-      color: #94a3b8;
-      line-height: 1.5;
+    h3{
+      margin:0 0 10px;
+      font-size:18px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 20px;
+    .tagline{
+      text-align:center;
+      color:#cbd5e1;
+      font-weight:600;
+      margin-bottom:6px;
     }
 
-    @media (max-width: 960px) {
-      .grid {
-        grid-template-columns: 1fr;
+    .subnote{
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .top-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-block;
+      text-decoration:none;
+      border:none;
+      cursor:pointer;
+      border-radius:12px;
+      padding:12px 16px;
+      font-weight:bold;
+      color:#fff;
+      font-size:14px;
+      border:1px solid #334155;
+    }
+
+    .btn-blue{background:#1d4ed8}
+    .btn-green{background:#166534}
+    .btn-purple{background:#7e22ce}
+    .btn-gray{background:#475569}
+    .btn-gold{background:#b45309}
+    .btn-red{background:#b91c1c}
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+
+    .stat-box{
+      background:var(--panel-2);
+      border:1px solid var(--border-soft);
+      border-radius:12px;
+      padding:16px;
+    }
+
+    .stat-label{
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+
+    .stat-value{
+      font-size:24px;
+      font-weight:bold;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:20px;
+    }
+
+    .toolbar{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr 1fr auto;
+      gap:12px;
+      margin-bottom:16px;
+    }
+
+    input, select{
+      width:100%;
+      background:#0b1220;
+      color:var(--text);
+      border:1px solid var(--border-soft);
+      border-radius:12px;
+      padding:12px 14px;
+      font-size:14px;
+      outline:none;
+    }
+
+    input::placeholder{
+      color:#94a3b8;
+    }
+
+
+    textarea{
+      width:100%;
+      min-height:96px;
+      resize:vertical;
+      background:#0b1220;
+      color:var(--text);
+      border:1px solid var(--border-soft);
+      border-radius:12px;
+      padding:12px 14px;
+      font-size:14px;
+      outline:none;
+      font-family:Arial,Helvetica,sans-serif;
+    }
+
+    .detail-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .edit-note{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+      margin:8px 0 12px;
+    }
+
+    .readonly-small{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:4px;
+    }
+
+    .table-wrap{
+      overflow:auto;
+      border:1px solid var(--border-soft);
+      border-radius:14px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:1000px;
+      background:#0b1220;
+    }
+
+    th, td{
+      padding:12px 14px;
+      border-bottom:1px solid #1e293b;
+      text-align:left;
+      font-size:14px;
+      vertical-align:top;
+    }
+
+    th{
+      color:#cbd5e1;
+      background:#111827;
+      position:sticky;
+      top:0;
+      z-index:1;
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
+
+    tr:hover{
+      background:#111827;
+      cursor:pointer;
+    }
+
+    .pill{
+      display:inline-block;
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:bold;
+      border:1px solid transparent;
+      white-space:nowrap;
+    }
+
+    .pill-active{
+      background:rgba(34,197,94,.12);
+      color:#bbf7d0;
+      border-color:rgba(34,197,94,.28);
+    }
+
+    .pill-inactive{
+      background:rgba(239,68,68,.12);
+      color:#fecaca;
+      border-color:rgba(239,68,68,.28);
+    }
+
+    .pill-other{
+      background:rgba(59,130,246,.12);
+      color:#bfdbfe;
+      border-color:rgba(59,130,246,.28);
+    }
+
+    .detail-panel{
+      background:var(--panel-2);
+      border:1px solid var(--border-soft);
+      border-radius:14px;
+      padding:18px;
+      min-height:560px;
+    }
+
+    .detail-empty{
+      color:var(--muted);
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .detail-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .detail-row{
+      border:1px solid #1e293b;
+      border-radius:12px;
+      padding:12px;
+      background:#0f172a;
+    }
+
+    .detail-label{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+      margin-bottom:6px;
+    }
+
+    .detail-value{
+      font-size:14px;
+      color:var(--text);
+      line-height:1.5;
+      word-break:break-word;
+    }
+
+    .message{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:12px;
+      font-size:14px;
+      line-height:1.5;
+      display:none;
+    }
+
+    .message.show{
+      display:block;
+    }
+
+    .message.info{
+      background:rgba(59,130,246,.12);
+      border:1px solid rgba(59,130,246,.28);
+      color:#bfdbfe;
+    }
+
+    .message.error{
+      background:rgba(239,68,68,.12);
+      border:1px solid rgba(239,68,68,.28);
+      color:#fecaca;
+    }
+
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      margin-top:20px;
+      font-size:13px;
+    }
+
+    @media(max-width:1200px){
+      .layout{
+        grid-template-columns:1fr;
+      }
+
+      .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .toolbar{
+        grid-template-columns:1fr 1fr;
       }
     }
 
-    .card {
-      background: #111827;
-      border: 1px solid #334155;
-      border-radius: 14px;
-      padding: 20px;
-      margin-bottom: 18px;
-    }
-
-    h2 {
-      margin: 0 0 14px;
-      color: #f8fafc;
-      font-size: 22px;
-    }
-
-    .subhead {
-      margin: -4px 0 14px 0;
-      color: #94a3b8;
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    .field {
-      margin-bottom: 14px;
-    }
-
-    .field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    @media (max-width: 720px) {
-      .field-row {
-        grid-template-columns: 1fr;
+    @media(max-width:700px){
+      .stats-grid{
+        grid-template-columns:1fr;
       }
-    }
 
-    label {
-      display: block;
-      margin-bottom: 6px;
-      color: #cbd5e1;
-      font-weight: 700;
-      font-size: 13px;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #334155;
-      background: #020617;
-      color: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 14px;
-    }
-
-    textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .button-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-
-    button {
-      border: none;
-      border-radius: 10px;
-      padding: 12px 16px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: #22c55e;
-      color: #052e16;
-    }
-
-    .btn-secondary {
-      background: #1d4ed8;
-      color: #eff6ff;
-    }
-
-    .btn-muted {
-      background: #334155;
-      color: #e2e8f0;
-    }
-
-    .preview-box {
-      background: #020617;
-      border: 1px solid #334155;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 14px;
-    }
-
-    .preview-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    @media (max-width: 720px) {
-      .preview-grid {
-        grid-template-columns: 1fr;
+      .toolbar{
+        grid-template-columns:1fr;
       }
-    }
 
-    .preview-item {
-      background: #0b1220;
-      border: 1px solid #1e293b;
-      border-radius: 10px;
-      padding: 12px;
-    }
-
-    .preview-label {
-      font-size: 12px;
-      color: #94a3b8;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .preview-value {
-      color: #f8fafc;
-      font-size: 15px;
-      line-height: 1.4;
-      word-break: break-word;
-    }
-
-    .url-box {
-      width: 100%;
-      min-height: 150px;
-      background: #020617;
-      border: 1px solid #334155;
-      border-radius: 12px;
-      color: #e2e8f0;
-      padding: 14px;
-      font-family: Consolas, "Courier New", monospace;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .status {
-      margin-top: 12px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      display: none;
-      font-weight: 700;
-      line-height: 1.45;
-    }
-
-    .status.success {
-      display: block;
-      background: #052e16;
-      border: 1px solid #166534;
-      color: #bbf7d0;
-    }
-
-    .status.error {
-      display: block;
-      background: #450a0a;
-      border: 1px solid #991b1b;
-      color: #fecaca;
-    }
-
-    .note {
-      color: #94a3b8;
-      font-size: 13px;
-      line-height: 1.5;
-      margin-top: 8px;
-    }
-
-
-
-    .quote-request-panel {
-      background: rgba(34, 197, 94, 0.06);
-      border: 1px solid rgba(34, 197, 94, 0.22);
-      border-radius: 12px;
-      padding: 14px;
-      margin-bottom: 18px;
-    }
-
-    .quote-request-controls {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-      align-items: end;
-    }
-
-    @media (max-width: 720px) {
-      .quote-request-controls {
-        grid-template-columns: 1fr;
+      h1{
+        font-size:26px;
       }
-    }
-
-    .quote-request-status {
-      margin-top: 10px;
-      color: #bbf7d0;
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .quote-request-status.error {
-      color: #fecaca;
-    }
-
-    .selected-request-summary {
-      margin-top: 12px;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      background: rgba(2, 6, 23, 0.55);
-      color: #cbd5e1;
-      font-size: 13px;
-      line-height: 1.5;
-      display: none;
-    }
-
-    .footer-note {
-      text-align: center;
-      color: #94a3b8;
-      margin-top: 10px;
-      font-size: 13px;
-    }
-
-    .link-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-
-    .pill-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-
-    .pill {
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(134, 239, 172, 0.08);
-      border: 1px solid rgba(134, 239, 172, 0.18);
-      color: #bbf7d0;
-      font-size: 12px;
-      font-weight: 700;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>Checkout Link Generator</h1>
-      <div class="tagline-banner">4MyIPTV Service • Internal Use Only</div>
-      <p>
-        Build a locked checkout link after you review and approve a quote request.
-        Customers should not edit scope after receiving this link.
-      </p>
+  <div class="wrap">
+
+    <div class="card">
+      <h1>Master Customer Database</h1>
+      <div class="tagline">4MyIPTV Service</div>
+      <div class="subnote">Customer relationship hub for contact history, service count, and activity tracking.</div>
+
+      <div class="top-actions">
+        <a class="btn btn-blue" href="admin-dashboard.html">Back to Dashboard</a>
+        <a class="btn btn-purple" href="admin-orders.html">Open Orders</a>
+        <button class="btn btn-green" id="syncCustomersBtn" type="button">Sync Customer Database</button>
+      </div>
     </div>
 
-    <div class="grid">
-      <div>
-        <div class="card">
-          <h2>Approved Order Information</h2>
-          <p class="subhead">
-            Enter the final approved values only. These become the locked checkout details.
-          </p>
+    <div class="card">
+      <h2>Customer Snapshot</h2>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-label">Total Customers</div>
+          <div class="stat-value" id="totalCustomers">0</div>
+        </div>
 
-          <div class="quote-request-panel">
-            <label for="quoteRequestSelect">Select Online Quote Request</label>
-            <div class="quote-request-controls">
-              <select id="quoteRequestSelect">
-                <option value="">Loading online quote requests...</option>
-              </select>
-              <button class="btn-secondary" id="refreshQuoteRequestsBtn" type="button">Refresh Requests</button>
-            </div>
-            <div id="quoteRequestStatus" class="quote-request-status">Pulling recent quote requests from Admin Orders.</div>
-            <div id="selectedRequestSummary" class="selected-request-summary"></div>
-            <div class="note">
-              Select a customer request to auto-fill the quote fields. Review the amount, fulfillment, and address before sending the checkout link.
-            </div>
-          </div>
+        <div class="stat-box">
+          <div class="stat-label">Active Customers</div>
+          <div class="stat-value" id="activeCustomers">0</div>
+        </div>
 
-          <div class="field-row">
-            <div class="field">
-              <label for="customerName">Customer Name</label>
-              <input id="customerName" type="text" placeholder="Timothy Garrett" />
-            </div>
+        <div class="stat-box">
+          <div class="stat-label">Inactive Customers</div>
+          <div class="stat-value" id="inactiveCustomers">0</div>
+        </div>
 
-            <div class="field">
-              <label for="customerEmail">Customer Email</label>
-              <input id="customerEmail" type="email" placeholder="name@example.com" />
-            </div>
-          </div>
+        <div class="stat-box">
+          <div class="stat-label">Showing</div>
+          <div class="stat-value" id="showingCustomers">0</div>
+        </div>
+      </div>
+    </div>
 
-          <div class="field-row">
-            <div class="field">
-              <label for="customerPhone">Customer Phone</label>
-              <input id="customerPhone" type="tel" placeholder="555-123-4567" />
-            </div>
+    <div class="layout">
+      <div class="card">
+        <h2>Customer List</h2>
 
-            <div class="field">
-              <label for="customerAddress">Customer Address</label>
-              <input id="customerAddress" type="text" placeholder="Shipping or service address" />
-            </div>
-          </div>
+        <div class="toolbar">
+          <input id="searchInput" type="text" placeholder="Search by name, phone, email, notes, or customer ID" />
+          
+          <select id="statusFilter">
+            <option value="all">All Statuses</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
 
-          <div class="field-row">
-            <div class="field">
-              <label for="service">Approved Service</label>
-              <input id="service" type="text" placeholder="Premium IPTV Setup" />
-            </div>
+          <select id="sortFilter">
+            <option value="name-asc">Sort: Name A-Z</option>
+            <option value="name-desc">Sort: Name Z-A</option>
+            <option value="activity-desc">Sort: Newest Activity</option>
+            <option value="activity-asc">Sort: Oldest Activity</option>
+            <option value="created-desc">Sort: Newest Created</option>
+            <option value="created-asc">Sort: Oldest Created</option>
+          </select>
 
-            <div class="field">
-              <label for="category">Category</label>
-              <select id="category">
-                <option value="">Select category</option>
-                <option value="Device + Service">Device + Service</option>
-                <option value="Service Only">Service Only</option>
-                <option value="Renewal">Renewal</option>
-                <option value="Support">Support</option>
-                <option value="Custom Quote">Custom Quote</option>
-              </select>
-            </div>
-          </div>
+          <select id="pageSize">
+            <option value="10">10 Rows</option>
+            <option value="25" selected>25 Rows</option>
+            <option value="50">50 Rows</option>
+            <option value="100">100 Rows</option>
+          </select>
 
-          <div class="field-row">
-            <div class="field">
-              <label for="device">Approved Device</label>
-              <select id="device">
-                <option value="">Select device</option>
-                <option value="Onn Full HD">Onn Full HD</option>
-                <option value="Onn 4K">Onn 4K</option>
-                <option value="Onn 4K Plus">Onn 4K Plus</option>
-                <option value="Onn 4K Pro">Onn 4K Pro</option>
-                <option value="Google TV Streamer 4K">Google TV Streamer 4K</option>
-                <option value="NVIDIA Shield TV Pro">NVIDIA Shield TV Pro</option>
-                <option value="Other / Custom">Other / Custom</option>
-              </select>
-            </div>
+          <button class="btn btn-gray" id="refreshBtn" type="button">Refresh</button>
+        </div>
 
-            <div class="field">
-              <label for="fulfillment">Fulfillment</label>
-              <select id="fulfillment">
-                <option value="">Select fulfillment</option>
-                <option value="Shipping">Shipping</option>
-                <option value="Local Delivery">Local Delivery</option>
-                <option value="Digital Setup">Digital Setup</option>
-                <option value="Cash App">Cash App</option>
-                <option value="PayPal">PayPal</option>
-                <option value="Crypto">Crypto</option>
-              </select>
-            </div>
-          </div>
+        <div id="infoMessage" class="message info"></div>
+        <div id="errorMessage" class="message error"></div>
 
-          <div class="field-row">
-            <div class="field">
-              <label for="amount">Approved Amount</label>
-              <input id="amount" type="number" min="0" step="0.01" placeholder="150.00" />
-            </div>
-
-            <div class="field">
-              <label for="status">Checkout Status</label>
-              <select id="status">
-                <option value="Pending">Pending</option>
-                <option value="New">New</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="description">Approved Description</label>
-            <textarea id="description" placeholder="Approved setup with device and service"></textarea>
-          </div>
-
-          <div class="field">
-            <label for="notes">Approved Notes</label>
-            <textarea id="notes" placeholder="Shipping note, setup detail, contact instruction, approved scope"></textarea>
-          </div>
-
-          <div class="button-row">
-            <button class="btn-primary" id="generateBtn">Generate Checkout Link</button>
-            <button class="btn-secondary" id="copyBtn" type="button">Copy Link</button>
-            <button class="btn-muted" id="resetBtn" type="button">Reset Form</button>
-          </div>
-
-          <div id="statusMessage" class="status"></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Total Orders</th>
+                <th>Total Services</th>
+                <th>Last Activity</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="customerTableBody">
+              <tr>
+                <td colspan="8">Loading customers...</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <div>
-        <div class="card">
-          <h2>Live Preview</h2>
-
-          <div class="pill-row">
-            <div class="pill">Quote Reviewed</div>
-            <div class="pill">Locked Checkout</div>
-            <div class="pill">Customer Ready</div>
+      <div class="card">
+        <h2>Customer Detail</h2>
+        <div class="detail-panel" id="detailPanel">
+          <div class="detail-empty">
+            Select a customer row to view their details here.
+            <br /><br />
+            This page is for the master customer record only.
+            <br />
+            Service usernames, passwords, portals, and expirations should live in the separate Services page.
           </div>
-
-          <div class="preview-box">
-            <div class="preview-grid">
-              <div class="preview-item">
-                <div class="preview-label">Customer</div>
-                <div class="preview-value" id="previewCustomer">-</div>
-              </div>
-
-              <div class="preview-item">
-                <div class="preview-label">Email</div>
-                <div class="preview-value" id="previewEmail">-</div>
-              </div>
-
-              <div class="preview-item">
-                <div class="preview-label">Phone</div>
-                <div class="preview-value" id="previewPhone">-</div>
-              </div>
-
-              <div class="preview-item">
-                <div class="preview-label">Address</div>
-                <div class="preview-value" id="previewAddress">-</div>
-              </div>
-
-              <div class="preview-item">
-                <div class="preview-label">Service</div>
-                <div class="preview-value" id="previewService">-</div>
-              </div>
-
-              <div class="preview-item">
-                <div class="preview-label">Category</div>
-                <div class="preview-value" id="previewCategory">-</div>
-              </div>
-
-              <div class="preview-item">
-                <div class="preview-label">Device</div>
-                <div class="preview-value" id="previewDevice">-</div>
-              </div>
-
-              <div class="preview-item">
-                <div class="preview-label">Fulfillment</div>
-                <div class="preview-value" id="previewFulfillment">-</div>
-              </div>
-
-              <div class="preview-item">
-                <div class="preview-label">Amount</div>
-                <div class="preview-value" id="previewAmount">$0.00</div>
-              </div>
-
-              <div class="preview-item">
-                <div class="preview-label">Status</div>
-                <div class="preview-value" id="previewStatus">Pending</div>
-              </div>
-            </div>
-          </div>
-
-          <h2 style="margin-top:18px;">Generated Checkout URL</h2>
-          <textarea id="generatedUrl" class="url-box" readonly></textarea>
-
-          <div class="link-actions">
-            <button class="btn-secondary" id="openBtn" type="button">Open Checkout Link</button>
-          </div>
-
-          <div class="note">
-            This link sends the customer to the locked checkout page with approved values already filled in.
-          </div>
-        </div>
-
-        <div class="footer-note">
-          Internal tool for quote approval to checkout handoff
         </div>
       </div>
+    </div>
+
+    <div class="footer">
+      Internal customer management page • Built for 4MyIPTV Service
     </div>
   </div>
 
   <script>
-    const checkoutBaseUrl = "https://tgarrett10.github.io/4myIPTVservice-device-app-center/checkout.html";
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzWO65X3uTAbWldiacxCD7ItLu5zpfZe1fDTWUlMGJyIPJXWcXaOsDXWHMQV-3-Ch7IcQ/exec";
+    (function () {
+      const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzWO65X3uTAbWldiacxCD7ItLu5zpfZe1fDTWUlMGJyIPJXWcXaOsDXWHMQV-3-Ch7IcQ/exec";
+      const API_URL = APPS_SCRIPT_URL + "?action=getCustomers";
 
-    let onlineQuoteRequests = [];
+      let allCustomers = [];
+      let filteredCustomers = [];
+      let selectedCustomer = null;
 
-    const ids = [
-      "customerName",
-      "customerEmail",
-      "customerPhone",
-      "customerAddress",
-      "service",
-      "category",
-      "device",
-      "fulfillment",
-      "amount",
-      "status",
-      "description",
-      "notes"
-    ];
+      const totalCustomersEl = document.getElementById("totalCustomers");
+      const activeCustomersEl = document.getElementById("activeCustomers");
+      const inactiveCustomersEl = document.getElementById("inactiveCustomers");
+      const showingCustomersEl = document.getElementById("showingCustomers");
 
-    function byId(id) {
-      return document.getElementById(id);
-    }
+      const searchInput = document.getElementById("searchInput");
+      const statusFilter = document.getElementById("statusFilter");
+      const sortFilter = document.getElementById("sortFilter");
+      const pageSizeSelect = document.getElementById("pageSize");
+      const refreshBtn = document.getElementById("refreshBtn");
+      const syncCustomersBtn = document.getElementById("syncCustomersBtn");
 
-    function safeRaw(value) {
-      if (value === null || value === undefined) return "";
-      return String(value).trim();
-    }
+      const tableBody = document.getElementById("customerTableBody");
+      const detailPanel = document.getElementById("detailPanel");
 
-    function valueOrDash(value) {
-      return value && String(value).trim() ? String(value).trim() : "-";
-    }
+      const infoMessage = document.getElementById("infoMessage");
+      const errorMessage = document.getElementById("errorMessage");
 
-    function money(value) {
-      return "$" + Number(value || 0).toFixed(2);
-    }
-
-    function showMessage(message, type) {
-      const box = byId("statusMessage");
-      box.className = "status " + type;
-      box.textContent = message;
-    }
-
-    function clearMessage() {
-      const box = byId("statusMessage");
-      box.className = "status";
-      box.textContent = "";
-    }
-
-    function setQuoteRequestStatus(message, isError) {
-      const box = byId("quoteRequestStatus");
-      if (!box) return;
-      box.textContent = message;
-      box.className = isError ? "quote-request-status error" : "quote-request-status";
-    }
-
-    function escapeHtml(value) {
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
-
-    function getFormData() {
-      return {
-        name: byId("customerName").value.trim(),
-        email: byId("customerEmail").value.trim(),
-        phone: byId("customerPhone").value.trim(),
-        address: byId("customerAddress").value.trim(),
-        service: byId("service").value.trim(),
-        category: byId("category").value,
-        device: byId("device").value,
-        fulfillment: byId("fulfillment").value,
-        amount: byId("amount").value.trim(),
-        status: byId("status").value,
-        description: byId("description").value.trim(),
-        notes: byId("notes").value.trim()
-      };
-    }
-
-    function updatePreview() {
-      const data = getFormData();
-
-      byId("previewCustomer").textContent = valueOrDash(data.name);
-      byId("previewEmail").textContent = valueOrDash(data.email);
-      byId("previewPhone").textContent = valueOrDash(data.phone);
-      byId("previewAddress").textContent = valueOrDash(data.address);
-      byId("previewService").textContent = valueOrDash(data.service);
-      byId("previewCategory").textContent = valueOrDash(data.category);
-      byId("previewDevice").textContent = valueOrDash(data.device);
-      byId("previewFulfillment").textContent = valueOrDash(data.fulfillment);
-      byId("previewAmount").textContent = money(data.amount || 0);
-      byId("previewStatus").textContent = valueOrDash(data.status || "Pending");
-    }
-
-    function validateForm() {
-      const data = getFormData();
-
-      if (!data.service) {
-        showMessage("Approved service is required.", "error");
-        return false;
+      function byId(id) {
+        return document.getElementById(id);
       }
 
-      if (!data.amount || Number(data.amount) <= 0) {
-        showMessage("Approved amount must be greater than 0.", "error");
-        return false;
+      function showInfo(message) {
+        infoMessage.textContent = message;
+        infoMessage.classList.add("show");
       }
 
-      return true;
-    }
-
-    function buildCheckoutUrl() {
-      const data = getFormData();
-      const params = new URLSearchParams();
-
-      if (data.service) params.set("service", data.service);
-      if (data.category) params.set("category", data.category);
-      if (data.description) params.set("description", data.description);
-      if (data.amount) params.set("amount", Number(data.amount).toFixed(2));
-      if (data.name) params.set("name", data.name);
-      if (data.email) params.set("email", data.email);
-      if (data.phone) params.set("phone", data.phone);
-      if (data.address) params.set("address", data.address);
-      if (data.device) params.set("device", data.device);
-      if (data.fulfillment) params.set("fulfillment", data.fulfillment);
-      if (data.notes) params.set("notes", data.notes);
-      if (data.status) params.set("status", data.status);
-
-      return checkoutBaseUrl + "?" + params.toString();
-    }
-
-    function generateLink() {
-      clearMessage();
-
-      if (!validateForm()) {
-        byId("generatedUrl").value = "";
-        return;
+      function clearInfo() {
+        infoMessage.textContent = "";
+        infoMessage.classList.remove("show");
       }
 
-      const url = buildCheckoutUrl();
-      byId("generatedUrl").value = url;
-      showMessage("Checkout link generated successfully.", "success");
-    }
-
-    async function copyLink() {
-      const url = byId("generatedUrl").value.trim();
-
-      if (!url) {
-        showMessage("Generate the checkout link first.", "error");
-        return;
+      function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.add("show");
       }
 
-      try {
-        await navigator.clipboard.writeText(url);
-        showMessage("Checkout link copied to clipboard.", "success");
-      } catch (error) {
-        byId("generatedUrl").select();
-        document.execCommand("copy");
-        showMessage("Checkout link copied to clipboard.", "success");
-      }
-    }
-
-    function openLink() {
-      const url = byId("generatedUrl").value.trim();
-
-      if (!url) {
-        showMessage("Generate the checkout link first.", "error");
-        return;
+      function clearError() {
+        errorMessage.textContent = "";
+        errorMessage.classList.remove("show");
       }
 
-      window.open(url, "_blank");
-    }
+      function safeText(value) {
+        return (value === null || value === undefined ? "" : value).toString().trim();
+      }
 
-    function resetForm() {
-      ids.forEach(function(id) {
-        const el = byId(id);
-        if (el.tagName === "SELECT") {
-          el.selectedIndex = 0;
-        } else {
-          el.value = "";
+      function normalizeCustomer(raw) {
+        return {
+          rowNumber: safeText(raw.rowNumber || raw.sheetRow || raw.row || raw["Row Number"]),
+          customerId: safeText(raw.customerId || raw["Customer ID"] || raw.id),
+          fullName: safeText(raw.fullName || raw.customerName || raw.name || raw["Full Name"] || raw["Customer Name"] || raw["Name"]),
+          phone: safeText(raw.phone || raw.phoneNumber || raw["Phone"] || raw["Phone Number"]),
+          email: safeText(raw.email || raw.emailAddress || raw["Email"] || raw["Email Address"]),
+          address: safeText(raw.address || raw.customerAddress || raw.shippingAddress || raw["Address"] || raw["Shipping Address"]),
+          referralSource: safeText(raw.referralSource || raw.campaignSource || raw["Referral Source"] || raw["Campaign Source"]),
+          notes: safeText(raw.notes || raw["Notes"] || raw.internalNotes || raw["Internal Notes"]),
+          createdDate: safeText(raw.createdDate || raw.createdAt || raw.timestamp || raw["Created Date"] || raw["Created At"] || raw["Timestamp"]),
+          lastActivityDate: safeText(raw.lastActivityDate || raw.lastActivity || raw.updatedAt || raw["Last Activity Date"] || raw["Last Activity"] || raw["Updated At"]),
+          totalOrders: safeText(raw.totalOrders || raw["Total Orders"]) || "0",
+          totalServices: safeText(raw.totalServices || raw["Total Services"]) || "0",
+          customerStatus: safeText(raw.customerStatus || raw.status || raw["Customer Status"] || raw["Status"]) || "Active",
+          lastOrderType: safeText(raw.lastOrderType || raw.orderType || raw.planName || raw["Last Order Type"] || raw["Order Type"]),
+          lastPaymentStatus: safeText(raw.lastPaymentStatus || raw.paymentStatus || raw["Last Payment Status"] || raw["Payment Status"]),
+          lastAmount: safeText(raw.lastAmount || raw.amount || raw["Last Amount"] || raw["Amount"])
+        };
+      }
+
+      function parseDateValue(value) {
+        if (!value) return null;
+        const parsed = new Date(value);
+        return isNaN(parsed.getTime()) ? null : parsed;
+      }
+
+      function formatDate(value) {
+        const parsed = parseDateValue(value);
+        if (!parsed) return value || "-";
+        return parsed.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric"
+        });
+      }
+
+      function statusClass(status) {
+        const normalized = (status || "").toLowerCase();
+        if (normalized === "active") return "pill pill-active";
+        if (normalized === "inactive") return "pill pill-inactive";
+        return "pill pill-other";
+      }
+
+      function updateStats(customersToShow) {
+        const activeCount = allCustomers.filter(c => c.customerStatus.toLowerCase() === "active").length;
+        const inactiveCount = allCustomers.filter(c => c.customerStatus.toLowerCase() === "inactive").length;
+
+        totalCustomersEl.textContent = allCustomers.length;
+        activeCustomersEl.textContent = activeCount;
+        inactiveCustomersEl.textContent = inactiveCount;
+        showingCustomersEl.textContent = customersToShow.length;
+      }
+
+      function sortCustomers(customers) {
+        const mode = sortFilter.value;
+
+        customers.sort((a, b) => {
+          if (mode === "name-asc") return a.fullName.localeCompare(b.fullName);
+          if (mode === "name-desc") return b.fullName.localeCompare(a.fullName);
+          if (mode === "activity-desc") {
+            const aDate = parseDateValue(a.lastActivityDate);
+            const bDate = parseDateValue(b.lastActivityDate);
+            return (bDate ? bDate.getTime() : 0) - (aDate ? aDate.getTime() : 0);
+          }
+          if (mode === "activity-asc") {
+            const aDate = parseDateValue(a.lastActivityDate);
+            const bDate = parseDateValue(b.lastActivityDate);
+            return (aDate ? aDate.getTime() : 0) - (bDate ? bDate.getTime() : 0);
+          }
+          if (mode === "created-desc") {
+            const aDate = parseDateValue(a.createdDate);
+            const bDate = parseDateValue(b.createdDate);
+            return (bDate ? bDate.getTime() : 0) - (aDate ? aDate.getTime() : 0);
+          }
+          if (mode === "created-asc") {
+            const aDate = parseDateValue(a.createdDate);
+            const bDate = parseDateValue(b.createdDate);
+            return (aDate ? aDate.getTime() : 0) - (bDate ? bDate.getTime() : 0);
+          }
+          return 0;
+        });
+
+        return customers;
+      }
+
+      function applyFilters() {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        const statusValue = statusFilter.value;
+        const pageSize = Number(pageSizeSelect.value);
+
+        let results = allCustomers.filter(customer => {
+          const matchesSearch = !searchTerm || [
+            customer.customerId,
+            customer.fullName,
+            customer.phone,
+            customer.email,
+            customer.notes,
+            customer.address,
+            customer.referralSource,
+            customer.lastOrderType,
+            customer.lastPaymentStatus
+          ].join(" ").toLowerCase().includes(searchTerm);
+
+          const matchesStatus =
+            statusValue === "all" ||
+            customer.customerStatus.toLowerCase() === statusValue;
+
+          return matchesSearch && matchesStatus;
+        });
+
+        results = sortCustomers(results);
+        filteredCustomers = results;
+        updateStats(filteredCustomers);
+        renderTable(filteredCustomers.slice(0, pageSize));
+      }
+
+      function renderTable(customers) {
+        if (!customers.length) {
+          tableBody.innerHTML = '<tr><td colspan="8">No customers found. Use Sync Customer Database after the backend patch is installed.</td></tr>';
+          return;
         }
-      });
 
-      const quoteSelect = byId("quoteRequestSelect");
-      if (quoteSelect) quoteSelect.value = "";
+        tableBody.innerHTML = customers.map(customer => `
+          <tr data-customer-id="${escapeHtml(customer.customerId)}" data-row-number="${escapeHtml(customer.rowNumber)}">
+            <td>${escapeHtml(customer.customerId || "-")}</td>
+            <td>${escapeHtml(customer.fullName || "-")}</td>
+            <td>${escapeHtml(customer.phone || "-")}</td>
+            <td>${escapeHtml(customer.email || "-")}</td>
+            <td>${escapeHtml(customer.totalOrders || "0")}</td>
+            <td>${escapeHtml(customer.totalServices || "0")}</td>
+            <td>${escapeHtml(formatDate(customer.lastActivityDate) || "-")}</td>
+            <td><span class="${statusClass(customer.customerStatus)}">${escapeHtml(customer.customerStatus || "Unknown")}</span></td>
+          </tr>
+        `).join("");
 
-      const summary = byId("selectedRequestSummary");
-      if (summary) {
-        summary.style.display = "none";
-        summary.innerHTML = "";
+        const rows = tableBody.querySelectorAll("tr[data-customer-id], tr[data-row-number]");
+        rows.forEach(row => {
+          row.addEventListener("click", function () {
+            const customerId = this.getAttribute("data-customer-id");
+            const rowNumber = this.getAttribute("data-row-number");
+            const customer = filteredCustomers.find(item => item.customerId === customerId || item.rowNumber === rowNumber) ||
+                             allCustomers.find(item => item.customerId === customerId || item.rowNumber === rowNumber);
+            renderDetail(customer);
+          });
+        });
       }
 
-      byId("status").value = "Pending";
-      byId("generatedUrl").value = "";
-      clearMessage();
-      updatePreview();
-    }
+      function renderDetail(customer) {
+        selectedCustomer = customer || null;
 
-    function normalizeStatus(status) {
-      return safeRaw(status).toUpperCase();
-    }
+        if (!customer) {
+          detailPanel.innerHTML = '<div class="detail-empty">Customer details could not be loaded.</div>';
+          return;
+        }
 
-    function formatDateForDropdown(value) {
-      const raw = safeRaw(value);
-      if (!raw) return "No date";
+        detailPanel.innerHTML = `
+          <h3>${escapeHtml(customer.fullName || "Unnamed Customer")}</h3>
+          <div class="edit-note">Review or update the master customer record below. Service usernames, passwords, portals, and expirations should still live in the separate Services workflow.</div>
 
-      const date = new Date(raw);
-      if (Number.isNaN(date.getTime())) return raw;
+          <div class="detail-grid">
+            ${readonlyItem("Customer ID", customer.customerId || "Pending")}
+            ${readonlyItem("Sheet Row", customer.rowNumber || "-")}
+            ${inputItem("Full Name", "editFullName", customer.fullName)}
+            ${inputItem("Phone", "editPhone", customer.phone)}
+            ${inputItem("Email", "editEmail", customer.email)}
+            ${inputItem("Address", "editAddress", customer.address)}
+            ${inputItem("Referral Source", "editReferralSource", customer.referralSource)}
+            ${selectItem("Customer Status", "editCustomerStatus", customer.customerStatus, ["Active", "Inactive", "Prospect", "Needs Follow-Up"])}
+            ${readonlyItem("Created Date", formatDate(customer.createdDate))}
+            ${readonlyItem("Last Activity Date", formatDate(customer.lastActivityDate))}
+            ${readonlyItem("Total Orders", customer.totalOrders)}
+            ${readonlyItem("Total Services", customer.totalServices)}
+            ${readonlyItem("Last Order Type", customer.lastOrderType || "-")}
+            ${readonlyItem("Last Payment Status", customer.lastPaymentStatus || "-")}
+            ${readonlyItem("Last Amount", customer.lastAmount || "-")}
+            ${textareaItem("Notes", "editNotes", customer.notes)}
+          </div>
 
-      return date.toLocaleDateString(undefined, {
-        month: "short",
-        day: "numeric",
-        year: "numeric"
-      });
-    }
+          <div class="detail-actions">
+            <button class="btn btn-green" id="saveCustomerBtn" type="button">Save Customer Update</button>
+            <button class="btn btn-gray" id="copyCustomerInfoBtn" type="button">Copy Contact Info</button>
+          </div>
+        `;
 
-    function getCombinedOrderText(order) {
-      return [
-        order.orderType,
-        order.deviceSelected,
-        order.customerType,
-        order.preferredContact,
-        order.preferredReplyTime,
-        order.planInterest,
-        order.tvCount,
-        order.fulfillmentType,
-        order.orderStatus,
-        order.paymentStatus,
-        order.deliveryStatus,
-        order.supportRoute,
-        order.campaignSource,
-        order.promoCode,
-        order.notes
-      ].map(safeRaw).join(" | ");
-    }
-
-    function isLikelyOpenQuoteRequest(order) {
-      const status = normalizeStatus(order.orderStatus);
-      const paymentStatus = normalizeStatus(order.paymentStatus);
-      const deliveryStatus = normalizeStatus(order.deliveryStatus);
-      const text = getCombinedOrderText(order).toLowerCase();
-
-      if (status === "COMPLETE" || paymentStatus === "PAID" || deliveryStatus === "COMPLETED") {
-        return false;
+        byId("saveCustomerBtn").addEventListener("click", saveSelectedCustomer);
+        byId("copyCustomerInfoBtn").addEventListener("click", copySelectedCustomerInfo);
       }
 
-      return (
-        paymentStatus.includes("QUOTE") ||
-        status === "NEW" ||
-        text.includes("quote") ||
-        text.includes("limited-time") ||
-        text.includes("request-service.html")
-      );
-    }
+      function readonlyItem(label, value) {
+        return `
+          <div class="detail-row">
+            <div class="detail-label">${escapeHtml(label)}</div>
+            <div class="detail-value">${escapeHtml(value || "-")}</div>
+          </div>
+        `;
+      }
 
-    function buildQuoteDropdownLabel(order) {
-      const name = safeRaw(order.customerName || order.fullName) || "Unnamed Customer";
-      const date = formatDateForDropdown(order.createdAt);
-      const plan = safeRaw(order.planInterest || order.orderType || order.deviceSelected || "Quote Request");
-      const status = safeRaw(order.paymentStatus || order.orderStatus || "Quote Pending");
-      return name + " | " + plan + " | " + status + " | " + date;
-    }
+      function inputItem(label, id, value) {
+        return `
+          <div class="detail-row">
+            <label class="detail-label" for="${escapeHtml(id)}">${escapeHtml(label)}</label>
+            <input id="${escapeHtml(id)}" type="text" value="${escapeHtml(value || "")}" />
+          </div>
+        `;
+      }
 
-    function renderQuoteRequestOptions() {
-      const select = byId("quoteRequestSelect");
-      if (!select) return;
+      function selectItem(label, id, value, options) {
+        const current = safeText(value);
+        const merged = [...new Set([current, ...options].filter(Boolean))];
+        return `
+          <div class="detail-row">
+            <label class="detail-label" for="${escapeHtml(id)}">${escapeHtml(label)}</label>
+            <select id="${escapeHtml(id)}">
+              ${merged.map(option => `<option value="${escapeHtml(option)}" ${option === current ? "selected" : ""}>${escapeHtml(option)}</option>`).join("")}
+            </select>
+          </div>
+        `;
+      }
 
-      select.innerHTML = "";
+      function textareaItem(label, id, value) {
+        return `
+          <div class="detail-row">
+            <label class="detail-label" for="${escapeHtml(id)}">${escapeHtml(label)}</label>
+            <textarea id="${escapeHtml(id)}">${escapeHtml(value || "")}</textarea>
+          </div>
+        `;
+      }
 
-      const placeholder = document.createElement("option");
-      placeholder.value = "";
-      placeholder.textContent = onlineQuoteRequests.length ? "Select a recent online quote request" : "No open quote requests found";
-      select.appendChild(placeholder);
+      function escapeHtml(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
 
-      onlineQuoteRequests.forEach(function(order, index) {
-        const option = document.createElement("option");
-        option.value = String(index);
-        option.textContent = buildQuoteDropdownLabel(order);
-        select.appendChild(option);
-      });
-    }
-
-    async function loadQuoteRequests() {
-      const select = byId("quoteRequestSelect");
-      if (!select) return;
-
-      select.innerHTML = '<option value="">Loading online quote requests...</option>';
-      setQuoteRequestStatus("Pulling recent quote requests from Admin Orders.", false);
-
-      try {
-        const response = await fetch(APPS_SCRIPT_URL + "?action=getOrders", {
-          method: "GET",
+      async function postToApi(payload) {
+        const response = await fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload),
           redirect: "follow"
         });
 
@@ -849,209 +781,128 @@
           throw new Error("HTTP " + response.status + " returned from Apps Script.");
         }
 
-        const data = await response.json();
+        return await response.json();
+      }
 
-        if (!data.success || !Array.isArray(data.orders)) {
-          throw new Error(data.message || "No orders array was returned.");
+      async function loadCustomers() {
+        clearInfo();
+        clearError();
+        showInfo("Loading customers...");
+        tableBody.innerHTML = '<tr><td colspan="8">Loading customers...</td></tr>';
+
+        try {
+          const response = await fetch(API_URL, { method: "GET", redirect: "follow" });
+          if (!response.ok) throw new Error("HTTP " + response.status);
+
+          const data = await response.json();
+          const customers = Array.isArray(data) ? data : (data.customers || data.data || []);
+
+          if (!Array.isArray(customers)) {
+            throw new Error(data.message || "Customer response did not include a customer list.");
+          }
+
+          allCustomers = customers.map(normalizeCustomer);
+          selectedCustomer = null;
+          clearInfo();
+          showInfo("Customers loaded successfully.");
+          applyFilters();
+        } catch (error) {
+          clearInfo();
+          showError("Unable to load customers. The GitHub page is now wired, but the Apps Script backend likely still needs the customer database patch.");
+          tableBody.innerHTML = '<tr><td colspan="8">Failed to load customer data. Install the Apps Script customer database patch, then try Refresh or Sync Customer Database.</td></tr>';
+          updateStats([]);
+          console.error(error);
+        }
+      }
+
+      async function syncCustomerDatabase() {
+        clearInfo();
+        clearError();
+        showInfo("Syncing customer database from orders...");
+        syncCustomersBtn.disabled = true;
+        syncCustomersBtn.textContent = "Syncing...";
+
+        try {
+          const result = await postToApi({ action: "syncCustomers" });
+          if (result.success === false) throw new Error(result.message || "Customer sync failed.");
+          showInfo("Customer database synced. Customers updated: " + (result.customerCount || result.count || "0") + ".");
+          await loadCustomers();
+        } catch (error) {
+          console.error(error);
+          showError("Customer sync failed. The Apps Script backend needs the customer database patch.");
+        } finally {
+          syncCustomersBtn.disabled = false;
+          syncCustomersBtn.textContent = "Sync Customer Database";
+        }
+      }
+
+      async function saveSelectedCustomer() {
+        if (!selectedCustomer) {
+          showError("Select a customer before saving.");
+          return;
         }
 
-        onlineQuoteRequests = data.orders
-          .filter(isLikelyOpenQuoteRequest)
-          .sort(function(a, b) {
-            return safeRaw(b.createdAt).localeCompare(safeRaw(a.createdAt));
-          })
-          .slice(0, 75);
+        clearInfo();
+        clearError();
+        const button = byId("saveCustomerBtn");
+        button.disabled = true;
+        button.textContent = "Saving...";
 
-        renderQuoteRequestOptions();
-        setQuoteRequestStatus(onlineQuoteRequests.length + " open quote request(s) loaded. Select one to auto-fill this form.", false);
-      } catch (error) {
-        console.error("Quote Request Load Error:", error);
-        onlineQuoteRequests = [];
-        renderQuoteRequestOptions();
-        setQuoteRequestStatus("Unable to load quote requests. You can still manually enter the approved order details. " + error.message, true);
-      }
-    }
+        const payload = {
+          action: "updateCustomer",
+          rowNumber: selectedCustomer.rowNumber,
+          customerId: selectedCustomer.customerId,
+          fullName: byId("editFullName").value.trim(),
+          phone: byId("editPhone").value.trim(),
+          email: byId("editEmail").value.trim(),
+          address: byId("editAddress").value.trim(),
+          referralSource: byId("editReferralSource").value.trim(),
+          customerStatus: byId("editCustomerStatus").value.trim(),
+          notes: byId("editNotes").value.trim()
+        };
 
-    function parseDollarAmountFromText(text) {
-      const raw = safeRaw(text);
-      if (!raw) return "";
-
-      const matches = [...raw.matchAll(/\$\s*([0-9]+(?:\.[0-9]{1,2})?)/g)];
-      if (!matches.length) return "";
-
-      const amounts = matches
-        .map(match => Number(match[1]))
-        .filter(amount => !Number.isNaN(amount) && amount > 0);
-
-      if (!amounts.length) return "";
-      return String(Math.max(...amounts).toFixed(2));
-    }
-
-    function inferApprovedAmount(order) {
-      const text = getCombinedOrderText(order).toLowerCase();
-
-      if (text.includes("limited-time service only") || text.includes("service only - 1 year") || text.includes("service-only")) {
-        return "100.00";
-      }
-
-      if (text.includes("4k plus upgrade bundle") || (text.includes("onn 4k plus") && text.includes("180"))) return "180.00";
-      if (text.includes("4k streaming bundle") || (text.includes("onn 4k") && text.includes("160"))) return "160.00";
-      if (text.includes("firestick upgrade bundle") || text.includes("onn full hd") || (text.includes("summer streaming special") && text.includes("140"))) return "140.00";
-      if ((text.includes("limited-time") || text.includes("summer streaming special")) && (text.includes("bundle") || text.includes("device + 1 year") || text.includes("1 year iptv service + onn"))) {
-        return "140.00";
-      }
-
-      return parseDollarAmountFromText(getCombinedOrderText(order));
-    }
-
-    function inferCategory(order) {
-      const text = getCombinedOrderText(order).toLowerCase();
-
-      if (text.includes("renewal")) return "Renewal";
-      if (text.includes("support")) return "Support";
-      if (text.includes("service only") || text.includes("customer has compatible")) return "Service Only";
-      if (text.includes("device") || text.includes("onn") || text.includes("streamer") || text.includes("shield")) return "Device + Service";
-      return "Custom Quote";
-    }
-
-    function inferDevice(order) {
-      const text = getCombinedOrderText(order).toLowerCase();
-
-      if (text.includes("onn") && text.includes("pro")) return "Onn 4K Pro";
-      if (text.includes("onn") && text.includes("plus")) return "Onn 4K Plus";
-      if (text.includes("full hd") || text.includes("firestick upgrade")) return "Onn Full HD";
-      if (text.includes("onn")) return "Onn 4K";
-      if (text.includes("google tv streamer")) return "Google TV Streamer 4K";
-      if (text.includes("shield")) return "NVIDIA Shield TV Pro";
-      if (text.includes("device")) return "Other / Custom";
-      return "";
-    }
-
-    function inferFulfillment(order) {
-      const raw = safeRaw(order.fulfillmentType);
-      const text = getCombinedOrderText(order).toLowerCase();
-      const known = ["Shipping", "Local Delivery", "Digital Setup", "Cash App", "PayPal", "Crypto"];
-
-      const matchedKnown = known.find(option => raw.toLowerCase() === option.toLowerCase());
-      if (matchedKnown) return matchedKnown;
-
-      if (text.includes("ship") || text.includes("free 2-day")) return "Shipping";
-      if (text.includes("local") || text.includes("drop off") || text.includes("delivery")) return "Local Delivery";
-      if (text.includes("cash app") || text.includes("cashapp")) return "Cash App";
-      if (text.includes("paypal")) return "PayPal";
-      if (text.includes("crypto")) return "Crypto";
-      if (inferCategory(order) === "Service Only") return "Digital Setup";
-      return "";
-    }
-
-    function inferService(order) {
-      const planInterest = safeRaw(order.planInterest);
-      const orderType = safeRaw(order.orderType);
-
-      if (planInterest) return planInterest;
-      if (orderType) return orderType;
-      return "Custom IPTV Quote";
-    }
-
-    function buildDescriptionFromOrder(order) {
-      const service = inferService(order);
-      const category = inferCategory(order);
-      const device = inferDevice(order);
-      const tvCount = safeRaw(order.tvCount);
-      const pieces = [service];
-
-      if (category) pieces.push("Category: " + category);
-      if (device) pieces.push("Device: " + device);
-      if (tvCount) pieces.push("TV Count: " + tvCount);
-
-      return pieces.join(" | ");
-    }
-
-    function buildNotesFromOrder(order) {
-      const pieces = [];
-
-      if (safeRaw(order.rowNumber)) pieces.push("Order Row: " + safeRaw(order.rowNumber));
-      if (safeRaw(order.createdAt)) pieces.push("Request Date: " + safeRaw(order.createdAt));
-      if (safeRaw(order.preferredContact)) pieces.push("Preferred Contact: " + safeRaw(order.preferredContact));
-      if (safeRaw(order.preferredReplyTime)) pieces.push("Best Time: " + safeRaw(order.preferredReplyTime));
-      if (safeRaw(order.tvCount)) pieces.push("TV Count: " + safeRaw(order.tvCount));
-      if (safeRaw(order.notes)) pieces.push("Original Notes: " + safeRaw(order.notes));
-
-      return pieces.join(" | ");
-    }
-
-    function showSelectedRequestSummary(order) {
-      const summary = byId("selectedRequestSummary");
-      if (!summary) return;
-
-      summary.style.display = "block";
-      summary.innerHTML = [
-        "<strong>Selected Request</strong>",
-        "Name: " + escapeHtml(safeRaw(order.customerName || order.fullName) || "-"),
-        "Email: " + escapeHtml(safeRaw(order.emailAddress || order.email) || "-"),
-        "Phone: " + escapeHtml(safeRaw(order.phoneNumber || order.phone) || "-"),
-        "Requested: " + escapeHtml(inferService(order)),
-        "Payment Status: " + escapeHtml(safeRaw(order.paymentStatus) || "-"),
-        "Order Status: " + escapeHtml(safeRaw(order.orderStatus) || "-")
-      ].join("<br>");
-    }
-
-    function autofillFromQuoteRequest(order) {
-      byId("customerName").value = safeRaw(order.customerName || order.fullName);
-      byId("customerEmail").value = safeRaw(order.emailAddress || order.email);
-      byId("customerPhone").value = safeRaw(order.phoneNumber || order.phone);
-      byId("customerAddress").value = safeRaw(order.customerAddress || order.address || order.shippingAddress);
-      byId("service").value = inferService(order);
-      byId("category").value = inferCategory(order);
-      byId("device").value = inferDevice(order);
-      byId("fulfillment").value = inferFulfillment(order);
-      byId("amount").value = inferApprovedAmount(order);
-      byId("status").value = "Pending";
-      byId("description").value = buildDescriptionFromOrder(order);
-      byId("notes").value = buildNotesFromOrder(order);
-      byId("generatedUrl").value = "";
-
-      clearMessage();
-      updatePreview();
-      showSelectedRequestSummary(order);
-      showMessage("Customer request loaded. Review amount, fulfillment, and address before generating the checkout link.", "success");
-    }
-
-    function handleQuoteRequestSelection() {
-      const select = byId("quoteRequestSelect");
-      const selectedIndex = Number(select.value);
-
-      if (select.value === "" || Number.isNaN(selectedIndex)) {
-        const summary = byId("selectedRequestSummary");
-        if (summary) {
-          summary.style.display = "none";
-          summary.innerHTML = "";
+        try {
+          const result = await postToApi(payload);
+          if (result.success === false) throw new Error(result.message || "Save failed.");
+          showInfo("Customer update saved.");
+          await loadCustomers();
+        } catch (error) {
+          console.error(error);
+          showError("Customer update failed. The Apps Script backend needs the updateCustomer handler.");
+        } finally {
+          button.disabled = false;
+          button.textContent = "Save Customer Update";
         }
-        return;
       }
 
-      const order = onlineQuoteRequests[selectedIndex];
-      if (!order) return;
+      async function copySelectedCustomerInfo() {
+        if (!selectedCustomer) return;
+        const text = [
+          selectedCustomer.fullName,
+          selectedCustomer.phone ? "Phone: " + selectedCustomer.phone : "",
+          selectedCustomer.email ? "Email: " + selectedCustomer.email : "",
+          selectedCustomer.address ? "Address: " + selectedCustomer.address : ""
+        ].filter(Boolean).join("\n");
 
-      autofillFromQuoteRequest(order);
-    }
+        try {
+          await navigator.clipboard.writeText(text);
+          showInfo("Customer contact info copied.");
+        } catch (error) {
+          showError("Unable to copy customer info. You can still highlight and copy it manually.");
+        }
+      }
 
-    ids.forEach(function(id) {
-      byId(id).addEventListener("input", updatePreview);
-      byId(id).addEventListener("change", updatePreview);
-    });
+      searchInput.addEventListener("input", applyFilters);
+      statusFilter.addEventListener("change", applyFilters);
+      sortFilter.addEventListener("change", applyFilters);
+      pageSizeSelect.addEventListener("change", applyFilters);
+      refreshBtn.addEventListener("click", loadCustomers);
+      syncCustomersBtn.addEventListener("click", syncCustomerDatabase);
 
-    byId("generateBtn").addEventListener("click", generateLink);
-    byId("copyBtn").addEventListener("click", copyLink);
-    byId("openBtn").addEventListener("click", openLink);
-    byId("resetBtn").addEventListener("click", resetForm);
-    byId("quoteRequestSelect").addEventListener("change", handleQuoteRequestSelection);
-    byId("refreshQuoteRequestsBtn").addEventListener("click", loadQuoteRequests);
-
-    updatePreview();
-    loadQuoteRequests();
+      loadCustomers();
+    })();
   </script>
 
-  <div style="max-width:1100px;margin:24px auto 12px auto;padding:0 16px;text-align:center;font-size:12px;opacity:0.75;">Version 1.1 • June 2026 • 4MyIPTV Service | Checkout Link Generator</div>
+  <div style="max-width:1100px;margin:24px auto 12px auto;padding:0 16px;text-align:center;font-size:12px;opacity:0.75;">Version 1.1 • June 2026 • 4MyIPTV Service - Admin Customers</div>
 </body>
 </html>
