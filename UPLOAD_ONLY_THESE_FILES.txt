@@ -1,0 +1,11 @@
+SAFE PATCH - Upload only these files to GitHub in a new branch.
+
+Files included:
+- index.html
+- request-service.html
+- admin-dashboard.html
+- admin-orders.html
+- CHANGELOG_2026_07_04_v2_notification_sprint.md
+
+Do NOT upload images or the full prior ZIP package.
+This smaller patch avoids the file mix-up that occurred during the previous large upload.

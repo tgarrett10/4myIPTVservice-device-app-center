@@ -209,7 +209,7 @@ textarea{min-height:110px;resize:vertical}
         Complete the form below so I can review what you need, confirm the right service or device option, and send you a quote for approval before payment is requested.
       </div>
       <div class="notice" style="margin-bottom:14px;background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.35);color:#fef3c7;">
-        Summer Streaming Special: Limited Onn device bundles are available while supplies last. Great Father’s Day or graduation gift for dads, grads, and sports fans. Choose the Firestick Upgrade Bundle for $140, the 4K Streaming Bundle for $160, or the 4K Plus Upgrade Bundle for $180. If you already have a compatible Android 14 streaming device, you can request service-only for $100/year.
+        Summer Streaming Special: device bundles are available while supplies last through Labor Day. Choose the Firestick Upgrade Bundle for $140, the 4K Streaming Bundle for $160, or the 4K Plus Upgrade Bundle for $180. Every paid summer bundle includes setup support and one free 48-hour trial you can share with a friend. Service-only is available for $100/year when you already have a compatible Android TV / Google TV device or approved Android 14 streaming device.
       </div>
   <section class="card">
     <h2>Getting Started Is Simple</h2>
@@ -265,7 +265,8 @@ textarea{min-height:110px;resize:vertical}
               <option value="Summer Streaming Special - Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140">Summer Streaming Special - Firestick Upgrade Bundle - $140</option>
               <option value="Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited">Summer Streaming Special - 4K Streaming Bundle - $160 - Very Limited</option>
               <option value="Summer Streaming Special - 4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180">Summer Streaming Special - 4K Plus Upgrade Bundle - $180</option>
-              <option value="Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device">Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device</option>
+              <option value="Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device">Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Device</option>
+              <option value="48-Hour Free Trial Request">48-Hour Free Trial Request</option>
               <option value="IPTV Service Only">IPTV Service Only</option>
               <option value="IPTV Service + Device">IPTV Service + Device</option>
               <option value="Renewal or Existing Customer Help">Renewal or Existing Customer Help</option>
@@ -280,6 +281,7 @@ textarea{min-height:110px;resize:vertical}
               <option value="4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited">4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited</option>
               <option value="4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180">4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180</option>
               <option value="Limited-Time Service Only - 1 Year IPTV Service - $100">Service Only - 1 Year IPTV Service - $100</option>
+              <option value="48-Hour Free Trial - Free">48-Hour Free Trial - Free</option>
               <option value="Monthly - $15">Monthly - $15</option>
               <option value="6 Months - $70">6 Months - $70</option>
               <option value="1 Year - $120">1 Year - $120</option>
@@ -340,6 +342,35 @@ textarea{min-height:110px;resize:vertical}
           </div>
         </div>
 
+        <div class="form-grid">
+          <div class="field">
+            <label for="referralSource">How Did You Hear About Us?</label>
+            <select id="referralSource" name="referralSource">
+              <option value="">Select if known</option>
+              <option value="Referral / Friend or Family">Referral / Friend or Family</option>
+              <option value="Existing Customer">Existing Customer</option>
+              <option value="Facebook">Facebook</option>
+              <option value="Nextdoor">Nextdoor</option>
+              <option value="Golf Group">Golf Group</option>
+              <option value="Flyer or QR Code">Flyer or QR Code</option>
+              <option value="Telegram / Direct Message">Telegram / Direct Message</option>
+              <option value="Website Search">Website Search</option>
+              <option value="Other">Other</option>
+            </select>
+            <div class="note">This helps track what is actually generating new customers.</div>
+          </div>
+          <div class="field">
+            <label for="friendTrial">Interested in a Friend Trial?</label>
+            <select id="friendTrial" name="friendTrial">
+              <option value="">Select if applicable</option>
+              <option value="Yes - I want to share a 48-hour trial with a friend">Yes - I want to share a 48-hour trial with a friend</option>
+              <option value="Yes - I am requesting the 48-hour trial for myself">Yes - I am requesting the 48-hour trial for myself</option>
+              <option value="No / Not right now">No / Not right now</option>
+            </select>
+            <div class="note">Paid summer bundle customers can use this as a referral offer.</div>
+          </div>
+        </div>
+
         <div class="field">
           <label for="notes">Additional Notes</label>
           <textarea id="notes" name="notes" placeholder="Tell me anything helpful here, such as renewal needs, whether you want a ready-to-go device, or if you have a different device request to include."></textarea>
@@ -375,7 +406,7 @@ textarea{min-height:110px;resize:vertical}
 
   <div class="footer-strip">
     <strong>4MyIPTV Service • Request Service</strong>
-    <div class="version">Version 1.7 • Last Updated: May 24, 2026</div>
+    <div class="version">Version 1.8 • Notification + Summer Trial Version • July 4, 2026</div>
   </div>
 </div>
 
@@ -394,17 +425,21 @@ const FIRESTICK_UPGRADE_VALUE = "Summer Streaming Special - Firestick Upgrade Bu
 const FOUR_K_BUNDLE_VALUE = "Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited";
 const FOUR_K_PLUS_BUNDLE_VALUE = "Summer Streaming Special - 4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180";
 const LIMITED_TIME_SERVICE_ONLY_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device";
+const FREE_TRIAL_VALUE = "48-Hour Free Trial Request";
 const FIRESTICK_UPGRADE_PLAN_VALUE = "Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140";
 const FOUR_K_BUNDLE_PLAN_VALUE = "4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - Very Limited";
 const FOUR_K_PLUS_BUNDLE_PLAN_VALUE = "4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180";
 const LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100";
+const FREE_TRIAL_PLAN_VALUE = "48-Hour Free Trial - Free";
 const LIMITED_TIME_SERVICE_ONLY_SOURCE = "Limited-Time Service Only Offer";
 const SUMMER_SPECIAL_SOURCE = "Summer Streaming Special - Limited Onn Device Bundles";
+const FREE_TRIAL_SOURCE = "48-Hour Free Trial";
 const LIMITED_TIME_SERVICE_ONLY_QUERY = "limited-time-service-only";
 const SUMMER_SPECIAL_QUERY = "summer-streaming-special";
 const FIRESTICK_UPGRADE_QUERY = "firestick-upgrade-bundle";
 const FOUR_K_BUNDLE_QUERY = "4k-streaming-bundle";
 const FOUR_K_PLUS_BUNDLE_QUERY = "4k-plus-upgrade-bundle";
+const FREE_TRIAL_QUERY = "48-hour-trial";
 const BUNDLE_OPTIONS = {
   [FIRESTICK_UPGRADE_VALUE]: { plan: FIRESTICK_UPGRADE_PLAN_VALUE, device: "Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140" },
   [FOUR_K_BUNDLE_VALUE]: { plan: FOUR_K_BUNDLE_PLAN_VALUE, device: "Onn 4K Streaming Device - 4K Streaming Bundle - $160 - Very Limited" },
@@ -452,6 +487,8 @@ function getCampaignSource() {
   const planInterest = document.getElementById("planInterest").value;
   const bundleSelected = isBundleValue(serviceType.value) || isBundlePlanValue(planInterest);
   const serviceOnlySelected = serviceType.value === LIMITED_TIME_SERVICE_ONLY_VALUE || planInterest === LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE;
+  const trialSelected = serviceType.value === FREE_TRIAL_VALUE || planInterest === FREE_TRIAL_PLAN_VALUE;
+  if (promoParam === FREE_TRIAL_QUERY || trialSelected) return FREE_TRIAL_SOURCE;
   if (promoParam === LIMITED_TIME_SERVICE_ONLY_QUERY || serviceOnlySelected) return LIMITED_TIME_SERVICE_ONLY_SOURCE;
   if (promoParam === SUMMER_SPECIAL_QUERY || promoParam === FIRESTICK_UPGRADE_QUERY || promoParam === FOUR_K_BUNDLE_QUERY || promoParam === FOUR_K_PLUS_BUNDLE_QUERY || bundleSelected) return SUMMER_SPECIAL_SOURCE;
   return "";
@@ -468,7 +505,13 @@ function syncBundleSelections() {
 function applyPromoFromUrl() {
   const params = new URLSearchParams(window.location.search);
   const promo = params.get("promo");
-  if (promo === LIMITED_TIME_SERVICE_ONLY_QUERY) {
+  if (promo === FREE_TRIAL_QUERY) {
+    serviceType.value = FREE_TRIAL_VALUE;
+    document.getElementById("planInterest").value = FREE_TRIAL_PLAN_VALUE;
+    document.getElementById("friendTrial").value = "Yes - I am requesting the 48-hour trial for myself";
+    preferredDevice.value = "";
+    toggleDeviceField();
+  } else if (promo === LIMITED_TIME_SERVICE_ONLY_QUERY) {
     serviceType.value = LIMITED_TIME_SERVICE_ONLY_VALUE;
     document.getElementById("planInterest").value = LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE;
     preferredDevice.value = "";
@@ -506,9 +549,14 @@ function buildPayload() {
     preferredReplyTime: document.getElementById("preferredReplyTime").value || "",
     planInterest: document.getElementById("planInterest").value || "",
     tvCount: document.getElementById("tvCount").value || "",
+    referralSource: document.getElementById("referralSource").value || "",
+    friendTrial: document.getElementById("friendTrial").value || "",
+    sourcePage: "request-service.html",
+    sourceUrl: window.location.href,
+    referrer: document.referrer || "",
     campaignSource: getCampaignSource(),
-    promoCode: getCampaignSource() === LIMITED_TIME_SERVICE_ONLY_SOURCE ? LIMITED_TIME_SERVICE_ONLY_QUERY : (getCampaignSource() ? SUMMER_SPECIAL_QUERY : ""),
-    paymentStatus: "QUOTE PENDING",
+    promoCode: getCampaignSource() === FREE_TRIAL_SOURCE ? FREE_TRIAL_QUERY : (getCampaignSource() === LIMITED_TIME_SERVICE_ONLY_SOURCE ? LIMITED_TIME_SERVICE_ONLY_QUERY : (getCampaignSource() ? SUMMER_SPECIAL_QUERY : "")),
+    paymentStatus: getCampaignSource() === FREE_TRIAL_SOURCE ? "TRIAL" : "QUOTE PENDING",
     orderStatus: "NEW",
     deliveryStatus: "Not Started",
     supportRoute: "",
@@ -519,6 +567,10 @@ function buildPayload() {
       "Plan Interest: " + (document.getElementById("planInterest").value || ""),
       "Need Device: " + deriveNeedDeviceValue(),
       "TV Count: " + (document.getElementById("tvCount").value || ""),
+      document.getElementById("referralSource").value ? "Referral Source: " + document.getElementById("referralSource").value : "",
+      document.getElementById("friendTrial").value ? "Friend Trial: " + document.getElementById("friendTrial").value : "",
+      window.location.href ? "Source URL: " + window.location.href : "",
+      document.referrer ? "Referrer: " + document.referrer : "",
       document.getElementById("preferredReplyTime").value ? "Best Time: " + document.getElementById("preferredReplyTime").value : "",
       document.getElementById("preferredContact").value ? "Preferred Contact: " + document.getElementById("preferredContact").value : "",
       document.getElementById("paymentPreference").value ? "Payment Preference: " + document.getElementById("paymentPreference").value : "",
@@ -626,7 +678,7 @@ form.addEventListener("submit", async function (event) {
         var text = (link.textContent || "").replace(/\s+/g, " ").trim().slice(0, 100);
         var eventName = "site_link_click";
 
-        if (href.indexOf("request-service.html?promo=summer-streaming-special") !== -1 || href.indexOf("request-service.html?promo=firestick-upgrade-bundle") !== -1 || href.indexOf("request-service.html?promo=4k-streaming-bundle") !== -1 || href.indexOf("request-service.html?promo=4k-plus-upgrade-bundle") !== -1) {
+        if (href.indexOf("request-service.html?promo=summer-streaming-special") !== -1 || href.indexOf("request-service.html?promo=48-hour-trial") !== -1 || href.indexOf("request-service.html?promo=firestick-upgrade-bundle") !== -1 || href.indexOf("request-service.html?promo=4k-streaming-bundle") !== -1 || href.indexOf("request-service.html?promo=4k-plus-upgrade-bundle") !== -1) {
           eventName = "promo_offer_click";
         } else if (href.indexOf("request-service.html") !== -1) {
           eventName = "request_service_click";

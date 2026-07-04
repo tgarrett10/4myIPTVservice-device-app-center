@@ -471,6 +471,79 @@
       color: #fca5a5;
     }
 
+
+
+    .live-alert-panel {
+      border: 1px solid rgba(34,197,94,.32);
+      background: linear-gradient(135deg, rgba(34,197,94,.13), rgba(59,130,246,.10));
+    }
+
+    .live-alert-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .live-alert-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #bbf7d0;
+      margin-bottom: 6px;
+    }
+
+    .live-alert-copy {
+      color: #cbd5e1;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .live-alert-status {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-top: 10px;
+      border: 1px solid rgba(148,163,184,.24);
+      color: #e2e8f0;
+      background: rgba(15,23,42,.78);
+    }
+
+    .live-alert-status.on {
+      border-color: rgba(34,197,94,.32);
+      color: #bbf7d0;
+      background: rgba(34,197,94,.12);
+    }
+
+    .new-order-banner {
+      display: none;
+      margin-top: 12px;
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: #fef3c7;
+      background: rgba(245,158,11,.14);
+      border: 1px solid rgba(245,158,11,.30);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .new-order-banner.show {
+      display: block;
+    }
+
+    .quick-action-mini {
+      display: inline-block;
+      margin: 2px 4px 2px 0;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: #1f2937;
+      border: 1px solid #334155;
+      color: #e2e8f0;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
     .footer-strip {
       margin-top: 18px;
       padding: 16px 10px 24px;
@@ -509,7 +582,8 @@
         grid-template-columns: 1fr;
       }
 
-      .quick-links {
+      .quick-links,
+      .live-alert-grid {
         grid-template-columns: 1fr;
       }
 
@@ -530,6 +604,26 @@
   </div>
 
   <div class="page-wrap">
+
+    <div class="card live-alert-panel">
+      <div class="card-content">
+        <div class="live-alert-grid">
+          <div>
+            <div class="live-alert-title">Live Order Monitor</div>
+            <div class="live-alert-copy">
+              Keep this page open while working. It will check for new orders automatically, show a banner, and play a short alert sound after live alerts are enabled.
+            </div>
+            <span id="liveAlertStatus" class="live-alert-status">Live alerts off</span>
+            <div id="newOrderBanner" class="new-order-banner"></div>
+          </div>
+          <div class="button-row" style="justify-content:flex-end;">
+            <button class="btn btn-primary" id="enableLiveAlertsBtn">Enable Live Alerts</button>
+            <button class="btn btn-secondary" id="pauseLiveAlertsBtn">Pause Alerts</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="card">
       <div class="card-header">
         <div class="section-label">Admin Controls</div>
@@ -686,7 +780,7 @@
 
     <div class="footer-strip">
       <strong>4MyIPTV Service • Admin Orders</strong>
-      <div class="version">Version 2.3 • Last Updated: March 2026</div>
+      <div class="version">Version 2.4 • Live Order Alert Version • July 4, 2026</div>
     </div>
   </div>
 
@@ -710,6 +804,16 @@
     const paymentSentOrdersEl = document.getElementById("paymentSentOrders");
     const completeOrdersEl = document.getElementById("completeOrders");
     const filteredOrdersEl = document.getElementById("filteredOrders");
+
+    const enableLiveAlertsBtn = document.getElementById("enableLiveAlertsBtn");
+    const pauseLiveAlertsBtn = document.getElementById("pauseLiveAlertsBtn");
+    const liveAlertStatusEl = document.getElementById("liveAlertStatus");
+    const newOrderBannerEl = document.getElementById("newOrderBanner");
+
+    let liveAlertsEnabled = false;
+    let hasLoadedInitialOrders = false;
+    let knownOrderKeys = new Set();
+    let liveAlertTimer = null;
 
     endpointNoteEl.textContent = "Connected endpoint: " + APPS_SCRIPT_URL;
 
@@ -760,6 +864,97 @@
       }
 
       return '<span class="' + className + '">' + (safeRaw(status) ? escapeHtml(status) : "—") + "</span>";
+    }
+
+
+
+    function getOrderKey(order) {
+      return [
+        safeRaw(order.rowNumber),
+        safeRaw(order.createdAt),
+        safeRaw(order.customerName),
+        safeRaw(order.phoneNumber)
+      ].join("|");
+    }
+
+    function setKnownOrderKeys(orders) {
+      knownOrderKeys = new Set((orders || []).map(getOrderKey));
+    }
+
+    function getNewOrders(orders) {
+      return (orders || []).filter(order => !knownOrderKeys.has(getOrderKey(order)));
+    }
+
+    function formatOrderForAlert(order) {
+      const name = safeRaw(order.customerName) || "New customer";
+      const phone = safeRaw(order.phoneNumber) || "No phone listed";
+      const type = safeRaw(order.orderType) || safeRaw(order.planInterest) || "Order request";
+      return name + " • " + phone + " • " + type;
+    }
+
+    function playOrderAlertSound() {
+      if (!liveAlertsEnabled) return;
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const audioCtx = new AudioContext();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.18, audioCtx.currentTime + 0.02);
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.45);
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.5);
+      } catch (error) {
+        console.warn("Audio alert unavailable", error);
+      }
+    }
+
+    function showNewOrderAlert(newOrders) {
+      if (!newOrders.length) return;
+      const countText = newOrders.length === 1 ? "1 new order" : newOrders.length + " new orders";
+      const detailText = newOrders.slice(0, 3).map(formatOrderForAlert).join("\n");
+      newOrderBannerEl.innerHTML = "<strong>" + escapeHtml(countText + " received.") + "</strong><br>" + escapeHtml(detailText).replaceAll("\n", "<br>");
+      newOrderBannerEl.classList.add("show");
+      setMessage(countText + " received. Review the top of the order list.", "ok");
+      playOrderAlertSound();
+    }
+
+    function setLiveAlertUi() {
+      if (liveAlertsEnabled) {
+        liveAlertStatusEl.textContent = "Live alerts on • checking every 60 seconds";
+        liveAlertStatusEl.className = "live-alert-status on";
+      } else {
+        liveAlertStatusEl.textContent = "Live alerts paused";
+        liveAlertStatusEl.className = "live-alert-status";
+      }
+    }
+
+    function startLiveAlertTimer() {
+      if (liveAlertTimer) clearInterval(liveAlertTimer);
+      liveAlertTimer = setInterval(function () {
+        if (liveAlertsEnabled) {
+          loadOrders({ silent: true });
+        }
+      }, 60000);
+    }
+
+    function buildPhoneLinks(order) {
+      const rawPhone = safeRaw(order.phoneNumber);
+      const digits = rawPhone.replace(/\D/g, "");
+      if (!digits) return "";
+      const normalized = digits.length === 10 ? "1" + digits : digits;
+      return `
+        <div>
+          <a class="quick-action-mini" href="tel:${escapeHtml(digits)}">Call</a>
+          <a class="quick-action-mini" href="sms:${escapeHtml(digits)}">Text</a>
+          <a class="quick-action-mini" href="https://wa.me/${escapeHtml(normalized)}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+      `;
     }
 
     function updateStats(sourceOrders, filteredOrders) {
@@ -813,6 +1008,9 @@
             order.preferredReplyTime,
             order.planInterest,
             order.tvCount,
+            order.campaignSource,
+            order.referralSource,
+            order.friendTrial,
             order.fulfillmentType,
             order.orderStatus,
             order.paymentStatus,
@@ -887,9 +1085,13 @@
                 ${buildSelectOptions(order.orderStatus, [
                   "NEW",
                   "PAYMENT SENT",
+                  "AWAITING PAYMENT",
                   "PAID",
+                  "TRIAL STARTED",
+                  "TRIAL FOLLOW-UP",
                   "IN PROGRESS",
                   "READY FOR DELIVERY",
+                  "ACTIVATED",
                   "COMPLETE",
                   "ON HOLD"
                 ])}
@@ -901,6 +1103,8 @@
             <select class="inline-select field-payment-status">
               ${buildSelectOptions(order.paymentStatus, [
                 "QUOTE PENDING",
+                "TRIAL",
+                "AWAITING PAYMENT",
                 "Not Sent",
                 "Sent",
                 "Pending",
@@ -932,6 +1136,7 @@
 
           <td class="actions-box col-actions">
             <div class="stack">
+              ${buildPhoneLinks(order)}
               <button class="btn btn-save save-row-btn">Save Update</button>
               <div class="save-status"></div>
             </div>
@@ -942,13 +1147,18 @@
       attachRowSaveHandlers();
     }
 
-    async function loadOrders() {
-      setMessage("Loading orders...", "");
-      ordersTableBody.innerHTML = `
-        <tr>
-          <td colspan="19" class="empty-state">Loading orders...</td>
-        </tr>
-      `;
+    async function loadOrders(options = {}) {
+      const silent = !!options.silent;
+      if (!silent) {
+        setMessage("Loading orders...", "");
+      }
+      if (!silent) {
+        ordersTableBody.innerHTML = `
+          <tr>
+            <td colspan="19" class="empty-state">Loading orders...</td>
+          </tr>
+        `;
+      }
 
       try {
         const response = await fetch(APPS_SCRIPT_URL + "?action=getOrders", {
@@ -966,14 +1176,30 @@
           throw new Error(data.message || "No orders array was returned.");
         }
 
-        allOrders = data.orders;
+        const incomingOrders = data.orders;
 
-        setMessage("Orders loaded successfully.", "ok");
+        if (!hasLoadedInitialOrders) {
+          setKnownOrderKeys(incomingOrders);
+          hasLoadedInitialOrders = true;
+        } else {
+          const newOrders = getNewOrders(incomingOrders);
+          if (newOrders.length) {
+            showNewOrderAlert(newOrders);
+          }
+          setKnownOrderKeys(incomingOrders);
+        }
+
+        allOrders = incomingOrders;
+
+        if (!silent) {
+          setMessage("Orders loaded successfully.", "ok");
+        }
         renderOrders();
       } catch (error) {
         console.error("Admin Orders Load Error:", error);
-        setMessage("Unable to load orders. " + error.message, "error");
-        ordersTableBody.innerHTML = `
+        if (!silent) {
+          setMessage("Unable to load orders. " + error.message, "error");
+          ordersTableBody.innerHTML = `
           <tr>
             <td colspan="19" class="empty-state">
               Unable to load orders.<br />
@@ -981,7 +1207,10 @@
             </td>
           </tr>
         `;
-        updateStats([], []);
+          updateStats([], []);
+        } else {
+          setMessage("Live alert check failed. " + error.message, "error");
+        }
       }
     }
 
@@ -1045,7 +1274,22 @@
       });
     }
 
-    refreshBtn.addEventListener("click", loadOrders);
+    enableLiveAlertsBtn.addEventListener("click", function () {
+      liveAlertsEnabled = true;
+      newOrderBannerEl.classList.remove("show");
+      setLiveAlertUi();
+      startLiveAlertTimer();
+      loadOrders({ silent: true });
+    });
+
+    pauseLiveAlertsBtn.addEventListener("click", function () {
+      liveAlertsEnabled = false;
+      setLiveAlertUi();
+    });
+
+    refreshBtn.addEventListener("click", function () {
+      loadOrders();
+    });
 
     clearBtn.addEventListener("click", () => {
       searchInput.value = "";
@@ -1059,7 +1303,9 @@
     statusFilter.addEventListener("change", renderOrders);
     sortFilter.addEventListener("change", renderOrders);
 
+    setLiveAlertUi();
     loadOrders();
+    startLiveAlertTimer();
   </script>
 </body>
 </html>
