@@ -1,11 +1,8 @@
-SAFE PATCH - Upload only these files to GitHub in a new branch.
-
-Files included:
+Upload only these files to GitHub:
 - index.html
 - request-service.html
-- admin-dashboard.html
-- admin-orders.html
-- CHANGELOG_2026_07_04_v2_notification_sprint.md
+- CHANGELOG_2026_07_04_summer_fireworks_soldout_patch.md
+- UPLOAD_ONLY_THESE_FILES.txt
 
-Do NOT upload images or the full prior ZIP package.
-This smaller patch avoids the file mix-up that occurred during the previous large upload.
+Recommended branch name:
+- summer-fireworks-soldout-update

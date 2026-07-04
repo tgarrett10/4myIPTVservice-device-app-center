@@ -140,6 +140,54 @@ a{color:inherit}
   background:linear-gradient(115deg,transparent,rgba(134,239,172,.13),transparent 58%);
   pointer-events:none;
 }
+
+.fireworks-overlay{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.firework{
+  position:absolute;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  opacity:0;
+  transform:scale(.2);
+  animation:burst 6s ease-out infinite;
+}
+.firework:before,
+.firework:after{
+  content:"";
+  position:absolute;
+  inset:-48px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle, rgba(255,255,255,.95) 0 2px, transparent 3px),
+    radial-gradient(circle at 50% 0%, rgba(251,191,36,.95) 0 2px, transparent 3px),
+    radial-gradient(circle at 100% 50%, rgba(59,130,246,.95) 0 2px, transparent 3px),
+    radial-gradient(circle at 50% 100%, rgba(34,197,94,.95) 0 2px, transparent 3px),
+    radial-gradient(circle at 0% 50%, rgba(236,72,153,.95) 0 2px, transparent 3px),
+    radial-gradient(circle at 82% 18%, rgba(168,85,247,.95) 0 2px, transparent 3px),
+    radial-gradient(circle at 18% 82%, rgba(251,146,60,.95) 0 2px, transparent 3px);
+  box-shadow:0 0 18px rgba(255,255,255,.22);
+}
+.firework:after{
+  inset:-26px;
+  filter:blur(1.2px);
+  opacity:.45;
+}
+.firework.one{top:14%;left:58%;animation-delay:.2s}
+.firework.two{top:8%;left:78%;animation-delay:2.1s}
+.firework.three{top:38%;left:88%;animation-delay:3.4s}
+@keyframes burst{
+  0%{opacity:0;transform:scale(.1)}
+  10%{opacity:.95;transform:scale(.35)}
+  26%{opacity:.85;transform:scale(.95)}
+  55%{opacity:0;transform:scale(1.18)}
+  100%{opacity:0;transform:scale(1.18)}
+}
+
 .hero-inner{
   position:relative;
   display:grid;
@@ -348,8 +396,8 @@ h2{
     <!-- SUMMER STREAMING SPECIAL START -->
     <section class="promo-strip" aria-label="Summer Streaming Special">
       <div>
-        <strong>Summer Streaming Special: Device Bundles from $140</strong>
-        <p>Stream all summer with a plug-and-play Onn device bundle, 1 full year of IPTV service, setup support, and a free 48-hour trial you can share with a friend. Available through Labor Day while supplies last.</p>
+        <strong>Summer Streaming Special: Fireworks, Trials & Streaming Deals</strong>
+        <p>Stream all summer with service-only options, ready-to-go device bundles, setup support, and a free 48-hour trial you can share with a friend. The Onn 4K bundle is currently sold out, but the restock list is now open through Labor Day.</p>
       </div>
       <a class="btn gold" href="request-service.html?promo=summer-streaming-special&source=homepage-promo" data-event="promo_offer_click">View Summer Specials</a>
     </section>
@@ -362,15 +410,15 @@ h2{
       </div>
       <div class="hero-inner">
         <div>
-          <div class="eyebrow">Summer special • Device bundles • 48-hour trial available</div>
+          <div class="eyebrow">Summer special • Fireworks are back • 48-hour trial available</div>
           <h1>Upgrade your streaming setup and start watching for <span class="highlight">less</span>.</h1>
-          <p class="sub">Choose from limited-time Onn device bundles with pre-configured apps and 1 full year of IPTV service. Every summer bundle includes setup support and a free 48-hour trial you can share with a friend so referrals become easier to generate.</p>
+          <p class="sub">Choose from limited-time summer offers with pre-configured device bundle options, service-only plans, and a free 48-hour trial you can share with a friend. The Onn 4K bundle is currently sold out, but you can still join the restock list while Firestick Upgrade, 4K Plus, and service-only options remain available.</p>
           <div class="hero-proof">
             <span>Summer Bundle Value</span>
             <span>Free 48-Hour Friend Trial</span>
             <span>Pre-Configured Apps</span>
             <span>Local Drop-Off Where Available</span>
-            <span>Limited Onn Inventory</span>
+            <span>Onn 4K Sold Out • Restock List Open</span>
           </div>
           <div class="cta">
             <a class="btn primary" href="request-service.html?promo=summer-streaming-special&source=homepage-main-cta" data-event="request_service_click">Request Summer Special</a>
@@ -379,6 +427,7 @@ h2{
             <a class="btn outline" href="sell-sheet.html" data-event="sell_sheet_click">View Plans & Devices</a>
           </div>
         </div>
+        <div class="fireworks-overlay" aria-hidden="true"><div class="firework one"></div><div class="firework two"></div><div class="firework three"></div></div>
         <aside class="hero-side" aria-label="Limited Onn device specials">
           <div class="price-card">
             <div class="price-label">Firestick Upgrade Bundle</div>
@@ -386,9 +435,9 @@ h2{
             <div class="price-note">Replace your Firestick with an Onn Full HD Streaming Device and be ready to go. Includes pre-configured apps, 1 year of IPTV service, setup support, and a free 48-hour friend trial.</div>
           </div>
           <div class="price-card">
-            <div class="price-label">4K Streaming Bundle — Very Limited</div>
+            <div class="price-label">4K Streaming Bundle — SOLD OUT</div>
             <div class="price-main"><span>$160</span></div>
-            <div class="price-note">Choose the Onn 4K Streaming Device for a 4K-ready setup with more device memory than the Full HD option. Includes setup support and a free 48-hour friend trial. Inventory is very limited.</div>
+            <div class="price-note">The Onn 4K Streaming Device bundle is currently sold out. Join the restock list now if you want the next available batch, or choose the Firestick Upgrade Bundle, service-only option, or the Onn 4K Plus bundle today.</div>
           </div>
           <div class="price-card">
             <div class="price-label">4K Plus Upgrade Bundle</div>
@@ -403,7 +452,7 @@ h2{
           </div>
           <div class="quick-contact">
             <strong>Want faster service?</strong>
-            <p>Message directly first for the fastest response. Device specials are available only while current inventory lasts. No holds without payment confirmation.</p>
+            <p>Message directly first for the fastest response. The Onn 4K bundle is sold out today, but restock requests are open. Firestick Upgrade, 4K Plus, service-only, and 48-hour trial requests are still available. No holds without payment confirmation.</p>
           </div>
         </aside>
       </div>
@@ -426,7 +475,7 @@ h2{
         <div class="feature">
           <div class="icon">GO</div>
           <h3>Ready-to-Go Device Options</h3>
-          <p>Choose service only if you already have a compatible device, or choose a limited Onn device bundle if you want a plug-and-play option prepared for you.</p>
+          <p>Choose service only if you already have a compatible device, choose a ready-to-go Firestick Upgrade or 4K Plus bundle, or join the Onn 4K restock list if that is your preferred option.</p>
         </div>
       </div>
     </section>
@@ -558,7 +607,7 @@ h2{
 
     <div class="footer-strip">
       <strong>4MyIPTV Service</strong>
-      <div class="version">Homepage v2.7 • Summer Special + Trial Version • July 4, 2026</div>
+      <div class="version">Homepage v2.8 • Summer Fireworks + 4K Sold Out Update • July 4, 2026</div>
     </div>
   </main>
 
