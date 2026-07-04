@@ -9,3 +9,4 @@ Updates:
 - Updated homepage copy to push Firestick Upgrade, 4K Plus, service-only, and restock requests
 - Added subtle summer fireworks visual treatment to homepage hero
 - Updated request form bundle labels and JavaScript constants so 4K restock requests still submit correctly
+Deployment retry triggered after GitHub Pages deploy failure.
