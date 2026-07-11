@@ -396,6 +396,26 @@ h2{
 .footer-strip .version{margin-top:6px;color:#b6c2d2;font-size:.82rem}
 .disclaimer{color:#9aa9ba;font-size:12px;line-height:1.5;text-align:center;max-width:860px;margin:12px auto 0}
 
+/* TELEGRAM SUPPORT CALLOUT START */
+.telegram-support{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:18px;
+  background:linear-gradient(135deg,rgba(59,130,246,.20),rgba(34,197,94,.12));
+  border:1px solid rgba(96,165,250,.36);
+}
+.telegram-support .support-icon{
+  width:58px;height:58px;border-radius:18px;
+  display:flex;align-items:center;justify-content:center;
+  background:#229ED9;color:#fff;font-size:30px;
+  box-shadow:0 10px 24px rgba(0,0,0,.24);
+}
+.telegram-support h2{text-align:left;margin:0 0 6px;font-size:24px}
+.telegram-support p{margin:0;color:#dbeafe;line-height:1.55}
+.telegram-btn{background:#229ED9;color:#fff;white-space:nowrap}
+/* TELEGRAM SUPPORT CALLOUT END */
+
 /* WORLD CUP SPLASH START */
 .wc-overlay{position:fixed;inset:0;background:rgba(4,10,24,.84);backdrop-filter:blur(8px);z-index:9999;display:none;align-items:center;justify-content:center;padding:18px}
 .wc-overlay.show{display:flex;animation:wcFadeIn .28s ease}
@@ -405,7 +425,7 @@ h2{
 .wc-ball-lane{position:relative;height:82px;margin:0 0 12px;overflow:hidden}
 .wc-ball{position:absolute;left:-90px;top:6px;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff 0 58%,#e5e7eb 59% 100%);border:4px solid #111827;box-shadow:0 12px 24px rgba(0,0,0,.35);animation:wcBallKick 1.5s ease-out forwards}
 .wc-ball:before{content:"";position:absolute;inset:18px;background:#111827;clip-path:polygon(50% 0%,100% 38%,82% 100%,18% 100%,0% 38%)}
-.wc-goal{font-size:clamp(36px,8vw,78px);font-weight:900;color:#f8fafc;letter-spacing:.02em;line-height:1;opacity:0;transform:translateY(10px) scale(.96);animation:wcGoalPop .8s ease forwards .45s;text-shadow:0 0 22px rgba(251,191,36,.34)}
+.wc-goal{font-size:clamp(34px,6vw,64px);font-weight:900;color:#f8fafc;letter-spacing:-.04em;line-height:1;white-space:nowrap;overflow:visible;padding:0 12px;opacity:0;transform:translateY(10px) scale(.96);animation:wcGoalPop .8s ease forwards .45s;text-shadow:0 0 22px rgba(251,191,36,.34)}
 .wc-goal span{color:#fbbf24}
 .wc-title{font-size:clamp(24px,4vw,38px);font-weight:900;margin:14px 0 10px;color:#fff}
 .wc-offer{font-size:clamp(20px,3vw,30px);font-weight:800;color:#86efac;margin:0 0 8px}
@@ -423,6 +443,11 @@ h2{
   .wc-ball-lane{height:70px}
   .wc-ball{width:58px;height:58px}
   .wc-actions .btn{width:100%}
+  .wc-goal{font-size:clamp(30px,9vw,50px);letter-spacing:-.05em;padding:0 6px}
+  .telegram-support{grid-template-columns:1fr;text-align:center}
+  .telegram-support .support-icon{margin:auto}
+  .telegram-support h2{text-align:center}
+  .telegram-btn{width:100%}
 
   .hero-inner,.split{grid-template-columns:1fr}
   .grid3,.grid2,.faq-grid{grid-template-columns:1fr}
@@ -443,19 +468,22 @@ h2{
       <button type="button" class="wc-close" id="worldCupSplashClose" aria-label="Close special announcement">×</button>
       <div class="wc-kicker">⚽ World Cup Special • Limited-Time Offer</div>
       <div class="wc-ball-lane" aria-hidden="true"><div class="wc-ball"></div></div>
-      <div class="wc-goal"><span>GOOOOOOOOOAL!</span></div>
+      <div class="wc-goal"><span>GOOOAL!</span></div>
       <div class="wc-title" id="worldCupSplashTitle">Onn 4K Device + 12 Months of Service — $150</div>
       <div class="wc-offer">Through the end of the World Cup</div>
       <p class="wc-copy">The Onn 4K bundle is back in stock. Claim the special now, reduce cable cost, and choose local setup support where available.</p>
       <div class="wc-pills">
         <span>Certified Google TV Device Included</span>
         <span>Service-Only Option: $120</span>
+        <span>Firestick Replacement: $140</span>
         <span>Limited Inventory</span>
       </div>
       <div class="wc-actions">
+        <button class="btn gold" type="button" id="playGoalSoundBtn">🔊 Play Goal Sound</button>
         <a class="btn primary" href="request-service.html?promo=world-cup-special&source=homepage-splash" data-event="request_service_click">Claim Special</a>
         <a class="btn secondary" href="request-service.html?promo=service-only-world-cup&source=homepage-splash" data-event="promo_offer_click">Service Only $120</a>
       </div>
+      <p class="disclaimer" style="margin-top:12px">Tap the sound button to hear the goal celebration. Browsers normally block automatic audio until a visitor interacts with the page.</p>
     </div>
   </div>
   <!-- WORLD CUP SPLASH END -->
@@ -475,7 +503,7 @@ h2{
     <section class="promo-strip" aria-label="World Cup Special">
       <div>
         <strong>⚽ World Cup Special: Onn 4K Bundle Back In Stock</strong>
-        <p>Get the Onn 4K Google TV device plus 12 months of service for $150 through the end of the World Cup. Already have a compatible device? Request 12 months of service only for $120.</p>
+        <p>Get the Onn 4K Google TV device plus 12 months of service for $150 through the end of the World Cup. Already have a compatible device? Request 12 months of service only for $120. A Firestick Replacement bundle with an Onn Full HD device is also available for $140.</p>
       </div>
       <a class="btn gold" href="request-service.html?promo=world-cup-special&source=homepage-promo" data-event="promo_offer_click">Claim World Cup Special</a>
     </section>
@@ -495,12 +523,14 @@ h2{
             <span>World Cup Special</span>
             <span>Onn 4K Back In Stock</span>
             <span>Certified Google TV Device</span>
+            <span>Firestick Replacement $140</span>
             <span>Setup Support Available</span>
             <span>Offer Ends With World Cup</span>
           </div>
           <div class="cta">
             <a class="btn primary" href="request-service.html?promo=world-cup-special&source=homepage-main-cta" data-event="request_service_click">Claim World Cup Special</a>
             <a class="btn secondary" href="request-service.html?promo=service-only-world-cup&source=homepage-main-cta" data-event="promo_offer_click">Request Service Only</a>
+            <a class="btn third" href="request-service.html?promo=firestick-replacement-hd&source=homepage-main-cta" data-event="promo_offer_click">Firestick Replacement $140</a>
             <a class="btn secondary" href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer" data-event="telegram_click">Message Me Directly</a>
             <button class="btn fireworks-control" type="button" id="launchFireworksBtn">Celebrate Goal</button>
             <button class="btn sound-toggle" type="button" id="toggleFireworksSoundBtn">Sound: On</button>
@@ -521,6 +551,12 @@ h2{
             <div class="price-note">This is the normal Onn 4K bundle price outside the special. The current World Cup offer brings it down to $150 through the end of the tournament.</div>
           </div>
           <div class="price-card">
+            <div class="price-label">Firestick Replacement Bundle</div>
+            <div class="price-main"><span>$140</span></div>
+            <div class="price-note">Upgrade from a Firestick to an Onn Full HD Google TV device with 12 months of service and setup support. A strong lower-cost option for customers who do not need 4K.</div>
+            <a class="btn outline mini-cta" href="request-service.html?promo=firestick-replacement-hd&source=homepage-firestick-replacement" data-event="promo_offer_click">Request Firestick Replacement</a>
+          </div>
+          <div class="price-card">
             <div class="price-label">Service Only Option</div>
             <div class="price-main"><span>$120</span></div>
             <div class="price-note">Already have a compatible Android TV / Google TV device? Request 12 months of service only and keep your cost lower while still getting setup support if needed.</div>
@@ -537,6 +573,15 @@ h2{
           </div>
         </aside>
       </div>
+    </section>
+
+    <section class="card telegram-support" aria-label="Telegram support">
+      <div class="support-icon" aria-hidden="true">✈</div>
+      <div>
+        <h2>Questions or Need Support?</h2>
+        <p>For questions about plans, devices, setup, renewals, or technical support, contact me directly on Telegram for the fastest response.</p>
+      </div>
+      <a class="btn telegram-btn" href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer" data-event="telegram_support_click">Contact Support on Telegram</a>
     </section>
 
     <section class="card">
@@ -688,7 +733,7 @@ h2{
 
     <div class="footer-strip">
       <strong>4MyIPTV Service</strong>
-      <div class="version">Homepage v3.0 • World Cup Special + Goal Splash • July 11, 2026</div>
+      <div class="version">Homepage v3.2 • Shorter Goal + Goal Sound + Firestick Replacement + Telegram Support • July 11, 2026</div>
     </div>
   </main>
 
@@ -862,6 +907,74 @@ h2{
     createBurst(canvas.clientWidth * .72, canvas.clientHeight * .18, 42);
     soundEnabled = previousSound;
   }, 900);
+})();
+</script>
+
+<script>
+(function(){
+  function playGoalSound(){
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if(AudioContext){
+      const ac = new AudioContext();
+      const now = ac.currentTime;
+
+      // Stadium-style crowd swell.
+      const duration = 1.9;
+      const buffer = ac.createBuffer(1, Math.floor(ac.sampleRate * duration), ac.sampleRate);
+      const data = buffer.getChannelData(0);
+      for(let i=0;i<data.length;i++){
+        const t = i / data.length;
+        const envelope = Math.sin(Math.PI * Math.min(1, t * 1.35)) * Math.pow(1 - t, .22);
+        data[i] = (Math.random() * 2 - 1) * envelope;
+      }
+      const crowd = ac.createBufferSource();
+      const crowdFilter = ac.createBiquadFilter();
+      const crowdGain = ac.createGain();
+      crowd.buffer = buffer;
+      crowdFilter.type = "bandpass";
+      crowdFilter.frequency.setValueAtTime(950, now);
+      crowdFilter.Q.setValueAtTime(.7, now);
+      crowdGain.gain.setValueAtTime(.0001, now);
+      crowdGain.gain.exponentialRampToValueAtTime(.12, now + .08);
+      crowdGain.gain.exponentialRampToValueAtTime(.0001, now + duration);
+      crowd.connect(crowdFilter);
+      crowdFilter.connect(crowdGain);
+      crowdGain.connect(ac.destination);
+      crowd.start(now);
+      crowd.stop(now + duration);
+
+      // Short stadium horn accent.
+      [196,247,294].forEach(function(freq, index){
+        const osc = ac.createOscillator();
+        const gain = ac.createGain();
+        osc.type = "sawtooth";
+        osc.frequency.setValueAtTime(freq, now + index * .04);
+        gain.gain.setValueAtTime(.0001, now);
+        gain.gain.exponentialRampToValueAtTime(.035, now + .04);
+        gain.gain.exponentialRampToValueAtTime(.0001, now + .85);
+        osc.connect(gain);
+        gain.connect(ac.destination);
+        osc.start(now + index * .04);
+        osc.stop(now + .9);
+      });
+    }
+
+    // Spoken goal call varies slightly by browser/operating system.
+    if("speechSynthesis" in window){
+      window.speechSynthesis.cancel();
+      const call = new SpeechSynthesisUtterance("Goooal!");
+      call.rate = .72;
+      call.pitch = .72;
+      call.volume = 1;
+      window.speechSynthesis.speak(call);
+    }
+  }
+
+  window.playWorldCupGoalSound = playGoalSound;
+  const soundButton = document.getElementById("playGoalSoundBtn");
+  const celebrateButton = document.getElementById("launchFireworksBtn");
+  if(soundButton) soundButton.addEventListener("click", playGoalSound);
+  if(celebrateButton) celebrateButton.addEventListener("click", playGoalSound);
 })();
 </script>
 
