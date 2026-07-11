@@ -206,13 +206,6 @@ a{color:inherit}
   background:linear-gradient(135deg,#f59e0b,#ef4444,#9333ea);
   color:#fff;
 }
-.sound-toggle{
-  cursor:pointer;
-  background:rgba(255,255,255,.08);
-  color:#f8fafc;
-  border:1px solid rgba(251,191,36,.45);
-  box-shadow:none;
-}
 @media (prefers-reduced-motion: reduce){
   .fireworks-canvas,
   .firework{display:none}
@@ -479,11 +472,11 @@ h2{
         <span>Limited Inventory</span>
       </div>
       <div class="wc-actions">
-        <button class="btn gold" type="button" id="playGoalSoundBtn">🔊 Play Goal Sound</button>
         <a class="btn primary" href="request-service.html?promo=world-cup-special&source=homepage-splash" data-event="request_service_click">Claim Special</a>
         <a class="btn secondary" href="request-service.html?promo=service-only-world-cup&source=homepage-splash" data-event="promo_offer_click">Service Only $120</a>
+        <button class="btn outline" type="button" id="playGoalCelebrationBtn">Play Goal Celebration</button>
       </div>
-      <p class="disclaimer" style="margin-top:12px">Tap the sound button to hear the goal celebration. Browsers normally block automatic audio until a visitor interacts with the page.</p>
+      <p class="wc-copy" style="margin-top:14px;font-size:13px;color:#bfdbfe">Tap the goal celebration button for the extended soccer-style sound.</p>
     </div>
   </div>
   <!-- WORLD CUP SPLASH END -->
@@ -532,8 +525,7 @@ h2{
             <a class="btn secondary" href="request-service.html?promo=service-only-world-cup&source=homepage-main-cta" data-event="promo_offer_click">Request Service Only</a>
             <a class="btn third" href="request-service.html?promo=firestick-replacement-hd&source=homepage-main-cta" data-event="promo_offer_click">Firestick Replacement $140</a>
             <a class="btn secondary" href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer" data-event="telegram_click">Message Me Directly</a>
-            <button class="btn fireworks-control" type="button" id="launchFireworksBtn">Celebrate Goal</button>
-            <button class="btn sound-toggle" type="button" id="toggleFireworksSoundBtn">Sound: On</button>
+            <button class="btn fireworks-control" type="button" id="launchFireworksBtn">Celebrate Goal + Sound</button>
             <a class="btn outline" href="sell-sheet.html" data-event="sell_sheet_click">View Plans & Devices</a>
           </div>
         </div>
@@ -733,24 +725,49 @@ h2{
 
     <div class="footer-strip">
       <strong>4MyIPTV Service</strong>
-      <div class="version">Homepage v3.2 • Shorter Goal + Goal Sound + Firestick Replacement + Telegram Support • July 11, 2026</div>
+      <div class="version">Homepage v3.4 • Extended Goal Sound + Firestick Replacement + Telegram Support • July 11, 2026</div>
     </div>
-  </main>
+    <audio id="goalCelebrationAudio" preload="auto">
+    <source src="goal-celebration-world-cup.mp3" type="audio/mpeg">
+  </audio>
+</main>
 
+
+<script>
+(function(){
+  const audio = document.getElementById("goalCelebrationAudio");
+  const splashPlayBtn = document.getElementById("playGoalCelebrationBtn");
+  const celebrateBtn = document.getElementById("launchFireworksBtn");
+  function playGoalCelebration(){
+    if(!audio) return;
+    try{
+      audio.pause();
+      audio.currentTime = 0;
+      const maybePromise = audio.play();
+      if(maybePromise && typeof maybePromise.catch === "function"){
+        maybePromise.catch(()=>{});
+      }
+    }catch(e){}
+  }
+  if(splashPlayBtn){
+    splashPlayBtn.addEventListener("click", playGoalCelebration);
+  }
+  if(celebrateBtn){
+    celebrateBtn.addEventListener("click", playGoalCelebration);
+  }
+})();
+</script>
 
 <script>
 (function(){
   const canvas = document.getElementById("summerFireworksCanvas");
   const launchBtn = document.getElementById("launchFireworksBtn");
-  const soundBtn = document.getElementById("toggleFireworksSoundBtn");
   const hero = document.querySelector(".hero");
   if(!canvas || !launchBtn || !hero) return;
 
   const ctx = canvas.getContext("2d");
   let particles = [];
   let animationStarted = false;
-  let soundEnabled = true;
-  let audioCtx = null;
   const colors = ["#fbbf24","#22c55e","#3b82f6","#ef4444","#a855f7","#ec4899","#ffffff"];
 
   function resizeCanvas(){
@@ -761,74 +778,6 @@ h2{
     canvas.style.width = rect.width + "px";
     canvas.style.height = rect.height + "px";
     ctx.setTransform(dpr,0,0,dpr,0,0);
-  }
-
-  function getAudioCtx(){
-    if(!soundEnabled) return null;
-    if(!audioCtx){
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if(AudioContext) audioCtx = new AudioContext();
-    }
-    if(audioCtx && audioCtx.state === "suspended"){
-      audioCtx.resume();
-    }
-    return audioCtx;
-  }
-
-  function playLaunchSound(){
-    const ac = getAudioCtx();
-    if(!ac) return;
-    const osc = ac.createOscillator();
-    const gain = ac.createGain();
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(240, ac.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(880, ac.currentTime + .22);
-    gain.gain.setValueAtTime(.0001, ac.currentTime);
-    gain.gain.exponentialRampToValueAtTime(.08, ac.currentTime + .04);
-    gain.gain.exponentialRampToValueAtTime(.0001, ac.currentTime + .28);
-    osc.connect(gain);
-    gain.connect(ac.destination);
-    osc.start();
-    osc.stop(ac.currentTime + .3);
-  }
-
-  function playBurstSound(){
-    const ac = getAudioCtx();
-    if(!ac) return;
-
-    const duration = .26;
-    const bufferSize = ac.sampleRate * duration;
-    const buffer = ac.createBuffer(1, bufferSize, ac.sampleRate);
-    const output = buffer.getChannelData(0);
-    for(let i=0;i<bufferSize;i++){
-      output[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufferSize, 2);
-    }
-
-    const noise = ac.createBufferSource();
-    const filter = ac.createBiquadFilter();
-    const gain = ac.createGain();
-    noise.buffer = buffer;
-    filter.type = "bandpass";
-    filter.frequency.setValueAtTime(900, ac.currentTime);
-    filter.frequency.exponentialRampToValueAtTime(160, ac.currentTime + duration);
-    gain.gain.setValueAtTime(.13, ac.currentTime);
-    gain.gain.exponentialRampToValueAtTime(.0001, ac.currentTime + duration);
-    noise.connect(filter);
-    filter.connect(gain);
-    gain.connect(ac.destination);
-    noise.start();
-
-    const sparkle = ac.createOscillator();
-    const sparkleGain = ac.createGain();
-    sparkle.type = "triangle";
-    sparkle.frequency.setValueAtTime(1280 + Math.random()*520, ac.currentTime);
-    sparkleGain.gain.setValueAtTime(.0001, ac.currentTime);
-    sparkleGain.gain.exponentialRampToValueAtTime(.05, ac.currentTime + .02);
-    sparkleGain.gain.exponentialRampToValueAtTime(.0001, ac.currentTime + .18);
-    sparkle.connect(sparkleGain);
-    sparkleGain.connect(ac.destination);
-    sparkle.start();
-    sparkle.stop(ac.currentTime + .2);
   }
 
   function createBurst(x, y, count){
@@ -845,7 +794,6 @@ h2{
         color: colors[Math.floor(Math.random() * colors.length)]
       });
     }
-    playBurstSound();
   }
 
   function launchFirework(){
@@ -854,7 +802,6 @@ h2{
     const height = canvas.clientHeight;
     const x = width * (.22 + Math.random() * .64);
     const y = height * (.16 + Math.random() * .38);
-    playLaunchSound();
     setTimeout(function(){ createBurst(x, y, 54 + Math.floor(Math.random() * 28)); }, 210);
   }
 
@@ -889,94 +836,18 @@ h2{
     setTimeout(launchFirework, 760);
   });
 
-  if(soundBtn){
-    soundBtn.addEventListener("click", function(){
-      soundEnabled = !soundEnabled;
-      soundBtn.textContent = soundEnabled ? "Sound: On" : "Sound: Off";
-    });
-  }
 
   window.addEventListener("resize", resizeCanvas);
   resizeCanvas();
 
-  // Give the hero a visible no-sound sparkle on page load, then let the customer launch sound with a click.
+  // Give the hero a visible sparkle on page load.
   setTimeout(function(){
     if(!animationStarted) animate();
-    const previousSound = soundEnabled;
-    soundEnabled = false;
     createBurst(canvas.clientWidth * .72, canvas.clientHeight * .18, 42);
-    soundEnabled = previousSound;
   }, 900);
 })();
 </script>
 
-<script>
-(function(){
-  function playGoalSound(){
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if(AudioContext){
-      const ac = new AudioContext();
-      const now = ac.currentTime;
-
-      // Stadium-style crowd swell.
-      const duration = 1.9;
-      const buffer = ac.createBuffer(1, Math.floor(ac.sampleRate * duration), ac.sampleRate);
-      const data = buffer.getChannelData(0);
-      for(let i=0;i<data.length;i++){
-        const t = i / data.length;
-        const envelope = Math.sin(Math.PI * Math.min(1, t * 1.35)) * Math.pow(1 - t, .22);
-        data[i] = (Math.random() * 2 - 1) * envelope;
-      }
-      const crowd = ac.createBufferSource();
-      const crowdFilter = ac.createBiquadFilter();
-      const crowdGain = ac.createGain();
-      crowd.buffer = buffer;
-      crowdFilter.type = "bandpass";
-      crowdFilter.frequency.setValueAtTime(950, now);
-      crowdFilter.Q.setValueAtTime(.7, now);
-      crowdGain.gain.setValueAtTime(.0001, now);
-      crowdGain.gain.exponentialRampToValueAtTime(.12, now + .08);
-      crowdGain.gain.exponentialRampToValueAtTime(.0001, now + duration);
-      crowd.connect(crowdFilter);
-      crowdFilter.connect(crowdGain);
-      crowdGain.connect(ac.destination);
-      crowd.start(now);
-      crowd.stop(now + duration);
-
-      // Short stadium horn accent.
-      [196,247,294].forEach(function(freq, index){
-        const osc = ac.createOscillator();
-        const gain = ac.createGain();
-        osc.type = "sawtooth";
-        osc.frequency.setValueAtTime(freq, now + index * .04);
-        gain.gain.setValueAtTime(.0001, now);
-        gain.gain.exponentialRampToValueAtTime(.035, now + .04);
-        gain.gain.exponentialRampToValueAtTime(.0001, now + .85);
-        osc.connect(gain);
-        gain.connect(ac.destination);
-        osc.start(now + index * .04);
-        osc.stop(now + .9);
-      });
-    }
-
-    // Spoken goal call varies slightly by browser/operating system.
-    if("speechSynthesis" in window){
-      window.speechSynthesis.cancel();
-      const call = new SpeechSynthesisUtterance("Goooal!");
-      call.rate = .72;
-      call.pitch = .72;
-      call.volume = 1;
-      window.speechSynthesis.speak(call);
-    }
-  }
-
-  window.playWorldCupGoalSound = playGoalSound;
-  const soundButton = document.getElementById("playGoalSoundBtn");
-  const celebrateButton = document.getElementById("launchFireworksBtn");
-  if(soundButton) soundButton.addEventListener("click", playGoalSound);
-  if(celebrateButton) celebrateButton.addEventListener("click", playGoalSound);
-})();
-</script>
 
 <script>
 (function(){
