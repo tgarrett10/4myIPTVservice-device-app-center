@@ -396,8 +396,34 @@ h2{
 .footer-strip .version{margin-top:6px;color:#b6c2d2;font-size:.82rem}
 .disclaimer{color:#9aa9ba;font-size:12px;line-height:1.5;text-align:center;max-width:860px;margin:12px auto 0}
 
+/* WORLD CUP SPLASH START */
+.wc-overlay{position:fixed;inset:0;background:rgba(4,10,24,.84);backdrop-filter:blur(8px);z-index:9999;display:none;align-items:center;justify-content:center;padding:18px}
+.wc-overlay.show{display:flex;animation:wcFadeIn .28s ease}
+.wc-modal{position:relative;width:min(760px,100%);overflow:hidden;border-radius:28px;padding:34px 26px;background:linear-gradient(180deg,#0d2346,#122c57 42%,#0a1730);border:1px solid rgba(251,191,36,.45);box-shadow:0 28px 60px rgba(0,0,0,.45);text-align:center}
+.wc-close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:24px;cursor:pointer}
+.wc-kicker{display:inline-flex;gap:8px;align-items:center;background:rgba(34,197,94,.14);border:1px solid rgba(34,197,94,.36);padding:8px 12px;border-radius:999px;color:#bbf7d0;font-size:13px;font-weight:700;margin-bottom:18px}
+.wc-ball-lane{position:relative;height:82px;margin:0 0 12px;overflow:hidden}
+.wc-ball{position:absolute;left:-90px;top:6px;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff 0 58%,#e5e7eb 59% 100%);border:4px solid #111827;box-shadow:0 12px 24px rgba(0,0,0,.35);animation:wcBallKick 1.5s ease-out forwards}
+.wc-ball:before{content:"";position:absolute;inset:18px;background:#111827;clip-path:polygon(50% 0%,100% 38%,82% 100%,18% 100%,0% 38%)}
+.wc-goal{font-size:clamp(36px,8vw,78px);font-weight:900;color:#f8fafc;letter-spacing:.02em;line-height:1;opacity:0;transform:translateY(10px) scale(.96);animation:wcGoalPop .8s ease forwards .45s;text-shadow:0 0 22px rgba(251,191,36,.34)}
+.wc-goal span{color:#fbbf24}
+.wc-title{font-size:clamp(24px,4vw,38px);font-weight:900;margin:14px 0 10px;color:#fff}
+.wc-offer{font-size:clamp(20px,3vw,30px);font-weight:800;color:#86efac;margin:0 0 8px}
+.wc-copy{color:#dbeafe;line-height:1.6;max-width:620px;margin:0 auto 18px;font-size:15px}
+.wc-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 18px}
+.wc-pills span{padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(148,163,184,.24);color:#e2e8f0;font-size:13px}
+.wc-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+@keyframes wcFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes wcBallKick{0%{transform:translateX(0) rotate(0deg)}55%{transform:translateX(calc(100vw - 240px)) rotate(720deg)}100%{transform:translateX(calc(100vw - 210px)) rotate(780deg);opacity:0}}
+@keyframes wcGoalPop{0%{opacity:0;transform:translateY(10px) scale(.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
+/* WORLD CUP SPLASH END */
 
 @media(max-width:900px){
+  .wc-modal{padding:30px 18px 24px}
+  .wc-ball-lane{height:70px}
+  .wc-ball{width:58px;height:58px}
+  .wc-actions .btn{width:100%}
+
   .hero-inner,.split{grid-template-columns:1fr}
   .grid3,.grid2,.faq-grid{grid-template-columns:1fr}
   .promo-strip{grid-template-columns:1fr}
@@ -411,6 +437,28 @@ h2{
 </style>
 </head>
 <body>
+  <!-- WORLD CUP SPLASH START -->
+  <div id="worldCupSplash" class="wc-overlay" aria-hidden="true">
+    <div class="wc-modal" role="dialog" aria-modal="true" aria-labelledby="worldCupSplashTitle">
+      <button type="button" class="wc-close" id="worldCupSplashClose" aria-label="Close special announcement">×</button>
+      <div class="wc-kicker">⚽ World Cup Special • Limited-Time Offer</div>
+      <div class="wc-ball-lane" aria-hidden="true"><div class="wc-ball"></div></div>
+      <div class="wc-goal"><span>GOOOOOOOOOAL!</span></div>
+      <div class="wc-title" id="worldCupSplashTitle">Onn 4K Device + 12 Months of Service — $150</div>
+      <div class="wc-offer">Through the end of the World Cup</div>
+      <p class="wc-copy">The Onn 4K bundle is back in stock. Claim the special now, reduce cable cost, and choose local setup support where available.</p>
+      <div class="wc-pills">
+        <span>Certified Google TV Device Included</span>
+        <span>Service-Only Option: $120</span>
+        <span>Limited Inventory</span>
+      </div>
+      <div class="wc-actions">
+        <a class="btn primary" href="request-service.html?promo=world-cup-special&source=homepage-splash" data-event="request_service_click">Claim Special</a>
+        <a class="btn secondary" href="request-service.html?promo=service-only-world-cup&source=homepage-splash" data-event="promo_offer_click">Service Only $120</a>
+      </div>
+    </div>
+  </div>
+  <!-- WORLD CUP SPLASH END -->
   <div class="topbar">
     <nav class="nav" aria-label="Main navigation">
       <div class="nav-brand">4MyIPTV Service</div>
@@ -423,15 +471,15 @@ h2{
   </div>
 
   <main class="wrap">
-    <!-- SUMMER STREAMING SPECIAL START -->
-    <section class="promo-strip" aria-label="Summer Streaming Special">
+    <!-- WORLD CUP SPECIAL START -->
+    <section class="promo-strip" aria-label="World Cup Special">
       <div>
-        <strong>Summer Streaming Special: Fireworks, Trials & Streaming Deals</strong>
-        <p>Stream all summer with service-only options, ready-to-go device bundles, setup support, and a free 48-hour trial you can share with a friend. The Onn 4K bundle is currently sold out, but the restock list is now open through Labor Day.</p>
+        <strong>⚽ World Cup Special: Onn 4K Bundle Back In Stock</strong>
+        <p>Get the Onn 4K Google TV device plus 12 months of service for $150 through the end of the World Cup. Already have a compatible device? Request 12 months of service only for $120.</p>
       </div>
-      <a class="btn gold" href="request-service.html?promo=summer-streaming-special&source=homepage-promo" data-event="promo_offer_click">View Summer Specials</a>
+      <a class="btn gold" href="request-service.html?promo=world-cup-special&source=homepage-promo" data-event="promo_offer_click">Claim World Cup Special</a>
     </section>
-    <!-- SUMMER STREAMING SPECIAL END -->
+    <!-- WORLD CUP SPECIAL END -->
 
     <section class="card hero">
       <div class="logo-stage">
@@ -440,52 +488,52 @@ h2{
       </div>
       <div class="hero-inner">
         <div>
-          <div class="eyebrow">Summer special • Fireworks are back • 48-hour trial available</div>
-          <h1>Upgrade your streaming setup and start watching for <span class="highlight">less</span>.</h1>
-          <p class="sub">Choose from limited-time summer offers with pre-configured device bundle options, service-only plans, and a free 48-hour trial you can share with a friend. The Onn 4K bundle is currently sold out, but you can still join the restock list while Firestick Upgrade, 4K Plus, and service-only options remain available.</p>
+          <div class="eyebrow">World Cup special • Onn 4K is back • Limited-time offer</div>
+          <h1>Score a streaming <span class="highlight">win</span> with the World Cup special.</h1>
+          <p class="sub">The Onn 4K Google TV bundle is back in stock. For a limited time through the end of the World Cup, get the device plus 12 months of service for $150, or choose 12 months of service only for $120 if you already have a compatible device.</p>
           <div class="hero-proof">
-            <span>Summer Bundle Value</span>
-            <span>Free 48-Hour Friend Trial</span>
-            <span>Pre-Configured Apps</span>
-            <span>Local Drop-Off Where Available</span>
-            <span>Onn 4K Sold Out • Restock List Open</span>
+            <span>World Cup Special</span>
+            <span>Onn 4K Back In Stock</span>
+            <span>Certified Google TV Device</span>
+            <span>Setup Support Available</span>
+            <span>Offer Ends With World Cup</span>
           </div>
           <div class="cta">
-            <a class="btn primary" href="request-service.html?promo=summer-streaming-special&source=homepage-main-cta" data-event="request_service_click">Request Summer Special</a>
-            <a class="btn secondary" href="request-service.html?promo=48-hour-trial&source=homepage-main-cta" data-event="promo_offer_click">Start 48-Hour Trial</a>
+            <a class="btn primary" href="request-service.html?promo=world-cup-special&source=homepage-main-cta" data-event="request_service_click">Claim World Cup Special</a>
+            <a class="btn secondary" href="request-service.html?promo=service-only-world-cup&source=homepage-main-cta" data-event="promo_offer_click">Request Service Only</a>
             <a class="btn secondary" href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer" data-event="telegram_click">Message Me Directly</a>
-            <button class="btn fireworks-control" type="button" id="launchFireworksBtn">Launch Fireworks</button>
+            <button class="btn fireworks-control" type="button" id="launchFireworksBtn">Celebrate Goal</button>
             <button class="btn sound-toggle" type="button" id="toggleFireworksSoundBtn">Sound: On</button>
             <a class="btn outline" href="sell-sheet.html" data-event="sell_sheet_click">View Plans & Devices</a>
           </div>
         </div>
         <div class="fireworks-overlay" aria-hidden="true"><div class="firework one"></div><div class="firework two"></div><div class="firework three"></div></div>
         <canvas id="summerFireworksCanvas" class="fireworks-canvas" aria-hidden="true"></canvas>
-        <aside class="hero-side" aria-label="Limited Onn device specials">
+        <aside class="hero-side" aria-label="World Cup special offers">
           <div class="price-card">
-            <div class="price-label">Firestick Upgrade Bundle</div>
-            <div class="price-main"><span>$140</span></div>
-            <div class="price-note">Replace your Firestick with an Onn Full HD Streaming Device and be ready to go. Includes pre-configured apps, 1 year of IPTV service, setup support, and a free 48-hour friend trial.</div>
+            <div class="price-label">World Cup Bundle</div>
+            <div class="price-main"><span>$150</span></div>
+            <div class="price-note">Get the Onn 4K Google TV device plus 12 months of IPTV service. This is the current featured offer, with setup support available and limited inventory while the World Cup special is live.</div>
           </div>
           <div class="price-card">
-            <div class="price-label">4K Streaming Bundle — SOLD OUT</div>
+            <div class="price-label">Regular Onn 4K Bundle Price</div>
             <div class="price-main"><span>$160</span></div>
-            <div class="price-note">The Onn 4K Streaming Device bundle is currently sold out. Join the restock list now if you want the next available batch, or choose the Firestick Upgrade Bundle, service-only option, or the Onn 4K Plus bundle today.</div>
+            <div class="price-note">This is the normal Onn 4K bundle price outside the special. The current World Cup offer brings it down to $150 through the end of the tournament.</div>
           </div>
           <div class="price-card">
-            <div class="price-label">4K Plus Upgrade Bundle</div>
-            <div class="price-main"><span>$180</span></div>
-            <div class="price-note">Choose the Onn 4K Plus Streaming Device for an enhanced 4K device experience with more storage than the standard Onn 4K device, plus setup support and a free 48-hour friend trial.</div>
+            <div class="price-label">Service Only Option</div>
+            <div class="price-main"><span>$120</span></div>
+            <div class="price-note">Already have a compatible Android TV / Google TV device? Request 12 months of service only and keep your cost lower while still getting setup support if needed.</div>
           </div>
           <div class="price-card service-only-card">
-            <div class="price-label">Already Have a Device?</div>
-            <div class="price-main small-price"><span>$100</span> / year</div>
-            <div class="price-note">Service-only option for customers who already have a compatible Android TV / Google TV device or approved Android 14 streaming device.</div>
-            <a class="btn outline mini-cta" href="request-service.html?promo=limited-time-service-only&source=homepage-service-only" data-event="promo_offer_click">Request Service Only</a>
+            <div class="price-label">4K Plus Upgrade Bundle</div>
+            <div class="price-main small-price"><span>$180</span> / year</div>
+            <div class="price-note">The Onn 4K Plus upgrade bundle remains available for customers who want more storage than the standard Onn 4K device.</div>
+            <a class="btn outline mini-cta" href="request-service.html?promo=4k-plus-bundle&source=homepage-service-only" data-event="promo_offer_click">Request 4K Plus Bundle</a>
           </div>
           <div class="quick-contact">
-            <strong>Want faster service?</strong>
-            <p>Message directly first for the fastest response. The Onn 4K bundle is sold out today, but restock requests are open. Firestick Upgrade, 4K Plus, service-only, and 48-hour trial requests are still available. No holds without payment confirmation.</p>
+            <strong>Want the deal before inventory runs low?</strong>
+            <p>Request the World Cup special online or message directly for the fastest response. The Onn 4K bundle is available now, but no inventory is held without payment confirmation.</p>
           </div>
         </aside>
       </div>
@@ -493,12 +541,12 @@ h2{
 
     <section class="card">
       <h2>What You Get</h2>
-      <p class="section-sub">A simpler way to start streaming with service options, device guidance, and support available when you need help.</p>
+      <p class="section-sub">A cleaner way to start streaming with a strong special offer, device guidance, and support when you need help.</p>
       <div class="grid3">
         <div class="feature">
           <div class="icon">TV</div>
           <h3>Streaming Service Options</h3>
-          <p>Choose service options designed for live TV-style viewing, entertainment, sports, and multiple language channel needs, depending on the selected package.</p>
+          <p>Choose service options designed for live TV-style viewing, entertainment, sports, and multiple-language channel needs, depending on the selected package.</p>
         </div>
         <div class="feature">
           <div class="icon">?</div>
@@ -508,7 +556,7 @@ h2{
         <div class="feature">
           <div class="icon">GO</div>
           <h3>Ready-to-Go Device Options</h3>
-          <p>Choose service only if you already have a compatible device, choose a ready-to-go Firestick Upgrade or 4K Plus bundle, or join the Onn 4K restock list if that is your preferred option.</p>
+          <p>Choose service only if you already have a compatible device, choose the featured Onn 4K World Cup bundle, or upgrade to the Onn 4K Plus option.</p>
         </div>
       </div>
     </section>
@@ -629,7 +677,7 @@ h2{
 
     <section class="card final-cta">
       <h2>Ready to get started?</h2>
-      <p class="section-sub">Request service online or message directly for the fastest help. The process is simple, clear, and supported from the beginning.</p>
+      <p class="section-sub">Request the World Cup special online or message directly for the fastest help. The process is simple, clear, and supported from the beginning.</p>
       <div class="cta" style="justify-content:center">
         <a class="btn primary" href="request-service.html?source=final-homepage-cta" data-event="request_service_click">Request Service</a>
         <a class="btn secondary" href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer" data-event="telegram_click">Message Me Directly</a>
@@ -640,7 +688,7 @@ h2{
 
     <div class="footer-strip">
       <strong>4MyIPTV Service</strong>
-      <div class="version">Homepage v2.9 • Interactive Fireworks + Sound Update • July 4, 2026</div>
+      <div class="version">Homepage v3.0 • World Cup Special + Goal Splash • July 11, 2026</div>
     </div>
   </main>
 
@@ -814,6 +862,33 @@ h2{
     createBurst(canvas.clientWidth * .72, canvas.clientHeight * .18, 42);
     soundEnabled = previousSound;
   }, 900);
+})();
+</script>
+
+<script>
+(function(){
+  const splash = document.getElementById("worldCupSplash");
+  const closeBtn = document.getElementById("worldCupSplashClose");
+  if(!splash || !closeBtn) return;
+  const sessionKey = "worldCupSplashSeen";
+  function closeSplash(){
+    splash.classList.remove("show");
+    splash.setAttribute("aria-hidden","true");
+    sessionStorage.setItem(sessionKey, "1");
+  }
+  if(!sessionStorage.getItem(sessionKey)){
+    window.setTimeout(function(){
+      splash.classList.add("show");
+      splash.setAttribute("aria-hidden","false");
+    }, 350);
+  }
+  closeBtn.addEventListener("click", closeSplash);
+  splash.addEventListener("click", function(e){
+    if(e.target === splash) closeSplash();
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && splash.classList.contains("show")) closeSplash();
+  });
 })();
 </script>
 
