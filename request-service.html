@@ -224,40 +224,24 @@ textarea{min-height:110px;resize:vertical}
           </div>
         </div>
 
-        <div class="form-grid">
-          <div class="field">
-            <label for="serviceType">What Do You Need?</label>
-            <select id="serviceType" name="serviceType" required>
-              <option value="">Select an option</option>
-              <option value="World Cup Special - Onn 4K Device + 1 Year IPTV Service - $150">World Cup Onn 4K · 1 Year · $150</option>
-              <option value="World Cup 2-Year Special - Onn 4K Device + 2 Years IPTV Service - $225">World Cup Onn 4K · 2 Years · $225</option>
-              <option value="Summer Streaming Special - Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140">Onn Full HD Bundle · $140</option>
-              <option value="Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160">Onn 4K Bundle · $160 · Recommended</option>
-              <option value="Summer Streaming Special - 4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180">Onn 4K Plus Bundle · $180</option>
-              <option value="Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device">Service Only · 1 Year · $100</option>
-              <option value="48-Hour Free Trial Request">48-Hour Free Trial</option>
-              <option value="IPTV Service Only">Service Only</option>
-              <option value="IPTV Service + Device">Service + Device</option>
-              <option value="Renewal or Existing Customer Help">Renewal / Existing Customer</option>
-              <option value="Not Sure - Help Me Choose">Help Me Choose</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="planInterest">Plan or Device</label>
-            <select id="planInterest" name="planInterest" required>
-              <option value="">Select a plan</option>
-              <option value="World Cup Special - Onn 4K Device + 1 Year IPTV Service - $150">World Cup Onn 4K · 1 Year · $150</option>
-              <option value="World Cup 2-Year Special - Onn 4K Device + 2 Years IPTV Service - $225">World Cup Onn 4K · 2 Years · $225</option>
-              <option value="Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140">Onn Full HD · $140</option>
-              <option value="4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160">Onn 4K · $160 · Recommended</option>
-              <option value="4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180">Onn 4K Plus · $180</option>
-              <option value="Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $240">Google TV Streamer · $240</option>
-              <option value="NVIDIA Shield TV Pro Special-Order Bundle - Device Setup + 1 Year IPTV Service - $380 - PREPAYMENT REQUIRED">NVIDIA Shield · $380 · Prepayment Required</option>
-              <option value="Limited-Time Service Only - 1 Year IPTV Service - $100">Service Only · 1 Year · $100</option>
-              <option value="48-Hour Free Trial - Free">48-Hour Free Trial</option>
-              <option value="Not Sure Yet">Not Sure Yet</option>
-            </select>
-          </div>
+        <div class="field">
+          <label for="serviceType">What Do You Need?</label>
+          <select id="serviceType" name="serviceType" required>
+            <option value="">Select one option</option>
+            <option value="World Cup Special - Onn 4K Device + 1 Year IPTV Service - $150">World Cup Onn 4K · 1 Year · $150</option>
+            <option value="World Cup 2-Year Special - Onn 4K Device + 2 Years IPTV Service - $225">World Cup Onn 4K · 2 Years · $225</option>
+            <option value="Summer Streaming Special - Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140">Onn Full HD Bundle · $140</option>
+            <option value="Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160">Onn 4K Bundle · $160 · Recommended</option>
+            <option value="Summer Streaming Special - 4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180">Onn 4K Plus Bundle · $180</option>
+            <option value="Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $240">Google TV Streamer Bundle · $240</option>
+            <option value="NVIDIA Shield TV Pro Special-Order Bundle - Device Setup + 1 Year IPTV Service - $380 - PREPAYMENT REQUIRED">NVIDIA Shield · $380 · Prepayment Required</option>
+            <option value="Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device">Service Only · 1 Year · $100</option>
+            <option value="48-Hour Free Trial Request">48-Hour Free Trial</option>
+            <option value="Renewal or Existing Customer Help">Renewal / Existing Customer</option>
+            <option value="Not Sure - Help Me Choose">Help Me Choose</option>
+          </select>
+          <input type="hidden" id="planInterest" name="planInterest" value="">
+          <input type="hidden" id="preferredDevice" name="preferredDevice" value="">
         </div>
 
         <div class="form-grid">
@@ -269,22 +253,6 @@ textarea{min-height:110px;resize:vertical}
               <option value="Not Applicable - Trial, Support, or Renewal">Not Applicable</option>
             </select>
             <div class="note">The discounted second year is available with any new device bundle.</div>
-          </div>
-        </div>
-
-        <div class="form-grid">
-          <div class="field hidden" id="deviceFieldWrap">
-            <label for="preferredDevice">Preferred Device</label>
-            <select id="preferredDevice" name="preferredDevice">
-              <option value="">Select a device</option>
-              <option value="Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140">Onn Full HD · $140</option>
-              <option value="Onn 4K Streaming Device - 4K Streaming Bundle - $160 - IN STOCK">Onn 4K · $160 · Recommended</option>
-              <option value="Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180">Onn 4K Plus · $180</option>
-              <option value="Google TV Streamer 4K Bundle - $240">Google TV Streamer · $240</option>
-              <option value="NVIDIA Shield TV Pro Special-Order Bundle - $380 - FULL PREPAYMENT REQUIRED">NVIDIA Shield · $380 · Prepayment Required</option>
-              <option value="Other Device Option - Custom Quote">Other Device</option>
-              <option value="Not Sure - Help Me Choose">Help Me Choose</option>
-            </select>
           </div>
 
           <div class="field">
@@ -386,7 +354,6 @@ textarea{min-height:110px;resize:vertical}
 const API_URL = "https://script.google.com/macros/s/AKfycbzWO65X3uTAbWldiacxCD7ItLu5zpfZe1fDTWUlMGJyIPJXWcXaOsDXWHMQV-3-Ch7IcQ/exec";
 const form = document.getElementById("requestForm");
 const serviceType = document.getElementById("serviceType");
-const deviceFieldWrap = document.getElementById("deviceFieldWrap");
 const preferredDevice = document.getElementById("preferredDevice");
 const serviceTerm = document.getElementById("serviceTerm");
 const quoteAcknowledgement = document.getElementById("quoteAcknowledgement");
@@ -398,6 +365,8 @@ const WORLD_CUP_TWO_YEAR_VALUE = "World Cup 2-Year Special - Onn 4K Device + 2 Y
 const FIRESTICK_UPGRADE_VALUE = "Summer Streaming Special - Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140";
 const FOUR_K_BUNDLE_VALUE = "Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160";
 const FOUR_K_PLUS_BUNDLE_VALUE = "Summer Streaming Special - 4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180";
+const GOOGLE_STREAMER_VALUE = "Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $240";
+const NVIDIA_SHIELD_VALUE = "NVIDIA Shield TV Pro Special-Order Bundle - Device Setup + 1 Year IPTV Service - $380 - PREPAYMENT REQUIRED";
 const LIMITED_TIME_SERVICE_ONLY_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device";
 const FREE_TRIAL_VALUE = "48-Hour Free Trial Request";
 const WORLD_CUP_ONE_YEAR_PLAN_VALUE = "World Cup Special - Onn 4K Device + 1 Year IPTV Service - $150";
@@ -405,6 +374,8 @@ const WORLD_CUP_TWO_YEAR_PLAN_VALUE = "World Cup 2-Year Special - Onn 4K Device 
 const FIRESTICK_UPGRADE_PLAN_VALUE = "Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140";
 const FOUR_K_BUNDLE_PLAN_VALUE = "4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160";
 const FOUR_K_PLUS_BUNDLE_PLAN_VALUE = "4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180";
+const GOOGLE_STREAMER_PLAN_VALUE = "Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $240";
+const NVIDIA_SHIELD_PLAN_VALUE = "NVIDIA Shield TV Pro Special-Order Bundle - Device Setup + 1 Year IPTV Service - $380 - PREPAYMENT REQUIRED";
 const LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100";
 const FREE_TRIAL_PLAN_VALUE = "48-Hour Free Trial - Free";
 const WORLD_CUP_SOURCE = "World Cup Special";
@@ -423,24 +394,24 @@ const BUNDLE_OPTIONS = {
   [WORLD_CUP_TWO_YEAR_VALUE]: { plan: WORLD_CUP_TWO_YEAR_PLAN_VALUE, device: "Onn 4K Streaming Device - World Cup 2-Year Special - $225" },
   [FIRESTICK_UPGRADE_VALUE]: { plan: FIRESTICK_UPGRADE_PLAN_VALUE, device: "Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140" },
   [FOUR_K_BUNDLE_VALUE]: { plan: FOUR_K_BUNDLE_PLAN_VALUE, device: "Onn 4K Streaming Device - 4K Streaming Bundle - $160 - IN STOCK" },
-  [FOUR_K_PLUS_BUNDLE_VALUE]: { plan: FOUR_K_PLUS_BUNDLE_PLAN_VALUE, device: "Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180" }
+  [FOUR_K_PLUS_BUNDLE_VALUE]: { plan: FOUR_K_PLUS_BUNDLE_PLAN_VALUE, device: "Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180" },
+  [GOOGLE_STREAMER_VALUE]: { plan: GOOGLE_STREAMER_PLAN_VALUE, device: "Google TV Streamer 4K Bundle - $240" },
+  [NVIDIA_SHIELD_VALUE]: { plan: NVIDIA_SHIELD_PLAN_VALUE, device: "NVIDIA Shield TV Pro Special-Order Bundle - $380 - FULL PREPAYMENT REQUIRED" }
 };
-const BUNDLE_PLAN_VALUES = [WORLD_CUP_ONE_YEAR_PLAN_VALUE, WORLD_CUP_TWO_YEAR_PLAN_VALUE, FIRESTICK_UPGRADE_PLAN_VALUE, FOUR_K_BUNDLE_PLAN_VALUE, FOUR_K_PLUS_BUNDLE_PLAN_VALUE];
+const BUNDLE_PLAN_VALUES = [
+  WORLD_CUP_ONE_YEAR_PLAN_VALUE,
+  WORLD_CUP_TWO_YEAR_PLAN_VALUE,
+  FIRESTICK_UPGRADE_PLAN_VALUE,
+  FOUR_K_BUNDLE_PLAN_VALUE,
+  FOUR_K_PLUS_BUNDLE_PLAN_VALUE,
+  GOOGLE_STREAMER_PLAN_VALUE,
+  NVIDIA_SHIELD_PLAN_VALUE
+];
 function isBundleValue(value) { return Object.prototype.hasOwnProperty.call(BUNDLE_OPTIONS, value); }
 function isBundlePlanValue(value) { return BUNDLE_PLAN_VALUES.includes(value); }
 
 function toggleDeviceField() {
-  const needsDeviceChoice =
-    serviceType.value === "IPTV Service + Device" ||
-    serviceType.value === "Not Sure - Help Me Choose" ||
-    isBundleValue(serviceType.value);
-
-  deviceFieldWrap.classList.toggle("hidden", !needsDeviceChoice);
-  preferredDevice.required = needsDeviceChoice;
-
-  if (!needsDeviceChoice) {
-    preferredDevice.value = "";
-  }
+  syncBundleSelections();
 }
 
 function updateSubmitState() {
@@ -450,10 +421,7 @@ function updateSubmitState() {
 
 function deriveNeedDeviceValue() {
   if (isBundleValue(serviceType.value)) {
-    return serviceType.value === FOUR_K_BUNDLE_VALUE ? "Yes - Onn Device Bundle Selected" : "Yes - Onn Device Bundle Selected";
-  }
-  if (serviceType.value === "IPTV Service + Device") {
-    return "Yes - I need a device";
+    return "Yes - Device Bundle Selected";
   }
   if (serviceType.value === "Not Sure - Help Me Choose") {
     return "Not Sure";
@@ -476,10 +444,36 @@ function getCampaignSource() {
 }
 
 function syncBundleSelections() {
-  if (isBundleValue(serviceType.value)) {
-    const selected = BUNDLE_OPTIONS[serviceType.value];
+  const selected = BUNDLE_OPTIONS[serviceType.value];
+
+  if (selected) {
     document.getElementById("planInterest").value = selected.plan;
     preferredDevice.value = selected.device;
+
+    if (serviceType.value === WORLD_CUP_TWO_YEAR_VALUE) {
+      serviceTerm.value = "2 Years - Add Second Year for $75 - Save $25";
+    } else if (serviceType.value === WORLD_CUP_ONE_YEAR_VALUE) {
+      serviceTerm.value = "1 Year - Standard Bundle Pricing";
+    }
+    return;
+  }
+
+  preferredDevice.value = "";
+
+  if (serviceType.value === LIMITED_TIME_SERVICE_ONLY_VALUE) {
+    document.getElementById("planInterest").value = LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE;
+    serviceTerm.value = "1 Year - Standard Bundle Pricing";
+  } else if (serviceType.value === FREE_TRIAL_VALUE) {
+    document.getElementById("planInterest").value = FREE_TRIAL_PLAN_VALUE;
+    serviceTerm.value = "Not Applicable - Trial, Support, or Renewal";
+  } else if (serviceType.value === "Renewal or Existing Customer Help") {
+    document.getElementById("planInterest").value = "Renewal or Existing Customer Help";
+    serviceTerm.value = "Not Applicable - Trial, Support, or Renewal";
+  } else if (serviceType.value === "Not Sure - Help Me Choose") {
+    document.getElementById("planInterest").value = "Not Sure Yet";
+    preferredDevice.value = "Not Sure - Help Me Choose";
+  } else {
+    document.getElementById("planInterest").value = "";
   }
 }
 
@@ -518,22 +512,17 @@ function applyPromoFromUrl() {
   }
 
   const device = params.get("device");
-  const deviceMap = {
-    "onn-hd": "Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140",
-    "onn-4k": "Onn 4K Streaming Device - 4K Streaming Bundle - $160 - IN STOCK",
-    "onn-4k-plus": "Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180",
-    "google-tv-streamer": "Google TV Streamer 4K Bundle - $240",
-    "nvidia-shield": "NVIDIA Shield TV Pro Special-Order Bundle - $380 - FULL PREPAYMENT REQUIRED"
+  const deviceServiceMap = {
+    "onn-hd": FIRESTICK_UPGRADE_VALUE,
+    "onn-4k": FOUR_K_BUNDLE_VALUE,
+    "onn-4k-plus": FOUR_K_PLUS_BUNDLE_VALUE,
+    "google-tv-streamer": GOOGLE_STREAMER_VALUE,
+    "nvidia-shield": NVIDIA_SHIELD_VALUE
   };
-  if (deviceMap[device] && !isBundleValue(serviceType.value)) {
-    serviceType.value = "IPTV Service + Device";
-    const premiumPlanMap = {
-      "google-tv-streamer": "Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $240",
-      "nvidia-shield": "NVIDIA Shield TV Pro Special-Order Bundle - Device Setup + 1 Year IPTV Service - $380 - PREPAYMENT REQUIRED"
-    };
-    document.getElementById("planInterest").value = premiumPlanMap[device] || "Not Sure Yet";
-    toggleDeviceField();
-    preferredDevice.value = deviceMap[device];
+
+  if (deviceServiceMap[device] && !isBundleValue(serviceType.value)) {
+    serviceType.value = deviceServiceMap[device];
+    syncBundleSelections();
   }
 
   if (params.get("term") === "2-year") {
@@ -574,8 +563,7 @@ function buildPayload() {
     notes: [
       "Source Page: request-service.html",
       getCampaignSource() ? "Campaign Source: " + getCampaignSource() : "",
-      "Setup Choice: " + (document.getElementById("serviceType").value || ""),
-      "Plan Interest: " + (document.getElementById("planInterest").value || ""),
+      "Customer Selection: " + (document.getElementById("serviceType").value || ""),
       "Service Term: " + (serviceTerm.value || "1 Year - Standard Bundle Pricing"),
       "Need Device: " + deriveNeedDeviceValue(),
       "TV Count: " + (document.getElementById("tvCount").value || ""),
@@ -605,7 +593,6 @@ function showSuccess(message) {
 
 serviceType.addEventListener("change", function () {
   syncBundleSelections();
-  toggleDeviceField();
 });
 quoteAcknowledgement.addEventListener("change", updateSubmitState);
 
