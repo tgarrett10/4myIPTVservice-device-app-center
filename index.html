@@ -62,7 +62,7 @@ a{color:inherit}
   justify-content:space-between;
   gap:12px;
 }
-.nav-brand{font-weight:900;letter-spacing:.02em;color:#e2e8f0}
+.nav-brand{display:flex;align-items:center;gap:9px;font-weight:900;letter-spacing:.02em;color:#e2e8f0;text-decoration:none}.nav-brand img{width:72px;height:42px;object-fit:contain;display:block}
 .nav-links{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
 .nav-links a{
   text-decoration:none;
@@ -463,17 +463,17 @@ h2{
       <div class="wc-ball-lane" aria-hidden="true"><div class="wc-ball"></div></div>
       <div class="wc-goal"><span>GOOOAL!</span></div>
       <div class="wc-title" id="worldCupSplashTitle">Onn 4K Device + 12 Months of Service — $150</div>
-      <div class="wc-offer">Through the end of the World Cup</div>
+      <div class="wc-offer">Through the end of the World Cup • Add a second year for $75</div>
       <p class="wc-copy">The Onn 4K bundle is back in stock. Claim the special now, reduce cable cost, and choose local setup support where available.</p>
       <div class="wc-pills">
         <span>Certified Google TV Device Included</span>
         <span>Service-Only Option: $120</span>
         <span>Firestick Replacement: $140</span>
-        <span>Limited Inventory</span>
+        <span>Limited Inventory</span><span>2 Years: $225</span>
       </div>
       <div class="wc-actions">
         <a class="btn primary" href="request-service.html?promo=world-cup-special&source=homepage-splash" data-event="request_service_click">Claim Special</a>
-        <a class="btn secondary" href="request-service.html?promo=service-only-world-cup&source=homepage-splash" data-event="promo_offer_click">Service Only $120</a>
+        <a class="btn secondary" href="request-service.html?promo=world-cup-special&term=2-year&source=homepage-splash" data-event="promo_offer_click">2-Year Special $225</a>
         <button class="btn outline" type="button" id="playGoalCelebrationBtn">Play Goal Celebration</button>
       </div>
       <p class="wc-copy" style="margin-top:14px;font-size:13px;color:#bfdbfe">Tap the goal celebration button for the extended soccer-style sound.</p>
@@ -482,9 +482,10 @@ h2{
   <!-- WORLD CUP SPLASH END -->
   <div class="topbar">
     <nav class="nav" aria-label="Main navigation">
-      <div class="nav-brand">4MyIPTV Service</div>
+      <a class="nav-brand" href="index.html"><img src="4myiptv-logo.png" alt=""><span>4MyIPTV Service</span></a>
       <div class="nav-links">
         <a href="sell-sheet.html" data-event="sell_sheet_click">Plans & Devices</a>
+        <a href="device-specs.html" data-event="device_specs_click">Compare Devices</a>
         <a href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer" data-event="telegram_click">Message Directly</a>
         <a href="request-service.html?source=homepage-nav" data-event="request_service_click">Request Service</a>
       </div>
@@ -496,33 +497,33 @@ h2{
     <section class="promo-strip" aria-label="World Cup Special">
       <div>
         <strong>⚽ World Cup Special: Onn 4K Bundle Back In Stock</strong>
-        <p>Get the Onn 4K Google TV device plus 12 months of service for $150 through the end of the World Cup. Already have a compatible device? Request 12 months of service only for $120. A Firestick Replacement bundle with an Onn Full HD device is also available for $140.</p>
+        <p>Get the Onn 4K Google TV device plus 12 months of service for $150 through the end of the World Cup, or add a second year for only $75 for a two-year total of $225. A Firestick Replacement bundle with an Onn Full HD device is also available for $140.</p>
       </div>
-      <a class="btn gold" href="request-service.html?promo=world-cup-special&source=homepage-promo" data-event="promo_offer_click">Claim World Cup Special</a>
+      <a class="btn gold" href="request-service.html?promo=world-cup-special&term=2-year&source=homepage-promo" data-event="promo_offer_click">Get 2 Years for $225</a>
     </section>
     <!-- WORLD CUP SPECIAL END -->
 
     <section class="card hero">
       <div class="logo-stage">
-        <img class="brand-logo" src="4myiptv-logo-transparent-cropped.png" alt="4MyIPTV Service logo" onerror="this.style.display='none';document.querySelector('.logo-fallback').style.display='block';" />
+        <img class="brand-logo" src="4myiptv-logo.png" alt="4MyIPTV Service logo" onerror="this.style.display='none';document.querySelector('.logo-fallback').style.display='block';" />
         <div class="logo-fallback">4MyIPTV Service</div>
       </div>
       <div class="hero-inner">
         <div>
           <div class="eyebrow">World Cup special • Onn 4K is back • Limited-time offer</div>
           <h1>Score a streaming <span class="highlight">win</span> with the World Cup special.</h1>
-          <p class="sub">The Onn 4K Google TV bundle is back in stock. For a limited time through the end of the World Cup, get the device plus 12 months of service for $150, or choose 12 months of service only for $120 if you already have a compatible device.</p>
+          <p class="sub">The Onn 4K Google TV bundle is back in stock. For a limited time through the end of the World Cup, get the device plus 12 months of service for $150—or add a second year for only $75 for a two-year total of $225.</p>
           <div class="hero-proof">
             <span>World Cup Special</span>
             <span>Onn 4K Back In Stock</span>
             <span>Certified Google TV Device</span>
             <span>Firestick Replacement $140</span>
             <span>Setup Support Available</span>
-            <span>Offer Ends With World Cup</span>
+            <span>Offer Ends With World Cup</span><span>2-Year Total $225</span>
           </div>
           <div class="cta">
             <a class="btn primary" href="request-service.html?promo=world-cup-special&source=homepage-main-cta" data-event="request_service_click">Claim World Cup Special</a>
-            <a class="btn secondary" href="request-service.html?promo=service-only-world-cup&source=homepage-main-cta" data-event="promo_offer_click">Request Service Only</a>
+            <a class="btn secondary" href="request-service.html?promo=world-cup-special&term=2-year&source=homepage-main-cta" data-event="promo_offer_click">2-Year World Cup Special $225</a>
             <a class="btn third" href="request-service.html?promo=firestick-replacement-hd&source=homepage-main-cta" data-event="promo_offer_click">Firestick Replacement $140</a>
             <a class="btn secondary" href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer" data-event="telegram_click">Message Me Directly</a>
             <button class="btn fireworks-control" type="button" id="launchFireworksBtn">Celebrate Goal + Sound</button>
@@ -541,6 +542,12 @@ h2{
             <div class="price-label">Regular Onn 4K Bundle Price</div>
             <div class="price-main"><span>$160</span></div>
             <div class="price-note">This is the normal Onn 4K bundle price outside the special. The current World Cup offer brings it down to $150 through the end of the tournament.</div>
+          </div>
+          <div class="price-card service-only-card">
+            <div class="price-label">2-Year World Cup Special</div>
+            <div class="price-main"><span>$225</span></div>
+            <div class="price-note">Lock in the Onn 4K device, professional setup support, and two full years of service. The second year is only $75 when purchased with the current World Cup bundle.</div>
+            <a class="btn outline mini-cta" href="request-service.html?promo=world-cup-special&term=2-year&source=homepage-two-year-card" data-event="promo_offer_click">Request 2-Year Special</a>
           </div>
           <div class="price-card">
             <div class="price-label">Firestick Replacement Bundle</div>
@@ -561,7 +568,7 @@ h2{
           </div>
           <div class="quick-contact">
             <strong>Want the deal before inventory runs low?</strong>
-            <p>Request the World Cup special online or message directly for the fastest response. The Onn 4K bundle is available now, but no inventory is held without payment confirmation.</p>
+            <p>Request the World Cup special online or message directly for the fastest response. The Onn 4K bundle is available now, and the two-year special increases your savings. No inventory is held without payment confirmation.</p>
           </div>
         </aside>
       </div>
@@ -719,6 +726,7 @@ h2{
         <a class="btn primary" href="request-service.html?source=final-homepage-cta" data-event="request_service_click">Request Service</a>
         <a class="btn secondary" href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer" data-event="telegram_click">Message Me Directly</a>
         <a class="btn outline" href="sell-sheet.html" data-event="sell_sheet_click">Compare Plans & Devices</a>
+        <a class="btn outline" href="device-specs.html" data-event="device_specs_click">View Device Specs</a>
       </div>
       <p class="disclaimer">Service, channel availability, device compatibility, setup steps, and refund eligibility may vary by package, provider, device, and activation status.</p>
     </section>

@@ -894,6 +894,19 @@
         return "100.00";
       }
 
+      const twoYear = text.includes("2 years") || text.includes("2-year") || text.includes("second year");
+
+      if (text.includes("world cup") && text.includes("onn 4k") && twoYear) return "225.00";
+      if (text.includes("world cup") && text.includes("onn 4k") && text.includes("150")) return "150.00";
+
+      if (text.includes("nvidia shield") && twoYear) return "455.00";
+      if (text.includes("google tv streamer") && twoYear) return "315.00";
+      if (text.includes("onn 4k plus") && twoYear) return "255.00";
+      if (text.includes("onn 4k") && twoYear) return "235.00";
+      if (text.includes("onn full hd") && twoYear) return "215.00";
+
+      if (text.includes("nvidia shield") && text.includes("380")) return "380.00";
+      if (text.includes("google tv streamer") && text.includes("240")) return "240.00";
       if (text.includes("4k plus upgrade bundle") || (text.includes("onn 4k plus") && text.includes("180"))) return "180.00";
       if (text.includes("4k streaming bundle") || (text.includes("onn 4k") && text.includes("160"))) return "160.00";
       if (text.includes("firestick upgrade bundle") || text.includes("onn full hd") || (text.includes("summer streaming special") && text.includes("140"))) return "140.00";

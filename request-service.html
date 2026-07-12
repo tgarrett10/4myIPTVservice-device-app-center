@@ -46,7 +46,7 @@ a{text-decoration:none}
   overflow:hidden;
   box-shadow:0 12px 28px rgba(0,0,0,.28);
 }
-.hero{padding:24px;text-align:center}
+.hero{padding:24px;text-align:center}.brand-logo-stage{max-width:560px;margin:0 auto 14px;padding:8px 14px;border-radius:20px;background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(59,130,246,.10),rgba(34,197,94,.08));border:1px solid rgba(148,163,184,.22)}.brand-logo{display:block;width:100%;max-height:210px;object-fit:contain;margin:auto;filter:drop-shadow(0 12px 24px rgba(0,0,0,.30))}
 h1{margin:0 0 8px;color:#86efac;font-size:2rem}
 h2{margin:0}
 h3{margin:0 0 10px 0}
@@ -178,24 +178,11 @@ textarea{min-height:110px;resize:vertical}
 <div class="wrap">
 
   <div class="card hero">
+    <div class="brand-logo-stage"><a href="index.html"><img class="brand-logo" src="4myiptv-logo.png" alt="4MyIPTV Service logo"></a></div>
     <h1>Request Service</h1>
     <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
     <div class="sub">
-      Submit your request and receive a quote for approval before payment. This page is for new service requests, renewals, and customers who want help choosing the right setup.
-    </div>
-    <div class="info-grid">
-      <div class="feature-box">
-        <h3>Step 1</h3>
-        <p>Enter your contact information so I know the best way to send your quote and follow-up details.</p>
-      </div>
-      <div class="feature-box">
-        <h3>Step 2</h3>
-        <p>Select the service and setup option you want so I can review the right fit for your needs.</p>
-      </div>
-      <div class="feature-box">
-        <h3>Step 3</h3>
-        <p>Submit your request and expect follow-up communication within a few hours and no later than 24 hours.</p>
-      </div>
+      Choose what you need below. No payment is collected on this form.
     </div>
   </div>
 
@@ -205,28 +192,9 @@ textarea{min-height:110px;resize:vertical}
       <h2>Service Request Form</h2>
     </div>
     <div class="content">
-      <div class="notice" style="margin-bottom:14px;">
-        Complete the form below so I can review what you need, confirm the right service or device option, and send you a quote for approval before payment is requested.
+      <div class="notice" style="margin-bottom:16px;">
+        Select a plan and enter your contact information.
       </div>
-      <div class="notice" style="margin-bottom:14px;background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.35);color:#fef3c7;">
-        Summer Streaming Special: Firestick Upgrade Bundles are available for $140, the Onn 4K bundle is currently sold out and now taking restock requests at $160, and the 4K Plus Upgrade Bundle is available for $180. Every paid summer bundle includes setup support and one free 48-hour trial you can share with a friend. Service-only is available for $100/year when you already have a compatible Android TV / Google TV device or approved Android 14 streaming device.
-      </div>
-  <section class="card">
-    <h2>Getting Started Is Simple</h2>
-    <p>
-      Submit this form to receive a quote for the service and setup that fits your needs. No payment is due at this step.
-      If you are not sure which option is best, we can help guide you.
-    </p>
-    <ul class="feature-list">
-      <li>Takes about a minute to complete</li>
-      <li>No payment required yet</li>
-      <li>Quote reviewed before approval</li>
-      <li>Help available for service and device options</li>
-    </ul>
-  </section>
-
-
-
       <form id="requestForm" novalidate>
         <div class="form-grid">
           <div class="field">
@@ -243,7 +211,6 @@ textarea{min-height:110px;resize:vertical}
           <div class="field">
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" placeholder="Enter your email address" autocomplete="email" required>
-            <div class="note">Your quote can be sent here for easy review.</div>
           </div>
           <div class="field">
             <label for="preferredContact">Preferred Contact Method</label>
@@ -259,35 +226,49 @@ textarea{min-height:110px;resize:vertical}
 
         <div class="form-grid">
           <div class="field">
-            <label for="serviceType">Select Your Setup</label>
+            <label for="serviceType">What Do You Need?</label>
             <select id="serviceType" name="serviceType" required>
               <option value="">Select an option</option>
-              <option value="Summer Streaming Special - Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140">Summer Streaming Special - Firestick Upgrade Bundle - $140</option>
-              <option value="Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - SOLD OUT / Join Restock List">Summer Streaming Special - 4K Streaming Bundle - $160 - SOLD OUT / Join Restock List</option>
-              <option value="Summer Streaming Special - 4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180">Summer Streaming Special - 4K Plus Upgrade Bundle - $180</option>
-              <option value="Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device">Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Device</option>
-              <option value="48-Hour Free Trial Request">48-Hour Free Trial Request</option>
-              <option value="IPTV Service Only">IPTV Service Only</option>
-              <option value="IPTV Service + Device">IPTV Service + Device</option>
-              <option value="Renewal or Existing Customer Help">Renewal or Existing Customer Help</option>
-              <option value="Not Sure - Help Me Choose">Not Sure - Help Me Choose</option>
+              <option value="World Cup Special - Onn 4K Device + 1 Year IPTV Service - $150">World Cup Onn 4K · 1 Year · $150</option>
+              <option value="World Cup 2-Year Special - Onn 4K Device + 2 Years IPTV Service - $225">World Cup Onn 4K · 2 Years · $225</option>
+              <option value="Summer Streaming Special - Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140">Onn Full HD Bundle · $140</option>
+              <option value="Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160">Onn 4K Bundle · $160 · Recommended</option>
+              <option value="Summer Streaming Special - 4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180">Onn 4K Plus Bundle · $180</option>
+              <option value="Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device">Service Only · 1 Year · $100</option>
+              <option value="48-Hour Free Trial Request">48-Hour Free Trial</option>
+              <option value="IPTV Service Only">Service Only</option>
+              <option value="IPTV Service + Device">Service + Device</option>
+              <option value="Renewal or Existing Customer Help">Renewal / Existing Customer</option>
+              <option value="Not Sure - Help Me Choose">Help Me Choose</option>
             </select>
           </div>
           <div class="field">
-            <label for="planInterest">Plan Interest</label>
+            <label for="planInterest">Plan or Device</label>
             <select id="planInterest" name="planInterest" required>
               <option value="">Select a plan</option>
-              <option value="Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140">Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140</option>
-              <option value="4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - SOLD OUT / Join Restock List">4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - SOLD OUT / Join Restock List</option>
-              <option value="4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180">4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180</option>
-              <option value="Limited-Time Service Only - 1 Year IPTV Service - $100">Service Only - 1 Year IPTV Service - $100</option>
-              <option value="48-Hour Free Trial - Free">48-Hour Free Trial - Free</option>
-              <option value="Monthly - $15">Monthly - $15</option>
-              <option value="6 Months - $70">6 Months - $70</option>
-              <option value="1 Year - $120">1 Year - $120</option>
-              <option value="2 Years - $200">2 Years - $200</option>
+              <option value="World Cup Special - Onn 4K Device + 1 Year IPTV Service - $150">World Cup Onn 4K · 1 Year · $150</option>
+              <option value="World Cup 2-Year Special - Onn 4K Device + 2 Years IPTV Service - $225">World Cup Onn 4K · 2 Years · $225</option>
+              <option value="Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140">Onn Full HD · $140</option>
+              <option value="4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160">Onn 4K · $160 · Recommended</option>
+              <option value="4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180">Onn 4K Plus · $180</option>
+              <option value="Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $240">Google TV Streamer · $240</option>
+              <option value="NVIDIA Shield TV Pro Special-Order Bundle - Device Setup + 1 Year IPTV Service - $380 - PREPAYMENT REQUIRED">NVIDIA Shield · $380 · Prepayment Required</option>
+              <option value="Limited-Time Service Only - 1 Year IPTV Service - $100">Service Only · 1 Year · $100</option>
+              <option value="48-Hour Free Trial - Free">48-Hour Free Trial</option>
               <option value="Not Sure Yet">Not Sure Yet</option>
             </select>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="serviceTerm">Service Term</label>
+            <select id="serviceTerm" name="serviceTerm">
+              <option value="1 Year - Standard Bundle Pricing" selected>1 Year</option>
+              <option value="2 Years - Add Second Year for $75 - Save $25">2 Years · Add $75 · Save $25</option>
+              <option value="Not Applicable - Trial, Support, or Renewal">Not Applicable</option>
+            </select>
+            <div class="note">The discounted second year is available with any new device bundle.</div>
           </div>
         </div>
 
@@ -296,17 +277,18 @@ textarea{min-height:110px;resize:vertical}
             <label for="preferredDevice">Preferred Device</label>
             <select id="preferredDevice" name="preferredDevice">
               <option value="">Select a device</option>
-              <option value="Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140">Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140</option>
-              <option value="Onn 4K Streaming Device - 4K Streaming Bundle - $160 - SOLD OUT / Join Restock List">Onn 4K Streaming Device - 4K Streaming Bundle - $160 - SOLD OUT / Join Restock List</option>
-              <option value="Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180">Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180</option>
-              <option value="Other Device Option - Custom Quote">Other Device Option - Custom Quote</option>
-              <option value="Not Sure - Help Me Choose">Not Sure - Help Me Choose</option>
+              <option value="Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140">Onn Full HD · $140</option>
+              <option value="Onn 4K Streaming Device - 4K Streaming Bundle - $160 - IN STOCK">Onn 4K · $160 · Recommended</option>
+              <option value="Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180">Onn 4K Plus · $180</option>
+              <option value="Google TV Streamer 4K Bundle - $240">Google TV Streamer · $240</option>
+              <option value="NVIDIA Shield TV Pro Special-Order Bundle - $380 - FULL PREPAYMENT REQUIRED">NVIDIA Shield · $380 · Prepayment Required</option>
+              <option value="Other Device Option - Custom Quote">Other Device</option>
+              <option value="Not Sure - Help Me Choose">Help Me Choose</option>
             </select>
-            <div class="note">Choose a device if you already know what you want. Otherwise select the help option.</div>
           </div>
 
           <div class="field">
-            <label for="tvCount">Number of TVs or Connections</label>
+            <label for="tvCount">TVs / Connections</label>
             <select id="tvCount" name="tvCount" required>
               <option value="">Select quantity</option>
               <option value="1">1</option>
@@ -319,7 +301,7 @@ textarea{min-height:110px;resize:vertical}
 
         <div class="form-grid">
           <div class="field">
-            <label for="preferredReplyTime">Best Time to Reach You</label>
+            <label for="preferredReplyTime">Best Time to Contact</label>
             <select id="preferredReplyTime" name="preferredReplyTime">
               <option value="">Select if preferred</option>
               <option value="Morning">Morning</option>
@@ -338,7 +320,6 @@ textarea{min-height:110px;resize:vertical}
               <option value="Crypto">Crypto</option>
               <option value="Not Sure Yet">Not Sure Yet</option>
             </select>
-            <div class="note">This helps prepare the right quote response, but payment is not collected here.</div>
           </div>
         </div>
 
@@ -357,44 +338,35 @@ textarea{min-height:110px;resize:vertical}
               <option value="Website Search">Website Search</option>
               <option value="Other">Other</option>
             </select>
-            <div class="note">This helps track what is actually generating new customers.</div>
           </div>
           <div class="field">
-            <label for="friendTrial">Interested in a Friend Trial?</label>
+            <label for="friendTrial">48-Hour Trial?</label>
             <select id="friendTrial" name="friendTrial">
               <option value="">Select if applicable</option>
-              <option value="Yes - I want to share a 48-hour trial with a friend">Yes - I want to share a 48-hour trial with a friend</option>
-              <option value="Yes - I am requesting the 48-hour trial for myself">Yes - I am requesting the 48-hour trial for myself</option>
-              <option value="No / Not right now">No / Not right now</option>
+              <option value="Yes - I want to share a 48-hour trial with a friend">Yes, for a friend</option>
+              <option value="Yes - I am requesting the 48-hour trial for myself">Yes, for me</option>
+              <option value="No / Not right now">No</option>
             </select>
-            <div class="note">Paid summer bundle customers can use this as a referral offer.</div>
           </div>
         </div>
 
         <div class="field">
           <label for="notes">Additional Notes</label>
-          <textarea id="notes" name="notes" placeholder="Tell me anything helpful here, such as renewal needs, whether you want a ready-to-go device, or if you have a different device request to include."></textarea>
+          <textarea id="notes" name="notes" placeholder="Anything else we should know?"></textarea>
         </div>
 
-        <div class="note-box" style="margin-top:8px;">
-          <h3>Before You Submit</h3>
-          <div class="checkbox-wrap">
-            <input type="checkbox" id="quoteAcknowledgement">
-            <label for="quoteAcknowledgement" style="margin:0;font-weight:normal;">I understand this form is a request for quote only and no payment is collected here.</label>
-          </div>
-          <div class="checkbox-wrap">
-            <input type="checkbox" id="followupAcknowledgement">
-            <label for="followupAcknowledgement" style="margin:0;font-weight:normal;">I understand I can expect follow-up communication within a few hours and no later than 24 hours with my quote and next steps.</label>
-          </div>
+        <div class="checkbox-wrap" style="margin-top:12px;">
+          <input type="checkbox" id="quoteAcknowledgement">
+          <label for="quoteAcknowledgement" style="margin:0;font-weight:normal;">I understand this is a quote request and I will receive follow-up within 24 hours.</label>
         </div>
 
         <div class="btnrow" style="margin-top:18px;">
           <button type="submit" class="btn blue" id="submitButton" disabled>Submit Request</button>
-          <a href="sell-sheet.html" class="btn green">Review Services Again</a>
+          <a href="sell-sheet.html" class="btn green">Compare Plans</a>
         </div>
 
         <div id="successMessage" class="success" style="margin-top:16px;">
-          Your request was submitted successfully. Redirecting you to the confirmation page now.
+          Request submitted. Opening the confirmation page.
         </div>
 
         <div id="errorMessage" class="error" style="margin-top:16px;">
@@ -406,7 +378,7 @@ textarea{min-height:110px;resize:vertical}
 
   <div class="footer-strip">
     <strong>4MyIPTV Service • Request Service</strong>
-    <div class="version">Version 1.9 • 4K Sold Out + Restock Update • July 4, 2026</div>
+    <div class="version">Version 2.0 • Expanded Device Options • July 2026</div>
   </div>
 </div>
 
@@ -416,24 +388,30 @@ const form = document.getElementById("requestForm");
 const serviceType = document.getElementById("serviceType");
 const deviceFieldWrap = document.getElementById("deviceFieldWrap");
 const preferredDevice = document.getElementById("preferredDevice");
+const serviceTerm = document.getElementById("serviceTerm");
 const quoteAcknowledgement = document.getElementById("quoteAcknowledgement");
-const followupAcknowledgement = document.getElementById("followupAcknowledgement");
 const submitButton = document.getElementById("submitButton");
 const successMessage = document.getElementById("successMessage");
 const errorMessage = document.getElementById("errorMessage");
+const WORLD_CUP_ONE_YEAR_VALUE = "World Cup Special - Onn 4K Device + 1 Year IPTV Service - $150";
+const WORLD_CUP_TWO_YEAR_VALUE = "World Cup 2-Year Special - Onn 4K Device + 2 Years IPTV Service - $225";
 const FIRESTICK_UPGRADE_VALUE = "Summer Streaming Special - Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140";
-const FOUR_K_BUNDLE_VALUE = "Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - SOLD OUT / Join Restock List";
+const FOUR_K_BUNDLE_VALUE = "Summer Streaming Special - 4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160";
 const FOUR_K_PLUS_BUNDLE_VALUE = "Summer Streaming Special - 4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180";
 const LIMITED_TIME_SERVICE_ONLY_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device";
 const FREE_TRIAL_VALUE = "48-Hour Free Trial Request";
+const WORLD_CUP_ONE_YEAR_PLAN_VALUE = "World Cup Special - Onn 4K Device + 1 Year IPTV Service - $150";
+const WORLD_CUP_TWO_YEAR_PLAN_VALUE = "World Cup 2-Year Special - Onn 4K Device + 2 Years IPTV Service - $225";
 const FIRESTICK_UPGRADE_PLAN_VALUE = "Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140";
-const FOUR_K_BUNDLE_PLAN_VALUE = "4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160 - SOLD OUT / Join Restock List";
+const FOUR_K_BUNDLE_PLAN_VALUE = "4K Streaming Bundle - Onn 4K Device + 1 Year IPTV Service - $160";
 const FOUR_K_PLUS_BUNDLE_PLAN_VALUE = "4K Plus Upgrade Bundle - Onn 4K Plus Device + 1 Year IPTV Service - $180";
 const LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100";
 const FREE_TRIAL_PLAN_VALUE = "48-Hour Free Trial - Free";
+const WORLD_CUP_SOURCE = "World Cup Special";
 const LIMITED_TIME_SERVICE_ONLY_SOURCE = "Limited-Time Service Only Offer";
-const SUMMER_SPECIAL_SOURCE = "Summer Streaming Special - Firestick / 4K Plus Offers + 4K Restock List";
+const SUMMER_SPECIAL_SOURCE = "Summer Streaming Special - All Onn Device Bundles In Stock";
 const FREE_TRIAL_SOURCE = "48-Hour Free Trial";
+const WORLD_CUP_QUERY = "world-cup-special";
 const LIMITED_TIME_SERVICE_ONLY_QUERY = "limited-time-service-only";
 const SUMMER_SPECIAL_QUERY = "summer-streaming-special";
 const FIRESTICK_UPGRADE_QUERY = "firestick-upgrade-bundle";
@@ -441,11 +419,13 @@ const FOUR_K_BUNDLE_QUERY = "4k-streaming-bundle";
 const FOUR_K_PLUS_BUNDLE_QUERY = "4k-plus-upgrade-bundle";
 const FREE_TRIAL_QUERY = "48-hour-trial";
 const BUNDLE_OPTIONS = {
+  [WORLD_CUP_ONE_YEAR_VALUE]: { plan: WORLD_CUP_ONE_YEAR_PLAN_VALUE, device: "Onn 4K Streaming Device - World Cup Special - $150" },
+  [WORLD_CUP_TWO_YEAR_VALUE]: { plan: WORLD_CUP_TWO_YEAR_PLAN_VALUE, device: "Onn 4K Streaming Device - World Cup 2-Year Special - $225" },
   [FIRESTICK_UPGRADE_VALUE]: { plan: FIRESTICK_UPGRADE_PLAN_VALUE, device: "Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140" },
-  [FOUR_K_BUNDLE_VALUE]: { plan: FOUR_K_BUNDLE_PLAN_VALUE, device: "Onn 4K Streaming Device - 4K Streaming Bundle - $160 - SOLD OUT / Join Restock List" },
+  [FOUR_K_BUNDLE_VALUE]: { plan: FOUR_K_BUNDLE_PLAN_VALUE, device: "Onn 4K Streaming Device - 4K Streaming Bundle - $160 - IN STOCK" },
   [FOUR_K_PLUS_BUNDLE_VALUE]: { plan: FOUR_K_PLUS_BUNDLE_PLAN_VALUE, device: "Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180" }
 };
-const BUNDLE_PLAN_VALUES = [FIRESTICK_UPGRADE_PLAN_VALUE, FOUR_K_BUNDLE_PLAN_VALUE, FOUR_K_PLUS_BUNDLE_PLAN_VALUE];
+const BUNDLE_PLAN_VALUES = [WORLD_CUP_ONE_YEAR_PLAN_VALUE, WORLD_CUP_TWO_YEAR_PLAN_VALUE, FIRESTICK_UPGRADE_PLAN_VALUE, FOUR_K_BUNDLE_PLAN_VALUE, FOUR_K_PLUS_BUNDLE_PLAN_VALUE];
 function isBundleValue(value) { return Object.prototype.hasOwnProperty.call(BUNDLE_OPTIONS, value); }
 function isBundlePlanValue(value) { return BUNDLE_PLAN_VALUES.includes(value); }
 
@@ -464,13 +444,13 @@ function toggleDeviceField() {
 }
 
 function updateSubmitState() {
-  const ready = quoteAcknowledgement.checked && followupAcknowledgement.checked;
+  const ready = quoteAcknowledgement.checked;
   submitButton.disabled = !ready;
 }
 
 function deriveNeedDeviceValue() {
   if (isBundleValue(serviceType.value)) {
-    return serviceType.value === FOUR_K_BUNDLE_VALUE ? "Yes - Onn 4K Restock Request" : "Yes - Limited Onn Device Bundle Selected";
+    return serviceType.value === FOUR_K_BUNDLE_VALUE ? "Yes - Onn Device Bundle Selected" : "Yes - Onn Device Bundle Selected";
   }
   if (serviceType.value === "IPTV Service + Device") {
     return "Yes - I need a device";
@@ -489,6 +469,7 @@ function getCampaignSource() {
   const serviceOnlySelected = serviceType.value === LIMITED_TIME_SERVICE_ONLY_VALUE || planInterest === LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE;
   const trialSelected = serviceType.value === FREE_TRIAL_VALUE || planInterest === FREE_TRIAL_PLAN_VALUE;
   if (promoParam === FREE_TRIAL_QUERY || trialSelected) return FREE_TRIAL_SOURCE;
+  if (promoParam === WORLD_CUP_QUERY || serviceType.value === WORLD_CUP_ONE_YEAR_VALUE || serviceType.value === WORLD_CUP_TWO_YEAR_VALUE || planInterest === WORLD_CUP_ONE_YEAR_PLAN_VALUE || planInterest === WORLD_CUP_TWO_YEAR_PLAN_VALUE) return WORLD_CUP_SOURCE;
   if (promoParam === LIMITED_TIME_SERVICE_ONLY_QUERY || serviceOnlySelected) return LIMITED_TIME_SERVICE_ONLY_SOURCE;
   if (promoParam === SUMMER_SPECIAL_QUERY || promoParam === FIRESTICK_UPGRADE_QUERY || promoParam === FOUR_K_BUNDLE_QUERY || promoParam === FOUR_K_PLUS_BUNDLE_QUERY || bundleSelected) return SUMMER_SPECIAL_SOURCE;
   return "";
@@ -505,7 +486,13 @@ function syncBundleSelections() {
 function applyPromoFromUrl() {
   const params = new URLSearchParams(window.location.search);
   const promo = params.get("promo");
-  if (promo === FREE_TRIAL_QUERY) {
+  if (promo === WORLD_CUP_QUERY) {
+    const wantsTwoYears = params.get("term") === "2-year";
+    serviceType.value = wantsTwoYears ? WORLD_CUP_TWO_YEAR_VALUE : WORLD_CUP_ONE_YEAR_VALUE;
+    syncBundleSelections();
+    serviceTerm.value = wantsTwoYears ? "2 Years - Add Second Year for $75 - Save $25" : "1 Year - Standard Bundle Pricing";
+    toggleDeviceField();
+  } else if (promo === FREE_TRIAL_QUERY) {
     serviceType.value = FREE_TRIAL_VALUE;
     document.getElementById("planInterest").value = FREE_TRIAL_PLAN_VALUE;
     document.getElementById("friendTrial").value = "Yes - I am requesting the 48-hour trial for myself";
@@ -529,6 +516,29 @@ function applyPromoFromUrl() {
     syncBundleSelections();
     toggleDeviceField();
   }
+
+  const device = params.get("device");
+  const deviceMap = {
+    "onn-hd": "Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140",
+    "onn-4k": "Onn 4K Streaming Device - 4K Streaming Bundle - $160 - IN STOCK",
+    "onn-4k-plus": "Onn 4K Plus Streaming Device - 4K Plus Upgrade Bundle - $180",
+    "google-tv-streamer": "Google TV Streamer 4K Bundle - $240",
+    "nvidia-shield": "NVIDIA Shield TV Pro Special-Order Bundle - $380 - FULL PREPAYMENT REQUIRED"
+  };
+  if (deviceMap[device] && !isBundleValue(serviceType.value)) {
+    serviceType.value = "IPTV Service + Device";
+    const premiumPlanMap = {
+      "google-tv-streamer": "Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $240",
+      "nvidia-shield": "NVIDIA Shield TV Pro Special-Order Bundle - Device Setup + 1 Year IPTV Service - $380 - PREPAYMENT REQUIRED"
+    };
+    document.getElementById("planInterest").value = premiumPlanMap[device] || "Not Sure Yet";
+    toggleDeviceField();
+    preferredDevice.value = deviceMap[device];
+  }
+
+  if (params.get("term") === "2-year") {
+    serviceTerm.value = "2 Years - Add Second Year for $75 - Save $25";
+  }
 }
 
 function buildPayload() {
@@ -548,6 +558,7 @@ function buildPayload() {
     preferredContact: document.getElementById("preferredContact").value || "",
     preferredReplyTime: document.getElementById("preferredReplyTime").value || "",
     planInterest: document.getElementById("planInterest").value || "",
+    serviceTerm: serviceTerm.value || "1 Year - Standard Bundle Pricing",
     tvCount: document.getElementById("tvCount").value || "",
     referralSource: document.getElementById("referralSource").value || "",
     friendTrial: document.getElementById("friendTrial").value || "",
@@ -555,7 +566,7 @@ function buildPayload() {
     sourceUrl: window.location.href,
     referrer: document.referrer || "",
     campaignSource: getCampaignSource(),
-    promoCode: getCampaignSource() === FREE_TRIAL_SOURCE ? FREE_TRIAL_QUERY : (getCampaignSource() === LIMITED_TIME_SERVICE_ONLY_SOURCE ? LIMITED_TIME_SERVICE_ONLY_QUERY : (getCampaignSource() ? SUMMER_SPECIAL_QUERY : "")),
+    promoCode: new URLSearchParams(window.location.search).get("promo") || (getCampaignSource() === FREE_TRIAL_SOURCE ? FREE_TRIAL_QUERY : (getCampaignSource() === LIMITED_TIME_SERVICE_ONLY_SOURCE ? LIMITED_TIME_SERVICE_ONLY_QUERY : (getCampaignSource() ? SUMMER_SPECIAL_QUERY : ""))),
     paymentStatus: getCampaignSource() === FREE_TRIAL_SOURCE ? "TRIAL" : "QUOTE PENDING",
     orderStatus: "NEW",
     deliveryStatus: "Not Started",
@@ -565,6 +576,7 @@ function buildPayload() {
       getCampaignSource() ? "Campaign Source: " + getCampaignSource() : "",
       "Setup Choice: " + (document.getElementById("serviceType").value || ""),
       "Plan Interest: " + (document.getElementById("planInterest").value || ""),
+      "Service Term: " + (serviceTerm.value || "1 Year - Standard Bundle Pricing"),
       "Need Device: " + deriveNeedDeviceValue(),
       "TV Count: " + (document.getElementById("tvCount").value || ""),
       document.getElementById("referralSource").value ? "Referral Source: " + document.getElementById("referralSource").value : "",
@@ -575,7 +587,6 @@ function buildPayload() {
       document.getElementById("preferredContact").value ? "Preferred Contact: " + document.getElementById("preferredContact").value : "",
       document.getElementById("paymentPreference").value ? "Payment Preference: " + document.getElementById("paymentPreference").value : "",
       quoteAcknowledgement.checked ? "Quote Acknowledged: Yes" : "",
-      followupAcknowledgement.checked ? "Follow-Up Acknowledged: Yes" : "",
       document.getElementById("notes").value.trim() ? "Customer Notes: " + document.getElementById("notes").value.trim() : ""
     ].filter(Boolean).join(" | ")
   };
@@ -597,7 +608,6 @@ serviceType.addEventListener("change", function () {
   toggleDeviceField();
 });
 quoteAcknowledgement.addEventListener("change", updateSubmitState);
-followupAcknowledgement.addEventListener("change", updateSubmitState);
 
 applyPromoFromUrl();
 toggleDeviceField();
@@ -608,8 +618,8 @@ form.addEventListener("submit", async function (event) {
   errorMessage.style.display = "none";
   successMessage.style.display = "none";
 
-  if (!quoteAcknowledgement.checked || !followupAcknowledgement.checked) {
-    showError("Please acknowledge both items before submitting your request.");
+  if (!quoteAcknowledgement.checked) {
+    showError("Please confirm the acknowledgement before submitting.");
     return;
   }
 
@@ -644,7 +654,7 @@ form.addEventListener("submit", async function (event) {
           plan_interest: document.getElementById("planInterest").value || ""
         });
       }
-      showSuccess("Your request was submitted successfully. Redirecting you to the confirmation page now.");
+      showSuccess("Request submitted. Opening the confirmation page.");
       window.scrollTo({ top: 0, behavior: "smooth" });
       setTimeout(function () {
         window.location.href = "success.html";
