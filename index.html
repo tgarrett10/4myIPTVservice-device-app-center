@@ -212,16 +212,16 @@ a{color:inherit}
 
 .hero-inner{
   position:relative;
-  display:grid;
-  grid-template-columns:1.25fr .75fr;
-  gap:22px;
-  align-items:start;
+  display:block;
 }
 .hero-inner > div:first-child{
+  max-width:1040px;
+  margin:0 auto;
   padding-top:4px;
 }
 .hero-side{
-  align-self:start;
+  width:100%;
+  margin-top:20px;
 }
 .eyebrow{
   display:inline-flex;
@@ -285,30 +285,37 @@ h1{
 .gold{background:var(--gold);color:#3b2400}
 .outline{background:transparent;color:#e2e8f0;border:1px solid rgba(148,163,184,.34);box-shadow:none}
 .hero-side{
-  background:rgba(18,32,55,.88);
-  border:1px solid rgba(148,163,184,.28);
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  background:rgba(18,32,55,.72);
+  border:1px solid rgba(148,163,184,.24);
   border-radius:20px;
-  padding:20px;
+  padding:14px;
 }
 .price-card{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
   border-radius:18px;
   background:linear-gradient(160deg,rgba(34,197,94,.18),rgba(59,130,246,.12));
   border:1px solid rgba(134,239,172,.30);
-  padding:18px;
-  margin-bottom:12px;
+  padding:16px;
+  margin:0;
 }
 .price-label{color:#bbf7d0;font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.08em}
 .price-main{font-size:42px;font-weight:900;color:#fff;line-height:1;margin:8px 0 4px}
 .price-main span{color:#86efac}
-.price-note{color:#d4dee9;font-size:14px;line-height:1.45}
+.price-note{color:#d4dee9;font-size:14px;line-height:1.45;flex:1}
 .service-only-card{background:linear-gradient(160deg,rgba(59,130,246,.16),rgba(245,158,11,.10));border-color:rgba(59,130,246,.32)}
 .small-price{font-size:32px}
-.mini-cta{margin-top:12px;width:100%;font-size:13px;min-height:40px;padding:10px 12px}
+.mini-cta{margin-top:auto;width:100%;font-size:13px;min-height:40px;padding:10px 12px;transform:translateY(4px)}
 .quick-contact{
+  grid-column:1 / -1;
   border-radius:16px;
   border:1px solid rgba(59,130,246,.30);
   background:rgba(59,130,246,.12);
-  padding:14px;
+  padding:14px 16px;
 }
 .quick-contact strong{display:block;color:#dbeafe;margin-bottom:5px}
 .quick-contact p{margin:0;color:#d4dee9;line-height:1.45;font-size:14px}
@@ -437,6 +444,7 @@ h2{
 /* WORLD CUP SPLASH END */
 
 @media(max-width:900px){
+  .hero-side{grid-template-columns:repeat(2,minmax(0,1fr))}
   .wc-modal{padding:30px 18px 24px}
   .wc-ball-lane{height:70px}
   .wc-ball{width:58px;height:58px}
@@ -458,6 +466,11 @@ h2{
   .wrap{padding:12px}
   .card{padding:18px;border-radius:18px}
   .price-main{font-size:34px}
+}
+
+@media(max-width:620px){
+  .hero-side{grid-template-columns:1fr}
+  .price-card{padding:15px}
 }
 </style>
 </head>
@@ -539,7 +552,7 @@ h2{
         </div>
         <div class="fireworks-overlay" aria-hidden="true"><div class="firework one"></div><div class="firework two"></div><div class="firework three"></div></div>
         <canvas id="summerFireworksCanvas" class="fireworks-canvas" aria-hidden="true"></canvas>
-        <aside class="hero-side" aria-label="World Cup special offers">
+        <div class="hero-side" aria-label="World Cup special offers">
           <div class="price-card">
             <div class="price-label">World Cup Bundle</div>
             <div class="price-main"><span>$150</span></div>
@@ -577,7 +590,7 @@ h2{
             <strong>Want the deal before inventory runs low?</strong>
             <p>Request the World Cup special online or message directly for the fastest response. The Onn 4K bundle is available now, and the two-year special increases your savings. No inventory is held without payment confirmation.</p>
           </div>
-        </aside>
+        </div>
       </div>
     </section>
 
