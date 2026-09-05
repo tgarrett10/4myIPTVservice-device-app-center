@@ -896,6 +896,10 @@
 
       const twoYear = text.includes("2 years") || text.includes("2-year") || text.includes("second year");
 
+      if (text.includes("strike into fall") && text.includes("4k plus") && twoYear) return "245.00";
+      if (text.includes("strike into fall") && text.includes("4k plus")) return "170.00";
+      if (text.includes("strike into fall") && text.includes("onn 4k") && twoYear) return "225.00";
+      if (text.includes("strike into fall") && text.includes("onn 4k")) return "150.00";
       if (text.includes("world cup") && text.includes("onn 4k") && twoYear) return "225.00";
       if (text.includes("world cup") && text.includes("onn 4k") && text.includes("150")) return "150.00";
 
