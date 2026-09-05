@@ -16,14 +16,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>4MyIPTV Service Customer Support Center</title>
 <!--
-Version: 2.0
-Last Updated: April 20, 2026
+Version: 2.2
+Last Updated: September 4, 2026
 Change Notes:
 - Repositioned the page as a customer support welcome page for device customers
 - Removed duplicate button groups that pointed to the same destinations
 - Simplified the layout to one primary action row
 - Added courtesy support messaging for post-purchase support
-- Tightened getting-started guidance and support reminders
+- Added Quick Install section for faster new-device setup
+- Prioritized core IPTV, sports, movie, and player apps
 -->
 <style>
 :root{
@@ -139,6 +140,13 @@ h2{margin:0 0 6px}
   font-size:.9rem;
 }
 .footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
+
+.quick-install{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.quick-app{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 14px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.025)}
+.quick-app strong{display:block;margin-bottom:3px}.quick-app span{color:var(--muted);font-size:13px;line-height:1.35}
+.quick-app .btn{width:auto;min-width:110px;padding:11px 12px}
+@media (max-width:760px){.quick-install{grid-template-columns:1fr}.quick-app{align-items:flex-start;flex-direction:column}.quick-app .btn{width:100%}}
+
 .support-note{
   margin-top:14px;
   text-align:center;
@@ -163,20 +171,39 @@ h2{margin:0 0 6px}
 
     <div class="tip">
       <strong>Getting Started</strong><br />
-      1. Open Device Setup<br />
-      2. Install or reopen IPTV Smarters<br />
-      3. Enter your login details exactly as provided<br />
-      4. Open Support / Tips if you need help
+      1. Install or reopen the IPTV Smarters App<br />
+      2. Enter your login details exactly as provided<br />
+      3. Use the Quick Install apps below when needed<br />
+      4. Open Device Setup or Support / Tips if you need help
     </div>
 
     <div class="quicknav">
-      <a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank" rel="noopener noreferrer">Install IPTV Smarters</a>
+      <a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank" rel="noopener noreferrer">Install IPTV Smarters App</a>
       <a class="btn playbtn" href="device-setup.html">Open Device Setup</a>
       <a class="btn directbtn" href="app-library.html">Open Apps &amp; Updates</a>
       <a class="btn directbtn" href="support.html">Open Support / Tips</a>
     </div>
 
     <div class="support-note">These are the main tools most customers need after purchase. Start here first before looking elsewhere. Movie Box TV v1.0.3 is available through Apps &amp; Updates.</div>
+  </div>
+
+  <div class="card">
+    <div class="header">
+      <div class="section-label">New Device Setup</div>
+      <h2>Quick Install — Most Used Apps</h2>
+      <div class="sub" style="text-align:left;margin:0">Start with IPTV Smarters App. Add the other apps only when you want the extra viewing or playback options.</div>
+    </div>
+    <div class="content">
+      <div class="quick-install">
+        <div class="quick-app"><div><strong>1. IPTV Smarters App</strong><span>Primary IPTV customer app.</span></div><a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank" rel="noopener noreferrer">Install</a></div>
+        <div class="quick-app"><div><strong>2. MX Player</strong><span>Additional playback support.</span></div><a class="btn playbtn" href="https://f.mxplayer.j2inter.com/download?id=mxplayer&type=arm" target="_blank" rel="noopener noreferrer">Install</a></div>
+        <div class="quick-app"><div><strong>3. StreamFire</strong><span>Optional live TV app.</span></div><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/EM6TZXCh" target="_blank" rel="noopener noreferrer">Install</a></div>
+        <div class="quick-app"><div><strong>4. Sportsfire</strong><span>Optional live sports app.</span></div><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/bJgTC1aw" target="_blank" rel="noopener noreferrer">Install</a></div>
+        <div class="quick-app"><div><strong>5. PLAYfy TV</strong><span>Optional live TV and sports app.</span></div><a class="btn playbtn" href="https://www.mediafire.com/file/tfdwts9y73jpdrp/PLAYFy_TV_1.5.apk/file" target="_blank" rel="noopener noreferrer">Install</a></div>
+        <div class="quick-app"><div><strong>6. Flix Vision</strong><span>Optional movie and TV app.</span></div><a class="btn playbtn" href="https://fileroy.com/5pVzNoNVG7wv/file" target="_blank" rel="noopener noreferrer">Install</a></div>
+      </div>
+      <div class="support-note">Need something else? Open <a href="app-library.html" style="color:#86efac;font-weight:700">Apps &amp; Updates</a> for the complete library, including Movie Box TV and utilities.</div>
+    </div>
   </div>
 
   <div class="card">
@@ -197,7 +224,7 @@ h2{margin:0 0 6px}
 
   <div class="footer-strip">
     <strong>4MyIPTV Service • Customer Support Center</strong>
-    <div class="version">Version 2.1 • Last Updated: July 4, 2026</div>
+    <div class="version">Version 2.2 • Quick Install Update • September 4, 2026</div>
   </div>
 </div>
 <!-- CUSTOMER ANALYTICS EVENT TRACKING START -->
