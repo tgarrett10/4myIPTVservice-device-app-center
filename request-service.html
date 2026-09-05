@@ -182,7 +182,7 @@ textarea{min-height:110px;resize:vertical}
     <h1>Request Service</h1>
     <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
     <div class="sub">
-      Choose what you need below. No payment is collected on this form.
+      Choose what you need below. Fall special bundles include Onn HD for $140, Onn 4K for $150, and Onn 4K Plus for $170. No payment is collected on this form.
     </div>
   </div>
 
@@ -193,7 +193,7 @@ textarea{min-height:110px;resize:vertical}
     </div>
     <div class="content">
       <div class="notice" style="margin-bottom:16px;">
-        Select a plan and enter your contact information.
+        Select a plan and enter your contact information. Plug-and-play service is available, and shipping can be added when required.
       </div>
       <form id="requestForm" novalidate>
         <div class="form-grid">
@@ -228,7 +228,7 @@ textarea{min-height:110px;resize:vertical}
           <label for="serviceType">What Do You Need?</label>
           <select id="serviceType" name="serviceType" required>
             <option value="">Select one option</option>
-            <option value="Summer Streaming Special - Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140">Onn Full HD Bundle · $140</option>
+            <option value="Strike Into Fall Special - Onn HD Device + 1 Year IPTV Service - $140">Onn HD Bundle · $140 · Plug &amp; Play</option>
             <option value="Strike Into Fall Special - Onn 4K Device + 1 Year IPTV Service - $150">Onn 4K Bundle · $150 · Recommended</option>
             <option value="Strike Into Fall Special - Onn 4K Plus Device + 1 Year IPTV Service - $170">Onn 4K Plus Bundle · $170</option>
             <option value="Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $240">Google TV Streamer Bundle · $240</option>
@@ -344,7 +344,7 @@ textarea{min-height:110px;resize:vertical}
 
   <div class="footer-strip">
     <strong>4MyIPTV Service • Request Service</strong>
-    <div class="version">Version 2.1 • Strike Into Fall Pricing • September 2026</div>
+    <div class="version">Version 2.2 • Strike Into Fall + Onn HD Pricing • September 2026</div>
   </div>
 </div>
 
@@ -358,14 +358,14 @@ const quoteAcknowledgement = document.getElementById("quoteAcknowledgement");
 const submitButton = document.getElementById("submitButton");
 const successMessage = document.getElementById("successMessage");
 const errorMessage = document.getElementById("errorMessage");
-const FIRESTICK_UPGRADE_VALUE = "Summer Streaming Special - Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140";
+const FIRESTICK_UPGRADE_VALUE = "Strike Into Fall Special - Onn HD Device + 1 Year IPTV Service - $140";
 const FOUR_K_BUNDLE_VALUE = "Strike Into Fall Special - Onn 4K Device + 1 Year IPTV Service - $150";
 const FOUR_K_PLUS_BUNDLE_VALUE = "Strike Into Fall Special - Onn 4K Plus Device + 1 Year IPTV Service - $170";
 const GOOGLE_STREAMER_VALUE = "Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $240";
 const NVIDIA_SHIELD_VALUE = "NVIDIA Shield TV Pro Special-Order Bundle - Device Setup + 1 Year IPTV Service - $380 - PREPAYMENT REQUIRED";
 const LIMITED_TIME_SERVICE_ONLY_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device";
 const FREE_TRIAL_VALUE = "48-Hour Free Trial Request";
-const FIRESTICK_UPGRADE_PLAN_VALUE = "Firestick Upgrade Bundle - Onn Full HD Device + 1 Year IPTV Service - $140";
+const FIRESTICK_UPGRADE_PLAN_VALUE = "Strike Into Fall - Onn HD Device + 1 Year IPTV Service - $140";
 const FOUR_K_BUNDLE_PLAN_VALUE = "Strike Into Fall - Onn 4K Device + 1 Year IPTV Service - $150";
 const FOUR_K_PLUS_BUNDLE_PLAN_VALUE = "Strike Into Fall - Onn 4K Plus Device + 1 Year IPTV Service - $170";
 const GOOGLE_STREAMER_PLAN_VALUE = "Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $240";
@@ -383,7 +383,7 @@ const FOUR_K_BUNDLE_QUERY = "4k-streaming-bundle";
 const FOUR_K_PLUS_BUNDLE_QUERY = "4k-plus-upgrade-bundle";
 const FREE_TRIAL_QUERY = "48-hour-trial";
 const BUNDLE_OPTIONS = {
-  [FIRESTICK_UPGRADE_VALUE]: { plan: FIRESTICK_UPGRADE_PLAN_VALUE, device: "Onn Full HD Streaming Device - Firestick Upgrade Bundle - $140" },
+  [FIRESTICK_UPGRADE_VALUE]: { plan: FIRESTICK_UPGRADE_PLAN_VALUE, device: "Onn HD Streaming Device - Strike Into Fall - $140 - PLUG AND PLAY" },
   [FOUR_K_BUNDLE_VALUE]: { plan: FOUR_K_BUNDLE_PLAN_VALUE, device: "Onn 4K Streaming Device - Strike Into Fall - $150 - IN STOCK" },
   [FOUR_K_PLUS_BUNDLE_VALUE]: { plan: FOUR_K_PLUS_BUNDLE_PLAN_VALUE, device: "Onn 4K Plus Streaming Device - Strike Into Fall - $170" },
   [GOOGLE_STREAMER_VALUE]: { plan: GOOGLE_STREAMER_PLAN_VALUE, device: "Google TV Streamer 4K Bundle - $240" },
