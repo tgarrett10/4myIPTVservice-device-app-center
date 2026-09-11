@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>4MyIPTV Service Admin Update Checker</title>
-<!-- Version 1.3 update: Replaced Flix Vision and Cinema HQ test links to match the current APK library targets on April 13, 2026. -->
+<!-- Version 1.8 update: aligned monthly checks with current app status; PLAYfy TV v1.7 validated; StreamFire, FalconCast, and Sportsfire retired. -->
 <style>
 :root{--bg:#08111f;--panel:#101827;--text:#f8fafc;--muted:#94a3b8;--green:#22c55e;--blue:#3b82f6;--gold:#f59e0b;--purple:#9333ea;--border:#1f2937}
 *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#08111f,#0f172a);color:var(--text)}
@@ -27,7 +27,7 @@
   <div class="btnrow" style="margin-bottom:12px;"><a class="btn adminbtn" href="admin-dashboard.html">Back to Installer Dashboard</a></div>
   <div class="sub">This is an internal maintenance page. Use it to review app versions, test direct links, and mark apps as verified after your monthly update check.</div>
   <div class="notice"><strong>Important:</strong> GitHub Pages is a static website, so this page is designed to help you check updates efficiently rather than scrape every app source automatically. Use the <strong>Check Source</strong> and <strong>Test Link</strong> buttons, then update your spreadsheet and site pages only when needed.</div>
-  <div class="tip"><strong>Recommended monthly check order:</strong> IPTV Smarters App → Flix Vision → Sportsfire → StreamFire → Utility apps → Device-specific tools.</div>
+  <div class="tip"><strong>Recommended monthly check order:</strong> IPTV Smarters App → Flix Vision → PLAYfy TV → Movie / TV apps → Utility apps → Device-specific tools.</div>
 </div>
 
 <div class="card"><div class="header"><div class="section-label">Workflow</div><h2>How to Use This Page</h2></div><div class="content"><table class="table"><tr><th style="width:33%;">Step 1</th><th style="width:33%;">Step 2</th><th style="width:34%;">Step 3</th></tr><tr><td>Click <strong>Test Link</strong> for every non-Play Store APK app once per month.</td><td>Click <strong>Check Source</strong> to confirm whether a newer version exists.</td><td>Update the spreadsheet first, then update the Admin APK Library, Dashboard, and Downloader Portal only if needed.</td></tr></table></div></div>
@@ -35,7 +35,7 @@
 <div class="card"><div class="header"><div class="section-label">Monthly Audit</div><h2>APK Link &amp; Version Review</h2></div><div class="content">
 <h3 style="margin:18px 0 10px 0;">Core IPTV Apps</h3>
 <table class="table" style="margin-bottom:18px;"><tr><th>Verified</th><th>App</th><th>Test Link</th><th>Check Source</th><th>Notes</th></tr>
-<tr><td><input class="check" type="checkbox"/></td><td>IPTV Smarters App</td><td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank">Test Link</a></td><td><a class="btn playbtn" href="https://www.google.com/search?q=IPTV+Smarters+Pro+latest+version" target="_blank">Check Source</a></td><td class="small">Monthly review required.</td></tr>
+<tr><td><input class="check" type="checkbox"/></td><td>IPTV Smarters App</td><td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank">Test Link</a></td><td><a class="btn playbtn" href="https://www.google.com/search?q=IPTV+Smarters+App+latest+version" target="_blank">Check Source</a></td><td class="small">Monthly review required.</td></tr>
 <tr><td><input class="check" type="checkbox"/></td><td>AMPlayer</td><td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/J99DWABk" target="_blank">Test Link</a></td><td><a class="btn playbtn" href="https://www.google.com/search?q=AMPlayer+latest+version" target="_blank">Check Source</a></td><td class="small">Monthly review required.</td></tr>
 <tr><td><input class="check" type="checkbox"/></td><td>Bear Player</td><td><a class="btn directbtn" href="https://www.mediafire.com/file/m35yb9lekyxldlw/Bear+Player_v2.20.24_MOD_modded-1.com.apk/file" target="_blank">Test Link</a></td><td><a class="btn playbtn" href="https://www.google.com/search?q=Bear+Player+latest+version" target="_blank">Check Source</a></td><td class="small">Monthly review required.</td></tr>
 <tr><td><input class="check" type="checkbox"/></td><td>BPlayer</td><td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/TKHUxRbj" target="_blank">Test Link</a></td><td><a class="btn playbtn" href="https://www.google.com/search?q=BPlayer+latest+version" target="_blank">Check Source</a></td><td class="small">Monthly review required.</td></tr></table>
@@ -53,10 +53,10 @@
 
 <h3 style="margin:18px 0 10px 0;">Sports APK Apps</h3>
 <table class="table" style="margin-bottom:18px;"><tr><th>Verified</th><th>App</th><th>Test Link</th><th>Check Source</th><th>Notes</th></tr>
-<tr><td><input class="check" type="checkbox"/></td><td>FalconCast</td><td><a class="btn directbtn" href="https://www.mediafire.com/file/5mvpvpdpzn62h05/FalconCast_(V4.1)+(1).apk/file" target="_blank">Test Link</a></td><td><a class="btn playbtn" href="https://www.google.com/search?q=FalconCast+latest+version" target="_blank">Check Source</a></td><td class="small">Monthly review required.</td></tr>
-<tr><td><input class="check" type="checkbox"/></td><td>Playfy TV</td><td><a class="btn directbtn" href="https://www.mediafire.com/file/tfdwts9y73jpdrp/PLAYFy_TV_1.5.apk/file" target="_blank">Test Link</a></td><td><a class="btn playbtn" href="https://www.google.com/search?q=Playfy+TV+latest+version" target="_blank">Check Source</a></td><td class="small">Monthly review required.</td></tr>
-<tr><td><input class="check" type="checkbox"/></td><td>Sportsfire</td><td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/bJgTC1aw" target="_blank">Test Link</a></td><td><a class="btn playbtn" href="https://www.google.com/search?q=Sportsfire+latest+version" target="_blank">Check Source</a></td><td class="small">Monthly review required.</td></tr>
-<tr><td><input class="check" type="checkbox"/></td><td>StreamFire</td><td><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/EM6TZXCh" target="_blank">Test Link</a></td><td><a class="btn playbtn" href="https://www.google.com/search?q=StreamFire+latest+version" target="_blank">Check Source</a></td><td class="small">Monthly review required.</td></tr></table>
+<tr><td><input class="check" type="checkbox"/></td><td>FalconCast</td><td><span class="btn directbtn">No Longer Active</span></td><td><span class="btn playbtn">Retired</span></td><td class="small">Retired from new installs September 10, 2026. Keep only as status history.</td></tr>
+<tr><td><input class="check" type="checkbox"/></td><td>PLAYfy TV v1.7</td><td><a class="btn directbtn" href="https://dlplayfy.pages.dev/archive/PLAYFy-TV-V1.7.apk" target="_blank">Test Link</a></td><td><a class="btn playbtn" href="https://www.google.com/search?q=PLAYfy+TV+latest+version" target="_blank">Check Source</a></td><td class="small">v1.7 validated on an Onn device September 10, 2026.</td></tr>
+<tr><td><input class="check" type="checkbox"/></td><td>Sportsfire</td><td><span class="btn directbtn">No Longer Active</span></td><td><span class="btn playbtn">Retired</span></td><td class="small">Retired from new installs September 10, 2026. Keep only as status history.</td></tr>
+<tr><td><input class="check" type="checkbox"/></td><td>StreamFire</td><td><span class="btn directbtn">No Longer Active</span></td><td><span class="btn playbtn">Retired</span></td><td class="small">Retired from new installs September 10, 2026. Keep only as status history.</td></tr></table>
 
 <h3 style="margin:18px 0 10px 0;">Utility APK Apps</h3>
 <table class="table" style="margin-bottom:18px;"><tr><th>Verified</th><th>App</th><th>Test Link</th><th>Check Source</th><th>Notes</th></tr>
@@ -72,8 +72,8 @@
 <div class="card"><div class="header"><div class="section-label">Best Practice</div><h2>Control Notes</h2></div><div class="content"><ul><li>Update the spreadsheet first.</li><li>Only update the site if the version or link actually changed.</li><li>Test the APK link from the Admin APK Library page after every change.</li><li>Then test the matching dashboard button.</li><li>If a link breaks, replace it in the Admin APK Library before touching customer pages.</li></ul><div class="warning"><strong>Reminder:</strong> A Downloader code is only a shortcut that redirects to a URL. If you want direct access to a page like the Resource Center in Downloader, give that page its own direct URL or its own short code.</div></div></div>
 
 <div class="btnrow"><a class="btn adminbtn" href="admin-dashboard.html">Back to Installer Dashboard</a></div>
-<!-- Change Log: Version 1.7 updates Movie Box TV to v1.0.3 and keeps monthly review controls active. -->
-<div class="footer-strip"><strong>4MyIPTV Service • Admin Update Checker</strong><div class="version">Version 1.7 • Last Updated: July 4, 2026</div></div>
+<!-- Change Log: Version 1.8 updates PLAYfy TV to validated v1.7 and converts retired apps to status-history rows. -->
+<div class="footer-strip"><strong>4MyIPTV Service • Admin Update Checker</strong><div class="version">Version 1.8 • Last Updated: September 10, 2026</div></div>
 </div>
 
 <script>
