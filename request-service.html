@@ -182,7 +182,7 @@ textarea{min-height:110px;resize:vertical}
     <h1>Request Service</h1>
     <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
     <div class="sub">
-      Choose what you need below. Fall special bundles include Onn HD for $140, Onn 4K for $150, and Onn 4K Plus for $170. No payment is collected on this form.
+      Choose what you need below. Holiday special bundles include Onn HD for $140, Onn 4K for $150, and Onn 4K Plus for $170. No payment is collected on this form.
     </div>
   </div>
 
@@ -228,9 +228,9 @@ textarea{min-height:110px;resize:vertical}
           <label for="serviceType">What Do You Need?</label>
           <select id="serviceType" name="serviceType" required>
             <option value="">Select one option</option>
-            <option value="Strike Into Fall Special - Onn HD Device + 1 Year IPTV Service - $140">Onn HD Bundle · $140 · Plug &amp; Play</option>
-            <option value="Strike Into Fall Special - Onn 4K Device + 1 Year IPTV Service - $150">Onn 4K Bundle · $150 · Recommended</option>
-            <option value="Strike Into Fall Special - Onn 4K Plus Device + 1 Year IPTV Service - $170">Onn 4K Plus Bundle · $170</option>
+            <option value="Holiday Streaming Special - Onn HD Device + 1 Year IPTV Service - $140">Onn HD Bundle · $140 · Plug &amp; Play</option>
+            <option value="Holiday Streaming Special - Onn 4K Device + 1 Year IPTV Service - $150">Onn 4K Bundle · $150 · Recommended</option>
+            <option value="Holiday Streaming Special - Onn 4K Plus Device + 1 Year IPTV Service - $170">Onn 4K Plus Bundle · $170</option>
             <option value="Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $240">Google TV Streamer Bundle · $240</option>
             <option value="NVIDIA Shield TV Pro Special-Order Bundle - Device Setup + 1 Year IPTV Service - $380 - PREPAYMENT REQUIRED">NVIDIA Shield · $380 · Prepayment Required</option>
             <option value="Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device">Service Only · 1 Year · $100</option>
@@ -344,7 +344,7 @@ textarea{min-height:110px;resize:vertical}
 
   <div class="footer-strip">
     <strong>4MyIPTV Service • Request Service</strong>
-    <div class="version">Version 2.2 • Strike Into Fall + Onn HD Pricing • September 2026</div>
+    <div class="version">Version 2.3 • Holiday Streaming Offers • Updated November 8, 2026</div>
   </div>
 </div>
 
@@ -358,22 +358,22 @@ const quoteAcknowledgement = document.getElementById("quoteAcknowledgement");
 const submitButton = document.getElementById("submitButton");
 const successMessage = document.getElementById("successMessage");
 const errorMessage = document.getElementById("errorMessage");
-const FIRESTICK_UPGRADE_VALUE = "Strike Into Fall Special - Onn HD Device + 1 Year IPTV Service - $140";
-const FOUR_K_BUNDLE_VALUE = "Strike Into Fall Special - Onn 4K Device + 1 Year IPTV Service - $150";
-const FOUR_K_PLUS_BUNDLE_VALUE = "Strike Into Fall Special - Onn 4K Plus Device + 1 Year IPTV Service - $170";
+const FIRESTICK_UPGRADE_VALUE = "Holiday Streaming Special - Onn HD Device + 1 Year IPTV Service - $140";
+const FOUR_K_BUNDLE_VALUE = "Holiday Streaming Special - Onn 4K Device + 1 Year IPTV Service - $150";
+const FOUR_K_PLUS_BUNDLE_VALUE = "Holiday Streaming Special - Onn 4K Plus Device + 1 Year IPTV Service - $170";
 const GOOGLE_STREAMER_VALUE = "Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $240";
 const NVIDIA_SHIELD_VALUE = "NVIDIA Shield TV Pro Special-Order Bundle - Device Setup + 1 Year IPTV Service - $380 - PREPAYMENT REQUIRED";
 const LIMITED_TIME_SERVICE_ONLY_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device";
 const FREE_TRIAL_VALUE = "48-Hour Free Trial Request";
-const FIRESTICK_UPGRADE_PLAN_VALUE = "Strike Into Fall - Onn HD Device + 1 Year IPTV Service - $140";
-const FOUR_K_BUNDLE_PLAN_VALUE = "Strike Into Fall - Onn 4K Device + 1 Year IPTV Service - $150";
-const FOUR_K_PLUS_BUNDLE_PLAN_VALUE = "Strike Into Fall - Onn 4K Plus Device + 1 Year IPTV Service - $170";
+const FIRESTICK_UPGRADE_PLAN_VALUE = "Holiday Streaming - Onn HD Device + 1 Year IPTV Service - $140";
+const FOUR_K_BUNDLE_PLAN_VALUE = "Holiday Streaming - Onn 4K Device + 1 Year IPTV Service - $150";
+const FOUR_K_PLUS_BUNDLE_PLAN_VALUE = "Holiday Streaming - Onn 4K Plus Device + 1 Year IPTV Service - $170";
 const GOOGLE_STREAMER_PLAN_VALUE = "Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $240";
 const NVIDIA_SHIELD_PLAN_VALUE = "NVIDIA Shield TV Pro Special-Order Bundle - Device Setup + 1 Year IPTV Service - $380 - PREPAYMENT REQUIRED";
 const LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $100";
 const FREE_TRIAL_PLAN_VALUE = "48-Hour Free Trial - Free";
 const LIMITED_TIME_SERVICE_ONLY_SOURCE = "Limited-Time Service Only Offer";
-const FALL_SPECIAL_SOURCE = "Strike Into Fall Special";
+const FALL_SPECIAL_SOURCE = "Holiday Streaming Special";
 const FREE_TRIAL_SOURCE = "48-Hour Free Trial";
 const LIMITED_TIME_SERVICE_ONLY_QUERY = "limited-time-service-only";
 const FALL_SPECIAL_QUERY = "strike-into-fall";
@@ -383,9 +383,9 @@ const FOUR_K_BUNDLE_QUERY = "4k-streaming-bundle";
 const FOUR_K_PLUS_BUNDLE_QUERY = "4k-plus-upgrade-bundle";
 const FREE_TRIAL_QUERY = "48-hour-trial";
 const BUNDLE_OPTIONS = {
-  [FIRESTICK_UPGRADE_VALUE]: { plan: FIRESTICK_UPGRADE_PLAN_VALUE, device: "Onn HD Streaming Device - Strike Into Fall - $140 - PLUG AND PLAY" },
-  [FOUR_K_BUNDLE_VALUE]: { plan: FOUR_K_BUNDLE_PLAN_VALUE, device: "Onn 4K Streaming Device - Strike Into Fall - $150 - IN STOCK" },
-  [FOUR_K_PLUS_BUNDLE_VALUE]: { plan: FOUR_K_PLUS_BUNDLE_PLAN_VALUE, device: "Onn 4K Plus Streaming Device - Strike Into Fall - $170" },
+  [FIRESTICK_UPGRADE_VALUE]: { plan: FIRESTICK_UPGRADE_PLAN_VALUE, device: "Onn HD Streaming Device - Holiday Streaming - $140 - PLUG AND PLAY" },
+  [FOUR_K_BUNDLE_VALUE]: { plan: FOUR_K_BUNDLE_PLAN_VALUE, device: "Onn 4K Streaming Device - Holiday Streaming - $150 - IN STOCK" },
+  [FOUR_K_PLUS_BUNDLE_VALUE]: { plan: FOUR_K_PLUS_BUNDLE_PLAN_VALUE, device: "Onn 4K Plus Streaming Device - Holiday Streaming - $170" },
   [GOOGLE_STREAMER_VALUE]: { plan: GOOGLE_STREAMER_PLAN_VALUE, device: "Google TV Streamer 4K Bundle - $240" },
   [NVIDIA_SHIELD_VALUE]: { plan: NVIDIA_SHIELD_PLAN_VALUE, device: "NVIDIA Shield TV Pro Special-Order Bundle - $380 - FULL PREPAYMENT REQUIRED" }
 };
@@ -463,7 +463,7 @@ function applyPromoFromUrl() {
   const params = new URLSearchParams(window.location.search);
   const promo = params.get("promo");
   if (promo === FALL_SPECIAL_QUERY) {
-    serviceType.value = params.get("device") === "onn-4k-plus" ? FOUR_K_PLUS_BUNDLE_VALUE : FOUR_K_BUNDLE_VALUE;
+    serviceType.value = params.get("device") === "onn-hd" ? FIRESTICK_UPGRADE_VALUE : (params.get("device") === "onn-4k-plus" ? FOUR_K_PLUS_BUNDLE_VALUE : FOUR_K_BUNDLE_VALUE);
     syncBundleSelections();
     toggleDeviceField();
   } else if (promo === FREE_TRIAL_QUERY) {
