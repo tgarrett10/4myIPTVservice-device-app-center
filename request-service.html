@@ -182,7 +182,7 @@ textarea{min-height:110px;resize:vertical}
     <h1>Request Service</h1>
     <div class="tagline">Stream More • Pay Less • Watch Anywhere</div>
     <div class="sub">
-      Choose what you need below. Holiday special bundles include Onn HD for $140, Onn 4K for $150, and Onn 4K Plus for $170. No payment is collected on this form.
+      Choose what you need below. Holiday special bundles include Onn HD for $140, Onn 4K for $150. Onn 4K Plus is temporarily out of stock due to limited supplier availability. Restock date unavailable. No payment is collected on this form.
     </div>
   </div>
 
@@ -230,7 +230,7 @@ textarea{min-height:110px;resize:vertical}
             <option value="">Select one option</option>
             <option value="Holiday Streaming Special - Onn HD Device + 1 Year IPTV Service - $140">Onn HD Bundle · $140 · Plug &amp; Play</option>
             <option value="Holiday Streaming Special - Onn 4K Device + 1 Year IPTV Service - $150">Onn 4K Bundle · $150 · Recommended</option>
-            <option value="Holiday Streaming Special - Onn 4K Plus Device + 1 Year IPTV Service - $170">Onn 4K Plus Bundle · $170</option>
+            <option value="Holiday Streaming Special - Onn 4K Plus Device + 1 Year IPTV Service - $170" disabled>Onn 4K Plus · Temporarily Out of Stock</option>
             <option value="Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $240">Google TV Streamer Bundle · $240</option>
             <option value="NVIDIA Shield TV Pro Special-Order Bundle - Device Setup + 1 Year IPTV Service - $380 - PREPAYMENT REQUIRED">NVIDIA Shield · $380 · Prepayment Required</option>
             <option value="Limited-Time Service Only - 1 Year IPTV Service - $100 - Customer Has Compatible Android 14 Device">Service Only · 1 Year · $100</option>
@@ -462,6 +462,14 @@ function syncBundleSelections() {
 function applyPromoFromUrl() {
   const params = new URLSearchParams(window.location.search);
   const promo = params.get("promo");
+  if (params.get("device") === "onn-4k-plus" || promo === FOUR_K_PLUS_BUNDLE_QUERY) {
+    serviceType.value = "";
+    const notice = document.createElement("p");
+    notice.setAttribute("role", "status");
+    notice.textContent = "Onn 4K Plus is temporarily out of stock due to limited supplier availability. Restock date unavailable. Please choose another option below; the Onn 4K bundle is recommended for most customers.";
+    serviceType.parentElement.prepend(notice);
+    return;
+  }
   if (promo === FALL_SPECIAL_QUERY) {
     serviceType.value = params.get("device") === "onn-hd" ? FIRESTICK_UPGRADE_VALUE : (params.get("device") === "onn-4k-plus" ? FOUR_K_PLUS_BUNDLE_VALUE : FOUR_K_BUNDLE_VALUE);
     syncBundleSelections();
@@ -581,6 +589,11 @@ toggleDeviceField();
 updateSubmitState();
 
 form.addEventListener("submit", async function (event) {
+  if (serviceType.value === FOUR_K_PLUS_BUNDLE_VALUE) {
+    event.preventDefault();
+    showError("Onn 4K Plus is temporarily out of stock. Please choose another option.");
+    return;
+  }
   event.preventDefault();
   errorMessage.style.display = "none";
   successMessage.style.display = "none";
