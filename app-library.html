@@ -56,6 +56,9 @@ h2{margin:0 0 6px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (max-width:980px){.grid2{grid-template-columns:1fr}}
 .search{width:100%;background:#0b1220;border:1px solid #243044;border-radius:12px;color:#e2e8f0;padding:12px 14px;font-size:14px;outline:none}
+.library-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.filterbtn{min-width:auto;padding:8px 11px;background:#334155;color:#f8fafc}.filterbtn.active{background:var(--green);color:#052e16}.sortselect{background:#0b1220;border:1px solid #243044;border-radius:10px;color:#e2e8f0;padding:8px 11px;font-weight:bold}.app-count{margin:10px 0 0;color:var(--muted);font-size:.9rem}
+.app-type{display:inline-block;margin:5px 0 0;padding:3px 8px;border-radius:999px;background:#1f2937;border:1px solid #334155;color:#cbd5e1;font-size:.76rem;font-weight:bold}
+.setup-steps{margin:8px 0 0 18px;padding:0}.setup-steps li{margin:0 0 7px;color:#dbeafe;line-height:1.45}
 .appgrid{padding:8px 14px 10px}
 .approw{display:grid;grid-template-columns:52px 1fr 230px;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #1f2937}
 .approw:last-child{border-bottom:none}
@@ -90,6 +93,15 @@ ul.clean li{margin:0 0 6px}
     <div class="info">
       <strong>App Library</strong><br />
       This support page is intended for active 4MyIPTV Service customers only. Use the category buttons below to locate supported apps, verify current versions, and install the update that matches your device and service setup.
+    </div>
+    <div class="helpbox">
+      <strong>Open Apps &amp; Updates on your TV</strong>
+      <ol class="setup-steps">
+        <li>Open <strong>Downloader</strong> and use its top-left menu to select <strong>Favorites</strong>, then choose <strong>My Support page</strong>.</li>
+        <li>If My Support page is not listed, select <strong>Home</strong>, enter <strong>2732515</strong> in the address/search box, and select <strong>Go</strong>.</li>
+        <li>Choose <strong>Apps &amp; Updates</strong>, read the instructions for the app, then download and install it.</li>
+        <li>Install over your current app unless that app specifically says to uninstall first. When installation is complete, delete the downloaded APK file if you no longer need it.</li>
+      </ol>
     </div>
     <div class="card" style="margin-top:12px;">
       <div class="header">
@@ -231,15 +243,63 @@ ul.clean li{margin:0 0 6px}
   </div>
 </div>
 <script>
-const searchBox = document.getElementById('searchBox');
-const rows = Array.from(document.querySelectorAll('.app-row'));
-searchBox.addEventListener('input', function () {
-  const term = this.value.toLowerCase().trim();
-  rows.forEach(row => {
-    const text = row.innerText.toLowerCase();
-    row.style.display = text.includes(term) ? 'grid' : 'none';
+// Version 4.1: Present all active apps in one newest-first library while preserving the original entries and links.
+(function () {
+  const searchBox = document.getElementById('searchBox');
+  const inactive = document.getElementById('inactive-apps');
+  const oldGrid = document.querySelector('.grid2');
+  const activeRows = Array.from(document.querySelectorAll('.grid2 .app-row'));
+  const labels = { core: 'IPTV Core', movie: 'Movies & TV', sports: 'Live Sports', util: 'Tools & Utilities' };
+  const dated = (row) => {
+    const text = row.innerText;
+    const match = text.match(/(?:Updated|Update posted)\s+([A-Z][a-z]+\s+\d{1,2},\s+\d{4})|([A-Z][a-z]+\s+\d{4})/);
+    return match ? Date.parse(match[1] || match[2]) || 0 : 0;
+  };
+  activeRows.forEach(row => {
+    const marker = row.querySelector('.order');
+    const type = Object.keys(labels).find(name => marker.classList.contains(name)) || 'core';
+    row.dataset.type = type;
+    row.dataset.date = String(dated(row));
+    const name = row.querySelector('.appname');
+    if (name && !row.querySelector('.app-type')) {
+      const badge = document.createElement('div');
+      badge.className = 'app-type';
+      badge.textContent = labels[type];
+      name.after(badge);
+    }
   });
-});
+  const library = document.createElement('section');
+  library.className = 'card';
+  library.id = 'active-app-library';
+  library.innerHTML = '<div class="header"><div class="section-label">All active downloads</div><h2>Apps &amp; Updates</h2><div class="sub">Newest updates appear first. Choose a type, search by name, or switch to alphabetical order.</div></div><div class="content"><div class="library-controls" id="appFilters"><button class="btn filterbtn active" data-filter="all" type="button">All Apps</button><button class="btn filterbtn" data-filter="core" type="button">IPTV Core</button><button class="btn filterbtn" data-filter="movie" type="button">Movies &amp; TV</button><button class="btn filterbtn" data-filter="sports" type="button">Live Sports</button><button class="btn filterbtn" data-filter="util" type="button">Tools &amp; Utilities</button><select class="sortselect" id="appSort" aria-label="Sort apps"><option value="newest">Newest updates first</option><option value="alpha">Name A–Z</option></select></div><div id="appCount" class="app-count"></div></div><div id="activeAppRows" class="appgrid"></div>';
+  oldGrid.parentNode.insertBefore(library, oldGrid);
+  const destination = document.getElementById('activeAppRows');
+  activeRows.forEach(row => destination.appendChild(row));
+  oldGrid.style.display = 'none';
+  document.querySelector('.categorynav').style.display = 'none';
+  library.after(inactive);
+  let filter = 'all';
+  let sort = 'newest';
+  function render() {
+    const term = searchBox.value.toLowerCase().trim();
+    const rows = activeRows.slice().sort((a, b) => sort === 'alpha' ? a.innerText.localeCompare(b.innerText) : Number(b.dataset.date) - Number(a.dataset.date));
+    rows.forEach(row => {
+      const visible = (filter === 'all' || row.dataset.type === filter) && row.innerText.toLowerCase().includes(term);
+      row.style.display = visible ? 'grid' : 'none';
+      destination.appendChild(row);
+    });
+    document.getElementById('appCount').textContent = rows.filter(row => row.style.display !== 'none').length + ' active apps shown';
+  }
+  searchBox.addEventListener('input', render);
+  document.getElementById('appFilters').addEventListener('click', event => {
+    const button = event.target.closest('[data-filter]'); if (!button) return;
+    filter = button.dataset.filter;
+    document.querySelectorAll('[data-filter]').forEach(item => item.classList.toggle('active', item === button));
+    render();
+  });
+  document.getElementById('appSort').addEventListener('change', event => { sort = event.target.value; render(); });
+  render();
+}());
 </script>
 <!-- CUSTOMER ANALYTICS EVENT TRACKING START -->
 <script>
