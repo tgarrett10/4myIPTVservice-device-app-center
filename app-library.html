@@ -59,6 +59,7 @@ h2{margin:0 0 6px}
 .library-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.filterbtn{min-width:auto;padding:8px 11px;background:#334155;color:#f8fafc}.filterbtn.active{background:var(--green);color:#052e16}.sortselect{background:#0b1220;border:1px solid #243044;border-radius:10px;color:#e2e8f0;padding:8px 11px;font-weight:bold}.app-count{margin:10px 0 0;color:var(--muted);font-size:.9rem}
 .app-type{display:inline-block;margin:5px 0 0;padding:3px 8px;border-radius:999px;background:#1f2937;border:1px solid #334155;color:#cbd5e1;font-size:.76rem;font-weight:bold}
 .setup-steps{margin:8px 0 0 18px;padding:0}.setup-steps li{margin:0 0 7px;color:#dbeafe;line-height:1.45}
+.guide-section{margin:18px 0 0}.guide-section h2{text-align:left;color:#dcfce7;font-size:1.35rem;margin:0 0 8px}.guide-section h3{color:#bbf7d0;margin:18px 0 6px;font-size:1.05rem}.guide-section p{margin:8px 0;color:#dbeafe;line-height:1.5}.guide-section ul{margin:8px 0 0 18px;padding:0}.guide-section li{margin:0 0 7px;color:#dbeafe;line-height:1.45}
 .appgrid{padding:8px 14px 10px}
 .approw{display:grid;grid-template-columns:52px 1fr 230px;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #1f2937}
 .approw:last-child{border-bottom:none}
@@ -94,15 +95,30 @@ ul.clean li{margin:0 0 6px}
       <strong>App Library</strong><br />
       This support page is intended for active 4MyIPTV Service customers only. Use the category buttons below to locate supported apps, verify current versions, and install the update that matches your device and service setup.
     </div>
-    <div class="helpbox">
-      <strong>Open Apps &amp; Updates on your TV</strong>
-      <ol class="setup-steps">
-        <li>Open <strong>Downloader</strong> and use its top-left menu to select <strong>Favorites</strong>, then choose <strong>My Support page</strong>.</li>
-        <li>If My Support page is not listed, select <strong>Home</strong>, enter <strong>2732515</strong> in the address/search box, and select <strong>Go</strong>.</li>
-        <li>Choose <strong>Apps &amp; Updates</strong>, read the instructions for the app, then download and install it.</li>
-        <li>Install over your current app unless that app specifically says to uninstall first. When installation is complete, delete the downloaded APK file if you no longer need it.</li>
-      </ol>
-    </div>
+    <section class="helpbox guide-section" aria-labelledby="update-guide-title">
+      <h2 id="update-guide-title">How to Update Your Apps</h2>
+      <p>Keep your streaming apps updated for the best viewing experience. Follow these instructions whenever an app update is available.</p>
+      <h3>Step 1 — Open Downloader</h3>
+      <ol class="setup-steps"><li>Open the <strong>Downloader</strong> app on your streaming device.</li><li>Navigate to <strong>Favorites</strong> using the menu on the left.</li><li>Select the <strong>4MyIPTV Service Support Page</strong>.</li><li>If the support page is not saved in Favorites, return to the <strong>Downloader Home screen</strong>, enter access code <strong>2732515</strong>, and select <strong>Go</strong> to open the support page.</li></ol>
+      <h3>Step 2 — Find Your App Update</h3>
+      <ol class="setup-steps"><li>On the Support Page, select <strong>Apps &amp; Updates</strong>.</li><li>Scroll to find the application you want to update.</li><li><strong>Read the information beneath the download button.</strong> This includes the latest update date and any special installation instructions.</li><li>Select <strong>Download</strong>.</li></ol>
+      <h3>Step 3 — Download and Install</h3>
+      <ol class="setup-steps"><li>Allow the installation file to download.</li><li>Select <strong>Install</strong> when prompted.</li><li>Once installation is complete, select <strong>Done</strong> to return to Downloader.</li></ol>
+      <h3>Step 4 — Delete the Installation File</h3>
+      <ol class="setup-steps"><li>In Downloader, select <strong>Delete</strong> to remove the downloaded installation file.</li><li>Select <strong>Delete</strong> again to confirm.</li></ol>
+      <p>This frees up storage space without removing your installed application.</p>
+      <h3>Step 5 — Finish Up</h3>
+      <p>Repeat these steps for any additional app updates. When finished, press <strong>Home</strong> on your remote to return to your device’s home screen, or press <strong>Back</strong> to exit Downloader.</p>
+      <h3>Important: App Update Best Practices</h3>
+      <p><strong>Not every app needs to be uninstalled before updating.</strong></p>
+      <p>Some applications allow you to install a newer version directly over the existing version. Others may require you to uninstall the previous version first.</p>
+      <ul><li><strong>If your app is working properly:</strong> Follow the update instructions listed beneath that application’s download button. You may be able to install the update without removing the existing app.</li><li><strong>If your app is not working correctly:</strong> A fresh installation is often a good troubleshooting option. Uninstall the existing application, then download and install the latest version.</li><li><strong>Always check the update details:</strong> Review the latest update date, version information when available, and any special instructions listed beneath each application.</li></ul>
+      <p><strong>Please note:</strong> Uninstalling an application may erase saved settings, favorites, or login information. Make sure you have any necessary login credentials before removing an app.</p>
+      <h3>Movie Box TV — November 2026 Update</h3>
+      <p><strong>Update Available — No Uninstall Required</strong></p>
+      <p>Movie Box TV has a new update available. Simply download and install the updated version directly over your existing app. If Movie Box TV continues to experience problems after updating, a fresh installation may help.</p>
+      <p><strong>Download:</strong> <a href="https://pixeldrain.com/api/filesystem/dhbPQxTp" target="_blank" rel="noopener noreferrer">Movie Box TV update</a><br><strong>Updated:</strong> November 2026</p>
+    </section>
     <div class="card" style="margin-top:12px;">
       <div class="header">
         <div class="section-label">Support Updates</div>
@@ -126,15 +142,6 @@ ul.clean li{margin:0 0 6px}
       <a class="btn playbtn" href="#movies">Movies & TV</a>
       <a class="btn goldbtn" href="#sports">Live Sports</a>
       <a class="btn adminbtn" href="#utilities">Tools & Utilities</a>
-    </div>
-    <div class="helpbox">
-      <strong>How to Update Apps</strong>
-      <ul class="clean">
-        <li>Install the new version over your current app first.</li>
-        <li>If the install fails, delete the old version and then install the new one.</li>
-        <li>Restart the device if the app still does not open correctly.</li>
-        <li>If you still need help, use the Support page.</li>
-      </ul>
     </div>
     <div class="tip">
       <strong>Quick Note:</strong> Each app card now shows both the version and the last library update so you can check changes at a glance before downloading.
