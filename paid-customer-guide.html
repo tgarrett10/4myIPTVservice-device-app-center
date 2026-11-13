@@ -1,216 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow, noarchive" />
-  <title>Your Streaming Device &amp; Service Guide</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>4MyIPTV | Customer Guide</title>
   <style>
-    :root {
-      --bg: #07111f;
-      --panel: #101d2e;
-      --panel-2: #13243a;
-      --text: #f5f7fb;
-      --muted: #c8d1de;
-      --accent: #2f80ed;
-      --accent-2: #28d17c;
-      --warning: #ffd166;
-      --line: rgba(255,255,255,0.14);
-      --shadow: 0 18px 45px rgba(0,0,0,0.35);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: radial-gradient(circle at top left, #153e75 0, #07111f 38%, #050b14 100%);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    .wrap {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 24px 16px 56px;
-    }
-    .hero {
-      background: linear-gradient(135deg, rgba(47,128,237,0.22), rgba(40,209,124,0.12));
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-    }
-    .badge {
-      display: inline-block;
-      background: rgba(40,209,124,0.14);
-      color: #b7ffd9;
-      border: 1px solid rgba(40,209,124,0.35);
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-    h1 {
-      margin: 0 0 10px;
-      font-size: clamp(28px, 5vw, 44px);
-      line-height: 1.08;
-    }
-    h2 {
-      margin: 0 0 12px;
-      font-size: 24px;
-      color: #ffffff;
-    }
-    h3 {
-      margin: 18px 0 8px;
-      font-size: 18px;
-      color: #ffffff;
-    }
-    p { margin: 0 0 14px; }
-    .muted { color: var(--muted); }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
-    .quick-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 14px;
-      min-height: 112px;
-    }
-    .quick-card strong {
-      display: block;
-      margin-bottom: 6px;
-      color: #ffffff;
-    }
-    .section {
-      background: rgba(16,29,46,0.96);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      margin-top: 18px;
-      padding: 22px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-    }
-    .callout {
-      background: rgba(255,209,102,0.12);
-      border: 1px solid rgba(255,209,102,0.34);
-      border-radius: 16px;
-      padding: 14px 16px;
-      margin: 16px 0;
-      color: #fff4ce;
-    }
-    .success {
-      background: rgba(40,209,124,0.11);
-      border: 1px solid rgba(40,209,124,0.28);
-      border-radius: 16px;
-      padding: 14px 16px;
-      margin: 16px 0;
-      color: #d9ffe9;
-    }
-    ul, ol { padding-left: 22px; margin-top: 8px; }
-    li { margin-bottom: 8px; }
-    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-    .pill {
-      background: rgba(47,128,237,0.16);
-      border: 1px solid rgba(47,128,237,0.35);
-      border-radius: 999px;
-      padding: 7px 10px;
-      color: #dcecff;
-      font-size: 14px;
-    }
-    details {
-      background: rgba(255,255,255,0.055);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 12px 14px;
-      margin: 10px 0;
-    }
-    summary {
-      cursor: pointer;
-      font-weight: 700;
-      color: #ffffff;
-    }
-    .footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 28px;
-    }
-    .notice {
-      font-size: 13px;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-      margin-top: 18px;
-      padding-top: 14px;
-    }
-    @media (max-width: 720px) {
-      .hero { padding: 22px 18px; }
-      .section { padding: 18px; }
-      .grid { grid-template-columns: 1fr; }
-    }
-  
-a, a:visited{color:#a5d8ff;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;font-weight:600}a:hover{color:#e0f2fe;text-decoration-thickness:2px}a:focus-visible{color:#fff;outline:3px solid #ffd166;outline-offset:4px;border-radius:2px}
-</style>
-  <!-- Guide revised November 9, 2026: streamlined guidance; StreamVision removed. -->
+    :root{--ink:#f8fbff;--muted:#b7c4d4;--panel:#0e1c2e;--line:rgba(212,229,255,.18);--green:#55dfa0;--gold:#ffd166;--shadow:0 18px 48px rgba(0,0,0,.3)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font:16px/1.58 Arial,Helvetica,sans-serif;background:radial-gradient(circle at 12% -10%,#1e5b9a 0,transparent 33rem),linear-gradient(145deg,#07111f 0%,#091827 50%,#06101c 100%)}
+    a,a:visited{color:#c7e4ff;font-weight:700;text-underline-offset:3px}a:hover{color:#fff}a:focus-visible{outline:3px solid var(--gold);outline-offset:4px;border-radius:3px}.wrap{width:min(1040px,calc(100% - 32px));margin:auto;padding:26px 0 58px}.hero{padding:clamp(24px,5vw,54px);border:1px solid var(--line);border-radius:28px;background:linear-gradient(130deg,rgba(39,106,184,.45),rgba(12,29,49,.92) 57%,rgba(20,92,72,.35));box-shadow:var(--shadow)}.eyebrow{display:inline-block;padding:6px 11px;border:1px solid rgba(85,223,160,.42);border-radius:99px;color:#baffd7;background:rgba(85,223,160,.1);font-size:13px;font-weight:800;letter-spacing:.03em}h1{max-width:740px;margin:14px 0 10px;font-size:clamp(32px,6vw,57px);letter-spacing:-.04em;line-height:1.04}h2{margin:0 0 8px;font-size:clamp(23px,3vw,30px);line-height:1.15}h3{margin:0 0 6px;font-size:18px}p{margin:0 0 12px}.lead{max-width:760px;color:#e2edfa;font-size:clamp(17px,2.3vw,20px)}.muted{color:var(--muted)}.actions{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 0}.btn{display:inline-block;padding:11px 15px;border:1px solid transparent;border-radius:10px;text-decoration:none}.btn.primary{background:var(--green);color:#052414}.btn.secondary{border-color:rgba(199,228,255,.38);background:rgba(255,255,255,.07)}.jump{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}.jump a{padding:7px 10px;border-radius:99px;background:rgba(255,255,255,.07);font-size:14px;text-decoration:none}.section{margin-top:18px;padding:clamp(20px,4vw,32px);border:1px solid var(--line);border-radius:22px;background:rgba(14,28,46,.94);box-shadow:0 10px 30px rgba(0,0,0,.15)}.section-intro{color:var(--muted);margin-bottom:18px}.steps{display:grid;gap:12px;counter-reset:guide}.step{display:grid;grid-template-columns:38px 1fr;gap:12px;padding:15px;border-radius:14px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08)}.step::before{counter-increment:guide;content:counter(guide);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#226fc0;color:#fff;font-size:14px;font-weight:800}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{padding:17px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.035))}.card p{color:var(--muted);font-size:14px}.notice{margin-top:16px;padding:14px 16px;border-left:4px solid var(--gold);border-radius:8px;background:rgba(255,209,102,.1);color:#fff0bb}.success{margin-top:16px;padding:14px 16px;border-left:4px solid var(--green);border-radius:8px;background:rgba(85,223,160,.1);color:#d3ffe7}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.list{margin:8px 0 0;padding-left:20px}.list li{margin:7px 0}.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.contact a{display:block;padding:14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.055);text-decoration:none}.contact span{display:block;color:var(--muted);font-size:13px;font-weight:400}.footer{text-align:center;color:var(--muted);font-size:13px;margin-top:24px}@media(max-width:720px){.wrap{width:min(100% - 22px,1040px);padding-top:12px}.cards,.contact,.two{grid-template-columns:1fr}.hero,.section{border-radius:18px}.actions .btn{width:100%;text-align:center}}
+  </style>
 </head>
 <body>
 <main class="wrap">
-<section class="hero">
-<span class="badge">4MyIPTV Customer Guide</span>
-<h1>Your Streaming Device &amp; Service Guide</h1>
-<div class="callout"><strong>Read here. Follow along on your TV.</strong> Read this guide on your phone or computer while following the steps on your TV. To install or update apps, open Downloader on your streaming device. Start with the instructions below.</div>
-<p>I’ve prepared your device to open up a world of viewing options. Enjoy your <strong>paid service through the IPTV Smarters App</strong>, then explore free live channels, preinstalled apps, and optional extras included for your convenience.</p><p class="muted">These extra apps are separate from your 4MyIPTV subscription. I don’t control their availability or updates, and some may require their own subscriptions.</p>
-<div class="grid">
-<div class="quick-card"><strong>Your paid service</strong>Use the IPTV Smarters App for Live TV, Movies, and Series.</div>
-<div class="quick-card"><strong>Quick help</strong>On your TV, open Downloader → top-left menu → Favorites → My Support page.</div>
-<div class="quick-card"><strong>Contact Tim</strong>Use WhatsApp, Telegram, or reply to your service email. WhatsApp is preferred over regular text messages.</div>
-</div>
-</section>
-<section class="section">
-<h2>1. Use your IPTV Smarters App</h2>
-<p>Refresh Live TV, Movies, and Series when you need the latest listings. The refresh control may vary by app version.</p>
-<ul>
-<li><strong>Live TV:</strong> Choose a category, select a channel, then open the preview to watch full screen.</li>
-<li><strong>Favorites:</strong> Press and hold the center button on supported items to save your most-watched channels, movies, and shows.</li>
-<li><strong>Movies &amp; Series:</strong> Select All Movies or All Series, then search for the title.</li>
-<li><strong>Guide:</strong> Use the electronic program guide when available. Channel options depend on your subscription.</li>
-</ul>
-<section id="refresh-epg"><h3>Missing program information? Refresh your TV guide.</h3><ol><li>Open <strong>Live TV</strong> in the IPTV Smarters App.</li><li>Select the <strong>three-dot options menu</strong> in the upper-right corner.</li><li>Open <strong>Settings</strong>, then select <strong>EPG</strong>—Electronic Program Guide.</li><li>Select the refresh/update option. When it shows <strong>Updating</strong>, allow it to finish before returning to your channels.</li></ol><p>Menu names may vary by app version. If you can’t find the option or the guide remains empty, contact support.</p></section><div class="success"><strong>Looking for channels in another language or region?</strong> Additional channel options may be available through your IPTV service. Contact me on <a href="https://wa.me/16312205117" target="_blank" rel="noopener noreferrer">WhatsApp</a> or <a href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer">Telegram</a> to discuss what you’d like to watch and whether your package needs updating.</div>
-<div class="callout"><strong>Keep your login private.</strong> When asking for account help, include your service username. Do not send your password unless it is needed for an agreed setup step.</div>
-</section>
-<section class="section" id="open-support-on-tv">
-<h2>2. Open My Support page on your TV</h2>
-<p>Keep this guide open on your phone or computer while you use your TV remote:</p>
-<ol>
-<li>On your streaming device, open <strong>Downloader</strong>—the orange app with a white <strong>“D” and a downward-pointing arrow</strong>. If it isn’t on your Home screen, look under <strong>Apps</strong> or <strong>See all apps</strong>.</li>
-<li>Navigate all the way to the <strong>top-left corner</strong> and open Downloader’s menu.</li>
-<li>Select <strong>Favorites</strong>, then <strong>My Support page</strong>.</li>
-<li>If it isn’t listed, select <strong>Home</strong> from Downloader’s menu. Enter <strong>2732515</strong> in the address/search box and select <strong>Go</strong>.</li>
-<li>Once the support page opens on your TV, choose <strong>Apps &amp; Updates</strong> for app installation instructions, or the guide or troubleshooting option for help.</li>
-</ol>
-<div class="success"><strong>One starting point:</strong> Use My Support page in Downloader whenever you need device help or app updates.</div>
-</section>
-<section class="section">
-<h2>3. Optional apps &amp; updates</h2>
-<p>If you’re interested in additional sideloaded apps for movies and series, use <strong>Downloader on your TV streaming device</strong>. Follow the steps in section 2 to open <strong>My Support page</strong>, then select <strong>Apps &amp; Updates</strong> to open the App Library on your TV. Find the app you want and follow its installation instructions there. To update an existing app, use the same steps. If an app is not working and a newer version is listed, our best practice is to uninstall the old app through device Settings, then install the updated version. Apps that work normally generally need no changes.</p>
-<ul><li><strong>FalconCast v4.3.3:</strong> November 12, 2026 sports app update. If your existing FalconCast app is not working, uninstall it through device Settings before installing the update.</li><li><strong>Flix Vision:</strong> Version 4.0.0r-2 is the newly posted improved release.</li><li><strong>FilmPlus:</strong> Uninstall the old FilmPlus version first, then install version 2.5.2.</li><li><strong>Reezn:</strong> Install the update over the existing app. No uninstall is needed. Find its update in Apps &amp; Updates through Downloader on your TV.</li></ul>
-<p><strong>Movie Box TV — November 2026:</strong> A new download is posted in Apps &amp; Updates. This version can install over the existing app, but if Movie Box TV is not working, we recommend uninstalling it through device Settings first, then installing the new version.</p><p><strong>How to reach the update list:</strong> Open Downloader, select Favorites from the left menu, and choose the saved 4MyIPTV Service Support Page. If it is not saved, return to Downloader Home, enter access code <strong>2732515</strong>, and choose Go. Select Apps &amp; Updates, locate the app, and read the update date and installation instructions before downloading. Select Download, then Install, and select Done afterward. In Downloader, select Delete and confirm Delete to remove the APK installation file. Use Home or Back to exit Downloader.</p><p><strong>Update only when needed:</strong> Apps working normally generally do not need an update. If an app is not functioning and a newer version exists, follow its specific instructions; our best practice is to uninstall the old app through device Settings and then download and install the new version. Some versions support installing over the old app, but a clean install is recommended when an app is not functioning. If no working update exists, the third-party app may be unavailable and cannot be guaranteed by 4MyIPTV Service.</p><p>These optional apps are separate from your paid IPTV subscription. Their availability and updates can change.</p><div class="callout"><strong>Install on your TV:</strong> Use this guide for instructions. Download and install apps through Downloader on your streaming device.</div>
-</section>
-<section class="section">
-<h2>4. If something is not working</h2>
-<ol><li>Close and reopen the affected app.</li><li>Check that the device is connected to the internet.</li><li>Restart the streaming device and try again.</li><li>Open My Support page in Downloader on your TV, then select Apps &amp; Updates. Read any posted notice or app-specific instructions before reinstalling.</li></ol>
-<p>If you use Background Apps &amp; Process List, close unused viewing apps when needed. Avoid changing unfamiliar system settings.</p>
-<p>Still need help? Tell me your <strong>service username, device model, app name, and what happens</strong>. A picture of the error can help.</p>
-</section>
-<section class="section">
-<h2>5. Contact &amp; renewals</h2>
-<p><a href="https://wa.me/16312205117" target="_blank" rel="noopener noreferrer">Message Tim on WhatsApp</a> · <a href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer">Telegram Support</a> · <a href="mailto:4myiptvservice@gmail.com">Email Tim</a></p>
-<p>WhatsApp or Telegram is preferred to regular text messages. For renewals, include the username of the account you want to renew. If you have several accounts, they may have different expiration dates.</p>
-<p>Referrals are greatly appreciated and are a critical part of helping me bring these services to more friends and customers. Have anyone interested contact me directly and mention your name.</p>
-<p class="notice">This guide is intended for 4MyIPTV customers. Third-party apps may change or become unavailable. Use apps and services in accordance with applicable laws and terms.</p>
-</section>
-<div class="footer">4MyIPTV Streaming Device &amp; Service Guide · Updated November 9, 2026</div>
+  <section class="hero"><span class="eyebrow">4MyIPTV CUSTOMER GUIDE</span><h1>Everything you need, in the right order.</h1><p class="lead">Use this guide on your phone or computer while following the steps on your TV. Your best starting point for setup, apps, and updates is the Support Page inside Downloader.</p><div class="actions"><a class="btn primary" href="#open-support">Open Support Page Instructions</a><a class="btn secondary" href="#help">Get Help</a></div><nav class="jump" aria-label="Guide sections"><a href="#service">Your service</a><a href="#open-support">Support on TV</a><a href="#apps">Apps &amp; updates</a><a href="#troubleshooting">Troubleshooting</a><a href="#help">Contact</a></nav></section>
+  <section class="section" id="service"><h2>Your paid service</h2><p class="section-intro">Use the <strong>IPTV Smarters App</strong> for your paid service. It is where you can watch Live TV, Movies, and Series included with your package.</p><div class="cards"><article class="card"><h3>Live TV</h3><p>Choose a category, select a channel, then open the preview to watch full screen. Use the guide when it is available.</p></article><article class="card"><h3>Movies &amp; Series</h3><p>Open All Movies or All Series, then use Search to find a title. You can save favorites on supported items.</p></article><article class="card"><h3>Keep it current</h3><p>If listings or program information are missing, refresh the app or its guide before contacting support.</p></article></div><div class="notice"><strong>Keep your login private.</strong> When you ask for help, send your service username—not your password—unless a specific setup step requires it.</div></section>
+  <section class="section" id="open-support"><h2>Open the Support Page on your TV</h2><p class="section-intro">This is the one place to go for device help, app instructions, and current updates.</p><div class="steps"><div class="step"><div><strong>Open Downloader</strong><br><span class="muted">Find the orange app with the white “D” and down arrow. It may be under Apps or See all apps.</span></div></div><div class="step"><div><strong>Open Favorites</strong><br><span class="muted">Go to the top-left menu in Downloader, then select Favorites.</span></div></div><div class="step"><div><strong>Select 4MyIPTV Service Support Page</strong><br><span class="muted">Use this saved favorite whenever you need help or an update.</span></div></div><div class="step"><div><strong>If it is not in Favorites</strong><br><span class="muted">Choose Home in Downloader, enter code <strong>2732515</strong>, then select Go.</span></div></div></div><div class="success"><strong>Remember this:</strong> For apps or device help, open Downloader → Favorites → 4MyIPTV Service Support Page.</div></section>
+  <section class="section" id="apps"><h2>Apps &amp; updates</h2><p class="section-intro">On your TV, open the Support Page, then choose <strong>Apps &amp; Updates</strong>. Read the note under each app before installing or updating it.</p><div class="two"><div class="card"><h3>Movie Box TV</h3><p><strong>Version 1.1.9</strong> — install the update over the existing app. No uninstall is needed. Afterward, you may delete the downloaded APK file.</p></div><div class="card"><h3>FilmPlus</h3><p>Uninstall the previous FilmPlus version first, then install version 2.5.2.</p></div><div class="card"><h3>Flix Vision</h3><p>Version 4.0.0r-2 is the current listed release. Follow the instructions shown beside the download.</p></div><div class="card"><h3>Reezn</h3><p>Install the update over the existing app. No uninstall is needed.</p></div></div><div class="notice"><strong>Optional apps are separate from your paid service.</strong> Their availability, features, and updates can change. Install them only through the Support Page on your TV and follow the posted instructions.</div></section>
+  <section class="section" id="troubleshooting"><h2>Try this first if something is not working</h2><ol class="list"><li>Close and reopen the affected app.</li><li>Confirm that the streaming device is connected to the internet.</li><li>Restart the streaming device.</li><li>Open the Support Page in Downloader and read the current app-specific note before reinstalling anything.</li></ol><p class="muted" style="margin-top:14px">If you contact support, please include your service username, device model, app name, and a brief description or photo of what you see.</p></section>
+  <section class="section" id="help"><h2>Need help or ready to renew?</h2><p class="section-intro">WhatsApp or Telegram is preferred over regular text messages. For renewals, include the username for the account you want to renew.</p><div class="contact"><a href="https://wa.me/16312205117" target="_blank" rel="noopener noreferrer">WhatsApp<span>Message Tim for the fastest response</span></a><a href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer">Telegram<span>Setup, service, and troubleshooting help</span></a><a href="mailto:4myiptvservice@gmail.com">Email<span>Send a detailed question or renewal request</span></a></div><p class="notice">This guide is for active 4MyIPTV customers. Third-party apps may change or become unavailable. Use all apps and services in accordance with applicable laws and terms.</p></section>
+  <footer class="footer">4MyIPTV Customer Guide · Updated November 13, 2026</footer>
 </main>
 </body>
 </html>
