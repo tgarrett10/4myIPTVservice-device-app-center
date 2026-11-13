@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <!-- GOOGLE ANALYTICS START -->
 <!-- Google tag (gtag.js) -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TN6LYCC0DS"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TN6LYCC0DS"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -13,8 +12,8 @@
   gtag('config', 'G-TN6LYCC0DS');
 </script>
 <!-- GOOGLE ANALYTICS END -->
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>4MyIPTV Service App Library</title>
 <!-- Version 3.4 update: Added trusted VirusTotal support APK and analiti Speed & WiFi support tools. -->
 <style>
@@ -57,6 +56,10 @@ h2{margin:0 0 6px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (max-width:980px){.grid2{grid-template-columns:1fr}}
 .search{width:100%;background:#0b1220;border:1px solid #243044;border-radius:12px;color:#e2e8f0;padding:12px 14px;font-size:14px;outline:none}
+.library-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.filterbtn{min-width:auto;padding:8px 11px;background:#334155;color:#f8fafc}.filterbtn.active{background:var(--green);color:#052e16}.sortselect{background:#0b1220;border:1px solid #243044;border-radius:10px;color:#e2e8f0;padding:8px 11px;font-weight:bold}.app-count{margin:10px 0 0;color:var(--muted);font-size:.9rem}
+.app-type{display:inline-block;margin:5px 0 0;padding:3px 8px;border-radius:999px;background:#1f2937;border:1px solid #334155;color:#cbd5e1;font-size:.76rem;font-weight:bold}
+.setup-steps{margin:8px 0 0 18px;padding:0}.setup-steps li{margin:0 0 7px;color:#dbeafe;line-height:1.45}
+.guide-section{margin:18px 0 0}.guide-section h2{text-align:left;color:#dcfce7;font-size:1.35rem;margin:0 0 8px}.guide-section h3{color:#bbf7d0;margin:18px 0 6px;font-size:1.05rem}.guide-section p{margin:8px 0;color:#dbeafe;line-height:1.5}.guide-section ul{margin:8px 0 0 18px;padding:0}.guide-section li{margin:0 0 7px;color:#dbeafe;line-height:1.45}
 .appgrid{padding:8px 14px 10px}
 .approw{display:grid;grid-template-columns:52px 1fr 230px;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #1f2937}
 .approw:last-child{border-bottom:none}
@@ -81,93 +84,230 @@ ul.clean li{margin:0 0 6px}
 
 /* Prominent optional-app setup notice. */
 .install-notice{margin:18px 0;padding:20px;border:2px solid #fbbf24;border-radius:14px;background:#2d2517;color:#fff4ce;line-height:1.6}.install-notice h2{margin:0 0 10px;font-size:22px;color:#ffe2a0}.install-notice p{margin:8px 0}.install-notice a{color:#a5d8ff;text-decoration:underline}
-
-.filter-bar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}.filter-bar label{font-size:.84rem;font-weight:bold;color:#cbd5e1;display:grid;gap:6px}.filter-bar select{width:100%;min-width:0}.type-pill{color:#86efac;margin:3px 0 2px;font-weight:bold}.app-row[hidden]{display:none!important}.appgrid .approw{padding:13px 0}.appgrid .approw .order{font-size:.75rem}@media(max-width:600px){.filter-bar{grid-template-columns:1fr}.appgrid .approw{grid-template-columns:42px 1fr}.appgrid .approw .actions{grid-column:2}.appgrid .btn{min-width:0;width:100%}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="card hero">
-<h1>4MyIPTV Service App Updates</h1>
-<div class="tagline-banner">Stream More - Pay Less - Watch Anywhere</div>
-<div class="info"><strong>App Updates &amp; Downloads</strong><p>Only update an app if it needs attention or a specific update is recommended. Use the search and filters below to find it. Check the last posted update date and read any instructions beneath the download button.</p></div>
-<div class="card" style="margin-top:12px;">
-<div class="header">
-<div class="section-label">Support Updates</div>
-<h2>Help Keep the Library Updated</h2>
-<div class="sub">Your optional support helps keep app versions current, links working, and updates posted for customers.</div>
-</div>
-<div class="content" style="padding-top:4px; padding-bottom:10px;">
-<div class="bottom-actions">
-<a class="btn goldbtn" href="https://www.paypal.com/ncp/payment/VSS7HZSB5FD2E" rel="noopener noreferrer" target="_blank">Support Updates with PayPal</a>
-</div>
-</div>
-</div>
-<div class="helpbox"><strong>How to Update Apps Using Downloader</strong><ol class="clean">
-<li>Open <strong>Downloader</strong> on your streaming device. Select <strong>Favorites</strong> in the left menu, then open the saved <strong>4MyIPTV Service Support Page</strong>.</li>
-<li>If it is not saved, return to the <strong>Downloader Home screen</strong>, enter access code <strong>2732515</strong>, and select <strong>Go</strong>.</li>
-<li>On the support page, select <strong>Apps &amp; Updates</strong>. Find the affected app and read its update date and specific installation directions.</li>
-<li>If an app is not working and a newer version is posted, first go to your device <strong>Settings &gt; Apps</strong>, select the affected app, and choose <strong>Uninstall</strong>. Then return to this Updates page, select <strong>Download</strong>, and choose <strong>Install</strong> when prompted. For an app that is working normally, no update is generally needed. Read the app-specific notes before making changes.</li>
-<li>When installation finishes, select <strong>Done</strong>. In Downloader, select <strong>Delete</strong>, then confirm <strong>Delete</strong> to remove the downloaded installation file, not the installed app.</li>
-<li>Repeat as needed. Press <strong>Home</strong> on your remote to return to the device home screen, or <strong>Back</strong> to exit Downloader.</li></ol>
-<p><strong>Best practice:</strong> If an app stops working and an updated version is listed here, we recommend uninstalling the old app through your device Settings, then downloading and installing the updated version. Some apps can install over an existing version, but a fresh installation is our preferred approach for apps that are not working. Check the update date and special instructions for each app. Uninstalling may erase favorites, settings, or logins, so save your login details first.</p>
-<p><strong>Third-party availability:</strong> If an app fails and there is no working update available, it may no longer be supported or available. 4MyIPTV Service cannot guarantee the continued operation of third-party apps.</p></div>
-</div>
-<div class="card">
-<div class="header">
-<div class="section-label">Library Search</div>
-<h2>Find an App Quickly</h2>
-<div class="sub">Type any part of an app name to filter the page.</div>
-</div>
-<div class="content">
-<input class="search" id="searchBox" placeholder="Search by application name, type or version..." type="text"/><div class="filter-bar"><label for="sortApps">Sort applications<select class="search" id="sortApps"><option value="recent">Most Recently Updated</option><option value="alpha">Alphabetical (A–Z)</option></select></label><label for="filterApps">Filter by type<select class="search" id="filterApps"><option value="all">All Apps</option><option value="Movies &amp; Series">Movies &amp; Series</option><option value="Live TV &amp; Sports">Live TV &amp; Sports</option><option value="IPTV &amp; Media Players">IPTV &amp; Media Players</option><option value="Tools &amp; Utilities">Tools &amp; Utilities</option></select></label></div><p aria-live="polite" class="small" id="resultCount"></p>
-<div class="note" style="margin-top:10px"><strong>New device?</strong> Start with the IPTV Smarters App. For a faster install sequence, use the <a href="downloader-portal.html" style="color:#86efac;font-weight:700">Quick Install Support Center</a>.</div>
-</div>
-</div>
-<div class="tip"><strong>Looking for a missing app?</strong> Available apps are listed below. <a href="#inactive-apps" style="color:inherit;font-weight:bold">Open Inactive / Unavailable Apps</a> for apps no longer recommended.</div>
-<aside aria-labelledby="install-notice-title" class="install-notice" id="before-installing"><h2 id="install-notice-title">Before installing optional apps</h2><p>My recommended sideloaded-app setup uses Google Play Protect scanning turned off. I scan apps before recommending them, but disabling Play Protect reduces your device’s protection.</p><p>Only use the provided download links, and contact me if you’re unsure about a security message.</p></aside>
-<section class="card" id="all-apps"><div class="header"><div class="section-label">All Active Applications</div><h2>App Updates &amp; Downloads</h2><div class="sub">Newest updates first. Read each app’s update date and installation instructions before downloading.</div></div><div class="appgrid" id="appList"><div class="approw app-row" data-category="Live TV &amp; Sports" data-name="falconcast" data-updated="2026-11-12"><div class="order sports">S1</div><div><div class="appname">FalconCast</div><div class="small type-pill">Live TV &amp; Sports</div><div class="small">Live sports streaming app.</div><div class="small meta">Version 4.3.3 — Update posted November 12, 2026</div><div class="small note"><strong>Recommended for a nonworking app:</strong> Uninstall the previous FalconCast app through device Settings, then download and install v4.3.3.</div></div><div class="actions"><a class="btn goldbtn" href="https://www.mediafire.com/file/4t3y9qdy4u6qka0/FalconCast(V4.3.3).apk/file" rel="noopener noreferrer" target="_blank">Download v4.3.3</a></div></div><div class="approw app-row" data-category="Movies &amp; Series" data-name="movie box tv" data-updated="2026-11-11"><div class="order movie">M3</div><div><div class="appname">Movie Box TV</div><div class="small type-pill">Movies &amp; Series</div><div class="small">Optional Movie / TV app.</div><div class="small meta">New update posted November 11, 2026 • Version not verified</div><div class="small note"><strong>Installation:</strong> This update supports installing over the existing version. If Movie Box TV is not working, we recommend uninstalling it through device Settings first, then installing this update.</div></div><div class="actions"><a class="btn playbtn" href="https://pixeldrain.com/api/filesystem/dhbPQxTp" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="Movies &amp; Series" data-name="flix vision" data-updated="2026-11-09"><div class="order movie">M1</div><div><div class="appname">Flix Vision</div><div class="small type-pill">Movies &amp; Series</div><div class="small">Optional Movie / TV app.</div><div class="small meta">Version 4.0.0r-2 — Update posted November 9, 2026</div><div class="small note">New improved release recommended by 4MyIPTV Service. Use the updated download link below.</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/z7h98e8ia0c6ise/flix-vision-400r-v4.0.0r-2.apk/file" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="Movies &amp; Series" data-name="filmplus" data-updated="2026-11-08"><div class="order movie">M5</div><div><div class="appname">FilmPlus</div><div class="small type-pill">Movies &amp; Series</div><div class="small">Movie / TV app.</div><div class="small meta">Version 2.5.2 — Update posted November 8, 2026</div><div class="small note"><strong>Reinstall required:</strong> Uninstall the old FilmPlus version from your device first, then download and install version 2.5.2. Do not install this update over the old version.</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/psuoe1h9dt8x463/2.5.2.apk/file" rel="noopener noreferrer" target="_blank">Download v2.5.2</a></div></div><div class="approw app-row" data-category="Live TV &amp; Sports" data-name="playfy tv" data-updated="2026-09-10"><div class="order sports">S2</div><div><div class="appname">PLAYfy TV</div><div class="small type-pill">Live TV &amp; Sports</div><div class="small">Live TV and Sports.</div><div class="small meta">Version 1.7 - Updated September 10, 2026</div></div><div class="actions"><a class="btn goldbtn" href="https://dlplayfy.pages.dev/archive/PLAYFy-TV-V1.7.apk" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="Tools &amp; Utilities" data-name="trusted virustotal support apk" data-updated="2026-07-05"><div class="order util">U5</div><div><div class="appname">Trusted VirusTotal Support APK</div><div class="small type-pill">Tools &amp; Utilities</div><div class="small">APK safety scanner for checking suspicious apps before use.</div><div class="small meta">Trusted support APK - Updated July 5, 2026</div><div class="small note">Use this before installing apps from outside the App Library or Google Play Store. If a scan flags malware, uninstall the app and contact support.</div></div><div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/nzZ1jtd6" rel="noopener noreferrer" target="_blank">Download APK</a><a class="btn linkbtn" href="https://www.virustotal.com/gui/home/upload" rel="noopener noreferrer" target="_blank">Open Scanner</a></div></div><div class="approw app-row" data-category="Tools &amp; Utilities" data-name="analiti speed &amp; wifi" data-updated="2026-07-05"><div class="order util">U6</div><div><div class="appname">analiti Speed &amp; WiFi</div><div class="small type-pill">Tools &amp; Utilities</div><div class="small">Speed test and Wi-Fi analyzer used to troubleshoot buffering, weak signal, and connection issues.</div><div class="small meta">Google Play Store link - Updated July 5, 2026</div><div class="small note">Use this on the same device and Wi-Fi network that is having playback issues.</div></div><div class="actions"><a class="btn adminbtn" href="https://play.google.com/store/apps/details?id=com.analiti.fastest.android&amp;pcampaignid=web_share" rel="noopener noreferrer" target="_blank">Open Play Store</a><a class="btn linkbtn" href="https://analiti.com/" rel="noopener noreferrer" target="_blank">Open Website</a></div></div><div class="approw app-row" data-category="Movies &amp; Series" data-name="cinema hq" data-updated="2026-06-28"><div class="order movie">M2</div><div><div class="appname">Cinema HQ</div><div class="small type-pill">Movies &amp; Series</div><div class="small">Optional Movie / TV app.</div><div class="small meta">Version 6.8 - Updated June 28, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/ppx4cqzw3nik99m/Cinema+HQ+v6.8.apk/file" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="Tools &amp; Utilities" data-name="proton vpn" data-updated="2026-05-09"><div class="order util">U2</div><div><div class="appname">Proton VPN</div><div class="small type-pill">Tools &amp; Utilities</div><div class="small">VPN utility.</div><div class="small meta">Google Play Store link - Updated May 9, 2026</div><div class="small note">Install or update Proton VPN from the official Google Play Store listing.</div></div><div class="actions"><a class="btn adminbtn" href="https://play.google.com/store/apps/details?id=ch.protonvpn.android&amp;hl=en_US" rel="noopener noreferrer" target="_blank">Open Play Store</a></div></div><div class="approw app-row" data-category="Tools &amp; Utilities" data-name="wolf launcher" data-updated="2026-03-27"><div class="order util">U4</div><div><div class="appname">Wolf Launcher</div><div class="small type-pill">Tools &amp; Utilities</div><div class="small">Launcher utility.</div><div class="small meta">Version 0.1.9 - Updated March 27, 2026</div></div><div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/51fCaZup" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="IPTV &amp; Media Players" data-name="vlc media player" data-updated="2026-03-27"><div class="order core">C5</div><div><div class="appname">VLC Media Player</div><div class="small type-pill">IPTV &amp; Media Players</div><div class="small">Media playback utility.</div><div class="small meta">Version 3.3.4 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/iacQyjir" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="Tools &amp; Utilities" data-name="tv bro" data-updated="2026-03-27"><div class="order util">U3</div><div><div class="appname">TV Bro</div><div class="small type-pill">Tools &amp; Utilities</div><div class="small">TV browser utility.</div><div class="small meta">Version 2.01 - Updated March 27, 2026</div></div><div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/9arAt3iT" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="IPTV &amp; Media Players" data-name="nvplayer" data-updated="2026-03-27"><div class="order core">C7</div><div><div class="appname">NVPlayer</div><div class="small type-pill">IPTV &amp; Media Players</div><div class="small">Recommended external player for apps like BeeTV.</div><div class="small meta">Version 1.1.2 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file_premium/juor2m522tuhjog/NV_Video_Player_%2528v1.1.2%2529.apk/file" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="IPTV &amp; Media Players" data-name="mx player" data-updated="2026-03-27"><div class="order core">C6</div><div><div class="appname">MX Player</div><div class="small type-pill">IPTV &amp; Media Players</div><div class="small">External media player for additional playback support.</div><div class="small meta">Latest version - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://f.mxplayer.j2inter.com/download?id=mxplayer&amp;type=arm" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="IPTV &amp; Media Players" data-name="iptv smarters app" data-updated="2026-03-27"><div class="order core">C1</div><div><div class="appname">IPTV Smarters App</div><div class="small type-pill">IPTV &amp; Media Players</div><div class="small">Core IPTV app.</div><div class="small meta">Version 5.0 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="IPTV &amp; Media Players" data-name="bplayer" data-updated="2026-03-27"><div class="order core">C4</div><div><div class="appname">BPlayer</div><div class="small type-pill">IPTV &amp; Media Players</div><div class="small">Alternate IPTV / media player.</div><div class="small meta">Version 1.3.2 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/TKHUxRbj" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="Movies &amp; Series" data-name="beetv" data-updated="2026-03-27"><div class="order movie">M6</div><div><div class="appname">BeeTV</div><div class="small type-pill">Movies &amp; Series</div><div class="small">Movie / TV app. NVPlayer recommended for playback support.</div><div class="small meta">Version 4.5.9 - Updated March 27, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/5khvjyoz26umm0v/BeeTV_4.5.9_2459_06421d.apk/file" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="IPTV &amp; Media Players" data-name="bear player" data-updated="2026-03-27"><div class="order core">C3</div><div><div class="appname">Bear Player</div><div class="small type-pill">IPTV &amp; Media Players</div><div class="small">Alternate IPTV / media player.</div><div class="small meta">Version 2.20.24 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/m35yb9lekyxldlw/Bear+Player_v2.20.24_MOD_modded-1.com.apk/file" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="Tools &amp; Utilities" data-name="background apps &amp; process list" data-updated="2026-03-27"><div class="order util">U1</div><div><div class="appname">Background Apps &amp; Process List</div><div class="small type-pill">Tools &amp; Utilities</div><div class="small">Utility tool for closing background apps.</div><div class="small meta">Latest version - Updated March 27, 2026</div></div><div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/fyzsjrY4" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="IPTV &amp; Media Players" data-name="amplayer" data-updated="2026-03-27"><div class="order core">C2</div><div><div class="appname">AMPlayer</div><div class="small type-pill">IPTV &amp; Media Players</div><div class="small">Alternate IPTV / media player.</div><div class="small meta">Version 3.0.2 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/J99DWABk" rel="noopener noreferrer" target="_blank">Download</a></div></div><div class="approw app-row" data-category="Movies &amp; Series" data-name="reezn 2" data-updated="2026-11-01"><div class="order movie">M4</div><div><div class="appname">Reezn 2</div><div class="small type-pill">Movies &amp; Series</div><div class="small">Optional Movie / TV app.</div><div class="small meta">November 2026 Update • Downloader code: 7987405</div><div class="small note"><strong>Update note:</strong> No need to uninstall the original Reezn version. Just download and install Reezn 2 over the existing app.</div></div><div class="actions"><a class="btn playbtn" href="https://github.com/bedevlab/rdownload/releases/download/update/Reezn.apk" rel="noopener noreferrer" target="_blank">Download</a></div></div></div></section><section class="card" id="inactive-apps"><details style="padding:18px"><summary style="font-size:20px;font-weight:bold;cursor:pointer">Inactive / Unavailable Apps (5)</summary><p class="sub">These apps are not currently recommended for installation. They are kept here for reference only. Status dates below reflect the last recorded update, not a new installation test.</p><div class="appgrid"> <div class="approw app-row"><div class="order core">C8</div><div><div class="appname">StreamFire</div><div class="small">Live TV app.</div><div class="small meta">No longer active - Updated September 10, 2026</div><div class="small note">StreamFire is no longer active and is not recommended for new installs.</div></div><div class="actions"><span class="btn directbtn">No Longer Active</span></div></div>
+  <div class="card hero">
+    <h1>4MyIPTV Service App Library</h1>
+    <div class="tagline-banner">Stream More - Pay Less - Watch Anywhere</div>
+    <div class="info">
+      <strong>App Library</strong><br />
+      This support page is intended for active 4MyIPTV Service customers only. Use the category buttons below to locate supported apps, verify current versions, and install the update that matches your device and service setup.
+    </div>
+    <section class="helpbox guide-section" aria-labelledby="update-guide-title">
+      <h2 id="update-guide-title">How to Update Your Apps</h2>
+      <p>Keep your streaming apps updated for the best viewing experience. Follow these instructions whenever an app update is available.</p>
+      <h3>Step 1 — Open Downloader</h3>
+      <ol class="setup-steps"><li>Open the <strong>Downloader</strong> app on your streaming device.</li><li>Navigate to <strong>Favorites</strong> using the menu on the left.</li><li>Select the <strong>4MyIPTV Service Support Page</strong>.</li><li>If the support page is not saved in Favorites, return to the <strong>Downloader Home screen</strong>, enter access code <strong>2732515</strong>, and select <strong>Go</strong> to open the support page.</li></ol>
+      <h3>Step 2 — Find Your App Update</h3>
+      <ol class="setup-steps"><li>On the Support Page, select <strong>Apps &amp; Updates</strong>.</li><li>Scroll to find the application you want to update.</li><li><strong>Read the information beneath the download button.</strong> This includes the latest update date and any special installation instructions.</li><li>Select <strong>Download</strong>.</li></ol>
+      <h3>Step 3 — Download and Install</h3>
+      <ol class="setup-steps"><li>Allow the installation file to download.</li><li>Select <strong>Install</strong> when prompted.</li><li>Once installation is complete, select <strong>Done</strong> to return to Downloader.</li></ol>
+      <h3>Step 4 — Delete the Installation File</h3>
+      <ol class="setup-steps"><li>In Downloader, select <strong>Delete</strong> to remove the downloaded installation file.</li><li>Select <strong>Delete</strong> again to confirm.</li></ol>
+      <p>This frees up storage space without removing your installed application.</p>
+      <h3>Step 5 — Finish Up</h3>
+      <p>Repeat these steps for any additional app updates. When finished, press <strong>Home</strong> on your remote to return to your device’s home screen, or press <strong>Back</strong> to exit Downloader.</p>
+      <h3>Important: App Update Best Practices</h3>
+      <p><strong>Not every app needs to be uninstalled before updating.</strong></p>
+      <p>Some applications allow you to install a newer version directly over the existing version. Others may require you to uninstall the previous version first.</p>
+      <ul><li><strong>If your app is working properly:</strong> Follow the update instructions listed beneath that application’s download button. You may be able to install the update without removing the existing app.</li><li><strong>If your app is not working correctly:</strong> A fresh installation is often a good troubleshooting option. Uninstall the existing application, then download and install the latest version.</li><li><strong>Always check the update details:</strong> Review the latest update date, version information when available, and any special instructions listed beneath each application.</li></ul>
+      <p><strong>Please note:</strong> Uninstalling an application may erase saved settings, favorites, or login information. Make sure you have any necessary login credentials before removing an app.</p>
+      <h3>Movie Box TV — November 2026 Update</h3>
+      <p><strong>Update Available — No Uninstall Required</strong></p>
+      <p>Movie Box TV has a new update available. Simply download and install the updated version directly over your existing app. If Movie Box TV continues to experience problems after updating, a fresh installation may help.</p>
+      <p><strong>Download:</strong> <a href="https://pixeldrain.com/api/filesystem/dhbPQxTp" target="_blank" rel="noopener noreferrer">Movie Box TV update</a><br><strong>Version:</strong> 1.1.9<br><strong>Updated:</strong> November 2026</p>
+    </section>
+    <div class="card" style="margin-top:12px;">
+      <div class="header">
+        <div class="section-label">Support Updates</div>
+        <h2>Help Keep the Library Updated</h2>
+        <div class="sub">Your optional support helps keep app versions current, links working, and updates posted for customers.</div>
+      </div>
+      <div class="content" style="padding-top:4px; padding-bottom:10px;">
+      <section class="card" id="inactive-apps"><details style="padding:18px"><summary style="font-size:20px;font-weight:bold;cursor:pointer">Inactive / Unavailable Apps (6)</summary><p class="sub">These apps are not currently recommended for installation. They are kept here for reference only. Status dates below reflect the last recorded update, not a new installation test.</p><div class="appgrid">          <div class="approw app-row"><div class="order core">C8</div><div><div class="appname">StreamFire</div><div class="small">Live TV app.</div><div class="small meta">No longer active - Updated September 10, 2026</div><div class="small note">StreamFire is no longer active and is not recommended for new installs.</div></div><div class="actions"><span class="btn directbtn">No Longer Active</span></div></div>
+          <div class="approw app-row"><div class="order sports">S1</div><div><div class="appname">FalconCast</div><div class="small">Live TV and Sports.</div><div class="small meta">No longer active - Updated September 10, 2026</div><div class="small note">FalconCast is no longer active and is not recommended for new installs.</div></div><div class="actions"><span class="btn goldbtn">No Longer Active</span></div></div>
+          <div class="approw app-row"><div class="order sports">S3</div><div><div class="appname">Sportsfire</div><div class="small">Live TV and Sports.</div><div class="small meta">No longer active - Updated September 10, 2026</div><div class="small note">Sportsfire is no longer active and is not recommended for new installs.</div></div><div class="actions"><span class="btn goldbtn">No Longer Active</span></div></div>
+          <div class="approw app-row"><div class="order movie">M7</div><div><div class="appname">OnStream</div><div class="small">Movie / TV app.</div><div class="small meta">Currently not working consistently - Updated June 28, 2026</div><div class="small note">OnStream is currently unavailable. No download is offered; this entry will be updated if a reliable version is confirmed.</div></div><div class="actions"><span class="btn playbtn">Currently Unavailable</span></div></div>
+          <div class="approw app-row"><div class="order movie">M8</div><div><div class="appname">Movie HD</div><div class="small">Movie / TV app.</div><div class="small meta">Currently inactive - Updated May 9, 2026</div><div class="small note">Movie HD is no longer active. I am actively looking to see if a replacement download is available. Check back here in the future for updates.</div></div><div class="actions"><span class="btn playbtn">Currently Inactive</span></div></div>
+<div class="approw app-row"><div class="order movie">—</div><div><div class="appname">Stream Vision</div><div class="small meta">Currently unavailable — Status updated November 9, 2026</div><div class="small note">Removed from recommended customer apps following owner confirmation. No download is offered.</div></div><div class="actions"><span class="btn linkbtn" aria-disabled="true">Unavailable</span></div></div></div></details></section>
+  <div class="bottom-actions">
+          <a class="btn goldbtn" href="https://www.paypal.com/ncp/payment/VSS7HZSB5FD2E" target="_blank" rel="noopener noreferrer">Support Updates with PayPal</a>
+        </div>
+      </div>
+    </div>
+    <div class="jumpbar categorynav">
+      <a class="btn directbtn" href="#core">IPTV Core Apps</a>
+      <a class="btn playbtn" href="#movies">Movies & TV</a>
+      <a class="btn goldbtn" href="#sports">Live Sports</a>
+      <a class="btn adminbtn" href="#utilities">Tools & Utilities</a>
+    </div>
+    <div class="tip">
+      <strong>Quick Note:</strong> Each app card now shows both the version and the last library update so you can check changes at a glance before downloading.
+    </div>
+    <div class="tip">
+      <strong>Unsupported App Notice:</strong> If an app is not working, it may no longer be supported by the creator. If the app no longer opens, downloads, or functions correctly, uninstall it from your device. Check back here in the future to see if the app comes back online or if a replacement option is added.
+    </div>
+    
+    <div class="tip">
+      <strong>Support Tools Added:</strong> Trusted VirusTotal Support APK and analiti Speed &amp; WiFi have been added under Tools &amp; Utilities to help with suspicious app checks and Wi-Fi troubleshooting.
+    </div>
+  </div>
 
-<div class="approw app-row"><div class="order sports">S3</div><div><div class="appname">Sportsfire</div><div class="small">Live TV and Sports.</div><div class="small meta">No longer active - Updated September 10, 2026</div><div class="small note">Sportsfire is no longer active and is not recommended for new installs.</div></div><div class="actions"><span class="btn goldbtn">No Longer Active</span></div></div>
-<div class="approw app-row"><div class="order movie">M7</div><div><div class="appname">OnStream</div><div class="small">Movie / TV app.</div><div class="small meta">Currently not working consistently - Updated June 28, 2026</div><div class="small note">OnStream is currently unavailable. No download is offered; this entry will be updated if a reliable version is confirmed.</div></div><div class="actions"><span class="btn playbtn">Currently Unavailable</span></div></div>
-<div class="approw app-row"><div class="order movie">M8</div><div><div class="appname">Movie HD</div><div class="small">Movie / TV app.</div><div class="small meta">Currently inactive - Updated May 9, 2026</div><div class="small note">Movie HD is no longer active. I am actively looking to see if a replacement download is available. Check back here in the future for updates.</div></div><div class="actions"><span class="btn playbtn">Currently Inactive</span></div></div>
-<div class="approw app-row"><div class="order movie">—</div><div><div class="appname">Stream Vision</div><div class="small meta">Currently unavailable — Status updated November 9, 2026</div><div class="small note">Removed from recommended customer apps following owner confirmation. No download is offered.</div></div><div class="actions"><span aria-disabled="true" class="btn linkbtn">Unavailable</span></div></div></div></details></section>
-<div class="bottom-actions">
-<a class="btn playbtn" href="support.html">Open Support</a>
-<a class="btn adminbtn" href="index.html">Back to Home</a>
+  <div class="card">
+    <div class="header">
+      <div class="section-label">Library Search</div>
+      <h2>Find an App Quickly</h2>
+      <div class="sub">Type any part of an app name to filter the page.</div>
+    </div>
+    <div class="content">
+      <input id="searchBox" class="search" type="text" placeholder="Search apps like Smarters, Flix Vision, PLAYfy TV, TV Bro..." />
+      <div class="note" style="margin-top:10px"><strong>New device?</strong> Start with the IPTV Smarters App. For a faster install sequence, use the <a href="downloader-portal.html" style="color:#86efac;font-weight:700">Quick Install Support Center</a>.</div>
+    </div>
+  </div>
+
+<div class="tip"><strong>Looking for a missing app?</strong> Working apps are grouped below. <a href="#inactive-apps" style="color:inherit;font-weight:bold">Open Inactive / Unavailable Apps</a> for apps no longer recommended.</div>
+<aside class="install-notice" id="before-installing" aria-labelledby="install-notice-title"><h2 id="install-notice-title">Before installing optional apps</h2><p>My recommended sideloaded-app setup uses Google Play Protect scanning turned off. I scan apps before recommending them, but disabling Play Protect reduces your device’s protection.</p><p>Only use the provided download links, and contact me if you’re unsure about a security message.</p></aside>
+  <div class="grid2">
+    <div>
+      <div class="card" id="core">
+        <div class="header">
+          <div class="section-label">Core IPTV</div>
+          <h2>IPTV Core Apps</h2>
+          <div class="sub">Primary IPTV and media player applications.</div>
+        </div>
+        <div class="appgrid">
+          <div class="approw app-row"><div class="order core">C1</div><div><div class="appname">IPTV Smarters App</div><div class="small">Core IPTV app.</div><div class="small meta">Version 5.0 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order core">C2</div><div><div class="appname">AMPlayer</div><div class="small">Alternate IPTV / media player.</div><div class="small meta">Version 3.0.2 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/J99DWABk" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order core">C3</div><div><div class="appname">Bear Player</div><div class="small">Alternate IPTV / media player.</div><div class="small meta">Version 2.20.24 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file/m35yb9lekyxldlw/Bear+Player_v2.20.24_MOD_modded-1.com.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order core">C4</div><div><div class="appname">BPlayer</div><div class="small">Alternate IPTV / media player.</div><div class="small meta">Version 1.3.2 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/TKHUxRbj" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order core">C5</div><div><div class="appname">VLC Media Player</div><div class="small">Media playback utility.</div><div class="small meta">Version 3.3.4 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://pixeldrain.com/api/filesystem/iacQyjir" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order core">C6</div><div><div class="appname">MX Player</div><div class="small">External media player for additional playback support.</div><div class="small meta">Latest version - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://f.mxplayer.j2inter.com/download?id=mxplayer&type=arm" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order core">C7</div><div><div class="appname">NVPlayer</div><div class="small">Recommended external player for apps like BeeTV.</div><div class="small meta">Version 1.1.2 - Updated March 27, 2026</div></div><div class="actions"><a class="btn directbtn" href="https://www.mediafire.com/file_premium/juor2m522tuhjog/NV_Video_Player_%2528v1.1.2%2529.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+        </div>
+      </div>
+
+      <div class="card" id="sports">
+        <div class="header">
+          <div class="section-label">Sports</div>
+          <h2>Live Sports APK Apps</h2>
+          <div class="sub">Sports-focused viewing applications.</div>
+        </div>
+        <div class="appgrid">
+          <div class="approw app-row"><div class="order sports">S2</div><div><div class="appname">PLAYfy TV</div><div class="small">Live TV and Sports.</div><div class="small meta">Version 1.7 - Updated September 10, 2026</div></div><div class="actions"><a class="btn goldbtn" href="https://dlplayfy.pages.dev/archive/PLAYFy-TV-V1.7.apk" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" id="movies">
+        <div class="header">
+          <div class="section-label">Movies / TV</div>
+          <h2>Movies & TV APK Apps</h2>
+          <div class="sub">Streaming and on-demand video applications.</div>
+        </div>
+        <div class="appgrid">
+          <div class="tip">
+            <strong>Primary App Reminder:</strong> Your main service app should still be the <strong>IPTV Smarters App</strong>. Always try searching inside IPTV Smarters first for movies, series, live TV, sports, and other available content. These Movie / TV apps are optional extras and may change, stop working, or require updated versions.
+          </div>
+          <div class="approw app-row"><div class="order movie">M1</div><div><div class="appname">Flix Vision</div><div class="small">Optional Movie / TV app.</div><div class="small meta">Version 4.0.0r-2 — Update posted November 9, 2026</div><div class="small note">New improved release recommended by 4MyIPTV Service. Use the updated download link below.</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/z7h98e8ia0c6ise/flix-vision-400r-v4.0.0r-2.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order movie">M2</div><div><div class="appname">Cinema HQ</div><div class="small">Optional Movie / TV app.</div><div class="small meta">Version 6.8 - Updated June 28, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/ppx4cqzw3nik99m/Cinema+HQ+v6.8.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order movie">M3</div><div><div class="appname">Movie Box TV</div><div class="small">Optional Movie / TV app.</div><div class="small meta">Version 1.1.9 — Updated November 11, 2026</div><div class="small note"><strong>Update note:</strong> Install this version over the existing Movie Box TV app. No uninstall is needed. After installation, delete the downloaded APK file if you no longer need it.</div></div><div class="actions"><a class="btn playbtn" href="https://pixeldrain.com/api/filesystem/dhbPQxTp" target="_blank" rel="noopener noreferrer">Download Update</a></div></div>
+          <div class="approw app-row"><div class="order movie">M4</div><div><div class="appname">Reezn 2</div><div class="small">Optional Movie / TV app.</div><div class="small meta">November 2026 Update • Downloader code: 7987405</div><div class="small note"><strong>Update note:</strong> No need to uninstall the original Reezn version. Just download and install Reezn 2 over the existing app.</div></div><div class="actions"><a class="btn playbtn" href="https://github.com/bedevlab/rdownload/releases/download/update/Reezn.apk" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order movie">M5</div><div><div class="appname">FilmPlus</div><div class="small">Movie / TV app.</div><div class="small meta">Version 2.5.2 — Update posted November 8, 2026</div><div class="small note"><strong>Reinstall required:</strong> Uninstall the old FilmPlus version from your device first, then download and install version 2.5.2. Do not install this update over the old version.</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/psuoe1h9dt8x463/2.5.2.apk/file" target="_blank" rel="noopener noreferrer">Download v2.5.2</a></div></div>
+          <div class="approw app-row"><div class="order movie">M6</div><div><div class="appname">BeeTV</div><div class="small">Movie / TV app. NVPlayer recommended for playback support.</div><div class="small meta">Version 4.5.9 - Updated March 27, 2026</div></div><div class="actions"><a class="btn playbtn" href="https://www.mediafire.com/file/5khvjyoz26umm0v/BeeTV_4.5.9_2459_06421d.apk/file" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+        </div>
+      </div>
+
+      <div class="card" id="utilities">
+        <div class="header">
+          <div class="section-label">Utilities</div>
+          <h2>Tools & Utilities APK Apps</h2>
+          <div class="sub">Support and maintenance tools.</div>
+        </div>
+        <div class="appgrid">
+          <div class="approw app-row"><div class="order util">U1</div><div><div class="appname">Background Apps &amp; Process List</div><div class="small">Utility tool for closing background apps.</div><div class="small meta">Latest version - Updated March 27, 2026</div></div><div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/fyzsjrY4" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order util">U2</div><div><div class="appname">Proton VPN</div><div class="small">VPN utility.</div><div class="small meta">Google Play Store link - Updated May 9, 2026</div><div class="small note">Install or update Proton VPN from the official Google Play Store listing.</div></div><div class="actions"><a class="btn adminbtn" href="https://play.google.com/store/apps/details?id=ch.protonvpn.android&hl=en_US" target="_blank" rel="noopener noreferrer">Open Play Store</a></div></div>
+          <div class="approw app-row"><div class="order util">U3</div><div><div class="appname">TV Bro</div><div class="small">TV browser utility.</div><div class="small meta">Version 2.01 - Updated March 27, 2026</div></div><div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/9arAt3iT" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order util">U4</div><div><div class="appname">Wolf Launcher</div><div class="small">Launcher utility.</div><div class="small meta">Version 0.1.9 - Updated March 27, 2026</div></div><div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/51fCaZup" target="_blank" rel="noopener noreferrer">Download</a></div></div>
+          <div class="approw app-row"><div class="order util">U5</div><div><div class="appname">Trusted VirusTotal Support APK</div><div class="small">APK safety scanner for checking suspicious apps before use.</div><div class="small meta">Trusted support APK - Updated July 5, 2026</div><div class="small note">Use this before installing apps from outside the App Library or Google Play Store. If a scan flags malware, uninstall the app and contact support.</div></div><div class="actions"><a class="btn adminbtn" href="https://pixeldrain.com/api/filesystem/nzZ1jtd6" target="_blank" rel="noopener noreferrer">Download APK</a><a class="btn linkbtn" href="https://www.virustotal.com/gui/home/upload" target="_blank" rel="noopener noreferrer">Open Scanner</a></div></div>
+          <div class="approw app-row"><div class="order util">U6</div><div><div class="appname">analiti Speed &amp; WiFi</div><div class="small">Speed test and Wi-Fi analyzer used to troubleshoot buffering, weak signal, and connection issues.</div><div class="small meta">Google Play Store link - Updated July 5, 2026</div><div class="small note">Use this on the same device and Wi-Fi network that is having playback issues.</div></div><div class="actions"><a class="btn adminbtn" href="https://play.google.com/store/apps/details?id=com.analiti.fastest.android&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Open Play Store</a><a class="btn linkbtn" href="https://analiti.com/" target="_blank" rel="noopener noreferrer">Open Website</a></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-actions">
+    <a class="btn playbtn" href="support.html">Open Support</a>
+    <a class="btn adminbtn" href="index.html">Back to Home</a>
+  </div>
+
+  <!-- Change Log: Version 3.6 updates PLAYfy TV to v1.7, marks StreamFire/FalconCast/Sportsfire inactive, removes the OnStream banner, and adds Google TV Play Protect guidance. -->
+  <div class="footer-strip">
+    <strong>4MyIPTV Service App Library</strong>
+    <div class="version">Version 4.0 - Active &amp; Inactive App Sections — Updated November 9, 2026</div>
+  </div>
 </div>
- Change Log: Version 3.6 updates PLAYfy TV to v1.7, previously marked StreamFire, FalconCast, and Sportsfire inactive; FalconCast restored November 12, 2026, removes the OnStream banner, and adds Google TV Play Protect guidance. 
-<div class="footer-strip">
-<strong>4MyIPTV Service App Library</strong>
-<div class="version">Version 4.2 • FalconCast v4.3.3 • November 12, 2026</div>
-</div>
-</div>
-<script>(function(){
-  const searchBox=document.getElementById('searchBox');
-  const sortBox=document.getElementById('sortApps');
-  const filterBox=document.getElementById('filterApps');
-  const list=document.getElementById('appList');
-  const rows=Array.from(list.querySelectorAll('.app-row'));
-  function render(){
-    const query=searchBox.value.toLowerCase().trim();
-    const filter=filterBox.value;
-    const ordered=rows.slice().sort((a,b)=>sortBox.value==='alpha'
-      ? a.dataset.name.localeCompare(b.dataset.name)
-      : b.dataset.updated.localeCompare(a.dataset.updated)||a.dataset.name.localeCompare(b.dataset.name));
-    let visible=0;
-    ordered.forEach(row=>{
-      const match=(filter==='all'||row.dataset.category===filter)&&row.innerText.toLowerCase().includes(query);
-      row.hidden=!match;
-      if(match) visible++;
-      list.appendChild(row);
+<script>
+// Version 4.1: Present all active apps in one newest-first library while preserving the original entries and links.
+(function () {
+  const searchBox = document.getElementById('searchBox');
+  const inactive = document.getElementById('inactive-apps');
+  const oldGrid = document.querySelector('.grid2');
+  const activeRows = Array.from(document.querySelectorAll('.grid2 .app-row'));
+  const labels = { core: 'IPTV Core', movie: 'Movies & TV', sports: 'Live Sports', util: 'Tools & Utilities' };
+  const dated = (row) => {
+    const text = row.innerText;
+    const match = text.match(/(?:Updated|Update posted)\s+([A-Z][a-z]+\s+\d{1,2},\s+\d{4})|([A-Z][a-z]+\s+\d{4})/);
+    return match ? Date.parse(match[1] || match[2]) || 0 : 0;
+  };
+  activeRows.forEach(row => {
+    const marker = row.querySelector('.order');
+    const type = Object.keys(labels).find(name => marker.classList.contains(name)) || 'core';
+    row.dataset.type = type;
+    row.dataset.date = String(dated(row));
+    const name = row.querySelector('.appname');
+    if (name && !row.querySelector('.app-type')) {
+      const badge = document.createElement('div');
+      badge.className = 'app-type';
+      badge.textContent = labels[type];
+      name.after(badge);
+    }
+  });
+  const library = document.createElement('section');
+  library.className = 'card';
+  library.id = 'active-app-library';
+  library.innerHTML = '<div class="header"><div class="section-label">All active downloads</div><h2>Apps &amp; Updates</h2><div class="sub">Newest updates appear first. Choose a type, search by name, or switch to alphabetical order.</div></div><div class="content"><div class="library-controls" id="appFilters"><button class="btn filterbtn active" data-filter="all" type="button">All Apps</button><button class="btn filterbtn" data-filter="core" type="button">IPTV Core</button><button class="btn filterbtn" data-filter="movie" type="button">Movies &amp; TV</button><button class="btn filterbtn" data-filter="sports" type="button">Live Sports</button><button class="btn filterbtn" data-filter="util" type="button">Tools &amp; Utilities</button><select class="sortselect" id="appSort" aria-label="Sort apps"><option value="newest">Newest updates first</option><option value="alpha">Name A–Z</option></select></div><div id="appCount" class="app-count"></div></div><div id="activeAppRows" class="appgrid"></div>';
+  oldGrid.parentNode.insertBefore(library, oldGrid);
+  const destination = document.getElementById('activeAppRows');
+  activeRows.forEach(row => destination.appendChild(row));
+  oldGrid.style.display = 'none';
+  document.querySelector('.categorynav').style.display = 'none';
+  library.after(inactive);
+  let filter = 'all';
+  let sort = 'newest';
+  function render() {
+    const term = searchBox.value.toLowerCase().trim();
+    const rows = activeRows.slice().sort((a, b) => sort === 'alpha' ? a.innerText.localeCompare(b.innerText) : Number(b.dataset.date) - Number(a.dataset.date));
+    rows.forEach(row => {
+      const visible = (filter === 'all' || row.dataset.type === filter) && row.innerText.toLowerCase().includes(term);
+      row.style.display = visible ? 'grid' : 'none';
+      destination.appendChild(row);
     });
-    document.getElementById('resultCount').textContent=visible+' application'+(visible===1?'':'s')+' shown';
+    document.getElementById('appCount').textContent = rows.filter(row => row.style.display !== 'none').length + ' active apps shown';
   }
-  searchBox.addEventListener('input',render);
-  sortBox.addEventListener('change',render);
-  filterBox.addEventListener('change',render);
+  searchBox.addEventListener('input', render);
+  document.getElementById('appFilters').addEventListener('click', event => {
+    const button = event.target.closest('[data-filter]'); if (!button) return;
+    filter = button.dataset.filter;
+    document.querySelectorAll('[data-filter]').forEach(item => item.classList.toggle('active', item === button));
+    render();
+  });
+  document.getElementById('appSort').addEventListener('change', event => { sort = event.target.value; render(); });
   render();
-})();</script>
+}());
+</script>
 <!-- CUSTOMER ANALYTICS EVENT TRACKING START -->
 <script>
 (function(){
@@ -210,5 +350,6 @@ ul.clean li{margin:0 0 6px}
 })();
 </script>
 <!-- CUSTOMER ANALYTICS EVENT TRACKING END -->
+
 </body>
 </html>
