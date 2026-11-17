@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- GOOGLE ANALYTICS START -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TN6LYCC0DS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TN6LYCC0DS');
+</script>
+<!-- GOOGLE ANALYTICS END -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>4MyIPTV Service | Affordable Streaming Service with Setup Help</title>
+<style>
+:root{
+  --bg:#0b1628;
+  --panel:#17243a;
+  --panel-soft:#122037;
+  --text:#f8fafc;
+  --muted:#b6c2d2;
+  --green:#22c55e;
+  --green-soft:#86efac;
+  --blue:#3b82f6;
+  --purple:#9333ea;
+  --gold:#f59e0b;
+  --red:#ef4444;
+  --border:#2d3a50;
+  --border-bright:#3b4a63;
+  --shadow:0 16px 34px rgba(0,0,0,.26);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at top left,rgba(59,130,246,.30),transparent 34%),
+    radial-gradient(circle at top right,rgba(34,197,94,.24),transparent 34%),
+    radial-gradient(circle at center,rgba(245,158,11,.06),transparent 44%),
+    linear-gradient(180deg,#0d1b30,#14233a 48%,#0b1628);
+  color:var(--text);
+}
+a{color:inherit}
+.wrap{max-width:1120px;margin:auto;padding:18px}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter:blur(16px);
+  background:rgba(11,22,40,.90);
+  border-bottom:1px solid rgba(148,163,184,.20);
+}
+.nav{
+  max-width:1120px;
+  margin:auto;
+  padding:10px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.nav-brand{display:flex;align-items:center;gap:9px;font-weight:900;letter-spacing:.02em;color:#e2e8f0;text-decoration:none}.nav-brand img{width:72px;height:42px;object-fit:contain;display:block}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.nav-links a{
+  text-decoration:none;
+  color:#d7e2ef;
+  font-size:13px;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,.22);
+  background:rgba(255,255,255,.05);
+}
+.nav-links a:hover{border-color:rgba(134,239,172,.55);color:#fff}
+.card{
+  background:linear-gradient(180deg,rgba(23,36,58,.98),rgba(18,32,55,.98));
+  border:1px solid var(--border);
+  border-radius:22px;
+  margin-bottom:22px;
+  padding:24px;
+  box-shadow:var(--shadow);
+}
+.brand-logo{
+  display:block;
+  margin:0 auto;
+  width:min(100%,560px);
+  height:auto;
+  filter:drop-shadow(0 12px 24px rgba(0,0,0,.30)) drop-shadow(0 0 16px rgba(59,130,246,.16));
+}
+.logo-stage{
+  max-width:620px;
+  margin:0 auto 14px;
+  padding:4px 12px;
+  border-radius:20px;
+  background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(59,130,246,.08),rgba(34,197,94,.06));
+  border:1px solid rgba(148,163,184,.20);
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+.logo-fallback{
+  display:none;
+  text-align:center;
+  color:#86efac;
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:.01em;
+  margin:4px 0 12px;
+}
+.promo-strip{
+  margin:12px auto 20px;
+  max-width:960px;
+  border:1px solid rgba(245,158,11,.55);
+  background:linear-gradient(135deg,rgba(245,158,11,.30),rgba(59,130,246,.12),rgba(34,197,94,.14));
+  border-radius:18px;
+  padding:16px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:14px;
+  align-items:center;
+  box-shadow:0 12px 28px rgba(0,0,0,.20);
+}
+.promo-strip strong{color:#fbbf24;font-size:18px}
+.promo-strip p{margin:4px 0 0;color:#fef3c7;line-height:1.45;font-size:14px}
+.hero{
+  overflow:hidden;
+  position:relative;
+  padding:22px;
+  border:1px solid rgba(134,239,172,.24);
+  background:
+    radial-gradient(circle at 15% 20%,rgba(34,197,94,.30),transparent 28%),
+    radial-gradient(circle at 85% 25%,rgba(59,130,246,.30),transparent 32%),
+    linear-gradient(135deg,rgba(26,42,68,.98),rgba(14,28,50,.98));
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  background:linear-gradient(115deg,transparent,rgba(134,239,172,.13),transparent 58%);
+  pointer-events:none;
+}
+
+.fireworks-overlay{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.firework{
+  position:absolute;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  opacity:0;
+  transform:scale(.2);
+  animation:burst 6s ease-out infinite;
+}
+.firework:before,
+.firework:after{
+  content:"";
+  position:absolute;
+  inset:-48px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle, rgba(255,255,255,.95) 0 2px, transparent 3px),
+    radial-gradient(circle at 50% 0%, rgba(251,191,36,.95) 0 2px, transparent 3px),
+    radial-gradient(circle at 100% 50%, rgba(59,130,246,.95) 0 2px, transparent 3px),
+    radial-gradient(circle at 50% 100%, rgba(34,197,94,.95) 0 2px, transparent 3px),
+    radial-gradient(circle at 0% 50%, rgba(236,72,153,.95) 0 2px, transparent 3px),
+    radial-gradient(circle at 82% 18%, rgba(168,85,247,.95) 0 2px, transparent 3px),
+    radial-gradient(circle at 18% 82%, rgba(251,146,60,.95) 0 2px, transparent 3px);
+  box-shadow:0 0 18px rgba(255,255,255,.22);
+}
+.firework:after{
+  inset:-26px;
+  filter:blur(1.2px);
+  opacity:.45;
+}
+.firework.one{top:14%;left:58%;animation-delay:.2s}
+.firework.two{top:8%;left:78%;animation-delay:2.1s}
+.firework.three{top:38%;left:88%;animation-delay:3.4s}
+@keyframes burst{
+  0%{opacity:0;transform:scale(.1)}
+  10%{opacity:.95;transform:scale(.35)}
+  26%{opacity:.85;transform:scale(.95)}
+  55%{opacity:0;transform:scale(1.18)}
+  100%{opacity:0;transform:scale(1.18)}
+}
+
+
+.fireworks-canvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:1;
+  opacity:.98;
+}
+.hero-inner{
+  z-index:2;
+}
+.fireworks-control{
+  cursor:pointer;
+  background:linear-gradient(135deg,#f59e0b,#ef4444,#9333ea);
+  color:#fff;
+}
+@media (prefers-reduced-motion: reduce){
+  .fireworks-canvas,
+  .firework{display:none}
+}
+
+.hero-inner{
+  position:relative;
+  display:block;
+}
+.hero-inner > div:first-child{
+  max-width:1040px;
+  margin:0 auto;
+  padding-top:4px;
+}
+.hero-side{
+  width:100%;
+  margin-top:20px;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#bbf7d0;
+  background:rgba(34,197,94,.13);
+  border:1px solid rgba(34,197,94,.34);
+  border-radius:999px;
+  padding:7px 11px;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:14px;
+}
+h1{
+  color:#f8fafc;
+  font-size:clamp(34px,5vw,60px);
+  line-height:1.02;
+  letter-spacing:-.045em;
+  margin:0 0 12px;
+}
+.hero .highlight{color:#86efac}
+.sub{
+  color:#d4dee9;
+  max-width:790px;
+  margin:0 0 16px;
+  line-height:1.65;
+  font-size:16px;
+}
+.hero-proof{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:15px 0 18px;
+}
+.hero-proof span{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(148,163,184,.23);
+  color:#dbeafe;
+  border-radius:999px;
+  padding:8px 10px;
+  font-size:13px;
+}
+.cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{
+  padding:13px 17px;
+  border-radius:999px;
+  font-weight:900;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  border:0;
+  min-height:46px;
+  box-shadow:0 10px 24px rgba(0,0,0,.22);
+}
+.primary{background:var(--green);color:#052e16}
+.secondary{background:var(--blue);color:#fff}
+.third{background:var(--purple);color:#fff}
+.gold{background:var(--gold);color:#3b2400}
+.outline{background:transparent;color:#e2e8f0;border:1px solid rgba(148,163,184,.34);box-shadow:none}
+.hero-side{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  background:rgba(18,32,55,.72);
+  border:1px solid rgba(148,163,184,.24);
+  border-radius:20px;
+  padding:14px;
+}
+.price-card{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  border-radius:18px;
+  background:linear-gradient(160deg,rgba(34,197,94,.18),rgba(59,130,246,.12));
+  border:1px solid rgba(134,239,172,.30);
+  padding:16px;
+  margin:0;
+}
+.price-label{color:#bbf7d0;font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+.price-main{font-size:42px;font-weight:900;color:#fff;line-height:1;margin:8px 0 4px}
+.price-main span{color:#86efac}
+.price-note{color:#d4dee9;font-size:14px;line-height:1.45;flex:1}
+.service-only-card{background:linear-gradient(160deg,rgba(59,130,246,.16),rgba(245,158,11,.10));border-color:rgba(59,130,246,.32)}
+.small-price{font-size:32px}
+.mini-cta{margin-top:auto;width:100%;font-size:13px;min-height:40px;padding:10px 12px;transform:translateY(4px)}
+.quick-contact{
+  grid-column:1 / -1;
+  border-radius:16px;
+  border:1px solid rgba(59,130,246,.30);
+  background:rgba(59,130,246,.12);
+  padding:14px 16px;
+}
+.quick-contact strong{display:block;color:#dbeafe;margin-bottom:5px}
+.quick-contact p{margin:0;color:#d4dee9;line-height:1.45;font-size:14px}
+h2{
+  text-align:center;
+  font-size:clamp(24px,3vw,34px);
+  margin:0 0 8px;
+  color:#fff;
+  letter-spacing:-.025em;
+}
+.section-sub{
+  text-align:center;
+  color:var(--muted);
+  max-width:760px;
+  margin:0 auto 18px;
+  line-height:1.6;
+}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.feature{
+  background:linear-gradient(180deg,rgba(20,36,61,.98),rgba(15,29,52,.98));
+  border:1px solid var(--border-bright);
+  border-radius:16px;
+  padding:20px;
+  height:100%;
+}
+.feature .icon{
+  width:42px;height:42px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(34,197,94,.13);
+  border:1px solid rgba(34,197,94,.25);
+  margin-bottom:12px;
+  font-size:22px;
+}
+.feature h3{margin:0 0 8px;color:#86efac;font-size:18px}
+.feature p,.feature li{color:#d4dee9;font-size:14px;line-height:1.6}
+.feature ul{margin:8px 0 0;padding-left:18px}
+.steps{counter-reset:steps}
+.step{position:relative;padding-top:20px}
+.step:before{
+  counter-increment:steps;
+  content:counter(steps);
+  width:36px;height:36px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;
+  background:#22c55e;color:#052e16;font-weight:900;
+  border:3px solid #101827;
+  margin-bottom:14px;
+  box-shadow:0 8px 18px rgba(0,0,0,.22);
+}
+.split{
+  display:grid;
+  grid-template-columns:.95fr 1.05fr;
+  gap:22px;
+  align-items:stretch;
+}
+.callout{
+  background:linear-gradient(145deg,rgba(34,197,94,.16),rgba(59,130,246,.12));
+  border:1px solid rgba(134,239,172,.30);
+  border-radius:18px;
+  padding:22px;
+}
+.callout h2{text-align:left;margin-bottom:10px}
+.callout p{color:#d4dee9;line-height:1.62;margin:0 0 12px}
+.policy{
+  background:rgba(245,158,11,.12);
+  border:1px solid rgba(245,158,11,.28);
+  border-radius:16px;
+  padding:16px;
+  color:#fef3c7;
+  line-height:1.55;
+  font-size:14px;
+  margin-top:16px;
+}
+.faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.faq-item{background:linear-gradient(180deg,rgba(20,36,61,.98),rgba(15,29,52,.98));border:1px solid #3b4a63;border-radius:14px;padding:16px}
+.faq-item h3{margin:0 0 8px;color:#86efac;font-size:16px}
+.faq-item p{margin:0;color:#d4dee9;line-height:1.5;font-size:14px}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;border:1px solid #3b4a63;background:#030712}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.final-cta{text-align:center;padding:30px}
+.final-cta h2{font-size:clamp(26px,4vw,42px)}
+.footer-strip{margin-top:18px;padding:16px 10px;border-top:1px solid #3b4a63;text-align:center;color:#d4dee9;font-size:.9rem}
+.footer-strip .version{margin-top:6px;color:#b6c2d2;font-size:.82rem}
+.disclaimer{color:#9aa9ba;font-size:12px;line-height:1.5;text-align:center;max-width:860px;margin:12px auto 0}
+
+/* TELEGRAM SUPPORT CALLOUT START */
+.telegram-support{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:18px;
+  background:linear-gradient(135deg,rgba(59,130,246,.20),rgba(34,197,94,.12));
+  border:1px solid rgba(96,165,250,.36);
+}
+.telegram-support .support-icon{
+  width:58px;height:58px;border-radius:18px;
+  display:flex;align-items:center;justify-content:center;
+  background:#229ED9;color:#fff;font-size:30px;
+  box-shadow:0 10px 24px rgba(0,0,0,.24);
+}
+.telegram-support h2{text-align:left;margin:0 0 6px;font-size:24px}
+.telegram-support p{margin:0;color:#dbeafe;line-height:1.55}
+.telegram-btn{background:#229ED9;color:#fff;white-space:nowrap}
+/* TELEGRAM SUPPORT CALLOUT END */
+
+/* STRIKE INTO FALL SPLASH START */
+.fall-overlay{position:fixed;inset:0;background:rgba(4,10,24,.86);backdrop-filter:blur(8px);z-index:9999;display:none;align-items:center;justify-content:center;padding:18px}
+.fall-overlay.show{display:flex;animation:fallFadeIn .28s ease}
+.fall-modal{position:relative;width:min(760px,100%);overflow:hidden;border-radius:28px;padding:34px 26px;background:linear-gradient(180deg,#182033,#101827 48%,#0a1020);border:1px solid rgba(245,158,11,.48);box-shadow:0 28px 60px rgba(0,0,0,.45);text-align:center}
+.fall-close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:24px;cursor:pointer}
+.fall-kicker{display:inline-flex;gap:8px;align-items:center;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.34);padding:8px 12px;border-radius:999px;color:#fde68a;font-size:13px;font-weight:800;margin-bottom:16px}
+.bowling-mark{font-size:54px;line-height:1;margin:0 0 8px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.32))}
+.fall-title{font-size:clamp(30px,5vw,48px);font-weight:900;margin:8px 0 10px;color:#fff;letter-spacing:-.035em}
+.fall-title span{color:#fbbf24}
+.fall-offer{font-size:clamp(19px,3vw,28px);font-weight:800;color:#86efac;margin:0 0 8px}
+.fall-copy{color:#dbeafe;line-height:1.6;max-width:640px;margin:0 auto 18px;font-size:15px}
+.fall-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 18px}
+.fall-pills span{padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(148,163,184,.24);color:#e2e8f0;font-size:13px}
+.fall-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+@keyframes fallFadeIn{from{opacity:0}to{opacity:1}}
+/* STRIKE INTO FALL SPLASH END */
+
+@media(max-width:900px){
+  .hero-side{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fall-modal{padding:30px 18px 24px}
+  .wc-ball-lane{height:70px}
+  .wc-ball{width:58px;height:58px}
+  .fall-actions .btn{width:100%}
+  .wc-goal{font-size:clamp(30px,9vw,50px);letter-spacing:-.05em;padding:0 6px}
+  .telegram-support{grid-template-columns:1fr;text-align:center}
+  .telegram-support .support-icon{margin:auto}
+  .telegram-support h2{text-align:center}
+  .telegram-btn{width:100%}
+
+  .hero-inner,.split{grid-template-columns:1fr}
+  .grid3,.grid2,.faq-grid{grid-template-columns:1fr}
+  .promo-strip{grid-template-columns:1fr}
+  .nav{align-items:flex-start;flex-direction:column}
+  .nav-links{justify-content:flex-start}
+  .hero{padding:16px}
+  .logo-stage{margin-bottom:12px;padding:3px 8px}
+  .brand-logo{width:min(100%,460px)}
+  .wrap{padding:12px}
+  .card{padding:18px;border-radius:18px}
+  .price-main{font-size:34px}
+}
+
+@media(max-width:620px){
+  .hero-side{grid-template-columns:1fr}
+  .price-card{padding:15px}
+}
+
+/* Thanksgiving and holiday refresh — November 8, 2026 */
+body{background:radial-gradient(ellipse at top left,rgba(180,83,9,.26),transparent 48%),radial-gradient(ellipse at top right,rgba(127,29,29,.24),transparent 48%),linear-gradient(180deg,#19121c,#241b26 50%,#131522)}
+.promo-strip{border-color:#b77935;background:linear-gradient(115deg,#43241d,#302135)}
+.fall-modal{border-color:#bd8b4a;background:linear-gradient(135deg,#33202a,#1c2530)}
+.fall-title span,.highlight{color:#f8cd87}
+.fall-kicker{color:#ffe2b0}
+.fall-offer{color:#ffe2b0}
+
+/* Keep both dismissal controls inside the visible mobile viewport. */
+.fall-overlay{padding:12px;padding: max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));height:100%;height:100dvh;box-sizing:border-box}
+.fall-modal{display:flex;flex-direction:column;max-height:calc(100vh - 48px);max-height:calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom));min-height:0;padding:0!important}
+.fall-controls{flex-shrink:0;display:flex;justify-content:flex-end;padding:12px 14px;background:#251d29;border-bottom:1px solid rgba(255,255,255,.16)}
+.fall-close{position:static;display:inline-flex;align-items:center;justify-content:center;gap:8px;width:auto;min-width:100px;min-height:48px;height:auto;padding:8px 16px;background:#fff;color:#251d29;font-size:16px;font-weight:700;border:2px solid #fff}
+.fall-body{min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:18px 26px 24px}
+.fall-dismiss-row{flex-shrink:0;padding:12px 18px;background:#251d29;border-top:1px solid rgba(255,255,255,.16)}
+.fall-dismiss{display:block;width:100%;min-height:48px;padding:10px 16px;border:2px solid #ffe2b0;border-radius:12px;background:transparent;color:#fff;font:700 16px Arial,Helvetica,sans-serif;cursor:pointer}
+.fall-close:focus-visible,.fall-dismiss:focus-visible{outline:3px solid #fbbf24;outline-offset:3px}
+@media(max-width:620px){.fall-body{padding:12px 16px 18px}.fall-title{font-size:30px}.fall-kicker{font-size:12px}}
+</style>
+</head>
+<body>
+  <!-- STRIKE INTO FALL SPLASH START -->
+  <div id="fallSplash" class="fall-overlay" aria-hidden="true">
+    <div class="fall-modal" role="dialog" aria-modal="true" aria-labelledby="fallSplashTitle">
+      <div class="fall-controls"><button type="button" class="fall-close" id="fallSplashClose" aria-label="Close holiday offer"><span aria-hidden="true">×</span> Close</button></div>
+      <div class="fall-body">
+      <div class="fall-kicker">🍂 Holiday Special • Gather, Watch &amp; Enjoy</div>
+      <div class="bowling-mark" aria-hidden="true">🍂</div>
+      <div class="fall-title" id="fallSplashTitle">Home for the <span>Holidays</span></div>
+      <div class="fall-offer">Onn HD $150 • Onn 4K $160 • 4K Plus — Only 4 Available</div>
+      <p class="fall-copy">Make room for Thanksgiving football, holiday movie nights, and more with simple Google TV setup. Choose the plug-and-play Onn HD for $150, the recommended Onn 4K for $160. The 4K Plus is back in stock with very limited quantities — only 4 available.</p>
+      <div class="fall-pills">
+        <span>Onn HD $150</span>
+        <span>Onn 4K $160</span>
+        <span>Onn 4K Plus — Only 4 Available</span>
+        <span>12 Months Service Included</span>
+        <span>Service Available</span>
+        <span>Shipping Added If Required</span>
+      </div>
+      <div class="fall-actions">
+        <a class="btn gold" href="request-service.html?promo=strike-into-fall&device=onn-hd&source=homepage-splash" data-event="request_service_click">Get Onn HD — $150</a>
+        <a class="btn primary" href="request-service.html?promo=strike-into-fall&device=onn-4k&source=homepage-splash" data-event="request_service_click">Get Onn 4K — $160</a>
+        <a class="btn secondary" href="request-service.html?promo=4k-plus-upgrade-bundle&device=onn-4k-plus" data-event="request_service_click">Get 4K Plus — $170 • Only 4 Available</a>
+      </div>
+      </div>
+      <div class="fall-dismiss-row"><button type="button" class="fall-dismiss" id="fallSplashContinue">Continue to homepage</button></div>
+    </div>
+  </div>
+  <!-- STRIKE INTO FALL SPLASH END -->
+  <div class="topbar">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-brand" href="index.html"><img src="4myiptv-logo.png" alt=""><span>4MyIPTV Service</span></a>
+      <div class="nav-links">
+        <a href="sell-sheet.html" data-event="sell_sheet_click">Plans & Devices</a>
+        <a href="device-specs.html" data-event="device_specs_click">Compare Devices</a>
+        <a href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer" data-event="telegram_click">Message Directly</a>
+        <a href="request-service.html?source=homepage-nav" data-event="request_service_click">Request Service</a>
+      </div>
+    </nav>
+  </div>
+
+  <main class="wrap">
+    <!-- STRIKE INTO FALL SPECIAL START -->
+    <section class="promo-strip" aria-label="Standard Streaming">
+      <div>
+        <strong>🍂 Standard Streaming: Gather, Watch &amp; Enjoy</strong>
+        <p>Choose the plug-and-play Onn HD bundle for $150, the recommended Onn 4K bundle for $160. The Onn 4K Plus is back in stock — only 4 available while supplies last. Service is available and shipping is added when required.</p>
+      </div>
+      <a class="btn gold" href="request-service.html?promo=strike-into-fall&device=onn-hd&source=homepage-promo" data-event="promo_offer_click">Start at $150</a>
+    </section>
+    <!-- STRIKE INTO FALL SPECIAL END -->
+
+    <section class="card hero">
+      <div class="logo-stage">
+        <img class="brand-logo" src="4myiptv-logo.png" alt="4MyIPTV Service logo" onerror="this.style.display='none';document.querySelector('.logo-fallback').style.display='block';" />
+        <div class="logo-fallback">4MyIPTV Service</div>
+      </div>
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">Standard Streaming • Onn HD available • Onn 4K recommended</div>
+          <h1>Gather together and <span class="highlight">stream more this holiday season.</span></h1>
+          <p class="sub">Bring everyone together for Thanksgiving football, holiday movies, series and everyday TV with an easy setup and support when you need it. Choose the plug-and-play Onn HD, the recommended Onn 4K, The Onn 4K Plus is available in very limited quantities — only 4 units.</p>
+          <div class="hero-proof">
+            <span>Onn HD $150</span>
+            <span>Onn 4K $160</span>
+            <span>4K Plus — Only 4 Available</span>
+            <span>12 Months Included</span>
+            <span>Plug-and-Play Option</span>
+            <span>Certified Google TV</span>
+            <span>Service Available</span>
+            <span>Shipping Added If Required</span>
+          </div>
+          <div class="cta">
+            <a class="btn gold" href="request-service.html?promo=strike-into-fall&device=onn-hd&source=homepage-main-cta" data-event="request_service_click">Onn HD — $150</a>
+            <a class="btn primary" href="request-service.html?promo=strike-into-fall&device=onn-4k&source=homepage-main-cta" data-event="request_service_click">Onn 4K — $160</a>
+            <a class="btn secondary" href="request-service.html?promo=4k-plus-upgrade-bundle&device=onn-4k-plus" data-event="request_service_click">Get 4K Plus — $170 • Only 4 Available</a>
+            <a class="btn outline" href="sell-sheet.html" data-event="sell_sheet_click">View Plans & Devices</a>
+            <a class="btn outline" href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer" data-event="telegram_click">Message Me Directly</a>
+          </div>
+        </div>
+        <div class="hero-side" aria-label="Standard Streaming package options">
+          <div class="price-card">
+            <div class="price-label">Plug & Play • Onn HD Bundle</div>
+            <div class="price-main small-price"><span>$150</span></div>
+            <div class="price-note">Onn HD Google TV device plus 12 months of service. A simple plug-and-play option for 1080p TVs, spare rooms, and budget-friendly setups.</div>
+            <a class="btn outline mini-cta" href="request-service.html?promo=strike-into-fall&device=onn-hd&source=homepage-hd-card" data-event="promo_offer_click">Request Onn HD</a>
+          </div>
+          <div class="price-card">
+            <div class="price-label">Recommended • Onn 4K Bundle</div>
+            <div class="price-main"><span>$160</span></div>
+            <div class="price-note">Onn 4K Google TV device plus 12 months of service. The best fit for most customers and the featured holiday package.</div>
+            <a class="btn outline mini-cta" href="request-service.html?promo=strike-into-fall&device=onn-4k&source=homepage-4k-card" data-event="promo_offer_click">Request Onn 4K</a>
+          </div>
+          <div class="price-card service-only-card">
+            <div class="price-label">Upgrade • Onn 4K Plus Bundle</div>
+            <div class="price-main"><span>$170</span></div>
+            <div class="price-note">Back in stock in very limited quantities: only 4 devices available. Standard bundle includes 12 months of service for $170. While supplies last.</div>
+            <a class="btn outline mini-cta" href="request-service.html?promo=4k-plus-upgrade-bundle&device=onn-4k-plus" data-event="promo_offer_click">Request 4K Plus — Only 4 Available</a>
+          </div>
+          <div class="quick-contact">
+            <strong>Service Available</strong>
+            <p>Shipping is added when required. Local delivery or setup support may be available depending on location. Choose the bundle that fits your TV and budget, then request service for the fastest response.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card telegram-support" aria-label="Telegram support">
+      <div class="support-icon" aria-hidden="true">✈</div>
+      <div>
+        <h2>Questions or Need Support?</h2>
+        <p>For questions about plans, devices, setup, renewals, or technical support, contact me directly on Telegram for the fastest response.</p>
+      </div>
+      <a class="btn telegram-btn" href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer" data-event="telegram_support_click">Contact Support on Telegram</a>
+    </section>
+
+    <section class="card">
+      <h2>What You Get</h2>
+      <p class="section-sub">A cleaner way to start streaming with a strong special offer, device guidance, and support when you need help.</p>
+      <div class="grid3">
+        <div class="feature">
+          <div class="icon">TV</div>
+          <h3>Streaming Service Options</h3>
+          <p>Choose service options designed for live TV-style viewing, entertainment, sports, and multiple-language channel needs, depending on the selected package.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">?</div>
+          <h3>Setup Guidance</h3>
+          <p>You do not have to guess your way through setup. Guidance is available to help you understand which device or app path makes the most sense.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">GO</div>
+          <h3>Ready-to-Go Device Options</h3>
+          <p>Choose service only if you already have a compatible device, choose the recommended Onn 4K standard bundle. The Onn 4K Plus is available in very limited quantities — only 4 units.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card split">
+      <div class="callout">
+        <h2>More than just a login</h2>
+        <p>Many customers want an affordable streaming option but do not want to deal with confusing setup steps, device choices, or app questions on their own.</p>
+        <p>4MyIPTV Service helps you choose the right starting point, review your options, and get support after purchase.</p>
+        <div class="cta">
+          <a class="btn primary" href="request-service.html?source=more-than-login-section" data-event="request_service_click">Start My Request</a>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="icon">OK</div>
+        <h3>Best For Customers Who Want:</h3>
+        <ul>
+          <li>A lower-cost TV-style option</li>
+          <li>Help choosing the right setup</li>
+          <li>A compatible streaming device option</li>
+          <li>Support after purchase</li>
+          <li>A faster direct-message path when needed</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>How It Works</h2>
+      <p class="section-sub">Start with a request or message directly. Review your quote before payment. Then receive setup guidance based on your order.</p>
+      <div class="grid3 steps">
+        <div class="feature step">
+          <h3>Choose Your Start Point</h3>
+          <p>Request service online or message directly if you want help choosing the right option before submitting anything.</p>
+        </div>
+        <div class="feature step">
+          <h3>Review Your Quote</h3>
+          <p>Your request is reviewed and a clear quote is provided before payment. No surprise checkout on the first page.</p>
+        </div>
+        <div class="feature step">
+          <h3>Get Setup and Supported</h3>
+          <p>After approval and payment, setup details, device guidance, or ready-to-go device options are provided based on your order.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card split">
+      <div class="callout">
+        <h2>Still Not Sure? Ask About a Starter Option.</h2>
+        <p>You do not have to commit to a full plan right away. Ask about a free 48-hour trial so you can test the service before choosing a longer package.</p>
+        <p>The trial option is also a referral tool. Existing customers can share a 48-hour trial with a friend, which makes it easier to grow through word of mouth.</p>
+        <div class="cta">
+          <a class="btn secondary" href="request-service.html?promo=48-hour-trial&source=homepage-trial-section" data-event="promo_offer_click">Request a 48-Hour Trial</a>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="icon">TRY</div>
+        <h3>A Better Way to Try Before You Commit</h3>
+        <ul>
+          <li>Start small before choosing a full plan</li>
+          <li>Ask questions before paying for a longer package</li>
+          <li>Test your setup and service fit first</li>
+          <li>Upgrade when you are ready</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Customer Confidence</h2>
+      <div class="grid3">
+        <div class="feature">
+          <div class="icon">HELP</div>
+          <h3>Support Available</h3>
+          <p>Support is available after purchase so you have a real path for setup questions or service concerns.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">LANG</div>
+          <h3>Multiple Language Channels</h3>
+          <p>Ask about available multiple-language channel options before choosing your service path.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">SAFE</div>
+          <h3>Refund Support</h3>
+          <p>If service cannot be activated or cannot be made to work after setup review, refund options can be reviewed.</p>
+        </div>
+      </div>
+      <div class="policy"><strong>Refund support:</strong> Refund eligibility may depend on activation status, setup attempt, service issue, and whether support is able to resolve the problem.</div>
+    </section>
+
+    <section class="card">
+      <h2>See How Easy Setup Can Be</h2>
+      <p class="section-sub">Watch this short Onn 4K Pro review and comparison, then request service or message directly when you are ready to get started.</p>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/_QMbGRs5yIA" title="Onn 4K Pro Review and Comparison" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Quick Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Do I need to know which device I want?</h3>
+          <p>No. You can ask for guidance first. Device recommendations can be reviewed based on how you plan to watch.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I message instead of filling out the form?</h3>
+          <p>Yes. Direct messaging is the fastest option if you have questions or want help choosing the right starting point.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I get a device already prepared?</h3>
+          <p>Yes. Ready-to-go streaming device options may be available, including local drop-off or shipping where applicable.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Do I pay before getting a quote?</h3>
+          <p>No. Submit a request first, review the quote, then payment options are provided after approval.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card final-cta">
+      <h2>Ready to get started?</h2>
+      <p class="section-sub">Request the Standard Streaming special online or message directly for the fastest help. The process is simple, clear, and supported from the beginning.</p>
+      <div class="cta" style="justify-content:center">
+        <a class="btn primary" href="request-service.html?source=final-homepage-cta" data-event="request_service_click">Request Service</a>
+        <a class="btn secondary" href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer" data-event="telegram_click">Message Me Directly</a>
+        <a class="btn outline" href="sell-sheet.html" data-event="sell_sheet_click">Compare Plans & Devices</a>
+        <a class="btn outline" href="device-specs.html" data-event="device_specs_click">View Device Specs</a>
+      </div>
+      <p class="disclaimer">Service, channel availability, device compatibility, setup steps, and refund eligibility may vary by package, provider, device, and activation status.</p>
+    </section>
+
+    <div class="footer-strip">
+      <strong>4MyIPTV Service</strong>
+      <div class="version">Homepage v4.1 • Thanksgiving &amp; Holiday Offers • Updated November 8, 2026</div>
+    </div>
+</main>
+
+
+
+
+
+<script>
+(function(){
+  const splash = document.getElementById("fallSplash");
+  const closeBtn = document.getElementById("fallSplashClose");
+  if(!splash || !closeBtn) return;
+  const sessionKey = "holidayStreamingSplashSeen2026";
+  const continueBtn = document.getElementById("fallSplashContinue");
+  let previousFocus = null;
+  let previousOverflow = "";
+  function rememberDismissal(){ try { sessionStorage.setItem(sessionKey, "1"); } catch(e) {} }
+  function closeSplash(){
+    splash.classList.remove("show");
+    splash.setAttribute("aria-hidden","true");
+    document.body.style.overflow = previousOverflow;
+    rememberDismissal();
+    if(previousFocus && typeof previousFocus.focus === "function") previousFocus.focus();
+  }
+  let seen = false;
+  try { seen = !!sessionStorage.getItem(sessionKey); } catch(e) {}
+  if(!seen){
+    window.setTimeout(function(){
+      previousFocus = document.activeElement;
+      previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      splash.classList.add("show");
+      splash.setAttribute("aria-hidden","false");
+      closeBtn.focus();
+    }, 350);
+  }
+  closeBtn.addEventListener("click", closeSplash);
+  if(continueBtn) continueBtn.addEventListener("click", closeSplash);
+  splash.addEventListener("keydown", function(e){
+    if(e.key !== "Tab") return;
+    const items = Array.from(splash.querySelectorAll('button, a[href]'));
+    const first = items[0], last = items[items.length - 1];
+    if(e.shiftKey && document.activeElement === first){e.preventDefault();last.focus();}
+    else if(!e.shiftKey && document.activeElement === last){e.preventDefault();first.focus();}
+  });
+  splash.addEventListener("click", function(e){ if(e.target === splash) closeSplash(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape" && splash.classList.contains("show")) closeSplash(); });
+})();
+</script>
+
+<script>
+(function(){
+  function sendEvent(name, linkText, linkUrl){
+    if(typeof gtag === 'function'){
+      gtag('event', name, {
+        link_text: linkText || '',
+        link_url: linkUrl || '',
+        page_location: window.location.href
+      });
+    }
+  }
+  document.addEventListener('click', function(e){
+    const tracked = e.target.closest('[data-event]');
+    if(!tracked) return;
+    sendEvent(tracked.getAttribute('data-event'), tracked.textContent.trim(), tracked.href || '');
+  });
+})();
+</script>
+
+
+<section style="max-width:1100px;margin:24px auto;padding:24px;background:#102a3d;border:1px solid #315162;border-radius:16px"><h2 style="color:#a5e8c4">Need device support?</h2><p>Remote assistance $20 for up to 30 minutes, drop-off updates $30, or full reconfiguration $40. By appointment.</p><a href="device-support-services.html" style="color:#a5e8c4;font-weight:bold">View support services and book an appointment</a></section>
+<div style="max-width:1080px;margin:20px auto;padding:18px;background:#153649;color:white">Regular pricing is in effect from December 16, 2026. Existing prepaid subscriptions keep their purchased term. Contact Tim to confirm availability and your final quote.</div></body>
+</html>

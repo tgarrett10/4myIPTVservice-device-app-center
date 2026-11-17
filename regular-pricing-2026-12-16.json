@@ -1,0 +1,17 @@
+{
+  "holidayEnd": "2026-12-15",
+  "regularEffective": "2026-12-16",
+  "prices": {
+    "serviceOnly12": 120,
+    "hd12": 150,
+    "hd24": 250,
+    "4k12": 160,
+    "4k24": 260,
+    "plus12": 170,
+    "plus24": 270,
+    "google12": 260,
+    "google24": 360
+  },
+  "specialOrders": "Quote current cost and require prepayment.",
+  "note": "Apply after the holiday ends. Do not raise prices on existing prepaid subscriptions."
+}
