@@ -1,42 +1,23 @@
 (() => {
   const button = document.querySelector('#holiday-sound');
-  if (!button) return;
-  let context, timer;
-  function stop() {
-    clearTimeout(timer);
-    if (context) { context.close().catch(() => {}); context = null; }
-    button.textContent = '♫ Play holiday sounds';
-    button.setAttribute('aria-pressed', 'false');
+  const music = document.querySelector('#holiday-music');
+  if (!button || !music) return;
+  music.volume = 0.3;
+  function label() {
+    button.textContent = music.paused ? '♫ Play holiday music' : music.muted ? '♫ Unmute holiday music' : '♫ Mute holiday music';
   }
-  button.addEventListener('click', async () => {
-    if (context) { stop(); return; }
-    const Audio = window.AudioContext || window.webkitAudioContext;
-    if (!Audio) { button.textContent = 'Holiday audio unavailable'; return; }
-    try {
-      context = new Audio();
-      await context.resume();
-      if (!context) return;
-      button.textContent = '■ Stop holiday sounds';
-      button.setAttribute('aria-pressed', 'true');
-      // Original, gently decaying bell introduction; no recording or looping.
-      const start = context.currentTime + 0.05;
-      [784, 988, 1175, 988, 1319, 1175, 1568, 1319, 1568].forEach((hz, index) => {
-        [1, 2.76, 5.4].forEach((partial, harmonic) => {
-          const oscillator = context.createOscillator();
-          const gain = context.createGain();
-          const at = start + index * 0.58;
-          oscillator.type = 'sine';
-          oscillator.frequency.value = hz * partial;
-          gain.gain.setValueAtTime(0, at);
-          gain.gain.linearRampToValueAtTime(0.035 / (harmonic + 1), at + 0.008);
-          gain.gain.exponentialRampToValueAtTime(0.0001, at + 1.65);
-          oscillator.connect(gain); gain.connect(context.destination);
-          oscillator.start(at); oscillator.stop(at + 1.7);
-        });
-      });
-      timer = setTimeout(stop, 7000);
-    } catch (_) { stop(); button.textContent = 'Try holiday sounds again'; }
+  async function play() {
+    try { await music.play(); } catch (_) { /* A visitor tap enables audio when autoplay is blocked. */ }
+    label();
+  }
+  button.addEventListener('click', () => {
+    if (music.paused) { music.muted = false; play(); }
+    else { music.muted = !music.muted; label(); }
   });
-  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
-  window.addEventListener('pagehide', stop);
+  music.addEventListener('ended', label);
+  music.addEventListener('play', label);
+  music.addEventListener('pause', label);
+  window.addEventListener('pagehide', () => music.pause());
+  label();
+  play();
 })();
