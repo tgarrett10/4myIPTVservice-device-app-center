@@ -249,6 +249,7 @@ textarea{min-height:110px;resize:vertical}
             <label for="serviceTerm">Service Term</label>
             <select id="serviceTerm" name="serviceTerm">
               <option value="1 Year - Standard Bundle Pricing" selected>1 Year</option>
+              <option value="6 Months - Service Only - $72">6 Months · Service Only</option>
               <option value="2 Years - Add Second Year for $100 - Standard second-year price">2 Years · Add $100 · Standard second-year price</option>
               <option value="Not Applicable - Trial, Support, or Renewal">Not Applicable</option>
             </select>
@@ -363,6 +364,8 @@ const errorMessage = document.getElementById("errorMessage");
 const FIRESTICK_UPGRADE_VALUE = "Standard Streaming - Onn HD Device + 1 Year IPTV Service - $160";
 const FOUR_K_BUNDLE_VALUE = "Standard Streaming - Onn 4K Device + 1 Year IPTV Service - $170";
 const FOUR_K_PLUS_BUNDLE_VALUE = "Standard Streaming - Onn 4K Plus Device + 1 Year IPTV Service - $190";
+const PRO_VALUE = "Onn 4K Pro Premium Bundle - 1 Year IPTV Service - $220";
+const SIX_MONTH_VALUE = "Service Only - 6 Months IPTV Service - $72";
 const GOOGLE_STREAMER_VALUE = "Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $260";
 const NVIDIA_SHIELD_VALUE = "NVIDIA Shield TV Pro Special-Order Bundle - Device Setup + 1 Year IPTV Service - $380 - PREPAYMENT REQUIRED";
 const LIMITED_TIME_SERVICE_ONLY_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $120 - Customer Has Compatible Android 14 Device";
@@ -370,6 +373,8 @@ const FREE_TRIAL_VALUE = "48-Hour Free Trial Request";
 const FIRESTICK_UPGRADE_PLAN_VALUE = "Standard Streaming - Onn HD Device + 1 Year IPTV Service - $160";
 const FOUR_K_BUNDLE_PLAN_VALUE = "Standard Streaming - Onn 4K Device + 1 Year IPTV Service - $170";
 const FOUR_K_PLUS_BUNDLE_PLAN_VALUE = "Standard Streaming - Onn 4K Plus Device + 1 Year IPTV Service - $190";
+const PRO_PLAN_VALUE = "Onn 4K Pro Premium Bundle - 1 Year IPTV Service - $220";
+const SIX_MONTH_PLAN_VALUE = "Service Only - 6 Months IPTV Service - $72";
 const GOOGLE_STREAMER_PLAN_VALUE = "Google TV Streamer 4K Bundle - Device Setup + 1 Year IPTV Service - $260";
 const NVIDIA_SHIELD_PLAN_VALUE = "NVIDIA Shield TV Pro Special-Order Bundle - Device Setup + 1 Year IPTV Service - $380 - PREPAYMENT REQUIRED";
 const LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE = "Limited-Time Service Only - 1 Year IPTV Service - $120";
@@ -388,6 +393,7 @@ const BUNDLE_OPTIONS = {
   [FIRESTICK_UPGRADE_VALUE]: { plan: FIRESTICK_UPGRADE_PLAN_VALUE, device: "Onn HD Streaming Device - Standard Streaming - $160 - PLUG AND PLAY" },
   [FOUR_K_BUNDLE_VALUE]: { plan: FOUR_K_BUNDLE_PLAN_VALUE, device: "Onn 4K Streaming Device - Standard Streaming - $170 - IN STOCK" },
   [FOUR_K_PLUS_BUNDLE_VALUE]: { plan: FOUR_K_PLUS_BUNDLE_PLAN_VALUE, device: "Onn 4K Plus Streaming Device - Standard Streaming - $190" },
+  [PRO_VALUE]: { plan: PRO_PLAN_VALUE, device: "Onn 4K Pro Premium - $220 - Very Limited Availability" },
   [GOOGLE_STREAMER_VALUE]: { plan: GOOGLE_STREAMER_PLAN_VALUE, device: "Google TV Streamer 4K Bundle - $260" },
   [NVIDIA_SHIELD_VALUE]: { plan: NVIDIA_SHIELD_PLAN_VALUE, device: "NVIDIA Shield TV Pro Special-Order Bundle - $380 - FULL PREPAYMENT REQUIRED" }
 };
@@ -395,6 +401,7 @@ const BUNDLE_PLAN_VALUES = [
   FIRESTICK_UPGRADE_PLAN_VALUE,
   FOUR_K_BUNDLE_PLAN_VALUE,
   FOUR_K_PLUS_BUNDLE_PLAN_VALUE,
+  PRO_PLAN_VALUE,
   GOOGLE_STREAMER_PLAN_VALUE,
   NVIDIA_SHIELD_PLAN_VALUE
 ];
@@ -425,7 +432,7 @@ function getCampaignSource() {
   const promoParam = params.get("promo");
   const planInterest = document.getElementById("planInterest").value;
   const bundleSelected = isBundleValue(serviceType.value) || isBundlePlanValue(planInterest);
-  const serviceOnlySelected = serviceType.value === LIMITED_TIME_SERVICE_ONLY_VALUE || planInterest === LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE;
+  const serviceOnlySelected = serviceType.value === LIMITED_TIME_SERVICE_ONLY_VALUE || planInterest === LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE || serviceType.value === SIX_MONTH_VALUE || planInterest === SIX_MONTH_PLAN_VALUE;
   const trialSelected = serviceType.value === FREE_TRIAL_VALUE || planInterest === FREE_TRIAL_PLAN_VALUE;
   if (promoParam === FREE_TRIAL_QUERY || trialSelected) return FREE_TRIAL_SOURCE;
   if (promoParam === LIMITED_TIME_SERVICE_ONLY_QUERY || serviceOnlySelected) return LIMITED_TIME_SERVICE_ONLY_SOURCE;
@@ -444,7 +451,10 @@ function syncBundleSelections() {
 
   preferredDevice.value = "";
 
-  if (serviceType.value === LIMITED_TIME_SERVICE_ONLY_VALUE) {
+  if (serviceType.value === SIX_MONTH_VALUE) {
+    document.getElementById("planInterest").value = SIX_MONTH_PLAN_VALUE;
+    serviceTerm.value = "6 Months - Service Only - $72";
+  } else if (serviceType.value === LIMITED_TIME_SERVICE_ONLY_VALUE) {
     document.getElementById("planInterest").value = LIMITED_TIME_SERVICE_ONLY_PLAN_VALUE;
     serviceTerm.value = "1 Year - Standard Bundle Pricing";
   } else if (serviceType.value === FREE_TRIAL_VALUE) {
