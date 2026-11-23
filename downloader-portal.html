@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>4MyIPTV Service | Device Support Center</title>
 <!-- GOOGLE ANALYTICS START -->
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-TN6LYCC0DS"></script>
@@ -12,272 +11,28 @@
   gtag('config', 'G-TN6LYCC0DS');
 </script>
 <!-- GOOGLE ANALYTICS END -->
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>4MyIPTV Service Customer Support Center</title>
-<!--
-Version: 2.4
-Update: Removed the customer-visible Downloader code, updated PLAYfy TV to validated v1.7, and retained obsolete-link cleanup.
-Last Updated: November 8, 2026
-Change Notes:
-- Repositioned the page as a customer support welcome page for device customers
-- Removed duplicate button groups that pointed to the same destinations
-- Simplified the layout to one primary action row
-- Added courtesy support messaging for post-purchase support
-- Added Quick Install section for faster new-device setup
-- Prioritized core IPTV, sports, movie, and player apps
--->
 <style>
-:root{
-  --bg:#08111f;
-  --panel:#101827;
-  --text:#f8fafc;
-  --muted:#94a3b8;
-  --green:#22c55e;
-  --blue:#3b82f6;
-  --gold:#f59e0b;
-  --purple:#9333ea;
-  --border:#1f2937;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(180deg,#08111f,#0f172a);
-  color:var(--text);
-}
-.wrap{max-width:1120px;margin:auto;padding:18px}
-.card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:18px;
-  margin-bottom:14px;
-  overflow:hidden;
-  box-shadow:0 12px 28px rgba(0,0,0,.28);
-}
-.hero{padding:20px}
-h1{
-  margin:0 0 8px;
-  text-align:center;
-  color:#86efac;
-  font-size:2rem;
-}
-h2{margin:0 0 6px}
-.tagline-banner{
-  margin:10px auto 12px auto;
-  max-width:760px;
-  padding:10px 14px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.04);
-  text-align:center;
-  font-weight:600;
-  font-size:16px;
-  letter-spacing:.08em;
-  color:#e2e8f0;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 18px rgba(0,0,0,.18);
-}
-.sub{
-  color:var(--muted);
-  line-height:1.55;
-  max-width:880px;
-  margin:0 auto;
-  text-align:center;
-}
-.notice,.tip{
-  border-radius:14px;
-  padding:12px 14px;
-  margin-top:12px;
-  line-height:1.5;
-}
-.notice{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.24);color:#dbeafe}
-.tip{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:#fde68a}
-.header{
-  padding:14px 16px;
-  border-bottom:1px solid var(--border);
-  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
-}
-.content{padding:14px 16px}
-.section-label{
-  font-size:11px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:#94a3b8;
-  margin:0 0 8px 0;
-}
-.quicknav{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-top:16px;
-}
-@media (max-width:900px){
-  .quicknav{grid-template-columns:1fr}
-}
-.btn{
-  padding:14px 14px;
-  border-radius:14px;
-  text-decoration:none;
-  font-weight:bold;
-  text-align:center;
-  display:inline-block;
-  border:none;
-  cursor:pointer;
-  font-size:15px;
-  color:#fff;
-  width:100%;
-}
-.playbtn{background:var(--blue)}
-.directbtn{background:var(--green);color:#052e16}
-.goldbtn{background:var(--gold);color:#3b2400}
-.linklist{margin:0;padding-left:18px}
-.linklist li{margin:0 0 10px;line-height:1.55;color:#e2e8f0}
-.footer-strip{
-  margin-top:18px;
-  padding:16px 10px;
-  border-top:1px solid #243044;
-  text-align:center;
-  color:#cbd5e1;
-  font-size:.9rem;
-}
-.footer-strip .version{margin-top:6px;color:#94a3b8;font-size:.82rem}
-
-.quick-install{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
-.quick-app{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 14px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.025)}
-.quick-app strong{display:block;margin-bottom:3px}.quick-app span{color:var(--muted);font-size:13px;line-height:1.35}
-.quick-app .btn{width:auto;min-width:110px;padding:11px 12px}
-@media (max-width:760px){.quick-install{grid-template-columns:1fr}.quick-app{align-items:flex-start;flex-direction:column}.quick-app .btn{width:100%}}
-
-.support-note{
-  margin-top:14px;
-  text-align:center;
-  color:#cbd5e1;
-  font-size:.95rem;
-  line-height:1.5;
-}
-
-/* Prominent optional-app setup notice. */
-.install-notice{margin:18px 0;padding:20px;border:2px solid #fbbf24;border-radius:14px;background:#2d2517;color:#fff4ce;line-height:1.6}.install-notice h2{margin:0 0 10px;font-size:22px;color:#ffe2a0}.install-notice p{margin:8px 0}.install-notice a{color:#a5d8ff;text-decoration:underline}
-</style>
-<style>.site-nav-consistent{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:12px auto 23px;max-width:1000px}.site-nav-consistent a{font:700 13px/1.3 Arial,sans-serif;text-decoration:none;color:#e7f1ff;background:#152b45;border:1px solid #426181;border-radius:9px;padding:10px 13px}.site-nav-consistent a:hover,.site-nav-consistent a:focus{background:#1e4467;outline-offset:2px}@media(max-width:580px){.site-nav-consistent a{flex:1 1 44%;text-align:center}}</style>
-</head>
-<body>
-<div class="wrap">
-<nav aria-label="Main site navigation" class="site-nav-consistent"><a href="index.html">Home</a><a href="sell-sheet.html">Devices &amp; Pricing</a><a href="request-service.html">Request Service</a><a href="support.html">Support &amp; Updates</a></nav>
-
-  <div class="card hero">
-    <h1>Welcome to 4MyIPTV Service Support</h1>
-    <div class="tagline-banner">Stream More • Pay Less • Watch Anywhere</div>
-    <div class="sub">This support page is provided as a courtesy for customers who purchased a device from 4MyIPTV Service. Use the tools below for app access, setup help, and common support guidance after purchase.</div>
-
-    <div class="notice">
-      <strong>Courtesy Support Notice</strong><br />
-      This page is included for device customers as a post-purchase support resource. It is intended to help with setup, app access, and common support needs so you can get back up and running quickly.
-    </div>
-
-    <div class="tip">
-      <strong>Getting Started</strong><br />
-      1. Install or reopen the IPTV Smarters App<br />
-      2. Enter your login details exactly as provided<br />
-      3. Use the Quick Install apps below when needed<br />
-      4. Open Device Setup or Support / Tips if you need help
-    </div>
-
-<aside class="install-notice" id="before-installing" aria-labelledby="install-notice-title"><h2 id="install-notice-title">Before installing optional apps</h2><p>My recommended sideloaded-app setup uses Google Play Protect scanning turned off. I scan apps before recommending them, but disabling Play Protect reduces your device’s protection.</p><p>Only use the provided download links, and contact me if you’re unsure about a security message.</p></aside>
-    <div class="quicknav">
-      <a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank" rel="noopener noreferrer">Install IPTV Smarters App</a>
-      <a class="btn playbtn" href="device-setup.html">Open Device Setup</a>
-      <a class="btn directbtn" href="app-library.html">Open Apps &amp; Updates</a>
-      <a class="btn directbtn" href="support.html">Open Support / Tips</a>
-    </div>
-
-    <div class="support-note">These are the main tools most customers need after purchase. Start here first before looking elsewhere. The November 2026 Movie Box TV and FalconCast updates are in Apps &amp; Updates. If an app stops working, uninstall it through device Settings before installing its updated version. Read each app's update date and notes.</div>
-  </div>
-
-  
-<div class="card">
-    <div class="header">
-      <div class="section-label">New Device Setup</div>
-      <h2>Quick Install — Most Used Apps</h2>
-      <div class="sub" style="text-align:left;margin:0">Start with IPTV Smarters App. Add the other apps only when you want the extra viewing or playback options.</div>
-    </div>
-    <div class="content">
-      <div class="quick-install">
-        <div class="quick-app"><div><strong>1. IPTV Smarters App</strong><span>Primary IPTV customer app.</span></div><a class="btn goldbtn" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank" rel="noopener noreferrer">Install</a></div>
-        <div class="quick-app"><div><strong>2. MX Player</strong><span>Additional playback support.</span></div><a class="btn playbtn" href="https://f.mxplayer.j2inter.com/download?id=mxplayer&type=arm" target="_blank" rel="noopener noreferrer">Install</a></div>
-        <div class="quick-app"><div><strong>3. PLAYfy TV v1.7</strong><span>Optional live TV and sports app. Validated September 10, 2026.</span></div><a class="btn playbtn" href="https://dlplayfy.pages.dev/archive/PLAYFy-TV-V1.7.apk" target="_blank" rel="noopener noreferrer">Install</a></div>
-        <div class="quick-app"><div><strong>4. Flix Vision v4.0.0r-2</strong><span>Improved release — Update posted November 9, 2026.</span></div><a class="btn playbtn" href="https://www.mediafire.com/file/z7h98e8ia0c6ise/flix-vision-400r-v4.0.0r-2.apk/file" target="_blank" rel="noopener noreferrer">Install</a></div>
-      </div>
-      <div class="support-note">Need something else? Open <a href="app-library.html" style="color:#86efac;font-weight:700">Apps &amp; Updates</a> for the complete library, including Movie Box TV and utilities.</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="header">
-      <div class="section-label">Important Notes</div>
-      <h2>Important Support Reminders</h2>
-    </div>
-    <div class="content">
-      <ul class="linklist">
-        <li>Use IPTV Smarters App as your primary customer app.</li>
-        <li>Enter your login details exactly as provided.</li>
-        <li>Do not share your login credentials.</li>
-        <li>If an install link fails, use Device Setup or Support / Tips for the next best step.</li>
-        <li>This page is your main courtesy support resource for common device help.</li>
-      </ul>
-    </div>
-  </div>
-
-  <section class="card"><div class="content"><h2>November App Updates</h2><p>Flix Vision v4.0.0r-2 is now available. Use the updated Flix Vision install button above for the improved release.</p><div class="quick-app"><div><strong>Reezn v2.020 Update</strong><span>Updated November 16, 2026 (v2.020). Uninstall the previous version through device Settings, then download and install this update. Uninstalling may remove settings, favorites, and login details.</span></div><a class="btn playbtn" href="https://pixeldrain.com/api/filesystem/snTcGFuF" target="_blank" rel="noopener noreferrer">Install Reezn</a></div><div class="quick-app"><div><strong>FilmPlus v2.5.2 — Reinstall Required</strong><span>Update posted November 8, 2026. Uninstall the old FilmPlus app from your device first, then download and install version 2.5.2. Use the same uninstall-and-reinstall process for Reezn v2.020.</span></div><a class="btn playbtn" href="https://www.mediafire.com/file/psuoe1h9dt8x463/2.5.2.apk/file" target="_blank" rel="noopener noreferrer">Install FilmPlus v2.5.2</a></div></div></section>
-  <div class="footer-strip">
-    <strong>4MyIPTV Service • Customer Support Center</strong>
-
-<div class="tip"><strong>Looking for an app that is missing or no longer works?</strong> <a href="app-library.html#inactive-apps">View Inactive / Unavailable Apps</a>. Current downloads remain in Apps &amp; Updates.</div>
-    <div class="version">Version 2.7 • Flix Vision &amp; FilmPlus Updates • Updated November 9, 2026</div>
-  </div>
-</div>
-<!-- CUSTOMER ANALYTICS EVENT TRACKING START -->
+:root{color-scheme:dark;--bg:#0a1318;--surface:#12232b;--line:#35505a;--ink:#f0f6f6;--muted:#b2c5cc;--lime:#b7f86c;--blue:#89dce9}*{box-sizing:border-box}body{margin:0;background:#0a1318;color:var(--ink);font:18px/1.45 Arial,Helvetica,sans-serif}header{border-bottom:1px solid var(--line);padding:15px 4%;display:flex;align-items:center;justify-content:space-between;gap:15px;background:#101f27}.brand{font-size:24px;font-weight:900;letter-spacing:-.04em}.brand span{color:var(--lime)}.tag{font-size:14px;color:var(--blue)}main{max-width:1220px;margin:auto;padding:24px 4% 40px}h1{font-size:36px;line-height:1.1;margin:0 0 6px;letter-spacing:-.035em}h2{font-size:26px;margin:0 0 5px}h3{font-size:20px;margin:0}p{color:var(--muted);margin:6px 0 12px}.sub{font-size:16px}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}.tab,a.install,a.secondary{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:800;border-radius:9px;min-height:48px;padding:10px 15px;text-align:center;color:var(--ink);background:#152b34;border:1px solid var(--line);font-size:17px}.tab[aria-current="page"],a.install{background:var(--lime);color:#152211;border-color:var(--lime)}a:focus,summary:focus,input:focus{outline:4px solid var(--blue);outline-offset:3px}section[hidden]{display:none}.list{border:1px solid var(--line);background:var(--surface);border-radius:12px;overflow:hidden}.row{padding:13px;display:grid;grid-template-columns:43px minmax(0,1fr) auto;align-items:center;gap:13px;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:0}.row:focus-within{background:#23404a}.row[hidden]{display:none}.mark{display:grid;place-items:center;width:42px;height:42px;border-radius:9px;background:#28414b;color:var(--blue);font-weight:900}.primary .mark{background:#38562c;color:var(--lime)}.meta,.desc,.note{font-size:15px;color:var(--muted);margin-top:4px}.note{color:#e0d5ae}.buttons{display:flex;flex-wrap:wrap;gap:8px;justify-content:end}.install{min-width:112px}.notice{margin:14px 0;padding:13px 16px;background:#132a2d;border:1px solid #365c5a;border-radius:10px;color:var(--muted);font-size:16px}.notice strong{color:var(--ink)}details{margin:12px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}summary{padding:14px 17px;font-weight:800;cursor:pointer;font-size:19px}summary span{float:right;color:var(--muted);font-size:14px;font-weight:600}.category-desc{margin:0 16px 9px;font-size:15px}.category .list{border:none;border-radius:0}.search{width:100%;padding:13px;color:var(--ink);background:#13252c;border:1px solid var(--line);border-radius:10px;font:inherit;margin:12px 0}.guide{padding:0 17px 15px}.guide ol,.guide ul{padding-left:23px;color:var(--muted)}.guide li{margin:8px 0}.unavailable{border-top:1px solid var(--line);padding:12px 16px}.unavailable p{font-size:15px;margin:4px 0}.actions{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}.actions a{flex:1}video{width:100%;max-width:640px;display:block;background:#000;border-radius:8px;margin:12px 0}.topic{border-top:1px solid var(--line);padding:14px 0}.topic:first-child{border:0}.topic h3{margin-bottom:8px}footer{border-top:1px solid var(--line);font-size:14px;color:var(--muted);padding:16px 4%}@media(max-width:650px){header{flex-wrap:wrap}.brand{font-size:20px}h1{font-size:28px}.tab{font-size:14px;padding:8px;min-height:44px}.tabs{gap:5px}.row{grid-template-columns:32px minmax(0,1fr) auto;gap:8px;padding:10px}.mark{width:32px;height:32px;font-size:13px}h3{font-size:17px}.meta,.desc,.note{font-size:13px}.install{min-width:74px!important;font-size:14px!important;padding:8px!important}.buttons{flex-direction:column;gap:5px}.secondary{font-size:14px!important}.tag{font-size:12px}summary span{float:none;display:block}}
+</style></head><body>
+<header><div class="brand"><span>4MyIPTV</span> Service</div><span class="tag">Customer support • Your Rep, Tim</span></header>
+<main><h1>Device Support Center</h1><p class="sub">Update your apps, prepare a device, or get help — all in one place.</p>
+<nav class="tabs" aria-label="Support sections"><a class="tab" href="#updates" aria-current="page">Recent Updates</a><a class="tab" href="#apps">All Apps &amp; Utilities</a><a class="tab" href="#help">Help &amp; Guides</a></nav>
+<section id="updates"><h2>Recent updates</h2><p class="sub">Latest releases first. Read each app's instructions before updating.</p><div class="list"><article class="row" data-name="FalconCast"><div class="mark" aria-hidden="true">F</div><div><h3>FalconCast</h3><div class="meta">Version 4.3.3 — Updated November 16, 2026</div><div class="desc">Live TV and Sports.</div><div class="note">Uninstall the previous app through device Settings before downloading and installing this release. This may remove saved favorites, settings, or login information.</div></div><div class="buttons"><a class="install" href="https://www.mediafire.com/file/4t3y9qdy4u6qka0/FalconCast(V4.3.3).apk/file" target="_blank" rel="noopener noreferrer" aria-label="Download v4.3.3 FalconCast">Update</a></div></article><article class="row" data-name="Reezn v2.020"><div class="mark" aria-hidden="true">Rv</div><div><h3>Reezn v2.020</h3><div class="meta">November 16, 2026 Update • Use the download link below</div><div class="desc">Optional Movie / TV app.</div></div><div class="buttons"><a class="install" href="https://pixeldrain.com/api/filesystem/snTcGFuF" target="_blank" rel="noopener noreferrer" aria-label="Download Reezn v2.020">Update</a></div></article><article class="row" data-name="Movie Box TV"><div class="mark" aria-hidden="true">MB</div><div><h3>Movie Box TV</h3><div class="meta">Version 1.1.9 — Updated November 11, 2026</div><div class="desc">Optional Movie / TV app.</div><div class="note">If Movie Box TV is working, install the update over the existing app. If it is not working, uninstall the old version first and reinstall. Uninstalling may remove saved settings.</div></div><div class="buttons"><a class="install" href="https://pixeldrain.com/api/filesystem/dhbPQxTp" target="_blank" rel="noopener noreferrer" aria-label="Download Update Movie Box TV">Update</a></div></article><article class="row" data-name="Flix Vision"><div class="mark" aria-hidden="true">FV</div><div><h3>Flix Vision</h3><div class="meta">Version 4.0.0r-2 — Update posted November 9, 2026</div><div class="desc">Optional Movie / TV app.</div><div class="note">New improved release recommended by 4MyIPTV Service. Use the updated download link below.</div></div><div class="buttons"><a class="install" href="https://www.mediafire.com/file/z7h98e8ia0c6ise/flix-vision-400r-v4.0.0r-2.apk/file" target="_blank" rel="noopener noreferrer" aria-label="Download Flix Vision">Update</a></div></article><article class="row" data-name="FilmPlus"><div class="mark" aria-hidden="true">F</div><div><h3>FilmPlus</h3><div class="meta">Version 2.5.2 — Update posted November 8, 2026</div><div class="desc">Movie / TV app.</div></div><div class="buttons"><a class="install" href="https://www.mediafire.com/file/psuoe1h9dt8x463/2.5.2.apk/file" target="_blank" rel="noopener noreferrer" aria-label="Download v2.5.2 FilmPlus">Update</a></div></article></div><div class="notice"><strong>Before reinstalling:</strong> Uninstalling an app may remove settings, favorites or login details. Keep device protections enabled, and use trusted, authorized sources.</div></section>
+<section id="apps"><h2>All apps &amp; utilities</h2><p class="sub">Organized in the order used to prepare a device. Start at the top and work down.</p><label for="search" class="sub">Find an app</label><input type="search" id="search" class="search" placeholder="Search by app name" autocomplete="off"><details class="category" id="primary" open><summary>Primary service <span>1 app</span></summary><p class="category-desc">Start with the primary service app.</p><div class="list"><article class="row primary" data-name="IPTV Smarters App IPTV Smarters Pro"><div class="mark" aria-hidden="true">IS</div><div><h3>IPTV Smarters Pro</h3><div class="meta">Version 5.0 - Updated March 27, 2026</div><div class="desc">Core IPTV app.</div></div><div class="buttons"><a class="install" href="https://pixeldrain.com/api/filesystem/vUNGYLzo" target="_blank" rel="noopener noreferrer" aria-label="Download IPTV Smarters Pro">Install</a></div></article></div></details><details class="category" id="movies" open><summary>Movies &amp; TV <span>5 apps</span></summary><p class="category-desc">Optional applications. Use only authorized content and trusted sources.</p><div class="list"><article class="row" data-name="Reezn v2.020"><div class="mark" aria-hidden="true">Rv</div><div><h3>Reezn v2.020</h3><div class="meta">November 16, 2026 Update • Use the download link below</div><div class="desc">Optional Movie / TV app.</div></div><div class="buttons"><a class="install" href="https://pixeldrain.com/api/filesystem/snTcGFuF" target="_blank" rel="noopener noreferrer" aria-label="Download Reezn v2.020">Install</a></div></article><article class="row" data-name="Flix Vision"><div class="mark" aria-hidden="true">FV</div><div><h3>Flix Vision</h3><div class="meta">Version 4.0.0r-2 — Update posted November 9, 2026</div><div class="desc">Optional Movie / TV app.</div><div class="note">New improved release recommended by 4MyIPTV Service. Use the updated download link below.</div></div><div class="buttons"><a class="install" href="https://www.mediafire.com/file/z7h98e8ia0c6ise/flix-vision-400r-v4.0.0r-2.apk/file" target="_blank" rel="noopener noreferrer" aria-label="Download Flix Vision">Install</a></div></article><article class="row" data-name="Cinema HQ"><div class="mark" aria-hidden="true">CH</div><div><h3>Cinema HQ</h3><div class="meta">Version 6.8 - Updated June 28, 2026</div><div class="desc">Optional Movie / TV app.</div></div><div class="buttons"><a class="install" href="https://www.mediafire.com/file/ppx4cqzw3nik99m/Cinema+HQ+v6.8.apk/file" target="_blank" rel="noopener noreferrer" aria-label="Download Cinema HQ">Install</a></div></article><article class="row" data-name="FilmPlus"><div class="mark" aria-hidden="true">F</div><div><h3>FilmPlus</h3><div class="meta">Version 2.5.2 — Update posted November 8, 2026</div><div class="desc">Movie / TV app.</div></div><div class="buttons"><a class="install" href="https://www.mediafire.com/file/psuoe1h9dt8x463/2.5.2.apk/file" target="_blank" rel="noopener noreferrer" aria-label="Download v2.5.2 FilmPlus">Install</a></div></article><article class="row" data-name="Movie Box TV"><div class="mark" aria-hidden="true">MB</div><div><h3>Movie Box TV</h3><div class="meta">Version 1.1.9 — Updated November 11, 2026</div><div class="desc">Optional Movie / TV app.</div><div class="note">If Movie Box TV is working, install the update over the existing app. If it is not working, uninstall the old version first and reinstall. Uninstalling may remove saved settings.</div></div><div class="buttons"><a class="install" href="https://pixeldrain.com/api/filesystem/dhbPQxTp" target="_blank" rel="noopener noreferrer" aria-label="Download Update Movie Box TV">Install</a></div></article></div></details><details class="category" id="sports" open><summary>Sports <span>2 apps</span></summary><p class="category-desc">Optional viewing apps.</p><div class="list"><article class="row" data-name="FalconCast"><div class="mark" aria-hidden="true">F</div><div><h3>FalconCast</h3><div class="meta">Version 4.3.3 — Updated November 16, 2026</div><div class="desc">Live TV and Sports.</div><div class="note">Uninstall the previous app through device Settings before downloading and installing this release. This may remove saved favorites, settings, or login information.</div></div><div class="buttons"><a class="install" href="https://www.mediafire.com/file/4t3y9qdy4u6qka0/FalconCast(V4.3.3).apk/file" target="_blank" rel="noopener noreferrer" aria-label="Download v4.3.3 FalconCast">Install</a></div></article><article class="row" data-name="PLAYfy TV"><div class="mark" aria-hidden="true">PT</div><div><h3>PLAYfy TV</h3><div class="meta">Version 1.7 - Updated September 10, 2026</div><div class="desc">Live TV and Sports.</div></div><div class="buttons"><a class="install" href="https://dlplayfy.pages.dev/archive/PLAYFy-TV-V1.7.apk" target="_blank" rel="noopener noreferrer" aria-label="Download PLAYfy TV">Install</a></div></article></div></details><details class="category" id="players" open><summary>Media players <span>6 apps</span></summary><p class="category-desc">Some apps rely on external players for playback, format compatibility or alternative playback options.</p><div class="list"><article class="row" data-name="MX Player"><div class="mark" aria-hidden="true">MP</div><div><h3>MX Player</h3><div class="meta">Latest version - Updated March 27, 2026</div><div class="desc">External media player for additional playback support.</div></div><div class="buttons"><a class="install" href="https://f.mxplayer.j2inter.com/download?id=mxplayer&type=arm" target="_blank" rel="noopener noreferrer" aria-label="Download MX Player">Install</a></div></article><article class="row" data-name="VLC Media Player"><div class="mark" aria-hidden="true">VM</div><div><h3>VLC Media Player</h3><div class="meta">Version 3.3.4 - Updated March 27, 2026</div><div class="desc">Media playback utility.</div></div><div class="buttons"><a class="install" href="https://pixeldrain.com/api/filesystem/iacQyjir" target="_blank" rel="noopener noreferrer" aria-label="Download VLC Media Player">Install</a></div></article><article class="row" data-name="AMPlayer"><div class="mark" aria-hidden="true">A</div><div><h3>AMPlayer</h3><div class="meta">Version 3.0.2 - Updated March 27, 2026</div><div class="desc">Alternate IPTV / media player.</div></div><div class="buttons"><a class="install" href="https://pixeldrain.com/api/filesystem/J99DWABk" target="_blank" rel="noopener noreferrer" aria-label="Download AMPlayer">Install</a></div></article><article class="row" data-name="Bear Player"><div class="mark" aria-hidden="true">BP</div><div><h3>Bear Player</h3><div class="meta">Version 2.20.24 - Updated March 27, 2026</div><div class="desc">Alternate IPTV / media player.</div></div><div class="buttons"><a class="install" href="https://www.mediafire.com/file/m35yb9lekyxldlw/Bear+Player_v2.20.24_MOD_modded-1.com.apk/file" target="_blank" rel="noopener noreferrer" aria-label="Download Bear Player">Install</a></div></article><article class="row" data-name="BPlayer"><div class="mark" aria-hidden="true">B</div><div><h3>BPlayer</h3><div class="meta">Version 1.3.2 - Updated March 27, 2026</div><div class="desc">Alternate IPTV / media player.</div></div><div class="buttons"><a class="install" href="https://pixeldrain.com/api/filesystem/TKHUxRbj" target="_blank" rel="noopener noreferrer" aria-label="Download BPlayer">Install</a></div></article><article class="row" data-name="NVPlayer"><div class="mark" aria-hidden="true">N</div><div><h3>NVPlayer</h3><div class="meta">Version 1.1.2 - Updated March 27, 2026</div><div class="desc">Optional external media player.</div></div><div class="buttons"><a class="install" href="https://www.mediafire.com/file_premium/juor2m522tuhjog/NV_Video_Player_%2528v1.1.2%2529.apk/file" target="_blank" rel="noopener noreferrer" aria-label="Download NVPlayer">Install</a></div></article></div></details><details class="category" id="utilities" open><summary>Tools &amp; utilities <span>6 apps</span></summary><p class="category-desc">Device maintenance, security and Wi-Fi diagnostics.</p><div class="list"><article class="row" data-name="Background Apps &amp; Process List"><div class="mark" aria-hidden="true">BA</div><div><h3>Background Apps &amp; Process List</h3><div class="meta">Latest version - Updated March 27, 2026</div><div class="desc">Utility tool for closing background apps.</div></div><div class="buttons"><a class="install" href="https://pixeldrain.com/api/filesystem/fyzsjrY4" target="_blank" rel="noopener noreferrer" aria-label="Download Background Apps &amp; Process List">Install</a></div></article><article class="row" data-name="Proton VPN"><div class="mark" aria-hidden="true">PV</div><div><h3>Proton VPN</h3><div class="meta">Google Play Store link - Updated May 9, 2026</div><div class="desc">VPN utility.</div><div class="note">Install or update Proton VPN from the official Google Play Store listing.</div></div><div class="buttons"><a class="install" href="https://play.google.com/store/apps/details?id=ch.protonvpn.android&hl=en_US" target="_blank" rel="noopener noreferrer" aria-label="Open Play Store Proton VPN">Open Play Store</a></div></article><article class="row" data-name="TV Bro"><div class="mark" aria-hidden="true">TB</div><div><h3>TV Bro</h3><div class="meta">Version 2.01 - Updated March 27, 2026</div><div class="desc">TV browser utility.</div></div><div class="buttons"><a class="install" href="https://pixeldrain.com/api/filesystem/9arAt3iT" target="_blank" rel="noopener noreferrer" aria-label="Download TV Bro">Install</a></div></article><article class="row" data-name="Wolf Launcher"><div class="mark" aria-hidden="true">WL</div><div><h3>Wolf Launcher</h3><div class="meta">Version 0.1.9 - Updated March 27, 2026</div><div class="desc">Launcher utility.</div></div><div class="buttons"><a class="install" href="https://pixeldrain.com/api/filesystem/51fCaZup" target="_blank" rel="noopener noreferrer" aria-label="Download Wolf Launcher">Install</a></div></article><article class="row" data-name="Trusted VirusTotal Support APK"><div class="mark" aria-hidden="true">TV</div><div><h3>Trusted VirusTotal Support APK</h3><div class="meta">Trusted support APK - Updated July 5, 2026</div><div class="desc">APK safety scanner for checking suspicious apps before use.</div><div class="note">Use this before installing apps from outside the App Library or Google Play Store. If a scan flags malware, uninstall the app and contact support.</div></div><div class="buttons"><a class="install" href="https://pixeldrain.com/api/filesystem/nzZ1jtd6" target="_blank" rel="noopener noreferrer" aria-label="Download APK Trusted VirusTotal Support APK">Install</a><a class="secondary" href="https://www.virustotal.com/gui/home/upload" target="_blank" rel="noopener noreferrer" aria-label="Open Scanner Trusted VirusTotal Support APK">Open Scanner</a></div></article><article class="row" data-name="analiti Speed &amp; WiFi"><div class="mark" aria-hidden="true">aS</div><div><h3>analiti Speed &amp; WiFi</h3><div class="meta">Google Play Store link - Updated July 5, 2026</div><div class="desc">Speed test and Wi-Fi analyzer used to troubleshoot buffering, weak signal, and connection issues.</div><div class="note">Use this on the same device and Wi-Fi network that is having playback issues.</div></div><div class="buttons"><a class="install" href="https://play.google.com/store/apps/details?id=com.analiti.fastest.android&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" aria-label="Open Play Store analiti Speed &amp; WiFi">Open Play Store</a><a class="secondary" href="https://analiti.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Website analiti Speed &amp; WiFi">Open Website</a></div></article></div></details><details id="inactive-apps"><summary>Inactive / unavailable apps <span>5 apps</span></summary><p class="category-desc">Reference only; not recommended for installation.</p><article class="unavailable"><strong>StreamFire</strong><p>No longer active - Updated September 10, 2026</p><p>StreamFire is no longer active and is not recommended for new installs.</p></article><article class="unavailable"><strong>Sportsfire</strong><p>No longer active - Updated September 10, 2026</p><p>Sportsfire is no longer active and is not recommended for new installs.</p></article><article class="unavailable"><strong>OnStream</strong><p>Currently not working consistently - Updated June 28, 2026</p><p>OnStream is currently unavailable. No download is offered; this entry will be updated if a reliable version is confirmed.</p></article><article class="unavailable"><strong>Movie HD</strong><p>Currently inactive - Updated May 9, 2026</p><p>Movie HD is no longer active. I am actively looking to see if a replacement download is available. Check back here in the future for updates.</p></article><article class="unavailable"><strong>Stream Vision</strong><p>Currently unavailable — Status updated November 9, 2026</p><p>Removed from recommended customer apps following owner confirmation. No download is offered.</p></article></details><p class="notice">Third-party applications may change or become unavailable. Only install from sources you trust; if a security warning appears, stop and contact support.</p></section>
+<section id="help"><h2>Help &amp; guides</h2><p class="sub">Choose a topic. Instructions and videos are available in the same place.</p>
+<details open><summary>First-time device setup</summary><div class="guide"><ol><li>Connect the preconfigured device to your home Wi-Fi.</li><li>Open your service app and confirm it works.</li><li>We recommend adding your own Google account so you can manage your personal Google services and applications. The device was initially prepared using the 4MyIPTV Service account.</li></ol><p>Do not factory-reset the device or remove accounts until you understand the effect on your setup. Contact your representative if you need assistance.</p></div></details>
+<details><summary>How to update an app</summary><div class="guide"><ol><li>Open Downloader on your device.</li><li>Use the menu in the upper-left corner and select <strong>Favorites</strong>.</li><li>Choose the saved 4MyIPTV Service Support Page.</li><li>Find your app under Recent Updates or All Apps &amp; Utilities. Review the version and any app-specific instructions.</li><li>If the update requires a reinstall, make sure you have any necessary login information before uninstalling the old app.</li><li>Complete the installation and select Done to return to Downloader.</li><li>Select Delete to remove the installer file, then select Delete again to confirm. This does not uninstall the application.</li><li>Repeat for other apps as needed, then press Home or Back to finish.</li></ol><p>Keep device security features enabled. For the primary service app, contact your rep before uninstalling, clearing its data, or resetting your device.</p></div></details>
+<details><summary>Service login and troubleshooting</summary><div class="guide"><p>Open IPTV Smarters Pro, choose the login method specified by your rep, and enter your service details exactly as supplied. Never send your password when requesting support.</p><ul><li>Close and reopen the affected app.</li><li>Check Wi-Fi, restart the device, and restart the router if needed.</li><li>Run a speed test on the same device and network if playback is slow.</li><li>If a suspicious download or security warning appears, stop installation and contact your rep.</li><li>For an outdated optional app, read the current update note before reinstalling.</li></ul><p>Support is provided for listed service and optional apps; applications installed from other sources may not be supported.</p><div class="actions"><a class="secondary" href="#utilities">Tools &amp; utilities</a></div></div></details>
+<details><summary>Videos &amp; written guides</summary><div class="guide"><p>Existing narrated instruction guides. Menu names may vary by device and application version.</p>
+<div class="topic"><h3>Update an optional app</h3><p>How to open your saved page, install an update and remove the installer.</p><video controls preload="none" playsinline src="customer-updating-apps.mp4"></video></div>
+<div class="topic"><h3>Use the electronic program guide</h3><p>Find the guide, browse listings, and refresh listings when available.</p><video controls preload="none" playsinline src="customer-program-guide.mp4"></video><p>Open Live TV, select the guide option available in your app, and use the channel and time listings. If listings are missing, refresh the guide or reopen the app.</p></div>
+<div class="topic"><h3>Find content and manage favorites</h3><p>Search for channels or titles, then use favorites controls supported by the app.</p><video controls preload="none" playsinline src="customer-favorites.mp4"></video><p>Use Search to locate content. Select the favorites option for supported items and open your favorites list to revisit them.</p></div>
+<div class="actions"><a class="secondary" href="paid-customer-guide.html">Read complete customer guide</a></div></div></details>
+<details><summary>Need additional support?</summary><div class="guide"><p>Questions about renewals, payment, device setup or problems that continue after basic troubleshooting? Contact your representative with your service username, device model, affected app and a description of the problem.</p><div class="actions"><a class="secondary" href="device-support-services.html">Remote and drop-off support</a></div></div></details>
+<details><summary>Support library maintenance</summary><div class="guide"><p>Optional contributions help support library maintenance.</p><a class="secondary" href="https://www.paypal.com/ncp/payment/VSS7HZSB5FD2E" target="_blank" rel="noopener noreferrer">Support updates with PayPal</a></div></details>
+<section class="notice" aria-label="Contact your rep"><h2>Contact Your Rep</h2><p>Timothy Garrett · 4MyIPTV Service</p><div class="actions"><a class="secondary" href="https://wa.me/16312205117" target="_blank" rel="noopener noreferrer">WhatsApp</a><a class="secondary" href="https://t.me/myiptvservice4" target="_blank" rel="noopener noreferrer">Telegram</a><a class="secondary" href="mailto:4myiptvservice@gmail.com">Email</a><a class="secondary" href="https://t.me/myiptvservice_support_bot" target="_blank" rel="noopener noreferrer">Telegram support bot</a></div><p>Use the bot for quick support questions, or contact Tim directly for personal assistance.</p></section>
+</section></main><footer>4MyIPTV Service · Customer Support Center · Updated November 22, 2026</footer>
 <script>
-(function(){
-  function sendCustomerEvent(eventName, params){
-    if (typeof gtag !== "function") return;
-    gtag("event", eventName, params || {});
-  }
-
-  window.trackServiceEvent = sendCustomerEvent;
-
-  document.addEventListener("DOMContentLoaded", function(){
-    document.querySelectorAll("a[href]").forEach(function(link){
-      link.addEventListener("click", function(){
-        var href = link.getAttribute("href") || "";
-        var text = (link.textContent || "").replace(/\s+/g, " ").trim().slice(0, 100);
-        var eventName = "site_link_click";
-
-        if (href.indexOf("request-service.html?promo=memorial-day-2026") !== -1) {
-          eventName = "promo_offer_click";
-        } else if (href.indexOf("request-service.html") !== -1) {
-          eventName = "request_service_click";
-        } else if (href.indexOf("t.me/myiptvservice4") !== -1) {
-          eventName = "telegram_click";
-        } else if (href.indexOf("sell-sheet.html") !== -1) {
-          eventName = "sell_sheet_click";
-        } else if (href.indexOf("checkout.html") !== -1 || href.indexOf("paypal.com") !== -1) {
-          eventName = "checkout_click";
-        } else if (href.indexOf("app-library.html") !== -1 || href.indexOf("downloader-portal.html") !== -1 || href.indexOf("support.html") !== -1 || href.indexOf("online-support.html") !== -1 || href.indexOf("device-setup.html") !== -1) {
-          eventName = "support_resource_click";
-        }
-
-        sendCustomerEvent(eventName, {
-          link_text: text,
-          link_url: href,
-          page_path: window.location.pathname
-        });
-      });
-    });
-  });
-})();
-</script>
-<!-- CUSTOMER ANALYTICS EVENT TRACKING END -->
-
-</body>
-</html>
+(function(){'use strict';var tabs=[].slice.call(document.querySelectorAll('.tab')),sections=['updates','apps','help'];function show(){var hash=location.hash.slice(1),name=sections.indexOf(hash)>=0?hash:hash&&document.getElementById(hash)&&document.getElementById('apps').contains(document.getElementById(hash))?'apps':'updates';sections.forEach(function(id){document.getElementById(id).hidden=id!==name});tabs.forEach(function(a){if(a.getAttribute('href')==='#'+name)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});if(hash&&hash!==name&&name==='apps'){var target=document.getElementById(hash);if(target){target.open=true;target.scrollIntoView()}}}window.addEventListener('hashchange',show);show();document.getElementById('search').addEventListener('input',function(){var q=this.value.trim().toLowerCase();[].slice.call(document.querySelectorAll('#apps .category')).forEach(function(d){var count=0;[].slice.call(d.querySelectorAll('.row')).forEach(function(r){r.hidden=r.getAttribute('data-name').toLowerCase().indexOf(q)<0;if(!r.hidden)count++});d.hidden=!count;if(q&&count)d.open=true})});document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(a&&typeof gtag==='function')gtag('event',a.classList.contains('install')?'support_app_click':'support_resource_click',{link_text:a.textContent.trim(),page_path:location.pathname})});
+document.addEventListener('keydown',function(e){if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].indexOf(e.key)<0||e.target.matches('input,video'))return;var current=document.activeElement;if(!current.matches('a,summary'))return;var c=current.getBoundingClientRect(),best=null,score=Infinity,vertical=e.key==='ArrowUp'||e.key==='ArrowDown',sign=e.key==='ArrowUp'||e.key==='ArrowLeft'?-1:1;[].slice.call(document.querySelectorAll('a,summary')).forEach(function(x){if(x===current||!x.getClientRects().length)return;var t=x.getBoundingClientRect(),dx=t.x+t.width/2-c.x-c.width/2,dy=t.y+t.height/2-c.y-c.height/2,axis=vertical?dy:dx,other=vertical?dx:dy;if(axis*sign<=3)return;var s=Math.abs(axis)+Math.abs(other)*3;if(s<score){score=s;best=x}});if(best){e.preventDefault();best.focus()}});})();
+</script></body></html>
